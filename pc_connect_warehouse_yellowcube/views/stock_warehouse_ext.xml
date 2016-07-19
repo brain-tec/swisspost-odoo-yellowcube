@@ -6,7 +6,7 @@
 			<field name="inherit_id" ref="stock.view_warehouse_tree" />
 
 			<field name="arch" type="xml">
-				<field name="lot_stock_id" position="after">
+				<field name="lot_output_id" position="after">
 					<field name="lot_blocked_id" />
 					<field name="lot_scrapping_id" />
 
@@ -20,7 +20,7 @@
 			<field name="inherit_id" ref="pc_connect_warehouse.stock_warehouse_form_ext" />
 
 			<field name="arch" type="xml">
-				<field name="lot_stock_id" position="after">
+				<field name="lot_output_id" position="after">
 					<field name="lot_blocked_id" />
 					<field name="lot_scrapping_id" />
 				</field>

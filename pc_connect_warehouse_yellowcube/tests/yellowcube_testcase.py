@@ -20,8 +20,6 @@
 ##############################################################################
 from openerp.osv import osv, fields
 from openerp.tools.translate import _
-import logging
-logger = logging.getLogger(__name__)
 from openerp.tests import common
 from ..xml_abstract_factory import get_factory
 from datetime import datetime
@@ -32,6 +30,9 @@ from lxml import etree
 from urllib import urlopen
 import os
 from openerp.addons.report_webkit.webkit_report import WebKitParser
+import logging
+logger = logging.getLogger(__name__)
+
 
 _test_timestamp = datetime.today().strftime('%Y%m%d%H%M%S')
 

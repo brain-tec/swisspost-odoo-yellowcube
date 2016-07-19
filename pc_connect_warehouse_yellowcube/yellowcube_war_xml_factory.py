@@ -109,11 +109,6 @@ class yellowcube_war_xml_factory(xml_abstract_factory):
         goods_issue_header = nspath(xml, "//warr:GoodsIssueHeader")[0]
         booking_voucher_id = nspath(goods_issue_header, "warr:BookingVoucherID")[0].text
         booking_voucher_year = nspath(goods_issue_header, "warr:BookingVoucherYear")[0].text
-        # TODO: Put this at the end, like in the WBA.
-#         for move_line in picking_out.move_lines:
-#             stock_move_obj.write(self.cr, self.uid, move_line.id, {'booking_voucher_id': booking_voucher_id,
-#                                                                     'booking_voucher_year': booking_voucher_year,
-#                                                                     }, self.context)
 
         # Validates DepositorNo against the system's parameter. If does not match, then aborts and logs an issue.
         depositor_no = nspath(goods_issue_header, "warr:DepositorNo")[0].text
@@ -221,10 +216,10 @@ class yellowcube_war_xml_factory(xml_abstract_factory):
                                                                                            ('product_id', '=', product_id)
                                                                                            ], context=self.context)
                 if not lot_ids:
-                    self._check(warehouse, False, _('Lot {0} for product {1} (id={2}) does not exist in the system').format(lot, product.name, product_id))
-                elif getattr(move_line, 'restrict_lot_id' if V8 else 'prodlot_id'):
-                    if self._check(picking_out, getattr(move_line, 'restrict_lot_id' if V8 else 'prodlot_id').name == lot, _('Product {0} (id={1}): Lot does not match the lot indicated of the original stock.move.').format(product_obj.name, product_id)):
-                        partial['restrict_lot_id' if V8 else 'prodlot_id'] = lot_ids[0]
+                    self._check(warehouse, False, _('Lot {0} for product {1} (id={2}) does not exist in the system').format(lot, product_obj.name, product_id))
+                elif move_line.prodlot_id:
+                    if self._check(picking_out, move_line.prodlot_id.name == lot, _('Product {0} (id={1}): Lot does not match the lot indicated of the original stock.move.').format(product.name, product_id)):
+                        partial['prodlot_id'] = lot_ids[0]
 
             if product.track_outgoing:
                 self._check(warehouse, lot, _("The WAR file must contain a lot, otherwise the stock.move can not be updated for product {0}".format(product.name)))
@@ -323,17 +318,9 @@ class yellowcube_war_xml_factory(xml_abstract_factory):
             stock_move_obj.write(self.cr, self.uid, move_ids, {'yc_booking_voucher_id': booking_voucher_id,
                                                                'yc_booking_voucher_year': booking_voucher_year,
                                                                }, self.context)
+
             self.mark_record(picking_out.id, 'stock.picking' if V8 else 'stock.picking.out')
 
-            # The message is sent ONLY if we had success.
-#             picking_out.message_post(body=_("""Your order has been shipped through {0} and it can be tracked in the next link:\
-#                                             <br/>\
-#                                             <a href='https://www.post.ch/swisspost-tracking?formattedParcelCodes={1}'>Track&Trace</a>\
-#                                             """).format(picking_out.carrier_id.name, urllib.quote(picking_out.carrier_tracking_ref)),
-#                                      type='comment',
-#                                      subtype="mail.mt_comment",
-#                                      context=self.context,
-#                                      partner_ids=picking_out.carrier_id and [picking_out.carrier_id.partner_id.id] or [])
         else:
             raise Warning('There where some errors in the WAR file: {0}'.format('\n'.join(self.errors)))
 

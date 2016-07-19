@@ -23,7 +23,7 @@
                     <!-- We add main_category_id so that it's propagated to the children, in the case the parent is not yet created and thus 'default_parent_id' is False. -->
                     <attribute name="context">{'default_parent_id': active_id, 'default_street': street, 'default_street2': street2, 'default_city': city, 'default_state_id': state_id, 'default_zip': zip, 'default_country_id': country_id, 'default_supplier': supplier, 'default_customer': customer, 'default_use_parent_address': True, 'main_category_id': main_category_id}</attribute>
                 </field>
- 
+
 				<field name="category_id" position="attributes">
 					<attribute name="on_change">onchange_main_category_id(main_category_id,
 						category_id)</attribute>
@@ -139,7 +139,7 @@
 			<field name="model">res.partner</field>
 			<field name="inherit_id" ref="base.view_partner_tree" />
 			<field name="arch" type="xml">
-				<field name='display_name' position='after'>
+				<field name='name' position='after'>
 					<field name='main_category_id' />
 				</field>
 			</field>

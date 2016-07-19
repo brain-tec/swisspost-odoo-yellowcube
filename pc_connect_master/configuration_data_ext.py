@@ -18,6 +18,7 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 ##############################################################################
+
 from openerp.osv import osv, fields
 from openerp.tools.translate import _
 
@@ -35,7 +36,7 @@ class configuration_data_ext(osv.Model):
     _columns = {
         # Reports
         'report_account_invoice': fields.many2one('ir.actions.report.xml', "Invoice", domain=[('model', '=', 'account.invoice')]),
-        'report_stock_picking': fields.many2one('ir.actions.report.xml', "Delivery", domain=[('model', '=', 'stock.picking')]),
+        'report_stock_picking': fields.many2one('ir.actions.report.xml', "Delivery", domain=[('model', '=', 'stock.picking.out')]),
 
         # Dates
         'post_default_expiration_block_time': fields.integer('Default Expiration Block Time'),
@@ -83,7 +84,6 @@ class configuration_data_ext(osv.Model):
 
         'execute_only_after_time_for_backorders': fields.float('Time for Execute Only After for Backorders', required=True,
                                                                help='The time of the next day after which delayed backorders will be processed again.'),
-
 
         'illegal_lots_destination_id': fields.many2one('stock.location', 'Location for Illegal Lots', domain=[('scrap_location', '=', True)],
                                                        help='Location where illegal quantities are put. Must be a scraping location. '

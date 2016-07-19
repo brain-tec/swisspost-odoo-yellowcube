@@ -18,28 +18,31 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 ##############################################################################
+
 from openerp.osv import orm, osv, fields
 from openerp.tools.translate import _
-import logging
 from openerp.addons.pc_connect_master.utilities.misc import format_exception
-from openerp import SUPERUSER_ID, api, models
-logger = logging.getLogger(__name__)
+from openerp import SUPERUSER_ID
 from stock_connect_file import FILE_STATE_READY, FILE_STATE_DRAFT, FILE_STATE_DONE
 import os
 from tempfile import mkstemp
 import re
 from threading import Lock
 import shutil
+import logging
+logger = logging.getLogger(__name__)
+
 
 mutex = Lock()
 
 _STOCK_CONNECT_TYPE = [
+    ('denner', 'Denner'),
     ('yellowcube', 'YellowCube'),
     ('yellowcubesoap', 'YellowCube over SOAP'),
     ('external_email', 'External Email'),
 ]
 
-_NAME_PREFIX = 'PCAP - WAREHOUSE - {0}'
+_NAME_PREFIX = 'SwissPost YellowCube Connector - WAREHOUSE - {0}'
 
 _ISSUE_NO_CONNECTION = _('There was a problem with the connection')
 
@@ -201,7 +204,7 @@ class stock_connect(osv.Model):
             return r
 
         else:
-            new_cr = self.pool.cursor()
+            new_cr = self.pool.db.cursor()
             try:
                 file_record = file_obj.browse(cr, uid, file_id, context)
                 if file_record.error or file_record.state == FILE_STATE_DRAFT:
@@ -244,23 +247,19 @@ class stock_connect(osv.Model):
 
         return function(cr, uid, ids, context=context, file_id=file_id, att_id=att_id)
 
-    @api.model
-    def connection_do_all(self, ids):
+    def connection_do_all(self, cr, uid, ids, context=None):
         ''' Each part of the process is executed in its own cursor, in order
             to isolate its errors from the errors of the other parts.
         '''
-        cr = self.env.cr
-        uid = self.env.uid
-        context = self.env.context.copy()
+        if context is None:
+            context = {}
+        else:
+            context = context.copy()
         if 'show_errors' not in context:
             context['show_errors'] = True
 
-        # We force to use syntax for v7 from now on.
-        if '_ids' in self.__dict__:
-            del self.__dict__['_ids']
-
         # 1) Get new input files
-        new_cr = self.pool.cursor()
+        new_cr = self.pool.db.cursor()
         try:
             self.connection_get_files(new_cr, uid, ids, context)
         finally:
@@ -268,7 +267,7 @@ class stock_connect(osv.Model):
             new_cr.close()
 
         # 2) Process the input files
-        new_cr = self.pool.cursor()
+        new_cr = self.pool.db.cursor()
         try:
             self.connection_process_files(new_cr, uid, ids, context)
         finally:
@@ -276,7 +275,7 @@ class stock_connect(osv.Model):
             new_cr.close()
 
         # 3) Process changes in warehouses
-        new_cr = self.pool.cursor()
+        new_cr = self.pool.db.cursor()
         try:
             self.connection_process_events(new_cr, uid, ids, context)
         finally:
@@ -284,7 +283,7 @@ class stock_connect(osv.Model):
             new_cr.close()
 
         # 3) Send the changes
-        new_cr = self.pool.cursor()
+        new_cr = self.pool.db.cursor()
         try:
             self.connection_send_files(new_cr, uid, ids, context)
         finally:

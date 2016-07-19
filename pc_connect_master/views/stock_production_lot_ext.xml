@@ -27,14 +27,12 @@
 								options='{"thread_level": 1}' />
 						</div>
 					</xpath>
-					<field name='ref' position='after'>
+					<field name='date' position='after'>
 						<field name='production_date'/>
 					</field>
-					<field name='quant_ids' position='after'>
-						<group>
-							<field name='virtual_available'/>
-                        	<field name='virtual_available_for_sale'/>
-                        </group>
+					<field name='stock_available' position='after'>
+						<field name='virtual_available'/>
+                        <field name='virtual_available_for_sale'/>
 					</field>
 				</data>
 			</field>

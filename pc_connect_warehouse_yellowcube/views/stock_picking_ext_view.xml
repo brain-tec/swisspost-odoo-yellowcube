@@ -1,15 +1,16 @@
 <openerp>
 	<data>
+        <!-- stock.picking.in -->
 		<record id="stock_picking_in_returns" model="ir.ui.view">
 			<field name="name">stock_picking_in_returns</field>
-			<field name="model">stock.picking</field>
+			<field name="model">stock.picking.in</field>
 			<field name="inherit_id" ref="stock.view_picking_form" />
 			<field name="arch" type="xml">
 				<notebook position="inside">
 					<page string="Returns"
 						attrs="{'readonly': [('state', 'not in', ['draft'])]}">
 						<group>
-							<field name="picking_type_id" readonly="1" />
+							<field name="type" readonly="1" />
 							<field name="yellowcube_customer_order_no" readonly="1" />
 							<field name="yellowcube_return_automate" colspan="2" />
 							<field name="yellowcube_return_origin_order" colspan="2" />
@@ -19,22 +20,20 @@
 				</notebook>
 			</field>
 		</record>
-
-        <record id="stock_picking_tree_ext" model="ir.ui.view">
-            <field name="name">yc_stock_picking_tree_ext</field>
-            <field name="inherit_id" ref="stock.vpicktree" />
-            <field name="model">stock.picking</field>
+        <record id="stock_picking_in_tree_ext" model="ir.ui.view">
+            <field name="name">yc_stock_picking_in_tree_ext</field>
+            <field name="inherit_id" ref="stock.view_picking_in_tree" />
+            <field name="model">stock.picking.in</field>
             <field name="arch" type="xml">
                 <field name="name" position="after">
                     <field name="yellowcube_customer_order_no" />
                 </field>
             </field>
         </record>
-
-        <record id="stock_picking_search_ext" model="ir.ui.view">
-            <field name="name">yc_stock_picking_search_ext</field>
-            <field name="inherit_id" ref="stock.view_picking_internal_search" />
-            <field name="model">stock.picking</field>
+        <record id="stock_picking_in_search_ext" model="ir.ui.view">
+            <field name="name">yc_stock_picking_in_search_ext</field>
+            <field name="inherit_id" ref="stock.view_picking_in_search" />
+            <field name="model">stock.picking.in</field>
             <field name="arch" type="xml">
                 <field name="name" position="after">
                     <field name="yellowcube_customer_order_no"
@@ -43,6 +42,28 @@
                 </field>
             </field>
         </record>
-
+        <!-- stock.picking.out -->
+		<record id="stock_picking_out_tree_ext" model="ir.ui.view">
+            <field name="name">yc_stock_picking_out_tree_ext</field>
+            <field name="inherit_id" ref="stock.view_picking_out_tree" />
+            <field name="model">stock.picking.out</field>
+            <field name="arch" type="xml">
+                <field name="name" position="after">
+                    <field name="yellowcube_customer_order_no" />
+                </field>
+            </field>
+		</record>
+        <record id="stock_picking_out_search_ext" model="ir.ui.view">
+            <field name="name">yc_stock_picking_out_search_ext</field>
+            <field name="inherit_id" ref="stock.view_picking_out_search" />
+            <field name="model">stock.picking.out</field>
+            <field name="arch" type="xml">
+                <field name="name" position="after">
+                    <field name="yellowcube_customer_order_no"
+                        string="YC Customer Order No"
+                        filter_domain="[('yellowcube_customer_order_no','ilike',self)]"/>
+                </field>
+            </field>
+        </record>
 	</data>
 </openerp>

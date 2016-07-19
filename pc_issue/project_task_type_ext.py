@@ -18,9 +18,14 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 ##############################################################################
+
 from openerp.osv import osv, fields
 
-_TASK_STATE = [('draft', 'New'), ('open', 'In Progress'), ('pending', 'Pending'), ('done', 'Done'), ('cancelled', 'Cancelled')]
+_TASK_STATE = [('draft', 'New'),
+               ('open', 'In Progress'),
+               ('pending', 'Pending'),
+               ('done', 'Done'),
+               ('cancelled', 'Cancelled')]
 
 
 class project_task_type_ext(osv.Model):

@@ -36,7 +36,7 @@
     location_origin_id = self.pool.get('stock.location').search(cr, uid, [('name', '=', 'Suppliers')], context=context)[0]
     location_dest_id = self.pool.get('stock.location').search(cr, uid, [('name', '=', 'YAFS')], context=context)[0]
 
-    stock_move_lot_id = self.create(cr, uid, {'product_id': context['test_product_id'], 'product_uom_qty': 5.000, 'product_uom': ref('product.product_uom_categ_unit'), 'location_id': location_origin_id, 'location_dest_id': location_dest_id, 'restrict_lot_id': context['lot_to_use_id'], 'name': 'Stock move for xxxLOTxxx', 'date_expected': now_str}, context=context)
+    stock_move_lot_id = self.create(cr, uid, {'product_id': context['test_product_id'], 'product_qty': 5.000, 'product_uom': ref('product.product_uom_categ_unit'), 'location_id': location_origin_id, 'location_dest_id': location_dest_id, 'prodlot_id': context['lot_to_use_id'], 'name': 'Stock move for xxxLOTxxx', 'date_expected': now_str}, context=context)
     stock_move_lot = self.browse(cr, uid, stock_move_lot_id, context=context)
     stock_move_lot.action_done()
 
@@ -124,9 +124,9 @@
     print 'Checking lots for {0}'.format(product.name)
     for lot in product.stock_prodlots:
     	assert(lot.product_id.id == context['test_product_id']), "The product only has its own lots"
-    	if lot.prod_lot_id.name == context['lot_name'] and lot.location_id.name == 'YAFS':
+    	if lot.prodlot_id.name == context['lot_name'] and lot.location_id.name == 'YAFS':
     		checked = True
-    		assert(lot.product_qty == context['num_units']), "The quantity available should have been updated to {0}, but it is {1}.".format(context['num_units'], lot.product_qty)
+    		assert(lot.qty == context['num_units']), "The quantity available should have been updated to {0}, but it is {1}.".format(context['num_units'], lot.qty)
     assert(checked), "The lot {lot_name} is not in the system".format(**context)
 -
   TEST_BAR_PROCESS_CORRECT_FILE. Rollbacks.

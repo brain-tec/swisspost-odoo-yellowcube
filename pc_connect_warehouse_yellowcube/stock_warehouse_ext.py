@@ -20,11 +20,9 @@
 ##############################################################################
 from openerp.osv import osv, fields
 from openerp.tools.translate import _
-import logging
-#from yellowcube_bar_xml_factory import get_list_of_products_missing_in_bar_for_long_time
-#from yellowcube_bar_xml_factory import get_num_days_product_not_in_bar
-logger = logging.getLogger(__name__)
 from xml_abstract_factory import deprecated
+import logging
+logger = logging.getLogger(__name__)
 
 
 class stock_warehouse_ext(osv.osv):

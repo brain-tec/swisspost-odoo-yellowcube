@@ -1,6 +1,5 @@
 <openerp>
     <data>
-        <!-- TODO ? Only in v7
         <record id="view_move_form_ext" model="ir.ui.view">
             <field name="name">view_move_form_ext</field>
             <field name="model">stock.move</field>
@@ -12,8 +11,6 @@
                 </group>
             </field>
         </record>
-         -->
-
         <record id="view_move_picking_tree_ext" model="ir.ui.view">
             <field name="name">view_move_tree_ext</field>
             <field name="model">stock.move</field>
@@ -24,6 +21,5 @@
                 </field>
             </field>
         </record>
-
     </data>
 </openerp>

@@ -18,11 +18,12 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 ##############################################################################
+
 from openerp.osv import osv, fields
 from openerp.tools.translate import _
-import logging
 from openerp.addons.base.res.res_partner import res_partner
 from openerp.addons.base.res.res_partner import _lang_get
+import logging
 logger = logging.getLogger(__name__)
 
 

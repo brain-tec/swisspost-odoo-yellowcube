@@ -32,8 +32,8 @@ class stock_warehouse_ext(osv.Model):
         ret = []
         for data in self.read(cr, uid, ids, ['lot_stock_id'], context=context):
             loc_id = data['lot_stock_id']
-            if loc_id and loc_id not in ret:
-                ret.append(loc_id)
+            if loc_id and loc_id[0] not in ret:
+                ret.append(loc_id[0])
         return ret
 
     def get_stock_location(self, cr, uid, ids, context=None):

@@ -20,12 +20,12 @@
 ##############################################################################
 from openerp.osv import osv, fields
 from openerp.tools.translate import _
-import logging
-logger = logging.getLogger(__name__)
 import unittest2
 from yellowcube_testcase import yellowcube_testcase
 from ..xml_abstract_factory import get_factory
 from ..xsd.xml_tools import nspath, create_root, create_element, xml_to_string, schema_namespaces
+import logging
+logger = logging.getLogger(__name__)
 
 
 class test_yc_art(yellowcube_testcase):
@@ -35,9 +35,8 @@ class test_yc_art(yellowcube_testcase):
         self.test_warehouse.stock_connect_id.write({'yc_enable_art_file': True, 'yc_enable_art_multifile': False})
 
         self.product_3 = self.browse_ref('product.product_product_3')
-        if hasattr(self.product_3, 'action_validated'):
-            self.product_3.action_validated()
-            self.product_3.action_in_production()
+        self.product_3.action_validated()
+        self.product_3.action_in_production()
 
     def test_inventory(self):
         """
@@ -49,9 +48,8 @@ class test_yc_art(yellowcube_testcase):
 
         self.assertEqual(self._yc_files(), [], 'No export file exists')
 
-        art_factory = get_factory(self.test_warehouse.env, "art", context=ctx)
-        art_factory.generate_files([('id', '=', self.test_warehouse.id)],
-                                   force_product_ids=[self.product_3.id])
+        art_factory = get_factory([self.test_warehouse.pool, cr, uid], "art", context=ctx)
+        art_factory.generate_files([('id', '=', self.test_warehouse.id)])
 
         self.assertEqual(len(self._yc_files(_type='art')), 1, 'ART file exists')
 

@@ -25,10 +25,8 @@ from openerp.tools.translate import _
 
 # Here we list the types of connections that we are going to support.
 PC_CONNECTION_TYPES = [
-    ('soap', 'SOAP'),
     ('fds', 'FDS'),
     ('localsftp', 'Local SFTP'),
-    ('magentoxmlrpc', 'Magento XML-RPC'),
 ]
 
 
@@ -101,4 +99,5 @@ class connect_transport(osv.Model):
         (_type_installed, 'Selected type is not present on the server. Install related module', ['type']),
         (_type_not_implemented, 'Selected type is not implemented yet.', ['type']),
     ]
+
 # vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:

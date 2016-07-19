@@ -18,17 +18,18 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 ##############################################################################
-from openerp.osv import osv, fields, orm
+
+from osv import osv, fields, orm
 from openerp.tools.translate import _
 from openerp.tools.safe_eval import safe_eval
-import logging
-from openerp.addons.pc_connect_master.utilities.misc import format_exception
+from utilities.misc import format_exception
 from openerp import netsvc
-import logging
 import time
 import datetime
 import pytz
+import logging
 logger = logging.getLogger(__name__)
+
 
 TIME_OF_DAY_1 = '{0}_time_of_day'
 TIME_OF_DAY_2 = '{0}_time_of_day_2'

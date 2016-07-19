@@ -1,41 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
 <openerp>
 	<data>
-		<!-- V8-only -->
-		<record id="stock_picking_form_ext_view" model="ir.ui.view">
-			<field name="name">stock_picking_form_ext_view</field>
-			<field name="model">stock.picking</field>
-			<field name="inherit_id" ref="stock.view_picking_form" />
-			<field name="arch" type="xml">
-				<data>
-					<field name="group_id" position="after">
-						<field name="sale_id" />
- 						<field name="purchase_id" />
-					</field>
-					<field name="date_done" position="attributes">
-						<attribute name="groups">pc_connect_master.pc_client</attribute>
-					</field>
-					<field name="date_done" position="after">
-						<field name="do_not_send_to_warehouse" />
-				    </field>
-				</data>
-			</field>
-		</record>
 
         <record
             id="stock_picking_out_search_ext_view"
             model="ir.ui.view">
             <field name="name">stock_picking_out_search_ext_view</field>
-            <field name="model">stock.picking</field>
+            <field name="model">stock.picking.out</field>
             <field
                 name="inherit_id"
-                ref="stock.view_picking_internal_search" />
+                ref="stock.view_picking_out_search" />
             <field
                 name="arch"
                 type="xml">
                 <data>
                     <field
-                        name="partner_id"
+                        name="company_id"
                         position="after">
 
                         <filter

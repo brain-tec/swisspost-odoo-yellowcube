@@ -19,13 +19,13 @@
 #
 ##############################################################################
 
-from openerp.osv import orm, osv, fields
+from osv import orm, osv, fields
 from openerp.tools.translate import _
-import logging
-from openerp.addons.pc_connect_master.utilities.misc import format_exception
+from utilities.misc import format_exception
 import datetime
 from datetime import timedelta
 from openerp.tools import DEFAULT_SERVER_DATETIME_FORMAT
+import logging
 logger = logging.getLogger(__name__)
 
 

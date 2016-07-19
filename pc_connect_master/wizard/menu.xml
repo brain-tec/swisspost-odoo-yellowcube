@@ -3,7 +3,7 @@
 	<data>
 
 		<menuitem name="Export Documents" action="action_export_knowledge_wizard"
-			id="wz_menu_action_export_documents" parent="knowledge.menu_document"
+			id="wz_menu_action_export_documents" parent="document.menu_document_doc"
 			sequence="5" />
 
 	</data>

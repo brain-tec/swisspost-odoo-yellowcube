@@ -25,9 +25,7 @@ from openerp.tools import DEFAULT_SERVER_DATETIME_FORMAT
 from openerp.tools.translate import _
 from utilities import filters
 from datetime import datetime
-from openerp.addons.pc_connect_master.utilities.misc import format_exception
-from openerp import api
-from openerp.exceptions import except_orm, Warning, RedirectWarning
+from utilities.misc import format_exception
 
 
 class account_invoice_ext(osv.Model):
@@ -43,8 +41,8 @@ class account_invoice_ext(osv.Model):
     def search(self, cr, uid, args, offset=0, limit=None, order=None, context=None, count=False):
         return filters.search(self, cr, uid, args, account_invoice_ext, offset=offset, limit=limit, order=order, context=context, count=count)
 
-    def read_group(self, cr, uid, domain, fields, groupby, offset=0, limit=None, context=None, orderby=False, lazy=True):
-        return filters.read_group(self, cr, uid, domain, fields, groupby, account_invoice_ext, offset=offset, limit=limit, context=context, orderby=orderby, lazy=lazy)
+    def read_group(self, cr, uid, domain, fields, groupby, offset=0, limit=None, context=None, orderby=False):
+        return filters.read_group(self, cr, uid, domain, fields, groupby, account_invoice_ext, offset=offset, limit=limit, context=context, orderby=orderby)
     # END OF THE CODE WHICH DEFINES THE NEW FILTERS TO ADD TO THE OBJECT.
 
     def requires_rounding(self, cr, uid, ids, context=None):
@@ -166,19 +164,16 @@ class account_invoice_ext(osv.Model):
         invoice = self.browse(cr, uid, ids, context)
         return invoice.partner_id.get_salutation()
 
-    @api.multi
-    def check_tax_lines(self, compute_taxes):
+    def check_tax_lines(self, cr, uid, inv, compute_taxes, ait_obj):
         ''' This method complements a missing functionality in bt_account
         '''
-        account_invoice_tax = self.env['account.invoice.tax']
-        company_currency = self.company_id.currency_id
-        if not self.tax_line:
+        company_currency = self.pool['res.company'].browse(cr, uid, inv.company_id.id).currency_id
+        if not inv.tax_line:
             for tax in compute_taxes.values():
-                account_invoice_tax.create(tax)
+                ait_obj.create(cr, uid, tax)
         else:
             tax_key = []
-            precision = self.env['decimal.precision'].precision_get('Account')
-            for tax in self.tax_line:
+            for tax in inv.tax_line:
                 if tax.manual:
                     continue
                 # The analytic_id is not part of standard Odoo, and should be used in this method for comparision
@@ -186,17 +181,24 @@ class account_invoice_ext(osv.Model):
                 if 'account_analytic_id' in tax:
                     analytic_id = tax['account_analytic_id'] and tax['account_analytic_id'].id or False
                 key = (tax.tax_code_id.id, tax.base_code_id.id, tax.account_id.id, analytic_id)
+                print key
+
+                # Ported pull #807 to v7.
+                # Comment there: The code will accept taxes defined by core functionality and BT-Accounting.
                 if key not in compute_taxes:
                     key = key[:3]
+
                 tax_key.append(key)
                 if key not in compute_taxes:
-                    raise except_orm(_('Warning!'), _('Global taxes defined, but they are not in invoice lines !'))
+
+                    raise osv.except_osv(_('Warning!'), _('Global taxes defined, but they are not in invoice lines !'))
                 base = compute_taxes[key]['base']
+                precision = self.pool.get('decimal.precision').precision_get(cr, uid, 'Account')
                 if float_compare(abs(base - tax.base), company_currency.rounding, precision_digits=precision) == 1:
-                    raise except_orm(_('Warning!'), _('Tax base different!\nClick on compute to update the tax base.'))
+                    raise osv.except_osv(_('Warning!'), _('Tax base different!\nClick on compute to update the tax base.'))
             for key in compute_taxes:
                 if key not in tax_key:
-                    raise except_orm(_('Warning!'), _('Taxes are missing!\nClick on compute button.'))
+                    raise osv.except_osv(_('Warning!'), _('Taxes are missing!\nClick on compute button.'))
 
     def action_cancel(self, cr, uid, ids, context=None):
         ''' Overwritten so that when the invoice is set to cancel, we store its current time.

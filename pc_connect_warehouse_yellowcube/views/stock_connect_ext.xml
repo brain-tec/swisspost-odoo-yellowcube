@@ -20,14 +20,14 @@
 								<field name="yc_enable_wba_file" />
 								<field name="yc_enable_wbl_file" />
 							</group>
-							<group string="WAB">
-								<field name="yc_wab_add_invoicing_address" />
-								<field name="yc_wab_partner_type_for_shipping_address" />
-								<field name="yc_wab_partner_type_for_invoicing_address" />
-								<field name="yc_wab_shortdescription_mapping" />
-								<field name="yc_wab_pickingmessage_mapping" />
-								<field name="yc_wab_invoice_send_mode" />
-							</group>
+                            <group string="WAB">
+                                <field name="yc_wab_add_invoicing_address" />
+                                <field name="yc_wab_partner_type_for_shipping_address" />
+                                <field name="yc_wab_partner_type_for_invoicing_address" />
+                                <field name="yc_wab_shortdescription_mapping" />
+                                <field name="yc_wab_pickingmessage_mapping" />
+                                <field name="yc_wab_invoice_send_mode" />
+                            </group>
 							<group string="XML header">
 								<field name="yc_language" class="oe_highlight" />
 								<field name="yc_depositor_no" class="oe_highlight" />

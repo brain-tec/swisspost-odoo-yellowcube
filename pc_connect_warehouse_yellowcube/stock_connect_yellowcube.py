@@ -21,29 +21,34 @@
 from openerp.osv import osv, fields
 from openerp.tools.translate import _
 from openerp.tools import DEFAULT_SERVER_DATETIME_FORMAT
-import logging
 from openerp.addons.pc_connect_master.utilities.misc import format_exception
 import sys
-logger = logging.getLogger(__name__)
 from openerp.addons.pc_connect_warehouse.stock_event import EVENT_STATE_DONE, EVENT_STATE_DRAFT, EVENT_STATE_IGNORED
 from openerp.addons.pc_connect_warehouse.stock_connect_file import FILE_STATE_READY, FILE_STATE_DRAFT
 from xml_abstract_factory import get_factory
 from datetime import timedelta, datetime
+from osv.orm import except_orm
 from openerp import api
+import logging
+logger = logging.getLogger(__name__)
 
 
 class stock_connect_yellowcube(osv.Model):
     _name = "stock.connect.yellowcube"
     _inherit = 'stock.connect'
 
-    @api.multi
-    def is_type_enabled(self, name):
+    def is_type_enabled(self, cr, uid, ids, name, context=None):
         ''' Indicates if a type of Yellowcube (e.g. ART, WAB, etc.) is enabled.
             It only considers the first three letters of the name, e.g. wab_req is wab.
         '''
+        if context is None:
+            context = {}
+        if not isinstance(ids, list):
+            ids = [ids]
+
         type_enabled = False
 
-        stock_connect = self.pool['stock.connect'].browse(self.ids[0])
+        stock_connect = self.pool['stock.connect'].browse(cr, uid, ids[0], context)
 
         # ART is special, since it has three flags to consider it, and just one of them has
         # to be activated in order to consider its type as being enabled.
@@ -66,9 +71,10 @@ class stock_connect_yellowcube(osv.Model):
 
         return type_enabled
 
-    @api.multi
-    def _this(self):
-        return self.browse(self.id)
+    def _this(self, cr, uid, ids, context):
+        if isinstance(ids, list):
+            ids = ids[0]
+        return self.browse(cr, uid, ids, context)
 
     @api.cr_uid_ids_context
     def _find_yc_import_file(self, cr, uid, ids, _type, context=None):
@@ -101,11 +107,11 @@ class stock_connect_yellowcube(osv.Model):
                 ret.append(_file.id)
         return ret
 
-    @api.cr_uid_ids_context
     def _process_art_file(self, cr, uid, ids, missing_product_ids=None, context=None):
         if isinstance(ids, list):
             ids = ids[0]
         project_issue_obj = self.pool.get('project.issue')
+
         this = self.pool['stock.connect'].browse(cr, uid, ids, context)
         if not self.is_type_enabled(cr, uid, ids, 'art', context=context):
             return
@@ -113,6 +119,7 @@ class stock_connect_yellowcube(osv.Model):
         env = [self.pool, cr, uid]
         limit_date = datetime.now() - timedelta(hours=this.yc_hours_between_art_files)
         created_art_products = []
+        file_obj = self.pool['stock.connect.file']
         for _file in this.stock_connect_file_ids:
             if _file.type == 'art' and _file.input == False:
                 if _file.state in [FILE_STATE_READY, FILE_STATE_DRAFT] or datetime.strptime(_file.create_date, DEFAULT_SERVER_DATETIME_FORMAT) > limit_date or \
@@ -135,7 +142,7 @@ class stock_connect_yellowcube(osv.Model):
             logger.info("ART on demand activated. Not creating nothing automatically.")
             return
         for warehouse in this.warehouse_ids:
-            new_cr = self.pool.cursor()
+            new_cr = self.pool.db.cursor()
             try:
                 art_factory.generate_files([('id', '=', warehouse.lot_stock_id.id)],
                                            ignore_product_ids=created_art_products,
@@ -149,7 +156,7 @@ class stock_connect_yellowcube(osv.Model):
 
             except Exception as e:
                 error = '{0}\n{1}'.format(_('Error while processing ART file'), format_exception(e))
-                project_issue_obj.create_issue(cr, uid, 'stock.connect.file', warehouse.id, error, context=context)
+                project_issue_obj.create_issue(cr, uid, 'stock.connect', warehouse.id, error, context=context)
                 logger.error('Exception: {0}'.format(error))
                 self.pool.get('stock.connect').log_issue(new_cr, uid, ids, _('Error while processing ART file'), context=context, exception=e)
                 raise
@@ -183,7 +190,7 @@ class stock_connect_yellowcube(osv.Model):
                 continue
             error = None
 
-            new_cr = self.pool.cursor()
+            new_cr = self.pool.db.cursor()
             try:
                 ctx = context.copy()
                 ctx['imported_products'] = None
@@ -252,7 +259,7 @@ class stock_connect_yellowcube(osv.Model):
                 continue
             error = None
 
-            new_cr = self.pool.cursor()
+            new_cr = self.pool.db.cursor()
             try:
                 if factory.import_file(_file.content):
                     _file.write({'type': xml_type.lower(),
@@ -310,6 +317,7 @@ class stock_connect_yellowcube(osv.Model):
             return ret
 
         conf_data = self.pool.get('configuration.data').get(cr, uid, [], context=ctx)
+
         today = datetime.today()
         env = [self.pool, cr, uid]
 
@@ -327,7 +335,6 @@ class stock_connect_yellowcube(osv.Model):
         wbl_factory = get_factory(env, 'wbl', context=context)
         picking_obj = self.pool['stock.picking']
         stock_event_obj = self.pool['stock.event']
-        file_obj = self.pool['stock.connect.file']
         stock_connect_obj = self.pool['stock.connect']
         project_issue_obj = self.pool['project.issue']
 
@@ -345,8 +352,7 @@ class stock_connect_yellowcube(osv.Model):
             if conf_data.yc_ignore_events_until_process_date:
                 if not(picking.process_date):
                     logger.debug("Recomputing process_date for picking {0}".format(picking.name))
-                    self.env.add_todo(picking_obj._fields['process_date'], picking)
-                    picking_obj.recompute()
+                    logger.warning("MISSING add_todo ON V7 !!!")
                 if not(picking.process_date) or datetime.strptime(picking.process_date, DEFAULT_SERVER_DATETIME_FORMAT) >= today:
                     event.write({"info": "Ignored until process date is met."})
                     continue
@@ -356,7 +362,10 @@ class stock_connect_yellowcube(osv.Model):
                 stock_events_ignored.append(event)
                 continue
 
-            picking_type = picking.picking_type_id.code if hasattr(picking, 'picking_type_id') else None
+            picking_type = None
+            # The following two lines were intended easy the sync between v7 and v8, but ended up polluting the log with tons of Warnings.
+#             if hasattr(picking, 'picking_type_id'):
+#                 picking_type = picking.picking_type_id.code
             factory = None
 
             if picking.sale_id and picking_type in ['outgoing', None]:
@@ -368,13 +377,12 @@ class stock_connect_yellowcube(osv.Model):
             context['warehouse_id'] = event.warehouse_id.id
 
             try:
-                new_cr = self.pool.cursor()
+                new_cr = self.pool.db.cursor()
                 if not factory:
                     raise Warning(_('This stock.picking cannot be processed, it neither has a purchase or a sale order related'))
 
                 related_items = factory.get_related_items(picking_id)
                 related_files = []
-
                 product_ids = []
                 if self.is_type_enabled(cr, uid, this.id, 'art', context=context):
                     for product_id in related_items.get('product.product', False) or []:
@@ -419,30 +427,21 @@ class stock_connect_yellowcube(osv.Model):
                     if picking_id:
                         ret.append(event)
 
-            # TODO: Rewrite this.
             except Warning as w:
                 error_message = _('Warning while processing event on stock.picking with ID {0}: {1}').format(picking_id, format_exception(w))
                 if context.get('yc_print_errors', True):
                     logger.error(error_message)
-                with api.Environment.manage():
-                    project_issue_obj.create_issue(new_cr, uid, 'stock.event', event_id, error_message, context=context)
+                project_issue_obj.create_issue(new_cr, uid, 'stock.event', event_id, error_message, context=context)
 
-                    stock_event_obj.write(new_cr, uid, event.id, {'error': True, 'info': error_message}, context=context)
-
-            # TODO: Rewrite this.
+                stock_event_obj.write(new_cr, uid, event.id, {'error': True, 'info': error_message}, context=context)
 
             except Exception as e:
                 error_message = _('Exception while processing event on stock.picking with ID {0}: {1}').format(picking_id, format_exception(e))
-                stock_connect_obj.log_issue(new_cr, uid, ids, error_message, event_id=event_id, context=context, exception=e, log_issue_no_format=True)
+                stock_connect_obj.log_issue(new_cr, uid, ids, error_message, event_id=event_id, context=context, exception=e)
                 logger.error(error_message)
                 project_issue_obj.create_issue(cr, uid, 'stock.event', event_id, error_message, context=context)
 
-                uid_exception, context_exception = uid, context
-                with api.Environment.manage():
-                    stock_connect_obj.log_issue(new_cr, uid, ids, error_message, event_id=event_id, context=context, exception=e, log_issue_no_format=True)
-
-                    self.env = api.Environment(new_cr, uid_exception, context_exception)
-                    event.write({'error': True, 'info': error_message})
+                stock_event_obj.write(new_cr, uid, event_id, {'error': True, 'info': error_message}, context=context)
 
                 raise
 
@@ -460,7 +459,6 @@ class stock_connect_yellowcube(osv.Model):
 
         return [x.id for x in ret]
 
-    @api.cr_uid_id
     def _process_event(self, cr, uid, ids, func, event_code, warehouse_id, context=None):
         ''' If something goes wrong, an issue will be logged associated to the current warehouse.
                 It is the function passed as the argument 'func' which must log an issue per each
@@ -505,10 +503,39 @@ class stock_connect_yellowcube(osv.Model):
             'new_picking_state_assigned': self._process_stock_picking_assigned,
         }
 
-        # In branch 7 we check that all partners have correct data (which simply checks for the 'ref' field),
-        # but in branch 8 we simply set it if it does not have one.
+        # First, we make sure every partner has correct data.
+        # If there was an error with any partner, an exception will be raised.
+        # In this case, we mark as failed all the events.
         partner_ids = partner_obj.search(cr, uid, [('ref', 'in', [False, None, ''])], context=context)
-        partner_obj.check_partner_ref_value(cr, uid, partner_ids)
+        for partner in partner_obj.browse(cr, uid, partner_ids, context=context):
+            try:
+                partner._validate()
+
+            except Exception as e:
+                error_message = _("The validation of partner with ID={0} failed. Error: {1}".format(partner.id, format_exception(e)))
+                project_issue_obj.create_issue(cr, uid, 'res.partner', partner.id, error_message, context=context)
+
+                # Over all the events that we were about to process, and that won't be processed because any
+                # of the partners do not validate, we do not log an issue to inform about the cause of the problem,
+                # because there may be thousands of events, but instead mark them as having being stopped by
+                # an error, and indicate which one it is.
+                for connect in stock_connect_obj.browse(cr, uid, ids, context=context):
+                    for warehouse in connect.warehouse_ids:
+                        for event_code in func_dir:
+                            new_cr = self.pool.db.cursor()
+                            event_ids = stock_event_obj.search(cr, uid, [('warehouse_id', '=', warehouse.id),
+                                                                         ('event_code', '=', event_code),
+                                                                         ('state', '=', EVENT_STATE_DRAFT),
+                                                                         ('error', '=', False),
+                                                                         ], context=context)
+                            try:
+                                stock_event_obj.write(new_cr, uid, event_ids, {'error': True,
+                                                                               'info': error_message},
+                                                      context=context)
+                            finally:
+                                new_cr.commit()
+                                new_cr.close()
+                raise
 
         logger.debug("Started checking events on connections.")
 
@@ -550,6 +577,7 @@ class stock_connect_yellowcube(osv.Model):
         if context is None:
             context = {}
         this = self._this(cr, uid, ids, context)
+
         # First we check the BAR, so new products won't trigger an error if they never went sent by ART
         this._process_bar_file()
         # Then we can send the ART so BAR won't see the new products

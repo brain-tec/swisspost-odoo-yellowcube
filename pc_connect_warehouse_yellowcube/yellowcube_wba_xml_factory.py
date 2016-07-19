@@ -324,7 +324,14 @@ class yellowcube_wba_xml_factory(xml_abstract_factory):
                         stock_move_obj.action_done(self.cr, self.uid, [new_move_id], context=self.context)
                         complete_move_ids.append(new_move_id)
                 else:
-                    complete_move_ids = picking_in.do_partial(partials)
+                    do_partial_data = picking_in.do_partial(partials)
+                    # We store all the moves for this picking which are in state 'done'.
+                    for partial_data_id in do_partial_data:
+                        stock_picking_id = do_partial_data[partial_data_id]['delivered_picking']
+                        sp = stock_obj.browse(self.cr, self.uid, stock_picking_id, context=self.context)
+                        for move in sp.move_lines:
+                            if move.state == 'done':
+                                complete_move_ids.append(move.id)
 
                 if end_of_delivery_flag == '1':  # delivery is completed.
                     number_of_pending_moves = stock_move_obj.search(self.cr, self.uid, [('picking_id', '=', picking_in.id),
@@ -335,6 +342,7 @@ class yellowcube_wba_xml_factory(xml_abstract_factory):
                         #self.post_issue(picking_in, _('Tag EndOfDeliveryFlag was set, but there exists some stock move which are not in state finish nor cancelled.'))
                     else:
                         picking_in.action_done()  # Closes the picking.
+
                 # moves may have been deleted in the process (???)
                 # So that is why we need to iterate over those which are kept.
                 move_ids = stock_move_obj.search(self.cr, self.uid, [('id', 'in', complete_move_ids)], context=self.context)

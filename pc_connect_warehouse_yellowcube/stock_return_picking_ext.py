@@ -21,12 +21,12 @@
 from openerp.osv import osv, fields
 from openerp.tools import DEFAULT_SERVER_DATETIME_FORMAT
 from openerp.tools.translate import _
-import logging
-logger = logging.getLogger(__name__)
 from openerp import netsvc
 import time
 from stock_picking_ext import RETURN_REASON_CODES
 from openerp.release import version_info
+import logging
+logger = logging.getLogger(__name__)
 
 
 class stock_return_picking_ext(osv.osv_memory):
@@ -118,14 +118,13 @@ class stock_return_picking_ext(osv.osv_memory):
             if not move:
                 raise osv.except_osv(_('Warning !'), _("You have manually created product lines, please delete them to proceed"))
             new_qty = data_get.quantity
-            if version_info[0] < 8:
-                new_location = move.location_dest_id.id
-                returned_qty = move.product_qty
-                for rec in move.move_history_ids2:
-                    returned_qty -= rec.product_qty
+            new_location = move.location_dest_id.id
+            returned_qty = move.product_qty
+            for rec in move.move_history_ids2:
+                returned_qty -= rec.product_qty
 
-                if returned_qty != new_qty:
-                    set_invoice_state_to_none = False
+            if returned_qty != new_qty:
+                set_invoice_state_to_none = False
             if new_qty:
                 # The return of a return should be linked with the original's destination move if it was not cancelled
                 if move.origin_returned_move_id.move_dest_id.id and move.origin_returned_move_id.move_dest_id.state != 'cancel':

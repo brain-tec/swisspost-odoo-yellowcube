@@ -18,12 +18,12 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 ##############################################################################
-from openerp import api
+
 from openerp.osv import osv, fields
 from openerp.tools.translate import _
+from openerp import SUPERUSER_ID
 import logging
 logger = logging.getLogger(__name__)
-from openerp import SUPERUSER_ID
 
 
 class stock_warehouse_location(osv.Model):
@@ -35,7 +35,6 @@ class stock_warehouse_location(osv.Model):
         'field_id': fields.many2one('ir.model.fields', 'Field', required=True),
     }
 
-    @api.cr_uid
     def update_table(self, cr, uid):
         # For this update, we must be superuser
         uid = SUPERUSER_ID
@@ -53,8 +52,7 @@ class stock_warehouse_location(osv.Model):
                 id_r = self.search(cr, uid, [('warehouse_id', '=', wid),
                                              ('field_id', '=', fid)])
                 if not lid:
-                    if id_r:
-                        self.unlink(cr, uid, id_r)
+                    self.unlink(cr, uid, id_r)
                 else:
                     if id_r:
                         if lid != self.read(cr, uid, id_r, ['location_id'])[0]['location_id']:

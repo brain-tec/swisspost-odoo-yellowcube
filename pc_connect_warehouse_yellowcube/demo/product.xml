@@ -1,31 +1,26 @@
 <openerp>
 	<data>
 		<record id="product.product_product_2" model="product.product">
-			<field name="name">Demo Product 2</field>
 			<field name="weight">0.1</field>
 			<field name="weight_net">0.1</field>
 			<field name="webshop_state">on_sale</field>
 		</record>
 		<record id="product.product_product_3" model="product.product">
-			<field name="name">Demo Product 3</field>
 			<field name="weight">0.1</field>
 			<field name="weight_net">0.1</field>
 			<field name="webshop_state">on_sale</field>
 		</record>
         <record id="product.product_product_47" model="product.product">
-        	<field name="name">Demo Product 47</field>
 			<field name="weight">0.1</field>
 			<field name="weight_net">0.1</field>
 			<field name="webshop_state">on_sale</field>
         </record>
         <record id="product.product_product_34" model="product.product">
-        	<field name="name">Demo Product 34</field>
 			<field name="weight">0.1</field>
 			<field name="weight_net">0.1</field>
 			<field name="webshop_state">on_sale</field>
         </record>
         <record id="product.product_product_31" model="product.product">
-        	<field name="name">Demo Product 31</field>
 			<field name="weight">0.1</field>
 			<field name="weight_net">0.1</field>
 			<field name="webshop_state">on_sale</field>

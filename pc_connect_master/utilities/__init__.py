@@ -21,7 +21,7 @@
 
 import date_utilities
 import filters
-import pdf
 import misc
+import pdf
 
 # vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:

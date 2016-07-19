@@ -7,7 +7,7 @@
 			<field name="res_model">ir.cron</field>
 			<field name="view_mode">tree,form</field>
             <field name="domain">
-                ['&amp;','|',('name','ilike','%mrp%'),('name','ilike','%PCAP%'),'|',('active','=',False),('active','=',True)]
+                ['&amp;','|',('name','ilike','%mrp%'),'|',('name','ilike','%SwissPost%'),('name','ilike','%SPYCC%'),'|',('active','=',False),('active','=',True)]
             </field>
 		</record>
 

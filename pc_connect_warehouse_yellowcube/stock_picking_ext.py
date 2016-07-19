@@ -19,14 +19,13 @@
 #
 ##############################################################################
 from openerp.osv import osv, fields, orm
-from openerp import fields as fields_v8
 from openerp.tools.translate import _
-import logging
 from openerp import api
 from openerp.addons.pc_connect_master.utilities.pdf import concatenate_pdfs
 from tempfile import mkstemp
 import os
 import base64
+import logging
 logger = logging.getLogger(__name__)
 
 
@@ -46,7 +45,6 @@ RETURN_REASON_CODES = [
     ('R13', 'Wrong order: style/size/colour'),
     ('R14', 'Product did not match description on website'),
 ]
-
 
 CUSTOMER_ORDER_NUMBER_XSD_LIMIT = 35
 
@@ -156,7 +154,6 @@ class stock_picking_ext(osv.Model):
         if not att_barcode_ids:
             attachment_to_send_id = att_picking_ids[0]  # Just the (only) delivery slip found.
         else:
-            # Here we need to create a new attachment which is the concatenation of the picking and the barcode.
             attachment_to_send_id = stock_picking_out._get_attachment_id_for_picking_and_barcode_concatenated(att_picking_ids[0], att_barcode_ids[0], extension)
 
         att = ir_attachment_obj.browse(cr, uid, attachment_to_send_id, context=context)
@@ -202,19 +199,18 @@ class stock_picking_ext(osv.Model):
                 # Then we create an attachment with the content of that file.
                 with open(tmp_path, "rb") as f:
                     attachment_content_base64 = base64.b64encode(f.read())
-                values_create_att = {
-                    'name': output_filename,
-                    'datas': attachment_content_base64,
-                    'datas_fname': output_filename,
-                    'res_model': 'stock.picking.out',
-                    'res_id': stock_picking_out.id,
-                    'type': 'binary',
-                    'description': _('Attachment for picking with ID={0}. It is the concatenation of '
-                                     'the attachments of the picking (attach. id={1}) '
-                                     'and the barcode report (attach. ID={2}'.format(stock_picking_out.id,
-                                                                                     att_picking_id,
-                                                                                     att_barcode_id)),
-                }
+                values_create_att = {'name': output_filename,
+                                     'datas': attachment_content_base64,
+                                     'datas_fname': output_filename,
+                                     'res_model': 'stock.picking.out',
+                                     'res_id': stock_picking_out.id,
+                                     'type': 'binary',
+                                     'description': _('Attachment for picking with ID={0}. It is the concatenation of '
+                                                      'the attachments of the picking (attach. id={1}) '
+                                                      'and the barcode report (attach. ID={2}'.format(stock_picking_out.id,
+                                                                                                      att_picking_id,
+                                                                                                      att_barcode_id)),
+                                     }
                 attachment_id = ir_attachment_obj.create(cr, uid, values_create_att, context=context)
 
             finally:
@@ -260,21 +256,21 @@ class stock_picking_ext(osv.Model):
             context = {}
 
         config = self.pool.get('configuration.data').get(cr, uid, [], context=context)
+
         ret = {}
         for delivery in self.browse(cr, uid, ids, context=context):
-            value = delivery.yellowcube_customer_order_no
-            if not value:
-                if config.yc_customer_order_no_mode == 'id':
-                    value = delivery.id
-                elif config.yc_customer_order_no_mode == 'name':
-                    if delivery.type in ['out', 'outgoing']:
-                        value = '{0}{1}'.format(delivery.sale_id.name or delivery.purchase_id.name, delivery.name).replace('/', '').replace('-', '')
-                    elif delivery.type in ['in', 'incoming']:
-                        value = '{0}{1}'.format(delivery.purchase_id.name or delivery.sale_id.name, delivery.name).replace('/', '').replace('-', '')
-                    if len(ret[delivery.id]) > CUSTOMER_ORDER_NUMBER_XSD_LIMIT:
-                        value = '{0}.id{1}'.format(delivery.type, delivery.id)
-                delivery.write({'yellowcube_customer_order_no': value})
-            ret[delivery.id] = value
+            if config.yc_customer_order_no_mode == 'id':
+                ret[delivery.id] = delivery.id
+            elif config.yc_customer_order_no_mode == 'name':
+                if delivery.type == 'out':
+                    ret[delivery.id] = '{0}{1}'.format(delivery.sale_id.name or delivery.purchase_id.name, delivery.name).replace('/', '').replace('-', '')
+                elif delivery.type == 'in':
+                    ret[delivery.id] = '{0}{1}'.format(delivery.purchase_id.name or delivery.sale_id.name, delivery.name).replace('/', '').replace('-', '')
+
+                if len(ret[delivery.id]) > CUSTOMER_ORDER_NUMBER_XSD_LIMIT:
+                    ret[delivery.id] = '{0}.id{1}'.format(delivery.type, delivery.id)
+            else:
+                ret[delivery.id] = None
         return ret
 
     @api.cr_uid_ids_context
@@ -354,15 +350,17 @@ class stock_picking_ext(osv.Model):
         return (backorder_id, new_picking_id)
 
     _columns = {
-        'type': fields.related('picking_type_id', 'code', type="char", string='Type', readonly=True),
+        'yellowcube_delivery_no': fields.char('YCDeliveryNo', size=10, help='Tag <YCDeliveryNo> of the WAR file.'),
+        'yellowcube_delivery_date': fields.date('YCDeliveryDate', help='Tag <YCDeliveryDate> of the WAR file.'),
         'yellowcube_customer_order_no': fields.function(get_customer_order_no,
                                                         string="YC CustomerOrderNo",
                                                         type='text',
-                                                        store={'stock.picking': (lambda self, cr, uid, ids, context=None: ids, ['sale_id', 'purchase_id'], 10)},
+                                                        store={
+                                                            'stock.picking': (lambda self, cr, uid, ids, context=None: ids, ['sale_id', 'purchase_id'], 10),
+                                                            'stock.picking.in': (lambda self, cr, uid, ids, context=None: ids, ['sale_id', 'purchase_id'], 10),
+                                                            'stock.picking.out': (lambda self, cr, uid, ids, context=None: ids, ['sale_id', 'purchase_id'], 10),
+                                                        },
                                                         readonly=True),
-        'yellowcube_delivery_no': fields.char('YCDeliveryNo', size=10, help='Tag <YCDeliveryNo> of the WAR file.'),
-        'yellowcube_delivery_date': fields.date('YCDeliveryDate', help='Tag <YCDeliveryDate> of the WAR file.'),
-        'yellowcube_customer_order_no': fields.text('YCCustomerOrderNo', help='set by code', readonly=True),
         'yellowcube_return_origin_order': fields.many2one('sale.order', 'Original order'),
         'yellowcube_return_automate': fields.boolean('Automate return-claim on confirm'),
         'yellowcube_return_reason': fields.selection(RETURN_REASON_CODES, 'Return reason (if and only if return)', help='Return reason in accordance with the Return-Reason Code List'),

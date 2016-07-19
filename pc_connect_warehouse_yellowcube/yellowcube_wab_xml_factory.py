@@ -142,7 +142,7 @@ class yellowcube_wab_xml_factory(xml_abstract_factory):
             text='{0:04d}{1:02d}{2:02d}{3:02d}{4:02d}{5:02d}'.format(now.year, now.month, now.day, now.hour, now.hour, now.minute)
         ))
         xml_control_reference.append(create_element('OperatingMode', text=self.get_param('operating_mode', required=True)))
-        xml_control_reference.append(create_element('Version', text='1.11'))
+        xml_control_reference.append(create_element('Version', text='1.0'))
         xml_root.append(xml_control_reference)
 
         # WAB -> Order
@@ -218,14 +218,14 @@ class yellowcube_wab_xml_factory(xml_abstract_factory):
     def _generate_partner_address_element(self, partner, partner_type):
         ''' Creates and returns a <Partner> tag for the WAB.
         '''
+
         # Having this local, makes possible to pass languages to getTextAlias
         context = self.context.copy()
         if partner.lang:
             context['lang'] = partner.lang
 
-        MAX_NUMBER_OF_NAME_TAGS = 4
-
         xml = create_element("Partner")
+
         xml.append(create_element('PartnerType', text=partner_type))
 
         partner_no = self.get_param('partner_no', required=True)
@@ -240,7 +240,9 @@ class yellowcube_wab_xml_factory(xml_abstract_factory):
             xml.append(create_element('Title', partner.title.name))
 
         names = self.__generate_partner_name(partner)
-        for idx in xrange(max(len(names), MAX_NUMBER_OF_NAME_TAGS)):
+        for idx in xrange(len(names)):
+            if idx >= 4:
+                break
             # This will generate elements Name1 ... Name4
             xml.append(create_element('Name{0}'.format(idx + 1), text=names[idx]))
 
@@ -251,6 +253,7 @@ class yellowcube_wab_xml_factory(xml_abstract_factory):
             street = ' '.join([_('P.O. Box'), partner.po_box])
         if street:
             xml.append(create_element('Street', text=street))
+
         xml.append(create_element('CountryCode', text=partner.country_id.code))
         xml.append(create_element('ZIPCode', text=partner.zip))
         xml.append(create_element('City', text=partner.city))
@@ -266,7 +269,7 @@ class yellowcube_wab_xml_factory(xml_abstract_factory):
         xml.append(create_element('LanguageCode', text=partner.lang[:2]))
         xsd_error = validate_xml("wab", xml, print_error=self.print_errors)
         if xsd_error:
-            logger.error('XSD validation error: {0}'.format(xsd_error))
+            logger.error(xsd_error)
         return xml
 
     def _generate_order_position_element(self, stock_picking):
@@ -317,7 +320,7 @@ class yellowcube_wab_xml_factory(xml_abstract_factory):
             ret.append(xml)
             xsd_error = validate_xml("wab", xml, print_error=self.print_errors)
             if xsd_error:
-                logger.error('XSD validation error: {0}'.format(xsd_error))
+                logger.error(xsd_error)
         return ret
 
     def __generate_partner_name(self, partner):
@@ -328,7 +331,6 @@ class yellowcube_wab_xml_factory(xml_abstract_factory):
         '''
         FIELDS_LENGHT_LIMIT = 35
         PARTNERNAME_SPAN_LINES = 2
-        MAX_NUMBER_OF_NAME_TAGS = 4
 
         ret = []
 
@@ -383,7 +385,7 @@ class yellowcube_wab_xml_factory(xml_abstract_factory):
         if partner.po_box and partner.street:
             ret.append(' '.join([_('P.O. Box'), str(partner.po_box)])[:FIELDS_LENGHT_LIMIT])
 
-        if len(ret) > MAX_NUMBER_OF_NAME_TAGS:
+        if len(ret) > 4:
             if len(name1) > FIELDS_LENGHT_LIMIT:
                 ret = ret[0:1] + ret[2:5]
 

@@ -22,6 +22,17 @@
             </field>
         </record>
 
+        <record id="view_normal_procurement_locations_form_ext" model="ir.ui.view">
+            <field name="name">view_normal_procurement_locations_form_ext</field>
+            <field name="model">product.product</field>
+            <field name="inherit_id" ref="stock.view_normal_procurement_locations_form"/>
+            <field name="arch" type="xml">
+                <group string="Stock and Expected Variations" position="attributes">
+                    <attribute name="groups">base.group_user,pc_connect_master.pc_client</attribute>
+                </group>
+            </field>
+        </record>
+
         <record id="view_product_normal_form" model="ir.ui.view">
             <field name="name">product.normal.form</field>
             <field name="model">product.product</field>
@@ -31,11 +42,6 @@
                 <page string="Inventory" position="attributes">
                     <attribute name="groups">base.group_user,pc_connect_master.pc_client</attribute>
                 </page>
-
-				<field name="virtual_available" position="after">
-					<field name="product_reservation_qty" />
-					<field name="qty_on_sale" />
-				</field>
 
                 <field name="state" position="after">
                     <field name="webshop_state" />
@@ -56,7 +62,7 @@
                     <attribute name="string">Volume (m^3)</attribute>
                 </field>
                 
-                <group name="weight" position="after">
+                <group name="Weights" position="after">
                     <!-- These are the new dimensions indicated in the task with ID=2827 -->
                     <group name="dimensions" string="Dimensions">
                         <field name="length" on_change="onchange_check_decimals(length, 'Stock Length')"
@@ -69,27 +75,6 @@
                             string="Diameter (cm)" />
                         <field name="packing"
                             string="Packing (cm^3 x Kg)" />
-                    </group>
-                </group>
-
-                <group name="lot" position="after">
-                    <group string="Stock by lot number" attrs="{'invisible': [('type', '=', 'service')]}"
-                        groups="stock.group_stock_manager" colspan="4">
-                        <field name="last_inventory_id" colspan="4" />
-                        <field name="stock_prodlots" nolabel='1' colspan="4">
-                            <tree string="Serial Numbers">
-                                <field name="location_id" />
-                                <field name="product_qty" />
-                                <field name="prod_lot_id" />
-                                <field name="inventory_id" />
-                                <field name="state" />
-                            </tree>
-                        </field>
-                        <!-- domain="[('location_id.location_id.name', '=', 'YellowCube')]" /> -->
-                        </group>
-                        <group string='Appearence in quotations' attrs="{'invisible': [('type', '=', 'service')]}"
-                        groups="stock.group_stock_manager" colspan="4">
-                        <field name="draft_sale_order_lines" nolabel='1' colspan="4" />
                     </group>
                 </group>
 
@@ -114,6 +99,74 @@
 
             </field>
         </record>
+
+		<record
+			id="product_product_ext_view_form"
+			model="ir.ui.view">
+			<field name="name">product.normal.form_ext</field>
+			<field name="model">product.product</field>
+			<field
+				name="inherit_id"
+				ref="stock.view_normal_procurement_locations_form" />
+			<field
+				name="arch"
+				type="xml">
+				<data>
+					<field
+						name="virtual_available"
+						position="after">
+						<field name="product_reservation_qty" />
+					</field>
+					<field
+						name="product_reservation_qty"
+						position="after">
+						<field name="qty_on_sale" />
+					</field>
+					<group
+						name="lot"
+						position="after"
+						version="7.0">
+						<group
+							string="Stock by lot number"
+							attrs="{'invisible': [('type', '=', 'service')]}"
+							groups="stock.group_stock_manager,pc_connect_master.pc_client"
+							colspan="4">
+							<field
+								name="stock_prodlots"
+								nolabel='1'
+								colspan="4" />
+							<!-- domain="[('location_id.location_id.name', '=', 'YellowCube')]" /> -->
+						</group>
+						<group
+							string='Appearence in quotations'
+							attrs="{'invisible': [('type', '=', 'service')]}"
+							groups="stock.group_stock_manager,pc_connect_master.pc_client"
+							colspan="4">
+							<field
+								name="draft_sale_order_lines"
+								nolabel='1'
+								colspan="4" />
+						</group>
+					</group>
+				</data>
+			</field>
+		</record>
+
+		<record
+			id="product_product_prodlots_tree"
+			model="ir.ui.view">
+			<field name="name">stock.report.prodlots.tree</field>
+			<field name="model">stock.report.prodlots</field>
+			<field
+				name="arch"
+				type="xml">
+				<tree string="Serial Numbers">
+					<field name="prodlot_id" />
+					<field name="location_id" />
+					<field name="qty" />
+				</tree>
+			</field>
+		</record>
 
 	</data>
 </openerp>

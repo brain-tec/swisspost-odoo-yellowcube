@@ -21,7 +21,6 @@
 from openerp.osv import osv, fields
 from openerp.tools.translate import _
 from openerp.tools import DEFAULT_SERVER_DATETIME_FORMAT, DEFAULT_SERVER_DATE_FORMAT
-from openerp.addons.pc_connect_master.utilities.misc import format_exception
 from datetime import timedelta, datetime
 from SOAPpy import SOAPProxy
 from openerp.addons.pc_connect_warehouse_yellowcube.xsd.xml_tools import create_element, create_root, schema_namespaces, xml_to_string, validate_xml, open_xml, nspath
@@ -29,6 +28,7 @@ from lxml import etree
 import copy
 import pytz
 from openerp import api
+from openerp.addons.pc_connect_master.utilities.misc import format_exception
 import subprocess
 import os
 import logging

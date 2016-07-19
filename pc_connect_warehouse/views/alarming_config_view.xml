@@ -14,7 +14,7 @@
 
                         <group string="Delivery Orders" colspan="2">
                             <div colspan="2">
-                                Scheduler 'PCAP - Check Delivery Order Open Date' will check for every delivery order in state open or pending 
+                                Scheduler 'SPYCC - Check Delivery Order Open Date' will check for every delivery order in state open or pending 
                                 if it was created before the time indicated below. If so, an issue is created and a message is logged informed
                                 about the problem.
                             </div>

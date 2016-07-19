@@ -20,12 +20,12 @@
 ##############################################################################
 from openerp.osv import osv, fields
 from openerp.tools.translate import _
-import logging
-logger = logging.getLogger(__name__)
 from yellowcube_testcase import yellowcube_testcase, subTest
 from ..xml_abstract_factory import get_factory
 from ..xsd.xml_tools import nspath, create_root, create_element, xml_to_string, schema_namespaces
 import unittest2
+import logging
+logger = logging.getLogger(__name__)
 
 
 @subTest('sale_process', 'base_test')
@@ -45,7 +45,7 @@ class test_yc_wab_war(yellowcube_testcase):
         self._print_sale_pdfs()
         cr, uid, ctx = self.cr, self.uid, self.context
         ctx['show_errors'] = False
-        wab_factory = get_factory(self.test_warehouse.env, "wab", context=ctx)
+        wab_factory = get_factory([self.test_warehouse.pool, cr, uid], "wab", context=ctx)
 
         if strange_characters_partner:
             partner = self.test_sale.partner_id
@@ -68,7 +68,7 @@ class test_yc_wab_war(yellowcube_testcase):
         # Here we create the response WAR file, accepting everything
         war_node = self._create_mirror_war_from_wab(wab_node)
         self._save_node(war_node, 'war', path='//warr:CustomerOrderNo')
-        war_factory = get_factory(self.test_warehouse.env, "war", context=ctx)
+        war_factory = get_factory([self.test_warehouse.pool, cr, uid], "war", context=ctx)
         war_factory.import_file(xml_to_string(war_node))
         # Now we check the stock.picking state
         pick_out = self.pick_obj.browse(cr, uid, pick_out_id, ctx)

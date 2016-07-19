@@ -26,7 +26,7 @@ from openerp.tools import email_split
 from xml.dom.minidom import parse
 from openerp import SUPERUSER_ID
 import base64
-logger = logging.getLogger(__name__)
+_logger = logging.getLogger(__name__)
 HEADER = """<?xml version="1.0" encoding="utf-8"?><documents> \n"""
 FOOTER = """</documents>"""
 

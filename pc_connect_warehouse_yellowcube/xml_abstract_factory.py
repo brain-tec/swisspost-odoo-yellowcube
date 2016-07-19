@@ -18,20 +18,12 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 ##############################################################################
-import logging
 import sys
-logger = logging.getLogger(__name__)
 from xsd.xml_tools import create_element, xml_to_string, validate_xml, export_filename, xml_export_filename_translation
 import shutil
 import os
 from openerp.addons.pc_connect_master.utilities.misc import format_exception
-
-
-def new_cursor(self):
-    if hasattr(self.pool, 'db'):
-        return self.pool.db.cursor()
-    else:
-        return self.pool.cursor()
+new_cursor = lambda s: s.pool.db.cursor()
 from openerp.tools.translate import _
 import subprocess
 from openerp import tools, SUPERUSER_ID
@@ -39,6 +31,8 @@ import codecs
 import warnings
 import functools
 from lxml import etree
+import logging
+logger = logging.getLogger(__name__)
 
 
 def deprecated(func):
@@ -325,6 +319,7 @@ class xml_abstract_factory():
                             self.save_file(data, name)
 
                     self.mark_as_exported(_object.id)
+                    # Finally, the XML file is copied. This ensures that XML files have its dependencies copied to the folder
             except Exception as e:
                 logger.error("Exception exporting into xml {0}: {1}".format(object_id, format_exception(e)))
                 raise

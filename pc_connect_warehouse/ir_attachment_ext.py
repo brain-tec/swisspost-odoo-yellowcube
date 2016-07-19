@@ -18,6 +18,7 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 ##############################################################################
+
 from openerp.osv import osv, fields
 from openerp.tools.translate import _
 import logging
@@ -33,6 +34,5 @@ class ir_attachment_ext(osv.Model):
             if k in context and k not in ret:
                 ret[k] = context[k]
         return ret
-
 
 # vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:

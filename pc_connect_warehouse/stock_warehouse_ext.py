@@ -18,27 +18,27 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 ##############################################################################
+
 from openerp.osv import osv, fields
 from openerp.tools.translate import _
+from stock_event import check_all_events, EVENT_STATE_CANCEL
+from openerp import SUPERUSER_ID
 import logging
 logger = logging.getLogger(__name__)
-from stock_event import check_all_events, EVENT_STATE_CANCEL
-from openerp import SUPERUSER_ID, api
 
 
 class stock_warehouse_ext(osv.Model):
     _inherit = 'stock.warehouse'
 
-    @api.multi
-    def _validate_fields(self, field_names):
+    def _validate(self, cr, uid, ids, context=None):
         """
         With this, validation is also made on the connection (e.g. avoid multiple warehouse in YC, etc.)
         """
-        super(stock_warehouse_ext, self)._validate_fields(field_names)
-        self.env['stock.warehouse.location'].update_table()
-        for warehouse in self:
+        super(stock_warehouse_ext, self)._validate(cr, uid, ids, context=context)
+        self.pool.get('stock.warehouse.location').update_table(cr, uid)
+        for warehouse in self.browse(cr, uid, ids, context):
             if warehouse.stock_connect_id:
-                warehouse.stock_connect_id._validate_fields([])
+                warehouse.stock_connect_id._validate()
 
     def event_change_connection(self, cr, uid, res_id, context=None, warehouse_id=None):
         """
@@ -104,11 +104,10 @@ class stock_warehouse_ext(osv.Model):
         'stock_connect_type': fields.related('stock_connect_id', 'type', type="char", string='Connection type', readonly=True),
         'stock_event_ids': fields.one2many('stock.event', 'warehouse_id', 'Events'),
         'stock_connect_file_ids': fields.one2many('stock.connect.file', 'warehouse_id', 'Files'),
-        'lot_input_id': fields.related('wh_input_stock_loc_id', type="many2one", relation="stock.location", string="Input location", required=True),
-        'lot_output_id': fields.related('wh_output_stock_loc_id', type="many2one", relation="stock.location", string="Output location", required=True),
     }
 
     _constraints = [
         (check_events_on_warehouse, 'check of events on this item', []),
     ]
+
 # vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:

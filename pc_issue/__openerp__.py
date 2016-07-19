@@ -25,7 +25,7 @@
     "version": "1.0",
 
     "description": """
-    Module for issue tracking and management of the SwissPost YellowCube Odoo customization.
+    PC module for issue tracking and management of the PostCommerce customization.
 
     Depends on the following modules from OCA:
     - connector (from repository connector: https://github.com/OCA/connector)
@@ -60,9 +60,6 @@
              ],
 
     "demo": ['demo/test_sale_exception.xml',
-             ],
-
-    "test": ['test/sale_exception.yml',
              ],
 
     "installable": True,

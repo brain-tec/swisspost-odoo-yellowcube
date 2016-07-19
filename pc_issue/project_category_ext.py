@@ -18,6 +18,7 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 ##############################################################################
+
 from openerp.osv import osv, fields
 from openerp.tools.translate import _
 import logging
@@ -41,4 +42,5 @@ class project_category(osv.osv):
     _defaults = {
         'priority': '3'
     }
+
 # vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:

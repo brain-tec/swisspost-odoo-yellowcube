@@ -24,9 +24,9 @@ from openerp.tools.translate import _
 from openerp.tools.safe_eval import safe_eval
 from openerp.tools import DEFAULT_SERVER_DATE_FORMAT, DEFAULT_SERVER_DATETIME_FORMAT
 import base64
-import logging
 from dateutil import relativedelta
 import datetime
+import logging
 logger = logging.getLogger(__name__)
 
 
@@ -50,11 +50,11 @@ class stock_production_lot_ext(osv.Model):
             if lot.to_remove():
                 ret[lot.id] = 0
                 continue
-            ret[lot.id] = 0
-            # TODO: this method maybe incomplete. Needs further testing
-            for move in lot.quant_ids:
-                if move.location_id.usage in ['internal']:
-                    ret[lot.id] += move.qty
+            ret[lot.id] = lot.stock_available
+            for move in lot.move_ids:
+                if move.location_id.usage in ['internal'] or move.location_dest_id.usage in ['internal']:
+                    if move.state in ['assigned']:
+                        ret[lot.id] -= move.product_qty
         return ret
 
     def _get_virtual_available_for_sale(self, cr, uid, ids, fields, arg, context=None):
@@ -66,14 +66,14 @@ class stock_production_lot_ext(osv.Model):
         if not isinstance(ids, list):
             ids = [ids]
 
-        stock_move_pool = self.pool.get('stock.move')
-
         # Gets the current warehouse. There must be just one warehouse.
         stock_location_ids = self.pool.get('stock.warehouse').get_stock_location_ids(cr, uid, [], context=context)
 
         if not stock_location_ids:
             raise orm.except_orm(_('No Location Stock Defined'),
                                  _('No location was defined for stock (Location Stock) on the warehouse.'))
+        elif 'use_stock_location_id' in context:
+            stock_location_ids = [context['use_stock_location_id']]
 
         res = {}.fromkeys(ids, 0.0)
         for lot in self.browse(cr, uid, ids, context=context):
@@ -81,19 +81,20 @@ class stock_production_lot_ext(osv.Model):
                 res[lot.id] = 0
                 continue
 
-            for quant in lot.quant_ids:
-                if (quant.location_id.id in stock_location_ids) and (quant.lot_id.id == lot.id):
-                    res[lot.id] += quant.qty
+            # Gets the quantity we have of this lot in the stock location.
+            cr.execute('''SELECT prodlot_id, qty
+                          FROM stock_report_prodlots
+                          WHERE location_id in ({location})
+                          AND prodlot_id = {lot}'''.format(location=','.join(map(str, stock_location_ids)),
+                                                           lot=lot.id))
+            res.update(dict(cr.fetchall()))
 
             # We don't take into account the quantity which has been already assigned.
 #             for move in lot.move_ids:
 #                 if (move.location_id.id == stock_location.id) and (move.state == 'assigned'):
 #                         res[lot.id] -= move.product_qty
-            move_ids = stock_move_pool.search(cr, uid, [('state', '=', 'assigned'),
-                                                        ('location_id', 'in', stock_location_ids),
-                                                        ], context=context)
-            for move in stock_move_pool.browse(cr, uid, move_ids, context=context):
-                if lot.id in move.lot_ids.ids:
+            for move in lot.move_ids:
+                if move.state == 'assigned' and move.location_id.id in stock_location_ids:
                     res[lot.id] -= move.product_qty
 
         return res
@@ -135,7 +136,7 @@ class stock_production_lot_ext(osv.Model):
             return '<i>Missing</i>'
 
     def write(self, cr, uid, ids, values, context=None):
-        if ids and not isinstance(ids, list):
+        if not isinstance(ids, list):
             ids = [ids]
         for _id in ids:
             old_values = self.read(cr, uid, _id, [x for x in values], context=context)
@@ -237,18 +238,18 @@ class stock_production_lot_ext(osv.Model):
         partner_ids_already_included = set([])
 
         # Gets those stock moves which were sent to a customer.
-        stock_move_ids = self.browse(cr, uid, ids, context)[0].quant_ids
+        stock_move_ids = self.browse(cr, uid, ids, context)[0].move_ids
         for stock_move_id in stock_move_ids:
 
             # Only those stock moves which were sent to a customer are considered.
             if stock_move_id.location_dest_id.id in stock_location_customer_ids:
 
                 # Stores the fields of the partner (unless the partner was already included).
-                partner_obj = self.pool.get('res.partner').browse(cr, uid, stock_move_id.partner_id.id, context=context)
+                partner_obj = self.pool.get('res.partner').browse(cr, uid, stock_move_id.partner_id.id, context)
                 if partner_obj.id not in partner_ids_already_included:
                     partner_ids_already_included.add(partner_obj.id)
                     partner_fields = [partner_obj.name,
-                                      partner_obj.get_html_full_address() or '',
+                                      partner_obj.get_html_full_address(context=context) or '',
                                       partner_obj.email or '',
                                       partner_obj.phone or '',
                                       partner_obj.mobile or '',
@@ -286,13 +287,14 @@ class stock_production_lot_ext(osv.Model):
 
             So,
 
-            If it finds a product which has the tracking of lots activated
+            1) If a lot is outdated, it empties it.
+
+            2) If it finds a product which has the tracking of lots deactivated
+            BUT it does have any lots, then it puts apart those lots.
+
+            3) If it finds a product which has the tracking of lots activated
             BUT it does have quantities which are not tracked, then it puts
             apart that quantity.
-
-            In v8 it forces you to indicate a lot if tracking lots is activated,
-            so we don't check if a product with the tracking lots activated
-            has quantities which are not lotted.
         '''
         if context is None:
             context = {}
@@ -300,7 +302,6 @@ class stock_production_lot_ext(osv.Model):
         product_product_obj = self.pool.get('product.product')
         stock_move_obj = self.pool.get('stock.move')
         project_issue_obj = self.pool.get('project.issue')
-        stock_move_pool = self.pool.get('stock.move')
 
         configuration_data = self.pool.get('configuration.data').get(cr, uid, None, context=context)
         datetime_now_str = fields.datetime.now()
@@ -319,34 +320,84 @@ class stock_production_lot_ext(osv.Model):
             project_issue_obj.create_issue(cr, uid, 'configuration.data', configuration_data.id, error_message, tags=['inventory'], context=context)
             return True
 
-        # Finds the products which have the tracking of lots deactivated.
-        unlotted_product_ids = product_product_obj.search(cr, uid, [('track_all', '=', False)], context=context)
-        lots_ids = self.search(cr, uid, [('product_id', 'in', unlotted_product_ids)], context=context)
-        for lot in self.browse(cr, uid, lots_ids, context=context):
-            if lot.virtual_available_for_sale > 0:
-                for location_id in stock_location_ids:
-                    qty_to_scrap = 0
-                    for quant in lot.quant_ids:
-                        if (quant.location_id.id == location_id) and (quant.lot_id.id == lot.id):
-                            qty_to_scrap += quant.qty
-                    move_ids = stock_move_pool.search(cr, uid, [('state', '=', 'assigned'),
-                                                                ('location_id', '=', location_id),
-                                                                ], context=context)
-                    for move in stock_move_pool.browse(cr, uid, move_ids, context=context):
-                        if lot.id in move.lot_ids.ids:
-                            qty_to_scrap -= move.product_qty
+        # We first remove all the lots which reached the removal date.
+        # The removal date is a datetime, but we remove them if they reached the day of today.
+        today_date_str = fields.date.today()
+        today_datetime_str = datetime.datetime.strptime(today_date_str, DEFAULT_SERVER_DATE_FORMAT).strftime(DEFAULT_SERVER_DATETIME_FORMAT)
+
+        for location_id in stock_location_ids:
+
+            lot_to_be_removed_ids = self.search(cr, uid, [('removal_date', '<', today_datetime_str),
+                                                          ('stock_available', '!=', 0.0)], context=context)
+            for lot_to_be_removed in self.browse(cr, uid, lot_to_be_removed_ids, context=context):
+                cr.execute('''SELECT qty
+                              FROM stock_report_prodlots
+                              WHERE prodlot_id = %s AND location_id = %s;
+                              ''', (lot_to_be_removed.id, location_id))
+                qty = 0
+                for res in cr.fetchall():
+                    qty += res[0]
+                stock_move_vals = {
+                    'prodlot_id': lot_to_be_removed.id,
+                    'product_id': lot_to_be_removed.product_id.id,
+                    'product_qty': qty,
+                    'product_uom': lot_to_be_removed.product_id.get_base_uom().id,  # Lots qty are always in the reference UOM.
+                    'name': 'Lot has passed its removal date, therefore the lot was sent to the scrapping.',
+                    'date_expected': datetime_now_str,
+                    'location_id': location_id,
+                    'location_dest_id': scrapping_destination.id,
+                }
+                stock_move_id = stock_move_obj.create(cr, uid, stock_move_vals, context=context)
+                stock_move_obj.action_done(cr, uid, [stock_move_id], context=context)
+
+            # Finds the products which have the tracking of lots activated.
+            lotted_product_ids = product_product_obj.search(cr, uid, [('track_production', '=', True)], context=context)
+            for product in product_product_obj.browse(cr, uid, lotted_product_ids, context=context):
+
+                # We compute the amount available for this product on lots...
+                cr.execute("""SELECT  qty
+                              FROM stock_report_prodlots
+                              WHERE location_id = %s AND product_id = %s AND prodlot_id is NULL;""", (location_id, product.id))
+                qty_to_scrap = 0
+                for res in cr.fetchall():
+                    qty_to_scrap += res[0]
+
+                # ...and compare that quantity to the one which is displayed on the product.
+                if qty_to_scrap > 0:  # if product.qty_available > qty_on_lots:, since < should never happen.
+                    # We have units which are not lotted, so we remove the excess.
                     stock_move_vals = {
-                        'prodlot_id': lot.id,
-                        'product_id': lot.product_id.id,
-                        'product_uom_qty': qty_to_scrap,
-                        'product_uom': lot.product_id.uom_id.id,  # Lots qty are in the UOM of the product on v8.
-                        'name': 'Product had no track_production activated, therefore the lot was sent to the scrapping.',
+                        'product_id': product.id,
+                        'product_qty': qty_to_scrap,
+                        'product_uom': product.get_base_uom().id,  # Lots qty are always in the reference UOM.
+                        'name': 'Product has track_production activated but this quantity is unlotted, therefore was sent to the scrapping.',
                         'date_expected': datetime_now_str,
                         'location_id': location_id,
                         'location_dest_id': scrapping_destination.id,
                     }
                     stock_move_id = stock_move_obj.create(cr, uid, stock_move_vals, context=context)
                     stock_move_obj.action_done(cr, uid, [stock_move_id], context=context)
+
+            # Finds the products which have the tracking of lots deactivated.
+            unlotted_product_ids = product_product_obj.search(cr, uid, [('track_production', '=', False)], context=context)
+            lots_ids = self.search(cr, uid, [('product_id', 'in', unlotted_product_ids),
+                                             ('virtual_available_for_sale', '>', 0),
+                                             ], context=context)
+            for lot in self.browse(cr, uid, lots_ids, context=context):
+                ctx = context.copy()
+                ctx['use_stock_location_id'] = location_id
+                qty = self._get_virtual_available_for_sale(cr, uid, lot.id, None, None, context=ctx)[lot.id]
+                stock_move_vals = {
+                    'prodlot_id': lot.id,
+                    'product_id': lot.product_id.id,
+                    'product_qty': qty,
+                    'product_uom': lot.product_id.get_base_uom().id,  # Lots qty are always in the reference UOM.
+                    'name': 'Product had no track_production activated, therefore the lot was sent to the scrapping.',
+                    'date_expected': datetime_now_str,
+                    'location_id': location_id,
+                    'location_dest_id': scrapping_destination.id,
+                }
+                stock_move_id = stock_move_obj.create(cr, uid, stock_move_vals, context=context)
+                stock_move_obj.action_done(cr, uid, [stock_move_id], context=context)
 
         return True
 

@@ -1,13 +1,13 @@
 # Translation of OpenERP Server.
 # This file contains the translation of the following modules:
-#
+#	* pc_connect_master
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: OpenERP Server 7.0-20140728-231228\n"
+"Project-Id-Version: OpenERP Server 7.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-12-02 13:47+0000\n"
-"PO-Revision-Date: 2014-12-02 13:47+0000\n"
+"POT-Creation-Date: 2016-06-15 06:53+0000\n"
+"PO-Revision-Date: 2016-06-15 06:53+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -15,360 +15,1351 @@ msgstr ""
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: \n"
 
-#. module: pc_magento_connector_extensions
-#: code:addons/pc_magento_connector_extensions/res_partner_ext.py:0
-#, python-format
-msgid "Invoice"
-msgstr "Rechnung"
+#. module: pc_connect_master
+#: model:email.template,subject:email_template_procurement_product_details
+msgid "${object.company_id.name} Order (Ref ${object.name or 'n/a' })"
+msgstr "${object.company_id.name} Order (Ref ${object.name or 'n/a' })"
 
-#. module: pc_magento_connector_extensions
-#: code:addons/pc_magento_connector_extensions/res_partner_ext.py:0
-#, python-format
-msgid "Dear Sirs/Mesdames"
-msgstr "Sehr geehrte Damen und Herren"
+#. module: pc_connect_master
+#: selection:sale.order.automation_wiz,state:0
+msgid "1) saleorder_check_inventory_for_quotation"
+msgstr "1) saleorder_check_inventory_for_quotation"
 
-#. module: pc_magento_connector_extensions
-#: code:addons/pc_magento_connector_extensions/res_partner_ext.py:0
-#, python-format
-msgid "Dear Mr"
-msgstr "Sehr geehrter Herr"
+#. module: pc_connect_master
+#: selection:sale.order.automation_wiz,state:0
+msgid "10) print_in_remote"
+msgstr "10) print_in_remote"
 
-#. module: pc_magento_connector_extensions
-#: code:addons/pc_magento_connector_extensions/res_partner_ext.py:0
-#, python-format
-msgid "Dear Ms"
-msgstr "Sehr geehrte Frau"
+#. module: pc_connect_master
+#: selection:sale.order.automation_wiz,state:0
+msgid "11) finish_saleorder_automation"
+msgstr "11) finish_saleorder_automation"
 
-#. module: pc_magento_connector_extensions
-#: code:addons/pc_magento_connector_extensions/res_partner_ext.py:0
-#, python-format
-msgid "Dear"
-msgstr "Guten Tag"
+#. module: pc_connect_master
+#: selection:sale.order.automation_wiz,state:0
+msgid "2) saleorder_checkcredit"
+msgstr "2) saleorder_checkcredit"
 
-#. module: temporal_bt_magentoconnector_extensions
-#: model:ir.actions.act_window,name:temporal_bt_magentoconnector_extensions.action_show_product_jobs
-msgid "Jobs (Product)"
-msgstr "Arbeitsschritte (Artikel)"
+#. module: pc_connect_master
+#: selection:sale.order.automation_wiz,state:0
+msgid "3) saleorder_draft"
+msgstr "3) saleorder_draft"
 
-#. module: temporal_bt_magentoconnector_extensions
-#: model:ir.ui.menu,name:temporal_bt_magentoconnector_extensions.management_ir_cron
-msgid "Scheduled Actions"
-msgstr "Geplante Vorgänge"
+#. module: pc_connect_master
+#: selection:sale.order.automation_wiz,state:0
+msgid "4) saleorder_sent"
+msgstr "4) saleorder_sent"
 
-#. module: temporal_bt_magentoconnector_extensions
-#: model:ir.actions.act_window,name:temporal_bt_magentoconnector_extensions.action_show_log_data_filter
-msgid "Log data filter"
-msgstr "Filter Loggingdaten"
+#. module: pc_connect_master
+#: selection:sale.order.automation_wiz,state:0
+msgid "5) deliveryorder_assignation_direct"
+msgstr "5) deliveryorder_assignation_direct"
 
-#. module: temporal_bt_magentoconnector_extensions
-#: model:ir.model,name:temporal_bt_magentoconnector_extensions.model_magento_backend_delete
-msgid "magento.backend.delete"
-msgstr "gelöschte Elemente (Magento Backend)"
+#. module: pc_connect_master
+#: selection:sale.order.automation_wiz,state:0
+msgid "5) deliveryorder_assignation_one"
+msgstr "5) deliveryorder_assignation_one"
 
-#. module: temporal_bt_magentoconnector_extensions
-#: model:ir.actions.act_window,name:temporal_bt_magentoconnector_extensions.action_show_enqueued_jobs
-msgid "Enqueued Jobs"
-msgstr "eingereihte Arbeitsschritte"
+#. module: pc_connect_master
+#: selection:sale.order.automation_wiz,state:0
+msgid "6) do_multi_parcel_deliveries"
+msgstr "6) do_multi_parcel_deliveries"
 
-#. module: temporal_bt_magentoconnector_extensions
-#: model:ir.ui.menu,name:temporal_bt_magentoconnector_extensions.management
-msgid "Managemet"
-msgstr "Management"
+#. module: pc_connect_master
+#: selection:sale.order.automation_wiz,state:0
+msgid "7) print_deliveryorder_in_local"
+msgstr "7) print_deliveryorder_in_local"
 
-#. module: temporal_bt_magentoconnector_extensions
-#: model:ir.actions.act_window,name:temporal_bt_magentoconnector_extensions.action_show_jobs
-msgid "All Jobs"
-msgstr "Alle Arbeitsschritte"
+#. module: pc_connect_master
+#: selection:sale.order.automation_wiz,state:0
+msgid "8) invoice_open"
+msgstr "8) invoice_open"
 
-#. module: temporal_bt_magentoconnector_extensions
-#: model:ir.ui.menu,name:temporal_bt_magentoconnector_extensions.magento_management_log_filter_data
-msgid "Historical Filters"
-msgstr "vergangene Arbeitsschritte"
+#. module: pc_connect_master
+#: selection:sale.order.automation_wiz,state:0
+msgid "9) print_invoice_in_local"
+msgstr "9) print_invoice_in_local"
 
-#. module: temporal_bt_magentoconnector_extensions
-#: model:ir.ui.menu,name:temporal_bt_magentoconnector_extensions.jobs_failed
-msgid "Failed"
-msgstr "Fehlgeschlagen"
+#. module: pc_connect_master
+#: model:email.template,body_html:email_template_procurement_product_details
+msgid "<div style=\"font-family: 'Lucica Grande', Ubuntu, Arial, Verdana, sans-serif; font-size: 12px; color: rgb(34, 34, 34); background-color: #FFF; \">\n"
+"\n"
+"<style type=\"text/css\">\n"
+".number_in_table {\n"
+"	text-align: right;\n"
+"}\n"
+"</style>\n"
+"\n"
+"    <p>A new product procurement has been created,</p>\n"
+"    \n"
+"    <p>Here is a ${object.state in ('draft', 'sent') and 'request for quotation' or 'purchase order confirmation'} from ${object.company_id.name}: </p>\n"
+"    \n"
+"    <p style=\"border-left: 1px solid #8e0000; margin-left: 30px;\">\n"
+"       &nbsp;&nbsp;<strong>REFERENCES</strong><br />\n"
+"       &nbsp;&nbsp;Order number: <strong>${object.name}</strong><br />\n"
+"       &nbsp;&nbsp;Order date: ${object.date_order}<br />\n"
+"       % if object.origin:\n"
+"       &nbsp;&nbsp;Order reference: ${object.origin}<br />\n"
+"       % endif\n"
+"       % if object.partner_ref:\n"
+"       &nbsp;&nbsp;Your reference: ${object.partner_ref}<br />\n"
+"       % endif\n"
+"       % if object.validator:\n"
+"       &nbsp;&nbsp;Your contact: <a href=\"mailto:${object.validator.email or ''}?subject=Order%20${object.name}\">${object.validator.name}</a>\n"
+"       % endif\n"
+"       <br/>\n"
+"       <table border='1'>\n"
+"       <tr><td>Reference</td><td>Current stock</td><td>Lower margin</td><td>Ordered items</td></tr>\n"
+"       % for order_line in object.order_line:\n"
+"       <tr>\n"
+"       		<td>${order_line.product_id.default_code}</td>\n"
+"       		<td class='number_in_table'>${order_line.product_id.qty_available}</td>\n"
+"       		<td class='number_in_table'>${order_line.product_id.seller_qty}</td>\n"
+"       		<td class='number_in_table'>${order_line.product_qty}</td>\n"
+"       	</tr>\n"
+"       % endfor\n"
+"       </table>\n"
+"    </p>\n"
+"\n"
+"    <br/>\n"
+"    <p>If you have any question, do not hesitate to contact us.</p>\n"
+"    <p>Thank you!</p>\n"
+"    <br/>\n"
+"    \n"
+"</div>"
+msgstr "<div style=\"font-family: 'Lucica Grande', Ubuntu, Arial, Verdana, sans-serif; font-size: 12px; color: rgb(34, 34, 34); background-color: #FFF; \">\n"
+"\n"
+"<style type=\"text/css\">\n"
+".number_in_table {\n"
+"	text-align: right;\n"
+"}\n"
+"</style>\n"
+"\n"
+"    <p>A new product procurement has been created,</p>\n"
+"    \n"
+"    <p>Here is a ${object.state in ('draft', 'sent') and 'request for quotation' or 'purchase order confirmation'} from ${object.company_id.name}: </p>\n"
+"    \n"
+"    <p style=\"border-left: 1px solid #8e0000; margin-left: 30px;\">\n"
+"       &nbsp;&nbsp;<strong>REFERENCES</strong><br />\n"
+"       &nbsp;&nbsp;Order number: <strong>${object.name}</strong><br />\n"
+"       &nbsp;&nbsp;Order date: ${object.date_order}<br />\n"
+"       % if object.origin:\n"
+"       &nbsp;&nbsp;Order reference: ${object.origin}<br />\n"
+"       % endif\n"
+"       % if object.partner_ref:\n"
+"       &nbsp;&nbsp;Your reference: ${object.partner_ref}<br />\n"
+"       % endif\n"
+"       % if object.validator:\n"
+"       &nbsp;&nbsp;Your contact: <a href=\"mailto:${object.validator.email or ''}?subject=Order%20${object.name}\">${object.validator.name}</a>\n"
+"       % endif\n"
+"       <br/>\n"
+"       <table border='1'>\n"
+"       <tr><td>Reference</td><td>Current stock</td><td>Lower margin</td><td>Ordered items</td></tr>\n"
+"       % for order_line in object.order_line:\n"
+"       <tr>\n"
+"       		<td>${order_line.product_id.default_code}</td>\n"
+"       		<td class='number_in_table'>${order_line.product_id.qty_available}</td>\n"
+"       		<td class='number_in_table'>${order_line.product_id.seller_qty}</td>\n"
+"       		<td class='number_in_table'>${order_line.product_qty}</td>\n"
+"       	</tr>\n"
+"       % endfor\n"
+"       </table>\n"
+"    </p>\n"
+"\n"
+"    <br/>\n"
+"    <p>If you have any question, do not hesitate to contact us.</p>\n"
+"    <p>Thank you!</p>\n"
+"    <br/>\n"
+"    \n"
+"</div>"
 
-#. module: temporal_bt_magentoconnector_extensions
-#: model:ir.model,name:temporal_bt_magentoconnector_extensions.model_queue_job
-msgid "Queue Job"
-msgstr "Aufgabe in Warteschlange einreihen"
+#. module: pc_connect_master
+#: model:email.template,body_html:email_template_send_invoice_to_partner
+msgid "<div style=\"font-family: sans-serif; font-size: 12px;\">\n"
+"                <p>An invoice was attached.</p>   \n"
+"            </div>"
+msgstr "<div style=\"font-family: sans-serif; font-size: 12px;\">\n"
+"                <p>An invoice was attached.</p>   \n"
+"            </div>"
 
-#. module: temporal_bt_magentoconnector_extensions
-#: code:addons/temporal_bt_magentoconnector_extensions/product_product_ext.py:469
-#: code:addons/temporal_bt_magentoconnector_extensions/res_partner_ext.py:465
-#, python-format
-msgid "Magento server websites"
-msgstr "Magento Webseiten"
+#. module: pc_connect_master
+#: model:email.template,body_html:email_template_send_invoice_to_docout
+msgid "<div style=\"font-family: sans-serif; font-size: 12px;\">\n"
+"                <p>One or more invoices were attached to be printed in the doc-out.</p>   \n"
+"            </div>"
+msgstr "<div style=\"font-family: sans-serif; font-size: 12px;\">\n"
+"                <p>One or more invoices were attached to be printed in the doc-out.</p>   \n"
+"            </div>"
 
-#. module: temporal_bt_magentoconnector_extensions
-#: model:ir.actions.act_window,name:temporal_bt_magentoconnector_extensions.action_show_active_jobs
+#. module: pc_connect_master
+#: selection:product.product,webshop_state:0
+msgid "<not active>"
+msgstr "<not active>"
+
+#. module: pc_connect_master
+#: selection:report.file.fields,groupby:0
+msgid "AVERAGE"
+msgstr "AVERAGE"
+
+#. module: pc_connect_master
+#: selection:configuration.data,default_picking_policy:0
+msgid "According to Web-Shop"
+msgstr "Gemäss Webshop"
+
+#. module: pc_connect_master
+#: code:addons/pc_connect_master/account_invoice_ext.py:161
+msgid "Account.invoice with ID={0} could not be sent to the partner: {1}"
+msgstr "Account.invoice with ID={0} could not be sent to the partner: {1}"
+
+#. module: pc_connect_master
+#: model:ir.ui.menu,name:pc_menu_sales_accounting
+msgid "Accounting"
+msgstr "Finanzen"
+
+#. module: pc_connect_master
+#: view:product.product:0
+msgid "Accounting"
+msgstr "Finanzen"
+
+#. module: pc_connect_master
+#: model:ir.actions.act_window,name:action_show_active_jobs
 msgid "Active Jobs"
-msgstr "Aktive Arbeitsschritte"
+msgstr "Active Jobs"
 
-#. module: temporal_bt_magentoconnector_extensions
-#: code:addons/temporal_bt_magentoconnector_extensions/res_partner_ext.py:454
-#, python-format
-msgid "Error: a partner associated with a connector, must have a valid e-mail, and an address must have every required field."
-msgstr "Fehler: Ein Kunde, der mit der Schnittstelle verknüpft ist, muss eine gültige Email Adresse haben und die Adressfelder müssen alle ausgefüllt sein."
-
-#. module: temporal_bt_magentoconnector_extensions
-#: view:magento.backend.delete:0
-msgid "Delete (DANGER)"
-msgstr "Löschen (Achtung: nicht umkehrbar)"
-
-#. module: temporal_bt_magentoconnector_extensions
-#: model:ir.model,name:temporal_bt_magentoconnector_extensions.model_product_product
-#: model:ir.ui.menu,name:temporal_bt_magentoconnector_extensions.jobs_product
-msgid "Product"
-msgstr "Produkt"
-
-#. module: temporal_bt_magentoconnector_extensions
-#: model:ir.actions.act_window,name:temporal_bt_magentoconnector_extensions.action_show_sale_order_jobs
-msgid "Jobs (Sale Orders)"
-msgstr "Arbeitsschritte (Bestellungen)"
-
-#. module: temporal_bt_magentoconnector_extensions
-#: view:board.board:0
-#: model:ir.actions.act_window,name:temporal_bt_magentoconnector_extensions.open_board_jobs
-msgid "Jobs"
-msgstr "Arbeitsschritte"
-
-#. module: temporal_bt_magentoconnector_extensions
-#: code:addons/temporal_bt_magentoconnector_extensions/product_product_ext.py:462
-#, python-format
-msgid "Error: a product can only have one connector to the same Magento server."
-msgstr "Fehler: Ein Artikel kann nur eine Verbindung zum selben Magento Server haben."
-
-#. module: temporal_bt_magentoconnector_extensions
-#: view:magento.backend.delete:0
-msgid "Prepare for deletion"
-msgstr "zur Löschung vorbereiten"
-
-#. module: temporal_bt_magentoconnector_extensions
-#: model:ir.actions.act_window,name:temporal_bt_magentoconnector_extensions.action_show_pending_jobs
-msgid "Pending Jobs"
-msgstr "Pendente Arbeitsschritte"
-
-#. module: temporal_bt_magentoconnector_extensions
-#: view:log.data:0
-msgid "Is an error"
-msgstr "ist ein Fehler"
-
-#. module: temporal_bt_magentoconnector_extensions
-#: view:product.product:0
-msgid "Magento product picture URL (mark checkbox for update)"
-msgstr "Magento Produktbild-URL (Markiere Kontrollkästchen für die Aktualisierung)"
-
-#. module: temporal_bt_magentoconnector_extensions
-#: view:log.data:0
-msgid "Correct"
-msgstr "Korrekt"
-
-#. module: temporal_bt_magentoconnector_extensions
-#: view:product.product:0
-msgid "Magento product type ('simple' or 'configurable')"
-msgstr "Magento Produkttyp ('einfach' oder 'konfigurierbar')"
-
-#. module: temporal_bt_magentoconnector_extensions
-#: code:addons/temporal_bt_magentoconnector_extensions/product_product_ext.py:467
-#: code:addons/temporal_bt_magentoconnector_extensions/res_partner_ext.py:464
-#, python-format
-msgid "Magento server url"
-msgstr "Magento Server URL"
-
-#. module: temporal_bt_magentoconnector_extensions
-#: code:addons/temporal_bt_magentoconnector_extensions/product_product_ext.py:468
-#, python-format
-msgid "Magento server type"
-msgstr "Magento Server Typ"
-
-#. module: temporal_bt_magentoconnector_extensions
-#: code:addons/temporal_bt_magentoconnector_extensions/res_partner_ext.py:453
-#, python-format
-msgid "Error: a partner can only have one connector to the same Magento server."
-msgstr "Fehler: Ein Kunde kann nur eine Verbindung zum selben Magento Server haben."
-
-#. module: temporal_bt_magentoconnector_extensions
-#: view:log.data:0
-msgid "Group By.."
-msgstr "Gruppieren nach..."
-
-#. module: temporal_bt_magentoconnector_extensions
-#: model:ir.ui.menu,name:temporal_bt_magentoconnector_extensions.magento_management_log_data
-msgid "Import Log"
-msgstr "Import Log"
-
-#. module: temporal_bt_magentoconnector_extensions
-#: model:ir.ui.menu,name:temporal_bt_magentoconnector_extensions.jobs_active
+#. module: pc_connect_master
+#: model:ir.ui.menu,name:jobs_active
 msgid "Active"
-msgstr "Aktive"
+msgstr "Active"
 
-#. module: temporal_bt_magentoconnector_extensions
-#: code:addons/temporal_bt_magentoconnector_extensions/product_product_ext.py:463
-#, python-format
-msgid "Updates the image of a product from an URL"
-msgstr "Aktualisiert das Bild eines Produkts von einer URL"
+#. module: pc_connect_master
+#: field:ir.cron.punchcard,active:0
+msgid "Active?"
+msgstr "Active?"
 
-#. module: temporal_bt_magentoconnector_extensions
-#: model:ir.model,name:temporal_bt_magentoconnector_extensions.model_checkpoint_management
-msgid "checkpoint.management"
-msgstr "Prüfpunkt Management"
+#. module: pc_connect_master
+#: model:ir.model.fields,field_description:field_ir_cron_punchcard_active
+msgid "Active?"
+msgstr "Active?"
 
-#. module: temporal_bt_magentoconnector_extensions
-#: view:table.sync:0
-msgid "Table sync filters"
-msgstr "Filter für Tabellenfilter"
+#. module: pc_connect_master
+#: code:addons/pc_connect_master/res_partner_ext.py:229
+msgid "Address Type"
+msgstr "Address Type"
 
-#. module: temporal_bt_magentoconnector_extensions
-#: model:ir.actions.act_window,name:temporal_bt_magentoconnector_extensions.action_show_partner_jobs
-msgid "Jobs (Partner)"
-msgstr "arbeitsschritte (Kunden)"
+#. module: pc_connect_master
+#: field:configuration.data,sale_order_max_age_in_draft_uom:0
+msgid "Age UOM"
+msgstr "Age UOM"
 
-#. module: temporal_bt_magentoconnector_extensions
-#: view:log.data:0
-msgid "Table name"
-msgstr "Tabellenname"
+#. module: pc_connect_master
+#: field:configuration.data,sale_order_min_age_in_draft_uom:0
+msgid "Age UOM"
+msgstr "Age UOM"
 
-#. module: temporal_bt_magentoconnector_extensions
-#: view:checkpoint.management:0
-#: model:ir.actions.act_window,name:temporal_bt_magentoconnector_extensions.action_checkpoint_management
-msgid "Checkpoint Management"
-msgstr "Prüfpunktverwaltung"
+#. module: pc_connect_master
+#: model:ir.model.fields,field_description:field_configuration_data_sale_order_max_age_in_draft_uom
+msgid "Age UOM"
+msgstr "Age UOM"
 
-#. module: temporal_bt_magentoconnector_extensions
-#: model:ir.ui.menu,name:temporal_bt_magentoconnector_extensions.jobs_sale_order
-msgid "Sale Order"
-msgstr "Bestellung"
+#. module: pc_connect_master
+#: model:ir.model.fields,field_description:field_configuration_data_sale_order_min_age_in_draft_uom
+msgid "Age UOM"
+msgstr "Age UOM"
 
-#. module: temporal_bt_magentoconnector_extensions
+#. module: pc_connect_master
+#: help:configuration.data,open_backorder_alarming_age_days:0
+msgid "Alarming threshold value which defines after how many days an open back-order must be alarmed."
+msgstr "Alarming threshold value which defines after how many days an open back-order must be alarmed."
+
+#. module: pc_connect_master
+#: view:configuration.data:0
+msgid "Alarming"
+msgstr "Alarming"
+
+#. module: pc_connect_master
+#: view:stock.production.lot:0
+msgid "Alert Date Reached"
+msgstr "Alert Date Reached"
+
+#. module: pc_connect_master
+#: model:ir.actions.act_window,name:action_show_jobs
+msgid "All Jobs"
+msgstr "All Jobs"
+
+#. module: pc_connect_master
+#: field:payment.method,amount_limit:0
+msgid "Amount Limit"
+msgstr "Amount Limit"
+
+#. module: pc_connect_master
+#: model:ir.model.fields,field_description:field_payment_method_amount_limit
+msgid "Amount Limit"
+msgstr "Amount Limit"
+
+#. module: pc_connect_master
+#: field:res.partner.check_credit,order_amount:0
+msgid "Amount to check"
+msgstr "Amount to check"
+
+#. module: pc_connect_master
+#: model:ir.model.fields,field_description:field_res_partner_check_credit_order_amount
+msgid "Amount to check"
+msgstr "Amount to check"
+
+#. module: pc_connect_master
+#: view:res.partner.check_credit:0
+msgid "Amount to check:"
+msgstr "Zu prüfender Betrag:"
+
+#. module: pc_connect_master
+#: field:product.product,draft_sale_order_lines:0
+msgid "Appearance in quotations"
+msgstr "Appearance in quotations"
+
+#. module: pc_connect_master
+#: model:ir.model.fields,field_description:field_product_product_draft_sale_order_lines
+msgid "Appearance in quotations"
+msgstr "Appearance in quotations"
+
+#. module: pc_connect_master
 #: view:product.product:0
-#: view:res.partner:0
-msgid "Magento server Websites (space separated, *=any)"
-msgstr "Magento Webseiten (Lehrschlag-getrennt, *=alle)"
+msgid "Appearence in quotations"
+msgstr "Appearence in quotations"
 
-#. module: temporal_bt_magentoconnector_extensions
-#: model:ir.ui.menu,name:temporal_bt_magentoconnector_extensions.jobs_enqueued
-msgid "Enqueued"
-msgstr "Eingereiht"
+#. module: pc_connect_master
+#: help:configuration.data,docout_invoice_friday:0
+msgid "Are invoices sent to doc-out on Friday?"
+msgstr "Are invoices sent to doc-out on Friday?"
 
-#. module: temporal_bt_magentoconnector_extensions
-#: view:log.data.filter:0
-msgid "Log Data Filters"
-msgstr "Logdatenfilter"
+#. module: pc_connect_master
+#: help:configuration.data,docout_invoice_monday:0
+msgid "Are invoices sent to doc-out on Monday?"
+msgstr "Are invoices sent to doc-out on Monday?"
 
-#. module: temporal_bt_magentoconnector_extensions
-#: model:ir.model,name:temporal_bt_magentoconnector_extensions.model_product_category
-msgid "Product Category"
-msgstr "Produktkategorie"
+#. module: pc_connect_master
+#: help:configuration.data,docout_invoice_saturday:0
+msgid "Are invoices sent to doc-out on Saturday?"
+msgstr "Are invoices sent to doc-out on Saturday?"
 
-#. module: temporal_bt_magentoconnector_extensions
-#: model:ir.actions.act_window,name:temporal_bt_magentoconnector_extensions.action_delete_connector_cascade
-msgid "Delete backend cascade"
-msgstr "Im Backend mit Abhängigkeiten löschen"
+#. module: pc_connect_master
+#: help:configuration.data,docout_invoice_sunday:0
+msgid "Are invoices sent to doc-out on Sunday?"
+msgstr "Are invoices sent to doc-out on Sunday?"
 
-#. module: temporal_bt_magentoconnector_extensions
-#: model:ir.ui.menu,name:temporal_bt_magentoconnector_extensions.magento_management_history
-msgid "Historical"
-msgstr "Systemmonitoring"
+#. module: pc_connect_master
+#: help:configuration.data,docout_invoice_thursday:0
+msgid "Are invoices sent to doc-out on Thursday?"
+msgstr "Are invoices sent to doc-out on Thursday?"
 
-#. module: temporal_bt_magentoconnector_extensions
-#: model:ir.model,name:temporal_bt_magentoconnector_extensions.model_res_partner
-#: model:ir.ui.menu,name:temporal_bt_magentoconnector_extensions.jobs_partner
-msgid "Partner"
-msgstr "Kunde"
+#. module: pc_connect_master
+#: help:configuration.data,docout_invoice_tuesday:0
+msgid "Are invoices sent to doc-out on Tuesday?"
+msgstr "Are invoices sent to doc-out on Tuesday?"
 
-#. module: temporal_bt_magentoconnector_extensions
-#: view:product.product:0
-#: view:res.partner:0
-msgid "Magento server ULRs (space separate, *=any)"
-msgstr "Magento Server URLs (Lehrzeichen-getrent, *=alle)"
+#. module: pc_connect_master
+#: help:configuration.data,docout_invoice_wednesday:0
+msgid "Are invoices sent to doc-out on Wednesday?"
+msgstr "Are invoices sent to doc-out on Wednesday?"
 
-#. module: temporal_bt_magentoconnector_extensions
-#: code:addons/temporal_bt_magentoconnector_extensions/checkpoint_management.py:35
-#, python-format
-msgid "Model"
-msgstr "Modell"
+#. module: pc_connect_master
+#: field:pc.wz.knowledge.export,attachment_ids:0
+msgid "Attachments"
+msgstr "Attachments"
 
-#. module: temporal_bt_magentoconnector_extensions
-#: model:ir.actions.act_window,name:temporal_bt_magentoconnector_extensions.action_ir_scheduler
-msgid "Scheduler actions"
-msgstr "Geplante Vorgänge"
+#. module: pc_connect_master
+#: model:ir.model.fields,field_description:field_pc_wz_knowledge_export_attachment_ids
+msgid "Attachments"
+msgstr "Attachments"
 
-#. module: temporal_bt_magentoconnector_extensions
-#: model:ir.actions.act_window,name:temporal_bt_magentoconnector_extensions.action_show_log_data
-#: model:ir.model,name:temporal_bt_magentoconnector_extensions.model_log_data
-#: view:log.data:0
-msgid "Log Data"
-msgstr "Logging Daten"
+#. module: pc_connect_master
+#: code:addons/pc_connect_master/product_product_ext.py:124
+msgid "Attention: This product lot must be removed from sell"
+msgstr "Attention: This product lot must be removed from sell"
 
-#. module: temporal_bt_magentoconnector_extensions
-#: model:ir.actions.act_window,name:temporal_bt_magentoconnector_extensions.action_show_failed_jobs
-msgid "Failed Jobs"
-msgstr "Fehlgeschlagene Arbeitsschritte"
+#. module: pc_connect_master
+#: code:addons/pc_connect_master/stock_production_lot_ext.py:199
+msgid "Attention: This product lot must be removed from sell"
+msgstr "Attention: This product lot must be removed from sell"
 
-#. module: temporal_bt_magentoconnector_extensions
-#: view:magento.backend.delete:0
-msgid "Delete backend"
-msgstr "Backend löschen"
+#. module: pc_connect_master
+#: field:sale.order,automate_sale_order_process_fired:0
+msgid "Automate Sale Order Process Was Fired"
+msgstr "Automate Sale Order Process Was Fired"
 
-#. module: temporal_bt_magentoconnector_extensions
-#: model:ir.model,name:temporal_bt_magentoconnector_extensions.model_log_data_filter
-msgid "Log Data Filter"
-msgstr "Logdaten Filter"
+#. module: pc_connect_master
+#: model:ir.model.fields,field_description:field_sale_order_automate_sale_order_process_fired
+msgid "Automate Sale Order Process Was Fired"
+msgstr "Automate Sale Order Process Was Fired"
 
-#. module: temporal_bt_magentoconnector_extensions
-#: view:product.product:0
-msgid "html"
-msgstr "html"
+#. module: pc_connect_master
+#: field:sale.order,automate_sale_order_process:0
+msgid "Automate Sale Order Process"
+msgstr "Automate Sale Order Process"
 
-#. module: temporal_bt_magentoconnector_extensions
-#: model:ir.ui.menu,name:temporal_bt_magentoconnector_extensions.jobs_by_type
-msgid "by Type"
-msgstr "nach Typ"
+#. module: pc_connect_master
+#: model:ir.model.fields,field_description:field_sale_order_automate_sale_order_process
+msgid "Automate Sale Order Process"
+msgstr "Automate Sale Order Process"
 
-#. module: temporal_bt_magentoconnector_extensions
-#: model:ir.ui.menu,name:temporal_bt_magentoconnector_extensions.jobs_pending
-msgid "Pending"
-msgstr "In Bearbeitung"
+#. module: pc_connect_master
+#: code:addons/pc_connect_master/stock_warehouse_ext.py:42
+msgid "Bad Number of Warehouses"
+msgstr "Bad Number of Warehouses"
 
-#. module: temporal_bt_magentoconnector_extensions
-#: model:ir.model,name:temporal_bt_magentoconnector_extensions.model_ir_cron
-msgid "ir.cron"
-msgstr "ir.cron"
+#. module: pc_connect_master
+#: code:addons/pc_connect_master/product_product_ext.py:218
+msgid "Bad number of digits"
+msgstr "Bad number of digits"
 
-#. module: temporal_bt_magentoconnector_extensions
-#: model:ir.ui.menu,name:temporal_bt_magentoconnector_extensions.jobs_by_state
-msgid "by State"
-msgstr "nach Status"
+#. module: pc_connect_master
+#: model:ir.model,name:model_res_partner_bank
+msgid "Bank Accounts"
+msgstr "Bankkonten"
 
-#. module: temporal_bt_magentoconnector_extensions
-#: code:addons/temporal_bt_magentoconnector_extensions/checkpoint_management.py:36
-#, python-format
-msgid "Automatic process"
-msgstr "Automatischer Prozess"
+#. module: pc_connect_master
+#: field:product.product,brand:0
+msgid "Brand"
+msgstr "Brand"
 
-#. module: temporal_bt_magentoconnector_extensions
-#: view:magento.backend.delete:0
+#. module: pc_connect_master
+#: model:ir.model.fields,field_description:field_product_product_brand
+msgid "Brand"
+msgstr "Brand"
+
+#. module: pc_connect_master
+#: selection:report.file.fields,groupby:0
+msgid "COUNT"
+msgstr "COUNT"
+
+#. module: pc_connect_master
+#: field:account.invoice,date_cancel:0
+msgid "Cancel Date"
+msgstr "Cancel Date"
+
+#. module: pc_connect_master
+#: model:ir.model.fields,field_description:field_account_invoice_date_cancel
+msgid "Cancel Date"
+msgstr "Cancel Date"
+
+#. module: pc_connect_master
+#: view:pc.wz.knowledge.export:0
+msgid "Cancel"
+msgstr "Cancel"
+
+#. module: pc_connect_master
+#: code:addons/pc_connect_master/standard_report.py:123
+msgid "Cannot add fields, once fields are added"
+msgstr "Cannot add fields, once fields are added"
+
+#. module: pc_connect_master
+#: code:addons/pc_connect_master/standard_report.py:163
+msgid "Cannot change filter, once fields are selected"
+msgstr "Cannot change filter, once fields are selected"
+
+#. module: pc_connect_master
+#: model:ir.model,name:model_delivery_carrier
+msgid "Carrier"
+msgstr "Frachtführer"
+
+#. module: pc_connect_master
+#: view:res.partner.check_credit:0
+msgid "Check Credit Worthiness"
+msgstr "Kreditwürdigkeit überprüfen"
+
+#. module: pc_connect_master
+#: model:ir.actions.act_window,name:action_check_res_partner
+msgid "Check Customer Credit"
+msgstr "Überprüfe Kundenkredit"
+
+#. module: pc_connect_master
+#: model:ir.actions.act_window,name:action_check_sale_order
+msgid "Check Sale Order Credit"
+msgstr "Überprüfung Bestellkredit"
+
+#. module: pc_connect_master
+#: view:res.partner.check_credit:0
+msgid "Check Sale Order Credit"
+msgstr "Überprüfung Bestellkredit"
+
+#. module: pc_connect_master
+#: view:sale.order.check_credit:0
+msgid "Check Sale Order Credit"
+msgstr "Überprüfung Bestellkredit"
+
+#. module: pc_connect_master
+#: view:sale.order.check_credit:0
+msgid "Check Sale Orders"
+msgstr "Überprüfen Sie die Bestellung"
+
+#. module: pc_connect_master
+#: view:report.file.exporter:0
 msgid "Close"
 msgstr "Schliessen"
 
-#. module: temporal_bt_magentoconnector_extensions
-#: view:board.board:0
-msgid "Jobs board"
-msgstr "Liste der Arbeitsschritte"
-
-#. module: temporal_bt_magentoconnector_extensions
-#: view:queue.job:0
-msgid "State proportion"
-msgstr "Status-Anteil"
+#. module: pc_connect_master
+#: view:res.partner.check_credit:0
+msgid "Close"
+msgstr "Schliessen"
 
 #. module: pc_connect_master
-#: field:configuration.data,default_picking_policy:0
-#: model:ir.model.fields,field_description:pc_connect_master.field_configuration_data_default_picking_policy
-msgid "Global Picking Policy"
-msgstr "Teillieferungen"
+#: view:sale.order.check_credit:0
+msgid "Close"
+msgstr "Schliessen"
+
+#. module: pc_connect_master
+#: selection:report.file,file_type:0
+msgid "Comma-separated"
+msgstr "Comma-separated"
+
+#. module: pc_connect_master
+#: model:ir.model,name:model_res_company
+msgid "Companies"
+msgstr "Unternehmen"
+
+#. module: pc_connect_master
+#: view:res.partner:0
+msgid "Company Name"
+msgstr "Company Name"
+
+#. module: pc_connect_master
+#: field:res.partner,company:0
+msgid "Company"
+msgstr "Company"
+
+#. module: pc_connect_master
+#: model:ir.model.fields,field_description:field_res_partner_company
+msgid "Company"
+msgstr "Company"
+
+#. module: pc_connect_master
+#: field:configuration.data,concurrent_access_requeue_num_minutes:0
+msgid "Concurrent Access Requeue Max Minutes"
+msgstr "Concurrent Access Requeue Max Minutes"
+
+#. module: pc_connect_master
+#: model:ir.model.fields,field_description:field_configuration_data_concurrent_access_requeue_num_minutes
+msgid "Concurrent Access Requeue Max Minutes"
+msgstr "Concurrent Access Requeue Max Minutes"
+
+#. module: pc_connect_master
+#: model:ir.ui.menu,name:Connect_transport_menu_item
+msgid "Connect Transports"
+msgstr "Connect Transports"
+
+#. module: pc_connect_master
+#: model:res.groups,name:group_user
+msgid "Connector User"
+msgstr "Connector User"
+
+#. module: pc_connect_master
+#: view:configuration.data:0
+msgid "Contact Titles"
+msgstr "Contact Titles"
+
+#. module: pc_connect_master
+#: code:addons/pc_connect_master/res_partner_ext.py:225
+msgid "Contact"
+msgstr "Contact"
+
+#. module: pc_connect_master
+#: help:sale.order,additional_message_content:0
+msgid "Content of the gift-text."
+msgstr "Content of the gift-text."
+
+#. module: pc_connect_master
+#: help:stock.move,partner_country:0
+msgid "Country of the partner"
+msgstr "Country of the partner"
+
+#. module: pc_connect_master
+#: field:ir.cron.punchcard,create_date:0
+msgid "Create date"
+msgstr "Create date"
+
+#. module: pc_connect_master
+#: model:ir.model.fields,field_description:field_ir_cron_punchcard_create_date
+msgid "Create date"
+msgstr "Create date"
+
+#. module: pc_connect_master
+#: view:report.file.exporter:0
+msgid "Create report file"
+msgstr "Create report file"
+
+#. module: pc_connect_master
+#: field:payment.method,credit_check:0
+msgid "Credit Check?"
+msgstr "Credit Check?"
+
+#. module: pc_connect_master
+#: model:ir.model.fields,field_description:field_payment_method_credit_check
+msgid "Credit Check?"
+msgstr "Credit Check?"
+
+#. module: pc_connect_master
+#: view:res.partner.check_credit:0
+msgid "Currency of asked amount:"
+msgstr "Währung des verlangten Betrages:"
+
+#. module: pc_connect_master
+#: field:res.partner.check_credit,order_currency:0
+msgid "Currency of payment"
+msgstr "Currency of payment"
+
+#. module: pc_connect_master
+#: model:ir.model.fields,field_description:field_res_partner_check_credit_order_currency
+msgid "Currency of payment"
+msgstr "Currency of payment"
+
+#. module: pc_connect_master
+#: help:res.partner,pickpost_mypost24_no:0
+msgid "Customer number for PickPost/MyPost24"
+msgstr "Customer number for PickPost/MyPost24"
+
+#. module: pc_connect_master
+#: model:ir.ui.menu,name:pc_menu_sales_sales_customers
+msgid "Customers"
+msgstr "Kunden"
+
+#. module: pc_connect_master
+#: code:addons/pc_connect_master/product_product_ext.py:126
+msgid "Danger: This product lot has exceeded its safety life-time!"
+msgstr "Danger: This product lot has exceeded its safety life-time!"
+
+#. module: pc_connect_master
+#: code:addons/pc_connect_master/stock_production_lot_ext.py:201
+msgid "Danger: This product lot has exceeded its safety life-time!"
+msgstr "Danger: This product lot has exceeded its safety life-time!"
+
+#. module: pc_connect_master
+#: view:configuration.data:0
+msgid "Dates"
+msgstr "Haltbarkeitsdauern"
+
+#. module: pc_connect_master
+#: view:product.product:0
+msgid "Dates"
+msgstr "Haltbarkeitsdauern"
+
+#. module: pc_connect_master
+#: model:product.uom,name:real_time_uom_day
+msgid "Day(s)"
+msgstr "Tag(e)"
+
+#. module: pc_connect_master
+#: selection:configuration.data,post_default_expiration_accept_time_uom:0
+msgid "Day(s)"
+msgstr "Tag(e)"
+
+#. module: pc_connect_master
+#: selection:configuration.data,post_default_expiration_alert_time_uom:0
+msgid "Day(s)"
+msgstr "Tag(e)"
+
+#. module: pc_connect_master
+#: selection:configuration.data,post_default_expiration_block_time_uom:0
+msgid "Day(s)"
+msgstr "Tag(e)"
+
+#. module: pc_connect_master
+#: selection:configuration.data,sale_order_max_age_in_draft_uom:0
+msgid "Day(s)"
+msgstr "Tag(e)"
+
+#. module: pc_connect_master
+#: selection:configuration.data,sale_order_min_age_in_draft_uom:0
+msgid "Day(s)"
+msgstr "Tag(e)"
+
+#. module: pc_connect_master
+#: code:addons/pc_connect_master/res_partner_ext.py:64
+msgid "Dear Mr"
+msgstr "Dear Mr"
+
+#. module: pc_connect_master
+#: code:addons/pc_connect_master/res_partner_ext.py:66
+msgid "Dear Ms"
+msgstr "Dear Ms"
+
+#. module: pc_connect_master
+#: code:addons/pc_connect_master/res_partner_ext.py:59
+msgid "Dear Sirs/Mesdames"
+msgstr "Dear Sirs/Mesdames"
+
+#. module: pc_connect_master
+#: code:addons/pc_connect_master/res_partner_ext.py:68
+msgid "Dear"
+msgstr "Dear"
+
+#. module: pc_connect_master
+#: field:configuration.data,default_credit_limit:0
+msgid "Default Credit Limit"
+msgstr "Default Credit Limit"
+
+#. module: pc_connect_master
+#: model:ir.model.fields,field_description:field_configuration_data_default_credit_limit
+msgid "Default Credit Limit"
+msgstr "Default Credit Limit"
+
+#. module: pc_connect_master
+#: field:configuration.data,post_default_expiration_accept_time_uom:0
+msgid "Default Expiration Accept Time UOM"
+msgstr "Default Expiration Accept Time UOM"
+
+#. module: pc_connect_master
+#: model:ir.model.fields,field_description:field_configuration_data_post_default_expiration_accept_time_uom
+msgid "Default Expiration Accept Time UOM"
+msgstr "Default Expiration Accept Time UOM"
+
+#. module: pc_connect_master
+#: field:configuration.data,post_default_expiration_accept_time:0
+msgid "Default Expiration Accept Time"
+msgstr "Default Expiration Accept Time"
+
+#. module: pc_connect_master
+#: model:ir.model.fields,field_description:field_configuration_data_post_default_expiration_accept_time
+msgid "Default Expiration Accept Time"
+msgstr "Default Expiration Accept Time"
+
+#. module: pc_connect_master
+#: field:configuration.data,post_default_expiration_alert_time_uom:0
+msgid "Default Expiration Alert Time UOM"
+msgstr "Default Expiration Alert Time UOM"
+
+#. module: pc_connect_master
+#: model:ir.model.fields,field_description:field_configuration_data_post_default_expiration_alert_time_uom
+msgid "Default Expiration Alert Time UOM"
+msgstr "Default Expiration Alert Time UOM"
+
+#. module: pc_connect_master
+#: field:configuration.data,post_default_expiration_alert_time:0
+msgid "Default Expiration Alert Time"
+msgstr "Default Expiration Alert Time"
+
+#. module: pc_connect_master
+#: model:ir.model.fields,field_description:field_configuration_data_post_default_expiration_alert_time
+msgid "Default Expiration Alert Time"
+msgstr "Default Expiration Alert Time"
+
+#. module: pc_connect_master
+#: field:configuration.data,post_default_expiration_block_time_uom:0
+msgid "Default Expiration Block Time UOM"
+msgstr "Default Expiration Block Time UOM"
+
+#. module: pc_connect_master
+#: model:ir.model.fields,field_description:field_configuration_data_post_default_expiration_block_time_uom
+msgid "Default Expiration Block Time UOM"
+msgstr "Default Expiration Block Time UOM"
+
+#. module: pc_connect_master
+#: field:configuration.data,post_default_expiration_block_time:0
+msgid "Default Expiration Block Time"
+msgstr "Default Expiration Block Time"
+
+#. module: pc_connect_master
+#: model:ir.model.fields,field_description:field_configuration_data_post_default_expiration_block_time
+msgid "Default Expiration Block Time"
+msgstr "Default Expiration Block Time"
+
+#. module: pc_connect_master
+#: code:addons/pc_connect_master/res_partner_ext.py:222
+msgid "Default"
+msgstr "Default"
+
+#. module: pc_connect_master
+#: view:stock.move:0
+msgid "Delivered last Month"
+msgstr "Delivered last Month"
+
+#. module: pc_connect_master
+#: view:stock.move:0
+msgid "Delivered last Year"
+msgstr "Delivered last Year"
+
+#. module: pc_connect_master
+#: view:stock.move:0
+msgid "Delivered last month"
+msgstr "Delivered last month"
+
+#. module: pc_connect_master
+#: view:stock.move:0
+msgid "Delivered last year"
+msgstr "Delivered last year"
+
+#. module: pc_connect_master
+#: view:stock.move:0
+msgid "Delivered this Month"
+msgstr "Delivered this Month"
+
+#. module: pc_connect_master
+#: view:stock.move:0
+msgid "Delivered this Year"
+msgstr "Delivered this Year"
+
+#. module: pc_connect_master
+#: view:stock.move:0
+msgid "Delivered this month"
+msgstr "Delivered this month"
+
+#. module: pc_connect_master
+#: view:stock.move:0
+msgid "Delivered this year"
+msgstr "Delivered this year"
+
+#. module: pc_connect_master
+#: view:stock.move:0
+msgid "Delivery Done"
+msgstr "Delivery Done"
+
+#. module: pc_connect_master
+#: model:ir.filters,name:ir_filters_stock_picking_out_by_state
+msgid "Delivery Orders by State"
+msgstr "Delivery Orders by State"
+
+#. module: pc_connect_master
+#: model:ir.filters,name:ir_filters_stock_picking_out_last_month
+msgid "Delivery Orders from last month"
+msgstr "Delivery Orders from last month"
+
+#. module: pc_connect_master
+#: model:ir.filters,name:ir_filters_stock_picking_out_last_year
+msgid "Delivery Orders from last year"
+msgstr "Delivery Orders from last year"
+
+#. module: pc_connect_master
+#: model:ir.filters,name:ir_filters_stock_picking_out_this_month
+msgid "Delivery Orders from this month"
+msgstr "Delivery Orders from this month"
+
+#. module: pc_connect_master
+#: model:ir.filters,name:ir_filters_stock_picking_out_this_year
+msgid "Delivery Orders from this year"
+msgstr "Delivery Orders from this year"
+
+#. module: pc_connect_master
+#: model:ir.model,name:model_stock_picking_out
+msgid "Delivery Orders"
+msgstr "Auslieferung Aufträge"
+
+#. module: pc_connect_master
+#: model:ir.ui.menu,name:pc_menu_sales_sales_deliveryorders
+msgid "Delivery Orders"
+msgstr "Auslieferung Aufträge"
+
+#. module: pc_connect_master
+#: view:stock.move:0
+msgid "Delivery done"
+msgstr "Delivery done"
+
+#. module: pc_connect_master
+#: view:stock.move:0
+msgid "Delivery to Customer"
+msgstr "Delivery to Customer"
+
+#. module: pc_connect_master
+#: view:stock.move:0
+msgid "Delivery to customer"
+msgstr "Delivery to customer"
+
+#. module: pc_connect_master
+#: field:configuration.data,report_stock_picking:0
+msgid "Delivery"
+msgstr "Delivery"
+
+#. module: pc_connect_master
+#: model:ir.model.fields,field_description:field_configuration_data_report_stock_picking
+msgid "Delivery"
+msgstr "Delivery"
+
+#. module: pc_connect_master
+#: field:pc.wz.knowledge.export,description:0
+msgid "Description"
+msgstr "Description"
+
+#. module: pc_connect_master
+#: field:wizard.popup,desc:0
+msgid "Description"
+msgstr "Description"
+
+#. module: pc_connect_master
+#: model:ir.model.fields,field_description:field_pc_wz_knowledge_export_description
+msgid "Description"
+msgstr "Description"
+
+#. module: pc_connect_master
+#: model:ir.model.fields,field_description:field_wizard_popup_desc
+msgid "Description"
+msgstr "Description"
+
+#. module: pc_connect_master
+#: field:stock.move,location_dest_id_name:0
+msgid "Destination Location"
+msgstr "Destination Location"
+
+#. module: pc_connect_master
+#: model:ir.model.fields,field_description:field_stock_move_location_dest_id_name
+msgid "Destination Location"
+msgstr "Destination Location"
+
+#. module: pc_connect_master
+#: view:product.product:0
+msgid "Diameter (cm)"
+msgstr "Diameter (cm)"
+
+#. module: pc_connect_master
+#: help:product.product,diameter:0
+msgid "Diameter of the product (in centimeters)"
+msgstr "Diameter of the product (in centimeters)"
+
+#. module: pc_connect_master
+#: field:product.product,diameter:0
+msgid "Diameter"
+msgstr "Diameter"
+
+#. module: pc_connect_master
+#: model:ir.model.fields,field_description:field_product_product_diameter
+msgid "Diameter"
+msgstr "Diameter"
+
+#. module: pc_connect_master
+#: view:product.product:0
+msgid "Dimensions"
+msgstr "Dimensions"
+
+#. module: pc_connect_master
+#: view:res.partner.check_credit:0
+msgid "Do you want to check the credit worthiness of the selected customers?"
+msgstr "Wollen Sie die Kreditwürdigkeit der selektierten Kunden überprüfen?"
+
+#. module: pc_connect_master
+#: view:sale.order.check_credit:0
+msgid "Do you want to check the credit worthiness of the selected sale orders?"
+msgstr "Wollen Sie die Kreditwürdigkeit für die ausgewählten Bestellungen prüfen?"
+
+#. module: pc_connect_master
+#: field:configuration.data,docout_invoice_email_address:0
+msgid "Doc-out Email Address"
+msgstr "Doc-out Email Address"
+
+#. module: pc_connect_master
+#: model:ir.model.fields,field_description:field_configuration_data_docout_invoice_email_address
+msgid "Doc-out Email Address"
+msgstr "Doc-out Email Address"
+
+#. module: pc_connect_master
+#: field:configuration.data,docout_invoice_email_template_to_docout_id:0
+msgid "Doc-out Email Template"
+msgstr "Doc-out Email Template"
+
+#. module: pc_connect_master
+#: model:ir.model.fields,field_description:field_configuration_data_docout_invoice_email_template_to_docout_id
+msgid "Doc-out Email Template"
+msgstr "Doc-out Email Template"
+
+#. module: pc_connect_master
+#: model:email.template,subject:email_template_send_invoice_to_docout
+msgid "Doc-out Invoice Sending"
+msgstr "[TEST] Doc-out Invoice Sending"
+
+#. module: pc_connect_master
+#: field:configuration.data,docout_invoice_folder:0
+msgid "Doc-out Remote Folder"
+msgstr "Doc-out Remote Folder"
+
+#. module: pc_connect_master
+#: model:ir.model.fields,field_description:field_configuration_data_docout_invoice_folder
+msgid "Doc-out Remote Folder"
+msgstr "Doc-out Remote Folder"
+
+#. module: pc_connect_master
+#: field:configuration.data,docout_invoice_connect_transport_id:0
+msgid "Doc-out Server Connection"
+msgstr "Doc-out Server Connection"
+
+#. module: pc_connect_master
+#: model:ir.model.fields,field_description:field_configuration_data_docout_invoice_connect_transport_id
+msgid "Doc-out Server Connection"
+msgstr "Doc-out Server Connection"
+
+#. module: pc_connect_master
+#: view:configuration.data:0
+msgid "Doc-out"
+msgstr "Doc-out"
+
+#. module: pc_connect_master
+#: help:configuration.data,support_open_friday:0
+msgid "Does the support open on Friday?"
+msgstr "Does the support open on Friday?"
+
+#. module: pc_connect_master
+#: help:configuration.data,support_open_monday:0
+msgid "Does the support open on Monday?"
+msgstr "Does the support open on Monday?"
+
+#. module: pc_connect_master
+#: help:configuration.data,support_open_saturday:0
+msgid "Does the support open on Saturday?"
+msgstr "Does the support open on Saturday?"
+
+#. module: pc_connect_master
+#: help:configuration.data,support_open_sunday:0
+msgid "Does the support open on Sunday?"
+msgstr "Does the support open on Sunday?"
+
+#. module: pc_connect_master
+#: help:configuration.data,support_open_thursday:0
+msgid "Does the support open on Thursday?"
+msgstr "Does the support open on Thursday?"
+
+#. module: pc_connect_master
+#: help:configuration.data,support_open_tuesday:0
+msgid "Does the support open on Tuesday?"
+msgstr "Does the support open on Tuesday?"
+
+#. module: pc_connect_master
+#: help:configuration.data,support_open_wednesday:0
+msgid "Does the support open on Wednesday?"
+msgstr "Does the support open on Wednesday?"
+
+#. module: pc_connect_master
+#: help:payment.method,credit_check:0
+msgid "Does the system have to check the creditworthiness of customers with this payment method?"
+msgstr "Does the system have to check the creditworthiness of customers with this payment method?"
+
+#. module: pc_connect_master
+#: help:payment.method,epayment:0
+msgid "Does this payment method allow ePayment in the show?"
+msgstr "Does this payment method allow ePayment in the show?"
+
+#. module: pc_connect_master
+#: selection:pc.wz.knowledge.export,state:0
+msgid "Done"
+msgstr "Done"
+
+#. module: pc_connect_master
+#: field:report.file.exporter,file:0
+msgid "Download file"
+msgstr "Download file"
+
+#. module: pc_connect_master
+#: model:ir.model.fields,field_description:field_report_file_exporter_file
+msgid "Download file"
+msgstr "Download file"
+
+#. module: pc_connect_master
+#: selection:pc.wz.knowledge.export,state:0
+msgid "Draft"
+msgstr "Draft"
+
+#. module: pc_connect_master
+#: model:ir.ui.menu,name:pc_menu_sales
+msgid "E-Commerce"
+msgstr "E-Commerce"
+
+#. module: pc_connect_master
+#: model:ir.actions.act_window,name:action_show_enqueued_jobs
+msgid "Enqueued Jobs"
+msgstr "Enqueued Jobs"
+
+#. module: pc_connect_master
+#: model:ir.ui.menu,name:jobs_enqueued
+msgid "Enqueued"
+msgstr "Enqueued"
+
+#. module: pc_connect_master
+#: code:addons/pc_connect_master/sale_order_ext.py:311
+msgid "Error: Payment term must be set."
+msgstr "Error: Payment term must be set."
+
+#. module: pc_connect_master
+#: constraint:sale.order:0
+msgid "Error: Payment term must be set."
+msgstr "Error: Payment term must be set."
+
+#. module: pc_connect_master
+#: selection:report.file.exporter,file_ext:0
+msgid "Excel (xlsx)"
+msgstr "Excel (xlsx)"
+
+#. module: pc_connect_master
+#: field:ir.cron.punchcard,create_uid:0
+msgid "Executer"
+msgstr "Executer"
+
+#. module: pc_connect_master
+#: model:ir.model.fields,field_description:field_ir_cron_punchcard_create_uid
+msgid "Executer"
+msgstr "Executer"
+
+#. module: pc_connect_master
+#: field:ir.cron.punchcard,execution_day:0
+msgid "Execution day"
+msgstr "Execution day"
+
+#. module: pc_connect_master
+#: model:ir.model.fields,field_description:field_ir_cron_punchcard_execution_day
+msgid "Execution day"
+msgstr "Execution day"
+
+#. module: pc_connect_master
+#: field:product.product,expiration_accept_time:0
+msgid "Expiration Accept Time"
+msgstr "Expiration Accept Time"
+
+#. module: pc_connect_master
+#: model:ir.model.fields,field_description:field_product_product_expiration_accept_time
+msgid "Expiration Accept Time"
+msgstr "Expiration Accept Time"
+
+#. module: pc_connect_master
+#: field:product.product,expiration_alert_time:0
+msgid "Expiration Alert Time"
+msgstr "Expiration Alert Time"
+
+#. module: pc_connect_master
+#: model:ir.model.fields,field_description:field_product_product_expiration_alert_time
+msgid "Expiration Alert Time"
+msgstr "Expiration Alert Time"
+
+#. module: pc_connect_master
+#: field:product.product,expiration_block_time:0
+msgid "Expiration Block Time"
+msgstr "Expiration Block Time"
+
+#. module: pc_connect_master
+#: model:ir.model.fields,field_description:field_product_product_expiration_block_time
+msgid "Expiration Block Time"
+msgstr "Expiration Block Time"
+
+#. module: pc_connect_master
+#: view:stock.production.lot:0
+msgid "Export Addressees"
+msgstr "Export Addressees"
+
+#. module: pc_connect_master
+#: model:ir.ui.menu,name:wz_menu_action_export_documents
+msgid "Export Documents"
+msgstr "Export Documents"
+
+#. module: pc_connect_master
+#: model:ir.actions.act_window,name:action_view_account_invoice_export
+msgid "Export Invoices"
+msgstr "Export Invoices"
+
+#. module: pc_connect_master
+#: model:ir.actions.act_window,name:action_export_knowledge_wizard
+msgid "Export Knowledge"
+msgstr "Export Knowledge"
+
+#. module: pc_connect_master
+#: model:ir.actions.act_window,name:action_view_stock_picking_export
+msgid "Export Picking List"
+msgstr "Export Picking List"
+
+#. module: pc_connect_master
+#: model:ir.actions.act_window,name:action_view_sale_order_export
+msgid "Export Sale Orders"
+msgstr "Export Sale Orders"
+
+#. module: pc_connect_master
+#: view:report.file.exporter:0
+msgid "Export invoices"
+msgstr "Export invoices"
+
+#. module: pc_connect_master
+#: view:pc.wz.knowledge.export:0
+msgid "Export knowledge"
+msgstr "Export knowledge"
+
+#. module: pc_connect_master
+#: view:report.file:0
+msgid "Export report (French)"
+msgstr "Export report (French)"
+
+#. module: pc_connect_master
+#: view:report.file:0
+msgid "Export report (German)"
+msgstr "Export report (German)"
+
+#. module: pc_connect_master
+#: view:report.file:0
+msgid "Export report (Italian)"
+msgstr "Export report (Italian)"
+
+#. module: pc_connect_master
+#: view:report.file:0
+msgid "Export report (User language)"
+msgstr "Export report (User language)"
+
+#. module: pc_connect_master
+#: view:report.file.exporter:0
+msgid "Export stock picking list"
+msgstr "Export stock picking list"
+
+#. module: pc_connect_master
+#: view:pc.wz.knowledge.export:0
+msgid "Export"
+msgstr "Export"
+
+#. module: pc_connect_master
+#: field:report.file.exporter,file_ext:0
+msgid "Extension"
+msgstr "Extension"
+
+#. module: pc_connect_master
+#: model:ir.model.fields,field_description:field_report_file_exporter_file_ext
+msgid "Extension"
+msgstr "Extension"
+
+#. module: pc_connect_master
+#: model:ir.actions.act_window,name:action_show_failed_jobs
+msgid "Failed Jobs"
+msgstr "Failed Jobs"
+
+#. module: pc_connect_master
+#: model:ir.ui.menu,name:jobs_failed
+msgid "Failed"
+msgstr "Failed"
+
+#. module: pc_connect_master
+#: code:addons/pc_connect_master/res_partner_ext.py:214
+msgid "Female"
+msgstr "Female"
+
+#. module: pc_connect_master
+#: selection:res.partner,gender:0
+msgid "Female"
+msgstr "Female"
+
+#. module: pc_connect_master
+#: field:report.file.fields,ttype:0
+msgid "Field Type"
+msgstr "Field Type"
+
+#. module: pc_connect_master
+#: model:ir.model.fields,field_description:field_report_file_fields_ttype
+msgid "Field Type"
+msgstr "Field Type"
+
+#. module: pc_connect_master
+#: field:report.file.fields,order_priority:0
+msgid "Field order"
+msgstr "Field order"
+
+#. module: pc_connect_master
+#: model:ir.model.fields,field_description:field_report_file_fields_order_priority
+msgid "Field order"
+msgstr "Field order"
+
+#. module: pc_connect_master
+#: field:report.file.fields,field_id:0
+msgid "Field"
+msgstr "Field"
+
+#. module: pc_connect_master
+#: model:ir.model.fields,field_description:field_report_file_fields_field_id
+msgid "Field"
+msgstr "Field"
+
+#. module: pc_connect_master
+#: field:report.file,script:0
+msgid "Fields by script"
+msgstr "Fields by script"
+
+#. module: pc_connect_master
+#: model:ir.model.fields,field_description:field_report_file_script
+msgid "Fields by script"
+msgstr "Fields by script"
+
+#. module: pc_connect_master
+#: field:report.file,fields:0
+msgid "Fields"
+msgstr "Fields"
+
+#. module: pc_connect_master
+#: model:ir.model.fields,field_description:field_report_file_fields
+msgid "Fields"
+msgstr "Fields"
+
+#. module: pc_connect_master
+#: view:report.file:0
+msgid "Fields"
+msgstr "Fields"
+
+#. module: pc_connect_master
+#: field:report.file,file_type:0
+msgid "File format"
+msgstr "File format"
+
+#. module: pc_connect_master
+#: model:ir.model.fields,field_description:field_report_file_file_type
+msgid "File format"
+msgstr "File format"
+
+#. module: pc_connect_master
+#: field:report.file.exporter,file_name:0
+msgid "File name"
+msgstr "File name"
+
+#. module: pc_connect_master
+#: model:ir.model.fields,field_description:field_report_file_exporter_file_name
+msgid "File name"
+msgstr "File name"
+
+#. module: pc_connect_master
+#: help:configuration.data,docout_invoice_time_of_day:0
+msgid "Files will be sent to the doc-out not earlier than this hour."
+msgstr "Files will be sent to the doc-out not earlier than this hour."
+
+#. module: pc_connect_master
+#: view:report.file:0
+msgid "Fill report fields"
+msgstr "Fill report fields"
+
+#. module: pc_connect_master
+#: field:report.file,filter_id:0
+msgid "Filter for search"
+msgstr "Filter for search"
+
+#. module: pc_connect_master
+#: model:ir.model.fields,field_description:field_report_file_filter_id
+msgid "Filter for search"
+msgstr "Filter for search"
+
+#. module: pc_connect_master
+#: field:report.view,filter_id:0
+msgid "Filter"
+msgstr "Filter"
+
+#. module: pc_connect_master
+#: model:ir.model.fields,field_description:field_report_view_filter_id
+msgid "Filter"
+msgstr "Filter"
+
+#. module: pc_connect_master
+#: model:ir.model,name:model_ir_filters
+msgid "Filters"
+msgstr "Filter"
+
+#. module: pc_connect_master
+#: field:ir.cron,message_follower_ids:0
+msgid "Followers"
+msgstr "Followers"
+
+#. module: pc_connect_master
+#: field:stock.production.lot,message_follower_ids:0
+msgid "Followers"
+msgstr "Followers"
+
+#. module: pc_connect_master
+#: model:ir.model.fields,field_description:field_ir_cron_message_follower_ids
+msgid "Followers"
+msgstr "Followers"
+
+#. module: pc_connect_master
+#: model:ir.model.fields,field_description:field_stock_production_lot_message_follower_ids
+msgid "Followers"
+msgstr "Followers"
 
 #. module: pc_connect_master
 #: selection:configuration.data,default_picking_policy:0
@@ -381,12 +1372,3055 @@ msgid "Force Partial Deliveries"
 msgstr "Erzwinge Teillieferung"
 
 #. module: pc_connect_master
-#: selection:configuration.data,default_picking_policy:0
-msgid "According to Web-Shop"
-msgstr "Gemäss Webshop"
+#: field:configuration.data,force_payment_term:0
+msgid "Force payment term based on Payment method"
+msgstr "Force payment term based on Payment method"
+
+#. module: pc_connect_master
+#: model:ir.model.fields,field_description:field_configuration_data_force_payment_term
+msgid "Force payment term based on Payment method"
+msgstr "Force payment term based on Payment method"
+
+#. module: pc_connect_master
+#: help:res.partner,gender:0
+msgid "Gender of the partner, other if unknown"
+msgstr "Gender of the partner, other if unknown"
+
+#. module: pc_connect_master
+#: field:res.partner,gender:0
+msgid "Gender"
+msgstr "Gender"
+
+#. module: pc_connect_master
+#: model:ir.model.fields,field_description:field_res_partner_gender
+msgid "Gender"
+msgstr "Gender"
+
+#. module: pc_connect_master
+#: field:pc.wz.knowledge.export,report_file:0
+msgid "Generated Report"
+msgstr "Generated Report"
+
+#. module: pc_connect_master
+#: model:ir.model.fields,field_description:field_pc_wz_knowledge_export_report_file
+msgid "Generated Report"
+msgstr "Generated Report"
+
+#. module: pc_connect_master
+#: field:sale.order,additional_message_type:0
+msgid "Gift Text Type"
+msgstr "Gift Text Type"
+
+#. module: pc_connect_master
+#: model:ir.model.fields,field_description:field_sale_order_additional_message_type
+msgid "Gift Text Type"
+msgstr "Gift Text Type"
+
+#. module: pc_connect_master
+#: view:sale.order:0
+msgid "Gift Text"
+msgstr "Gift Text"
+
+#. module: pc_connect_master
+#: model:ir.model,name:model_gift_text_type
+msgid "Gift-text Type"
+msgstr "Gift-text Type"
+
+#. module: pc_connect_master
+#: view:gift.text.type:0
+msgid "Gift-text Types"
+msgstr "Gift-text Types"
+
+#. module: pc_connect_master
+#: field:configuration.data,default_picking_policy:0
+msgid "Global Picking Policy"
+msgstr "Teillieferungen"
+
+#. module: pc_connect_master
+#: model:ir.model.fields,field_description:field_configuration_data_default_picking_policy
+msgid "Global Picking Policy"
+msgstr "Teillieferungen"
+
+#. module: pc_connect_master
+#: code:addons/pc_connect_master/account_invoice_ext.py:210
+msgid "Global taxes defined, but they are not in invoice lines !"
+msgstr "Global taxes defined, but they are not in invoice lines !"
+
+#. module: pc_connect_master
+#: field:queue.job,graph_count:0
+msgid "Graph weigth"
+msgstr "Graph weigth"
+
+#. module: pc_connect_master
+#: model:ir.model.fields,field_description:field_queue_job_graph_count
+msgid "Graph weigth"
+msgstr "Graph weigth"
+
+#. module: pc_connect_master
+#: field:report.view,groupby_id:0
+msgid "Group by"
+msgstr "Group by"
+
+#. module: pc_connect_master
+#: model:ir.model.fields,field_description:field_report_view_groupby_id
+msgid "Group by"
+msgstr "Group by"
+
+#. module: pc_connect_master
+#: field:report.file,sql:0
+msgid "Group-by SQL statement"
+msgstr "Group-by SQL statement"
+
+#. module: pc_connect_master
+#: model:ir.model.fields,field_description:field_report_file_sql
+msgid "Group-by SQL statement"
+msgstr "Group-by SQL statement"
+
+#. module: pc_connect_master
+#: field:configuration.data,support_end_time:0
+msgid "Hard Closing Time"
+msgstr "Hard Closing Time"
+
+#. module: pc_connect_master
+#: model:ir.model.fields,field_description:field_configuration_data_support_end_time
+msgid "Hard Closing Time"
+msgstr "Hard Closing Time"
+
+#. module: pc_connect_master
+#: help:configuration.data,support_end_time:0
+msgid "Hard closing time of the support."
+msgstr "Hard closing time of the support."
+
+#. module: pc_connect_master
+#: field:sale.order,automation_finished:0
+msgid "Has Automation Finished?"
+msgstr "Has Automation Finished?"
+
+#. module: pc_connect_master
+#: model:ir.model.fields,field_description:field_sale_order_automation_finished
+msgid "Has Automation Finished?"
+msgstr "Has Automation Finished?"
+
+#. module: pc_connect_master
+#: help:sale.order,delivery_orders_printed:0
+msgid "Have the delivery orders been printed?"
+msgstr "Have the delivery orders been printed?"
+
+#. module: pc_connect_master
+#: help:sale.order,invoices_printed:0
+msgid "Have the invoices been printed?"
+msgstr "Have the invoices been printed?"
+
+#. module: pc_connect_master
+#: view:product.product:0
+msgid "Height (cm)"
+msgstr "Height (cm)"
+
+#. module: pc_connect_master
+#: help:product.product,height:0
+msgid "Height of the product (in centimeters)"
+msgstr "Height of the product (in centimeters)"
+
+#. module: pc_connect_master
+#: field:product.product,height:0
+msgid "Height"
+msgstr "Height"
+
+#. module: pc_connect_master
+#: model:ir.model.fields,field_description:field_product_product_height
+msgid "Height"
+msgstr "Height"
+
+#. module: pc_connect_master
+#: view:account.invoice:0
+msgid "Help & Support"
+msgstr "Help & Support"
+
+#. module: pc_connect_master
+#: view:product.product:0
+msgid "Help & Support"
+msgstr "Help & Support"
+
+#. module: pc_connect_master
+#: view:sale.order:0
+msgid "Help & Support"
+msgstr "Help & Support"
+
+#. module: pc_connect_master
+#: help:ir.cron,message_summary:0
+msgid "Holds the Chatter summary (number of messages, ...). This summary is directly in html format in order to be inserted in kanban views."
+msgstr "Holds the Chatter summary (number of messages, ...). This summary is directly in html format in order to be inserted in kanban views."
+
+#. module: pc_connect_master
+#: help:stock.production.lot,message_summary:0
+msgid "Holds the Chatter summary (number of messages, ...). This summary is directly in html format in order to be inserted in kanban views."
+msgstr "Holds the Chatter summary (number of messages, ...). This summary is directly in html format in order to be inserted in kanban views."
+
+#. module: pc_connect_master
+#: model:product.uom,name:real_time_uom_hour
+msgid "Hour(s)"
+msgstr "Stunde(n)"
+
+#. module: pc_connect_master
+#: selection:configuration.data,sale_order_max_age_in_draft_uom:0
+msgid "Hour(s)"
+msgstr "Stunde(n)"
+
+#. module: pc_connect_master
+#: selection:configuration.data,sale_order_min_age_in_draft_uom:0
+msgid "Hour(s)"
+msgstr "Stunde(n)"
+
+#. module: pc_connect_master
+#: help:ir.cron,message_unread:0
+msgid "If checked new messages require your attention."
+msgstr "If checked new messages require your attention."
+
+#. module: pc_connect_master
+#: help:stock.production.lot,message_unread:0
+msgid "If checked new messages require your attention."
+msgstr "If checked new messages require your attention."
+
+#. module: pc_connect_master
+#: help:payment.method,pre_payment:0
+msgid "If checked, the delivery is sent only if the invoice has been already paid."
+msgstr "If checked, the delivery is sent only if the invoice has been already paid."
+
+#. module: pc_connect_master
+#: help:delivery.carrier,show_name_on_picking:0
+msgid "If checked, the name of the delivery method will be shown on the report for the picking."
+msgstr "If checked, the name of the delivery method will be shown on the report for the picking."
+
+#. module: pc_connect_master
+#: help:delivery.carrier,show_customer_phone_on_picking:0
+msgid "If checked, the phone of the customer will be shown on the report for the picking."
+msgstr "If checked, the phone of the customer will be shown on the report for the picking."
+
+#. module: pc_connect_master
+#: help:configuration.data,keep_only_mister_and_madam_titles:0
+msgid "If checked, when updating the modules only the titles Mister and Madam will be kept for res.partners of type contact."
+msgstr "If checked, when updating the modules only the titles Mister and Madam will be kept for res.partners of type contact."
+
+#. module: pc_connect_master
+#: view:configuration.data:0
+msgid "Illegal Quantities Regarding Lots"
+msgstr "Illegal Quantities Regarding Lots"
+
+#. module: pc_connect_master
+#: model:ir.model,name:model_stock_picking_in
+msgid "Incoming Shipments"
+msgstr "Anlieferung"
+
+#. module: pc_connect_master
+#: model:ir.ui.menu,name:pc_menu_sales_sales_incomingshipments
+msgid "Incoming Shipments"
+msgstr "Anlieferung"
+
+#. module: pc_connect_master
+#: help:sale.order,automation_finished:0
+msgid "Indicates if the sale.order automation has reached its last state and finished."
+msgstr "Indicates if the sale.order automation has reached its last state and finished."
+
+#. module: pc_connect_master
+#: help:account.invoice,send_invoice_to_partner:0
+msgid "Indicates whether the invoice was sent to the partner by email."
+msgstr "Indicates whether the invoice was sent to the partner by email."
+
+#. module: pc_connect_master
+#: field:report.file.exporter,message:0
+msgid "Information"
+msgstr "Information"
+
+#. module: pc_connect_master
+#: model:ir.model.fields,field_description:field_report_file_exporter_message
+msgid "Information"
+msgstr "Information"
+
+#. module: pc_connect_master
+#: view:product.product:0
+msgid "Information"
+msgstr "Information"
+
+#. module: pc_connect_master
+#: code:addons/pc_connect_master/res_partner_ext.py:194
+msgid "Internal credit check is positive."
+msgstr "Internal credit check is positive."
+
+#. module: pc_connect_master
+#: code:addons/pc_connect_master/res_partner_ext.py:197
+msgid "Internal credit limit failed, remaining credit is: {0} for a request of {1}."
+msgstr "Internal credit limit failed, remaining credit is: {0} for a request of {1}."
+
+#. module: pc_connect_master
+#: constraint:ir.cron:0
+msgid "Invalid arguments"
+msgstr "Fehlerhafte Argumente"
+
+#. module: pc_connect_master
+#: code:addons/pc_connect_master/mail_thread_ext.py:48
+msgid "Invalid thread_id"
+msgstr "Invalid thread_id"
+
+#. module: pc_connect_master
+#: view:product.product:0
+msgid "Inventory"
+msgstr "Bestand"
+
+#. module: pc_connect_master
+#: model:email.template,subject:email_template_send_invoice_to_partner
+msgid "Invoice Sending"
+msgstr "Invoice Sending"
+
+#. module: pc_connect_master
+#: view:configuration.data:0
+msgid "Invoice Sending"
+msgstr "Invoice Sending"
+
+#. module: pc_connect_master
+#: field:configuration.data,invoice_to_partner_email_template_id:0
+msgid "Invoice to Partner Email Template"
+msgstr "Invoice to Partner Email Template"
+
+#. module: pc_connect_master
+#: model:ir.model.fields,field_description:field_configuration_data_invoice_to_partner_email_template_id
+msgid "Invoice to Partner Email Template"
+msgstr "Invoice to Partner Email Template"
+
+#. module: pc_connect_master
+#: code:addons/pc_connect_master/res_partner_ext.py:223
+msgid "Invoice"
+msgstr "Rechnung"
+
+#. module: pc_connect_master
+#: field:configuration.data,report_account_invoice:0
+msgid "Invoice"
+msgstr "Rechnung"
+
+#. module: pc_connect_master
+#: model:ir.model,name:model_account_invoice
+msgid "Invoice"
+msgstr "Rechnung"
+
+#. module: pc_connect_master
+#: model:ir.model.fields,field_description:field_configuration_data_report_account_invoice
+msgid "Invoice"
+msgstr "Rechnung"
+
+#. module: pc_connect_master
+#: view:configuration.data:0
+msgid "Invoice"
+msgstr "Rechnung"
+
+#. module: pc_connect_master
+#: model:ir.filters,name:ir_filters_account_invoice_by_period
+msgid "Invoices by Accounting Period"
+msgstr "Invoices by Accounting Period"
+
+#. module: pc_connect_master
+#: model:ir.filters,name:ir_filters_account_invoice_by_followup_level_handled
+msgid "Invoices by Follow-Up Level Handled"
+msgstr "Invoices by Follow-Up Level Handled"
+
+#. module: pc_connect_master
+#: model:ir.filters,name:ir_filters_account_invoice_by_followup_level
+msgid "Invoices by Follow-Up Level"
+msgstr "Invoices by Follow-Up Level"
+
+#. module: pc_connect_master
+#: model:ir.filters,name:ir_filters_account_invoice_by_journal
+msgid "Invoices by Journal"
+msgstr "Invoices by Journal"
+
+#. module: pc_connect_master
+#: model:ir.filters,name:ir_filters_account_invoice_by_state
+msgid "Invoices by State"
+msgstr "Invoices by State"
+
+#. module: pc_connect_master
+#: model:ir.filters,name:ir_filters_account_invoice_last_month
+msgid "Invoices from last month"
+msgstr "Invoices from last month"
+
+#. module: pc_connect_master
+#: model:ir.filters,name:ir_filters_account_invoice_last_year
+msgid "Invoices from last year"
+msgstr "Invoices from last year"
+
+#. module: pc_connect_master
+#: model:ir.filters,name:ir_filters_account_invoice_this_month
+msgid "Invoices from this month"
+msgstr "Invoices from this month"
+
+#. module: pc_connect_master
+#: model:ir.filters,name:ir_filters_account_invoice_this_year
+msgid "Invoices from this year"
+msgstr "Invoices from this year"
+
+#. module: pc_connect_master
+#: model:ir.filters,name:ir_filters_account_invoice_with_followup
+msgid "Invoices with Follow-Up Level"
+msgstr "Invoices with Follow-Up Level"
+
+#. module: pc_connect_master
+#: model:ir.filters,name:ir_filters_account_invoice_with_unhandled_followup
+msgid "Invoices with UnHandled Follow-Up Level"
+msgstr "Invoices with UnHandled Follow-Up Level"
+
+#. module: pc_connect_master
+#: model:ir.ui.menu,name:pc_menu_sales_sales_invoices
+msgid "Invoices"
+msgstr "Rechnungen"
+
+#. module: pc_connect_master
+#: field:ir.cron,message_is_follower:0
+msgid "Is a Follower"
+msgstr "Is a Follower"
+
+#. module: pc_connect_master
+#: field:stock.production.lot,message_is_follower:0
+msgid "Is a Follower"
+msgstr "Is a Follower"
+
+#. module: pc_connect_master
+#: model:ir.model.fields,field_description:field_ir_cron_message_is_follower
+msgid "Is a Follower"
+msgstr "Is a Follower"
+
+#. module: pc_connect_master
+#: model:ir.model.fields,field_description:field_stock_production_lot_message_is_follower
+msgid "Is a Follower"
+msgstr "Is a Follower"
+
+#. module: pc_connect_master
+#: help:product.product,qty_on_sale:0
+msgid "It is computed as 'Quantity On Hand' - 'Reservations (on Quotations)' - 'Outgoing'."
+msgstr "It is computed as 'Quantity On Hand' - 'Reservations (on Quotations)' - 'Outgoing'."
+
+#. module: pc_connect_master
+#: help:product.product,product_reservation_qty:0
+msgid "It shows the amount which is on sale.order lines which are in state draft, thus corresponding to quotations which are in state draft. This is useful to keep track of units which are not available because of having been reserved for an order from the shop, for example."
+msgstr "It shows the amount which is on sale.order lines which are in state draft, thus corresponding to quotations which are in state draft. This is useful to keep track of units which are not available because of having been reserved for an order from the shop, for example."
+
+#. module: pc_connect_master
+#: model:ir.filters,name:ir_filters_sale_order_line_by_product_id
+msgid "Item Sales by Product"
+msgstr "Item Sales by Product"
+
+#. module: pc_connect_master
+#: model:ir.filters,name:ir_filters_sale_order_line_last_month
+msgid "Item Sales from last month"
+msgstr "Item Sales from last month"
+
+#. module: pc_connect_master
+#: model:ir.filters,name:ir_filters_sale_order_line_last_year
+msgid "Item Sales from last year"
+msgstr "Item Sales from last year"
+
+#. module: pc_connect_master
+#: model:ir.filters,name:ir_filters_sale_order_line_this_month
+msgid "Item Sales from this month"
+msgstr "Item Sales from this month"
+
+#. module: pc_connect_master
+#: model:ir.filters,name:ir_filters_sale_order_line_this_year
+msgid "Item Sales from this year"
+msgstr "Item Sales from this year"
+
+#. module: pc_connect_master
+#: view:sale.order.line:0
+msgid "Item Sales"
+msgstr "Item Sales"
+
+#. module: pc_connect_master
+#: model:ir.actions.act_window,name:action_show_partner_jobs
+msgid "Jobs (Partner)"
+msgstr "Jobs (Partner)"
+
+#. module: pc_connect_master
+#: model:ir.actions.act_window,name:action_show_product_jobs
+msgid "Jobs (Product)"
+msgstr "Jobs (Product)"
+
+#. module: pc_connect_master
+#: model:ir.actions.act_window,name:action_show_sale_order_jobs
+msgid "Jobs (Sale Orders)"
+msgstr "Jobs (Sale Orders)"
+
+#. module: pc_connect_master
+#: view:board.board:0
+msgid "Jobs board"
+msgstr "Liste der Arbeitsschritte"
+
+#. module: pc_connect_master
+#: model:ir.ui.menu,name:jobs_by_state
+msgid "Jobs by State"
+msgstr "Jobs by State"
+
+#. module: pc_connect_master
+#: model:ir.ui.menu,name:jobs_by_type
+msgid "Jobs by Type"
+msgstr "Jobs by Type"
+
+#. module: pc_connect_master
+#: model:ir.actions.act_window,name:open_board_jobs
+msgid "Jobs"
+msgstr "Arbeitsschritte"
+
+#. module: pc_connect_master
+#: view:board.board:0
+msgid "Jobs"
+msgstr "Arbeitsschritte"
+
+#. module: pc_connect_master
+#: view:payment.method:0
+msgid "Journal for Invoices"
+msgstr "Journal for Invoices"
+
+#. module: pc_connect_master
+#: field:configuration.data,keep_only_mister_and_madam_titles:0
+msgid "Keep Only 'Mister' and 'Madam' Titles for Contacts?"
+msgstr "Keep Only 'Mister' and 'Madam' Titles for Contacts?"
+
+#. module: pc_connect_master
+#: model:ir.model.fields,field_description:field_configuration_data_keep_only_mister_and_madam_titles
+msgid "Keep Only 'Mister' and 'Madam' Titles for Contacts?"
+msgstr "Keep Only 'Mister' and 'Madam' Titles for Contacts?"
+
+#. module: pc_connect_master
+#: field:product.product,last_inventory_id:0
+msgid "Last inventory"
+msgstr "Last inventory"
+
+#. module: pc_connect_master
+#: model:ir.model.fields,field_description:field_product_product_last_inventory_id
+msgid "Last inventory"
+msgstr "Last inventory"
+
+#. module: pc_connect_master
+#: view:product.product:0
+msgid "Length (cm)"
+msgstr "Length (cm)"
+
+#. module: pc_connect_master
+#: help:product.product,length:0
+msgid "Length of the product (in centimeters)"
+msgstr "Length of the product (in centimeters)"
+
+#. module: pc_connect_master
+#: help:product.product,packing:0
+msgid "Length x Width x Height x Weight (gross, not net)"
+msgstr "Length x Width x Height x Weight (gross, not net)"
+
+#. module: pc_connect_master
+#: field:product.product,length:0
+msgid "Length"
+msgstr "Length"
+
+#. module: pc_connect_master
+#: model:ir.model.fields,field_description:field_product_product_length
+msgid "Length"
+msgstr "Length"
+
+#. module: pc_connect_master
+#: help:product.product,manufacturer_website:0
+msgid "Link to the manufacturer's web site."
+msgstr "Link to the manufacturer's web site."
+
+#. module: pc_connect_master
+#: field:configuration.data,illegal_lots_destination_id:0
+msgid "Location for Illegal Lots"
+msgstr "Location for Illegal Lots"
+
+#. module: pc_connect_master
+#: model:ir.model.fields,field_description:field_configuration_data_illegal_lots_destination_id
+msgid "Location for Illegal Lots"
+msgstr "Location for Illegal Lots"
+
+#. module: pc_connect_master
+#: help:configuration.data,illegal_lots_destination_id:0
+msgid "Location where illegal quantities are put. Must be a scraping location. Here go quantities from lots which are from products which do not track_production, or unlotted quantities from products which do track_production."
+msgstr "Location where illegal quantities are put. Must be a scraping location. Here go quantities from lots which are from products which do not track_production, or unlotted quantities from products which do track_production."
+
+#. module: pc_connect_master
+#: model:ir.ui.menu,name:pc_menu_sales_logistics
+msgid "Logistics"
+msgstr "Logistics"
+
+#. module: pc_connect_master
+#: view:stock.production.lot:0
+msgid "Lots with a removal date which is in the past."
+msgstr "Lots with a removal date which is in the past."
+
+#. module: pc_connect_master
+#: view:stock.production.lot:0
+msgid "Lots with an alert date which is in the past."
+msgstr "Lots with an alert date which is in the past."
+
+#. module: pc_connect_master
+#: selection:report.file.fields,groupby:0
+msgid "MAX"
+msgstr "MAX"
+
+#. module: pc_connect_master
+#: selection:report.file.fields,groupby:0
+msgid "MIN"
+msgstr "MIN"
+
+#. module: pc_connect_master
+#: field:res.partner,main_category_id:0
+msgid "Main Tag"
+msgstr "Main Tag"
+
+#. module: pc_connect_master
+#: model:ir.model.fields,field_description:field_res_partner_main_category_id
+msgid "Main Tag"
+msgstr "Main Tag"
+
+#. module: pc_connect_master
+#: view:res.partner:0
+msgid "Main Tag"
+msgstr "Main Tag"
+
+#. module: pc_connect_master
+#: view:res.partner:0
+msgid "Main Tag:"
+msgstr "Main Tag:"
+
+#. module: pc_connect_master
+#: code:addons/pc_connect_master/res_partner_ext.py:213
+msgid "Male"
+msgstr "Male"
+
+#. module: pc_connect_master
+#: selection:res.partner,gender:0
+msgid "Male"
+msgstr "Male"
+
+#. module: pc_connect_master
+#: model:ir.ui.menu,name:management
+msgid "Management"
+msgstr "Management"
+
+#. module: pc_connect_master
+#: field:product.product,manufacturer_website:0
+msgid "Manufacturer's Website"
+msgstr "Manufacturer's Website"
+
+#. module: pc_connect_master
+#: model:ir.model.fields,field_description:field_product_product_manufacturer_website
+msgid "Manufacturer's Website"
+msgstr "Manufacturer's Website"
+
+#. module: pc_connect_master
+#: field:configuration.data,punchcards_limit:0
+msgid "Max Number of Punchards"
+msgstr "Max Number of Punchards"
+
+#. module: pc_connect_master
+#: model:ir.model.fields,field_description:field_configuration_data_punchcards_limit
+msgid "Max Number of Punchards"
+msgstr "Max Number of Punchards"
+
+#. module: pc_connect_master
+#: help:configuration.data,sale_order_max_age_in_draft_value:0
+msgid "Maximum allowed age of a Sale Order to stay in draft state."
+msgstr "Maximum allowed age of a Sale Order to stay in draft state."
+
+#. module: pc_connect_master
+#: field:sale.order,additional_message_content:0
+msgid "Message Content"
+msgstr "Message Content"
+
+#. module: pc_connect_master
+#: model:ir.model.fields,field_description:field_sale_order_additional_message_content
+msgid "Message Content"
+msgstr "Message Content"
+
+#. module: pc_connect_master
+#: field:gift.text.type,type:0
+msgid "Message Type"
+msgstr "Message Type"
+
+#. module: pc_connect_master
+#: model:ir.model.fields,field_description:field_gift_text_type_type
+msgid "Message Type"
+msgstr "Message Type"
+
+#. module: pc_connect_master
+#: help:ir.cron,message_ids:0
+msgid "Messages and communication history"
+msgstr "Messages and communication history"
+
+#. module: pc_connect_master
+#: help:stock.production.lot,message_ids:0
+msgid "Messages and communication history"
+msgstr "Messages and communication history"
+
+#. module: pc_connect_master
+#: field:ir.cron,message_ids:0
+msgid "Messages"
+msgstr "Messages"
+
+#. module: pc_connect_master
+#: field:stock.production.lot,message_ids:0
+msgid "Messages"
+msgstr "Messages"
+
+#. module: pc_connect_master
+#: model:ir.model.fields,field_description:field_ir_cron_message_ids
+msgid "Messages"
+msgstr "Messages"
+
+#. module: pc_connect_master
+#: model:ir.model.fields,field_description:field_stock_production_lot_message_ids
+msgid "Messages"
+msgstr "Messages"
+
+#. module: pc_connect_master
+#: code:addons/pc_connect_master/stock_picking_in_ext.py:34
+msgid "Method 'assign_lots' is not implemented in 'stock.picking.in'."
+msgstr "Method 'assign_lots' is not implemented in 'stock.picking.in'."
+
+#. module: pc_connect_master
+#: code:addons/pc_connect_master/stock_picking_in_ext.py:29
+msgid "Method 'is_last_picking' is not implemented in 'stock.picking.in'."
+msgstr "Method 'is_last_picking' is not implemented in 'stock.picking.in'."
+
+#. module: pc_connect_master
+#: field:configuration.data,sale_order_min_age_in_draft_value:0
+msgid "Minimum Age"
+msgstr "Minimum Age"
+
+#. module: pc_connect_master
+#: model:ir.model.fields,field_description:field_configuration_data_sale_order_min_age_in_draft_value
+msgid "Minimum Age"
+msgstr "Minimum Age"
+
+#. module: pc_connect_master
+#: help:configuration.data,sale_order_min_age_in_draft_value:0
+msgid "Minimum allowed age of a Sale Order to stay in draft state."
+msgstr "Minimum allowed age of a Sale Order to stay in draft state."
+
+#. module: pc_connect_master
+#: code:addons/pc_connect_master/ir_cron_ext.py:82
+msgid "Missing Punchcard prefix on configuration.data"
+msgstr "Missing Punchcard prefix on configuration.data"
+
+#. module: pc_connect_master
+#: code:addons/pc_connect_master/standard_report.py:127
+msgid "Missing filter data"
+msgstr "Missing filter data"
+
+#. module: pc_connect_master
+#: field:report.view,model_id:0
+msgid "Model"
+msgstr "Modell"
+
+#. module: pc_connect_master
+#: model:ir.model.fields,field_description:field_report_view_model_id
+msgid "Model"
+msgstr "Modell"
+
+#. module: pc_connect_master
+#: model:product.uom,name:real_time_uom_month
+msgid "Month(s)"
+msgstr "Month(s)"
+
+#. module: pc_connect_master
+#: selection:configuration.data,post_default_expiration_accept_time_uom:0
+msgid "Month(s)"
+msgstr "Month(s)"
+
+#. module: pc_connect_master
+#: selection:configuration.data,post_default_expiration_alert_time_uom:0
+msgid "Month(s)"
+msgstr "Month(s)"
+
+#. module: pc_connect_master
+#: selection:configuration.data,post_default_expiration_block_time_uom:0
+msgid "Month(s)"
+msgstr "Month(s)"
+
+#. module: pc_connect_master
+#: code:addons/pc_connect_master/res_partner_ext.py:228
+msgid "MyPost24"
+msgstr "MyPost24"
+
+#. module: pc_connect_master
+#: field:stock.move,product_id_name:0
+msgid "Name of the Product"
+msgstr "Name of the Product"
+
+#. module: pc_connect_master
+#: model:ir.model.fields,field_description:field_stock_move_product_id_name
+msgid "Name of the Product"
+msgstr "Name of the Product"
+
+#. module: pc_connect_master
+#: view:product.product:0
+msgid "Net Weight (Kg)"
+msgstr "Net Weight (Kg)"
+
+#. module: pc_connect_master
+#: field:res.partner,newsletter_allowed:0
+msgid "Newsletter Allowed"
+msgstr "Newsletter Allowed"
+
+#. module: pc_connect_master
+#: model:ir.model.fields,field_description:field_res_partner_newsletter_allowed
+msgid "Newsletter Allowed"
+msgstr "Newsletter Allowed"
+
+#. module: pc_connect_master
+#: code:addons/pc_connect_master/stock_production_lot_ext.py:73
+msgid "No Location Stock Defined"
+msgstr "No Location Stock Defined"
+
+#. module: pc_connect_master
+#: code:addons/pc_connect_master/stock_warehouse_ext.py:50
+msgid "No Location Stock Defined"
+msgstr "No Location Stock Defined"
+
+#. module: pc_connect_master
+#: code:addons/pc_connect_master/stock_production_lot_ext.py:314
+msgid "No Scraping Location was defined on the configuration, to be used when we need to put apart some quantities"
+msgstr "No Scraping Location was defined on the configuration, to be used when we need to put apart some quantities"
+
+#. module: pc_connect_master
+#: code:addons/pc_connect_master/stock_production_lot_ext.py:307
+msgid "No Stock Location was found for the warehouse with ID={0}, or there is more than one warehouse."
+msgstr "No Stock Location was found for the warehouse with ID={0}, or there is more than one warehouse."
+
+#. module: pc_connect_master
+#: code:addons/pc_connect_master/stock_warehouse_ext.py:39
+msgid "No Warehouses Found"
+msgstr "No Warehouses Found"
+
+#. module: pc_connect_master
+#: code:addons/pc_connect_master/stock_production_lot_ext.py:74
+msgid "No location was defined for stock (Location Stock) on the warehouse."
+msgstr "No location was defined for stock (Location Stock) on the warehouse."
+
+#. module: pc_connect_master
+#: code:addons/pc_connect_master/stock_warehouse_ext.py:51
+msgid "No location was defined for stock (Location Stock) on the warehouse."
+msgstr "No location was defined for stock (Location Stock) on the warehouse."
+
+#. module: pc_connect_master
+#: code:addons/pc_connect_master/sale_order_ext.py:145
+msgid "No report for account.invoice was found in Post Configuration > Reports"
+msgstr "No report for account.invoice was found in Post Configuration > Reports"
+
+#. module: pc_connect_master
+#: code:addons/pc_connect_master/sale_order_ext.py:191
+msgid "No report for stock.picking was found in Post Configuration > Reports"
+msgstr "No report for stock.picking was found in Post Configuration > Reports"
+
+#. module: pc_connect_master
+#: selection:account.invoice,send_invoice_to_partner:0
+msgid "Not Applicable"
+msgstr "Not Applicable"
+
+#. module: pc_connect_master
+#: selection:product.product,webshop_state:0
+msgid "Not on sale, but visible"
+msgstr "Not on sale, but visible"
+
+#. module: pc_connect_master
+#: selection:product.product,webshop_state:0
+msgid "Not visible if quantity is 0"
+msgstr "Not visible if quantity is 0"
+
+#. module: pc_connect_master
+#: selection:product.product,webshop_state:0
+msgid "Not visible"
+msgstr "Not visible"
+
+#. module: pc_connect_master
+#: selection:product.product,webshop_state:0
+msgid "On Sale"
+msgstr "On Sale"
 
 #. module: pc_connect_master
 #: field:configuration.data,open_backorder_alarming_age_days:0
 msgid "Open Backorder Alarming Age (Days)"
 msgstr "Lieferrückstandalarmzeitpunkt (Tage)"
- 
+
+#. module: pc_connect_master
+#: model:ir.model.fields,field_description:field_configuration_data_open_backorder_alarming_age_days
+msgid "Open Backorder Alarming Age (Days)"
+msgstr "Lieferrückstandalarmzeitpunkt (Tage)"
+
+#. module: pc_connect_master
+#: model:ir.filters,name:ir_filters_account_invoice_state_open
+msgid "Open Invoices"
+msgstr "Open Invoices"
+
+#. module: pc_connect_master
+#: model:ir.filters,name:ir_filters_sale_order_line_open
+msgid "Open Item Sales"
+msgstr "Open Item Sales"
+
+#. module: pc_connect_master
+#: view:report.view:0
+msgid "Open view"
+msgstr "Open view"
+
+#. module: pc_connect_master
+#: view:configuration.data:0
+msgid "Opening Hours of Support"
+msgstr "Opening Hours of Support"
+
+#. module: pc_connect_master
+#: field:configuration.data,support_start_time:0
+msgid "Opening Time"
+msgstr "Opening Time"
+
+#. module: pc_connect_master
+#: model:ir.model.fields,field_description:field_configuration_data_support_start_time
+msgid "Opening Time"
+msgstr "Opening Time"
+
+#. module: pc_connect_master
+#: view:configuration.data:0
+msgid "Opening hours of the support staff."
+msgstr "Opening hours of the support staff."
+
+#. module: pc_connect_master
+#: help:configuration.data,support_start_time:0
+msgid "Opening time of the support."
+msgstr "Opening time of the support."
+
+#. module: pc_connect_master
+#: field:configuration.data,support_open_friday:0
+msgid "Opens on Friday?"
+msgstr "Opens on Friday?"
+
+#. module: pc_connect_master
+#: model:ir.model.fields,field_description:field_configuration_data_support_open_friday
+msgid "Opens on Friday?"
+msgstr "Opens on Friday?"
+
+#. module: pc_connect_master
+#: field:configuration.data,support_open_monday:0
+msgid "Opens on Monday?"
+msgstr "Opens on Monday?"
+
+#. module: pc_connect_master
+#: model:ir.model.fields,field_description:field_configuration_data_support_open_monday
+msgid "Opens on Monday?"
+msgstr "Opens on Monday?"
+
+#. module: pc_connect_master
+#: field:configuration.data,support_open_saturday:0
+msgid "Opens on Saturday?"
+msgstr "Opens on Saturday?"
+
+#. module: pc_connect_master
+#: model:ir.model.fields,field_description:field_configuration_data_support_open_saturday
+msgid "Opens on Saturday?"
+msgstr "Opens on Saturday?"
+
+#. module: pc_connect_master
+#: field:configuration.data,support_open_sunday:0
+msgid "Opens on Sunday?"
+msgstr "Opens on Sunday?"
+
+#. module: pc_connect_master
+#: model:ir.model.fields,field_description:field_configuration_data_support_open_sunday
+msgid "Opens on Sunday?"
+msgstr "Opens on Sunday?"
+
+#. module: pc_connect_master
+#: field:configuration.data,support_open_thursday:0
+msgid "Opens on Thursday?"
+msgstr "Opens on Thursday?"
+
+#. module: pc_connect_master
+#: model:ir.model.fields,field_description:field_configuration_data_support_open_thursday
+msgid "Opens on Thursday?"
+msgstr "Opens on Thursday?"
+
+#. module: pc_connect_master
+#: field:configuration.data,support_open_tuesday:0
+msgid "Opens on Tuesday?"
+msgstr "Opens on Tuesday?"
+
+#. module: pc_connect_master
+#: model:ir.model.fields,field_description:field_configuration_data_support_open_tuesday
+msgid "Opens on Tuesday?"
+msgstr "Opens on Tuesday?"
+
+#. module: pc_connect_master
+#: field:configuration.data,support_open_wednesday:0
+msgid "Opens on Wednesday?"
+msgstr "Opens on Wednesday?"
+
+#. module: pc_connect_master
+#: model:ir.model.fields,field_description:field_configuration_data_support_open_wednesday
+msgid "Opens on Wednesday?"
+msgstr "Opens on Wednesday?"
+
+#. module: pc_connect_master
+#: view:product.product:0
+msgid "Other Information"
+msgstr "Andere Information"
+
+#. module: pc_connect_master
+#: view:sale.order:0
+msgid "Other Information"
+msgstr "Andere Information"
+
+#. module: pc_connect_master
+#: code:addons/pc_connect_master/res_partner_ext.py:212
+msgid "Other"
+msgstr "Other"
+
+#. module: pc_connect_master
+#: selection:res.partner,gender:0
+msgid "Other"
+msgstr "Other"
+
+#. module: pc_connect_master
+#: view:configuration.data:0
+msgid "Others"
+msgstr "Others"
+
+#. module: pc_connect_master
+#: help:res.company,po_box:0
+msgid "P.O. Box Number"
+msgstr "P.O. Box Number"
+
+#. module: pc_connect_master
+#: help:res.partner,po_box:0
+msgid "P.O. Box Number"
+msgstr "P.O. Box Number"
+
+#. module: pc_connect_master
+#: help:res.partner.bank,po_box:0
+msgid "P.O. Box Number"
+msgstr "P.O. Box Number"
+
+#. module: pc_connect_master
+#: field:res.company,po_box:0
+msgid "P.O. Box"
+msgstr "Postfach"
+
+#. module: pc_connect_master
+#: field:res.partner,po_box:0
+msgid "P.O. Box"
+msgstr "Postfach"
+
+#. module: pc_connect_master
+#: field:res.partner.bank,po_box:0
+msgid "P.O. Box"
+msgstr "Postfach"
+
+#. module: pc_connect_master
+#: model:ir.model.fields,field_description:field_res_company_po_box
+msgid "P.O. Box"
+msgstr "Postfach"
+
+#. module: pc_connect_master
+#: model:ir.model.fields,field_description:field_res_partner_bank_po_box
+msgid "P.O. Box"
+msgstr "Postfach"
+
+#. module: pc_connect_master
+#: model:ir.model.fields,field_description:field_res_partner_po_box
+msgid "P.O. Box"
+msgstr "Postfach"
+
+#. module: pc_connect_master
+#: view:res.company:0
+msgid "P.O. Box"
+msgstr "Postfach"
+
+#. module: pc_connect_master
+#: view:res.partner.bank:0
+msgid "P.O. Box"
+msgstr "Postfach"
+
+#. module: pc_connect_master
+#: view:res.partner:0
+msgid "P.O. Box"
+msgstr "Postfach"
+
+#. module: pc_connect_master
+#: model:res.groups,name:pc_admin
+msgid "SwissPost Manager"
+msgstr "SwissPost Manager"
+
+#. module: pc_connect_master
+#: model:res.groups,name:pc_client_plus
+msgid "SwissPost User Plus"
+msgstr "SwissPost User Plus"
+
+#. module: pc_connect_master
+#: model:res.groups,name:pc_client
+msgid "SwissPost User"
+msgstr "SwissPost User"
+
+#. module: pc_connect_master
+#: model:res.groups,name:pc_client_care
+msgid "SwissPost Support"
+msgstr "SwissPost Support"
+
+#. module: pc_connect_master
+#: view:product.product:0
+msgid "Packing (cm^3 x Kg)"
+msgstr "Packing (cm^3 x Kg)"
+
+#. module: pc_connect_master
+#: field:product.product,packing:0
+msgid "Packing"
+msgstr "Packing"
+
+#. module: pc_connect_master
+#: model:ir.model.fields,field_description:field_product_product_packing
+msgid "Packing"
+msgstr "Packing"
+
+#. module: pc_connect_master
+#: view:configuration.data:0
+msgid "Partial Deliveries"
+msgstr "Partial Deliveries"
+
+#. module: pc_connect_master
+#: field:stock.move,partner_city:0
+msgid "Partner City"
+msgstr "Partner City"
+
+#. module: pc_connect_master
+#: model:ir.model.fields,field_description:field_stock_move_partner_city
+msgid "Partner City"
+msgstr "Partner City"
+
+#. module: pc_connect_master
+#: field:stock.move,partner_company:0
+msgid "Partner Company"
+msgstr "Partner Company"
+
+#. module: pc_connect_master
+#: model:ir.model.fields,field_description:field_stock_move_partner_company
+msgid "Partner Company"
+msgstr "Partner Company"
+
+#. module: pc_connect_master
+#: field:stock.move,partner_country:0
+msgid "Partner Country"
+msgstr "Partner Country"
+
+#. module: pc_connect_master
+#: model:ir.model.fields,field_description:field_stock_move_partner_country
+msgid "Partner Country"
+msgstr "Partner Country"
+
+#. module: pc_connect_master
+#: field:stock.move,partner_email:0
+msgid "Partner Email"
+msgstr "Partner Email"
+
+#. module: pc_connect_master
+#: model:ir.model.fields,field_description:field_stock_move_partner_email
+msgid "Partner Email"
+msgstr "Partner Email"
+
+#. module: pc_connect_master
+#: field:stock.move,partner_firstname:0
+msgid "Partner Firstname"
+msgstr "Partner Firstname"
+
+#. module: pc_connect_master
+#: model:ir.model.fields,field_description:field_stock_move_partner_firstname
+msgid "Partner Firstname"
+msgstr "Partner Firstname"
+
+#. module: pc_connect_master
+#: field:stock.move,partner_lastname:0
+msgid "Partner Lastname"
+msgstr "Partner Lastname"
+
+#. module: pc_connect_master
+#: model:ir.model.fields,field_description:field_stock_move_partner_lastname
+msgid "Partner Lastname"
+msgstr "Partner Lastname"
+
+#. module: pc_connect_master
+#: field:stock.move,partner_mobile:0
+msgid "Partner Mobile"
+msgstr "Partner Mobile"
+
+#. module: pc_connect_master
+#: model:ir.model.fields,field_description:field_stock_move_partner_mobile
+msgid "Partner Mobile"
+msgstr "Partner Mobile"
+
+#. module: pc_connect_master
+#: field:stock.move,partner_name:0
+msgid "Partner Name"
+msgstr "Partner Name"
+
+#. module: pc_connect_master
+#: model:ir.model.fields,field_description:field_stock_move_partner_name
+msgid "Partner Name"
+msgstr "Partner Name"
+
+#. module: pc_connect_master
+#: field:stock.move,partner_po_box:0
+msgid "Partner P.O. Box"
+msgstr "Partner P.O. Box"
+
+#. module: pc_connect_master
+#: model:ir.model.fields,field_description:field_stock_move_partner_po_box
+msgid "Partner P.O. Box"
+msgstr "Partner P.O. Box"
+
+#. module: pc_connect_master
+#: field:stock.move,partner_phone:0
+msgid "Partner Phone"
+msgstr "Partner Phone"
+
+#. module: pc_connect_master
+#: model:ir.model.fields,field_description:field_stock_move_partner_phone
+msgid "Partner Phone"
+msgstr "Partner Phone"
+
+#. module: pc_connect_master
+#: field:stock.move,partner_state:0
+msgid "Partner State"
+msgstr "Partner State"
+
+#. module: pc_connect_master
+#: model:ir.model.fields,field_description:field_stock_move_partner_state
+msgid "Partner State"
+msgstr "Partner State"
+
+#. module: pc_connect_master
+#: field:stock.move,partner_street_no:0
+msgid "Partner Street Number"
+msgstr "Partner Street Number"
+
+#. module: pc_connect_master
+#: model:ir.model.fields,field_description:field_stock_move_partner_street_no
+msgid "Partner Street Number"
+msgstr "Partner Street Number"
+
+#. module: pc_connect_master
+#: field:stock.move,partner_street:0
+msgid "Partner Street"
+msgstr "Partner Street"
+
+#. module: pc_connect_master
+#: model:ir.model.fields,field_description:field_stock_move_partner_street
+msgid "Partner Street"
+msgstr "Partner Street"
+
+#. module: pc_connect_master
+#: field:stock.move,partner_street2:0
+msgid "Partner Street2"
+msgstr "Partner Street2"
+
+#. module: pc_connect_master
+#: model:ir.model.fields,field_description:field_stock_move_partner_street2
+msgid "Partner Street2"
+msgstr "Partner Street2"
+
+#. module: pc_connect_master
+#: field:stock.move,partner_zip:0
+msgid "Partner Zip"
+msgstr "Partner Zip"
+
+#. module: pc_connect_master
+#: model:ir.model.fields,field_description:field_stock_move_partner_zip
+msgid "Partner Zip"
+msgstr "Partner Zip"
+
+#. module: pc_connect_master
+#: field:stock.move,partner_title:0
+msgid "Partner title"
+msgstr "Partner title"
+
+#. module: pc_connect_master
+#: model:ir.model.fields,field_description:field_stock_move_partner_title
+msgid "Partner title"
+msgstr "Partner title"
+
+#. module: pc_connect_master
+#: model:ir.model,name:model_res_partner
+msgid "Partner"
+msgstr "Partner"
+
+#. module: pc_connect_master
+#: model:ir.ui.menu,name:jobs_partner
+msgid "Partner"
+msgstr "Partner"
+
+#. module: pc_connect_master
+#: model:ir.model,name:model_payment_method
+msgid "Payment Method"
+msgstr "Zahlweise"
+
+#. module: pc_connect_master
+#: code:addons/pc_connect_master/sale_order_ext.py:122
+msgid "Payment term was changed because Force payment term based on Payment method is checked: '{0}' -> '{1}'"
+msgstr "Payment term was changed because Force payment term based on Payment method is checked: '{0}' -> '{1}'"
+
+#. module: pc_connect_master
+#: code:addons/pc_connect_master/sale_order_ext.py:119
+msgid "Payment term was filled based on payment method  : '{0}'"
+msgstr "Payment term was filled based on payment method  : '{0}'"
+
+#. module: pc_connect_master
+#: model:ir.actions.act_window,name:action_show_pending_jobs
+msgid "Pending Jobs"
+msgstr "Pending Jobs"
+
+#. module: pc_connect_master
+#: model:ir.ui.menu,name:jobs_pending
+msgid "Pending"
+msgstr "Pending"
+
+#. module: pc_connect_master
+#: code:addons/pc_connect_master/res_partner_ext.py:227
+msgid "PickPost"
+msgstr "PickPost"
+
+#. module: pc_connect_master
+#: field:res.partner,pickpost_mypost24_no:0
+msgid "PickPost/MyPost24 Customer No."
+msgstr "PickPost/MyPost24 Customer No."
+
+#. module: pc_connect_master
+#: model:ir.model.fields,field_description:field_res_partner_pickpost_mypost24_no
+msgid "PickPost/MyPost24 Customer No."
+msgstr "PickPost/MyPost24 Customer No."
+
+#. module: pc_connect_master
+#: model:ir.model,name:model_stock_picking
+msgid "Picking List"
+msgstr "Lieferschein"
+
+#. module: pc_connect_master
+#: view:wizard.popup:0
+msgid "Popup"
+msgstr "Popup"
+
+#. module: pc_connect_master
+#: model:ir.module.category,name:pc_category
+msgid "Post commerce"
+msgstr "Post commerce"
+
+#. module: pc_connect_master
+#: field:payment.method,pre_payment:0
+msgid "Pre-Payment?"
+msgstr "Pre-Payment?"
+
+#. module: pc_connect_master
+#: model:ir.model.fields,field_description:field_payment_method_pre_payment
+msgid "Pre-Payment?"
+msgstr "Pre-Payment?"
+
+#. module: pc_connect_master
+#: model:ir.model,name:model_product_pricelist
+msgid "Pricelist"
+msgstr "Preisliste"
+
+#. module: pc_connect_master
+#: view:product.product:0
+msgid "Product Alert Time (days)"
+msgstr "Product Alert Time (days)"
+
+#. module: pc_connect_master
+#: view:product.product:0
+msgid "Product Life Time (days)"
+msgstr "Product Life Time (days)"
+
+#. module: pc_connect_master
+#: view:product.product:0
+msgid "Product Removal time (days)"
+msgstr "Product Removal time (days)"
+
+#. module: pc_connect_master
+#: model:ir.model,name:model_product_template
+msgid "Product Template"
+msgstr "Produktvorlage"
+
+#. module: pc_connect_master
+#: model:ir.model,name:model_product_uom
+msgid "Product Unit of Measure"
+msgstr "Produkt Mengeneinheit (ME)"
+
+#. module: pc_connect_master
+#: view:product.product:0
+msgid "Product Use Time (days)"
+msgstr "Product Use Time (days)"
+
+#. module: pc_connect_master
+#: model:ir.model,name:model_product_product
+msgid "Product"
+msgstr "Produkt"
+
+#. module: pc_connect_master
+#: model:ir.ui.menu,name:jobs_product
+msgid "Product"
+msgstr "Produkt"
+
+#. module: pc_connect_master
+#: view:stock.move:0
+msgid "Product's Default Code"
+msgstr "Product's Default Code"
+
+#. module: pc_connect_master
+#: view:stock.move:0
+msgid "Product's Name"
+msgstr "Product's Name"
+
+#. module: pc_connect_master
+#: field:stock.production.lot,production_date:0
+msgid "Production Date"
+msgstr "Production Date"
+
+#. module: pc_connect_master
+#: model:ir.model.fields,field_description:field_stock_production_lot_production_date
+msgid "Production Date"
+msgstr "Production Date"
+
+#. module: pc_connect_master
+#: view:configuration.data:0
+msgid "Products - Batch Management"
+msgstr "Products - Batch Management"
+
+#. module: pc_connect_master
+#: model:ir.filters,name:ir_filters_product_product_by_category
+msgid "Products by Category"
+msgstr "Products by Category"
+
+#. module: pc_connect_master
+#: model:ir.ui.menu,name:pc_menu_sales_sales_products
+msgid "Products"
+msgstr "Produkte"
+
+#. module: pc_connect_master
+#: field:ir.cron,punchcard_prefix:0
+msgid "Punchcard prefix"
+msgstr "Punchcard prefix"
+
+#. module: pc_connect_master
+#: model:ir.model.fields,field_description:field_ir_cron_punchcard_prefix
+msgid "Punchcard prefix"
+msgstr "Punchcard prefix"
+
+#. module: pc_connect_master
+#: field:ir.cron,punchcards_ids:0
+msgid "Punchcard"
+msgstr "Punchcard"
+
+#. module: pc_connect_master
+#: model:ir.model.fields,field_description:field_ir_cron_punchcards_ids
+msgid "Punchcard"
+msgstr "Punchcard"
+
+#. module: pc_connect_master
+#: view:ir.cron:0
+msgid "Punchcard"
+msgstr "Punchcard"
+
+#. module: pc_connect_master
+#: view:configuration.data:0
+msgid "Punchcards"
+msgstr "Punchcards"
+
+#. module: pc_connect_master
+#: field:purchase.order,purchase_order_merged:0
+msgid "Purchase Order Merged"
+msgstr "Purchase Order Merged"
+
+#. module: pc_connect_master
+#: model:ir.model.fields,field_description:field_purchase_order_purchase_order_merged
+msgid "Purchase Order Merged"
+msgstr "Purchase Order Merged"
+
+#. module: pc_connect_master
+#: model:ir.model,name:model_purchase_order
+msgid "Purchase Order"
+msgstr "Bestellung"
+
+#. module: pc_connect_master
+#: model:ir.ui.menu,name:pc_menu_sales_sales_purchase_orders
+msgid "Purchase Orders"
+msgstr "Bestellungen"
+
+#. module: pc_connect_master
+#: code:addons/pc_connect_master/purchase_order_ext.py:79
+msgid "Purchase order, merged and ready to submit to provider"
+msgstr "Purchase order, merged and ready to submit to provider"
+
+#. module: pc_connect_master
+#: field:product.product,qty_on_sale:0
+msgid "Quantity Available"
+msgstr "Quantity Available"
+
+#. module: pc_connect_master
+#: model:ir.model.fields,field_description:field_product_product_qty_on_sale
+msgid "Quantity Available"
+msgstr "Quantity Available"
+
+#. module: pc_connect_master
+#: help:stock.production.lot,virtual_available_for_sale:0
+msgid "Quantity available for sale for this lot in the location stock"
+msgstr "Quantity available for sale for this lot in the location stock"
+
+#. module: pc_connect_master
+#: help:stock.production.lot,virtual_available:0
+msgid "Quantity not assigned to moves"
+msgstr "Quantity not assigned to moves"
+
+#. module: pc_connect_master
+#: model:ir.model,name:model_queue_job
+msgid "Queue Job"
+msgstr "Auftrag neu einstellen"
+
+#. module: pc_connect_master
+#: model:ir.model,name:model_queue_worker
+msgid "Queue Worker"
+msgstr "Queue Worker"
+
+#. module: pc_connect_master
+#: model:ir.ui.menu,name:pc_menu_sales_sales_quotations
+msgid "Quotations"
+msgstr "Angebote"
+
+#. module: pc_connect_master
+#: model:email.template,report_name:email_template_procurement_product_details
+msgid "RFQ_${(object.name or '').replace('/','_')}"
+msgstr "RFQ_${(object.name or '').replace('/','_')}"
+
+#. module: pc_connect_master
+#: field:report.file.exporter,ready:0
+msgid "Ready for download"
+msgstr "Ready for download"
+
+#. module: pc_connect_master
+#: model:ir.model.fields,field_description:field_report_file_exporter_ready
+msgid "Ready for download"
+msgstr "Ready for download"
+
+#. module: pc_connect_master
+#: model:product.uom.categ,name:uom_categ_real_time
+msgid "Real Time"
+msgstr "Real Time"
+
+#. module: pc_connect_master
+#: model:ir.ui.menu,name:pc_menu_sales_sales_recall_list
+msgid "Recall List"
+msgstr "Recall List"
+
+#. module: pc_connect_master
+#: field:stock.move,picking_id_name:0
+msgid "Reference"
+msgstr "Referenz"
+
+#. module: pc_connect_master
+#: model:ir.model.fields,field_description:field_stock_move_picking_id_name
+msgid "Reference"
+msgstr "Referenz"
+
+#. module: pc_connect_master
+#: field:report.file.fields,model_id:0
+msgid "Relation"
+msgstr "Relation"
+
+#. module: pc_connect_master
+#: model:ir.model.fields,field_description:field_report_file_fields_model_id
+msgid "Relation"
+msgstr "Relation"
+
+#. module: pc_connect_master
+#: view:stock.production.lot:0
+msgid "Removal Date Reached"
+msgstr "Removal Date Reached"
+
+#. module: pc_connect_master
+#: field:pc.wz.knowledge.export,report_name:0
+msgid "Report name"
+msgstr "Report name"
+
+#. module: pc_connect_master
+#: model:ir.model.fields,field_description:field_pc_wz_knowledge_export_report_name
+msgid "Report name"
+msgstr "Report name"
+
+#. module: pc_connect_master
+#: field:report.file,name:0
+msgid "Report profile name"
+msgstr "Report profile name"
+
+#. module: pc_connect_master
+#: model:ir.model.fields,field_description:field_report_file_name
+msgid "Report profile name"
+msgstr "Report profile name"
+
+#. module: pc_connect_master
+#: field:report.file.fields,report_id:0
+msgid "Report"
+msgstr "Report"
+
+#. module: pc_connect_master
+#: model:ir.model.fields,field_description:field_report_file_fields_report_id
+msgid "Report"
+msgstr "Report"
+
+#. module: pc_connect_master
+#: view:configuration.data:0
+msgid "Reports to Use"
+msgstr "Reports to Use"
+
+#. module: pc_connect_master
+#: view:configuration.data:0
+msgid "Reports"
+msgstr "Reports"
+
+#. module: pc_connect_master
+#: view:configuration.data:0
+msgid "Requeue Criteria"
+msgstr "Requeue Criteria"
+
+#. module: pc_connect_master
+#: field:product.product,product_reservation_qty:0
+msgid "Reservations (on Quotations)"
+msgstr "Reservations (on Quotations)"
+
+#. module: pc_connect_master
+#: model:ir.model.fields,field_description:field_product_product_product_reservation_qty
+msgid "Reservations (on Quotations)"
+msgstr "Reservations (on Quotations)"
+
+#. module: pc_connect_master
+#: field:res.partner.check_credit,result:0
+msgid "Result"
+msgstr "Result"
+
+#. module: pc_connect_master
+#: field:sale.order.check_credit,result:0
+msgid "Result"
+msgstr "Result"
+
+#. module: pc_connect_master
+#: model:ir.model.fields,field_description:field_res_partner_check_credit_result
+msgid "Result"
+msgstr "Result"
+
+#. module: pc_connect_master
+#: model:ir.model.fields,field_description:field_sale_order_check_credit_result
+msgid "Result"
+msgstr "Result"
+
+#. module: pc_connect_master
+#: view:stock.picking.in:0
+msgid "Return Products"
+msgstr "Retourelieferung für Produkte"
+
+#. module: pc_connect_master
+#: view:stock.picking.out:0
+msgid "Return Products"
+msgstr "Retourelieferung für Produkte"
+
+#. module: pc_connect_master
+#: field:report.file.fields,sql_search:0
+msgid "SQL searchable"
+msgstr "SQL searchable"
+
+#. module: pc_connect_master
+#: model:ir.model.fields,field_description:field_report_file_fields_sql_search
+msgid "SQL searchable"
+msgstr "SQL searchable"
+
+#. module: pc_connect_master
+#: selection:report.file.fields,groupby:0
+msgid "SUM"
+msgstr "SUM"
+
+#. module: pc_connect_master
+#: field:configuration.data,sale_order_max_age_in_draft_value:0
+msgid "Sale Order Draft Alarming Age"
+msgstr "Sale Order Draft Alarming Age"
+
+#. module: pc_connect_master
+#: model:ir.model.fields,field_description:field_configuration_data_sale_order_max_age_in_draft_value
+msgid "Sale Order Draft Alarming Age"
+msgstr "Sale Order Draft Alarming Age"
+
+#. module: pc_connect_master
+#: model:ir.ui.menu,name:jobs_sale_order
+msgid "Sale Order"
+msgstr "Sale Order"
+
+#. module: pc_connect_master
+#: view:configuration.data:0
+msgid "Sale Order"
+msgstr "Sale Order"
+
+#. module: pc_connect_master
+#: field:account.invoice,sale_ids:0
+msgid "Sale Orders"
+msgstr "Sale Orders"
+
+#. module: pc_connect_master
+#: model:ir.model.fields,field_description:field_account_invoice_sale_ids
+msgid "Sale Orders"
+msgstr "Sale Orders"
+
+#. module: pc_connect_master
+#: model:ir.ui.menu,name:pc_menu_sales_sales_saleorders
+msgid "Sale Orders"
+msgstr "Sale Orders"
+
+#. module: pc_connect_master
+#: field:sale.order.line,sale_date:0
+msgid "Sale date"
+msgstr "Sale date"
+
+#. module: pc_connect_master
+#: model:ir.model.fields,field_description:field_sale_order_line_sale_date
+msgid "Sale date"
+msgstr "Sale date"
+
+#. module: pc_connect_master
+#: field:sale.order.automation_wiz,order_id:0
+msgid "Sale order to automatise"
+msgstr "Sale order to automatise"
+
+#. module: pc_connect_master
+#: model:ir.model.fields,field_description:field_sale_order_automation_wiz_order_id
+msgid "Sale order to automatise"
+msgstr "Sale order to automatise"
+
+#. module: pc_connect_master
+#: model:ir.model,name:model_sale_order_line
+msgid "Sales Order Line"
+msgstr "Auftragsposition"
+
+#. module: pc_connect_master
+#: model:ir.model,name:model_sale_order
+msgid "Sales Order"
+msgstr "Verkaufsauftrag"
+
+#. module: pc_connect_master
+#: model:ir.filters,name:ir_filters_sale_order_by_payment_method_id
+msgid "Sales by Payment Method"
+msgstr "Sales by Payment Method"
+
+#. module: pc_connect_master
+#: model:ir.filters,name:ir_filters_sale_order_by_state
+msgid "Sales by State"
+msgstr "Sales by State"
+
+#. module: pc_connect_master
+#: model:ir.filters,name:ir_filters_sale_order_last_month
+msgid "Sales from last month"
+msgstr "Sales from last month"
+
+#. module: pc_connect_master
+#: model:ir.filters,name:ir_filters_sale_order_last_year
+msgid "Sales from last year"
+msgstr "Sales from last year"
+
+#. module: pc_connect_master
+#: model:ir.filters,name:ir_filters_sale_order_this_month
+msgid "Sales from this month"
+msgstr "Sales from this month"
+
+#. module: pc_connect_master
+#: model:ir.filters,name:ir_filters_sale_order_this_year
+msgid "Sales from this year"
+msgstr "Sales from this year"
+
+#. module: pc_connect_master
+#: model:sale.exception,name:excep_order_too_old
+msgid "Sales order does not have a payment term"
+msgstr "Sales order does not have a payment term"
+
+#. module: pc_connect_master
+#: model:ir.ui.menu,name:pc_menu_sales_sales
+msgid "Sales"
+msgstr "Verkaufsaufträge"
+
+#. module: pc_connect_master
+#: model:ir.ui.menu,name:management_ir_cron
+msgid "Scheduled Actions"
+msgstr "Geplante Vorgänge"
+
+#. module: pc_connect_master
+#: model:ir.actions.act_window,name:action_ir_scheduler
+msgid "Scheduler actions"
+msgstr "Scheduler actions"
+
+#. module: pc_connect_master
+#: field:ir.cron.punchcard,ir_cron:0
+msgid "Scheduler"
+msgstr "Scheduler"
+
+#. module: pc_connect_master
+#: model:ir.model.fields,field_description:field_ir_cron_punchcard_ir_cron
+msgid "Scheduler"
+msgstr "Scheduler"
+
+#. module: pc_connect_master
+#: field:report.file,domain:0
+msgid "Search domain"
+msgstr "Search domain"
+
+#. module: pc_connect_master
+#: model:ir.model.fields,field_description:field_report_file_domain
+msgid "Search domain"
+msgstr "Search domain"
+
+#. module: pc_connect_master
+#: view:res.partner.bank:0
+msgid "Second line of the street address."
+msgstr "Second line of the street address."
+
+#. module: pc_connect_master
+#: help:res.partner.bank,street2:0
+msgid "Second line of the street's addres."
+msgstr "Second line of the street's addres."
+
+#. module: pc_connect_master
+#: field:configuration.data,docout_invoice_friday:0
+msgid "Send on Friday?"
+msgstr "Send on Friday?"
+
+#. module: pc_connect_master
+#: model:ir.model.fields,field_description:field_configuration_data_docout_invoice_friday
+msgid "Send on Friday?"
+msgstr "Send on Friday?"
+
+#. module: pc_connect_master
+#: field:configuration.data,docout_invoice_monday:0
+msgid "Send on Monday?"
+msgstr "Send on Monday?"
+
+#. module: pc_connect_master
+#: model:ir.model.fields,field_description:field_configuration_data_docout_invoice_monday
+msgid "Send on Monday?"
+msgstr "Send on Monday?"
+
+#. module: pc_connect_master
+#: field:configuration.data,docout_invoice_saturday:0
+msgid "Send on Saturday?"
+msgstr "Send on Saturday?"
+
+#. module: pc_connect_master
+#: model:ir.model.fields,field_description:field_configuration_data_docout_invoice_saturday
+msgid "Send on Saturday?"
+msgstr "Send on Saturday?"
+
+#. module: pc_connect_master
+#: field:configuration.data,docout_invoice_sunday:0
+msgid "Send on Sunday?"
+msgstr "Send on Sunday?"
+
+#. module: pc_connect_master
+#: model:ir.model.fields,field_description:field_configuration_data_docout_invoice_sunday
+msgid "Send on Sunday?"
+msgstr "Send on Sunday?"
+
+#. module: pc_connect_master
+#: field:configuration.data,docout_invoice_thursday:0
+msgid "Send on Thursday?"
+msgstr "Send on Thursday?"
+
+#. module: pc_connect_master
+#: model:ir.model.fields,field_description:field_configuration_data_docout_invoice_thursday
+msgid "Send on Thursday?"
+msgstr "Send on Thursday?"
+
+#. module: pc_connect_master
+#: field:configuration.data,docout_invoice_tuesday:0
+msgid "Send on Tuesday?"
+msgstr "Send on Tuesday?"
+
+#. module: pc_connect_master
+#: model:ir.model.fields,field_description:field_configuration_data_docout_invoice_tuesday
+msgid "Send on Tuesday?"
+msgstr "Send on Tuesday?"
+
+#. module: pc_connect_master
+#: field:configuration.data,docout_invoice_wednesday:0
+msgid "Send on Wednesday?"
+msgstr "Send on Wednesday?"
+
+#. module: pc_connect_master
+#: model:ir.model.fields,field_description:field_configuration_data_docout_invoice_wednesday
+msgid "Send on Wednesday?"
+msgstr "Send on Wednesday?"
+
+#. module: pc_connect_master
+#: field:account.invoice,send_invoice_to_partner:0
+msgid "Send to Partner"
+msgstr "Send to Partner"
+
+#. module: pc_connect_master
+#: model:ir.model.fields,field_description:field_account_invoice_send_invoice_to_partner
+msgid "Send to Partner"
+msgstr "Send to Partner"
+
+#. module: pc_connect_master
+#: view:stock.move:0
+msgid "Sending Goods Out"
+msgstr "Sending Goods Out"
+
+#. module: pc_connect_master
+#: selection:account.invoice,send_invoice_to_partner:0
+msgid "Sent"
+msgstr "Sent"
+
+#. module: pc_connect_master
+#: model:ir.model,name:model_stock_production_lot
+msgid "Serial Number"
+msgstr "Seriennummer"
+
+#. module: pc_connect_master
+#: view:stock.move:0
+msgid "Serial Number's Name"
+msgstr "Serial Number's Name"
+
+#. module: pc_connect_master
+#: view:stock.report.prodlots:0
+msgid "Serial Numbers"
+msgstr "Serial Numbers"
+
+#. module: pc_connect_master
+#: field:stock.move,prodlot_id_name:0
+msgid "Serial number"
+msgstr "Serial number"
+
+#. module: pc_connect_master
+#: model:ir.model.fields,field_description:field_stock_move_prodlot_id_name
+msgid "Serial number"
+msgstr "Serial number"
+
+#. module: pc_connect_master
+#: code:addons/pc_connect_master/res_partner_ext.py:224
+msgid "Shipping"
+msgstr "Shipping"
+
+#. module: pc_connect_master
+#: field:delivery.carrier,show_customer_phone_on_picking:0
+msgid "Show Customer Phone Number on the Picking Report"
+msgstr "Show Customer Phone Number on the Picking Report"
+
+#. module: pc_connect_master
+#: model:ir.model.fields,field_description:field_delivery_carrier_show_customer_phone_on_picking
+msgid "Show Customer Phone Number on the Picking Report"
+msgstr "Show Customer Phone Number on the Picking Report"
+
+#. module: pc_connect_master
+#: field:delivery.carrier,show_name_on_picking:0
+msgid "Show Delivery Method on the Picking Report"
+msgstr "Show Delivery Method on the Picking Report"
+
+#. module: pc_connect_master
+#: model:ir.model.fields,field_description:field_delivery_carrier_show_name_on_picking
+msgid "Show Delivery Method on the Picking Report"
+msgstr "Show Delivery Method on the Picking Report"
+
+#. module: pc_connect_master
+#: field:configuration.data,support_soft_end_time:0
+msgid "Soft Closing Time"
+msgstr "Soft Closing Time"
+
+#. module: pc_connect_master
+#: model:ir.model.fields,field_description:field_configuration_data_support_soft_end_time
+msgid "Soft Closing Time"
+msgstr "Soft Closing Time"
+
+#. module: pc_connect_master
+#: help:configuration.data,support_soft_end_time:0
+msgid "Soft closing time of the support"
+msgstr "Soft closing time of the support"
+
+#. module: pc_connect_master
+#: code:addons/pc_connect_master/stock_picking_ext.py:193
+msgid "Some errors were found"
+msgstr "Some errors were found"
+
+#. module: pc_connect_master
+#: field:stock.move,location_id_name:0
+msgid "Source Location"
+msgstr "Source Location"
+
+#. module: pc_connect_master
+#: model:ir.model.fields,field_description:field_stock_move_location_id_name
+msgid "Source Location"
+msgstr "Source Location"
+
+#. module: pc_connect_master
+#: selection:report.file,file_type:0
+msgid "Spreadsheet"
+msgstr "Spreadsheet"
+
+#. module: pc_connect_master
+#: model:ir.ui.menu,name:pc_menu_standard_reports_sql
+msgid "Standard Reports (SQL)"
+msgstr "Standard Reports (SQL)"
+
+#. module: pc_connect_master
+#: model:ir.ui.menu,name:pc_menu_standard_reports_view
+msgid "Standard Reports (Tree view)"
+msgstr "Standard Reports (Tree view)"
+
+#. module: pc_connect_master
+#: model:ir.actions.act_window,name:action_standard_report_tree
+msgid "Standard Reports"
+msgstr "Standard Reports"
+
+#. module: pc_connect_master
+#: model:ir.actions.act_window,name:action_standard_view_report
+msgid "Standard View Reports"
+msgstr "Standard View Reports"
+
+#. module: pc_connect_master
+#: view:report.file:0
+msgid "Standard report"
+msgstr "Standard report"
+
+#. module: pc_connect_master
+#: view:report.view:0
+msgid "Standard view report"
+msgstr "Standard view report"
+
+#. module: pc_connect_master
+#: help:stock.move,partner_state:0
+msgid "State of the partner"
+msgstr "State of the partner"
+
+#. module: pc_connect_master
+#: view:queue.job:0
+msgid "State proportion"
+msgstr "Status-Anteil"
+
+#. module: pc_connect_master
+#: field:sale.order.automation_wiz,state:0
+msgid "State to force"
+msgstr "State to force"
+
+#. module: pc_connect_master
+#: model:ir.model.fields,field_description:field_sale_order_automation_wiz_state
+msgid "State to force"
+msgstr "State to force"
+
+#. module: pc_connect_master
+#: field:pc.wz.knowledge.export,state:0
+msgid "State"
+msgstr "State"
+
+#. module: pc_connect_master
+#: model:ir.model.fields,field_description:field_pc_wz_knowledge_export_state
+msgid "State"
+msgstr "State"
+
+#. module: pc_connect_master
+#: model:ir.model,name:model_stock_move
+msgid "Stock Move"
+msgstr "Bestandsbuchung"
+
+#. module: pc_connect_master
+#: view:product.product:0
+msgid "Stock and Expected Variations"
+msgstr "Bestand und zukünftige Änderungen"
+
+#. module: pc_connect_master
+#: view:product.product:0
+msgid "Stock by lot number"
+msgstr "Stock by lot number"
+
+#. module: pc_connect_master
+#: model:ir.actions.act_window,name:action_stock_move_view
+msgid "Stock move action"
+msgstr "Stock move action"
+
+#. module: pc_connect_master
+#: view:stock.move:0
+msgid "Stock recall"
+msgstr "Stock recall"
+
+#. module: pc_connect_master
+#: field:product.product,stock_prodlots:0
+msgid "Stock report by serial number"
+msgstr "Stock report by serial number"
+
+#. module: pc_connect_master
+#: model:ir.model.fields,field_description:field_product_product_stock_prodlots
+msgid "Stock report by serial number"
+msgstr "Stock report by serial number"
+
+#. module: pc_connect_master
+#: help:configuration.data,concurrent_access_requeue_num_minutes:0
+msgid "Stop requeueing a job automatically if it failed because of a concurrent access and this amount of minutes passed since its creation."
+msgstr "Stop requeueing a job automatically if it failed because of a concurrent access and this amount of minutes passed since its creation."
+
+#. module: pc_connect_master
+#: field:res.partner.bank,street2:0
+msgid "Street 2"
+msgstr "Street 2"
+
+#. module: pc_connect_master
+#: model:ir.model.fields,field_description:field_res_partner_bank_street2
+msgid "Street 2"
+msgstr "Street 2"
+
+#. module: pc_connect_master
+#: view:res.company:0
+msgid "Street Name"
+msgstr "Street Name"
+
+#. module: pc_connect_master
+#: view:res.partner.bank:0
+msgid "Street Name"
+msgstr "Street Name"
+
+#. module: pc_connect_master
+#: view:res.partner:0
+msgid "Street Name"
+msgstr "Street Name"
+
+#. module: pc_connect_master
+#: view:res.company:0
+msgid "Street No."
+msgstr "Street No."
+
+#. module: pc_connect_master
+#: view:res.partner.bank:0
+msgid "Street No."
+msgstr "Street No."
+
+#. module: pc_connect_master
+#: view:res.partner:0
+msgid "Street No."
+msgstr "Street No."
+
+#. module: pc_connect_master
+#: field:res.company,street_no:0
+msgid "Street number"
+msgstr "Street number"
+
+#. module: pc_connect_master
+#: field:res.partner,street_no:0
+msgid "Street number"
+msgstr "Street number"
+
+#. module: pc_connect_master
+#: field:res.partner.bank,street_no:0
+msgid "Street number"
+msgstr "Street number"
+
+#. module: pc_connect_master
+#: help:res.company,street_no:0
+msgid "Street number"
+msgstr "Street number"
+
+#. module: pc_connect_master
+#: help:res.partner,street_no:0
+msgid "Street number"
+msgstr "Street number"
+
+#. module: pc_connect_master
+#: help:res.partner.bank,street_no:0
+msgid "Street number"
+msgstr "Street number"
+
+#. module: pc_connect_master
+#: model:ir.model.fields,field_description:field_res_company_street_no
+msgid "Street number"
+msgstr "Street number"
+
+#. module: pc_connect_master
+#: model:ir.model.fields,field_description:field_res_partner_bank_street_no
+msgid "Street number"
+msgstr "Street number"
+
+#. module: pc_connect_master
+#: model:ir.model.fields,field_description:field_res_partner_street_no
+msgid "Street number"
+msgstr "Street number"
+
+#. module: pc_connect_master
+#: field:report.file.fields,field_id2:0
+msgid "Sub-field"
+msgstr "Sub-field"
+
+#. module: pc_connect_master
+#: model:ir.model.fields,field_description:field_report_file_fields_field_id2
+msgid "Sub-field"
+msgstr "Sub-field"
+
+#. module: pc_connect_master
+#: field:sale.order.line,xx_price_subtotal:0
+msgid "Subtotal"
+msgstr "Subtotal"
+
+#. module: pc_connect_master
+#: model:ir.model.fields,field_description:field_sale_order_line_xx_price_subtotal
+msgid "Subtotal"
+msgstr "Subtotal"
+
+#. module: pc_connect_master
+#: field:ir.cron,message_summary:0
+msgid "Summary"
+msgstr "Summary"
+
+#. module: pc_connect_master
+#: field:stock.production.lot,message_summary:0
+msgid "Summary"
+msgstr "Summary"
+
+#. module: pc_connect_master
+#: model:ir.model.fields,field_description:field_ir_cron_message_summary
+msgid "Summary"
+msgstr "Summary"
+
+#. module: pc_connect_master
+#: model:ir.model.fields,field_description:field_stock_production_lot_message_summary
+msgid "Summary"
+msgstr "Summary"
+
+#. module: pc_connect_master
+#: field:report.file,model_id:0
+msgid "Table to export"
+msgstr "Table to export"
+
+#. module: pc_connect_master
+#: model:ir.model.fields,field_description:field_report_file_model_id
+msgid "Table to export"
+msgstr "Table to export"
+
+#. module: pc_connect_master
+#: code:addons/pc_connect_master/account_invoice_ext.py:214
+msgid "Tax base different!\n"
+"Click on compute to update the tax base."
+msgstr "Tax base different!\n"
+"Click on compute to update the tax base."
+
+#. module: pc_connect_master
+#: code:addons/pc_connect_master/account_invoice_ext.py:217
+msgid "Taxes are missing!\n"
+"Click on compute button."
+msgstr "Taxes are missing!\n"
+"Click on compute button."
+
+#. module: pc_connect_master
+#: constraint:res.partner:0
+msgid "The Zip code from CH must be a number between 1000 and 9999"
+msgstr "The Zip code from CH must be a number between 1000 and 9999"
+
+#. module: pc_connect_master
+#: help:product.product,brand:0
+msgid "The brand of the product"
+msgstr "The brand of the product"
+
+#. module: pc_connect_master
+#: sql_constraint:stock.production.lot:0
+msgid "The combination of Serial Number, internal reference, Product and Company must be unique !"
+msgstr "The combination of Serial Number, internal reference, Product and Company must be unique !"
+
+#. module: pc_connect_master
+#: help:configuration.data,docout_invoice_connect_transport_id:0
+msgid "The connection to the doc-out server."
+msgstr "The connection to the doc-out server."
+
+#. module: pc_connect_master
+#: help:account.invoice,date_cancel:0
+msgid "The date in which the invoice was set to cancel."
+msgstr "The date in which the invoice was set to cancel."
+
+#. module: pc_connect_master
+#: field:sale.order,delivery_orders_printed:0
+msgid "The delivery order have been printed"
+msgstr "The delivery order have been printed"
+
+#. module: pc_connect_master
+#: model:ir.model.fields,field_description:field_sale_order_delivery_orders_printed
+msgid "The delivery order have been printed"
+msgstr "The delivery order have been printed"
+
+#. module: pc_connect_master
+#: help:configuration.data,docout_invoice_email_address:0
+msgid "The email address for the doc-out."
+msgstr "The email address for the doc-out."
+
+#. module: pc_connect_master
+#: help:configuration.data,docout_invoice_email_template_to_docout_id:0
+msgid "The email template for the email which sends the invoice to the doc-out."
+msgstr "The email template for the email which sends the invoice to the doc-out."
+
+#. module: pc_connect_master
+#: help:configuration.data,invoice_to_partner_email_template_id:0
+msgid "The email template for the email which sends the invoice to the partner."
+msgstr "The email template for the email which sends the invoice to the partner."
+
+#. module: pc_connect_master
+#: code:addons/pc_connect_master/product_product_ext.py:219
+msgid "The field should have {0} digits, {1} of them being the fractional part."
+msgstr "The field should have {0} digits, {1} of them being the fractional part."
+
+#. module: pc_connect_master
+#: help:configuration.data,docout_invoice_folder:0
+msgid "The folder on the remote server to put to files to."
+msgstr "The folder on the remote server to put to files to."
+
+#. module: pc_connect_master
+#: help:configuration.data,default_credit_limit:0
+msgid "The global default credit limit applied to users with no credit limit set"
+msgstr "The global default credit limit applied to users with no credit limit set"
+
+#. module: pc_connect_master
+#: field:sale.order,invoices_printed:0
+msgid "The invoices have been printed"
+msgstr "The invoices have been printed"
+
+#. module: pc_connect_master
+#: model:ir.model.fields,field_description:field_sale_order_invoices_printed
+msgid "The invoices have been printed"
+msgstr "The invoices have been printed"
+
+#. module: pc_connect_master
+#: help:payment.method,amount_limit:0
+msgid "The maximum allowed amount that can be paid using this payment method."
+msgstr "The maximum allowed amount that can be paid using this payment method."
+
+#. module: pc_connect_master
+#: help:configuration.data,punchcards_limit:0
+msgid "The maximum number of punchards to keep in the history of punchards."
+msgstr "The maximum number of punchards to keep in the history of punchards."
+
+#. module: pc_connect_master
+#: help:product.product,webshop_state:0
+msgid "The possible states for a product in a webshop."
+msgstr "The possible states for a product in a webshop."
+
+#. module: pc_connect_master
+#: model:sale.exception,description:excep_order_too_old
+msgid "The sales order does not have a payment term."
+msgstr "The sales order does not have a payment term."
+
+#. module: pc_connect_master
+#: help:res.partner,newsletter_allowed:0
+msgid "The user allows the communication for mass mailing, and marketing campaigns."
+msgstr "The user allows the communication for mass mailing, and marketing campaigns."
+
+#. module: pc_connect_master
+#: code:addons/pc_connect_master/sale_order_ext.py:187
+msgid "There are no associated delivery orders in state assigned or done for sale order with IDs={0}"
+msgstr "There are no associated delivery orders in state assigned or done for sale order with IDs={0}"
+
+#. module: pc_connect_master
+#: code:addons/pc_connect_master/stock_picking_ext.py:137
+msgid "There were no lots found to fill the stock.picking {0} (ID={1}) associated to the sale.order {2} (ID={3}) for product {4} (ID={5}) that MUST make use of lots"
+msgstr "There were no lots found to fill the stock.picking {0} (ID={1}) associated to the sale.order {2} (ID={3}) for product {4} (ID={5}) that MUST make use of lots"
+
+#. module: pc_connect_master
+#: code:addons/pc_connect_master/stock_warehouse_ext.py:40
+msgid "There were no warehouses found in the system."
+msgstr "There were no warehouses found in the system."
+
+#. module: pc_connect_master
+#: code:addons/pc_connect_master/stock_picking_ext.py:179
+msgid "There were not enough quantity on lots to fill the stock.picking {0} (ID={1}) associated to the sale.order {2} (ID={3}) for product {4} (ID={5}) that MUST make use of lots"
+msgstr "There were not enough quantity on lots to fill the stock.picking {0} (ID={1}) associated to the sale.order {2} (ID={3}) for product {4} (ID={5}) that MUST make use of lots"
+
+#. module: pc_connect_master
+#: view:res.partner.check_credit:0
+msgid "These are the results for the partners inspected."
+msgstr "These are the results for the partners inspected."
+
+#. module: pc_connect_master
+#: view:sale.order.check_credit:0
+msgid "These are the results for the sale orders inspected."
+msgstr "These are the results for the sale orders inspected."
+
+#. module: pc_connect_master
+#: view:account.invoice:0
+msgid "This Month"
+msgstr "This Month"
+
+#. module: pc_connect_master
+#: view:sale.order:0
+msgid "This Month"
+msgstr "This Month"
+
+#. module: pc_connect_master
+#: view:stock.picking.out:0
+msgid "This Month"
+msgstr "This Month"
+
+#. module: pc_connect_master
+#: view:account.invoice:0
+msgid "This Quarter"
+msgstr "This Quarter"
+
+#. module: pc_connect_master
+#: view:sale.order:0
+msgid "This Quarter"
+msgstr "This Quarter"
+
+#. module: pc_connect_master
+#: view:stock.picking.out:0
+msgid "This Quarter"
+msgstr "This Quarter"
+
+#. module: pc_connect_master
+#: view:account.invoice:0
+msgid "This Week"
+msgstr "This Week"
+
+#. module: pc_connect_master
+#: view:sale.order:0
+msgid "This Week"
+msgstr "This Week"
+
+#. module: pc_connect_master
+#: view:stock.picking.out:0
+msgid "This Week"
+msgstr "This Week"
+
+#. module: pc_connect_master
+#: view:account.invoice:0
+msgid "This Year"
+msgstr "This Year"
+
+#. module: pc_connect_master
+#: view:sale.order:0
+msgid "This Year"
+msgstr "This Year"
+
+#. module: pc_connect_master
+#: view:stock.picking.out:0
+msgid "This Year"
+msgstr "This Year"
+
+#. module: pc_connect_master
+#: help:stock.production.lot,production_date:0
+msgid "This is the date on which the goods with this Serial Number were produced."
+msgstr "This is the date on which the goods with this Serial Number were produced."
+
+#. module: pc_connect_master
+#: view:account.invoice:0
+msgid "This month"
+msgstr "This month"
+
+#. module: pc_connect_master
+#: view:sale.order:0
+msgid "This month"
+msgstr "This month"
+
+#. module: pc_connect_master
+#: view:stock.picking.out:0
+msgid "This month"
+msgstr "This month"
+
+#. module: pc_connect_master
+#: code:addons/pc_connect_master/product_product_ext.py:123
+msgid "This product lot is near its removal date"
+msgstr "This product lot is near its removal date"
+
+#. module: pc_connect_master
+#: code:addons/pc_connect_master/stock_production_lot_ext.py:198
+msgid "This product lot is near its removal date"
+msgstr "This product lot is near its removal date"
+
+#. module: pc_connect_master
+#: view:account.invoice:0
+msgid "This quarter"
+msgstr "This quarter"
+
+#. module: pc_connect_master
+#: view:sale.order:0
+msgid "This quarter"
+msgstr "This quarter"
+
+#. module: pc_connect_master
+#: view:stock.picking.out:0
+msgid "This quarter"
+msgstr "This quarter"
+
+#. module: pc_connect_master
+#: view:account.invoice:0
+msgid "This week"
+msgstr "This week"
+
+#. module: pc_connect_master
+#: view:sale.order:0
+msgid "This week"
+msgstr "This week"
+
+#. module: pc_connect_master
+#: view:stock.picking.out:0
+msgid "This week"
+msgstr "This week"
+
+#. module: pc_connect_master
+#: view:account.invoice:0
+msgid "This year"
+msgstr "This year"
+
+#. module: pc_connect_master
+#: view:sale.order:0
+msgid "This year"
+msgstr "This year"
+
+#. module: pc_connect_master
+#: view:stock.picking.out:0
+msgid "This year"
+msgstr "This year"
+
+#. module: pc_connect_master
+#: code:addons/pc_connect_master/mail_thread_ext.py:48
+msgid "Thread ID is not set"
+msgstr "Thread ID is not set"
+
+#. module: pc_connect_master
+#: field:configuration.data,docout_invoice_time_of_day:0
+msgid "Time of Day"
+msgstr "Time of Day"
+
+#. module: pc_connect_master
+#: model:ir.model.fields,field_description:field_configuration_data_docout_invoice_time_of_day
+msgid "Time of Day"
+msgstr "Time of Day"
+
+#. module: pc_connect_master
+#: help:configuration.data,support_timezone:0
+msgid "Timezone of the support."
+msgstr "Timezone of the support."
+
+#. module: pc_connect_master
+#: field:configuration.data,support_timezone:0
+msgid "Timezone"
+msgstr "Timezone"
+
+#. module: pc_connect_master
+#: model:ir.model.fields,field_description:field_configuration_data_support_timezone
+msgid "Timezone"
+msgstr "Timezone"
+
+#. module: pc_connect_master
+#: view:configuration.data:0
+msgid "Timezone"
+msgstr "Timezone"
+
+#. module: pc_connect_master
+#: help:stock.move,partner_title:0
+msgid "Title of the customer"
+msgstr "Title of the customer"
+
+#. module: pc_connect_master
+#: field:wizard.popup,name:0
+msgid "Title"
+msgstr "Title"
+
+#. module: pc_connect_master
+#: model:ir.model.fields,field_description:field_wizard_popup_name
+msgid "Title"
+msgstr "Title"
+
+#. module: pc_connect_master
+#: selection:account.invoice,send_invoice_to_partner:0
+msgid "To Send"
+msgstr "To Send"
+
+#. module: pc_connect_master
+#: view:account.invoice:0
+msgid "Today"
+msgstr "Today"
+
+#. module: pc_connect_master
+#: view:sale.order:0
+msgid "Today"
+msgstr "Today"
+
+#. module: pc_connect_master
+#: view:stock.picking.out:0
+msgid "Today"
+msgstr "Today"
+
+#. module: pc_connect_master
+#: field:report.view,view_id:0
+msgid "Tree view"
+msgstr "Tree view"
+
+#. module: pc_connect_master
+#: model:ir.model.fields,field_description:field_report_view_view_id
+msgid "Tree view"
+msgstr "Tree view"
+
+#. module: pc_connect_master
+#: help:gift.text.type,type:0
+msgid "Type of gift-text."
+msgstr "Type of gift-text."
+
+#. module: pc_connect_master
+#: field:product.product,expiration_accept_time_uom:0
+msgid "Unit of Measure for the Expiration Accept Time"
+msgstr "Unit of Measure for the Expiration Accept Time"
+
+#. module: pc_connect_master
+#: model:ir.model.fields,field_description:field_product_product_expiration_accept_time_uom
+msgid "Unit of Measure for the Expiration Accept Time"
+msgstr "Unit of Measure for the Expiration Accept Time"
+
+#. module: pc_connect_master
+#: field:product.product,expiration_alert_time_uom:0
+msgid "Unit of Measure for the Expiration Alert Time"
+msgstr "Unit of Measure for the Expiration Alert Time"
+
+#. module: pc_connect_master
+#: model:ir.model.fields,field_description:field_product_product_expiration_alert_time_uom
+msgid "Unit of Measure for the Expiration Alert Time"
+msgstr "Unit of Measure for the Expiration Alert Time"
+
+#. module: pc_connect_master
+#: field:product.product,expiration_block_time_uom:0
+msgid "Unit of Measure for the Expiration Block Time"
+msgstr "Unit of Measure for the Expiration Block Time"
+
+#. module: pc_connect_master
+#: model:ir.model.fields,field_description:field_product_product_expiration_block_time_uom
+msgid "Unit of Measure for the Expiration Block Time"
+msgstr "Unit of Measure for the Expiration Block Time"
+
+#. module: pc_connect_master
+#: help:configuration.data,sale_order_max_age_in_draft_uom:0
+msgid "Unit of Measure for the ignore age of a Sale Order."
+msgstr "Unit of Measure for the ignore age of a Sale Order."
+
+#. module: pc_connect_master
+#: help:configuration.data,sale_order_min_age_in_draft_uom:0
+msgid "Unit of Measure for the ignore age of a Sale Order."
+msgstr "Unit of Measure for the ignore age of a Sale Order."
+
+#. module: pc_connect_master
+#: field:ir.cron,message_unread:0
+msgid "Unread Messages"
+msgstr "Unread Messages"
+
+#. module: pc_connect_master
+#: field:stock.production.lot,message_unread:0
+msgid "Unread Messages"
+msgstr "Unread Messages"
+
+#. module: pc_connect_master
+#: model:ir.model.fields,field_description:field_ir_cron_message_unread
+msgid "Unread Messages"
+msgstr "Unread Messages"
+
+#. module: pc_connect_master
+#: model:ir.model.fields,field_description:field_stock_production_lot_message_unread
+msgid "Unread Messages"
+msgstr "Unread Messages"
+
+#. module: pc_connect_master
+#: code:addons/pc_connect_master/product_product_ext.py:141
+msgid "Updating lot date {0}, with value {1}, because it has been exceeded"
+msgstr "Updating lot date {0}, with value {1}, because it has been exceeded"
+
+#. module: pc_connect_master
+#: code:addons/pc_connect_master/stock_production_lot_ext.py:211
+msgid "Updating lot date {0}, with value {1}, because it was unset"
+msgstr "Updating lot date {0}, with value {1}, because it was unset"
+
+#. module: pc_connect_master
+#: view:sale.order:0
+msgid "View Delivery Order"
+msgstr "Anzeige Auslieferauftrag"
+
+#. module: pc_connect_master
+#: field:stock.production.lot,virtual_available_for_sale:0
+msgid "Virtual Available for Sale"
+msgstr "Virtual Available for Sale"
+
+#. module: pc_connect_master
+#: model:ir.model.fields,field_description:field_stock_production_lot_virtual_available_for_sale
+msgid "Virtual Available for Sale"
+msgstr "Virtual Available for Sale"
+
+#. module: pc_connect_master
+#: field:stock.production.lot,virtual_available:0
+msgid "Virtual available"
+msgstr "Virtual available"
+
+#. module: pc_connect_master
+#: model:ir.model.fields,field_description:field_stock_production_lot_virtual_available
+msgid "Virtual available"
+msgstr "Virtual available"
+
+#. module: pc_connect_master
+#: view:product.product:0
+msgid "Volume (m^3)"
+msgstr "Volume (m^3)"
+
+#. module: pc_connect_master
+#: model:ir.model,name:model_stock_warehouse
+msgid "Warehouse"
+msgstr "Lager"
+
+#. module: pc_connect_master
+#: code:addons/pc_connect_master/account_invoice_ext.py:210
+msgid "Warning!"
+msgstr "Warning!"
+
+#. module: pc_connect_master
+#: code:addons/pc_connect_master/product_product_ext.py:125
+msgid "Warning: This product lot must not be used after this date"
+msgstr "Warning: This product lot must not be used after this date"
+
+#. module: pc_connect_master
+#: code:addons/pc_connect_master/stock_production_lot_ext.py:200
+msgid "Warning: This product lot must not be used after this date"
+msgstr "Warning: This product lot must not be used after this date"
+
+#. module: pc_connect_master
+#: field:product.product,webshop_state:0
+msgid "Webshop State"
+msgstr "Webshop State"
+
+#. module: pc_connect_master
+#: model:ir.model.fields,field_description:field_product_product_webshop_state
+msgid "Webshop State"
+msgstr "Webshop State"
+
+#. module: pc_connect_master
+#: model:product.uom,name:real_time_uom_week
+msgid "Week(s)"
+msgstr "Week(s)"
+
+#. module: pc_connect_master
+#: selection:configuration.data,post_default_expiration_accept_time_uom:0
+msgid "Week(s)"
+msgstr "Week(s)"
+
+#. module: pc_connect_master
+#: selection:configuration.data,post_default_expiration_alert_time_uom:0
+msgid "Week(s)"
+msgstr "Week(s)"
+
+#. module: pc_connect_master
+#: selection:configuration.data,post_default_expiration_block_time_uom:0
+msgid "Week(s)"
+msgstr "Week(s)"
+
+#. module: pc_connect_master
+#: view:product.product:0
+msgid "Weight (Kg)"
+msgstr "Weight (Kg)"
+
+#. module: pc_connect_master
+#: field:product.product,weight:0
+msgid "Weight"
+msgstr "Weight"
+
+#. module: pc_connect_master
+#: model:ir.model.fields,field_description:field_product_product_weight
+msgid "Weight"
+msgstr "Weight"
+
+#. module: pc_connect_master
+#: help:configuration.data,default_picking_policy:0
+msgid "Whatever is set on this parameter will be set by default in field 'picking_policy' of a sale.order when created, except option 'keep', which means that the value indicated by the webshop must be taken. It is just a default parameter, and can be changed on the sale.order when editing it."
+msgstr "Whatever is set on this parameter will be set by default in field 'picking_policy' of a sale.order when created, except option 'keep', which means that the value indicated by the webshop must be taken. It is just a default parameter, and can be changed on the sale.order when editing it."
+
+#. module: pc_connect_master
+#: field:sale.order.automation_wiz,when:0
+msgid "When to execute"
+msgstr "When to execute"
+
+#. module: pc_connect_master
+#: model:ir.model.fields,field_description:field_sale_order_automation_wiz_when
+msgid "When to execute"
+msgstr "When to execute"
+
+#. module: pc_connect_master
+#: view:product.product:0
+msgid "Width (cm)"
+msgstr "Width (cm)"
+
+#. module: pc_connect_master
+#: help:product.product,width:0
+msgid "Width of the product (in centimeters)"
+msgstr "Width of the product (in centimeters)"
+
+#. module: pc_connect_master
+#: field:product.product,width:0
+msgid "Width"
+msgstr "Width"
+
+#. module: pc_connect_master
+#: model:ir.model.fields,field_description:field_product_product_width
+msgid "Width"
+msgstr "Width"
+
+#. module: pc_connect_master
+#: model:ir.model,name:model_pc_wz_knowledge_export
+msgid "Wizard knowledge export"
+msgstr "Wizard knowledge export"
+
+#. module: pc_connect_master
+#: model:product.uom,name:real_time_uom_year
+msgid "Year(s)"
+msgstr "Year(s)"
+
+#. module: pc_connect_master
+#: selection:configuration.data,post_default_expiration_accept_time_uom:0
+msgid "Year(s)"
+msgstr "Year(s)"
+
+#. module: pc_connect_master
+#: selection:configuration.data,post_default_expiration_alert_time_uom:0
+msgid "Year(s)"
+msgstr "Year(s)"
+
+#. module: pc_connect_master
+#: selection:configuration.data,post_default_expiration_block_time_uom:0
+msgid "Year(s)"
+msgstr "Year(s)"
+
+#. module: pc_connect_master
+#: view:stock.picking.in:0
+msgid "base.group_user"
+msgstr "base.group_user"
+
+#. module: pc_connect_master
+#: view:stock.picking.out:0
+msgid "base.group_user"
+msgstr "base.group_user"
+
+#. module: pc_connect_master
+#: view:account.invoice:0
+msgid "base.group_user,pc_connect_master.pc_client"
+msgstr "base.group_user,pc_connect_master.pc_client"
+
+#. module: pc_connect_master
+#: view:product.product:0
+msgid "base.group_user,pc_connect_master.pc_client"
+msgstr "base.group_user,pc_connect_master.pc_client"
+
+#. module: pc_connect_master
+#: view:sale.order:0
+msgid "base.group_user,pc_connect_master.pc_client"
+msgstr "base.group_user,pc_connect_master.pc_client"
+
+#. module: pc_connect_master
+#: model:ir.model,name:model_config_setting_ext
+msgid "config.setting.ext"
+msgstr "config.setting.ext"
+
+#. module: pc_connect_master
+#: model:ir.model,name:model_configuration_data
+msgid "configuration.data"
+msgstr "configuration.data"
+
+#. module: pc_connect_master
+#: selection:report.file.exporter,file_ext:0
+msgid "csv"
+msgstr "csv"
+
+#. module: pc_connect_master
+#: field:payment.method,epayment:0
+msgid "ePayment"
+msgstr "ePayment"
+
+#. module: pc_connect_master
+#: model:ir.model.fields,field_description:field_payment_method_epayment
+msgid "ePayment"
+msgstr "ePayment"
+
+#. module: pc_connect_master
+#: field:report.file.fields,groupby:0
+msgid "group-by action"
+msgstr "group-by action"
+
+#. module: pc_connect_master
+#: model:ir.model.fields,field_description:field_report_file_fields_groupby
+msgid "group-by action"
+msgstr "group-by action"
+
+#. module: pc_connect_master
+#: model:ir.model,name:model_ir_attachment
+msgid "ir.attachment"
+msgstr "ir.attachment"
+
+#. module: pc_connect_master
+#: model:ir.model,name:model_ir_cron
+msgid "ir.cron"
+msgstr "ir.cron"
+
+#. module: pc_connect_master
+#: model:ir.model,name:model_ir_cron_punchcard
+msgid "ir.cron.punchcard"
+msgstr "ir.cron.punchcard"
+
+#. module: pc_connect_master
+#: field:report.file.fields,model_name:0
+msgid "model_name"
+msgstr "model_name"
+
+#. module: pc_connect_master
+#: model:ir.model.fields,field_description:field_report_file_fields_model_name
+msgid "model_name"
+msgstr "model_name"
+
+#. module: pc_connect_master
+#: view:product.product:0
+msgid "onchange_check_decimals(volume, 'Stock Volume')"
+msgstr "onchange_check_decimals(volume, 'Stock Volume')"
+
+#. module: pc_connect_master
+#: view:product.product:0
+msgid "onchange_check_decimals(weight, 'Stock Weight')"
+msgstr "onchange_check_decimals(weight, 'Stock Weight')"
+
+#. module: pc_connect_master
+#: view:product.product:0
+msgid "onchange_check_decimals(weight_net, 'Stock Weight')"
+msgstr "onchange_check_decimals(weight_net, 'Stock Weight')"
+
+#. module: pc_connect_master
+#: view:res.partner:0
+msgid "onchange_main_category_id(main_category_id,\n"
+"						category_id)"
+msgstr "onchange_main_category_id(main_category_id,\n"
+"						category_id)"
+
+#. module: pc_connect_master
+#: view:res.partner:0
+msgid "onchange_main_category_id(main_category_id,\n"
+"						category_id, parent_id)"
+msgstr "onchange_main_category_id(main_category_id,\n"
+"						category_id, parent_id)"
+
+#. module: pc_connect_master
+#: view:stock.picking.in:0
+msgid "pc_connect_master.pc_client"
+msgstr "pc_connect_master.pc_client"
+
+#. module: pc_connect_master
+#: view:stock.picking.out:0
+msgid "pc_connect_master.pc_client"
+msgstr "pc_connect_master.pc_client"
+
+#. module: pc_connect_master
+#: model:ir.model,name:model_report_file
+msgid "report.file"
+msgstr "report.file"
+
+#. module: pc_connect_master
+#: model:ir.model,name:model_report_file_exporter
+msgid "report.file.exporter"
+msgstr "report.file.exporter"
+
+#. module: pc_connect_master
+#: model:ir.model,name:model_report_file_fields
+msgid "report.file.fields"
+msgstr "report.file.fields"
+
+#. module: pc_connect_master
+#: model:ir.model,name:model_report_view
+msgid "report.view"
+msgstr "report.view"
+
+#. module: pc_connect_master
+#: code:addons/pc_connect_master/report_file_exporter.py:58
+msgid "report_{var_model}.{var_format}"
+msgstr "report_{var_model}.{var_format}"
+
+#. module: pc_connect_master
+#: model:ir.model,name:model_res_partner_check_credit
+msgid "res.partner.check_credit"
+msgstr "res.partner.check_credit"
+
+#. module: pc_connect_master
+#: model:ir.model,name:model_res_partner_title
+msgid "res.partner.title"
+msgstr "res.partner.title"
+
+#. module: pc_connect_master
+#: model:ir.model,name:model_sale_order_automation_wiz
+msgid "sale.order.automation_wiz"
+msgstr "sale.order.automation_wiz"
+
+#. module: pc_connect_master
+#: model:ir.model,name:model_sale_order_check_credit
+msgid "sale.order.check_credit"
+msgstr "sale.order.check_credit"
+
+#. module: pc_connect_master
+#: field:report.file.fields,sql_join:0
+msgid "sql_join"
+msgstr "sql_join"
+
+#. module: pc_connect_master
+#: model:ir.model.fields,field_description:field_report_file_fields_sql_join
+msgid "sql_join"
+msgstr "sql_join"
+
+#. module: pc_connect_master
+#: field:report.file.fields,sql_name:0
+msgid "sql_name"
+msgstr "sql_name"
+
+#. module: pc_connect_master
+#: model:ir.model.fields,field_description:field_report_file_fields_sql_name
+msgid "sql_name"
+msgstr "sql_name"
+
+#. module: pc_connect_master
+#: view:res.partner:0
+msgid "width: 70%"
+msgstr "width: 70%"
+
+#. module: pc_connect_master
+#: model:ir.model,name:model_wizard_popup
+msgid "wizard.popup"
+msgstr "wizard.popup"
+
+#. module: pc_connect_master
+#: view:sale.order:0
+msgid "{'always_reload': 0}"
+msgstr "{'always_reload': 0}"
+
+#. module: pc_connect_master
+#: view:sale.order:0
+msgid "{'always_reload': 1}"
+msgstr "{'always_reload': 1}"
+
+#. module: pc_connect_master
+#: view:res.partner:0
+msgid "{'default_parent_id': active_id, 'default_street': street, 'default_street2': street2, 'default_city': city, 'default_state_id': state_id, 'default_zip': zip, 'default_country_id': country_id, 'default_supplier': supplier, 'default_customer': customer, 'default_use_parent_address': True, 'main_category_id': main_category_id}"
+msgstr "{'default_parent_id': active_id, 'default_street': street, 'default_street2': street2, 'default_city': city, 'default_state_id': state_id, 'default_zip': zip, 'default_country_id': country_id, 'default_supplier': supplier, 'default_customer': customer, 'default_use_parent_address': True, 'main_category_id': main_category_id}"
+
+#. module: pc_connect_master
+#: view:sale.order:0
+msgid "{'default_type': 'delivery', 'show_address': 1}"
+msgstr "{'default_type': 'delivery', 'show_address': 1}"
+
+#. module: pc_connect_master
+#: view:sale.order:0
+msgid "{'default_type': 'invoice', 'show_address': 1}"
+msgstr "{'default_type': 'invoice', 'show_address': 1}"
+
+#. module: pc_connect_master
+#: view:sale.order:0
+msgid "{'search_default_customer': 1, 'show_address': 0}"
+msgstr "{'search_default_customer': 1, 'show_address': 0}"
+
+#. module: pc_connect_master
+#: code:addons/pc_connect_master/report_file_exporter.py:75
+msgid "{0} exported records"
+msgstr "{0} exported records"
+
+#. module: pc_connect_master
+#: code:addons/pc_connect_master/stock_warehouse_ext.py:43
+msgid "{0} warehouses were found on the system, while just one is allowed."
+msgstr "{0} warehouses were found on the system, while just one is allowed."
+

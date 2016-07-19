@@ -20,13 +20,13 @@
 ##############################################################################
 from openerp.osv import osv, fields
 from openerp.tools.translate import _
-import logging
 from openerp.osv import orm
 from openerp.exceptions import Warning as OdooWarning
-logger = logging.getLogger(__name__)
 from openerp import api
 from openerp.release import version_info
 V8 = True if version_info[0] > 7 else False
+import logging
+logger = logging.getLogger(__name__)
 
 
 _EXCEPTION_CONSTRAINT_YC = """
@@ -44,7 +44,6 @@ In order to use the product's lifecycle, please install the module 'pc_product_l
 _EXCEPTION_CONSTRAINT_YC_PARTNERTYPE_ON_WAB = '''
 If the invoice address is marked to be shown on the WAB, then its associated <PartnerType> must be indicated also.
 '''
-
 
 _YC_WAB_INVOICE_SEND_MODE_SELECTION = [('pcl_wab', 'Send in WAB as PCL'),
                                        ('pdf_wab', 'Send in WAB as PDF'),
@@ -71,7 +70,6 @@ class stock_connect_ext(osv.Model):
                     return False
         return True
 
-    @api.constrains('yc_wab_add_invoicing_address', 'yc_wab_partner_type_for_invoicing_address')
     def _constraint_partner_type_tag_for_wab(self, cr, uid, ids):
         ''' Checks fhat if the WAB is going to show the invoicing address, the <PartnerType> content
             for that kind of addresses is provided.
@@ -81,10 +79,10 @@ class stock_connect_ext(osv.Model):
                 return False
         return True
 
-    @api.constrains('warehouse_ids', 'connect_transport_id', 'type')
-    def _constraints_for_yellowcube(self):
+    @api.cr_uid_ids
+    def _constraints_for_yellowcube(self, cr, uid, ids):
         error = False
-        for this in self:
+        for this in self.browse(cr, uid, ids):
             if this.type == 'yellowcube':
                 if len(this.warehouse_ids) > 1:
                     error = True
@@ -143,7 +141,6 @@ class stock_connect_ext(osv.Model):
                                                                'If Not Used is selected, then it does not use this tag. '
                                                                'If Carrier Tracking Ref is selected, then it prints the reference by the carrier used '
                                                                'for the picking, truncated to 132 characters'),
-
         'yc_wab_invoice_send_mode': fields.selection(_YC_WAB_INVOICE_SEND_MODE_SELECTION, string='How to Send the Invoices?',
                                                      help='Indicates how to send the invoices, either on the WAB (as PCL or PDF files) '
                                                           'or as PDF to the doc-out folder.'),
@@ -163,6 +160,7 @@ class stock_connect_ext(osv.Model):
         'yc_invoice_pcl_printer_name': fields.char('PCL Printer Name', size=512, help='Name of the PCL printer.'),
         'yc_invoice_pcl_printer_destination': fields.char('PCL Printer Destination', size=512, help='Destination of the file the PCL printer prints to. It must be a file, NOT a folder.'),
         'yc_invoice_pcl_printer_silent_printing': fields.boolean('Silent PCL Printing?', help='Silents the messages associated with the printing of PCL files.'),
+
         'yc_enable_product_lifecycle': fields.boolean("Enable Product's Life-cycle?",
                                                       help="If checked, then the module pc_product_lifecycle must be installed."),
     }
@@ -180,5 +178,11 @@ class stock_connect_ext(osv.Model):
         'yc_wab_pickingmessage_mapping': 'not_used',
         'yc_wab_invoice_send_mode': 'pcl_wab',
     }
+
+    _constraints = [
+        (_constraints_for_yellowcube, _EXCEPTION_CONSTRAINT_YC, ['warehouse_ids', 'connect_transport_id', 'type']),
+        (_constraint_lifecycle_can_be_activated_only_if_module_is_installed, _EXCEPTION_CONSTRAINT_YC_LIFECYCLE, ['yc_enable_product_lifecycle']),
+        (_constraint_partner_type_tag_for_wab, _EXCEPTION_CONSTRAINT_YC_PARTNERTYPE_ON_WAB, ['yc_wab_add_invoicing_address', 'yc_wab_partner_type_for_invoicing_address']),
+    ]
 
 # vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:

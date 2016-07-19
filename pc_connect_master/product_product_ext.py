@@ -18,18 +18,18 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 ##############################################################################
-from openerp import api
+
 from openerp.osv import osv, fields
 from openerp.tools.translate import _
-import logging
 from dateutil import relativedelta
 import datetime
 from configuration_data_ext import _DATE_SELECTION
 from openerp.tools import DEFAULT_SERVER_DATETIME_FORMAT
-logger = logging.getLogger(__name__)
 import decimal
-from openerp.osv.orm import except_orm
-import openerp.addons.decimal_precision as dp
+from osv.orm import except_orm
+import decimal_precision as dp
+import logging
+logger = logging.getLogger(__name__)
 
 
 class product_product_ext_lot(osv.Model):
@@ -77,7 +77,7 @@ class product_product_ext_lot(osv.Model):
         lot_ids = stock_production_lot_obj.search(cr, uid, [('product_id', '=', product.id),
                                                             '|', ('use_date', '>', fields.datetime.now()),
                                                             ('use_date', '=', False)
-                                                            ], order='life_date ASC, use_date ASC, create_date ASC', context=context)
+                                                            ], order='life_date ASC, use_date ASC, date ASC', context=context)
         lots = stock_production_lot_obj.browse(cr, uid, lot_ids, context=context)
 
         return lots
@@ -198,9 +198,29 @@ class product_product_ext_lot(osv.Model):
     def onchange_expiration_accept_time(self, cr, uid, ids, expiration_accept_time, context=None):
         return self._onchange_times(cr, uid, ids, expiration_accept_time, 'expiration_accept_time', 'expiration_accept_time_uom', 'accept', context)
 
-    @api.one
-    def onchange_check_decimals(self, value, decimal_accuracy_class):
-        return self.product_tpml_id.onchange_check_decimals(value, decimal_accuracy_class)
+    def onchange_check_decimals(self, cr, uid, ids, value, decimal_accuracy_class, context=None):
+        ''' Checks that a given magnitude has its correct number of decimals.
+        '''
+        if context is None:
+            context = {}
+
+        # Gets the number of decimals for this class.
+        num_digits, num_digits_fraction = dp.get_precision(decimal_accuracy_class)(cr)
+
+        # Gets the actual number of digits and decimals.
+        if value:
+            d = decimal.Decimal(str(value))
+            d_tuple = d.as_tuple()
+            num_digits_actual = len(d_tuple.digits)
+            num_digits_fraction_actual = abs(d_tuple.exponent)
+
+            # Checks.
+            if (num_digits_actual > num_digits) or (num_digits_fraction_actual > num_digits_fraction):
+                return {'warning': {'title': _('Bad number of digits'),
+                                    'message': _('The field should have {0} digits, {1} of them being the fractional part.').format(num_digits, num_digits_fraction)}
+                        }
+
+        return {'value': {'value': value}}
 
     def get_expiration_time_value(self, cr, uid, kind, is_uom=False, context=None):
         if is_uom:
@@ -263,7 +283,6 @@ class product_product_ext_lot(osv.Model):
         for product in self.browse(cr, uid, ids, context=context):
 
             qty_on_reservation_quotations = 0
-
             for reservation in product.draft_sale_order_lines:
                 # The lines in the sale.order store the quantity in the UOM indicated
                 # by the sale.order. But the Quantity on Hand and all the other fields
@@ -314,7 +333,7 @@ class product_product_ext_lot(osv.Model):
         'brand': fields.char('Brand', help='The brand of the product'),
         'manufacturer_website': fields.char('Manufacturer\'s Website', help='Link to the manufacturer\'s web site.'),
 
-        'stock_prodlots': fields.related('last_inventory_id', 'line_ids', type='one2many', relation='stock.inventory.line', string='Stock report by serial number', readonly=True, domain=[('product_id', '=', 'id')]),
+        'stock_prodlots': fields.one2many('stock.report.prodlots', 'product_id', string='Stock report by serial number', readonly=True),
         'last_inventory_id': fields.function(_get_last_inventory, string="Last inventory", type='many2one', relation='stock.inventory', store=False),
 
         'product_reservation_qty': fields.function(_virtual_stock_calculation, type="float", string="Reservations (on Quotations)", readonly=True,

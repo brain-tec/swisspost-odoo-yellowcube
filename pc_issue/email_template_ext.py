@@ -18,6 +18,7 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 ##############################################################################
+
 from openerp.osv import osv, fields
 from openerp.tools.translate import _
 from openerp.addons.email_template.email_template import mako_template_env
@@ -80,6 +81,5 @@ class email_template_ext(osv.osv):
                                                                                                                                   traceback.format_exc(limit=10).replace('\n', '<br/>'),
                                                                                                                                   template.replace('<', '&lt;').replace('\n', '<br/>')), context=context)
             return u""
-
 
 # vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:

@@ -1,0 +1,497 @@
+# Translation of OpenERP Server.
+# This file contains the translation of the following modules:
+#	* pc_issue
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: OpenERP Server 7.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2016-06-15 06:53+0000\n"
+"PO-Revision-Date: 2016-06-15 06:53+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: pc_issue
+#: help:project.project,categ_id:0
+msgid "Associated category for automated creation of issues"
+msgstr "Associated category for automated creation of issues"
+
+#. module: pc_issue
+#: help:project.project,categ_ids:0
+msgid "Associated category for automated creation of issues"
+msgstr "Associated category for automated creation of issues"
+
+#. module: pc_issue
+#: field:project.task,issue_ids:0
+msgid "Associated issues"
+msgstr "Associated issues"
+
+#. module: pc_issue
+#: model:ir.model.fields,field_description:field_project_task_issue_ids
+msgid "Associated issues"
+msgstr "Associated issues"
+
+#. module: pc_issue
+#: field:project.category,project_id:0
+msgid "Associated project"
+msgstr "Associated project"
+
+#. module: pc_issue
+#: model:ir.model.fields,field_description:field_project_category_project_id
+msgid "Associated project"
+msgstr "Associated project"
+
+#. module: pc_issue
+#: model:ir.model,name:model_project_category
+msgid "Category of project's task, issue, ..."
+msgstr "Kategorie von Projekt Aufgaben, Fällen etc."
+
+#. module: pc_issue
+#: view:project.task:0
+msgid "Closed issues:"
+msgstr "Closed issues:"
+
+#. module: pc_issue
+#: view:project.issue.open_wizard:0
+msgid "Create Issue"
+msgstr "Create Issue"
+
+#. module: pc_issue
+#: view:project.issue.open_wizard:0
+msgid "Create a new Issue"
+msgstr "Create a new Issue"
+
+#. module: pc_issue
+#: model:ir.actions.server,name:action_create_issue_all
+msgid "Create issue"
+msgstr "Create issue"
+
+#. module: pc_issue
+#: field:project.issue.open_wizard,description:0
+msgid "Description"
+msgstr "Description"
+
+#. module: pc_issue
+#: model:ir.model.fields,field_description:field_project_issue_open_wizard_description
+msgid "Description"
+msgstr "Description"
+
+#. module: pc_issue
+#: model:ir.model,name:model_email_template
+msgid "Email Templates"
+msgstr "E-Mail-Vorlagen"
+
+#. module: pc_issue
+#: code:addons/pc_issue/email_template_ext.py:79
+msgid "Exception on email.template<br/><b>{0}</b>:<br/>{1}<br/>{2}"
+msgstr "Exception on email.template<br/><b>{0}</b>:<br/>{1}<br/>{2}"
+
+#. module: pc_issue
+#: selection:project.category,priority:0
+msgid "Important"
+msgstr "Important"
+
+#. module: pc_issue
+#: model:account.analytic.account,name:inventory_management_project_account_analytic_account
+msgid "Inventory Management"
+msgstr "Inventory Management"
+
+#. module: pc_issue
+#: field:project.project,categ_id:0
+msgid "Issues category"
+msgstr "Issues category"
+
+#. module: pc_issue
+#: field:project.project,categ_ids:0
+msgid "Issues category"
+msgstr "Issues category"
+
+#. module: pc_issue
+#: model:ir.model.fields,field_description:field_project_project_categ_id
+msgid "Issues category"
+msgstr "Issues category"
+
+#. module: pc_issue
+#: model:ir.model.fields,field_description:field_project_project_categ_ids
+msgid "Issues category"
+msgstr "Issues category"
+
+#. module: pc_issue
+#: view:project.task:0
+msgid "Issues"
+msgstr "Issues"
+
+#. module: pc_issue
+#: model:ir.model,name:model_log_data
+msgid "Log Data"
+msgstr "Log Data"
+
+#. module: pc_issue
+#: model:account.analytic.account,name:lot_management_project_account_analytic_account
+msgid "Lot Management"
+msgstr "Lot Management"
+
+#. module: pc_issue
+#: selection:project.category,priority:0
+msgid "Low"
+msgstr "Low"
+
+#. module: pc_issue
+#: view:project.issue.open_wizard:0
+msgid "Manage Record Issues"
+msgstr "Manage Record Issues"
+
+#. module: pc_issue
+#: field:queue.job,revision_info:0
+msgid "Manual revision"
+msgstr "Manual revision"
+
+#. module: pc_issue
+#: model:ir.model.fields,field_description:field_queue_job_revision_info
+msgid "Manual revision"
+msgstr "Manual revision"
+
+#. module: pc_issue
+#: selection:project.category,priority:0
+msgid "Medium"
+msgstr "Medium"
+
+#. module: pc_issue
+#: field:project.issue,model_id:0
+msgid "Model"
+msgstr "Modell"
+
+#. module: pc_issue
+#: model:ir.model.fields,field_description:field_project_issue_model_id
+msgid "Model"
+msgstr "Modell"
+
+#. module: pc_issue
+#: field:project.issue.open_wizard,name:0
+msgid "Name"
+msgstr "Bezeichnung"
+
+#. module: pc_issue
+#: model:ir.model.fields,field_description:field_project_issue_open_wizard_name
+msgid "Name"
+msgstr "Bezeichnung"
+
+#. module: pc_issue
+#: code:addons/pc_issue/project_issue_ext.py:187
+msgid "No task with open issues can be closed"
+msgstr "No task with open issues can be closed"
+
+#. module: pc_issue
+#: code:addons/pc_issue/project_task_ext.py:67
+msgid "No task with open issues can be closed"
+msgstr "No task with open issues can be closed"
+
+#. module: pc_issue
+#: constraint:project.issue:0
+msgid "No task with open issues can be closed"
+msgstr "No task with open issues can be closed"
+
+#. module: pc_issue
+#: constraint:project.task:0
+msgid "No task with open issues can be closed"
+msgstr "No task with open issues can be closed"
+
+#. module: pc_issue
+#: model:ir.actions.server,name:action_open_issue_all
+msgid "Open issue"
+msgstr "Open issue"
+
+#. module: pc_issue
+#: view:project.issue:0
+msgid "Open record"
+msgstr "Open record"
+
+#. module: pc_issue
+#: view:project.task:0
+msgid "Opened issues:"
+msgstr "Opened issues:"
+
+#. module: pc_issue
+#: model:account.analytic.account,name:support_project_account_analytic_account
+msgid "PC Support"
+msgstr "PC Support"
+
+#. module: pc_issue
+#: field:project.category,priority:0
+msgid "Priority"
+msgstr "Priority"
+
+#. module: pc_issue
+#: model:ir.model.fields,field_description:field_project_category_priority
+msgid "Priority"
+msgstr "Priority"
+
+#. module: pc_issue
+#: model:account.analytic.account,name:procurement_project_account_analytic_account
+msgid "Procurements"
+msgstr "Procurements"
+
+#. module: pc_issue
+#: model:ir.model,name:model_project_issue
+msgid "Project Issue"
+msgstr "Projektproblem"
+
+#. module: pc_issue
+#: model:ir.model,name:model_project_project
+msgid "Project"
+msgstr "Projekt"
+
+#. module: pc_issue
+#: model:ir.model,name:model_queue_job
+msgid "Queue Job"
+msgstr "Auftrag neu einstellen"
+
+#. module: pc_issue
+#: field:project.issue.open_wizard,issues_ids:0
+msgid "Related issues"
+msgstr "Related issues"
+
+#. module: pc_issue
+#: model:ir.model.fields,field_description:field_project_issue_open_wizard_issues_ids
+msgid "Related issues"
+msgstr "Related issues"
+
+#. module: pc_issue
+#: field:project.issue,res_id:0
+msgid "Resource ID"
+msgstr "Resource ID"
+
+#. module: pc_issue
+#: model:ir.model.fields,field_description:field_project_issue_res_id
+msgid "Resource ID"
+msgstr "Resource ID"
+
+#. module: pc_issue
+#: code:addons/pc_issue/sale_exception_ext.py:54
+msgid "Sale exception found.<br/><b>{0}</b>: {1}"
+msgstr "Sale exception found.<br/><b>{0}</b>: {1}"
+
+#. module: pc_issue
+#: model:ir.model,name:model_sale_order
+msgid "Sales Order"
+msgstr "Verkaufsauftrag"
+
+#. module: pc_issue
+#: model:account.analytic.account,name:error_project_account_analytic_account
+msgid "Software errors"
+msgstr "Software errors"
+
+#. module: pc_issue
+#: model:project.task.type,name:issue_done
+msgid "Support Done"
+msgstr "Support Done"
+
+#. module: pc_issue
+#: model:project.task.type,name:issue_closed
+msgid "Support Finished"
+msgstr "Support Finished"
+
+#. module: pc_issue
+#: model:project.task.type,name:issue_new
+msgid "Support New"
+msgstr "Support New"
+
+#. module: pc_issue
+#: model:project.task.type,name:issue_open
+msgid "Support Open"
+msgstr "Support Open"
+
+#. module: pc_issue
+#: field:project.issue.open_wizard,tags:0
+msgid "Tags"
+msgstr "Stichwörter"
+
+#. module: pc_issue
+#: model:ir.model.fields,field_description:field_project_issue_open_wizard_tags
+msgid "Tags"
+msgstr "Stichwörter"
+
+#. module: pc_issue
+#: view:project.category:0
+msgid "Tags"
+msgstr "Stichwörter"
+
+#. module: pc_issue
+#: view:project.project:0
+msgid "Tags:"
+msgstr "Tags:"
+
+#. module: pc_issue
+#: model:ir.model,name:model_project_task_type
+msgid "Task Stage"
+msgstr "Aufgabenstufe"
+
+#. module: pc_issue
+#: model:ir.model,name:model_project_task
+msgid "Task"
+msgstr "Aufgabe"
+
+#. module: pc_issue
+#: view:project.issue:0
+msgid "Task"
+msgstr "Aufgabe"
+
+#. module: pc_issue
+#: model:account.analytic.account,name:user_generated_project_account_analytic_account
+msgid "User generated Issues"
+msgstr "User generated Issues"
+
+#. module: pc_issue
+#: selection:project.category,priority:0
+msgid "Very Low"
+msgstr "Very Low"
+
+#. module: pc_issue
+#: selection:project.category,priority:0
+msgid "Very important"
+msgstr "Very important"
+
+#. module: pc_issue
+#: model:account.analytic.account,name:warehouse_delivery_project_account_analytic_account
+msgid "Warehouse Delivery"
+msgstr "Warehouse Delivery"
+
+#. module: pc_issue
+#: model:account.analytic.account,name:webshop_sales_project_account_analytic_account
+msgid "WebShop/Sales Process"
+msgstr "WebShop/Sales Process"
+
+#. module: pc_issue
+#: model:project.category,name:back_order_max_open_age_category
+msgid "backorder-order-max-open-age"
+msgstr "backorder-order-max-open-age"
+
+#. module: pc_issue
+#: model:project.category,name:delivery_order_max_open_age_category
+msgid "delivery-order-max-open-age"
+msgstr "delivery-order-max-open-age"
+
+#. module: pc_issue
+#: model:project.category,name:error_category
+msgid "error"
+msgstr "error"
+
+#. module: pc_issue
+#: model:project.category,name:followup_category
+msgid "followup"
+msgstr "followup"
+
+#. module: pc_issue
+#: model:project.category,name:inventory_category
+msgid "inventory"
+msgstr "inventory"
+
+#. module: pc_issue
+#: model:ir.model,name:model_ir_values
+msgid "ir.values"
+msgstr "ir.values"
+
+#. module: pc_issue
+#: model:project.category,name:lot_category
+msgid "lot"
+msgstr "lot"
+
+#. module: pc_issue
+#: model:project.category,name:lot_production_date_category
+msgid "lot-production-date"
+msgstr "lot-production-date"
+
+#. module: pc_issue
+#: view:project.issue.open_wizard:0
+msgid "or Open an existing Issue"
+msgstr "or Open an existing Issue"
+
+#. module: pc_issue
+#: model:project.category,name:procurements_category
+msgid "procurements"
+msgstr "procurements"
+
+#. module: pc_issue
+#: model:ir.model,name:model_project_issue_open_wizard
+msgid "project.issue.open_wizard"
+msgstr "project.issue.open_wizard"
+
+#. module: pc_issue
+#: model:project.category,name:purchase_order_category
+msgid "purchase.order"
+msgstr "purchase.order"
+
+#. module: pc_issue
+#: model:project.category,name:sale_category
+msgid "sale"
+msgstr "sale"
+
+#. module: pc_issue
+#: model:project.category,name:sale_exception_category
+msgid "sale-exception"
+msgstr "sale-exception"
+
+#. module: pc_issue
+#: field:project.issue.open_wizard,model_name:0
+msgid "unknown"
+msgstr "unknown"
+
+#. module: pc_issue
+#: field:project.issue.open_wizard,res_id:0
+msgid "unknown"
+msgstr "unknown"
+
+#. module: pc_issue
+#: field:project.task,issue_closed:0
+msgid "unknown"
+msgstr "unknown"
+
+#. module: pc_issue
+#: field:project.task,issue_opened:0
+msgid "unknown"
+msgstr "unknown"
+
+#. module: pc_issue
+#: model:ir.model.fields,field_description:field_project_issue_open_wizard_model_name
+msgid "unknown"
+msgstr "unknown"
+
+#. module: pc_issue
+#: model:ir.model.fields,field_description:field_project_issue_open_wizard_res_id
+msgid "unknown"
+msgstr "unknown"
+
+#. module: pc_issue
+#: model:ir.model.fields,field_description:field_project_task_issue_closed
+msgid "unknown"
+msgstr "unknown"
+
+#. module: pc_issue
+#: model:ir.model.fields,field_description:field_project_task_issue_opened
+msgid "unknown"
+msgstr "unknown"
+
+#. module: pc_issue
+#: model:project.category,name:user_generated_category
+msgid "user-generated"
+msgstr "user-generated"
+
+#. module: pc_issue
+#: model:project.category,name:warehouse_category
+msgid "warehouse"
+msgstr "warehouse"
+
+#. module: pc_issue
+#: model:project.category,name:warehouse_error_category
+msgid "warehouse-error"
+msgstr "warehouse-error"
+
+#. module: pc_issue
+#: model:project.category,name:webshop_category
+msgid "webshop"
+msgstr "webshop"
+

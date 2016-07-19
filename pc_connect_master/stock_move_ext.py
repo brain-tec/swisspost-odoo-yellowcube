@@ -35,8 +35,8 @@ class stock_move_ext(osv.Model):
     def search(self, cr, uid, args, offset=0, limit=None, order=None, context=None, count=False):
         return filters.search(self, cr, uid, args, stock_move_ext, offset=offset, limit=limit, order=order, context=context, count=count)
 
-    def read_group(self, cr, uid, domain, fields, groupby, offset=0, limit=None, context=None, orderby=False, lazy=True):
-        return filters.read_group(self, cr, uid, domain, fields, groupby, stock_move_ext, offset=offset, limit=limit, context=context, orderby=orderby, lazy=lazy)
+    def read_group(self, cr, uid, domain, fields, groupby, offset=0, limit=None, context=None, orderby=False):
+        return filters.read_group(self, cr, uid, domain, fields, groupby, stock_move_ext, offset=offset, limit=limit, context=context, orderby=orderby)
     # END OF THE CODE WHICH DEFINES THE NEW FILTERS TO ADD TO THE OBJECT.
 
     def _get_partner_title(self, cr, uid, ids, field_name, args, context=None):
@@ -67,11 +67,11 @@ class stock_move_ext(osv.Model):
         'product_id_name': fields.related('product_id', 'name', type='char', readonly=True, size=64,
                                           relation='stock.move.product_id',
                                           string='Name of the Product', store=True),
-        'lot_id_name': fields.related('restrict_lot_id', 'name', type='char', readonly=True, size=64,
-                                      relation='stock.move.lot_id', string='Serial number',
-                                      store=True),
+        'prodlot_id_name': fields.related('prodlot_id', 'name', type='char', readonly=True, size=64,
+                                          relation='stock.move.prodlot_id', string='Serial number',
+                                          store=True),
         'picking_id_name': fields.related('picking_id', 'name', type='char', readonly=True, size=64,
-                                          relation='stock.move.lot_id', string='Reference'),
+                                          relation='stock.move.prodlot_id', string='Reference'),
         'location_id_name': fields.related('location_id', 'name', type='char', readonly=True,
                                            size=64, relation='stock.move.location_id',
                                            string='Source Location'),
@@ -125,3 +125,5 @@ class stock_move_ext(osv.Model):
                                         size=30, relation='stock.move.partner_id',
                                         string="Partner Email"),
     }
+
+# vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:

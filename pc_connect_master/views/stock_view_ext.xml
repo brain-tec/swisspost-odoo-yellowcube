@@ -1,13 +1,55 @@
 <?xml version="1.0" encoding="utf-8"?>
 <openerp>
     <data>
+
+        <record id="view_picking_in_form_ext_2" model="ir.ui.view">
+            <field name="name">view_picking_in_form_ext_2</field>
+            <field name="model">stock.picking.in</field>
+            <field name="inherit_id" ref="stock.view_picking_in_form"/>
+            <field name="priority" eval="500" />
+            <field name="arch" type="xml">
+                <field name="date_done" position="attributes">
+                    <attribute name="groups">pc_connect_master.pc_client</attribute>
+                </field>
+                <button name="action_process" position="attributes">
+                    <attribute name="groups">base.group_user</attribute>
+                </button>
+                <button string="Return Products" position="replace">
+                    <button name="%(stock.act_stock_return_picking)d" string="Return Products"
+                        states="done" type="action" groups="base.group_user" />
+                </button>
+            </field>
+        </record>
+
+        <record id="view_picking_out_form_ext" model="ir.ui.view">
+            <field name="name">view_picking_out_form_ext</field>
+            <field name="model">stock.picking.out</field>
+            <field name="inherit_id" ref="stock.view_picking_out_form" />
+            <field name="priority" eval="500" />
+            <field name="arch" type="xml">
+                <field name="date_done" position="attributes">
+                    <attribute name="groups">pc_connect_master.pc_client</attribute>
+                </field>
+                <field name="date_done" position="after">
+                    <field name="do_not_send_to_warehouse" />
+                </field>
+                <button name="action_process" position="attributes">
+                    <attribute name="groups">base.group_user</attribute>
+                </button>
+                <button string="Return Products" position="replace">
+                    <button name="%(stock.act_stock_return_picking)d" string="Return Products"
+                        states="done" type="action" groups="base.group_user" />
+                </button>
+            </field>
+        </record>
+
         <record model="ir.ui.view" id="search_product_lot_filter_ext">
             <field name="name">Production Lots Filter Ext</field>
             <field name="model">stock.production.lot</field>
             <field name="inherit_id" ref="stock.search_product_lot_filter" />
             <field name="arch" type="xml">
 
-                <search position="inside">
+                <filter name="available" position="after">
                     <filter string="Removal Date Reached"
                         domain="['|',
                                  ('removal_date','&lt;=',context_today().strftime('%%Y-%%m-%%d')),
@@ -25,7 +67,7 @@
                         help="Lots with an alert date which is in the past."
                         icon="terp-personal"
                         name="alert_date_filter" />
-                </search>
+                </filter>
 
             </field>
         </record>

@@ -38,7 +38,7 @@ YellowCube connections must:
 3) Define the URL into the SOAP endpoint
 4) Have a positive value for the ART periodicy
 5) Fill in 'YC Depositor No', 'YC PlantID', 'YC Sender', 'YC SupplierNo', 'YC PartnerNo', 'YC OperatingMode'
-6) Set all security parameters, or empty Cert and Key paths
+7) Set all security parameters, or empty Cert and Key paths
 """
 
 

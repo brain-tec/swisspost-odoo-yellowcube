@@ -18,46 +18,53 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 ##############################################################################
-from openerp import fields, models, api
+
+from osv import osv, fields
 from datetime import datetime
 from openerp.tools import DEFAULT_SERVER_DATETIME_FORMAT
 
 
-class ir_cron_punchcard(models.Model):
+class ir_cron_punchcard(osv.Model):
     _name = 'ir.cron.punchcard'
     _rec_name = 'create_date'
     _order = 'create_date DESC'
 
-    @api.one
-    def unlink(self):
-        self.active = False
+    def unlink(self, cr, uid, ids, context=None):
+        self.write(cr, uid, ids, {'active': False}, context=context)
 
-    @api.multi
-    def entry_exists_after_or_at(self, ir_cron_id, today_date, target_hour):
+    def entry_exists_after_or_at(self, cr, uid, ids, ir_cron_id, today_date, target_hour, context=None):
         ''' Checks if, for the given scheduler, exists an entry for today which has an
             hour which is greater or equal than the provided one (target_hour)
         '''
+        if context is None:
+            context = {}
 
         # Sets the timezone to that indicated in the configuration.
-        config = self.env['configuration.data'].get()
-        context = self.env.context.copy()
+        config = self.pool.get('configuration.data').get(cr, uid, [])
         context['tz'] = config.support_timezone
 
-        entries_today = self.with_context(context).search([('ir_cron', '=', ir_cron_id),
-                                                           ('execution_day', '>=', today_date),
-                                                           ], order='create_date DESC', context=context)
+        entries_today_ids = self.search(cr, uid, [('ir_cron', '=', ir_cron_id),
+                                                  ('execution_day', '>=', today_date),
+                                                  ], order='create_date DESC', context=context)
 
-        for entry in entries_today:
+        for entry in self.browse(cr, uid, entries_today_ids, context=context):
             create_time_local = fields.datetime.context_timestamp(cr, uid, datetime.strptime(entry.create_date, DEFAULT_SERVER_DATETIME_FORMAT), context)
             if create_time_local.time() >= target_hour:
                 return True
 
         return False
 
-    ir_cron = fields.Integer('Scheduler', required=True, readonly=True)  # fields.many2one('ir.cron', 'Scheduler', required=True, readonly=True),
-    create_date = fields.Datetime('Create date', required=True, readonly=True)
-    create_uid = fields.Many2one(comodel_name='res.users', string='Executer', required=True, readonly=True)
-    execution_day = fields.Date('Execution day', required=True, readonly=True, default=lambda *args: datetime.now())
-    active = fields.Boolean('Active?', default=True)
+    _columns = {
+        'ir_cron': fields.integer('Scheduler', required=True, readonly=True),  # fields.many2one('ir.cron', 'Scheduler', required=True, readonly=True),
+        'create_date': fields.datetime('Create date', require=True, readonly=True),
+        'execution_day': fields.date('Execution day', require=True, readonly=True),
+        'create_uid': fields.many2one('res.users', 'Executer', required=True, readonly=True),
+        'active': fields.boolean('Active?')
+    }
+
+    _defaults = {
+        'execution_day': lambda *args: datetime.now(),
+        'active': True,
+    }
 
 # vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:

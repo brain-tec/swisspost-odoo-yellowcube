@@ -22,6 +22,12 @@
 			<field name="lot_scrapping_id" ref="location_YC_YSCR" />
 		</record>
 
+		<record id="shop_yc" model="sale.shop">
+			<field name="name">YC Shop</field>
+			<field name="warehouse_id" ref="warehouse_YC" />
+			<field name="payment_default_id" ref="account.account_payment_term" />
+		</record>
+
 		<record id="yc_delivery_test" model="delivery.carrier">
 			<field name="name">PostPac Economy</field>
 			<field name="yc_basic_shipping">ECO</field>

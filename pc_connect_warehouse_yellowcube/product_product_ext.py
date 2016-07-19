@@ -20,15 +20,13 @@
 ##############################################################################
 from openerp.osv import osv, fields, orm
 from openerp.tools.translate import _
-import logging
 from xml_abstract_factory import get_factory
-#from yellowcube_bar_xml_factory import get_list_of_products_missing_in_bar_for_long_time
-#from yellowcube_bar_xml_factory import get_num_days_product_not_in_bar
-logger = logging.getLogger(__name__)
 from xml_abstract_factory import deprecated
 import datetime
 from openerp.tools import DEFAULT_SERVER_DATETIME_FORMAT
 from openerp.addons.pc_connect_master.utilities.date_utilities import get_number_of_natural_days
+import logging
+logger = logging.getLogger(__name__)
 
 
 class product_product_ext(osv.Model):
@@ -63,7 +61,7 @@ class product_product_ext(osv.Model):
         languages = [x[0] for x in cr.fetchall()]
 
         for product in self.browse(cr, uid, ids, context=context):
-            art_factory = get_factory(self.env, "art", context=context)
+            art_factory = get_factory([self.pool, cr, uid], "art", context=context)
             art_factory._generate_article_element(product, languages, raise_error=True)
 
         raise osv.except_osv('XSD validation', 'Everything was fine.')

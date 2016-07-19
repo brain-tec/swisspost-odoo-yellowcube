@@ -18,8 +18,8 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 ##############################################################################
+
 from openerp.osv import osv, fields
-from openerp import api
 from openerp.tools.translate import _
 from openerp.tools.safe_eval import safe_eval
 
@@ -60,17 +60,5 @@ class queue_job_ext(osv.Model):
             'type': 'ir.actions.act_window',
             'target': None,
         }
-
-
-# class JobChannel(osv.Model):
-#     _inherit = 'queue.job.channel'
-#
-#     @api.model
-#     def name_get(self, cr, uid, ids, context):
-#         these = self.browse(cr, uid, ids, context)
-#         result = []
-#         for record in these:
-#             result.append((record.id, record.complete_name))
-#         return result
 
 # vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:

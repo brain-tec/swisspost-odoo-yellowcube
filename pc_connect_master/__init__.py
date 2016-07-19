@@ -20,11 +20,8 @@
 ##############################################################################
 
 import sys
-from openerp.addons import base
+import base
 sys.modules['addons.base'] = base
-
-from openerp.release import version_info
-V8 = True if version_info[0] > 7 else False
 
 import account_invoice_ext
 import company_support_config
@@ -38,15 +35,13 @@ import ir_cron_punchcard
 import ir_filters_ext
 import mail_thread_ext
 import payment_method_ext
-if V8:
-    import procurement_group_ext
-    import product_pricelist_ext
 import product_product_ext
 import product_template_ext
 import product_uom_ext
 import purchase_order_ext
 import queue_job_ext
 import queue_worker_ext
+import report_file_exporter
 import res_company_ext
 import res_partner_bank_ext
 import res_partner_ext
@@ -55,9 +50,8 @@ import sale_order_ext
 import sale_order_line_ext
 import stock_move_ext
 import stock_picking_ext
-if not V8:
-    import stock_picking_in_ext
-    import stock_picking_out_ext
+import stock_picking_in_ext
+import stock_picking_out_ext
 import stock_production_lot_ext
 import stock_warehouse_ext
 import utilities

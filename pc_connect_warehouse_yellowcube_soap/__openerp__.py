@@ -24,13 +24,14 @@
 
     "version": "1.0",
 
-    "description": "Provides an interface to create and manage connections to YellowCube using the SOAP service",
+    "description": "Provides an interface to create and manage connections to YellowCube",
 
     "author": "Brain-tec",
 
     "category": "",
 
-    'depends': ['pc_connect_warehouse_yellowcube',
+    'depends': ['pc_connect_master',
+                'pc_connect_warehouse_yellowcube',
                 'pc_config',
                 ],
 

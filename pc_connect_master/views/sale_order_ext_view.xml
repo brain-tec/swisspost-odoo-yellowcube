@@ -49,11 +49,7 @@
 
                 <!-- Adds the tab for the support information. -->
                 <notebook position="inside">
-                    <page string="Help &amp; Support">
-                        <group string="Debug info" colspan='4' groups="base.group_no_one">
-                            <field name="procurement_group_id" readonly="1"/>
-                        </group>
-                    </page>
+                    <page string="Help &amp; Support" />
                 </notebook>
 
             </field>

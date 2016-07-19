@@ -21,13 +21,9 @@
 
 {
     "name": "SwissPost YellowCube Odoo / Connect Transport",
-
     "version": "1.0",
-
     "description": "Provides an abstract interface to create transport-related modules (e.g. SOAP, SFTP, etc.)",
-
     "author": "Brain-tec",
-
     "category": "",
 
     'depends': [],

@@ -92,7 +92,7 @@ def search(self, cr, uid, args, super_class, offset=0, limit=None, order=None, c
     return super(super_class, self).search(cr, uid, args=args, offset=offset, limit=limit, order=order, context=context, count=count)
 
 
-def read_group(self, cr, uid, domain, fields, groupby, super_class, offset=0, limit=None, context=None, orderby=False, lazy=True):
+def read_group(self, cr, uid, domain, fields, groupby, super_class, offset=0, limit=None, context=None, orderby=False):
     ''' Adds the possibility to group when using the three new filters, added in addition to the ones defined in the XML.
         - Search for the instances done in this week.
         - Search for the instances done in this quarter.
@@ -106,6 +106,6 @@ def read_group(self, cr, uid, domain, fields, groupby, super_class, offset=0, li
         domain = self._replace_quarter_placeholders(cr, uid, domain, context=context)
     elif ('delivery_to_customer' in context):
         domain = self._replace_delivery_to_customer_placeholders(cr, uid, domain, context=context)
-    return super(super_class, self).read_group(cr, uid, domain, fields, groupby, offset, limit, context, orderby, lazy)
+    return super(super_class, self).read_group(cr, uid, domain, fields, groupby, offset, limit, context, orderby)
 
 # vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:

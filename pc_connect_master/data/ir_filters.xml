@@ -137,11 +137,11 @@
 			</field>
 		</record>
 
-		<!-- stock.picking -->
+		<!-- stock.picking.out -->
 		<!-- domain -->
- 		<record id="ir_filters_stock_picking_this_month" model="ir.filters">
+		<record id="ir_filters_stock_picking_out_this_month" model="ir.filters">
 			<field name="name">Delivery Orders from this month</field>
-			<field name="model_id">stock.picking</field>
+			<field name="model_id">stock.picking.out</field>
 			<field name="user_id" />
 			<field name="domain">
 				['&amp;',
@@ -150,9 +150,9 @@
 				]
 			</field>
 		</record>
- 		<record id="ir_filters_stock_picking_last_month" model="ir.filters">
+		<record id="ir_filters_stock_picking_out_last_month" model="ir.filters">
 			<field name="name">Delivery Orders from last month</field>
-			<field name="model_id">stock.picking</field>
+			<field name="model_id">stock.picking.out</field>
 			<field name="user_id" />
 			<field name="domain">
 				['&amp;',
@@ -161,9 +161,9 @@
 				]
 			</field>
 		</record>
- 		<record id="ir_filters_stock_picking_this_year" model="ir.filters">
+		<record id="ir_filters_stock_picking_out_this_year" model="ir.filters">
 			<field name="name">Delivery Orders from this year</field>
-			<field name="model_id">stock.picking</field>
+			<field name="model_id">stock.picking.out</field>
 			<field name="user_id" />
 			<field name="domain">
 				['&amp;',
@@ -172,9 +172,9 @@
 				]
 			</field>
 		</record>
- 		<record id="ir_filters_stock_picking_last_year" model="ir.filters">
+		<record id="ir_filters_stock_picking_out_last_year" model="ir.filters">
 			<field name="name">Delivery Orders from last year</field>
-			<field name="model_id">stock.picking</field>
+			<field name="model_id">stock.picking.out</field>
 			<field name="user_id" />
 			<field name="domain">
 				['&amp;',
@@ -185,9 +185,9 @@
 		</record>
 
 		<!-- groupby -->
- 		<record id="ir_filters_stock_picking_by_state" model="ir.filters">
+		<record id="ir_filters_stock_picking_out_by_state" model="ir.filters">
 			<field name="name">Delivery Orders by State</field>
-			<field name="model_id">stock.picking</field>
+			<field name="model_id">stock.picking.out</field>
 			<field name="user_id" />
 			<field name="context">
 				{'group_by': ['state']}

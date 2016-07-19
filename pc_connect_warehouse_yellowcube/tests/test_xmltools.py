@@ -20,8 +20,6 @@
 ##############################################################################
 from openerp.osv import osv, fields
 from openerp.tools.translate import _
-import logging
-logger = logging.getLogger(__name__)
 from openerp.tests import common
 from ..xml_abstract_factory import get_factory
 from datetime import datetime
@@ -30,6 +28,8 @@ import unittest2
 import re
 from lxml import etree
 from urllib import urlopen
+import logging
+logger = logging.getLogger(__name__)
 
 
 class test_xmltools(common.TransactionCase):

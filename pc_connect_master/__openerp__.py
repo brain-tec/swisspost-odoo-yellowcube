@@ -63,7 +63,8 @@
                 'mail',
                 ],
 
-    "data": ['data/decimal_precision_ext.xml',
+    "data": ['data/clocking_support.xml',
+             'data/decimal_precision_ext.xml',
              'data/default_configuration.xml',
              'data/email_template.xml',
              'data/init_invoice_report.xml',
@@ -107,8 +108,6 @@
 
     "demo": ['demo/configuration_data.xml',
              ],
-
-    "test": [],
 
     "installable": True,
 

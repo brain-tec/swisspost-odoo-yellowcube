@@ -19,7 +19,6 @@
                         <field name="mapping_bur_transactiontypes_ids" nolabel="1" colspan="2" cols="2" />
                     </group>
                 </page>
-
 		    </field>
 		</record>
 

@@ -22,8 +22,6 @@
 import pytz
 from openerp.osv import osv, fields, orm
 from openerp.tools.translate import _
-import logging
-logger = logging.getLogger(__name__)
 
 
 class configuration_data(osv.Model):
@@ -41,17 +39,11 @@ class configuration_data(osv.Model):
     def raise_error(self):
         raise orm.except_orm(_("Can't touch this"), _("You can't create/duplicate/remove this record"))
 
-#     def default_get(self, cr, uid, fields, context=None):
-#         self.raise_error()
-
     def unlink(self, cr, uid, ids, context=None):
         self.raise_error()
 
     def copy(self, cr, uid, ids, defaults, context=None):
         self.raise_error()
-
-#     def create(self, cr, uid, values, context=None):
-#         self.raise_error()
 
     def get(self, cr, uid, ids, context=None):
         return self.pool.get('ir.model.data').get_object(cr, uid, 'pc_config', 'default_configuration_data', context=context)

@@ -37,6 +37,8 @@ class stock_picking_config(osv.Model):
             the logic is the same.
         '''
         config = self.get(cr, uid, [], context=context)
+        if not config.stock_picking_out_max_open_age:
+            return True
 
         issue_obj = self.pool.get('project.issue')
         stock_picking_obj = self.pool.get('stock.picking')

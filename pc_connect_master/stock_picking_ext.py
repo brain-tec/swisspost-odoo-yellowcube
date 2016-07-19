@@ -20,76 +20,15 @@
 ##############################################################################
 
 from openerp.osv import osv, fields, orm
-import logging
-from openerp.addons.pc_connect_master.utilities.misc import format_exception
+from utilities.misc import format_exception
 from openerp.tools.translate import _
 from openerp.tools import DEFAULT_SERVER_DATETIME_FORMAT
-from openerp import api
+import logging
 logger = logging.getLogger(__name__)
 
 
 class stock_picking_ext(osv.Model):
     _inherit = 'stock.picking'
-
-    def _get_purchase_id(self, cr, uid, ids, name, args, context=None):
-        res = {}
-        for picking in self.browse(cr, uid, ids, context=context):
-            res[picking.id] = False
-            query = """
-            SELECT po.id FROM stock_picking p, stock_move m, purchase_order_line pol, purchase_order po
-            WHERE po.id = pol.order_id and pol.id = m.purchase_line_id and m.picking_id = p.id and picking_id = %s;"""
-            cr.execute(query, (picking.id, ))
-            rows = cr.fetchall()
-            if rows:
-                res[picking.id] = rows[0][0]
-        return res
-
-    def _purchase_id_related_search(self, cr, uid, model_again, field_name, criterion, context):
-        new_domain = []
-        for part in criterion:
-            if isinstance(part, tuple) and part[0] == 'purchase_id':
-                purchase_ids = self.pool['purchase.order'].search(cr, uid, [('id', part[1], part[2])], context=context)
-                new_ids = False
-                if purchase_ids:
-                    query = """
-                    SELECT p.id
-                    FROM
-                        stock_picking p,
-                        stock_move m,
-                        purchase_order_line pol,
-                        purchase_order po
-                    WHERE
-                        po.id = pol.order_id
-                        and pol.id = m.purchase_line_id
-                        and m.picking_id = p.id
-                        and po.id in %s;"""
-                    cr.execute(query, (tuple(purchase_ids), ))
-                    new_ids = [x[0] for x in cr.fetchall()]
-                new_domain.append(('id', 'in', new_ids or [0]))
-            else:
-                new_domain.append(part)
-        return new_domain
-
-    def _sale_id_related_search(self, cr, uid, model_again, field_name, criterion, context):
-        new_domain = []
-        for part in criterion:
-            if isinstance(part, tuple) and part[0] == 'sale_id':
-                sale_ids = self.pool['sale.order'].search(cr, uid, [('id', part[1], part[2])], context=context)
-                new_ids = False
-                if sale_ids:
-                    query = """
-                    select stock_picking.id
-                    from stock_picking
-                    inner join sale_order
-                    on stock_picking.group_id=sale_order.procurement_group_id
-                    where sale_order.id in ({0});
-                    """.format(','.join(map(str,  sale_ids)))
-                    cr.execute(query)
-                    new_ids = [x[0] for x in cr.fetchall()]
-                new_domain.append(('id', 'in', new_ids or [0]))
-            else:
-                new_domain.append(part)
-        return new_domain
 
     def is_the_only_picking(self, cr, uid, ids, context=None):
         ''' It returns whether this picking is the only one associated to
@@ -181,13 +120,15 @@ class stock_picking_ext(osv.Model):
             # which means that we need to split it up into another stock.move.
             first_move_id = None
 
-            # We get the quantity in the unit of the product.
-            # The quantity on the lots (in v8) is retrieved also on the UOM of
+            # We get the quantity in the base unit of the product, which may be different
+            # than the quantity indicated in the stock.move (e.g. it may be 1 dozen which means
+            # 12 units of a product). The quantity on the lots is retrieved also on the base UOM of
             # the product. That is why we do it this way: in order to ease the comparison.
-            quantity_to_move = stock_move.product_qty  # This (in v8) converts the quantity in the UOM of the stock.move to the UOM of the product.
+            base_uom = product.get_base_uom()
+            quantity_to_move = product_uom_obj._compute_qty(cr, uid, stock_move.product_uom.id, stock_move.product_qty, base_uom.id)
 
             # If we must make use of lots, we use them.
-            if product.track_all:
+            if product.track_production:
                 # Gets the lots available for this product, sorted by its use date.
                 # The product may not make use of lots, but if it does then we use them.
                 lots = product.get_lots_available()
@@ -214,19 +155,19 @@ class stock_picking_ext(osv.Model):
 
                         # We transform the UOM from the base one that we have used to do the calculus to the same one
                         # which was on the original stock move.
-                        new_move_qty = product_uom_obj._compute_qty(cr, uid, stock_move.product_id.uom_id.id, quantity_to_substract_from_lot, stock_move.product_uom.id)
+                        new_move_qty = product_uom_obj._compute_qty(cr, uid, base_uom.id, quantity_to_substract_from_lot, stock_move.product_uom.id)
 
                         # If it's the first move, we reuse the line; if not, we create a new one.
                         if first_move_id is None:  # It's the first move.
-                            stock_move.write({'lot_ids': [(6, False, lot.id)],
-                                              'product_uom_qty': new_move_qty,
+                            stock_move.write({'prodlot_id': lot.id,
+                                              'product_qty': new_move_qty,
                                               })
                             first_move_id = stock_move.id
                             stock_moves_ids.append(first_move_id)
 
                         else:  # It's not the first move, thus we create another one.
-                            next_move_id = stock_move_obj.copy(cr, uid, first_move_id, {'lot_ids': [(6, False, lot.id)],
-                                                                                        'product_uom_qty': new_move_qty,
+                            next_move_id = stock_move_obj.copy(cr, uid, first_move_id, {'prodlot_id': lot.id,
+                                                                                        'product_qty': new_move_qty,
                                                                                         }, context=context)
                             stock_moves_ids.append(next_move_id)
 
@@ -244,9 +185,8 @@ class stock_picking_ext(osv.Model):
                     errors.append(error_message)
 
             else:  # if not product.track_production, then we just make use the quantity on hand without paying attention to lots.
-                move_qty = product_uom_obj._compute_qty(cr, uid, stock_move.product_id.uom_id.id, quantity_to_move, stock_move.product_uom.id)
-                quantity_moved = move_qty
-                stock_move.write({'product_uom_qty': move_qty,
+                move_qty = product_uom_obj._compute_qty(cr, uid, base_uom.id, quantity_to_move, stock_move.product_uom.id)
+                stock_move.write({'product_qty': move_qty,
                                   })
                 stock_moves_ids.append(stock_move.id)
 
@@ -311,15 +251,6 @@ class stock_picking_ext(osv.Model):
         # even if it's going to be used only on the automation, since bulk freight in particular is used
         # outside the automation, so in the future packages may be needed outside it also.
         'uses_bulkfreight': fields.boolean('Picking Uses Bulk Freight?'),
-
-        'purchase_id': fields.function(lambda self, *args, **kargs: self._get_purchase_id(*args, **kargs),
-                                       type="many2one", relation="purchase.order",
-                                       string="Purchase Order", store=False,
-                                       fnct_search=lambda self, *args, **kargs: self._purchase_id_related_search(*args, **kargs)),
-        'sale_id': fields.function(lambda self, *args, **kargs: self._get_sale_id(*args, **kargs),
-                                   type="many2one", relation="sale.order",
-                                   string="Sale Order", store=False,
-                                   fnct_search=lambda self, *args, **kargs: self._sale_id_related_search(*args, **kargs)),
     }
 
     _defaults = {

@@ -1,0 +1,23 @@
+<openerp>
+    <data noupdate="1">
+
+        <record id="pc_config.default_configuration_data" model="configuration.data">
+            <!-- BE CAREFUL!!! Since Odoo 7.0 does not have field.time, then field.float has to be used instead,
+                 in combination with the widget time_widget so that they are displayed using the usual HH:MM format.
+                 However, times are stored internally as a float, so for example 8.00 is 8:00h., but 8.50 is 8:30h. -->
+            <field name="support_start_time">8.00</field>
+            <field name="support_soft_end_time">16.00</field>
+            <field name="support_end_time">17.00</field>
+            <field name="support_timezone">Europe/Zurich</field>
+
+            <field name="support_open_monday" eval="True" />
+            <field name="support_open_tuesday" eval="True" />
+            <field name="support_open_wednesday" eval="True" />
+            <field name="support_open_thursday" eval="True" />
+            <field name="support_open_friday" eval="True" />
+            <field name="support_open_saturday" eval="False" />
+            <field name="support_open_sunday" eval="False" />
+        </record>
+
+    </data>
+</openerp>

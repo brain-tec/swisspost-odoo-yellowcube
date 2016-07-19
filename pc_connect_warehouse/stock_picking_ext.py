@@ -18,17 +18,17 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 ##############################################################################
-from openerp.osv import osv
+
+from openerp.osv import osv, fields
 from openerp.tools.translate import _
-import logging
 from stock_event import check_all_events, EVENT_STATE_CANCEL
 from openerp import SUPERUSER_ID
 from openerp.addons.connector.queue.job import job, related_action
 from openerp.addons.connector.session import ConnectorSession
 from datetime import datetime, timedelta
 from openerp.addons.pc_connect_master.utilities.date_utilities import get_number_of_natural_days
+import logging
 logger = logging.getLogger(__name__)
-from openerp import api, fields
 
 
 @job
@@ -59,10 +59,31 @@ def _check_partly_fullfilment_alarm_wait(session, model_name, record_id):
     return ret
 
 
+class stock_picking_in_ext(osv.Model):
+    _inherit = 'stock.picking.in'
+
+    def check_events_on_stock_picking_in(self, cr, uid, ids):
+        return self.pool['stock.picking'].check_events_on_stock_picking(cr, uid, ids, context={'active_model': 'stock.picking.in'})
+
+    _constraints = [
+        (check_events_on_stock_picking_in, 'check of events on this item', []),
+    ]
+
+
+class stock_picking_out_ext(osv.Model):
+    _inherit = 'stock.picking.out'
+
+    def check_events_on_stock_picking_out(self, cr, uid, ids):
+        return self.pool['stock.picking'].check_events_on_stock_picking(cr, uid, ids, context={'active_model': 'stock.picking.out'})
+
+    _constraints = [
+        (check_events_on_stock_picking_out, 'check of events on this item', []),
+    ]
+
+
 class stock_picking_ext(osv.Model):
     _inherit = 'stock.picking'
 
-    @api.v7
     def create(self, cr, uid, vals, context=None):
         if context is None:
             context = {}
@@ -70,13 +91,13 @@ class stock_picking_ext(osv.Model):
         self.check_events_on_stock_picking(cr, uid, [ret])
         return ret
 
-    @api.multi
-    def write(self, vals):
-        super(stock_picking_ext, self).write(vals)
-        self.check_events_on_stock_picking()
+    def write(self, cr, uid, ids, vals, context=None):
+        if context is None:
+            context = {}
+        super(stock_picking_ext, self).write(cr, uid, ids, vals, context=context)
+        self.check_events_on_stock_picking(cr, uid, ids)
         return True
 
-    @api.v7
     def _store_set_values(self, cr, uid, ids, fields, context):
         ret = super(stock_picking_ext, self)._store_set_values(cr, uid, ids, fields, context)
         self.check_events_on_stock_picking(cr, uid, ids)
@@ -88,7 +109,7 @@ class stock_picking_ext(osv.Model):
         return ret
 
     def action_assign(self, cr, uid, ids, context=None):
-        ret = super(stock_picking_ext, self).action_assign(cr, uid, ids, context=context)
+        ret = super(stock_picking_ext, self).action_assign(cr, uid, ids, context)
         self.check_events_on_stock_picking(cr, uid, ids)
         return ret
 
@@ -114,7 +135,7 @@ class stock_picking_ext(osv.Model):
             next_execution_date = now + timedelta(days=num_natural_days)
 
         for picking in self.browse(cr, uid, ids, context=context):
-            if picking.type not in ['in', 'incoming']:
+            if picking.type not in ['in']:
                 continue
             # Now, any stock.picking.in will rise issues
             #  if not picking.backorder_id:
@@ -144,7 +165,6 @@ class stock_picking_ext(osv.Model):
     def check_events_on_stock_picking(self, cr, uid, ids, context=None):
         if context is None:
             context = {}
-
         # For this check, we must be superuser
         uid = SUPERUSER_ID
 
@@ -167,35 +187,44 @@ class stock_picking_ext(osv.Model):
                 for wl in loc.warehouse_ids:
                     if wl.warehouse_id and wl.warehouse_id.id not in warehouse_ids:
                         warehouse_ids.append(wl.warehouse_id.id)
-            # Last, we get the warehouse of those locations
-            warehouse_ids.append(picking.picking_type_id.warehouse_id.id)
             for warehouse_id in warehouse_ids:
                 check_all_events(self, cr, uid, [picking.id], context=context, warehouse_id=warehouse_id)
         return True
 
-    @api.depends('min_date')
-    @api.multi
-    def get_process_date(self):
-        for stock_picking in self:
-            stock_picking.process_date = stock_picking.min_date
+    def get_process_date(self, cr, uid, ids, name, args, context=None):
+        if context is None:
+            context = {}
+        ret = {}
+        for stock_picking in self.browse(cr, uid, ids, context=context):
+            ret[stock_picking.id] = stock_picking.min_date
+        return ret
 
-    @api.multi
-    def get_ready_for_export(self):
+    def get_ready_for_export(self, cr, uid, ids, name, args, context=None):
         ''' A stock.picking is ready for export if its sale.orders have
             printed both its invoices and delivery slips.
         '''
-        for stock_picking in self:
-            stock_picking.ready_for_export = (stock_picking.sale_id.invoices_printed and stock_picking.sale_id.delivery_orders_printed)
+        if context is None:
+            context = {}
 
-    process_date = fields.Datetime(compute="get_process_date",
-                                   string="Process Date",
-                                   store=False,
-                                   )
+        res = {}
+        for stock_picking in self.browse(cr, uid, ids, context=context):
+            res[stock_picking.id] = (stock_picking.sale_id.invoices_printed and stock_picking.sale_id.delivery_orders_printed)
+        return res
 
-    ready_for_export = fields.Boolean(compute="get_ready_for_export",
-                                      string="Ready for Export?",
-                                      help='Indicates whether the stock.picking is ready for export to the warehouse.',
-                                      store=False,
-                                      )
+    _columns = {
+        'process_date': fields.function(get_process_date,
+                                        type='datetime',
+                                        string="Process Date",
+                                        store=False),
+
+        'ready_for_export': fields.function(get_ready_for_export,
+                                            type='boolean',
+                                            string='Is it ready for export?',
+                                            help='Indicates whether the stock.picking is ready for export to the warehouse.'),
+    }
+
+    _defaults = {
+        'ready_for_export': False,
+    }
 
 # vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:

@@ -22,13 +22,13 @@
 import openerp
 from openerp.osv import osv, fields, orm
 from utilities import filters
-from openerp import api, report
-import logging
 from openerp.addons.connector.session import ConnectorSession
 from openerp.addons.connector.queue.job import job, related_action
 from openerp.tools.translate import _
-from openerp.addons.pc_connect_master.utilities.pdf import get_pdf_from_report, associate_ir_attachment_with_object
+from utilities.pdf import associate_ir_attachment_with_object, get_pdf_from_report
 import base64
+import netsvc
+import logging
 logger = logging.getLogger(__name__)
 
 
@@ -48,8 +48,8 @@ class sale_order_ext(osv.Model):
     def search(self, cr, uid, args, offset=0, limit=None, order=None, context=None, count=False):
         return filters.search(self, cr, uid, args, sale_order_ext, offset=offset, limit=limit, order=order, context=context, count=count)
 
-    def read_group(self, cr, uid, domain, fields, groupby, offset=0, limit=None, context=None, orderby=False, lazy=True):
-        return filters.read_group(self, cr, uid, domain, fields, groupby, sale_order_ext, offset=offset, limit=limit, context=context, orderby=orderby, lazy=lazy)
+    def read_group(self, cr, uid, domain, fields, groupby, offset=0, limit=None, context=None, orderby=False):
+        return filters.read_group(self, cr, uid, domain, fields, groupby, sale_order_ext, offset=offset, limit=limit, context=context, orderby=orderby)
     # END OF THE CODE WHICH DEFINES THE NEW FILTERS TO ADD TO THE OBJECT.
 
     def _prepare_invoice(self, cr, uid, order, lines, context=None):
@@ -152,7 +152,7 @@ class sale_order_ext(osv.Model):
                                                       ('res_id', '=', invoice.id),
                                                       ('name', '=', file_name)]):
 
-                pdf_data = get_pdf_from_report(cr, uid, report_name, {'ids': invoice.id, 'model': 'account.invoice'}, context=context)
+                pdf_data = get_pdf_from_report(cr, uid, 'report.' + report_name, {'ids': invoice.id, 'model': 'account.invoice'}, context=context)
                 attach_id = associate_ir_attachment_with_object(self, cr, uid, pdf_data,
                                                                 file_name, 'account.invoice', invoice.id)
                 if attach_id:
@@ -177,7 +177,7 @@ class sale_order_ext(osv.Model):
         result_success = True
 
         ir_attachment_obj = self.pool.get('ir.attachment')
-        stock_picking_obj = self.pool.get('stock.picking')
+        stock_picking_obj = self.pool.get('stock.picking.out')
 
         stock_picking_domain = [('sale_id', 'in', ids),
                                 ('state', 'in', ['assigned', 'done'])]
@@ -194,17 +194,16 @@ class sale_order_ext(osv.Model):
 
         for stock_picking in stock_picking_obj.browse(cr, uid, stock_picking_ids, context=context):
             file_name = stock_picking.get_file_name()
-            if not ir_attachment_obj.search(cr, uid, [('res_model', '=', 'stock.picking'),
+            if not ir_attachment_obj.search(cr, uid, [('res_model', '=', 'stock.picking.out'),
                                                       ('res_id', '=', stock_picking.id),
                                                       ('name', '=', file_name)], context=context):
 
-                pdf_data = get_pdf_from_report(cr, uid, report_name, {'ids': stock_picking.id, 'model': 'stock.picking'}, context=context)
+                pdf_data = get_pdf_from_report(cr, uid, 'report.' + report_name, {'ids': stock_picking.id, 'model': 'stock.picking.out'}, context=context)
                 attach_id = associate_ir_attachment_with_object(self, cr, uid, pdf_data,
                                                                 file_name, 'stock.picking.out', stock_picking.id)
                 if attach_id:
                     ir_attachment_obj.write(cr, uid, attach_id, {'document_type': 'picking_out_report'}, context=context)
                 result_success = result_success and bool(attach_id)
-
         return result_success
 
     def generate_reports(self, cr, uid, ids, context=None):
@@ -259,6 +258,7 @@ class sale_order_ext(osv.Model):
             This doesn't work when creating the record through RPC.
         '''
         ret = super(sale_order_ext, self).default_get(cr, uid, fields, context)
+
         default_picking_policy = ret.get('picking_policy', 'one')
         ret['picking_policy'] = self._defaults_picking_policy(cr, uid, None, default_picking_policy, context)
 

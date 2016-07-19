@@ -20,12 +20,12 @@
 ##############################################################################
 from openerp.osv import osv, fields
 from openerp.tools.translate import _
-import logging
-logger = logging.getLogger(__name__)
 import unittest2
 from yellowcube_testcase import yellowcube_testcase
 from ..xml_abstract_factory import get_factory
 from ..xsd.xml_tools import nspath, create_root, create_element, xml_to_string, schema_namespaces
+import logging
+logger = logging.getLogger(__name__)
 
 
 class test_yc_bur(yellowcube_testcase):
@@ -35,9 +35,8 @@ class test_yc_bur(yellowcube_testcase):
         self.test_warehouse.stock_connect_id.write({'yc_enable_bur_file': True})
 
         self.product_3 = self.browse_ref('product.product_product_3')
-        if hasattr(self.product_3, 'action_validated'):
-            self.product_3.action_validated()
-            self.product_3.action_in_production()
+        self.product_3.action_validated()
+        self.product_3.action_in_production()
 
     def _create_bur_file(self):
         ns = schema_namespaces['bur']
@@ -86,7 +85,7 @@ class test_yc_bur(yellowcube_testcase):
             'name': 'test_bur_file.xml',
             'stock_connect_id': self.test_warehouse.stock_connect_id.id,
         }
-        return self.stock_connect_file.create(self.cr, self.uid, vals, self.context)
+        self.stock_connect_file.create(self.cr, self.uid, vals, self.context)
 
     def test_stock_picking_change(self):
         """
@@ -95,14 +94,12 @@ class test_yc_bur(yellowcube_testcase):
         Pre: This test requires that there are products ready for export
         """
         cr, uid, ctx = self.cr, self.uid, self.context
-        file_id = self._create_bur_file()
+        self._create_bur_file()
 
         self.assertEqual(self._yc_files(_type=None), ['test_bur_file.xml'], 'BUR file is not processed')
 
         self.test_warehouse.stock_connect_id.connection_process_files()
 
         self.assertEqual(self._yc_files(_type='bur'), ['test_bur_file.xml'], 'BUR file is processed')
-        file = self.stock_connect_file.browse(cr, uid, file_id, ctx)
-        self.assertEqual(file.state, 'done', 'BUR file is 100% processed')
 
 # vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:

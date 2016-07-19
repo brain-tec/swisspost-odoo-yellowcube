@@ -207,7 +207,14 @@
             parent="pc_menu_sales_logistics"
             groups="pc_client"
             sequence="30"
-            action="stock.action_picking_tree" />
+            action="stock.action_picking_tree4" />
+        <menuitem
+            name="Recall List"
+            id="pc_menu_sales_sales_recall_list"
+            parent="pc_menu_sales_logistics"
+            groups="pc_client"
+            sequence="40"
+            action="action_stock_move_view" />
 
     </data>
 </openerp>

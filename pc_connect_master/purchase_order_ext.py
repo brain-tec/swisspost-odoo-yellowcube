@@ -20,9 +20,9 @@
 ##############################################################################
 
 from openerp.osv import osv, fields
+from openerp.tools.translate import _
 import logging
 logger = logging.getLogger(__name__)
-from openerp.tools.translate import _
 
 
 class purchase_order_ext(osv.Model):

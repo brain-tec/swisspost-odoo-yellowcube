@@ -20,8 +20,6 @@
 ##############################################################################
 # from osv import osv, fields
 # from tools.translate import _
-import logging
-logger = logging.getLogger(__name__)
 from .xml_abstract_factory import xml_factory_decorator, xml_abstract_factory
 from openerp.addons.pc_connect_master.utilities.misc import format_exception
 from lxml import etree
@@ -30,6 +28,8 @@ from xsd.xml_tools import nspath, validate_xml, open_xml, xml_to_string, repair_
 from openerp.tools.translate import _
 from openerp.release import version_info
 V8 = True if version_info[0] > 7 else False
+import logging
+logger = logging.getLogger(__name__)
 
 
 @xml_factory_decorator("bur")
@@ -90,6 +90,7 @@ class yellowcube_bur_xml_factory(xml_abstract_factory):
         booking_voucher_id = nspath(header, "bur:BookingVoucherID")[0].text
         # TODO: Check or save the value
         booking_voucher_year = nspath(header, "bur:BookingVoucherYear")[0].text
+
         depositor_no = nspath(header, "bur:DepositorNo")[0].text
 
         self._check(warehouse, depositor_no == self.get_param('depositor_no'), _('Invalid DepositorNo'))

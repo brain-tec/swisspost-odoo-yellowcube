@@ -18,10 +18,10 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 ##############################################################################
+
 from openerp.osv import osv, fields
 from openerp.tools.translate import _
 import logging
-from openerp import api
 logger = logging.getLogger(__name__)
 
 FILE_STATE_DRAFT = 'draft'
@@ -78,6 +78,8 @@ class stock_connect_file(osv.Model):
     def write(self, cr, uid, ids, vals, context=None):
         ret = super(stock_connect_file, self).write(cr, uid, ids, vals, context=context)
         if 'model' in vals or 'res_id' in vals:
+            if not isinstance(ids, list):
+                ids = [ids]
             for item in self.browse(cr, uid, ids, context=context):
                 k = ',{0}:{1},'.format(item.model, item.res_id or '')
                 if k not in item.related_ids:
@@ -85,7 +87,7 @@ class stock_connect_file(osv.Model):
         return ret
 
     def update_related_ids(self, cr, uid):
-        pending_ids = self.search(cr, uid, [('related_ids', 'in', [False, ','])])
+        pending_ids = self.search(cr, uid, [('related_ids', 'in', [False, ',', ''])])
         for pending in self.browse(cr, uid, pending_ids):
             if pending.model:
                 pending.write({'related_ids': ',{0}:{1},'.format(pending.model, pending.res_id or '')})
@@ -140,6 +142,7 @@ class stock_connect_file(osv.Model):
         'internal_index': 0,
         'priority': 0,
         'server_ack': True,
+        'related_ids': ',',
     }
 
     _sql_constraints = [

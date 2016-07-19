@@ -20,12 +20,12 @@
 ##############################################################################
 from openerp.osv import osv, fields
 from openerp.tools.translate import _
-import logging
-logger = logging.getLogger(__name__)
 from yellowcube_testcase import yellowcube_testcase, subTest
 from ..xml_abstract_factory import get_factory
 from ..xsd.xml_tools import nspath, create_root, create_element, xml_to_string, schema_namespaces
 import unittest2
+import logging
+logger = logging.getLogger(__name__)
 
 
 class test_yc_wbl_wba(yellowcube_testcase):
@@ -33,10 +33,10 @@ class test_yc_wbl_wba(yellowcube_testcase):
     def setUp(self):
         super(test_yc_wbl_wba, self).setUp()
         self.test_warehouse.stock_connect_id.write({'yc_enable_wab_file': True, 'yc_enable_war_file': True})
+
         vals = {
             'name': 'Test supplier',
-            'zip': '1234',
-            'country_id': self.ref('base.ch'),
+            'zip': '12345',
         }
         self.supplier_id = self.registry('res.partner').create(self.cr, self.uid, vals, self.context)
 
@@ -45,7 +45,7 @@ class test_yc_wbl_wba(yellowcube_testcase):
         This test, tests the workflow followed after a sale is closed
         """
         cr, uid, ctx = self.cr, self.uid, self.context
-        wbl_factory = get_factory(self.test_warehouse.env, "wbl", context=ctx)
+        wbl_factory = get_factory([self.test_warehouse.pool, cr, uid], "wbl", context=ctx)
 
         vals = {
             'name': 'IN_WBL_test',
@@ -53,7 +53,6 @@ class test_yc_wbl_wba(yellowcube_testcase):
             'location_id': self.test_warehouse.lot_input_id.id,
             'pricelist_id': self.ref('purchase.list0'),
         }
-
         purchase_id = self.purchase_obj.create(cr, uid, vals, ctx)
         vals = {
             'order_id': purchase_id,
@@ -74,20 +73,17 @@ class test_yc_wbl_wba(yellowcube_testcase):
         self.assertNotIn(pick_in.state, ['done'], 'The stock.picking is not closed, until everything is delivered')
         name = '.*_wbl_{0}.*IN.*\.xml'.format(purchase.name)
         self.assert_(self._yc_files(name), 'A WBL file is created')
-
         # Now we check some fields
         result_wbl_file = self._yc_files(name)[-1]
         wbl_node = self._get_file_node(result_wbl_file)
         self._save_node(wbl_node, 'wbl', path='//SupplierOrderNo')
         self.assertEqual(len(pick_in.move_lines), len(nspath(wbl_node, '//Position')),
                          'A position for each item in the SO:\n{0}'.format(xml_to_string(wbl_node)))
-
         # Here we create the response WBA file, accepting everything
         wba_node = self._create_mirror_wba_from_wbl(wbl_node)
         self._save_node(wba_node, 'wba', path='//wba:SupplierOrderNo')
-        wba_factory = get_factory(self.test_warehouse.env, "wba", context=ctx)
+        wba_factory = get_factory([self.test_warehouse.pool, cr, uid], "wba", context=ctx)
         wba_factory.import_file(xml_to_string(wba_node))
-
         # Now we check the stock.picking state
         pick_in = self.pick_obj.browse(cr, uid, pick_in_id, ctx)
         self.assertIn(pick_in.state, ['done'], 'The stock.picking is closed, once everything is delivered')
@@ -97,7 +93,7 @@ class test_yc_wbl_wba(yellowcube_testcase):
         This test, tests the workflow followed after a sale is closed
         """
         cr, uid, ctx = self.cr, self.uid, self.context
-        wbl_factory = get_factory(self.test_warehouse.env, "wbl", context=ctx)
+        wbl_factory = get_factory([self.test_warehouse.pool, cr, uid], "wbl", context=ctx)
 
         vals = {
             'partner_id': self.supplier_id,
@@ -148,7 +144,7 @@ class test_yc_wbl_wba(yellowcube_testcase):
             is_end = True if line_number == line_numbers else False
             wba_node = self._create_mirror_wba_from_wbl(wbl_node, partial=line_number, end='1' if is_end else '0')
             self._save_node(wba_node, 'wba', path='//wba:SupplierOrderNo', extra='_posno{0}'.format(line_number))
-            wba_factory = get_factory(self.test_warehouse.env, "wba", context=ctx)
+            wba_factory = get_factory([self.test_warehouse.pool, cr, uid], "wba", context=ctx)
             wba_factory.import_file(xml_to_string(wba_node))
             # Now we check the stock.picking state
             pick_in = self.pick_obj.browse(cr, uid, pick_in_id, ctx)

@@ -21,6 +21,7 @@
 
 {
     "name": "SwissPost YellowCube Odoo / Connect Warehouse",
+    "name": "SwissPost YellowCube Odoo / Connect Warehouse",
 
     "version": "1.0",
 

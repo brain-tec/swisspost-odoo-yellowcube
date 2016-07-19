@@ -20,8 +20,6 @@
 ##############################################################################
 # from osv import osv, fields
 # from tools.translate import _
-import logging
-logger = logging.getLogger(__name__)
 from xml_abstract_factory import xml_factory_decorator, xml_abstract_factory
 from openerp.addons.pc_connect_master.utilities.misc import format_exception
 from xsd.xml_tools import validate_xml, export_filename, create_root, schemas, xml_to_string
@@ -33,6 +31,9 @@ import datetime
 from openerp.tools import DEFAULT_SERVER_DATETIME_FORMAT
 from openerp.tools.translate import _
 from lxml import etree
+import logging
+logger = logging.getLogger(__name__)
+
 
 _element_to_check = {
     'ArticleDescription': lambda text, attrib: (text[:40], attrib),
@@ -104,7 +105,7 @@ class yellowcube_art_xml_factory(xml_abstract_factory):
             text='{0:04d}{1:02d}{2:02d}{3:02d}{4:02d}{5:02d}'.format(now.year, now.month, now.day, now.hour, now.hour, now.minute)
         ))
         xml_control_reference.append(create_element('OperatingMode', text=self.get_param('operating_mode', required=True)))
-        xml_control_reference.append(create_element('Version', text='1.09'))
+        xml_control_reference.append(create_element('Version', text='1.0'))
         xml_root.append(xml_control_reference)
 
         xml_article_list = create_element('ArticleList')
@@ -251,8 +252,6 @@ class yellowcube_art_xml_factory(xml_abstract_factory):
         if xsd_error:
             if raise_error:
                 raise osv.except_osv('XSD validation error', xsd_error)
-            else:
-                logger.error('XSD validation error: {0}'.format(xsd_error))
         else:
             date_current_str = datetime.datetime.now().strftime(DEFAULT_SERVER_DATETIME_FORMAT)
             self.pool.get('product.product').write(self.cr,
@@ -319,6 +318,7 @@ class yellowcube_art_xml_factory(xml_abstract_factory):
                     self.main_file_id = None
                     self.save_file(xml_output, object_filename, main=True, binary=False, record_id=product_id, model='product.product')
                     self.mark_as_exported(_object.id)
+                    # Finally, the XML file is copied. This ensures that XML files have its dependencies copied to the folder
                 except Warning as e:
                     logger.error("Exception exporting into xml {0}: {1}".format(object_id, format_exception(e)))
                 finally:

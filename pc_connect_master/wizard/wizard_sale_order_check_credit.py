@@ -19,7 +19,7 @@
 #
 ##############################################################################
 
-from openerp.osv import osv, fields
+from osv import osv, fields
 from openerp.tools.translate import _
 import logging
 logger = logging.getLogger(__name__)

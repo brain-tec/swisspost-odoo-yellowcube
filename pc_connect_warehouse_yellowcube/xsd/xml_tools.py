@@ -18,13 +18,14 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 ##############################################################################
-import logging
 from openerp.addons.pc_connect_master.utilities.misc import format_exception
-logger = logging.getLogger(__name__)
 from lxml import etree
 import os
 from string import maketrans
 import codecs
+import logging
+logger = logging.getLogger(__name__)
+
 
 __realpath = os.path.realpath(os.path.join(os.getcwd(), os.path.dirname(__file__)))
 
@@ -105,7 +106,6 @@ def export_filename(original, context=None):
 
 def _str(value):
     if isinstance(value, unicode):
-        # If it's of type unicode, then str() will be in the range ord(character) < 128, thus will fail.
         return str(value.encode('utf-8')).decode('utf-8')
     else:
         return str(value).decode('UTF-8')

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <openerp>
 	<data>
-<!-- TODO: recall list
+
 		<record model="ir.ui.view" id="stock_move_list_view">
 			<field name="name">Stock move tree view</field>
 			<field name="model">stock.move</field>
@@ -136,19 +136,7 @@
 				</data>
 			</field>
 		</record>
-		
-		<record id="stock_move_form_ext" model="ir.ui.view">
-			<field name="model">stock.move</field>
-			<field name="inherit_id" ref="stock.view_move_form" />
-			<field name="name">stock_move_form_ext</field>
-			<field name="arch" type="xml">
-				<data>
-					<field name="product_id" position="after">
-						<field name="restrict_lot_id" string="Lot to use" attrs="{'readonly': [('state', '!=', 'draft')]}"/>
-					</field>
-				</data>
-			</field>
-		</record>
--->
+
+
 	</data>
 </openerp>

@@ -18,8 +18,8 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 ##############################################################################
+
 from openerp.osv import osv, fields
-from openerp import api
 from openerp.tools.translate import _
 from openerp import SUPERUSER_ID
 import logging
@@ -39,7 +39,7 @@ class project_issue_ext(osv.Model):
         if tags is None:
             tags = ['error']
 
-        new_cr = self.pool.cursor()
+        new_cr = self.pool.db.cursor()
         try:
             project_issue_obj = self.pool.get('project.issue')
             issue_ids = project_issue_obj.find_resource_issues(new_cr, uid, res_model, res_id, tags=tags, create=True, reopen=True, context=context)
@@ -171,16 +171,6 @@ class project_issue_ext(osv.Model):
             res_user = self.pool.get('res.users').browse(cr, uid, uid, context=context)
 
             # On creating, issue tags are set
-            priority = None
-            if tag.priority:
-                t = int(tag.priority)
-                if t > 3:
-                    priority = '0'
-                elif t > 1:
-                    priority = '1'
-                else:
-                    priority = '2'
-
             data = {
                 'name': context.get('issue_name', '{0}#{1}: {2}'.format(model_name, res_id, obj_name)),
                 'description': context.get('issue_description', None),
@@ -189,7 +179,7 @@ class project_issue_ext(osv.Model):
                 'model_id': model_ids[0],
                 'res_id': res_id,
                 'categ_ids': [(6, 0, tags_in_order)],
-                'priority': priority,
+                'priority': tag.priority if tag else None,
                 'partner_id': res_user.partner_id.id,
             }
             return [self.create(cr, uid, data, context=context)]
@@ -285,4 +275,5 @@ def __open_record_issue_v2(self, cr, uid, ids, create=True, tags=None, context=N
 
 osv.Model.open_record_issue = __open_record_issue
 osv.Model.open_record_issue_v2 = __open_record_issue_v2
+
 # vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:

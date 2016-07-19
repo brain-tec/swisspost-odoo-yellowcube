@@ -20,21 +20,18 @@
 ##############################################################################
 
 import HTMLParser
-import logging
 from openerp import tools
 from openerp.addons.mail.mail_thread import mail_thread
 from openerp.osv import osv
 from openerp.tools.translate import _
 from openerp.tools.misc import DEFAULT_SERVER_DATETIME_FORMAT
-from openerp import api
 from datetime import datetime
+import logging
 logger = logging.getLogger(__name__)
-
 
 old_message_post = mail_thread.message_post
 
 
-@api.cr_uid_id_context
 def new_message_post(self, cr, uid, thread_id, body='', subject=None, type='notification',
                      subtype=None, parent_id=False, attachments=None, context=None,
                      content_subtype='html', **kwargs):

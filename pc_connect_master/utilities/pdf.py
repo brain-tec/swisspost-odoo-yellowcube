@@ -18,50 +18,58 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 ##############################################################################
+
 import shutil
 import subprocess
 import os
 import base64
-from openerp.report import render_report
+import netsvc
 import logging
 logger = logging.getLogger(__name__)
 
 
 def get_pdf_from_report(cr, uid, service_name, dictionary, context=None):
     '''
-    Returns a PDF encoded in base64. This is deprecated, and is provided only
-    for backwards compatibility: use instead openerp.report.render_report()
+    Returns a PDF encoded in base64.
 
     @param service_name: The name of the service that generates the PDF.
-    @type service_name: string, e.g. 'report.invoice'.
+    @type service_name: string.
+
     @param dictionary: Dictionary containing keys 'ids' and 'model'.
     @type dictionary: dict.
+
     @rtype: base64. PDF file encoded in base64.
     '''
-    logger.warning('get_pdf_from_report() is deprecated. Port your code to use render_report().')
+
+    service = netsvc.LocalService(service_name)
 
     ids_list = dictionary['ids']
     if not isinstance(dictionary['ids'], list):
         ids_list = [dictionary['ids']]
 
-    pdf_data, _ = render_report(cr, uid, ids_list,
-                                service_name, {'model': dictionary['model']}, context=context)
-    return base64.b64encode(pdf_data)
+    (result, _) = service.create(cr, uid, ids_list, dictionary, context=context)
+    return base64.b64encode(result)
 
 
 def associate_ir_attachment_with_object(delegate, cr, uid, encoded_data, file_name, res_model, res_id):
     '''
     Returns the ID of the generated attachment.
+
     @param encoded_data: Data of the file to attach, encoded in base64.
     @type encoded_data: base64.
+
     @param file_name: Name of the file to generate.
     @type file_name: string.
+
     @param res_model: String of the model to which the attachment will be attached.
     @type res_model: string.
+
     @param res_id: ID of the object of res_model to which we want to attach the information.
     @type res_id: integer.
+
     @rtype: Int. ID of the generated attachment.
     '''
+
     ir_attachment_obj = delegate.pool.get('ir.attachment')
     result = ir_attachment_obj.create(cr, uid, {'name': file_name,
                                                 'datas': encoded_data,
@@ -114,6 +122,5 @@ def concatenate_pdfs(summary_file_name, file_list_to_merge):
         subprocess.call(execution_arguments)
 
     return files_concatenated
-
 
 # vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:

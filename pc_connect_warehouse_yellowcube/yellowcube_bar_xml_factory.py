@@ -20,9 +20,7 @@
 ##############################################################################
 # from osv import osv, fields
 # from tools.translate import _
-import logging
 import sys
-logger = logging.getLogger(__name__)
 from xml_abstract_factory import xml_factory_decorator, xml_abstract_factory
 from openerp.addons.pc_connect_master.utilities.misc import format_exception
 from lxml import etree
@@ -30,6 +28,8 @@ from openerp.tools.translate import _
 import datetime
 from xsd.xml_tools import nspath, validate_xml, open_xml
 from openerp.release import version_info
+import logging
+logger = logging.getLogger(__name__)
 
 
 @xml_factory_decorator("bar")

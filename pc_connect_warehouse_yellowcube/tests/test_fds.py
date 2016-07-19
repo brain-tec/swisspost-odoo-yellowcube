@@ -18,8 +18,6 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 ##############################################################################
-import logging
-logger = logging.getLogger(__name__)
 from yellowcube_testcase import yellowcube_testcase
 import subprocess
 from tempfile import mkstemp
@@ -27,6 +25,8 @@ import os
 import time
 import socket
 from unittest2 import skip
+import logging
+logger = logging.getLogger(__name__)
 
 
 class test_fds(yellowcube_testcase):
@@ -40,15 +40,6 @@ class test_fds(yellowcube_testcase):
 
     def setUp(self):
         super(test_fds, self).setUp()
-        directories = [
-            '/tmp/in',
-            '/tmp/in_archive',
-            '/tmp/in_archive_temporal',
-            '/tmp/out',
-        ]
-        for _dir in directories:
-            if not os.path.exists(_dir):
-                os.mkdir(_dir)
         cr, uid, ctx = self.cr, self.uid, self.context
         parameter_obj = self.registry('ir.config_parameter')
         param_value = parameter_obj.get_param(cr, uid, 'test_fds_config')

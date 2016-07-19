@@ -52,4 +52,7 @@ import yellowcube_wba_xml_factory
 import yellowcube_wbl_xml_factory
 import ir_module_module_ext
 
+if version_info[0] <= 7:
+    import stock_picking_inout_ext
+
 # vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:

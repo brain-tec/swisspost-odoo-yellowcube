@@ -26,6 +26,7 @@
     context['best_before_date'] = '20501010'
     context['num_units'] = 10.000
     context['yc_print_errors'] = False
+    context['log_errors'] = False
 
     # Creates the content of the BAR we want the test.
     bar_content = '''
@@ -72,15 +73,12 @@
     self.write(cr, uid, stock_connect_id, {'yc_enable_bar_file': True}, context=context)
 
     # Processes the files: < THIS NEVER WORKS IN YML, BECAUSE IT DOES NOT USE THE 'except' PART.
-    print 'Making the code to raise an exception in BAR processing'
     try:
-        self.connection_process_files(cr, uid, stock_connect_id, context=context)
-        assert(False), "An exception happened while processing the BAR file."
-    except:
-        pass
+      self.connection_process_files(cr, uid, stock_connect_id, context=context)
+    except Warning:
+      assert(False), "An exception happened while processing the BAR file."
 
     # Checks that the file was not correctly processed, because some errors were found.
-    print 'Checking that the BAR file error is properly processed'
     stock_connect_file = self.pool.get('stock.connect.file').browse(cr, uid, context['stock_connect_file_id'], context=context)
     assert(stock_connect_file.state == 'draft'), "The state of the stock.connect.file created should be 'draft', but it is '{0}'.".format(stock_connect_file.state)
     assert(stock_connect_file.error), "The stock.connect.file processed should have errors, but it has no errors."
