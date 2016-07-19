@@ -1,0 +1,135 @@
+-
+  TEST_BAR_PROCESS_CORRECT_FILE. Tests a BAR file.
+-
+  !python {model: account.invoice}: |
+    print 'Starting the test TEST_BAR_PROCESS_CORRECT_FILE.'
+    cr.execute("SAVEPOINT test;")
+-
+  !python {model: workflow.transition}: |
+    print 'Deactivating conditions on Wkf'
+    self.write(cr, uid, ref('sale.trans_draft_sent'), {'condition': 'True'})
+    self.write(cr, uid, ref('sale.trans_draft_router'), {'condition': 'True'})
+-
+  TEST_BAR_PROCESS_CORRECT_FILE. Creates the lot for the product we are going to use.
+-
+  !python {model: stock.production.lot}: |
+    from datetime import timedelta, datetime
+    from openerp.tools import DEFAULT_SERVER_DATETIME_FORMAT
+    vals = {
+        'name': 'BarTestProduct',
+        'default_code': 'BarTestProduct',
+    }
+    context['test_product_id'] = self.pool.get('product.product').create(cr, uid, vals, context=context)
+    today_str = datetime.now().strftime(DEFAULT_SERVER_DATETIME_FORMAT)
+    today_plus_str = (datetime.now() + timedelta(days=1)).strftime(DEFAULT_SERVER_DATETIME_FORMAT)
+    lot_id = self.create(cr, uid, {'name': 'xxxLOTxxx', 'product_id': context['test_product_id'], 'production_date': today_str, 'life_date': today_plus_str}, context=context)
+    context['lot_to_use_id'] = lot_id
+
+-
+  TEST_BAR_PROCESS_CORRECT_FILE. Creates a stock move with that lot and the location to use.
+-
+  !python {model: stock.move}: |
+    from datetime import datetime
+    from openerp.tools import DEFAULT_SERVER_DATETIME_FORMAT
+
+    now_str = datetime.now().strftime(DEFAULT_SERVER_DATETIME_FORMAT)
+    location_origin_id = self.pool.get('stock.location').search(cr, uid, [('name', '=', 'Suppliers')], context=context)[0]
+    location_dest_id = self.pool.get('stock.location').search(cr, uid, [('name', '=', 'YAFS')], context=context)[0]
+
+    stock_move_lot_id = self.create(cr, uid, {'product_id': context['test_product_id'], 'product_uom_qty': 5.000, 'product_uom': ref('product.product_uom_categ_unit'), 'location_id': location_origin_id, 'location_dest_id': location_dest_id, 'restrict_lot_id': context['lot_to_use_id'], 'name': 'Stock move for xxxLOTxxx', 'date_expected': now_str}, context=context)
+    stock_move_lot = self.browse(cr, uid, stock_move_lot_id, context=context)
+    stock_move_lot.action_done()
+
+-
+  TEST_BAR_PROCESS_CORRECT_FILE. Creates a file which is attached to the stock.connect that we use to test.
+-
+  !python {model: stock.connect.file}: |
+    # Gets the ID of the stock.connect we are going to attach the file to.
+    stock_connect_id = ref('demo_connection_yc')
+
+    # Fills in the context with the data to test with.
+    product = self.pool.get('product.product').browse(cr, uid, context['test_product_id'], context=context)
+    context['yc_article_no'] = 'xxxADPTxxx'
+    context['default_code'] = product.default_code
+    context['ean'] = '8431876099966'
+    context['article_description'] = 'xxxdescriptionxxx'
+    context['yc_plant'] = 'Y005'
+    context['yc_lot'] = 'xxYCLOTxx'
+    context['lot_name'] = 'xxxLOTxxx'
+    context['best_before_date'] = '20501010'
+    context['num_units'] = 99.000
+
+    # Creates the content of the BAR we want the test.
+    bar_content = '''
+    <bar:BAR xmlns:bar="https://service.swisspost.ch/apache/yellowcube/YellowCube_BAR_RESPONSE_ArticleList.xsd">
+      <bar:ControlReference>
+        <bar:Type>BAR</bar:Type>
+        <bar:Sender>YELLOWCUBE</bar:Sender>
+        <bar:Receiver>0000041226</bar:Receiver>
+        <bar:Timestamp>20150310000013</bar:Timestamp>
+        <bar:OperatingMode>T</bar:OperatingMode>
+        <bar:Version>1.0</bar:Version>
+      </bar:ControlReference>
+      <bar:ArticleList>
+        <bar:Article>
+            <bar:YCArticleNo>{yc_article_no}</bar:YCArticleNo>
+            <bar:EAN>{ean}</bar:EAN>
+            <bar:ArticleNo>{default_code}</bar:ArticleNo>
+            <bar:ArticleDescription>{article_description}</bar:ArticleDescription>
+            <bar:Plant>{yc_plant}</bar:Plant>
+            <bar:StorageLocation>YAFS</bar:StorageLocation>
+            <bar:YCLot>{yc_lot}</bar:YCLot>
+            <bar:Lot>{lot_name}</bar:Lot>
+            <bar:BestBeforeDate>{best_before_date}</bar:BestBeforeDate>
+            <bar:StockType>0</bar:StockType>
+            <bar:QuantityUOM QuantityISO="PCE">{num_units}</bar:QuantityUOM>
+        </bar:Article>
+      </bar:ArticleList>
+    </bar:BAR>
+    '''.format(**context)
+
+    # Creates the stock.connect.file.
+    stock_connect_file_id = self.create(cr, uid, {'name': 'Test BAR', 'input': True, 'state': 'draft', 'stock_connect_id': stock_connect_id, 'content': bar_content}, context=context)
+    context['stock_connect_file_id'] = stock_connect_file_id
+
+    # Checks that its state is 'draft'.
+    stock_connect_file = self.browse(cr, uid, stock_connect_file_id, context=context)
+    assert(stock_connect_file.state == 'draft'), "The state of the stock.connect.file created should be 'draft', but it is {0}.".format(stock_connect_file.state)
+
+-
+  TEST_BAR_PROCESS_CORRECT_FILE. Process the file. We check that its state was processed and that no errors were logged.
+-
+  !python {model: stock.connect}: |
+    # Gets the ID of the stock.connect we are going to attach the file to.
+    stock_connect_id = ref('demo_connection_yc')
+    self.write(cr, uid, stock_connect_id, {'yc_enable_bar_file': True}, context=context)
+
+    # Processes the files.
+    self.connection_process_files(cr, uid, stock_connect_id, context=context)
+
+    # Checks that the file was correctly processed, and no errors were found.
+    stock_connect_file = self.pool.get('stock.connect.file').browse(cr, uid, context['stock_connect_file_id'], context=context)
+    assert(stock_connect_file.state == 'done'), "The state of the stock.connect.file created should be 'done', but it is '{0}'.".format(stock_connect_file.state)
+    assert(not stock_connect_file.error), "The stock.connect.file processed should have no errors, but it has."
+    assert(stock_connect_file.type == 'bar'), "The stock.connect.file processed should have type 'bar', but it has type '{0}'.".format(stock_connect_file.type)
+
+-
+  TEST_BAR_PROCESS_CORRECT_FILE. We check that the changes indicated by the BAR were actually done.
+-
+  !python {model: product.product}: |
+    product = self.browse(cr, uid, context['test_product_id'], context=context)
+    assert(product.yc_YCArticleNo == context['yc_article_no']), "The YCArticleNo should have been updated to {0}, but it is {1}.".format(context['yc_article_no'], product.yc_YCArticleNo)
+    assert(product.ean13 == context['ean']), "The EAN should have been updated to {0}, but it is {1}.".format(context['ean'], product.ean13)
+    checked = False
+    print 'Checking lots for {0}'.format(product.name)
+    for lot in product.stock_prodlots:
+    	assert(lot.product_id.id == context['test_product_id']), "The product only has its own lots"
+    	if lot.prod_lot_id.name == context['lot_name'] and lot.location_id.name == 'YAFS':
+    		checked = True
+    		assert(lot.product_qty == context['num_units']), "The quantity available should have been updated to {0}, but it is {1}.".format(context['num_units'], lot.product_qty)
+    assert(checked), "The lot {lot_name} is not in the system".format(**context)
+-
+  TEST_BAR_PROCESS_CORRECT_FILE. Rollbacks.
+-
+  !python {model: account.invoice}: |
+    cr.execute("ROLLBACK TO SAVEPOINT test;")

@@ -1,0 +1,73 @@
+<openerp>
+	<data>
+		<!-- Tree view. -->
+		<record id="view_stock_connect_file_tree" model="ir.ui.view">
+			<field name="name">stock.connect.file.tree</field>
+			<field name="model">stock.connect.file</field>
+			<field name="priority">9999</field>
+			<field name="arch" type="xml">
+				<tree string="Connect File" colors="red:error==True;green:state=='done'">
+					<field name="priority" />
+					<field name="create_date" />
+					<field name="name" />
+					<field name="warehouse_id" />
+					<field name="stock_connect_id" />
+					<field name="state" />
+					<field name="server_ack" />
+					<field name="internal_index" string="int-index"/>
+					<field name="type" />
+					<field name="input" />
+					<field name="error" />
+					<field name="model" />
+					<field name="res_id" />
+				</tree>
+			</field>
+		</record>
+
+		<!-- Form view. -->
+		<record id="view_stock_connect_file_form" model="ir.ui.view">
+			<field name="name">stock.connect.file.form</field>
+			<field name="model">stock.connect.file</field>
+			<field name="priority">9999</field>
+			<field name="arch" type="xml">
+				<form string="Connect File" version="7.0">
+					<group string="Information" colspan="4">
+						<field name="name" />
+						<field name="warehouse_id" />
+						<field name="stock_connect_id" />
+						<field name="state" />
+						<field name="server_ack" />
+						<field name="priority" />
+						<field name="internal_index"/>
+						<field name="type" />
+						<field name="input" />
+						<field name="error" />
+						<field name="info" />
+						<field name="model" />
+						<field name="res_id" />
+                        <field name="related_ids" />
+					</group>
+					<group string="Content" colspan="4">
+						<field name="binary_content" colspan="4" />
+						<field name="content" nolabel='1' attrs="{'invisible': [('binary_content', '=', True)]}"
+							colspan="4" />
+						<field name="attachments" context="{'res_id': id, 'res_model': 'stock.connect.file'}" />
+					</group>
+					<group string="Related Files" colspan="4">
+						<field name="parent_file_id" />
+						<field name="child_file_ids" />
+					</group>
+				</form>
+			</field>
+		</record>
+
+		<!-- Receives the action. -->
+		<record id="action_stock_connect_file" model="ir.actions.act_window">
+			<field name="name">Warehouse Connection Files</field>
+			<field name="type">ir.actions.act_window</field>
+			<field name="res_model">stock.connect.file</field>
+			<field name="view_type">form</field>
+			<field name="view_mode">tree,form</field>
+		</record>
+	</data>
+</openerp>

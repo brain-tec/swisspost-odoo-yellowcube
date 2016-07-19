@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+	<data>
+
+        <record id="res_company_ext_view_form_2" model="ir.ui.view">
+            <field name="name">res.company.form_ext</field>
+            <field name="model">res.company</field>
+            <field name="inherit_id" ref="base.view_company_form" />
+            <field name="arch" type="xml">
+                <field name="street" position="replace">
+                    <field name="street" style="width: 70%%" placeholder="Street Name" />
+                    <field name="street_no" style="width: 27%%;" placeholder="Street No." />
+                </field>
+
+                <field name="street2" position="after">
+                    <field name="po_box" placeholder="P.O. Box" />
+                </field>
+            </field>
+        </record>
+
+	</data>
+</openerp>

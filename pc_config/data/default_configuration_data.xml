@@ -1,0 +1,8 @@
+<openerp>
+    <data noupdate='0'>
+    
+        <record id="default_configuration_data" model="configuration.data">
+            <field name="name">default</field>
+        </record>
+    </data>
+</openerp>

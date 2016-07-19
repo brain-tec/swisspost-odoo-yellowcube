@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+	<data>
+
+		<record
+			model="ir.ui.view"
+			id="production_lot_mail_thread">
+			<field name="name">production_lot_mail_thread</field>
+			<field name="model">stock.production.lot</field>
+			<field
+				name="inherit_id"
+				ref="stock.view_production_lot_form" />
+			<field
+				name="arch"
+				type="xml">
+				<data>
+					<xpath
+						expr="//notebook"
+						position="after">
+						<div class="oe_chatter">
+							<field
+								name="message_follower_ids"
+								widget="mail_followers" />
+							<field
+								name="message_ids"
+								widget="mail_thread"
+								options='{"thread_level": 1}' />
+						</div>
+					</xpath>
+					<field name='ref' position='after'>
+						<field name='production_date'/>
+					</field>
+					<field name='quant_ids' position='after'>
+						<group>
+							<field name='virtual_available'/>
+                        	<field name='virtual_available_for_sale'/>
+                        </group>
+					</field>
+				</data>
+			</field>
+		</record>
+	</data>
+</openerp>

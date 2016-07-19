@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+	<data>
+
+		<record id="product_product_ext_view_form" model="ir.ui.view">
+			<field name="name">product.normal.form_ext</field>
+			<field name="model">product.template</field>
+			<field name="inherit_id" ref="stock.view_template_property_form" />
+			<field name="arch" type="xml">
+				<data>
+
+					<field name="weight" position="attributes">
+						<attribute name="on_change">onchange_check_decimals(weight, 'Stock Weight')</attribute>
+						<attribute name="string">Weight (Kg)</attribute>
+						<attribute name="colspan">2</attribute>
+					</field>
+					<field name="weight_net" position="attributes">
+						<attribute name="on_change">onchange_check_decimals(weight_net, 'Stock Weight')</attribute>
+						<attribute name="string">Net Weight (Kg)</attribute>
+					</field>
+					<field name="volume" position="attributes">
+						<attribute name="on_change">onchange_check_decimals(volume, 'Stock Volume')</attribute>
+						<attribute name="string">Volume (m^3)</attribute>
+					</field>
+
+					<group name="weight" position="after">
+						<!-- These are the new dimensions indicated in the task with ID=2827 -->
+						<group name="dimensions" string="Dimensions">
+							<field name="length" on_change="onchange_check_decimals(length, 'Stock Length')" />
+							<field name="width" on_change="onchange_check_decimals(width, 'Stock Width')" />
+							<field name="height" on_change="onchange_check_decimals(height, 'Stock Height')" />
+							<field name="diameter" on_change="onchange_check_decimals(diameter, 'Stock Diameter')" />
+							<field name="packing" />
+						</group>
+					</group>
+
+					<page string="Information" position="after">
+						<page string="Other Information">
+
+							<group name="other_information" string="Other Information">
+								<field name="color" />
+								<field name="brand" />
+								<field name="manufacturer_website" />
+							</group>
+
+						</page>
+					</page>
+
+					<!-- Adds the tab for the support information. -->
+					<page string="Accounting" position="after">
+						<page string="Help &amp; Support">
+							<!-- To be filled in with remarks related to help & support. -->
+						</page>
+					</page>
+				</data>
+			</field>
+		</record>
+
+	</data>
+</openerp>

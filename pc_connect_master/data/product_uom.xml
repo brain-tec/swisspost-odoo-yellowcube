@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+	<data noupdate="0">
+		<record id="product.product_uom_unit" model="product.uom">
+			<field name="uom_iso">PCE</field>
+		</record>
+        <record id="product.product_uom_km" model="product.uom">
+            <field name="uom_iso">KMT</field>
+        </record>
+        <record id="product.product_uom_cm" model="product.uom">
+            <field name="uom_iso">CM</field>
+        </record>
+        <record id="product.product_uom_litre" model="product.uom">
+            <field name="uom_iso">DCQ</field>
+        </record>
+        <record id="product.product_uom_kgm" model="product.uom">
+            <field name="uom_iso">KG</field>
+        </record>
+
+		<record id="uom_categ_real_time" model="product.uom.categ">
+			<field name="name">Real Time</field>
+		</record>
+
+		<record id="real_time_uom_day" model="product.uom">
+			<field name="name">Day(s)</field>
+			<field eval="uom_categ_real_time" name="category_id" />
+			<field name="factor" eval="1" />
+			<field name="uom_type">reference</field>
+			<field name="uom_iso">DA</field>
+		</record>
+		<record id="real_time_uom_hour" model="product.uom">
+			<field name="name">Hour(s)</field>
+			<field eval="uom_categ_real_time" name="category_id" />
+			<field name="factor" eval="24" />
+			<field name="uom_type">smaller</field>
+			<field name="uom_iso">HR</field>
+		</record>
+		<record id="real_time_uom_week" model="product.uom">
+			<field name="name">Week(s)</field>
+			<field eval="uom_categ_real_time" name="category_id" />
+			<field name="factor_inv" eval="7" />
+			<field name="uom_type">bigger</field>
+			<field name="uom_iso">WE</field> <!-- I did not found the official ISO code for Week(s), if any. -->
+		</record>
+		<record id="real_time_uom_month" model="product.uom">
+			<field name="name">Month(s)</field>
+			<field eval="uom_categ_real_time" name="category_id" />
+			<field name="factor_inv" eval="30" />
+			<field name="uom_type">bigger</field>
+			<field name="uom_iso">MO</field>
+		</record>
+		<record id="real_time_uom_year" model="product.uom">
+			<field name="name">Year(s)</field>
+			<field eval="uom_categ_real_time" name="category_id" />
+			<field name="factor_inv" eval="365" />
+			<field name="uom_type">bigger</field>
+			<field name="uom_iso">YE</field> <!-- I did not found the official ISO code for Year(s), if any. -->
+		</record>
+	</data>
+</openerp>

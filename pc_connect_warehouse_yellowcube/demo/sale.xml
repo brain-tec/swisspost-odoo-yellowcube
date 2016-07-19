@@ -1,0 +1,61 @@
+<openerp>
+	<data>
+		<record id="yc_payment" model="payment.method">
+			<field name="name">YC Payment Method</field>
+			<field name="payment_term_id" ref="account.account_payment_term_15days" />
+			<field name="credit_check" eval="False" />
+		</record>
+		<record id="yc_sale_order_4" model="sale.order">
+			<field name="partner_id" ref="base.res_partner_15" />
+			<field name="partner_invoice_id" ref="base.res_partner_address_25" />
+			<field name="partner_shipping_id" ref="base.res_partner_address_25" />
+			<field name="user_id" ref="base.user_root" />
+			<field name="pricelist_id" ref="product.list0" />
+<!-- 			<field name="section_id" ref="sales_team.section_sales_department" /> -->
+			<field name="carrier_id" ref="delivery.delivery_carrier" />
+			<field name="payment_method_id" ref="yc_payment" />
+			<field name="payment_term_id" ref="account.account_payment_term_15days" />
+			<field name="warehouse_id" ref="warehouse_YC" />
+		</record>
+
+		<record id="yc_sale_order_line_8" model="sale.order.line">
+			<field name="order_id" ref="yc_sale_order_4" />
+			<field name="name">Service on demand</field>
+			<field name="product_id" ref="product.product_product_consultant" />
+			<field name="product_uom_qty">16</field>
+			<field name="product_uos_qty">16</field>
+			<field name="product_uom" ref="product.product_uom_hour" />
+			<field name="price_unit">75.00</field>
+		</record>
+
+		<record id="yc_sale_order_line_9" model="sale.order.line">
+			<field name="order_id" ref="yc_sale_order_4" />
+			<field name="name">Webcam</field>
+			<field name="product_id" ref="product.product_product_34" />
+			<field name="product_uom_qty">10</field>
+			<field name="product_uos_qty">10</field>
+			<field name="product_uom" ref="product.product_uom_unit" />
+			<field name="price_unit">45.00</field>
+		</record>
+
+		<record id="yc_sale_order_line_10" model="sale.order.line">
+			<field name="order_id" ref="yc_sale_order_4" />
+			<field name="name">Multimedia Speakers</field>
+			<field name="product_id" ref="product.product_product_31" />
+			<field name="product_uom_qty">3</field>
+			<field name="product_uos_qty">3</field>
+			<field name="product_uom" ref="product.product_uom_unit" />
+			<field name="price_unit">150.00</field>
+		</record>
+
+		<record id="yc_sale_order_line_11" model="sale.order.line">
+			<field name="order_id" ref="yc_sale_order_4" />
+			<field name="name">Switch, 24 ports</field>
+			<field name="product_id" ref="product.product_product_47" />
+			<field name="product_uom_qty">2</field>
+			<field name="product_uos_qty">2</field>
+			<field name="product_uom" ref="product.product_uom_unit" />
+			<field name="price_unit">70.00</field>
+		</record>
+	</data>
+</openerp>

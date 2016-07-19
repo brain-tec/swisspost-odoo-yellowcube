@@ -1,0 +1,15 @@
+<openerp>
+	<data>
+		<record id="demo_connection_1" model="stock.connect">
+			<field name="name">Demo Connection 1</field>
+			<field name="remote_file_template">[a-zA-Z0-9].*xml</field>
+			<field name="remote_input_dir">/tmp/in</field>
+            <field name="local_archive_input_dir">/tmp/in_archive</field>
+            <field name="local_archive_input_dir_temporal">/tmp/in_archive_temporal</field>
+			<field name="remote_output_dir">/tmp/out</field>
+		</record>
+		<record id="stock.warehouse0" model="stock.warehouse">
+			<field name="stock_connect_id" ref="demo_connection_1" />
+		</record>
+	</data>
+</openerp>

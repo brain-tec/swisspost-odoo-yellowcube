@@ -1,0 +1,15 @@
+<openerp>
+	<data>
+		<!-- sale.exception -->
+		<record id="excep_order_too_young" model="sale.exception">
+			<field name="name">Sales order date is in the future</field>
+			<field name="description">Sales order date is in the future.</field>
+			<field name="sequence">20</field>
+			<field name="model">sale.order</field>
+			<field name="code">if order.date_order > time.time():
+				failed = True
+			</field>
+			<field name="active" eval="False" />
+		</record>
+	</data>
+</openerp>

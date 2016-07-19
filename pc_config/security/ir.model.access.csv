@@ -1,0 +1,2 @@
+id,active,group_id/id,name,model_id/id,perm_create,perm_read,perm_write,perm_unlink
+access_configuration_data,1,base.group_user,access_configuration_data,model_configuration_data,0,1,1,0

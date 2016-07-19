@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+	<data>
+
+		<!-- Tree view. -->
+		<record id="view_connect_transport_tree" model="ir.ui.view">
+			<field name="name">view_connect_transport_tree</field>
+			<field name="model">connect.transport</field>
+			<field name="priority">9999</field>
+			<field name="arch" type="xml">
+				<tree string="Connect Transport">
+					<field name="type" />
+					<field name="name" />
+					<field name="test_mode" />
+					<field name="server_url" />
+					<field name="username" />
+				</tree>
+			</field>
+		</record>
+
+		<!-- Form view. -->
+		<record id="view_connect_transport_form" model="ir.ui.view">
+			<field name="name">view_connect_transport_form</field>
+			<field name="model">connect.transport</field>
+			<field name="priority">9999</field>
+			<field name="arch" type="xml">
+				<form string="Connect Transport" version="7.0">
+					<header>
+						<button type="object" name="test_connection" string="Test"/>
+					</header>
+					<group string="Information" colspan="1">
+						<field name="type" />
+						<field name="name" />
+						<field name="test_mode" />
+					</group>
+					<group string="Credentials" colspan="1">
+						<field name="server_url" />
+						<field name="username" />
+						<field name="password" />
+						<field name="rsa_key" />
+					</group>
+				</form>
+			</field>
+		</record>
+
+		<!-- Receives the action. -->
+		<record id="action_connect_transport" model="ir.actions.act_window">
+			<field name="name">Local SFTP</field>
+			<field name="type">ir.actions.act_window</field>
+			<field name="res_model">connect.transport</field>
+			<field name="view_type">form</field>
+			<field name="view_mode">tree,form</field>
+		</record>
+
+		<!-- Define the view to be used for the tree view. -->
+		<record id="action_connect_transport_tree" model="ir.actions.act_window.view">
+			<field name="sequence" eval="0" />
+			<field name="view_mode">tree</field>
+			<field name="view_id" ref="view_connect_transport_tree" />
+			<field name="act_window_id" ref="action_connect_transport" />
+		</record>
+
+		<!-- Define the view to be used for the tree view. -->
+		<record id="action_connect_transport_form" model="ir.actions.act_window.view">
+			<field name="sequence" eval="0" />
+			<field name="view_mode">form</field>
+			<field name="view_id" ref="view_connect_transport_form" />
+			<field name="act_window_id" ref="action_connect_transport" />
+		</record>
+
+	</data>
+</openerp>

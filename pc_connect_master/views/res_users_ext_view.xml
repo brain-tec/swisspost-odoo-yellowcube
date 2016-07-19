@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+
+        <record id="res_users_form_ext" model="ir.ui.view">
+            <field name="name">res_users_form_ext</field>
+            <field name="model">res.users</field>
+            <field name="inherit_id" ref="base.view_users_form" />
+
+            <field name="arch" type="xml">
+                <field name="company_id" position="after">
+                    <field name="main_category_id" />
+                </field>
+            </field>
+        </record>
+
+    </data>
+</openerp>

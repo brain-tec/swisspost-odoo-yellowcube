@@ -1,0 +1,19 @@
+/path/to/certificate.pem
+/path/to/certificate.pem
+<soapenv:Envelope xmlns:war_req="https://service.swisspost.ch/apache/yellowcube/YellowCube_WAR_REQUEST_GoodsIssueReply.xsd" xmlns:bur_req="https://service.swisspost.ch/apache/yellowcube/YellowCube_BUR_REQUEST_GoodsMovements.xsd" xmlns:soapsec="http://schemas.xmlsoap.org/soap/security/2000-12" xmlns:bar="https://service.swisspost.ch/apache/yellowcube/YellowCube_BAR_RESPONSE_ArticleList.xsd" xmlns:bur="https://service.swisspost.ch/apache/yellowcube/YellowCube_BUR_RESPONSE_GoodsMovements.xsd" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:wba_req="https://service.swisspost.ch/apache/yellowcube/YellowCube_WBA_REQUEST_GoodsReceiptReply.xsd" xmlns:warr="https://service.swisspost.ch/apache/yellowcube/YellowCube_WAR_RESPONSE_GoodsIssueReply.xsd" xmlns:wab="https://service.swisspost.ch/apache/yellowcube/YellowCube_WAB_REQUEST_Warenausgangsbestellung.xsd" xmlns:gen="https://service.swisspost.ch/apache/yellowcube/YellowCube_GEN_RESPONSE_General.xsd" xmlns:w3_xmldsig="http://www.w3.org/2000/09/xmldsig#" xmlns:w3_xmlexcc14n="http://www.w3.org/2001/10/xml-exc-c14n#" xmlns:wsse="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-secext-1.0.xsd" xmlns:bar_req="https://service.swisspost.ch/apache/yellowcube/YellowCube_BAR_REQUEST_ArticleList.xsd" xmlns:gen_req="https://service.swisspost.ch/apache/yellowcube/YellowCube_GEN_STATUS_REQUEST_General.xsd" xmlns:wba="https://service.swisspost.ch/apache/yellowcube/YellowCube_WBA_RESPONSE_GoodsReceiptReply.xsd" xmlns:art="https://service.swisspost.ch/apache/yellowcube/YellowCube_ART_REQUEST_Artikelstamm.xsd" xmlns:wbl="https://service.swisspost.ch/apache/yellowcube/YellowCube_WBL_REQUEST_SupplierOrders.xsd" xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/">
+   <soapenv:Header>
+   </soapenv:Header>
+   <soapenv:Body wsu:Id="pfx73960a4c-6a97-ba2e-beea-225bab34f5e8" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd">
+      <wba_req:WBA_Request>
+         <wba_req:ControlReference>
+            <wba_req:Type>WBA</wba_req:Type>
+            <wba_req:Sender>Odoo</wba_req:Sender>
+            <wba_req:Receiver>LOGOS</wba_req:Receiver>
+            <wba_req:Timestamp>20160121113407</wba_req:Timestamp>
+            <wba_req:OperatingMode>T</wba_req:OperatingMode>
+            <wba_req:Version>1.0</wba_req:Version>
+         </wba_req:ControlReference>
+      </wba_req:WBA_Request>
+   </soapenv:Body>
+</soapenv:Envelope>
+

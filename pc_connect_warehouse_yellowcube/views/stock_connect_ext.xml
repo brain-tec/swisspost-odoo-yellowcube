@@ -1,0 +1,61 @@
+<openerp>
+	<data>
+		<record id="view_stock_connect_form_ext" model="ir.ui.view">
+			<field name="name">stock.conenct.form.ext</field>
+			<field name="inherit_id" ref="pc_connect_warehouse.view_stock_connect_form" />
+			<field name="model">stock.connect</field>
+			<field name="priority">9999</field>
+			<field name="arch" type="xml">
+				<data>
+					<xpath expr="//notebook" position="inside">
+						<page string="YellowCube">
+							<group string="Configuration flags">
+								<field name="yc_enable_art_file" />
+								<field name="yc_enable_art_multifile" />
+								<field name="yc_enable_art_ondemand" />
+								<field name="yc_enable_bar_file" />
+								<field name="yc_enable_bur_file" />
+								<field name="yc_enable_wab_file" />
+								<field name="yc_enable_war_file" />
+								<field name="yc_enable_wba_file" />
+								<field name="yc_enable_wbl_file" />
+							</group>
+							<group string="WAB">
+								<field name="yc_wab_add_invoicing_address" />
+								<field name="yc_wab_partner_type_for_shipping_address" />
+								<field name="yc_wab_partner_type_for_invoicing_address" />
+								<field name="yc_wab_shortdescription_mapping" />
+								<field name="yc_wab_pickingmessage_mapping" />
+								<field name="yc_wab_invoice_send_mode" />
+							</group>
+							<group string="XML header">
+								<field name="yc_language" class="oe_highlight" />
+								<field name="yc_depositor_no" class="oe_highlight" />
+								<field name="yc_plant_id" class="oe_highlight" />
+								<field name="yc_sender" class="oe_highlight" />
+								<field name="yc_receiver" class="oe_highlight" />
+								<field name="yc_supplier_no" class="oe_highlight" />
+								<field name="yc_partner_no" class="oe_highlight" />
+								<field name="yc_operating_mode" class="oe_highlight" />
+							</group>
+							<group string="PCL">
+								<field name="yc_invoice_pcl_printer_name" />
+								<field name="yc_invoice_pcl_printer_destination" />
+								<field name="yc_invoice_pcl_printer_silent_printing" />
+							</group>
+							<group string="Lot checking">
+								<field name="yc_missing_bar_days_due" class="oe_highlight" />
+							</group>
+							<group string="Timings">
+								<field name="yc_hours_between_art_files" class="oe_highlight" />
+							</group>
+							<group string="Product's Life-cycle">
+								<field name="yc_enable_product_lifecycle" />
+							</group>
+						</page>
+					</xpath>
+				</data>
+			</field>
+		</record>
+	</data>
+</openerp>

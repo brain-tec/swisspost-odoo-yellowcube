@@ -1,0 +1,14 @@
+id,active,group_id/id,name,model_id/id,perm_create,perm_read,perm_write,perm_unlink
+stock_connect__admin,1,base.group_no_one,access_stock_connect__admin,model_stock_connect,1,1,1,1
+stock_connect__users,1,base.group_user,access_stock_connect__users,model_stock_connect,0,1,0,0
+stock_connect_file__admin,1,base.group_no_one,access_stock_connect_file__admin,model_stock_connect_file,1,1,1,1
+stock_connect_file__users,1,base.group_user,access_stock_connect_file__users,model_stock_connect_file,0,0,0,0
+stock_event__admin,1,base.group_no_one,access_stock_event__admin,model_stock_event,1,1,1,1
+stock_event__users,1,base.group_user,access_stock_event__users,model_stock_event,1,1,0,0
+stock_warehouse_location,1,base.group_user,access_stock_warehouse_location,model_stock_warehouse_location,0,1,0,0
+stock_connect_file__pc_admin,1,pc_connect_master.pc_admin,access_stock_connect_file__pc_admin,model_stock_connect_file,1,1,1,1
+stock_connect_file__pc_client_care,1,pc_connect_master.pc_client_care,access_stock_connect_file__pc_client_care,model_stock_connect_file,1,1,1,1
+stock_connect__pc_admin,1,pc_connect_master.pc_admin,access_stock_connect__pc_admin,model_stock_connect,1,1,1,1
+stock_connect__pc_client_care,1,pc_connect_master.pc_client_care,access_stock_connect__pc_client_care,model_stock_connect,1,1,1,1
+stock_event__pc_admin,1,pc_connect_master.pc_admin,access_stock_event__pc_admin,model_stock_event,1,1,1,1
+stock_event__pc_client_care,1,pc_connect_master.pc_client_care,access_stock_event__pc_client_care,model_stock_event,1,1,1,1

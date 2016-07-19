@@ -1,0 +1,5 @@
+id,active,group_id/id,name,model_id/id,perm_create,perm_read,perm_write,perm_unlink
+stock_connect_yellowcube__admin,1,base.group_no_one,access_stock_connect_yellowcube__admin,model_stock_connect_yellowcube,1,1,1,1
+stock_connect_yellowcube__users,1,base.group_user,access_stock_connect_yellowcube__users,model_stock_connect_yellowcube,0,1,0,0
+mapping_bur_transactiontypes__admin,1,base.group_no_one,access_mapping_bur_transactiontypes__admin,model_mapping_bur_transactiontypes,1,1,1,1
+mapping_bur_transactiontypes__users,1,base.group_user,access_mapping_bur_transactiontypes__users,model_mapping_bur_transactiontypes,0,1,0,0

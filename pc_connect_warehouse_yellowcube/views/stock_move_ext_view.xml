@@ -1,0 +1,29 @@
+<openerp>
+    <data>
+        <!-- TODO ? Only in v7
+        <record id="view_move_form_ext" model="ir.ui.view">
+            <field name="name">view_move_form_ext</field>
+            <field name="model">stock.move</field>
+            <field name="inherit_id" ref="stock.view_move_form" />
+            <field name="arch" type="xml">
+                <group string="Traceability" position="inside">
+                    <field name="yc_booking_voucher_id" />
+                    <field name="yc_booking_voucher_year" />
+                </group>
+            </field>
+        </record>
+         -->
+
+        <record id="view_move_picking_tree_ext" model="ir.ui.view">
+            <field name="name">view_move_tree_ext</field>
+            <field name="model">stock.move</field>
+            <field name="inherit_id" ref="stock.view_move_picking_tree" />
+            <field name="arch" type="xml">
+                <field name='product_id' position='before'>
+                    <field name="yc_posno" readonly='1' string='YC PosNo'/>
+                </field>
+            </field>
+        </record>
+
+    </data>
+</openerp>

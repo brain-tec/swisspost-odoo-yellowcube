@@ -1,0 +1,18 @@
+<?xml version="1.0" ?>
+<openerp>
+    <data>
+
+        <record id="view_production_lot_form_ext" model="ir.ui.view" >
+            <field name="name">view_production_lot_form_ext</field>
+            <field name="model">stock.production.lot</field>
+            <field name="inherit_id" ref="stock.view_production_lot_form" />
+            <field name="arch" type="xml">
+                <field name="product_id" position="before">
+                    <field name="yellowcube_lot" />
+                    <field name="yc_last_bar_update" />
+                </field>
+            </field>
+        </record>
+
+    </data>
+</openerp>

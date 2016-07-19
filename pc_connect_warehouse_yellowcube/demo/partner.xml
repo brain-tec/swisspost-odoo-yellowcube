@@ -1,0 +1,10 @@
+<openerp>
+	<data>
+		<record id="base.res_partner_2" model="res.partner">
+			<field name="title" ref="base.res_partner_title_pvt_ltd" />
+			<field name="company">Agrolait</field>
+			<field name="function">A company</field>
+			<field name="po_box">55555</field>
+		</record>
+	</data>
+</openerp>

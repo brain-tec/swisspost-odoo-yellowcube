@@ -1,0 +1,7 @@
+<openerp>
+	<data>
+		<record id="pc_config.default_configuration_data" model="configuration.data">
+			<field name="default_credit_limit">9999999999</field>
+		</record>
+	</data>
+</openerp>

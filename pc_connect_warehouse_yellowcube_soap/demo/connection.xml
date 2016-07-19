@@ -1,0 +1,10 @@
+<openerp>
+	<data>
+		<record id="pc_connect_warehouse_yellowcube.demo_connection_yc" model="stock.connect">
+			<field name="name">YellowCube Test on SOAP</field>
+			<field name="type">yellowcubesoap</field>
+			<field name="connect_transport_id" />
+			<field name="yc_enable_art_multifile" eval="True" />
+		</record>
+	</data>
+</openerp>

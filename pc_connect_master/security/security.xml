@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+	<data>
+        <!-- Categories. -->
+        <record id="pc_category" model="ir.module.category">
+            <field name="name">SwissPost Connector</field>
+            <field name="sequence">20</field>
+        </record>
+
+		<!-- Groups. -->
+		<record id="group_user" model="res.groups" forcecreate="False">
+			<field name="name">Connector User</field>
+			<field name="category_id" ref="connector.module_category_connector" />
+		</record>
+		<record id="connector.group_connector_manager" model="res.groups">
+			<field name="implied_ids" eval="[(4, ref('pc_connect_master.group_user'))]" />
+		</record>
+        
+        <record id="pc_client" model="res.groups">
+            <field name="name">SwissPost User</field>
+            <field name="category_id" ref="pc_category" />
+        </record>
+        <record id="pc_client_plus" model="res.groups">
+            <field name="name">SwissPost User Plus Plus</field>
+            <field name="category_id" ref="pc_category" />
+            <field name="implied_ids" eval="[(4, ref('pc_client'))]"/>
+        </record>
+        <record id="pc_client_care" model="res.groups">
+            <field name="name">SwissPost Support</field>
+            <field name="category_id" ref="pc_category" />
+        </record>
+        <record id="pc_admin" model="res.groups">
+            <field name="name">SwissPost Manager</field>
+            <field name="category_id" ref="pc_category" />
+            <field name="implied_ids" eval="[(4, ref('pc_client_care')),(4, ref('pc_client_plus'))]"/>
+        </record>
+
+        <!-- Allows to set a discount on each sale.order line and to have different addresses for delivery and billing. -->
+        <record model="res.groups" id="base.group_user">
+            <field name="implied_ids" eval="[(4, ref('sale.group_discount_per_so_line')), (4, ref('sale.group_delivery_invoice_address'))]"/>
+        </record>
+
+	</data>
+</openerp>

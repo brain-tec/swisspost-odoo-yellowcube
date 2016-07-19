@@ -1,0 +1,179 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+	<data>
+
+		<record id="view_partner_form_ext" model="ir.ui.view">
+			<field name="name">res.partner.form.ext</field>
+			<field name="model">res.partner</field>
+			<field name="inherit_id" ref="base.view_partner_form" />
+
+			<field name="arch" type="xml">
+
+				<field name="parent_id" position="attributes">
+					<attribute name="on_change">onchange_main_category_id(main_category_id,
+						category_id, parent_id)</attribute>
+				</field>
+
+				<field name="category_id" position="before">
+					<field name="main_category_id"
+						on_change="onchange_main_category_id(main_category_id, category_id)" />
+				</field>
+
+                <field name="child_ids" position="attributes">
+                    <!-- We add main_category_id so that it's propagated to the children, in the case the parent is not yet created and thus 'default_parent_id' is False. -->
+                    <attribute name="context">{'default_parent_id': active_id, 'default_street': street, 'default_street2': street2, 'default_city': city, 'default_state_id': state_id, 'default_zip': zip, 'default_country_id': country_id, 'default_supplier': supplier, 'default_customer': customer, 'default_use_parent_address': True, 'main_category_id': main_category_id}</attribute>
+                </field>
+ 
+				<field name="category_id" position="attributes">
+					<attribute name="on_change">onchange_main_category_id(main_category_id,
+						category_id)</attribute>
+				</field>
+
+				<field name="title" position="after">
+					<field name="gender" />
+				</field>
+
+				<field name="title" position="replace">
+					<field name="title" domain="[('domain', '=', 'contact')]"
+						options="{'no_open': True}" />
+				</field>
+
+				<field name="street" position="attributes">
+					<attribute name="style">width: 70%%</attribute>
+					<attribute name="placeholder">Street Name</attribute>
+				</field>
+				<field name="street" position="after">
+					<field name="street_no" style="width: 27%%;" placeholder="Street No." />
+				</field>
+
+				<field name="street" position="before">
+					<field name="company" placeholder="Company Name"/>
+					<field name="po_box" placeholder="P.O. Box" />
+				</field>
+
+				<!-- theses Fields are added in the pop up view of a contact -->
+
+				<xpath expr="//div[@name='div_type']" position="after">
+					<field name="pickpost_mypost24_no"
+						attrs="{'invisible': [('type', '!=', 'pickpost'), ('type', '!=', 'mypost24')]}" />
+				</xpath>
+
+				<xpath
+					expr="//page/field[@name='child_ids']/form/sheet/div/field[@name='category_id']"
+					position="before">
+					<field name="main_category_id"
+						on_change="onchange_main_category_id(main_category_id, category_id)" />
+				</xpath>
+				<xpath
+					expr="//page/field[@name='child_ids']/form/sheet/div/field[@name='category_id']"
+					position="attributes">
+					<attribute name="on_change">onchange_main_category_id(main_category_id,
+						category_id)</attribute>
+				</xpath>
+				<xpath
+					expr="//page/field[@name='child_ids']/form/sheet/group[2]/div[2]/field[@name='street']"
+					position="attributes">
+					<attribute name="style">width: 70%%</attribute>
+					<attribute name="placeholder">Street Name</attribute>
+				</xpath>
+				<xpath
+					expr="//page/field[@name='child_ids']/form/sheet/group[2]/div[2]/field[@name='street']"
+					position="after">
+					<field name="street_no" style="width: 27%%;" placeholder="Street No." />
+				</xpath>
+				<xpath
+					expr="//page/field[@name='child_ids']/form/sheet/group[2]/div[2]/field[@name='street']"
+					position="before">
+					<field name="company" placeholder="Company Name"/>
+					<field name="po_box" placeholder="P.O. Box" />
+				</xpath>
+			</field>
+		</record>
+
+		<record id="view_partner_simplified_form_ext" model="ir.ui.view">
+			<field name="name">res.partner.simplified.form.ext</field>
+			<field name="model">res.partner</field>
+			<field name="inherit_id" ref="base.view_partner_simple_form" />
+
+			<field name="arch" type="xml">
+
+				<field name="category_id" position="before">
+					<field name="main_category_id"
+						on_change="onchange_main_category_id(main_category_id, category_id)" />
+				</field>
+
+				<field name="category_id" position="attributes">
+					<attribute name="on_change">onchange_main_category_id(main_category_id,
+						category_id)</attribute>
+				</field>
+			</field>
+		</record>
+
+		<record id='view_res_partner_filter_ext' model="ir.ui.view">
+			<field name="name">res.partner.select.ext</field>
+            <field name="model">res.partner</field>
+            <field name="inherit_id" ref="base.view_res_partner_filter" />
+            <field name="arch" type="xml">
+            	<search>
+            		<field name="email"/>
+        			<field name="ref"/>
+            	</search>
+            </field>
+		</record>
+
+
+		<record id="res_partner_opt_out_form_ext" model="ir.ui.view">
+			<field name="name">res.partner.opt_out.form.ext</field>
+			<field name="model">res.partner</field>
+			<field name="inherit_id" ref="email_template.res_partner_opt_out_form" />
+
+			<field name="arch" type="xml">
+				<field name='opt_out' position='after'>
+					<field name='newsletter_allowed' />
+				</field>
+			</field>
+		</record>
+
+		<record id="view_partner_tree_ext" model="ir.ui.view">
+			<field name="name">res.partner.tree.ext</field>
+			<field name="model">res.partner</field>
+			<field name="inherit_id" ref="base.view_partner_tree" />
+			<field name="arch" type="xml">
+				<field name='display_name' position='after'>
+					<field name='main_category_id' />
+				</field>
+			</field>
+		</record>
+
+		<record id="view_partner_filter_ext" model="ir.ui.view">
+			<field name="name">res.partner.filter.ext</field>
+			<field name="model">res.partner</field>
+			<field name="inherit_id" ref="base.view_res_partner_filter" />
+			<field name="arch" type="xml">
+				<field name='name' position='after'>
+					<field name='main_category_id' />
+				</field>
+				<group position='inside'>
+					<filter string='Main Tag' context="{'group_by': 'main_category_id'}" />
+				</group>
+			</field>
+		</record>
+
+		<record id="view_partner_kanban_ext" model="ir.ui.view">
+			<field name="name">res.partner.kanban.ext</field>
+			<field name="model">res.partner</field>
+			<field name="inherit_id" ref="base.res_partner_kanban_view" />
+			<field name="arch" type="xml">
+				<field name='category_id' position='before'>
+					<field name='main_category_id' />
+				</field>
+				<div class="oe_kanban_partner_categories" position='before'>
+					<div>
+						Main Tag:
+						<field name='main_category_id' />
+					</div>
+				</div>
+			</field>
+		</record>
+	</data>
+</openerp>

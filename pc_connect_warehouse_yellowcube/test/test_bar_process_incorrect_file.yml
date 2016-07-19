@@ -1,0 +1,93 @@
+-
+  TEST_BAR_PROCESS_INCORRECT_FILE. Tests a BAR file.
+-
+  !python {model: account.invoice}: |
+    print 'Starting the test TEST_BAR_PROCESS_INCORRECT_FILE.'
+    cr.execute("SAVEPOINT test;")
+-
+  !python {model: workflow.transition}: |
+    print 'Deactivating conditions on Wkf'
+    self.write(cr, uid, ref('sale.trans_draft_sent'), {'condition': 'True'})
+    self.write(cr, uid, ref('sale.trans_draft_router'), {'condition': 'True'})
+-
+  TEST_BAR_PROCESS_INCORRECT_FILE. Creates a file which is attached to the stock.connect that we use to test.
+-
+  !python {model: stock.connect.file}: |
+    # Gets the ID of the stock.connect we are going to attach the file to.
+    stock_connect_id = ref('demo_connection_yc')
+
+    # Fills in the context with the data to test with.
+    context['yc_article_no'] = 'xxxADPTxxx'
+    context['default_code'] = 'ADPT'
+    context['article_description'] = 'xxxdescriptionxxx'
+    context['yc_plant'] = 'Y005'
+    context['yc_lot'] = 'TOOLONGTOOLONGTOOLONGTOOLONGTOOLONGTOOLONGTOOLONGTOOLONG'
+    context['lot_name'] = 'xxxLOTxxx'
+    context['best_before_date'] = '20501010'
+    context['num_units'] = 10.000
+    context['yc_print_errors'] = False
+
+    # Creates the content of the BAR we want the test.
+    bar_content = '''
+    <bar:BAR xmlns:bar="https://service.swisspost.ch/apache/yellowcube/YellowCube_BAR_RESPONSE_ArticleList.xsd">
+      <bar:ControlReference>
+        <bar:Type>BAR</bar:Type>
+        <bar:Sender>YELLOWCUBE</bar:Sender>
+        <bar:Receiver>0000041226</bar:Receiver>
+        <bar:Timestamp>20150310000013</bar:Timestamp>
+        <bar:OperatingMode>T</bar:OperatingMode>
+        <bar:Version>1.0</bar:Version>
+      </bar:ControlReference>
+      <bar:ArticleList>
+        <bar:Article>
+            <bar:YCArticleNo>{yc_article_no}</bar:YCArticleNo>
+            <bar:ArticleNo>{default_code}</bar:ArticleNo>
+            <bar:ArticleDescription>{article_description}</bar:ArticleDescription>
+            <bar:Plant>{yc_plant}</bar:Plant>
+            <bar:StorageLocation>YAFS</bar:StorageLocation>
+            <bar:YCLot>{yc_lot}</bar:YCLot>
+            <bar:Lot>{lot_name}</bar:Lot>
+            <bar:BestBeforeDate>{best_before_date}</bar:BestBeforeDate>
+            <bar:StockType>0</bar:StockType>
+            <bar:QuantityUOM QuantityISO="PCE">{num_units}</bar:QuantityUOM>
+        </bar:Article>
+      </bar:ArticleList>
+    </bar:BAR>
+    '''.format(**context)
+
+    # Creates the stock.connect.file.
+    stock_connect_file_id = self.create(cr, uid, {'name': 'Test BAR', 'input': True, 'state': 'draft', 'stock_connect_id': stock_connect_id, 'content': bar_content}, context=context)
+    context['stock_connect_file_id'] = stock_connect_file_id
+
+    # Checks that its state is 'draft'.
+    stock_connect_file = self.browse(cr, uid, stock_connect_file_id, context=context)
+    assert(stock_connect_file.state == 'draft'), "The state of the stock.connect.file created should be 'draft', but it is {0}.".format(stock_connect_file.state)
+
+-
+  TEST_BAR_PROCESS_INCORRECT_FILE. Process the file. We check that its state was processed and that no errors were logged.
+-
+  !python {model: stock.connect}: |
+    # Gets the ID of the stock.connect we are going to attach the file to.
+    stock_connect_id = ref('demo_connection_yc')
+    self.write(cr, uid, stock_connect_id, {'yc_enable_bar_file': True}, context=context)
+
+    # Processes the files: < THIS NEVER WORKS IN YML, BECAUSE IT DOES NOT USE THE 'except' PART.
+    print 'Making the code to raise an exception in BAR processing'
+    try:
+        self.connection_process_files(cr, uid, stock_connect_id, context=context)
+        assert(False), "An exception happened while processing the BAR file."
+    except:
+        pass
+
+    # Checks that the file was not correctly processed, because some errors were found.
+    print 'Checking that the BAR file error is properly processed'
+    stock_connect_file = self.pool.get('stock.connect.file').browse(cr, uid, context['stock_connect_file_id'], context=context)
+    assert(stock_connect_file.state == 'draft'), "The state of the stock.connect.file created should be 'draft', but it is '{0}'.".format(stock_connect_file.state)
+    assert(stock_connect_file.error), "The stock.connect.file processed should have errors, but it has no errors."
+    assert(not stock_connect_file.type), "The stock.connect.file processed should have no type, but it has type '{0}'.".format(stock_connect_file.type)
+
+-
+  TEST_BAR_PROCESS_INCORRECT_FILE. Rollbacks.
+-
+  !python {model: account.invoice}: |
+    cr.execute("ROLLBACK TO SAVEPOINT test;")

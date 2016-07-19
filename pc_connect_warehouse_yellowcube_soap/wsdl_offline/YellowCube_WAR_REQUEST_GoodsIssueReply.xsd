@@ -1,0 +1,209 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XMLSpy v2012 sp1 (http://www.altova.com) by Die Schweizerische Post (Die Schweizerische Post) -->
+<!-- edited by Die Schweizerische Post (Die Schweizerische Post) -->
+<!-- 	===========================================================	-->
+<!--   ***   WSDL YellowCube -  	(c) Swiss Post Ltd., CH - 3030 Berne				-->
+<!--   ***   Version 1.00 05.01.2015                                                    -->
+<!--   ***                                                                              -->
+<!--   ***   1.00 initial version                                                       -->
+<!--   ***   1.07 Erweiterung für LOGOS *** -->
+<!--  ***    1.08 CUSTOMER-Warehouse for Receiver -->
+<xs:schema xmlns:war_r="https://service.swisspost.ch/apache/yellowcube/YellowCube_WAR_REQUEST_GoodsIssueReply.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:altova="http://www.altova.com/xml-schema-extensions" targetNamespace="https://service.swisspost.ch/apache/yellowcube/YellowCube_WAR_REQUEST_GoodsIssueReply.xsd" elementFormDefault="qualified">
+	<xs:element name="WAR_Request">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="war_r:ControlReference"/>
+				<xs:element ref="war_r:CustomerOrderNo" minOccurs="0"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="ControlReference">
+		<xs:annotation>
+			<xs:documentation>Kontroll-Datensatz für das Routing der Datei/Message</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="Type">
+					<xs:annotation>
+						<xs:documentation>Typ - [WAR]-List only</xs:documentation>
+					</xs:annotation>
+					<xs:simpleType>
+						<xs:restriction base="xs:string">
+							<xs:minLength value="1"/>
+							<xs:maxLength value="6"/>
+							<xs:enumeration value="WAR"/>
+						</xs:restriction>
+					</xs:simpleType>
+				</xs:element>
+				<xs:element name="Sender">
+					<xs:annotation>
+						<xs:documentation>Absender als SenderID z.B. "Tradeshop" im Format Xxxxxxxxxxx. </xs:documentation>
+						<xs:appinfo>
+							<altova:exampleValues>
+								<altova:example value="LOGOS"/>
+								<altova:example value="YELLOWCUBE"/>
+								<altova:example value="CUSTOMER"/>
+								<altova:example value="Tradeshop7"/>
+							</altova:exampleValues>
+						</xs:appinfo>
+					</xs:annotation>
+					<xs:simpleType>
+						<xs:restriction base="xs:string">
+							<xs:minLength value="1"/>
+							<xs:maxLength value="10"/>
+							<xs:whiteSpace value="collapse"/>
+							<xs:pattern value="([A-Z0-9]{1}[a-z0-9]{1,9})|(YCTest)|(Yctest)|(YELLOWCUBE)|(LOGOS)|(CUSTOMER)"/>
+						</xs:restriction>
+					</xs:simpleType>
+				</xs:element>
+				<xs:element name="Receiver">
+					<xs:annotation>
+						<xs:documentation>Empfänger YELLOWCUBE oder LOGOS oder KundenLager</xs:documentation>
+						<xs:appinfo>
+							<altova:exampleValues>
+								<altova:example value="YELLOWCUBE"/>
+								<altova:example value="LOGOS"/>
+								<altova:example value="CUSTOMER"/>
+							</altova:exampleValues>
+						</xs:appinfo>
+					</xs:annotation>
+					<xs:simpleType>
+						<xs:restriction base="xs:string">
+							<xs:minLength value="1"/>
+							<xs:maxLength value="10"/>
+							<xs:whiteSpace value="collapse"/>
+							<xs:pattern value="([A-Z0-9]{1}[a-z0-9]{1,9})|(YELLOWCUBE)|(LOGOS)|(CUSTOMER)|(YCTest)|(Yctest)"/>
+						</xs:restriction>
+					</xs:simpleType>
+				</xs:element>
+				<xs:element name="Timestamp">
+					<xs:annotation>
+						<xs:documentation>Zeitstempel - JJJJMMTThhmmss</xs:documentation>
+						<xs:appinfo>
+							<altova:exampleValues>
+								<altova:example value="20160611101523"/>
+							</altova:exampleValues>
+						</xs:appinfo>
+					</xs:annotation>
+					<xs:simpleType>
+						<xs:restriction base="xs:unsignedLong">
+							<xs:totalDigits value="14"/>
+							<xs:whiteSpace value="collapse"/>
+							<xs:pattern value="((2[0-9][0-9][0-9])|(1[0-9][0-9][0-9]))((0[0-9])|(1[0-2]))(([0-2][0-9])|(3[0-1]))((0[0-9])|(1[0-9])|(2[0-3]))([0-5][0-9][0-5][0-9])"/>
+						</xs:restriction>
+					</xs:simpleType>
+				</xs:element>
+				<xs:element name="OperatingMode">
+					<xs:annotation>
+						<xs:documentation>T=Test / P=Production / D=Development</xs:documentation>
+						<xs:appinfo>
+							<altova:exampleValues>
+								<altova:example value="T"/>
+							</altova:exampleValues>
+						</xs:appinfo>
+					</xs:annotation>
+					<xs:simpleType>
+						<xs:restriction base="xs:string">
+							<xs:minLength value="1"/>
+							<xs:maxLength value="1"/>
+							<xs:whiteSpace value="collapse"/>
+							<xs:enumeration value="T"/>
+							<xs:enumeration value="P"/>
+							<xs:enumeration value="D"/>
+							<!-- Testsystem -->
+							<!-- Produktivsystem -->
+						</xs:restriction>
+					</xs:simpleType>
+				</xs:element>
+				<xs:element name="Version">
+					<xs:annotation>
+						<xs:documentation>Schnittstellenversion</xs:documentation>
+					</xs:annotation>
+					<xs:simpleType>
+						<xs:restriction base="xs:string">
+							<xs:minLength value="1"/>
+							<xs:maxLength value="3"/>
+						</xs:restriction>
+					</xs:simpleType>
+				</xs:element>
+				<xs:element name="CommType" default="SOAP" minOccurs="0">
+					<xs:annotation>
+						<xs:documentation>Kommunikationstyp SOAP|REST|HTTPS|FTP</xs:documentation>
+						<xs:appinfo>
+							<altova:exampleValues>
+								<altova:example value="SOAP"/>
+							</altova:exampleValues>
+						</xs:appinfo>
+					</xs:annotation>
+					<xs:simpleType>
+						<xs:restriction base="xs:string">
+							<xs:maxLength value="5"/>
+							<xs:minLength value="1"/>
+							<xs:whiteSpace value="collapse"/>
+							<xs:enumeration value="SOAP"/>
+							<xs:enumeration value="REST"/>
+							<xs:enumeration value="HTTPS"/>
+							<xs:enumeration value="FTP"/>
+							<xs:enumeration value="EMAIL"/>
+						</xs:restriction>
+					</xs:simpleType>
+				</xs:element>
+				<xs:element name="TransControlID" minOccurs="0">
+					<xs:annotation>
+						<xs:documentation>Reference der Transaktion (wird in der Response wieder verwendet)</xs:documentation>
+					</xs:annotation>
+					<xs:complexType>
+						<xs:attribute name="UniqueFlag" use="optional" default="0">
+							<xs:annotation>
+								<xs:documentation>Gibt an ob die TransContollID unique ist. Wenn nicht muss zum SAP eine Uniqe ID generiert werden</xs:documentation>
+							</xs:annotation>
+							<xs:simpleType>
+								<xs:restriction base="xs:normalizedString">
+									<xs:minLength value="0"/>
+									<xs:maxLength value="1"/>
+									<xs:whiteSpace value="collapse"/>
+									<xs:enumeration value="0"/>
+									<xs:enumeration value="1"/>
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:attribute>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="TransMaxWait" default="10" nillable="false" minOccurs="0">
+					<xs:annotation>
+						<xs:documentation>Maximale Wartezeit bis Response erwünscht. Die Response kann eine Referenz sein (asynchron) ODER die Response kann vom Gateway sein (synchron)</xs:documentation>
+						<xs:appinfo>
+							<altova:exampleValues>
+								<altova:example value="120"/>
+							</altova:exampleValues>
+						</xs:appinfo>
+					</xs:annotation>
+					<xs:simpleType>
+						<xs:restriction base="xs:unsignedInt">
+							<xs:minInclusive value="10" fixed="false"/>
+							<xs:maxInclusive value="3600" fixed="false"/>
+							<xs:totalDigits value="4"/>
+						</xs:restriction>
+					</xs:simpleType>
+				</xs:element>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="CustomerOrderNo">
+		<xs:annotation>
+			<xs:appinfo>
+				<altova:exampleValues>
+					<altova:example value="SO2323OUT232324"/>
+					<altova:example value="100000003"/>
+					<altova:example value=""/>
+				</altova:exampleValues>
+			</xs:appinfo>
+		</xs:annotation>
+		<xs:simpleType>
+			<xs:restriction base="xs:normalizedString">
+				<xs:maxLength value="35"/>
+				<xs:whiteSpace value="collapse"/>
+			</xs:restriction>
+		</xs:simpleType>
+	</xs:element>
+</xs:schema>

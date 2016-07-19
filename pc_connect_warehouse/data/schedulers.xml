@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+	<data>
+
+        <record id="check_delivery_order_expiry_dates" model="ir.cron">
+            <field name="name">PCAP - Check Delivery Order Open Date</field>
+            <field name="interval_type">days</field>
+            <field name="interval_number" eval="1" />
+            <field name="numbercall" eval="-1" />
+            <field name="doall" eval="True" />
+            <field name="model">configuration.data</field>
+            <field name="function">check_old_stock_picking_out</field>
+            <field name="args" eval="()" />
+            <field name="priority" eval="4" />
+            <field name="active" eval="False" />
+        </record>
+
+	</data>
+</openerp>

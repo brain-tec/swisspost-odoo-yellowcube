@@ -1,0 +1,30 @@
+<openerp>
+	<data>
+		<record id="stock_warehouse_tree_ext" model="ir.ui.view">
+			<field name="name">stock_warehouse_tree_ext</field>
+			<field name="model">stock.warehouse</field>
+			<field name="inherit_id" ref="stock.view_warehouse_tree" />
+
+			<field name="arch" type="xml">
+				<field name="lot_stock_id" position="after">
+					<field name="lot_blocked_id" />
+					<field name="lot_scrapping_id" />
+
+				</field>
+			</field>
+		</record>
+
+		<record id="stock_warehouse_form_ext" model="ir.ui.view">
+			<field name="name">stock_warehouse_form_ext</field>
+			<field name="model">stock.warehouse</field>
+			<field name="inherit_id" ref="pc_connect_warehouse.stock_warehouse_form_ext" />
+
+			<field name="arch" type="xml">
+				<field name="lot_stock_id" position="after">
+					<field name="lot_blocked_id" />
+					<field name="lot_scrapping_id" />
+				</field>
+			</field>
+		</record>
+	</data>
+</openerp>

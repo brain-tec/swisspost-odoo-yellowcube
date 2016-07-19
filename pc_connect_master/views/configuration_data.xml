@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+	<data>
+		<record id="post_ecommerce_config_view" model="ir.ui.view">
+			<field name="name">post_ecommerce_config_view</field>
+			<field name="model">configuration.data</field>
+			<field name="inherit_id" ref="pc_config.configuration_data_form" />
+			<field name="arch" type="xml">
+				<notebook position="inside">
+					<page string="Products - Batch Management">
+                        <group cols="2">
+    						<group string="Dates" colspan="2">
+                                <label for="post_default_expiration_block_time" />
+                                <div>
+                                    <field name="post_default_expiration_block_time" style="width: 30%%;" />
+                                    <field name="post_default_expiration_block_time_uom" class="oe_no_button"
+                                        style="width: 65%%;" />
+                                </div>
+
+                                <label for="post_default_expiration_alert_time" />
+                                <div>
+                                    <field name="post_default_expiration_alert_time" style="width: 30%%;" />
+                                    <field name="post_default_expiration_alert_time_uom" class="oe_no_button"
+                                        style="width: 65%%;" />
+                                </div>
+
+                                <label for="post_default_expiration_accept_time" />
+                                <div>
+                                    <field name="post_default_expiration_accept_time" style="width: 30%%;" />
+                                    <field name="post_default_expiration_accept_time_uom" class="oe_no_button"
+                                        style="width: 65%%;" />
+                                </div>
+    						</group>
+                            <group string="Illegal Quantities Regarding Lots" colspan="2">
+                                <field name="illegal_lots_destination_id" />
+                            </group>
+                        </group>
+					</page>
+
+                    <page string="Reports">
+                        <group string="Reports to Use" colspan="2">
+                            <field name="report_account_invoice" colspan="1" />
+                            <field name="report_stock_picking" colspan="1" />
+                        </group>
+                    </page>
+
+					<page string="Sale Order">
+						<group colspan="2">
+							<field name="force_payment_term" colspan="1" />
+							<field name="default_credit_limit" colspan="1" />
+						</group>
+                        <group string="Partial Deliveries" colspan="2">
+                            <field name="default_picking_policy" colspan="1"/>
+                            <field name="open_backorder_alarming_age_days" colspan="1"/>
+                            <field name="execute_only_after_time_for_backorders" widget="float_time" colspan="1" />
+                        </group>
+                        <group string="Opening Hours of Support" colspan="2">
+                            <div colspan="2">
+                                Opening hours of the support staff.
+                            </div>
+                            <group>
+                                <field name="support_start_time" widget="float_time" />
+                                <field name="support_soft_end_time" widget="float_time" />
+                                <field name="support_end_time" widget="float_time" />
+                            </group>
+                            <group>
+                                <field name="support_open_monday" />
+                                <field name="support_open_tuesday" />
+                                <field name="support_open_wednesday" />
+                                <field name="support_open_thursday" />
+                                <field name="support_open_friday" />
+                                <field name="support_open_saturday" />
+                                <field name="support_open_sunday" />
+                            </group>
+                        </group>
+					</page>
+
+                    <page string="Invoice">
+						<group colspan="2">
+							<field name="invoice_to_partner_email_template_id" colspan="1" />
+						</group>
+                    </page>
+
+                    <page string="Others">
+						<group string="Contact Titles" colspan="2">
+							<field name="keep_only_mister_and_madam_titles" />
+						</group>
+                        <group string="Punchcards" colspan="2">
+                            <field name="punchcards_limit" colspan="1" />
+                        </group>
+                        <group string="Timezone" colspan="2">
+                            <field name="support_timezone" />
+                        </group>
+                        <group string="Requeue Criteria" colspan="2">
+                            <field name="concurrent_access_requeue_num_minutes" />
+                        </group>
+                    </page>
+
+                    <page string="Alarming" />
+
+				</notebook>
+			</field>
+		</record>
+	</data>
+</openerp>

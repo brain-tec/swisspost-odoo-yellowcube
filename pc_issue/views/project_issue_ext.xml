@@ -1,0 +1,270 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+	<data>
+		<record
+			id="project_issue_kanban_ext"
+			model="ir.ui.view">
+			<field name="name">project.issue.kanban.ext</field>
+			<field name="model">project.issue</field>
+			<field
+				name="inherit_id"
+				ref="project_issue.project_issue_kanban_view" />
+			<field
+				name="arch"
+				type="xml">
+				<data>
+					<field
+						name="partner_id"
+						position="after">
+						<br />
+						<field name="project_id" />
+					</field>
+				</data>
+			</field>
+		</record>
+		<record
+			id="project_issue_form_ext"
+			model="ir.ui.view">
+			<field name="name">project.issue.form.ext</field>
+			<field name="model">project.issue</field>
+			<field
+				name="inherit_id"
+				ref="project_issue.project_issue_form_view" />
+			<field
+				name="arch"
+				type="xml">
+				<data>
+					<field
+						name="name"
+						position="after">
+						<field
+							name='model_id'
+							colspan='0'
+							readonly="1"
+							invisible="1" />
+						<button
+							name="open_record"
+							string="Open record"
+							type="object"
+							attrs="{'invisible': [('model_id', 'in', [False, None, 0])]}"/>
+					</field>
+				</data>
+			</field>
+		</record>
+
+		<record
+			id="project_issue_search_ext"
+			model="ir.ui.view">
+			<field name="name">project.issue.search.ext</field>
+			<field name="model">project.issue</field>
+			<field
+				name="inherit_id"
+				ref="project_issue.view_project_issue_filter" />
+			<field
+				name="arch"
+				type="xml">
+				<data>
+					<group position='inside'>
+						<filter
+							string="Task"
+							icon="terp-folder-violet"
+							domain="[]"
+							context="{'group_by':'task_id'}" />
+					</group>
+				</data>
+			</field>
+		</record>
+
+		<record
+			id="action_create_issue_all"
+			model="ir.actions.server">
+			<field name="name">Create issue</field>
+			<field
+				name="model_id"
+				ref="base.model_ir_model" />
+			<field name="state">code</field>
+			<field name="code">action = self.open_record_issue_v2(cr, uid, None, tags=['user-generated'], create=True,	context=context)</field>
+		</record>
+
+		<record
+			id="action_open_issue_all"
+			model="ir.actions.server">
+			<field name="name">Open issue</field>
+			<field
+				name="model_id"
+				ref="base.model_ir_model" />
+			<field name="state">code</field>
+			<field name="code">action = self.open_record_issue(cr, uid, None, create=False,	context=context)</field>
+		</record>
+
+		<record
+			model="ir.values"
+			id="open_issue_all">
+			<field name="name">Open Issues</field>
+			<field name="key2">client_action_multi</field>
+			<field
+				name="value"
+				eval="'ir.actions.server,' + str(ref('action_open_issue_all'))" />
+			<field name="key">action</field>
+			<field name="model">*</field>
+		</record>
+
+		<record
+			model="ir.values"
+			id="create_issue_all">
+			<field name="name">Create Issues</field>
+			<field name="key2">client_action_multi</field>
+			<field
+				name="value"
+				eval="'ir.actions.server,' + str(ref('action_create_issue_all'))" />
+			<field name="key">action</field>
+			<field name="model">*</field>
+		</record>
+<!-- 
+		<record
+			id="project_issue_sale_order_ext"
+			model="ir.ui.view">
+			<field name="name">sale.view_order_form.form.ext</field>
+			<field name="model">sale.order</field>
+			<field
+				name="inherit_id"
+				ref="sale.view_order_form" />
+			<field
+				name="arch"
+				type="xml">
+				<data>
+					<field
+						name="name"
+						position="after">
+						<button
+							name="open_record_issue"
+							string="Open/Create associated Issue"
+							type="object" />
+					</field>
+				</data>
+			</field>
+		</record>
+
+		<record
+			id="project_issue_stock_picking_out_ext"
+			model="ir.ui.view">
+			<field name="name">stock.view_picking_form.ext</field>
+			<field name="model">stock.picking.out</field>
+			<field
+				name="inherit_id"
+				ref="stock.view_picking_form" />
+			<field
+				name="arch"
+				type="xml">
+				<data>
+					<field
+						name="name"
+						position="after">
+						<button
+							name="open_record_issue"
+							string="Open/Create associated Issue"
+							type="object" />
+					</field>
+				</data>
+			</field>
+		</record>
+
+		<record
+			id="project_issue_account_invoice_ext"
+			model="ir.ui.view">
+			<field name="name">account.invoice_form.ext</field>
+			<field name="model">account.invoice</field>
+			<field
+				name="inherit_id"
+				ref="account.invoice_form" />
+			<field
+				name="arch"
+				type="xml">
+				<data>
+					<field
+						name="number"
+						position="after">
+						<button
+							name="open_record_issue"
+							string="Open/Create associated Issue"
+							type="object" />
+					</field>
+				</data>
+			</field>
+		</record>
+
+		<record
+			id="project_issue_ir_cron_ext"
+			model="ir.ui.view">
+			<field name="name">base.ir_cron_view.ext</field>
+			<field name="model">ir.cron</field>
+			<field
+				name="inherit_id"
+				ref="base.ir_cron_view" />
+			<field
+				name="arch"
+				type="xml">
+				<data>
+					<field
+						name="name"
+						position="after">
+						<button
+							name="open_record_issue"
+							string="Open/Create associated Issue"
+							type="object"
+							colspan="2" />
+					</field>
+				</data>
+			</field>
+		</record>
+
+		<record
+			id="project_issue_res_partner_ext"
+			model="ir.ui.view">
+			<field name="name">base.view_partner_form.ext</field>
+			<field name="model">res.partner</field>
+			<field
+				name="inherit_id"
+				ref="base.view_partner_form" />
+			<field
+				name="arch"
+				type="xml">
+				<data>
+					<div
+						name="buttons"
+						position="inside">
+						<button
+							name="open_record_issue"
+							string="Open/Create associated Issue"
+							type="object" />
+					</div>
+				</data>
+			</field>
+		</record>
+
+		<record
+			id="project_issue_product_product_ext"
+			model="ir.ui.view">
+			<field name="name">product.product_normal_form_view.ext</field>
+			<field name="model">product.product</field>
+			<field
+				name="inherit_id"
+				ref="product.product_normal_form_view" />
+			<field
+				name="arch"
+				type="xml">
+				<data>
+					<div
+						name="buttons"
+						position="inside">
+						<button
+							name="open_record_issue"
+							string="Open/Create associated Issue"
+							type="object" />
+					</div>
+				</data>
+			</field>
+		</record>
+		 -->
+	</data>
+</openerp>

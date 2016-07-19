@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+	<data>
+
+        <record id="sale_order_view_form_automation_ext" model="ir.ui.view">
+            <field name="name">sale.order.view.form.automation</field>
+            <field name="model">sale.order</field>
+            <field name="inherit_id" ref="sale_payment_method.sale_order_view_form" />
+            <field name="arch" type="xml">
+                <field name="payment_method_id" position="after">
+                    <field name="automation_finished" />
+                </field>
+            </field>
+        </record>
+
+        <record id="sale_order_view_form_ext" model="ir.ui.view">
+            <field name="name">sale.order.view.form.ext</field>
+            <field name="model">sale.order</field>
+            <field name="inherit_id" ref="sale.view_order_form" />
+            <field name="arch" type="xml">
+                <button name="action_view_invoice" position="attributes">
+                    <attribute name="groups">base.group_user,pc_connect_master.pc_client</attribute>
+                </button>
+
+                <field name="partner_id" position="attributes">
+                    <attribute name="context">{'search_default_customer': 1, 'show_address': 0}</attribute>
+                    <attribute name="options">{'always_reload': 0}</attribute>
+                </field>
+                <field name="partner_invoice_id" position="attributes">
+                    <attribute name="context">{'default_type': 'invoice', 'show_address': 1}</attribute>
+                    <attribute name="options">{'always_reload': 1}</attribute>
+                </field>
+                <field name="partner_shipping_id" position="attributes">
+                    <attribute name="context">{'default_type': 'delivery', 'show_address': 1}</attribute>
+                    <attribute name="options">{'always_reload': 1}</attribute>
+                </field>
+                <page string="Other Information" position="inside">
+                    <group string="Gift Text">
+                        <field name="additional_message_type" widget="selection" />
+                        <field name="additional_message_content" />
+                    </group>
+                    <group string="Delivery Information">
+                        <field name="delivery_date" />
+                        <field name="delivery_time_jit" />
+                        <field name="delivery_location" />
+                        <field name="delivery_notification_type" />
+                    </group>
+                </page>
+
+                <!-- Adds the tab for the support information. -->
+                <notebook position="inside">
+                    <page string="Help &amp; Support">
+                        <group string="Debug info" colspan='4' groups="base.group_no_one">
+                            <field name="procurement_group_id" readonly="1"/>
+                        </group>
+                    </page>
+                </notebook>
+
+            </field>
+        </record>
+
+
+		<record
+			id="sale_order_search_ext_view"
+			model="ir.ui.view">
+			<field name="name">sale_order_search_ext_view</field>
+			<field name="model">sale.order</field>
+			<field name="inherit_id" ref="sale.view_sales_order_filter" />
+			<field name="arch" type="xml">
+				<data>
+					<field
+						name="project_id"
+						position="after">
+
+						<filter
+							string="Today"
+							domain="[
+                                    ('date_order','=',context_today().strftime('%%Y-%%m-%%d')),
+                                    ]"
+							help="Today"
+							icon="terp-personal"
+							name="today" />
+
+						<filter
+							string="This Week"
+							domain="['&amp;',
+                                    ('date_order','&gt;=','this_mon'),
+                                    ('date_order','&lt;=','this_sun')
+                                    ]"
+							help="This week"
+							icon="terp-go-week"
+							name="this_week"
+							context="{'this_week': True}" />
+
+						<filter
+							string="This Month"
+							domain="['&amp;',
+                                    ('date_order','&gt;=',(context_today()+relativedelta(months=0)).strftime('%%Y-%%m-01')),
+                                    ('date_order','&lt;',(context_today()+relativedelta(months=1)).strftime('%%Y-%%m-01')),
+                                    ]"
+							help="This month"
+							icon="terp-personal"
+							name="this_month" />
+
+						<filter
+							string="This Quarter"
+							domain="['&amp;',
+                                    ('date_order','&gt;=','start_of_this_quarter'),
+                                    ('date_order','&lt;=','end_of_this_quarter')
+                                    ]"
+							help="This quarter"
+							icon="terp-go-quarter"
+							name="this_quarter"
+							context="{'this_quarter': True}" />
+
+						<filter
+							string="This Year"
+							domain="['&amp;',
+                                    ('date_order','&gt;=',(context_today()+relativedelta(years=0)).strftime('%%Y-01-01')),
+                                    ('date_order','&lt;=',(context_today()+relativedelta(years=0)).strftime('%%Y-12-31')),
+                                    ]"
+							help="This year"
+							icon="terp-personal"
+							name="this_year" />
+					</field>
+				</data>
+			</field>
+		</record>
+	</data>
+</openerp>

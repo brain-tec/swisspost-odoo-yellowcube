@@ -1,0 +1,3 @@
+"id","active","group_id/id","name","model_id/id","perm_create","perm_read","perm_write","perm_unlink"
+"connect_transport_fds__admin",1,"base.group_no_one","access_connect_transport_fds__admin","model_connect_transport_fds",1,1,1,1
+"connect_transport_fds__users",1,"base.group_user","access_connect_transport_fds__users","model_connect_transport_fds",0,1,0,0

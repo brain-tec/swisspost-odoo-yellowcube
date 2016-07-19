@@ -1,0 +1,28 @@
+<openerp>
+	<data>
+		<record id="product_uom_ext_view_form" model="ir.ui.view">
+			<field name="name">product.uom.form_ext</field>
+			<field name="model">product.uom</field>
+			<field name="inherit_id" ref="product.product_uom_form_view" />
+			<field name="arch" type="xml">
+				<data>
+					<field name="name" position="after">
+						<field name="uom_iso" />
+					</field>
+				</data>
+			</field>
+		</record>
+		<record id="product_uom_ext_view_tree" model="ir.ui.view">
+			<field name="name">product.uom.tree_ext</field>
+			<field name="model">product.uom</field>
+			<field name="inherit_id" ref="product.product_uom_tree_view" />
+			<field name="arch" type="xml">
+				<data>
+					<field name="name" position="before">
+						<field name="uom_iso" />
+					</field>
+				</data>
+			</field>
+		</record>
+	</data>
+</openerp>

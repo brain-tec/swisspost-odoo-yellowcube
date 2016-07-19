@@ -1,0 +1,8 @@
+<openerp>
+	<data noupdate="0">
+
+		<function model="stock.connect.file" name="update_related_ids"
+			eval="([])"/>
+
+	</data>
+</openerp>
