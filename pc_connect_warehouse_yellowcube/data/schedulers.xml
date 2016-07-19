@@ -4,7 +4,7 @@
     <!-- We define here the data which should not be modified by the user. -->
 	<data noupdate="0">
 		<record id="check_missing_products_lots_bar_cron" model="ir.cron">
-			<field name="name">PCAP - Check for Missing Products and Lots in BAR</field>
+			<field name="name">SPYCC - Check for Missing Products and Lots in BAR</field>
 			<field name="model">stock.connect.yellowcube</field>
 			<field name="function">cron_check_missing_products_lots_bar</field>
             <field name="args" eval="()" />

@@ -39,7 +39,7 @@ _STOCK_CONNECT_TYPE = [
     ('external_email', 'External Email'),
 ]
 
-_NAME_PREFIX = 'PCAP - WAREHOUSE - {0}'
+_NAME_PREFIX = 'SwissPost YellowCube Connector - WAREHOUSE - {0}'
 
 _ISSUE_NO_CONNECTION = _('There was a problem with the connection')
 

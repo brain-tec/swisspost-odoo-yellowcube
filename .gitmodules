@@ -1,0 +1,3 @@
+[submodule "pc_connect_warehouse_yellowcube_soap/wse-php"]
+	path = pc_connect_warehouse_yellowcube_soap/wse-php
+	url = https://github.com/robrichards/wse-php.git

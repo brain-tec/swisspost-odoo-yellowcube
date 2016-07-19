@@ -21,7 +21,7 @@
             <field name="category_id" ref="pc_category" />
         </record>
         <record id="pc_client_plus" model="res.groups">
-            <field name="name">SwissPost User Plus Plus</field>
+            <field name="name">SwissPost User Plus</field>
             <field name="category_id" ref="pc_category" />
             <field name="implied_ids" eval="[(4, ref('pc_client'))]"/>
         </record>
