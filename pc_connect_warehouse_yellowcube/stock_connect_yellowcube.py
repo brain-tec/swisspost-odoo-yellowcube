@@ -43,7 +43,7 @@ class stock_connect_yellowcube(osv.Model):
         '''
         type_enabled = False
 
-        stock_connect = self.pool['stock.connect'].browse(self.ids[0])
+        stock_connect = self.env['stock.connect'].browse(self.ids[0])
 
         # ART is special, since it has three flags to consider it, and just one of them has
         # to be activated in order to consider its type as being enabled.
