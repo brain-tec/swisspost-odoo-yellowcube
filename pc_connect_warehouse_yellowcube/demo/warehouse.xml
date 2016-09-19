@@ -14,6 +14,7 @@
 		</record>
 		<record id="warehouse_YC" model="stock.warehouse">
 			<field name="name">YellowCube Test</field>
+			<field name="code">yc_test</field>
 			<field name="stock_connect_id" ref="demo_connection_yc" />
 			<field name="lot_input_id" ref="location_YC_YROD" />
 			<field name="lot_stock_id" ref="location_YC_YAFS" />
