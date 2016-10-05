@@ -1,0 +1,25 @@
+.kanban_stock_connector_file_type_ART {
+    border-left-color: lightgreen;
+    border-left-width: 10px;
+    border-left-style: dotted;
+}
+
+.kanban_stock_connector_file_type_WAB {
+    border-left-color: lightblue;
+    border-left-width: 10px;
+    border-left-style: dotted;
+}
+
+.kanban_stock_connector_file_type_WBL {
+    border-left-color: lightpink;
+    border-left-width: 10px;
+    border-left-style: dotted;
+}
+
+.kanban_stock_connector_event_code_stock_picking_state_partially_available {
+    background-color: lightgreen;
+}
+
+.kanban_stock_connector_event_code_stock_picking_state_assigned {
+    background-color: lightgreen;
+}

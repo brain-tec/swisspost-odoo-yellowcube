@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record model="ir.ui.view" id="stock_connector_file_view_kanban">
+            <field name="name">stock_connector.file.kanban</field>
+            <field name="model">stock_connector.file</field>
+            <field name="arch" type="xml">
+                <kanban default_group_by="state" class="o_kanban_small_column">
+                    <field name="state"/>
+                    <field name="name"/>
+                    <field name="transmit"/>
+                    <field name="type"/>
+                    <field name="child_ids"/>
+                    <field name="create_date"/>
+                    <templates>
+                        <t t-name="kanban-box">
+                            <div t-attf-class="oe_kanban_card oe_kanban_global_click">
+
+                                <div class="oe_kanban_content">
+                                    <div t-attf-class="kanban_stock_connector_file_transmit_#{record.transmit.raw_value or ''}">
+                                        <field name="transmit"/>
+                                    </div>
+                                    <div t-attf-class="kanban_stock_connector__state_#{record.state.raw_value or ''}">
+                                        <field name="state"/>
+                                    </div>
+                                    <div>
+                                        <field name="name"/>
+                                    </div>
+                                    <div>
+                                        <field name="create_date"/>
+                                    </div>
+                                    <div t-attf-class="kanban_stock_connector_file_type_#{record.type.raw_value or ''}">
+                                        <field name="type"/>
+                                    </div>
+                                </div>
+                                <div class="oe_clear"></div>
+                            </div>
+                        </t>
+                    </templates>
+                </kanban>
+            </field>
+         </record>
+
+        <record id="stock_connector_file_view_form" model="ir.ui.view">
+            <field name="name">stock_connector.file.form</field>
+            <field name="model">stock_connector.file</field>
+            <field name="arch" type="xml">
+                <form string="Warehouse File">
+                    <header>
+                        <field name="state" widget="statusbar" clickable="True"/>
+                    </header>
+                    <sheet>
+                        <div class='oe_button_box'>
+                            <button class="oe_stat_button" type="object"
+                                name="open_attachments" icon="fa-file">
+                                <field string="Attachments"
+                                    name="attachment_count" widget="statinfo"
+                                    options="{'label_field': 'Attachments'}"/>
+                            </button>
+                        </div>
+                        <group>
+                            <field name="state"/>
+                            <field name="name"/>
+                            <field name="transmit"/>
+                            <field name="type"/>
+                            <field name="info"/>
+                            <field name="content"/>
+                        </group>
+                        <label for="child_ids"/>
+                        <field name="child_ids"
+                           mode="kanban"
+                           context="{'default_parent_id': active_id}">
+                            <kanban>
+                                <field name="res_model" />
+                                <field name="res_id" />
+                                <field name="name" />
+                                <templates>
+                                    <t t-name="kanban-box">
+                                        <div t-attf-class="oe_kanban_card oe_kanban_global_click">
+                                            <div class="oe_kanban_content">
+                                                <button name="open_record" type="object">
+                                                    <div>
+                                                        <field name="name" />
+                                                    </div>
+                                                    <div>
+                                                        <field name="res_model" />:
+                                                        <field name="res_id" />
+                                                    </div>
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </t>
+                                </templates>
+                            </kanban>
+                        </field>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="stock_connector_file_view_tree" model="ir.ui.view">
+            <field name="name">stock_connector.file.tree</field>
+            <field name="model">stock_connector.file</field>
+            <field name="arch" type="xml">
+                <tree string="Warehouse File">
+                    <field name="create_date"/>
+                    <field name="state"/>
+                    <field name="name"/>
+                    <field name="transmit"/>
+                    <field name="type"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="stock_connector_file_action" model="ir.actions.act_window">
+            <field name="name">Warehouse Files</field>
+            <field name="res_model">stock_connector.file</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">kanban,tree,form</field>
+            <field name="view_id" ref="stock_connector_file_view_kanban"/>
+        </record>
+
+    </data>
+</odoo>

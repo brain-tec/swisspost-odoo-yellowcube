@@ -1,8 +1,0 @@
-<openerp>
-    <data noupdate="0">
-
-        <function model="res.partner.title" name="keep_only_mister_and_madam_titles"
-            eval="([])" />
-
-    </data>
-</openerp>

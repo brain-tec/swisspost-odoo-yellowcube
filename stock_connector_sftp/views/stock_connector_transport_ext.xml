@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+
+        <record id="stock_connector_transport_form_view_ext" model="ir.ui.view">
+            <field name="name">stock_connector_transport_form_view_ext</field>
+            <field name="model">stock_connector.transport</field>
+            <field name="inherit_id" ref="stock_connector.stock_connector_transport_form_view"/>
+            <field name="arch" type="xml">
+                <group position="after">
+                    <group string="Secure FTP"
+                           attrs="{'invisible': [('version', '!=', 'stock_connector_sftp.transport')]}">
+                        <field name="sftp_path"/>
+                        <field name="sftp_username"/>
+                        <field name="sftp_password"/>
+                        <field name="sftp_rsa_key"/>
+                    </group>
+                </group>
+            </field>
+        </record>
+
+    </data>
+</openerp>

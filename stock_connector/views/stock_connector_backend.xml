@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record id="stock_connector_backend_view_form" model="ir.ui.view">
+            <field name="name">stock_connector.backend.form</field>
+            <field name="model">stock_connector.backend</field>
+            <field name="arch" type="xml">
+                <form string="Warehouse Backend">
+                    <header>
+                        <button name='test_connection' type='object' string='Test Connection' />
+                        <button name='synchronize_files' type='object' string='Synchronize Files' />
+                        <button name='synchronize_backend' type='object' string='Synchronize Backend' />
+                        <button name='process_events' type='object' string='Process Events' />
+                    </header>
+                    <sheet>
+                        <div class='oe_button_box'>
+                            <button class="oe_stat_button" type="object"
+                                name="open_files" icon="fa-file">
+                                <field string="Files"
+                                    name="file_count" widget="statinfo"
+                                    options="{'label_field': 'Files'}"/>
+                            </button>
+                        </div>
+                        <label for="name" class="oe_edit_only"/>
+                        <h1>
+                            <field name="name" class="oe_inline" />
+                        </h1>
+                        <group name="stock_connector" string="Warehouse Configuration">
+                            <notebook>
+                                <page string="API" name="api">
+                                    <group colspan="4" col="4">
+                                        <field name="version" colspan="2"/>
+                                        <field name="transport_id" colspan="2"/>
+                                        <field name="input_path" colspan="2"/>
+                                        <field name="output_path" colspan="2"/>
+                                        <field name="file_regex" colspan="2"/>
+                                    </group>
+                                    <field name="output_for_debug" colspan="4"/>
+                                </page>
+                                <page string='Bindings' name='binding' groups='base.group_no_one'>
+                                    <field name='binding_ids'>
+                                        <tree editable='top'>
+                                            <field name='binding'/>
+                                            <field name='res_model'/>
+                                            <field name='res_id'/>
+                                            <field name='name'/>
+                                            <field name='group'/>
+                                        </tree>
+                                    </field>
+                                </page>
+                            </notebook>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="stock_connector_backend_view_tree" model="ir.ui.view">
+            <field name="name">stock_connector.backend.tree</field>
+            <field name="model">stock_connector.backend</field>
+            <field name="arch" type="xml">
+                <tree string="Warehouse Backend">
+                    <field name="name"/>
+                    <field name="version"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="stock_connector_backend_action" model="ir.actions.act_window">
+            <field name="name">Warehouse Backends</field>
+            <field name="res_model">stock_connector.backend</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="view_id" ref="stock_connector_backend_view_tree"/>
+        </record>
+
+    </data>
+</odoo>

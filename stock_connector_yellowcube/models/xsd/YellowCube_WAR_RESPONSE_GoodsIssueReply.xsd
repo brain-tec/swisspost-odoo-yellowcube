@@ -1,0 +1,613 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XMLSpy v2012 sp1 (http://www.altova.com) by Die Schweizerische Post (Die Schweizerische Post) -->
+<!-- 	===========================================================	-->
+<!--   ***   WSDL YellowCube -  	(c) Swiss Post Ltd., CH - 3030 Berne				-->
+<!--   ***   Version 1.00 05.01.2015                                                    -->
+<!--   ***                                                                              -->
+<!--   ***   1.00 initial version                                                       -->
+<!--   ***   1.07 Version LOGOS  -->
+<!--   ***   1.08 Array of SerialNumbers until char(1024)   -->
+<xs:schema xmlns:warr="https://service.swisspost.ch/apache/yellowcube/YellowCube_WAR_RESPONSE_GoodsIssueReply.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:altova="http://www.altova.com/xml-schema-extensions" targetNamespace="https://service.swisspost.ch/apache/yellowcube/YellowCube_WAR_RESPONSE_GoodsIssueReply.xsd">
+	<xs:element name="WAR_List">
+		<xs:annotation>
+			<xs:documentation>List of WAR-Messages to prevent to many pollings</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="warr:WAR" minOccurs="0" maxOccurs="unbounded"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="WAR">
+		<xs:annotation>
+			<xs:documentation>Goods Issue Reply - Delivery done with Tracking</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="warr:ControlReference"/>
+				<xs:element ref="warr:GoodsIssue"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="ControlReference">
+		<xs:annotation>
+			<xs:documentation>ControlRecord (similar to the file-interface)</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="warr:Type">
+					<xs:annotation>
+						<xs:documentation>Typ - WAR</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element ref="warr:Sender">
+					<xs:annotation>
+						<xs:documentation>Absender Warehouse-Area YELLOWCUBE or LOGOS</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element ref="warr:Receiver">
+					<xs:annotation>
+						<xs:documentation>Empfänger</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element ref="warr:Timestamp">
+					<xs:annotation>
+						<xs:documentation>Zeitstempel - JJJJMMTThhmmss</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element ref="warr:OperatingMode">
+					<xs:annotation>
+						<xs:documentation>T=Test / P=Production / D=Development</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element ref="warr:Version">
+					<xs:annotation>
+						<xs:documentation>Schnittstellenversion</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="Type">
+		<xs:annotation>
+			<xs:appinfo>
+				<altova:exampleValues>
+					<altova:example value="WAR"/>
+				</altova:exampleValues>
+			</xs:appinfo>
+			<xs:documentation>Goods Issue Reply - Delivery done with Tracking</xs:documentation>
+		</xs:annotation>
+		<xs:simpleType>
+			<xs:restriction base="xs:string">
+				<xs:minLength value="1"/>
+				<xs:maxLength value="6"/>
+				<xs:enumeration value="WAR"/>
+			</xs:restriction>
+		</xs:simpleType>
+	</xs:element>
+	<xs:element name="Sender">
+		<xs:annotation>
+			<xs:documentation>Absender</xs:documentation>
+			<xs:appinfo>
+				<altova:exampleValues>
+					<altova:example value="YELLOWCUBE"/>
+					<altova:example value="LOGOS"/>
+					<altova:example value="CUSTOMER"/>
+				</altova:exampleValues>
+			</xs:appinfo>
+		</xs:annotation>
+		<xs:simpleType>
+			<xs:restriction base="xs:string">
+				<xs:minLength value="1"/>
+				<xs:maxLength value="10"/>
+				<xs:whiteSpace value="collapse"/>
+				<xs:pattern value="([A-Z0-9]{1}[a-z0-9]{1,9})|(YCTest)|(Yctest)|(YELLOWCUBE)|(LOGOS)|(CUSTOMER)"/>
+				<xs:enumeration value="YELLOWCUBE"/>
+				<xs:enumeration value="LOGOS"/>
+				<xs:enumeration value="CUSTOMER"/>
+			</xs:restriction>
+		</xs:simpleType>
+	</xs:element>
+	<xs:element name="Receiver">
+		<xs:annotation>
+			<xs:documentation>Empfänger-Receiver of this message to show in the salesorder - carrier-delivery-tracking</xs:documentation>
+			<xs:appinfo>
+				<altova:exampleValues>
+					<altova:example value="Easyshop77"/>
+					<altova:example value="Testshop05"/>
+					<altova:example value="Alpha1"/>
+					<altova:example value="YCTest"/>
+					<altova:example value="Yctest"/>
+				</altova:exampleValues>
+			</xs:appinfo>
+		</xs:annotation>
+		<xs:simpleType>
+			<xs:restriction base="xs:string">
+				<xs:minLength value="1"/>
+				<xs:maxLength value="10"/>
+				<xs:whiteSpace value="collapse"/>
+				<xs:pattern value="([A-Z0-9]{1}[a-z0-9]{1,9})|(YCTest)|(Yctest)|(YELLOWCUBE)|(LOGOS)|(CUSTOMER)"/>
+			</xs:restriction>
+		</xs:simpleType>
+	</xs:element>
+	<xs:element name="Timestamp">
+		<xs:annotation>
+			<xs:appinfo>
+				<altova:exampleValues>
+					<altova:example value="20140905235959"/>
+				</altova:exampleValues>
+			</xs:appinfo>
+		</xs:annotation>
+		<xs:simpleType>
+			<xs:restriction base="xs:long">
+				<xs:totalDigits value="14"/>
+				<xs:pattern value="((2[0-9][0-9][0-9])|(1[0-9][0-9][0-9]))((0[0-9])|(1[0-2]))(([0-2][0-9])|(3[0-1]))((0[0-9])|(1[0-9])|(2[0-3]))([0-5][0-9][0-5][0-9])"/>
+			</xs:restriction>
+		</xs:simpleType>
+	</xs:element>
+	<xs:element name="OperatingMode">
+		<xs:annotation>
+			<xs:appinfo>
+				<altova:exampleValues>
+					<altova:example value="T"/>
+				</altova:exampleValues>
+			</xs:appinfo>
+			<xs:documentation>P=Prodcution, T=Test- and Integration, D=Development for Integrators Only which develop/adapt new Interfaces</xs:documentation>
+		</xs:annotation>
+		<xs:simpleType>
+			<xs:restriction base="xs:string">
+				<xs:minLength value="1"/>
+				<xs:maxLength value="1"/>
+				<xs:enumeration value="T"/>
+				<xs:enumeration value="P"/>
+				<xs:enumeration value="D"/>
+			</xs:restriction>
+		</xs:simpleType>
+	</xs:element>
+	<xs:element name="Version">
+		<xs:annotation>
+			<xs:appinfo>
+				<altova:exampleValues>
+					<altova:example value="1.0"/>
+					<altova:example value="1.1"/>
+					<altova:example value="1.2"/>
+				</altova:exampleValues>
+			</xs:appinfo>
+		</xs:annotation>
+		<xs:simpleType>
+			<xs:restriction base="xs:string">
+				<xs:minLength value="1"/>
+				<xs:maxLength value="3"/>
+				<xs:whiteSpace value="collapse"/>
+				<xs:pattern value="([1-9]{1}[\.]{1}[0-9]{1})"/>
+			</xs:restriction>
+		</xs:simpleType>
+	</xs:element>
+	<xs:element name="GoodsIssue">
+		<xs:annotation>
+			<xs:documentation>Container Level-1</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="warr:GoodsIssueHeader"/>
+				<xs:element ref="warr:CustomerOrderHeader"/>
+				<xs:element ref="warr:CustomerOrderList"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="GoodsIssueHeader">
+		<xs:annotation>
+			<xs:documentation>Sub-Container Level-2</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="warr:BookingVoucherID"/>
+				<xs:element ref="warr:BookingVoucherYear"/>
+				<xs:element ref="warr:DepositorNo"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="BookingVoucherID">
+		<xs:annotation>
+			<xs:documentation>Material-Beleg ID innerhalb des YellowCube-Lagers</xs:documentation>
+		</xs:annotation>
+		<xs:simpleType>
+			<xs:restriction base="xs:string">
+				<xs:maxLength value="10"/>
+			</xs:restriction>
+		</xs:simpleType>
+	</xs:element>
+	<xs:element name="BookingVoucherYear">
+		<xs:annotation>
+			<xs:documentation>Jahr des Material-Beleges im Format JJJJ</xs:documentation>
+		</xs:annotation>
+		<xs:simpleType>
+			<xs:restriction base="xs:string">
+				<xs:maxLength value="4"/>
+			</xs:restriction>
+		</xs:simpleType>
+	</xs:element>
+	<xs:element name="DepositorNo">
+		<xs:annotation>
+			<xs:documentation>Kontonummer des
+Distanzhändlers (Einlieferer)</xs:documentation>
+			<xs:appinfo>
+				<altova:exampleValues>
+					<altova:example value="0000010324"/>
+					<altova:example value="6666666"/>
+				</altova:exampleValues>
+			</xs:appinfo>
+		</xs:annotation>
+		<xs:simpleType>
+			<xs:restriction base="xs:string">
+				<xs:maxLength value="10"/>
+				<xs:whiteSpace value="collapse"/>
+				<xs:pattern value="([0-9]{1,10})"/>
+			</xs:restriction>
+		</xs:simpleType>
+	</xs:element>
+	<xs:element name="CustomerOrderHeader">
+		<xs:annotation>
+			<xs:documentation>Sub-Container Level-2</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="warr:YCDeliveryNo"/>
+				<xs:element ref="warr:YCDeliveryDate"/>
+				<xs:element ref="warr:CustomerOrderNo"/>
+				<xs:element ref="warr:CustomerOrderDate"/>
+				<xs:element ref="warr:PostalShipmentNo"/>
+				<xs:element ref="warr:PartnerReference" minOccurs="0"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="YCDeliveryNo">
+		<xs:annotation>
+			<xs:documentation>YC-Auftragsnummer aus dem EWM-System, welche auch auf dem Liefer- und Retourenschein als Barcode aufgedruckt wird.</xs:documentation>
+		</xs:annotation>
+		<xs:simpleType>
+			<xs:restriction base="xs:string">
+				<xs:maxLength value="10"/>
+			</xs:restriction>
+		</xs:simpleType>
+	</xs:element>
+	<xs:element name="YCDeliveryDate">
+		<xs:annotation>
+			<xs:documentation>Erstell-Datum der Auslieferung im
+Format JJJJMMTT. Dieses Datum
+ist auf dem YC-Lieferschein als
+Erstellungsdatum dokumentiert.</xs:documentation>
+		</xs:annotation>
+		<xs:simpleType>
+			<xs:restriction base="xs:string">
+				<xs:maxLength value="8"/>
+				<xs:pattern value="(2[0-9][0-9][0-9])((0[0-9])|(1[0-2]))(([0-2][0-9])|(3[0-1]))"/>
+			</xs:restriction>
+		</xs:simpleType>
+	</xs:element>
+	<xs:element name="CustomerOrderNo">
+		<xs:annotation>
+			<xs:documentation>Bestellnummer des Kunden</xs:documentation>
+		</xs:annotation>
+		<xs:simpleType>
+			<xs:restriction base="xs:string">
+				<xs:maxLength value="35"/>
+			</xs:restriction>
+		</xs:simpleType>
+	</xs:element>
+	<xs:element name="CustomerOrderDate">
+		<xs:annotation>
+			<xs:documentation>Bestelldatum des Kunden</xs:documentation>
+		</xs:annotation>
+		<xs:simpleType>
+			<xs:restriction base="xs:string">
+				<xs:maxLength value="8"/>
+				<xs:pattern value="(2[0-9][0-9][0-9])((0[0-9])|(1[0-2]))(([0-2][0-9])|(3[0-1]))"/>
+			</xs:restriction>
+		</xs:simpleType>
+	</xs:element>
+	<xs:element name="PostalShipmentNo">
+		<xs:annotation>
+			<xs:documentation>Sendungsnummer des
+Postpaketes (18-stellige
+Paketnummer) oder Sendungs-Nr
+für die Stückgut-Sendung.Bei
+mehreren Sendungen je Auftrag,
+durch „;“ (semicolon) unterteilt.</xs:documentation>
+			<xs:appinfo>
+				<altova:exampleValues>
+					<altova:example value="990012345612345678;"/>
+					<altova:example value="990012345612345678;990012345612345679;"/>
+				</altova:exampleValues>
+			</xs:appinfo>
+		</xs:annotation>
+		<xs:simpleType>
+			<xs:restriction base="xs:string">
+				<xs:maxLength value="255"/>
+				<xs:whiteSpace value="collapse"/>
+			</xs:restriction>
+		</xs:simpleType>
+	</xs:element>
+	<xs:element name="PartnerReference">
+		<xs:annotation>
+			<xs:documentation>Kundenreferenz des Waren-
+Empfängers. Gilt als Adress-ID
+des Distanzhändlers.</xs:documentation>
+		</xs:annotation>
+		<xs:simpleType>
+			<xs:restriction base="xs:string">
+				<xs:maxLength value="50"/>
+			</xs:restriction>
+		</xs:simpleType>
+	</xs:element>
+	<xs:element name="CustomerOrderList">
+		<xs:annotation>
+			<xs:documentation>Sub-Container Level-2</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="warr:CustomerOrderDetail" maxOccurs="unbounded"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="CustomerOrderDetail">
+		<xs:annotation>
+			<xs:documentation>Sub-Container Level-3 (for each orderline)</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="warr:BVPosNo">
+					<xs:annotation>
+						<xs:documentation>Positions-Nummer. Je Position ein Datensatz. Vorschlag der Positionssequenz 10, 20, 30</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element ref="warr:CustomerOrderPosNo"/>
+				<xs:element ref="warr:YCArticleNo">
+					<xs:annotation>
+						<xs:documentation>Interne YellowCube ArtikelNummer</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element ref="warr:ArticleNo" minOccurs="0"/>
+				<xs:element ref="warr:EAN" minOccurs="0"/>
+				<xs:element ref="warr:Lot" minOccurs="0"/>
+				<xs:element ref="warr:Plant">
+					<xs:annotation>
+						<xs:documentation>Lager-ID als Werk-ID gemäss Profil des Distanzhändlers</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element ref="warr:StorageLocation"/>
+				<xs:element ref="warr:TransactionType">
+					<xs:annotation>
+						<xs:documentation>Bewegungsart (Bestandsführung) gemäss Werteliste.</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element ref="warr:StockType"/>
+				<xs:element ref="warr:QuantityUOM"/>
+				<xs:element ref="warr:ReturnReason" minOccurs="0"/>
+				<xs:element ref="warr:SerialNumbers" minOccurs="0"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="CustomerOrderPosNo">
+		<xs:annotation>
+			<xs:documentation>Positions-Nummer der Kunden-
+Bestellung (WAB-CustomerOrderNo)</xs:documentation>
+			<xs:appinfo>
+				<altova:exampleValues>
+					<altova:example value="000010"/>
+					<altova:example value="000020"/>
+				</altova:exampleValues>
+			</xs:appinfo>
+		</xs:annotation>
+		<xs:simpleType>
+			<xs:restriction base="xs:int">
+				<xs:totalDigits value="6"/>
+			</xs:restriction>
+		</xs:simpleType>
+	</xs:element>
+	<xs:element name="BVPosNo">
+		<xs:annotation>
+			<xs:documentation>internal PositionNumber (unique) different to the order eg. After internal LotPostionSplitting by FEFO (FirstExpired-FirstOut)</xs:documentation>
+		</xs:annotation>
+		<xs:simpleType>
+			<xs:restriction base="xs:int">
+				<xs:totalDigits value="6"/>
+			</xs:restriction>
+		</xs:simpleType>
+	</xs:element>
+	<xs:element name="YCArticleNo">
+		<xs:annotation>
+			<xs:appinfo>
+				<altova:exampleValues>
+					<altova:example value="Y005100000"/>
+					<altova:example value="Y005100001"/>
+				</altova:exampleValues>
+			</xs:appinfo>
+			<xs:documentation>internal unique article-number</xs:documentation>
+		</xs:annotation>
+		<xs:simpleType>
+			<xs:restriction base="xs:string">
+				<xs:maxLength value="18"/>
+			</xs:restriction>
+		</xs:simpleType>
+	</xs:element>
+	<xs:element name="ArticleNo">
+		<xs:annotation>
+			<xs:documentation>Artikelnummer des
+Distanzhändlers / Merchants SKU from ART-MasterData and WAB-Order as ArticleNo</xs:documentation>
+		</xs:annotation>
+		<xs:simpleType>
+			<xs:restriction base="xs:string">
+				<xs:maxLength value="35"/>
+			</xs:restriction>
+		</xs:simpleType>
+	</xs:element>
+	<xs:element name="EAN">
+		<xs:annotation>
+			<xs:documentation>EAN-Nummer des Artikels  (GTIN-8, GTIN-13, etc.) - Please check corresponding,valid EAN-types [HB]8.2 and checksum (mod10)</xs:documentation>
+			<xs:appinfo>
+				<altova:exampleValues>
+					<altova:example value="7610123456789012"/>
+				</altova:exampleValues>
+			</xs:appinfo>
+		</xs:annotation>
+		<xs:simpleType>
+			<xs:restriction base="xs:string">
+				<xs:maxLength value="18"/>
+			</xs:restriction>
+		</xs:simpleType>
+	</xs:element>
+	<xs:element name="YCLot">
+		<xs:annotation>
+			<xs:documentation>Interne Chargennummer von YellowCube</xs:documentation>
+		</xs:annotation>
+		<xs:simpleType>
+			<xs:restriction base="xs:string">
+				<xs:maxLength value="10"/>
+			</xs:restriction>
+		</xs:simpleType>
+	</xs:element>
+	<xs:element name="Lot">
+		<xs:annotation>
+			<xs:documentation>Chargennummer des Herstellers,
+falls vom DH als chargenpflichtig definiert</xs:documentation>
+		</xs:annotation>
+		<xs:simpleType>
+			<xs:restriction base="xs:string">
+				<xs:maxLength value="15"/>
+			</xs:restriction>
+		</xs:simpleType>
+	</xs:element>
+	<xs:element name="Plant">
+		<xs:annotation>
+			<xs:documentation>Lager-ID als Werk-ID gemäss Profil des Distanzhändlers</xs:documentation>
+		</xs:annotation>
+		<xs:simpleType>
+			<xs:restriction base="xs:string">
+				<xs:maxLength value="4"/>
+			</xs:restriction>
+		</xs:simpleType>
+	</xs:element>
+	<xs:element name="StorageLocation">
+		<xs:annotation>
+			<xs:documentation>Lagerbereich als Ziel-/Quell-
+Lagerort:
+YROD=YC Received on Dock
+YAFS=YC Available for Sales</xs:documentation>
+		</xs:annotation>
+		<xs:simpleType>
+			<xs:restriction base="xs:string">
+				<xs:maxLength value="4"/>
+			</xs:restriction>
+		</xs:simpleType>
+	</xs:element>
+	<xs:element name="TransactionType">
+		<xs:simpleType>
+			<xs:restriction base="xs:int">
+				<xs:totalDigits value="3"/>
+			</xs:restriction>
+		</xs:simpleType>
+	</xs:element>
+	<xs:element name="StockType">
+		<xs:annotation>
+			<xs:documentation>Bestandsart gemäss Liste
+X - Qualitätsprüfung
+S - Gesperrt
+2 - Qualitätsprüfung
+3 - Gesperrt
+0 oder „ „ - Frei verwendbar
+F - Frei verwendbar</xs:documentation>
+		</xs:annotation>
+		<xs:simpleType>
+			<xs:restriction base="xs:string">
+				<xs:maxLength value="1"/>
+			</xs:restriction>
+		</xs:simpleType>
+	</xs:element>
+	<xs:element name="QuantityUOM">
+		<xs:annotation>
+			<xs:documentation>Anzahl in der Mengen-Einheit</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:simpleContent>
+				<xs:extension base="warr:Float13v3">
+					<xs:attribute name="QuantityISO" use="required">
+						<xs:annotation>
+							<xs:appinfo>
+								<altova:exampleValues>
+									<altova:example value="PCE"/>
+								</altova:exampleValues>
+							</xs:appinfo>
+						</xs:annotation>
+						<xs:simpleType>
+							<xs:restriction base="xs:string">
+								<xs:minLength value="1"/>
+								<xs:maxLength value="3"/>
+							</xs:restriction>
+						</xs:simpleType>
+					</xs:attribute>
+				</xs:extension>
+			</xs:simpleContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="ReturnReason">
+		<xs:annotation>
+			<xs:documentation>Retouren-Grund gemäss YC-Retouren-Code-Liste (siehe WAB)
+z.B. «R06» - Anderer Artikel geliefert als bestellt.</xs:documentation>
+			<xs:appinfo>
+				<altova:exampleValues>
+					<altova:example value="R06"/>
+				</altova:exampleValues>
+			</xs:appinfo>
+		</xs:annotation>
+		<xs:simpleType>
+			<xs:restriction base="xs:string">
+				<xs:maxLength value="3"/>
+			</xs:restriction>
+		</xs:simpleType>
+	</xs:element>
+	<xs:element name="SerialNumbers">
+		<xs:annotation>
+			<xs:documentation>Seriennummern, Array mit jeweils
+max 35-stelligen Seriennummern
+je Position.
+Maximal wird eine Seriennummer
+je Menge (QuantityUOM) bei der
+Kommissionierung erfasst und
+zurückgemeldet. Mehrere
+Einträge werden durch „;“
+(semicolon) unterteilt.</xs:documentation>
+			<xs:appinfo>
+				<altova:exampleValues>
+					<altova:example value="78229292626;78229292627;78229292628;"/>
+					<altova:example value="SN34232323254455424;SN34232323254455511;"/>
+				</altova:exampleValues>
+			</xs:appinfo>
+		</xs:annotation>
+		<xs:simpleType>
+			<xs:restriction base="xs:string">
+				<xs:maxLength value="1024"/>
+				<xs:minLength value="1"/>
+				<xs:whiteSpace value="collapse"/>
+			</xs:restriction>
+		</xs:simpleType>
+	</xs:element>
+	<!--Float13v3-->
+	<xs:simpleType name="Float13v3">
+		<xs:annotation>
+			<xs:documentation>FlieskommaZahl type quantum13.3 Bsp. 1234567890.123 (totalDigits="13" fractionDigits="3")</xs:documentation>
+			<xs:appinfo>
+				<altova:exampleValues>
+					<altova:example value="1234567890.123"/>
+					<altova:example value="1"/>
+					<altova:example value="2"/>
+				</altova:exampleValues>
+			</xs:appinfo>
+		</xs:annotation>
+		<xs:restriction base="xs:decimal">
+			<xs:totalDigits value="13"/>
+			<xs:fractionDigits value="3"/>
+			<xs:whiteSpace value="collapse"/>
+		</xs:restriction>
+	</xs:simpleType>
+</xs:schema>

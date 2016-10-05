@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record id="stock_location_view_form_ext" model="ir.ui.view">
+            <field name="name">stock_connector_yellowcube.stock.location.form.ext</field>
+            <field name="model">stock.location</field>
+            <field name='inherit_id' ref='stock.view_location_form' />
+            <field name="arch" type="xml">
+                <xpath expr='//group/group[2]' position='after'>
+                    <group name='yc' string='Yellowcube'>
+                        <field name="yc_storage_location"
+                            context="{'default_group': 'StorageLocation', 'default_res_model': 'stock.location'}">
+                            <tree editable='top'>
+                                <field name='backend_id' readonly="0"/>
+                                <field name='binding' string='StorageLocation'/>
+                                <field name='name'/>
+                                <field name='res_model' invisible='1'/>
+                                <field name='group' invisible='1'/>
+                            </tree>
+                        </field>
+                    </group>
+                </xpath>
+            </field>
+        </record>
+
+    </data>
+</odoo>

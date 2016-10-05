@@ -1,3 +1,0 @@
-"id","active","group_id/id","name","model_id/id","perm_create","perm_read","perm_write","perm_unlink"
-"stock_connect_yellowcubesoap__admin",1,"base.group_no_one","access_stock_connect_yellowcubesoap__admin","model_stock_connect_yellowcubesoap",1,1,1,1
-"stock_connect_yellowcubesoap__users",1,"base.group_user","access_stock_connect_yellowcubesoap__users","model_stock_connect_yellowcubesoap",0,1,0,0

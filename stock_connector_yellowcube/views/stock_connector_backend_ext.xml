@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record id="stock_connector_backend_view_form_ext" model="ir.ui.view">
+            <field name="name">stock_connector_yellowcube.backend.form.ext</field>
+            <field name="model">stock_connector.backend</field>
+            <field name='inherit_id' ref='stock_connector.stock_connector_backend_view_form' />
+            <field name="arch" type="xml">
+	                <page name='api' position='after'>
+	                    <page name='yc_api' string='Yellowcube'>
+                            <group col="4">
+                                <group colspan="2" col="2" string='ControlReference'>
+                                    <field name="yc_parameter_sender" colspan="2"/>
+                                    <field name="yc_parameter_receiver" colspan="2"/>
+                                    <field name="yc_parameter_operating_mode" colspan="2"/>
+                                    <field name="yc_parameter_depositor_no" colspan="2"/>
+                                    <field name="yc_parameter_partner_no" colspan="2"/>
+                                    <field name="yc_parameter_plant_id" colspan="2"/>
+                                </group>
+                                <group colspan="2" col="2" string="Configuration">
+                                    <field name="yc_parameter_create_art_multifile" />
+                                    <field name="yc_parameter_default_supplier_no" />
+                                    <field name="yc_parameter_on_art_set_missing_default_code" />
+                                </group>
+                                <group colspan="2" col="2" string="Synchronization">
+                                    <field name="yc_parameter_sync_products" />
+                                    <field name="yc_parameter_sync_picking_out" />
+                                    <field name="yc_parameter_sync_picking_in" />
+                                    <field name="yc_parameter_sync_inventory_moves" />
+                                    <field name="yc_parameter_sync_inventory_updates" />
+                                </group>
+                            </group>
+                            <group colspan="2" col="2"
+                                string='Backend Bindings'>
+                                <field name="yc_article_no_ids" colspan="2"
+                                    context="{'default_group': 'YCArticleNo', 'default_res_model': 'product.product'}">
+                                    <tree editable='top'>
+                                        <field name='res_id' readonly="0"/>
+                                        <field name='binding' string='YCArticleNo'/>
+                                        <field name='name'/>
+                                        <field name='res_model' invisible='1'/>
+                                        <field name='group' invisible='1'/>
+                                    </tree>
+                                </field>
+	                        </group>
+	                    </page>
+	                </page>
+            </field>
+        </record>
+
+    </data>
+</odoo>

@@ -1,0 +1,40 @@
+<odoo>
+    <data>
+        <menuitem id="stock_connect_menu"
+            parent="connector.menu_connector_root"
+            name="Warehouse"
+            sequence="50"
+            groups="connector.group_connector_manager"
+        />
+        <menuitem id="stock_connect_backend_menu"
+            parent="stock_connect_menu"
+            name="Backends"
+            sequence="10"
+            action="stock_connector_backend_action"
+        />
+        <menuitem id="stock_connect_event_menu"
+            parent="stock_connect_menu"
+            name="Events"
+            sequence="20"
+            action="stock_connector_event_action"
+        />
+        <menuitem id="stock_connect_file_menu"
+            parent="stock_connect_menu"
+            name="Files"
+            sequence="30"
+            action="stock_connector_file_action"
+        />
+        <menuitem id="stock_connect_transport_menu"
+            parent="stock_connect_menu"
+            name="Transports"
+            sequence="40"
+            action="stock_connector_transport_action"
+        />
+        <menuitem id="stock_connect_product_uom_menu"
+            parent="stock_connect_menu"
+            name="Units of Measure (ISO Codes)"
+            sequence="50"
+            action="product_uom_iso_code_action"
+        />
+    </data>
+</odoo>

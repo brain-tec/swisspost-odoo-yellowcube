@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record id="res_partner_view_form_ext" model="ir.ui.view">
+            <field name="name">stock_connector_yellowcube.res.partner.form.ext</field>
+            <field name="model">res.partner</field>
+            <field name='inherit_id' ref='base.view_partner_form' />
+            <field name="arch" type="xml">
+                <page name='sales_purchases' position='after'>
+                    <page name='yc' string='Yellowcube'>
+                        <group colspan="2" col="2">
+                            <field name="yc_supplier_no"
+                                context="{'default_group': 'yc_SupplierNo', 'default_res_model': 'res.partner'}">
+                                <tree editable='top'>
+                                    <field name='backend_id' readonly="0"/>
+                                    <field name='binding' string='SupplierNo' />
+                                    <field name='res_model' invisible='1' />
+                                    <field name='group' invisible='1' />
+                                </tree>
+                            </field>
+                        </group>
+                    </page>
+                </page>
+            </field>
+        </record>
+
+    </data>
+</odoo>

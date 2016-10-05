@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+
+        <record id="stock_connector_transport_form_view_ext" model="ir.ui.view">
+            <field name="name">stock_connector_transport_form_view_ext</field>
+            <field name="model">stock_connector.transport</field>
+            <field name="inherit_id" ref="stock_connector.stock_connector_transport_form_view"/>
+            <field name="arch" type="xml">
+                <group position="after">
+                    <group name="yellowcube_mockup"
+                           string="YellowCube Mockup"
+                           attrs="{'invisible': [('version', '!=', 'stock_connector_yellowcube_mockup.transport')]}"
+                           cols="4">
+                        <group colspan="4" name="yellowcube_mockup_buttons">
+                            <button type="object"
+                                    name="ycmockup_create_files"
+                                    string="Create Files" cols="1"/>
+                            <button type="object"
+                                    name="ycmockup_create_bur_file"
+                                    string="Create Bur File" cols="1"/>
+                            <button type="object"
+                                    name="ycmockup_create_bar_file"
+                                    string="Create Bar File" cols="1"/>
+                        </group>
+                        <group colspan="4" name="yellowcube_mockup_fields">
+                            <field name="ycmockup_warehouse"/>
+                            <field name="ycmockup_bur_location"/>
+                            <field name="ycmockup_bur_dest_location"/>
+                            <field name="ycmockup_bur_qty_to_set"/>
+                        </group>
+                        <group colspan="4" name="yellowcube_mockup_files">
+                            <field name="ycmockup_received_files"/>
+                            <field name="ycmockup_ready_to_send_files"/>
+                        </group>
+                    </group>
+                </group>
+            </field>
+        </record>
+
+    </data>
+</openerp>

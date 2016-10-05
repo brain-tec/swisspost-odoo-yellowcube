@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <template id="assets_backend" name="stock_connector_yellowcube assets" inherit_id="web.assets_backend">
+            <xpath expr="." position="inside">
+                <link rel="stylesheet" href="/stock_connector_yellowcube/static/src/css/stock_connector_yellowcube.css"/>
+            </xpath>
+        </template>
+    </data>
+</openerp>

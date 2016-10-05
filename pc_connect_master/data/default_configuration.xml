@@ -1,7 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<openerp>
-	<data noupdate="0">
-        <function model="ir.attachment" name="assure_filestore_system_parameter"/>
-		<function model="config.setting.ext" name="stock_default_config_setup"/>
-	</data>
-</openerp>

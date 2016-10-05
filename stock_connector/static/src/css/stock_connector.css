@@ -1,0 +1,24 @@
+.kanban_stock_connector__state_error {
+    border-left-color: lightpink;
+    border-left-width: 10px;
+    border-left-style: dotted;
+}
+
+.kanban_stock_connector__state_ready {
+    border-left-color: lightblue;
+    border-left-width: 10px;
+    border-left-style: dotted;
+}
+
+.kanban_stock_connector__state_done {
+    border-left-color: lightgreen;
+    border-left-width: 10px;
+    border-left-style: dotted;
+}
+
+.kanban_stock_connector__state_cancel {
+    border-left-color: lightgray;
+    border-left-width: 10px;
+    border-left-style: dotted;
+}
+
