@@ -6,7 +6,6 @@
 #
 #    See LICENSE file for full licensing details.
 ##############################################################################
-from .xml_tools import XmlTools
 from .file_processor import FileProcessor
 
 
@@ -16,6 +15,8 @@ class ArtProcessor(FileProcessor):
 
     Version: 2.1
     """
+    def __init__(self, backend):
+        super(ArtProcessor, self).__init__(backend, 'art')
 
     def yc_create_art_file(self, products, add_suffix=False):
         """
@@ -29,10 +30,7 @@ class ArtProcessor(FileProcessor):
                 self.yc_create_art_file([p], add_suffix=True)
             return
         filerecord_obj = self.env['stock_connector.file.record']
-        kwargs = {
-            '_type': 'art',
-        }
-        tools = XmlTools(**kwargs)
+        tools = self.tools
         root = tools.create_element('ART')
         root.append(self.yc_create_control_reference(tools, 'ART', '2.1'))
         article_list = tools.create_element('ArticleList')
@@ -84,6 +82,12 @@ class ArtProcessor(FileProcessor):
                 self.backend_record.output_for_debug += 'ART file processed\n'
         else:
             self.backend_record.output_for_debug += 'ART file skipped\n'
+
+    def xml_tools_args(self):
+        kwargs = {
+            '_type': 'art',
+        }
+        return kwargs
 
     def yc_create_art_article(self, tools, product, product_errors, change):
         """
