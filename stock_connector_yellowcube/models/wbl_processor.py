@@ -17,6 +17,9 @@ class WblProcessor(FileProcessor):
     Version: 1.4
     """
 
+    def __init__(self, backend):
+        super(WblProcessor, self).__init__(backend, 'wbl')
+
     def yc_create_wbl_file(self, picking_event):
         record = picking_event.get_record()
         self.backend_record.output_for_debug += \

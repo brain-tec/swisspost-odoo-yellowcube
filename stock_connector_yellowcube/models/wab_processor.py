@@ -17,6 +17,9 @@ class WabProcessor(FileProcessor):
     Version: 1.4
     """
 
+    def __init__(self, backend):
+        super(WabProcessor, self).__init__(backend, 'wab')
+
     def yc_create_wab_file(self, picking_event):
         record = picking_event.get_record()
         self.backend_record.output_for_debug +=\
