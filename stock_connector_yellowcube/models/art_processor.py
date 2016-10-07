@@ -36,6 +36,7 @@ class ArtProcessor(FileProcessor):
         article_list = tools.create_element('ArticleList')
         root.append(article_list)
         related_ids = []
+        full_errors = []
         for product in products:
             product_errors = []
             change_flag = 'I'
@@ -59,8 +60,9 @@ class ArtProcessor(FileProcessor):
             article = self.yc_create_art_article(tools, product,
                                                  product_errors, change_flag)
             if product_errors:
+                full_errors.extend(product_errors)
                 self.backend_record.output_for_debug +=\
-                    'Error on product #{0}: {1}'.format(
+                    'Error on product #{0}: {1}\n'.format(
                         product.id,
                         product.name
                     )
@@ -81,7 +83,10 @@ class ArtProcessor(FileProcessor):
                                   suffix=suffix)
                 self.backend_record.output_for_debug += 'ART file processed\n'
         else:
-            self.backend_record.output_for_debug += 'ART file skipped\n'
+            self.backend_record.output_for_debug += 'ART file skipped.\n'
+            if full_errors:
+                self.backend_record.output_for_debug\
+                    += 'Full list of errors:\n%s\n' % '\n'.join(full_errors)
 
     def xml_tools_args(self):
         kwargs = {
