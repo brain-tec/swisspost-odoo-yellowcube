@@ -123,6 +123,8 @@ class StockConnectorTransportExt(models.Model):
                 x.res_model == 'product.product' and
                 x.res_id not in products_on_art
             ).mapped('res_id'))
+        if not products_on_art:
+            return True
         _logger.debug('Products on the warehouse: %s' % products_on_art)
 
         locations_backend = self.ycmockup_backend_ids.binding_ids.filtered(
@@ -155,7 +157,24 @@ class StockConnectorTransportExt(models.Model):
         parameters = []
         product_obj = self.env['product.product']
         lot_obj = self.env['stock.production.lot']
-        for result in self.env.cr.dictfetchall():
+        sql_results = self.env.cr.dictfetchall()
+        products_on_moves = []
+        for result in sql_results:
+            if result['product_id'] not in products_on_moves:
+                products_on_moves.append(result['product_id'])
+        for missing in [x
+                        for x in products_on_art
+                        if x not in products_on_moves]:
+            sql_results.append({
+                'product_id': missing,
+                'lot_id': False,
+                'sum': 0,
+                'location_id': locations_backend.filtered(
+                    lambda x: x.name == self.ycmockup_bur_dest_location
+                ).res_id,
+            })
+
+        for result in sql_results:
             location = locations_backend.filtered(
                 lambda x: x.res_id == result['location_id']).binding
             actual_qty = result['sum']
