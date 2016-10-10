@@ -104,7 +104,7 @@ class yellowcube_art_xml_factory(xml_abstract_factory):
             text='{0:04d}{1:02d}{2:02d}{3:02d}{4:02d}{5:02d}'.format(now.year, now.month, now.day, now.hour, now.hour, now.minute)
         ))
         xml_control_reference.append(create_element('OperatingMode', text=self.get_param('operating_mode', required=True)))
-        xml_control_reference.append(create_element('Version', text='1.09'))
+        xml_control_reference.append(create_element('Version', text='1.0'))
         xml_root.append(xml_control_reference)
 
         xml_article_list = create_element('ArticleList')
