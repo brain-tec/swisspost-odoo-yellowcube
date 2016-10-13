@@ -176,7 +176,8 @@ class StockConnectorBackend(models.Model):
         self.output_for_debug = ''
         try:
             return self.get_processor().test_connection() or True
-        except:
+        except Exception as e:
+            _logger.error(str(e))
             _logger.error(self.output_for_debug)
             raise
 
@@ -186,6 +187,7 @@ class StockConnectorBackend(models.Model):
         self.output_for_debug = ''
         try:
             return self.get_processor().synchronize_files() or True
-        except:
+        except Exception as e:
+            _logger.error(str(e))
             _logger.error(self.output_for_debug)
             raise
