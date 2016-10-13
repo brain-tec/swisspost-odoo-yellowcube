@@ -19,6 +19,7 @@
     'depends': [
         'stock',
         'product',
+        'delivery',
         'stock_connector',
     ],
     'data': [
