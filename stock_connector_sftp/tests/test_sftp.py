@@ -103,7 +103,8 @@ class TestSFTP(TransactionCase):
         if not self.prepare_test():
             logger.warning("Ignoring SFTP tests")
             return
-        self.assertTrue(self.backend.test_connection())
+        self.assertTrue(self.backend.test_connection(),
+                        'Problem while testing connection')
 
     def test_connection_list_put_and_get(self):
         """
