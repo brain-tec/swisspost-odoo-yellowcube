@@ -13,6 +13,7 @@ import logging
 from StringIO import StringIO
 from openerp.exceptions import UserError
 from openerp.tools import ustr
+import stat
 _logger = logging.getLogger(__name__)
 # _logger.setLevel(logging.DEBUG)
 
@@ -59,10 +60,9 @@ class SFTPTransport:
 
     def list_dir(self):
         result = []
-        for name in self.connection.listdir():
-            lstat = str(self.connection.lstat(name))
-            if lstat[0] == '-':
-                result.append(name)
+        for remote_file in self.connection.listdir_attr():
+            if remote_file.st_mode & stat.S_IFREG:
+                result.append(remote_file.filename)
         return result
 
     def open(self):
@@ -90,6 +90,7 @@ class SFTPTransport:
             try:
                 # Opens the connection.
                 transport = paramiko.Transport((path, port))
+                transport.logger = _logger
                 transport.connect(username=self.username,
                                   password=self.password,
                                   pkey=rsa_key)

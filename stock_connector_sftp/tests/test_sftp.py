@@ -70,7 +70,7 @@ class TestSFTP(TransactionCase):
                 "sftpserver",
                 "-k", self._sftp_key_file,
                 '-p', str(port),
-                '-l', 'DEBUG'
+                '-l', 'INFO'
             ], cwd='/tmp', stdout=subprocess.PIPE)
             time.sleep(1)
             values = {
