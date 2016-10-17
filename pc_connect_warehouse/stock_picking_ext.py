@@ -134,10 +134,9 @@ class stock_picking_ext(osv.Model):
             context = {}
         event_obj = self.pool.get('stock.event')
         picking = self.browse(cr, uid, ids, context)
-        model = 'stock.picking.{0}'.format(picking.type)
         state = 'new_picking_state_{0}'.format(picking.state)
         vals = {'event_code': state,
-                'model': model,
+                'model': 'stock.picking',
                 'res_id': ids}
         event_obj.find_or_create(cr, uid, vals, context=context)
 

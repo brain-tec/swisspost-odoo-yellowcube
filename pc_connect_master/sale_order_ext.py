@@ -200,7 +200,7 @@ class sale_order_ext(osv.Model):
 
                 pdf_data = get_pdf_from_report(cr, uid, report_name, {'ids': stock_picking.id, 'model': 'stock.picking'}, context=context)
                 attach_id = associate_ir_attachment_with_object(self, cr, uid, pdf_data,
-                                                                file_name, 'stock.picking.out', stock_picking.id)
+                                                                file_name, 'stock.picking', stock_picking.id)
                 if attach_id:
                     ir_attachment_obj.write(cr, uid, attach_id, {'document_type': 'picking_out_report'}, context=context)
                 result_success = result_success and bool(attach_id)
