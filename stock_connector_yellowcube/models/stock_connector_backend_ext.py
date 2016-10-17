@@ -65,6 +65,18 @@ class StockConnectorBackendExt(models.Model):
                          ('group', '=', 'YCArticleNo')],
                  string='YCArticleNo')
 
+    yc_storage_location_ids = fields.\
+        One2many('stock_connector.binding', 'backend_id',
+                 domain=[('res_model', '=', 'stock.location'),
+                         ('group', '=', 'StorageLocation')],
+                 string='Storage Locations')
+
+    yc_delivery_carrier_ids = fields.\
+        One2many('stock_connector.binding', 'backend_id',
+                 domain=[('res_model', '=', 'delivery.carrier'),
+                         ('group', '=', 'BasicShippingServices')],
+                 string='Delivery Methods')
+
     @api.model
     def select_versions(self):
         ret = super(StockConnectorBackendExt, self).select_versions()

@@ -20,12 +20,19 @@ class TestWabWarFile(test_base.TestBase):
 
     def setUp(self):
         super(TestWabWarFile, self).setUp()
-        # First we create a picking, and confirm it
+        # First, we set-up the different records
+        self.backend.get_binding(
+            self.browse_ref('delivery.delivery_carrier'),
+            'BasicShippingServices',
+            'PRI',
+        )
+        # Now we create a picking, and confirm it
         self.picking = self.env['stock.picking'].create({
             'partner_id': self.ref('base.res_partner_address_4'),
             'picking_type_id': self.ref('stock.picking_type_out'),
             'location_id': self.ref('stock.stock_location_stock'),
             'location_dest_id': self.ref('stock.stock_location_customers'),
+            'carrier_id': self.ref('delivery.delivery_carrier'),
             'move_lines': [
                 (0, 0, {'name': 'product_product_7',
                         'product_id': self.ref('product.product_product_7'),
@@ -57,7 +64,8 @@ class TestWabWarFile(test_base.TestBase):
         ], limit=1)
         self.assertEqual(len(event), 1)
         proc.yc_create_wab_file(event)
-        self.assertEqual(len(self.backend.file_ids), 1)
+        self.assertEqual(len(self.backend.file_ids), 1,
+                         self.backend.output_for_debug)
         self.assertEqual(self.backend.file_ids[0].transmit, 'out')
 
         # Now, we will create a war file from the wab file

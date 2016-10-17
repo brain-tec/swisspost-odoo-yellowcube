@@ -10,6 +10,7 @@
 from . import product_product_ext
 from . import res_partner_ext
 from . import stock_connector_backend_ext
+from . import stock_connector_binding_ext
 from . import stock_location_ext
 # Backend objects
 from . import backend_processor_ext

@@ -20,13 +20,18 @@ class EventProcessorExt(EventProcessor):
         record = event.get_record()
         if event.res_model == 'stock.picking':
             code = record.picking_type_id.code
+            is_return = False
+            if record.picking_type_id.default_location_dest_id:
+                if record.picking_type_id.default_location_dest_id\
+                        .return_location:
+                    is_return = True
             if record.state in ['done', 'cancel']:
                 return
             if event.code not in ['stock.picking_state_partially_available',
                                   'stock.picking_state_assigned',
                                   ]:
                 return
-            if code == 'outgoing':
+            if code == 'outgoing' or is_return:
                 if self.backend_record.yc_parameter_sync_picking_out:
                     self.backend_record.get_processor()\
                         .yc_create_wab_file(event)
