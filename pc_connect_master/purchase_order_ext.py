@@ -38,7 +38,7 @@ class purchase_order_ext(osv.Model):
 
         purchase_order_draft_ids = self.search(cr, uid, [('state', '=', 'draft')], context=context)
         for purchase_order in self.browse(cr, uid, purchase_order_draft_ids, context=context):
-            input_location_of_warehouse = purchase_order.warehouse_id.lot_input_id
+            input_location_of_warehouse = purchase_order.picking_type_id.default_location_dest_id
             if purchase_order.location_id != input_location_of_warehouse:
                 self.write(cr, uid, purchase_order.id, {'location_id': input_location_of_warehouse.id}, context=context)
         return True
