@@ -240,7 +240,7 @@ class yellowcube_wab_xml_factory(xml_abstract_factory):
             xml.append(create_element('Title', partner.title.name))
 
         names = self.__generate_partner_name(partner)
-        for idx in xrange(max(len(names), MAX_NUMBER_OF_NAME_TAGS)):
+        for idx in xrange(min(len(names), MAX_NUMBER_OF_NAME_TAGS)):
             # This will generate elements Name1 ... Name4
             xml.append(create_element('Name{0}'.format(idx + 1), text=names[idx]))
 
