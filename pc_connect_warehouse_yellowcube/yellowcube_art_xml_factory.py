@@ -206,7 +206,7 @@ class yellowcube_art_xml_factory(xml_abstract_factory):
 
         min_rem_life = product.expiration_accept_time
         period_exp_date_type = product.expiration_accept_time_uom
-        if period_exp_date_type:
+        if period_exp_date_type and product.track_outgoing:
             # If they UOM is not set, then we don't add this field
             xml.append(create_element('MinRemLife', int(min_rem_life)))
             # Each Unit of Measure has a different code according to the mapping table X01.00
