@@ -22,6 +22,11 @@ class WabProcessor(FileProcessor):
 
     def yc_create_wab_file(self, picking_event):
         record = picking_event.get_record()
+        is_return = False
+        if record.picking_type_id.default_location_dest_id:
+            if record.picking_type_id.default_location_dest_id\
+                    .return_location:
+                is_return = True
         self.backend_record.output_for_debug +=\
             'Creating WAB file for {0}\n'.format(record.name)
         get_binding = self.backend_record.get_binding
@@ -30,6 +35,7 @@ class WabProcessor(FileProcessor):
         }
         tools = XmlTools(**kwargs)
         create = tools.create_element
+        errors = []
 
         root = create('WAB')
         root.append(self.yc_create_control_reference(tools, 'WAB', '1.4'))
@@ -72,7 +78,16 @@ class WabProcessor(FileProcessor):
         order.append(value_added_services)
         additional_service = create('AdditionalService')
         value_added_services.append(additional_service)
-        additional_service.append(create('BasicShippingServices', 'PRI'))
+        if is_return:
+            shipping_service_code = 'RETURN'
+        else:
+            shipping_service_code = get_binding(record.carrier_id,
+                                                'BasicShippingServices')
+        if not shipping_service_code:
+            errors.append("Carrier #%s is missing BasicShippingServices"
+                          % record.carrier_id.id)
+        additional_service.append(create('BasicShippingServices',
+                                         shipping_service_code))
 
         order_positions = create('OrderPositions')
         order.append(order_positions)
@@ -93,10 +108,12 @@ class WabProcessor(FileProcessor):
             position.append(create('QuantityISO',
                                    line.product_uom_id.iso_code))
 
-        errors = tools.validate_xml(root)
+        xml_errors = tools.validate_xml(root)
+        if xml_errors:
+            errors.append(str(xml_errors))
         if errors:
             self.backend_record.output_for_debug +=\
-                'WAB file errors:\n{0}\n'.format(errors)
+                'WAB file errors:\n{0}\n'.format('\n'.join(errors))
         else:
             related_ids = [
                 ('stock_connector.event', picking_event.id),

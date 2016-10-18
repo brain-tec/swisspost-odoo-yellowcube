@@ -36,11 +36,22 @@
                                 <field name="yc_article_no_ids" colspan="2"
                                     context="{'default_group': 'YCArticleNo', 'default_res_model': 'product.product'}">
                                     <tree editable='top'>
-                                        <field name='res_id' readonly="0"/>
-                                        <field name='binding' string='YCArticleNo'/>
-                                        <field name='name'/>
-                                        <field name='res_model' invisible='1'/>
+                                        <field name='product_product_id' readonly="0"/>
                                         <field name='group' invisible='1'/>
+                                    </tree>
+                                </field>
+                                <field name="yc_storage_location_ids" colspan="2"
+                                    context="{'default_group': 'StorageLocation', 'default_res_model': 'stock.location'}">
+                                    <tree editable='top'>
+                                        <field name="stock_location_id"/>
+                                        <field name='binding' string='StorageLocation'/>
+                                    </tree>
+                                </field>
+                                <field name="yc_delivery_carrier_ids" colspan="2"
+                                    context="{'default_group': 'BasicShippingServices', 'default_res_model': 'delivery.carrier'}">
+                                    <tree editable='top'>
+                                        <field name="delivery_carrier_id"/>
+                                        <field name='binding' string='BasicShippingServices'/>
                                     </tree>
                                 </field>
 	                        </group>
