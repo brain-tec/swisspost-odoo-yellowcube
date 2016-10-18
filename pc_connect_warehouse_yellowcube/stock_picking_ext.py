@@ -64,8 +64,8 @@ class stock_picking_ext(osv.Model):
             ids = [ids]
 
         picking = self.browse(cr, uid, ids[0], context=context)
-        if picking.type == 'in':
-            raise Warning('get_filename_for_wab can only be called over stock.picking.out.')
+        if picking.picking_type_id.code != 'outgoing':
+            raise Warning('get_filename_for_wab can only be called over stock.picking of type outgoing')
 
         order_name = context['yc_customer_order_no']
         depositor_id = context['yc_sender']
@@ -119,7 +119,7 @@ class stock_picking_ext(osv.Model):
 
         # Caches the attachments for the picking.
         att_ids = ir_attachment_obj.search(cr, uid, [('res_id', '=', stock_picking_out.id),
-                                                     ('res_model', '=', 'stock.picking.out'),
+                                                     ('res_model', '=', 'stock.picking'),
                                                      ], context=context)
 
         # Gets the attachment for the delivery slip, since we must attach it for sure.
@@ -184,7 +184,7 @@ class stock_picking_ext(osv.Model):
 
         # First we check if we already have the attachment. If we don't have it, we create it.
         att_ids = ir_attachment_obj.search(cr, uid, [('res_id', '=', stock_picking_out.id),
-                                                     ('res_model', '=', 'stock.picking.out'),
+                                                     ('res_model', '=', 'stock.picking'),
                                                      ('name', '=', output_filename),
                                                      ], limit=1, context=context)
         if att_ids:
@@ -206,7 +206,7 @@ class stock_picking_ext(osv.Model):
                     'name': output_filename,
                     'datas': attachment_content_base64,
                     'datas_fname': output_filename,
-                    'res_model': 'stock.picking.out',
+                    'res_model': 'stock.picking',
                     'res_id': stock_picking_out.id,
                     'type': 'binary',
                     'description': _('Attachment for picking with ID={0}. It is the concatenation of '
