@@ -22,6 +22,11 @@ class WabProcessor(FileProcessor):
 
     def yc_create_wab_file(self, picking_event):
         record = picking_event.get_record()
+        is_return = False
+        if record.picking_type_id.default_location_dest_id:
+            if record.picking_type_id.default_location_dest_id\
+                    .return_location:
+                is_return = True
         self.backend_record.output_for_debug +=\
             'Creating WAB file for {0}\n'.format(record.name)
         get_binding = self.backend_record.get_binding
@@ -73,8 +78,11 @@ class WabProcessor(FileProcessor):
         order.append(value_added_services)
         additional_service = create('AdditionalService')
         value_added_services.append(additional_service)
-        shipping_service_code = get_binding(record.carrier_id,
-                                            'BasicShippingServices')
+        if is_return:
+            shipping_service_code = 'RETURN'
+        else:
+            shipping_service_code = get_binding(record.carrier_id,
+                                                'BasicShippingServices')
         if not shipping_service_code:
             errors.append("Carrier #%s is missing BasicShippingServices"
                           % record.carrier_id.id)

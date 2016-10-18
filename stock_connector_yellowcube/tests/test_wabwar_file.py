@@ -26,10 +26,20 @@ class TestWabWarFile(test_base.TestBase):
             'BasicShippingServices',
             'PRI',
         )
+        return_location = self.browse_ref('stock.stock_location_stock').copy({
+            'name': 'Returned Stock',
+            'return_location': True,
+        })
+        picking_type = self.browse_ref('stock.picking_type_out')
+        picking_ret_type = picking_type.return_picking_type_id.copy({
+            'name': 'Return of goods',
+            'default_location_dest_id': return_location.id,
+        })
+        picking_type.return_picking_type_id = picking_ret_type
         # Now we create a picking, and confirm it
         self.picking = self.env['stock.picking'].create({
             'partner_id': self.ref('base.res_partner_address_4'),
-            'picking_type_id': self.ref('stock.picking_type_out'),
+            'picking_type_id': picking_type.id,
             'location_id': self.ref('stock.stock_location_stock'),
             'location_dest_id': self.ref('stock.stock_location_customers'),
             'carrier_id': self.ref('delivery.delivery_carrier'),
@@ -54,19 +64,13 @@ class TestWabWarFile(test_base.TestBase):
 
         # At beginning, it must be empty
         self.assertEqual(len(self.backend.file_ids), 0)
-        proc = self.backend.get_processor()
 
         # We find the event
-        event = self.env['stock_connector.event'].search([
-            ('res_id', '=', self.picking.id),
-            ('res_model', '=', 'stock.picking'),
-            ('code', '=', 'stock.picking_state_assigned'),
-        ], limit=1)
-        self.assertEqual(len(event), 1)
-        proc.yc_create_wab_file(event)
+        picking_to_process = self.picking
+        self.create_wab_from_picking(picking_to_process)
         self.assertEqual(len(self.backend.file_ids), 1,
                          self.backend.output_for_debug)
-        self.assertEqual(self.backend.file_ids[0].transmit, 'out')
+        self.assertEqual(self.backend.file_ids[-1].transmit, 'out')
 
         # Now, we will create a war file from the wab file
         _logger.info('Creating WAR file')
@@ -79,6 +83,7 @@ class TestWabWarFile(test_base.TestBase):
             'backend_id': self.backend.id,
             'content': war_content
         })
+        proc = self.backend.get_processor()
         proc.processors['WAR'](proc, war_file)
         self.assertEquals(war_file.state, 'done',
                           self.backend.output_for_debug)
@@ -89,6 +94,35 @@ class TestWabWarFile(test_base.TestBase):
         self.assertEquals(self.picking.state, 'done')
         for move in self.picking.pack_operation_product_ids:
             self.assertEquals(move.state, 'done')
+
+        # After the picking is processed, we check a return can be made
+        return_obj = self.env['stock.return.picking']
+        return_vals = return_obj.with_context(
+            {'active_id': self.picking.id, }).default_get(
+            ['product_return_moves'])
+        return_wiz = return_obj.create(return_vals)
+        return_pick_id, return_pick_type_id = \
+            return_wiz.with_context({
+                'active_id': self.picking.id,
+            })._create_returns()
+        return_pick = self.env['stock.picking'].browse(return_pick_id)
+        return_pick.action_confirm()
+        return_pick.force_assign()
+        new_event = self.create_wab_from_picking(return_pick)
+        self.assertEqual(new_event.state, 'done',
+                         self.backend.output_for_debug)
+        self.assertEqual(self.backend.file_ids[-1].transmit, 'out')
+
+    def create_wab_from_picking(self, picking_to_process):
+        proc = self.backend.get_processor()
+        event = self.env['stock_connector.event'].search([
+            ('res_id', '=', picking_to_process.id),
+            ('res_model', '=', 'stock.picking'),
+            ('code', '=', 'stock.picking_state_assigned'),
+        ], limit=1)
+        self.assertEqual(len(event), 1)
+        proc.yc_create_wab_file(event)
+        return event
 
     def create_war_from_wab(self, wab_content):
         processor = self.backend.get_processor()
