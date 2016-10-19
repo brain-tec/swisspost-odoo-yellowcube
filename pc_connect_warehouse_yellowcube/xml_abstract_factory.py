@@ -368,7 +368,7 @@ class xml_abstract_factory():
             stock_file_obj.add_attachment(cr, uid, self.main_file_id, data, filename, ctx)
 
     def mark_as_exported(self, _id):
-        logger.info("The factory {0} does not require to mark elements as exported".format(self._factory_name))
+        logger.debug("The factory {0} does not require to mark elements as exported".format(self._factory_name))
 
     def get_export_files(self, _object):
         """

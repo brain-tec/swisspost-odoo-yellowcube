@@ -36,8 +36,16 @@ class test_yc_art(yellowcube_testcase):
 
         self.product_3 = self.browse_ref('product.product_product_3')
         if hasattr(self.product_3, 'action_validated'):
+            self.product_3.write({
+                'product_state': 'draft',
+                'webshop_state': False,
+                'target_state': 'active',
+            })
             self.product_3.action_validated()
             self.product_3.action_in_production()
+        self.product_3.write({
+            'uom_id': self.ref('product.product_uom_unit'),
+        })
 
     def test_inventory(self):
         """
@@ -49,7 +57,7 @@ class test_yc_art(yellowcube_testcase):
 
         self.assertEqual(self._yc_files(), [], 'No export file exists')
 
-        art_factory = get_factory(self.test_warehouse.env, "art", context=ctx)
+        art_factory = get_factory([self.test_warehouse.pool, cr, uid], "art", context=ctx)
         art_factory.generate_files([('id', '=', self.test_warehouse.id)],
                                    force_product_ids=[self.product_3.id])
 

@@ -60,7 +60,7 @@ class stock_picking_ext(osv.Model):
         '''
         if context is None:
             raise Warning('context is missing when calling method get_filename_for_wab over stock.picking, and is required in this case.')
-        if not isinstance(ids, list):
+        if type(ids) is not list:
             ids = [ids]
 
         picking = self.browse(cr, uid, ids[0], context=context)
@@ -104,7 +104,7 @@ class stock_picking_ext(osv.Model):
         '''
         if context is None:
             context = {}
-        if not isinstance(ids, list):
+        if type(ids) is not list:
             ids = [ids]
 
         result = {}
@@ -171,7 +171,7 @@ class stock_picking_ext(osv.Model):
         '''
         if context is None:
             context = {}
-        if not isinstance(ids, list):
+        if type(ids) is not list:
             ids = [ids]
 
         ir_attachment_obj = self.pool.get('ir.attachment')
@@ -179,7 +179,10 @@ class stock_picking_ext(osv.Model):
 
         stock_picking_out = self.browse(cr, uid, ids[0], context=context)
 
-        output_filename = stock_picking_out.get_filename_for_wab(extension)
+        if 'output_filename' not in context:
+            output_filename = stock_picking_out.get_filename_for_wab(extension)
+        else:
+            output_filename = context['output_filename']
         attachments_location = ir_config_parameter_obj.get_param(cr, uid, 'ir_attachment.location')
 
         # First we check if we already have the attachment. If we don't have it, we create it.
@@ -271,9 +274,11 @@ class stock_picking_ext(osv.Model):
                         value = '{0}{1}'.format(delivery.sale_id.name or delivery.purchase_id.name, delivery.name).replace('/', '').replace('-', '')
                     elif delivery.type in ['in', 'incoming']:
                         value = '{0}{1}'.format(delivery.purchase_id.name or delivery.sale_id.name, delivery.name).replace('/', '').replace('-', '')
-                    if len(ret[delivery.id]) > CUSTOMER_ORDER_NUMBER_XSD_LIMIT:
+                    if value > CUSTOMER_ORDER_NUMBER_XSD_LIMIT:
                         value = '{0}.id{1}'.format(delivery.type, delivery.id)
-                delivery.write({'yellowcube_customer_order_no': value})
+                self.write(cr, uid, delivery.id, {
+                    'yellowcube_customer_order_no': value,
+                }, context=context)
             ret[delivery.id] = value
         return ret
 
@@ -339,7 +344,7 @@ class stock_picking_ext(osv.Model):
         '''
         if context is None:
             context = {}
-        if not isinstance(ids, list):
+        if type(ids) is not list:
             ids = [ids]
 
         picking_id = ids[0]

@@ -72,6 +72,13 @@ class yellowcube_testcase(common.TransactionCase):
             # 'yc_min_number_attachments': 2,
         }
 
+        self.browse_ref('pc_connect_warehouse_yellowcube.demo_connection_yc').write({
+            'type': 'yellowcube',
+            'connect_transport_id': self.ref('pc_connect_warehouse_yellowcube.fds_dummy_connection'),
+            'yc_enable_art_file': False,
+            'yc_enable_art_multifile': False,
+        })
+
         self.output_dir = '/tmp/test_yc_{0}'.format(_test_timestamp)
         if not os.path.exists(self.output_dir):
             os.makedirs(self.output_dir)
@@ -83,6 +90,7 @@ class yellowcube_testcase(common.TransactionCase):
         # Objects and references
         self.product_obj = self.registry('product.product')
         self.pick_obj = self.registry('stock.picking')
+        self.pick_type_obj = self.registry('stock.picking.type')
         self.pick_ret_obj = self.registry('stock.return.picking')
         self.purchase_obj = self.registry('purchase.order')
         self.sale_obj = self.registry('sale.order')
@@ -111,6 +119,21 @@ class yellowcube_testcase(common.TransactionCase):
                 pick.force_assign()
             elif pick.state == 'waiting':
                 pick.force_assign()
+
+        # product.product
+        if hasattr(self.product_obj, 'action_validated'):
+            product_ids = self.product_obj.search(cr, uid, [], context=ctx)
+            self.product_obj.write(cr, uid, product_ids, {
+                'product_state': 'draft',
+                'webshop_state': False,
+                'target_state': 'active',
+            }, context=ctx)
+
+        picking_type_ids = self.pick_type_obj.search(cr, uid, [], context=ctx)
+        self.pick_type_obj.write(cr, uid, picking_type_ids, {
+            'warehouse_id': self.test_warehouse.id,
+        }, context=ctx)
+
 
     def _print_sale_pdfs(self):
         self.test_sale.manual_invoice()['res_id']

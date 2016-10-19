@@ -25,13 +25,5 @@ import test_yc_bur
 import test_xmltools
 import test_fds
 
-checks = [
-    test_yc_wab_war,
-    test_yc_wbl_wba,
-    test_yc_art,
-    test_yc_bur,
-    test_xmltools,
-    test_fds,
-]
 
 # vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:

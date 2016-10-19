@@ -33,6 +33,7 @@
     'depends': ['account',
                 'pc_connect_warehouse',
                 'pc_connect_transport',
+                'pc_connect_transport_FDS',
                 'pc_connect_master',
                 'delivery',
                 'sale_payment_method',
