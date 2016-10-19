@@ -38,6 +38,9 @@ class test_yc_bur(yellowcube_testcase):
         if hasattr(self.product_3, 'action_validated'):
             self.product_3.action_validated()
             self.product_3.action_in_production()
+        self.product_3.write({
+            'uom_id': self.ref('product.product_uom_unit'),
+        })
 
     def _create_bur_file(self):
         ns = schema_namespaces['bur']

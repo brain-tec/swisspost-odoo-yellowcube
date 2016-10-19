@@ -102,7 +102,14 @@
   !python {model: stock.connect}: |
     # Gets the ID of the stock.connect we are going to attach the file to.
     stock_connect_id = ref('demo_connection_yc')
-    self.write(cr, uid, stock_connect_id, {'yc_enable_bar_file': True}, context=context)
+    fds_dummy_connection_id = ref('fds_dummy_connection')
+    self.write(cr, uid, stock_connect_id, {
+      'yc_enable_art_file': False,
+      'yc_enable_art_multifile': False,
+      'yc_enable_bar_file': True,
+      'type': 'yellowcube',
+      'connect_transport_id': fds_dummy_connection_id,
+      }, context=context)
 
     # Processes the files.
     self.connection_process_files(cr, uid, stock_connect_id, context=context)

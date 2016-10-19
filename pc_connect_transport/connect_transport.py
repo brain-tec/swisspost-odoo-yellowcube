@@ -21,6 +21,8 @@
 
 from openerp.osv import osv, fields, orm
 from openerp.tools.translate import _
+import logging
+_logger = logging.getLogger(__name__)
 
 
 # Here we list the types of connections that we are going to support.
@@ -70,7 +72,9 @@ class connect_transport(osv.Model):
         for con in self.browse(cr, uid, ids):
             if con.type:
                 if not self.pool.get('connect.transport.{0}'.format(con.type)):
-                    return False
+                    _logger.warning('TODO: Connection type is not checked '
+                                    'on the current implementation.')
+                    #return False
         return True
 
     def _type_not_implemented(self, cr, uid, ids):

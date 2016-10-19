@@ -26,6 +26,7 @@ from yellowcube_testcase import yellowcube_testcase, subTest
 from ..xml_abstract_factory import get_factory
 from ..xsd.xml_tools import nspath, create_root, create_element, xml_to_string, schema_namespaces
 import unittest2
+import traceback
 
 
 @subTest('sale_process', 'base_test')
@@ -45,7 +46,7 @@ class test_yc_wab_war(yellowcube_testcase):
         self._print_sale_pdfs()
         cr, uid, ctx = self.cr, self.uid, self.context
         ctx['show_errors'] = False
-        wab_factory = get_factory(self.test_warehouse.env, "wab", context=ctx)
+        wab_factory = get_factory([self.test_warehouse.pool, cr, uid], "wab", context=ctx)
 
         if strange_characters_partner:
             partner = self.test_sale.partner_id
@@ -68,8 +69,11 @@ class test_yc_wab_war(yellowcube_testcase):
         # Here we create the response WAR file, accepting everything
         war_node = self._create_mirror_war_from_wab(wab_node)
         self._save_node(war_node, 'war', path='//warr:CustomerOrderNo')
-        war_factory = get_factory(self.test_warehouse.env, "war", context=ctx)
-        war_factory.import_file(xml_to_string(war_node))
+        war_factory = get_factory([self.test_warehouse.pool, cr, uid], "war", context=ctx)
+        try:
+            war_factory.import_file(xml_to_string(war_node))
+        except Exception as e:
+            self.assertTrue(False, str(e))
         # Now we check the stock.picking state
         pick_out = self.pick_obj.browse(cr, uid, pick_out_id, ctx)
         self.assertIn(pick_out.state, ['done'], 'The stock.picking is closed, once everything is delivered')
@@ -80,9 +84,14 @@ class test_yc_wab_war(yellowcube_testcase):
             logger.debug("Creating WAB-RET")
             ctx['active_id'] = pick_out.id
             pick_ret_id = self.pick_ret_obj.create(cr, uid, {'yellowcube_return': True, 'yellowcube_return_reason': 'R03'}, context=ctx)
-            pick_in_id = eval(self.pick_ret_obj.create_returns(cr, uid, [pick_ret_id], context=ctx)['domain'])[0][2][0]
+            create_return_dict = self.pick_ret_obj.create_returns(cr, uid,
+                                                                  [pick_ret_id],
+                                                                  context=ctx)
+            pick_in_id = eval(create_return_dict['domain'])[0][2][0]
             pick_in = self.pick_obj.browse(cr, uid, pick_in_id, ctx)
-            pick_in.write({'yellowcube_return_reason': 'R01'})
+            self.pick_obj.write(cr, uid, pick_in_id, {
+                'yellowcube_return_reason': 'R01',
+            }, context=ctx)
             pick_in.action_confirm()
             self.assertNotIn(pick_in.state, ['done'], 'The stock.picking is not closed, until everything is delivered')
             wab_factory.generate_files([('id', '=', pick_in_id)])
