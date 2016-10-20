@@ -18,49 +18,49 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 ##############################################################################
-import logging
-logger = logging.getLogger(__name__)
 from yellowcube_testcase import yellowcube_testcase
 import subprocess
-from tempfile import mkstemp
-import os
-import time
-import socket
-from unittest2 import skip
+from tempfile import mkstemp, mkdtemp
+import os, time, socket
+import logging
+logger = logging.getLogger(__name__)
 
 
 class test_fds(yellowcube_testcase):
 
     _sftp_process = None
     _sftp_key_file = None
+    tempdir = []
 
     def _unlink_if_exists(self, path):
-        if os.path.exists(path):
-            os.unlink(path)
+        if path and os.path.exists(path):
+            if os.path.isfile(path):
+                os.unlink(path)
+            else:
+                for subitem in os.listdir(path):
+                    if subitem not in ['.', '..']:
+                        self._unlink_if_exists(subitem)
+                os.rmdir(path)
 
     def setUp(self):
         super(test_fds, self).setUp()
-        directories = [
-            '/tmp/in',
-            '/tmp/in_archive',
-            '/tmp/in_archive_temporal',
-            '/tmp/out',
-        ]
-        for _dir in directories:
-            if not os.path.exists(_dir):
-                os.mkdir(_dir)
+
+    def prepare_test(self):
         cr, uid, ctx = self.cr, self.uid, self.context
         parameter_obj = self.registry('ir.config_parameter')
         param_value = parameter_obj.get_param(cr, uid, 'test_fds_config')
-        self.vals = {}
+        self.vals = {
+            'ignore': False,
+        }
         fd, self._sftp_key_file = mkstemp(suffix='.key', prefix='sftpserver_test_key', dir='/tmp')
+        self.tempdir = [mkdtemp(), mkdtemp(), mkdtemp()]
         if param_value:
             self.vals = eval(param_value)
-            if self.vals.get('ignore', False):
-                logger.warning("Ignoring FDS tests")
-                return
             with open(self._sftp_key_file, 'w') as f:
                 f.write('Hello World')
+        if self.vals.get('ignore', False):
+            logger.warning("Ignoring FDS tests")
+            return
         else:
             os.unlink(self._sftp_key_file)
             subprocess.Popen(["ssh-keygen", "-f", self._sftp_key_file, "-t", "rsa", '-N', ""]).wait()
@@ -68,7 +68,11 @@ class test_fds(yellowcube_testcase):
             s.bind(('', 0))
             port = s.getsockname()[1]
             s.close()
-            self._sftp_process = subprocess.Popen(["sftpserver", "-k", self._sftp_key_file, '-p', str(port), '-l', 'DEBUG'], cwd='/tmp', stdout=subprocess.PIPE)
+            self._sftp_process = subprocess.Popen([
+                "sftpserver",
+                "-k", self._sftp_key_file,
+                '-p', str(port),
+                '-l', 'DEBUG'], cwd=self.tempdir[0], stdout=subprocess.PIPE)
             time.sleep(1)
             self.vals = {
                 'server_url': 'localhost:{0}'.format(port),
@@ -84,18 +88,32 @@ class test_fds(yellowcube_testcase):
                                default={'connect_transport_id': self.ref('pc_connect_warehouse_yellowcube.fds_dummy_connection')})
         self.stock_connect_id = con_obj.browse(cr, uid, copy_id, ctx)
         self.stock_connect_id.connect_transport_id.write(self.vals)
+        self.stock_connect_id.write({
+            'remote_input_dir': '.',
+            'remote_output_dir': '.',
+            'local_archive_input_dir': self.tempdir[1],
+            'local_archive_input_dir_temporal': self.tempdir[2],
+            'remote_file_template': '[a-zA-Z0-9].*',
+            'promiscuous_file_import': False,
+        })
 
     def tearDown(self):
         if self._sftp_process:
             self._sftp_process.terminate()
-        self._unlink_if_exists(self._sftp_key_file)
-        self._unlink_if_exists(self._sftp_key_file + '.pub')
+        if self._sftp_key_file:
+            self._unlink_if_exists(self._sftp_key_file)
+            self._unlink_if_exists(self._sftp_key_file + '.pub')
+        for tempdir in self.tempdir:
+            logger.info('Directory \'{0}\' must be deleted by user or OS'
+                        .format(tempdir))
+            # self._unlink_if_exists(tempdir)
         super(test_fds, self).tearDown()
 
     def test_connection(self):
         """
         This test tests the connection to an FDS server in local
         """
+        self.prepare_test()
         if self.vals.get('ignore', False):
             logger.warning("Ignoring FDS tests")
             return
@@ -105,16 +123,17 @@ class test_fds(yellowcube_testcase):
         """
         This test tests the connection to an FDS server in local, and sends a file.
         """
+        self.prepare_test()
         if self.vals.get('ignore', False):
             logger.warning("Ignoring FDS tests")
             return
         connection = self.stock_connect_id.connect_transport_id.create_connection()
         connection.open()
-        _list = connection.list('.')
-        self.assertTrue(isinstance(_list, list), 'returns a dir list')
         # We send a file
         remote_path = './{0}.remote_put'.format(self._sftp_key_file.split('/')[-1])
         connection.put(self._sftp_key_file, remote_path)
+        _list = connection.list('.')
+        self.assertTrue(isinstance(_list, list), 'returns a dir list')
         connection.get(remote_path, '{0}.remote_get'.format(self._sftp_key_file))
         connection.close()
 
@@ -125,20 +144,29 @@ class test_fds(yellowcube_testcase):
         """
         This test tests the connection to an FDS server in local, and sends a file.
         """
+        self.prepare_test()
         if self.vals.get('ignore', False):
             logger.warning("Ignoring FDS tests")
             return
         connection = self.stock_connect_id.connect_transport_id.create_connection()
-        connection.open()
-        _list = connection.list('.')
-        self.assertTrue(isinstance(_list, list), 'returns a dir list')
         # We send a file
         remote_path = './{0}.remote_put'.format(self._sftp_key_file.split('/')[-1])
-        connection.close()
         connection = self.stock_connect_id.connect_transport_id.create_connection()
         connection.open()
+        _list1 = connection.list('.')
         connection.put(self._sftp_key_file, remote_path)
         connection.close()
+        self.assertTrue(isinstance(_list1, list), 'returns a list')
+        connection = self.stock_connect_id.connect_transport_id.create_connection()
+        connection.open()
+        _list2 = connection.list('.')
+        connection.close()
+        self.assertTrue(isinstance(_list2, list), 'returns a list')
+        for x in _list2:
+            self.assertTrue(isinstance(x, str) or isinstance(x, unicode),
+                            'returns a list of str')
+        self.assertGreater(len(_list2), len(_list1),
+                           'More items are on directory')
         connection = self.stock_connect_id.connect_transport_id.create_connection()
         connection.open()
         connection.get(remote_path, '{0}.remote_get'.format(self._sftp_key_file))
@@ -151,6 +179,7 @@ class test_fds(yellowcube_testcase):
         """
         This test tests the stock.connect methods, to make sure everything works ok.
         """
+        self.prepare_test()
         if self.vals.get('ignore', False):
             logger.warning("Ignoring FDS tests")
             return

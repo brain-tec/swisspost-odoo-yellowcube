@@ -84,7 +84,8 @@ def open_xml(file_text, _type=None, print_error=True, repair=True, parser=None):
         err = validate_xml(_type.lower(), node, print_error)
         if err:
             try:
-                node = repair_xml_file(node, _type.lower())
+                node = repair_xml_file(node, _type.lower(),
+                                       print_error=print_error)
             except Exception as e:
                 raise Warning('{0}: {1}'.format(err, format_exception(e)))
     return node
@@ -104,7 +105,7 @@ def export_filename(original, context=None):
 
 
 def _str(value):
-    if isinstance(value, unicode):
+    if type(value) is unicode:
         # If it's of type unicode, then str() will be in the range ord(character) < 128, thus will fail.
         return str(value.encode('utf-8')).decode('utf-8')
     else:
@@ -147,7 +148,7 @@ def xml_to_string(xml_node, remove_ns=False, encoding='UTF-8', xml_declaration=T
     return etree.tostring(xml_node, xml_declaration=xml_declaration, encoding=encoding, pretty_print=pretty_print, **kargs)
 
 
-def repair_xml_file(xml, ns_key):
+def repair_xml_file(xml, ns_key, print_error=True):
     if ns_key == 'war':
         ns_key = 'warr'
     if ns_key not in schema_namespaces:
@@ -166,7 +167,7 @@ def repair_xml_file(xml, ns_key):
     for child in xml:
         xml_root.append(_reformat_node(child))
 
-    result = validate_xml(ns_key, xml_root)
+    result = validate_xml(ns_key, xml_root, print_error=print_error)
     if result is None:
         return xml_root
     else:

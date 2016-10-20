@@ -162,7 +162,7 @@ class stock_connect(osv.Model):
     def find_schedulers(self, cr, uid, ids, context=None):
         if context is None:
             context = {}
-        if isinstance(ids, list):
+        if type(ids) is list:
             ids = ids[0]
         cron_obj = self.pool.get('ir.cron')
         ret = {}
@@ -179,7 +179,7 @@ class stock_connect(osv.Model):
     def process_file_tree(self, cr, uid, ids, context=None, file_id=None, function=None):
         if context is None:
             context = {}
-        if not isinstance(ids, list):
+        if type(ids) is not list:
             ids = [ids]
 
         file_obj = self.pool.get('stock.connect.file')
@@ -302,7 +302,7 @@ class stock_connect(osv.Model):
             the temporal folder. Then the files are moved into the archiving folder taking into
             account the filename-template set for each client.
         '''
-        if not isinstance(ids, list):
+        if type(ids) is not list:
             ids = [ids]
         if context is None:
             context = {}
@@ -358,7 +358,7 @@ class stock_connect(osv.Model):
                     list_result = con.list(connection.remote_input_dir)
                     for path in list_result:
                         _name = path.split('/')[-1]
-                        if _name:
+                        if _name and (pattern.match(_name) or connection.promiscuous_file_import):
                             # It downloads all the files it to a local temporal-folder which is used
                             # We do this so that we can empty the remote folder in a safe way,
                             # by keeping a copy of the processed files.
@@ -417,7 +417,7 @@ class stock_connect(osv.Model):
         return True
 
     def connection_process_files(self, cr, uid, ids, context=None):
-        if not isinstance(ids, list):
+        if type(ids) is not list:
             ids = [ids]
         if context is None:
             context = {}
@@ -442,7 +442,7 @@ class stock_connect(osv.Model):
         return True
 
     def connection_process_events(self, cr, uid, ids, context=None):
-        if not isinstance(ids, list):
+        if type(ids) is not list:
             ids = [ids]
         if context is None:
             context = {}
@@ -465,7 +465,7 @@ class stock_connect(osv.Model):
         return True
 
     def connection_send_files(self, cr, uid, ids, context=None):
-        if not isinstance(ids, list):
+        if type(ids) is not list:
             ids = [ids]
         if context is None:
             context = {}
@@ -553,6 +553,7 @@ class stock_connect(osv.Model):
         'limit_of_connections': fields.integer('Number of connections made on sync', required=False),
         'log_about_already_existing_files': fields.boolean('Log about already existing files?',
                                                            help='If activated, a line in the log will appear every time it sees a file that it already has.'),
+        'promiscuous_file_import': fields.boolean('Promiscuous File Import (read and remove ALL from remote)'),
     }
 
     _defaults = {
@@ -563,6 +564,7 @@ class stock_connect(osv.Model):
         'remote_file_template': '[a-zA-Z0-9].*',
         'limit_of_connections': 0,
         'log_about_already_existing_files': False,
+        'promiscuous_file_import': True,
     }
 
     _sql_constraints = [

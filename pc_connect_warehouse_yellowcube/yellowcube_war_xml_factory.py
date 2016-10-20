@@ -149,8 +149,13 @@ class yellowcube_war_xml_factory(xml_abstract_factory):
         partner_reference = nspath(order_header, "warr:PartnerReference")
         if partner_reference:
             partner_reference = partner_reference[0].text
+            _partner_references = []
             if picking_out.partner_id.ref:
-                self._check(warehouse, picking_out.partner_id.ref == partner_reference, _('PartnerReference does not match its current value in the stock picking.'))
+                _partner_references.append(picking_out.partner_id.ref)
+            if picking_out.partner_id.parent_id and picking_out.partner_id.parent_id.ref:
+                _partner_references.append(picking_out.partner_id.parent_id.ref)
+            if _partner_references:
+                self._check(warehouse, partner_reference in _partner_references, _('PartnerReference does not match its current value in the stock picking.'))
             else:
                 partner_obj.write(self.cr, self.uid, picking_out.partner_id.id, {'ref': partner_reference}, context=self.context)
 
@@ -166,7 +171,6 @@ class yellowcube_war_xml_factory(xml_abstract_factory):
             i += 1
 
         for order_move in nspath(xml, "//warr:CustomerOrderDetail"):
-            partial = {}
 
             pos_no = int(nspath(order_move, "warr:CustomerOrderPosNo")[0].text)
 
@@ -182,7 +186,14 @@ class yellowcube_war_xml_factory(xml_abstract_factory):
             if not self.success:
                 raise Warning('Error parsing WAR file: {0}'.format('\n'.join(self.errors)))
 
-            partials[move_line if V8 else "move{0}".format(move_line.id)] = partial
+            partial_key = move_line if V8 else "move{0}".format(move_line.id)
+            if partial_key in partials:
+                partial = partials[partial_key]
+            else:
+                partial = {}
+                # Product Quantity is the only field and increases. Other fields WILL have the same value between details
+                partial['product_qty'] = 0
+                partials[partial_key] = partial
 
             # Caches the product of the stock.move.
             product_id = move_line.product_id.id
@@ -240,7 +251,8 @@ class yellowcube_war_xml_factory(xml_abstract_factory):
             #  <QuantityUOM>
             quantity_uom = float(nspath(order_move, "warr:QuantityUOM")[0].text)
             self._check(picking_out, move_line.product_qty >= quantity_uom, _('Product {0} (id={1}): QuantityUOM is greater than that of the stock.move.').format(product.name, product_id))
-            partial['product_qty'] = quantity_uom
+            # new moves, increase the quantity on the partial
+            partial['product_qty'] += quantity_uom
 
             # <QuantityISO>
             quantity_iso = nspath(order_move, "warr:QuantityUOM")[0].attrib['QuantityISO']

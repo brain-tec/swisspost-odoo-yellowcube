@@ -153,29 +153,32 @@ class yellowcube_bur_xml_factory(xml_abstract_factory):
             # We now determine the origin and destination locations based on the fields
             # StorageLocation, MoveStorageLocation, and TransactionType.
             # Have a look at task with ID=3725 for the algorithm which is copied below:
-            # IF StorageLocation is recognized as a valid location in Odoo
+            # IF TransactionType is set on odoo
+            # THEN use its location names
+            # ELIF StorageLocation is recognized as a valid location in Odoo
             # AND MoveSorageLocation is recognized as a valid location in Odoo
             # THEN use those
-            if location_obj.search(self.cr, self.uid, [('name', '=', source_location)], context=self.context, count=True) and \
+            # ELSE trigger an issue
+            is_mapped, mapped_origin_location, mapped_destination_location = \
+                mapping_bur_transactiontypes_obj.get_mapping(self.cr, self.uid,
+                                                             [],
+                                                             transaction_type,
+                                                             context=self.context)
+            if is_mapped and mapped_origin_location and mapped_destination_location:
+                element['location'] = mapped_origin_location.name
+                element['destination'] = mapped_destination_location.name
+            elif location_obj.search(self.cr, self.uid, [('name', '=', source_location)], context=self.context, count=True) and \
                destination_location and \
                location_obj.search(self.cr, self.uid, [('name', '=', destination_location)], context=self.context, count=True):
                 element['location'] = source_location
                 element['destination'] = destination_location
             else:
-                # ELSE look up the TransactionType given in the BUR in the configured TransactionType list,
-                # and if found and the locations are valid, use them.
-                is_mapped, mapped_origin_location, mapped_destination_location = \
-                    mapping_bur_transactiontypes_obj.get_mapping(self.cr, self.uid, [], transaction_type, context=self.context)
-                if is_mapped and mapped_origin_location and mapped_destination_location:
-                    element['location'] = mapped_origin_location.name
-                    element['destination'] = mapped_destination_location.name
-
-                else:
-                    # ELSE create an issue and stop processing the BUR. after resolving the TransactionType mapping, the import can be restarted...
-                    self.success = False  # We know now that we had no success.
-                    error_message = _('Error when importing BUR: StorageLocation and/or MoveStorageLocation were not defined or incorrect, AND '
-                                      'no correct mapping was defined for TransactionType={0}').format(transaction_type)
-                    self.post_issue(warehouse, error_message)
+                # ELSE create an issue and stop processing the BUR. after resolving the TransactionType mapping, the import can be restarted...
+                self.success = False  # We know now that we had no success.
+                error_message = _('Error when importing BUR: StorageLocation and/or MoveStorageLocation were not defined or incorrect, AND '
+                                  'no correct mapping was defined for TransactionType={0}').format(transaction_type)
+                self.errors.append(error_message)
+                self.post_issue(warehouse, error_message)
 
             # YCLot
             # TODO: check
@@ -189,9 +192,9 @@ class yellowcube_bur_xml_factory(xml_abstract_factory):
                 element['lot'] = lot[0].text
 
                 lot_id = lot_obj.search(self.cr,
-                                        self.uid,
-                                        [('product_id', '=', product.id), ('name', '=', element['lot'])],
-                                        context=self.context)
+                                         self.uid,
+                                         [('product_id', '=', product.id), ('name', '=', element['lot'])],
+                                         context=self.context)
                 if not self._check(product, len(lot_id) <= 1, _('Impossible to find a unique lot {0}'.format(element['lot']))):
                     continue
                 if not lot_id:

@@ -152,7 +152,7 @@ class stock_connect_yellowcube(osv.Model):
                 project_issue_obj.create_issue(cr, uid, 'stock.connect.file', warehouse.id, error, context=context)
                 logger.error('Exception: {0}'.format(error))
                 self.pool.get('stock.connect').log_issue(new_cr, uid, ids, _('Error while processing ART file'), context=context, exception=e)
-                raise
+                raise e
 
             finally:
                 new_cr.commit()
@@ -222,7 +222,7 @@ class stock_connect_yellowcube(osv.Model):
                     file_obj.write(new_cr, uid, bar_file.id, {'error': True, 'info': error}, context=context)
                 else:
                     logger.error("Impossible to log error on unsaved BAR file!!! {0}".format(error))
-                raise
+                raise e
 
             finally:
                 new_cr.commit()
@@ -277,7 +277,7 @@ class stock_connect_yellowcube(osv.Model):
                 print 'error>>>' * 5
                 print _file.content
                 print '<<<error' * 5
-                raise
+                raise e
 
             finally:
                 new_cr.commit()
@@ -444,7 +444,7 @@ class stock_connect_yellowcube(osv.Model):
                     self.env = api.Environment(new_cr, uid_exception, context_exception)
                     event.write({'error': True, 'info': error_message})
 
-                raise
+                raise e
 
             finally:
                 new_cr.commit()
