@@ -126,6 +126,11 @@ class stock_connect_ext(osv.Model):
         'yc_enable_wbl_file': fields.boolean("Enable WBL file", default=False),
         'yc_enable_wba_file': fields.boolean("Enable WBA file", default=False),
 
+        'yc_attachments_from_invoice':
+            fields.integer('Attachments to use from Invoice', default=1),
+        'yc_attachments_from_picking':
+            fields.integer('Attachments to use from Picking', default=1),
+
         'yc_wab_add_invoicing_address': fields.boolean('Include the Invoicing Address on WAB?', default=False),
         'yc_wab_partner_type_for_shipping_address': fields.char('Value of <PartnerType> for the shipping address on WAB', required=True, default="WE"),
         'yc_wab_partner_type_for_invoicing_address': fields.char('Value of <PartnerType> for the invoicing address on WAB'),
