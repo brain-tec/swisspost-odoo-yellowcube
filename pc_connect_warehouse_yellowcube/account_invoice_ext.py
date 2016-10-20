@@ -95,7 +95,7 @@ class account_invoice_ext(osv.Model):
         att_picking_ids = ir_attachment_obj.search(cr, uid, [
             ('res_id', '=', account_invoice.id),
             ('res_model', '=', 'account.invoice'),
-        ], order='create_data DESC', limit=number_of_attachments_to_use,
+        ], order='create_date DESC', limit=number_of_attachments_to_use,
                                            context=context)
         if len(att_picking_ids) == 0:
             logger.warning(_('A bad number of picking reports was found '
@@ -157,7 +157,8 @@ class account_invoice_ext(osv.Model):
                 fd, tmp_path = mkstemp(prefix='concatenated_invoices_', dir="/tmp")
                 paths_of_files_to_concatenate = []
                 for att_to_concatenate in ir_attachment_obj.browse(cr, uid, att_picking_ids, context=context):
-                    att_to_concatenate_full_path = ir_attachment_obj._full_path(cr, uid, attachments_location, att_to_concatenate.store_fname)
+                    att_to_concatenate_full_path = ir_attachment_obj.\
+                        _full_path(cr, uid, att_to_concatenate.store_fname)
                     paths_of_files_to_concatenate.append(att_to_concatenate_full_path)
                 concatenate_pdfs(tmp_path, paths_of_files_to_concatenate)
 
