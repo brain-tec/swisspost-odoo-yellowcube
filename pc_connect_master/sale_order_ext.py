@@ -142,7 +142,8 @@ class sale_order_ext(osv.Model):
 
         report_name = self._get_configuration_data(cr, uid, ids, context=context).report_account_invoice.report_name
         if not report_name:
-            raise Exception(_("No report for account.invoice was found in SwissPost Connector > Reports"))
+            logger.warning(_("No report for account.invoice was found in SwissPost Connector > Reports"))
+            return False
 
         sale_order = self.browse(cr, uid, ids[0], context=context)
 
@@ -190,7 +191,8 @@ class sale_order_ext(osv.Model):
 
         report_name = self._get_configuration_data(cr, uid, ids, context=context).report_stock_picking.report_name
         if not report_name:
-            raise Exception(_("No report for stock.picking was found in SwissPost Connector > Reports"))
+            logger.warning(_("No report for stock.picking was found in SwissPost Connector > Reports"))
+            return False
 
         for stock_picking in stock_picking_obj.browse(cr, uid, stock_picking_ids, context=context):
             file_name = stock_picking.get_file_name()

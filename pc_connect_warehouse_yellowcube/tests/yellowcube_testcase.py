@@ -32,8 +32,71 @@ from lxml import etree
 from urllib import urlopen
 import os
 from openerp.addons.report_webkit.webkit_report import WebKitParser
+from openerp import SUPERUSER_ID
+import base64
+import traceback
 
 _test_timestamp = datetime.today().strftime('%Y%m%d%H%M%S')
+
+
+MINIMALIST_PDF = """%PDF-1.1
+%¥±ë
+
+1 0 obj
+  << /Type /Catalog
+     /Pages 2 0 R
+  >>
+endobj
+
+2 0 obj
+  << /Type /Pages
+     /Kids [3 0 R]
+     /Count 1
+     /MediaBox [0 0 300 144]
+  >>
+endobj
+
+3 0 obj
+  <<  /Type /Page
+      /Parent 2 0 R
+      /Resources
+       << /Font
+           << /F1
+               << /Type /Font
+                  /Subtype /Type1
+                  /BaseFont /Times-Roman
+               >>
+           >>
+       >>
+      /Contents 4 0 R
+  >>
+endobj
+
+4 0 obj
+  << /Length 55 >>
+stream
+  BT
+    /F1 18 Tf
+    0 0 Td
+    ({0}) Tj
+  ET
+endstream
+endobj
+
+xref
+0 5
+0000000000 65535 f
+0000000018 00000 n
+0000000077 00000 n
+0000000178 00000 n
+0000000457 00000 n
+trailer
+  <<  /Root 1 0 R
+      /Size 5
+  >>
+startxref
+565
+%%EOF"""
 
 
 def subTest(name, subname, *args, **kargs):
@@ -69,7 +132,6 @@ class yellowcube_testcase(common.TransactionCase):
             'show_errors': True,
             'stock_connect_id': self.ref('pc_connect_warehouse_yellowcube.demo_connection_yc'),
             'warehouse_id': self.ref('pc_connect_warehouse_yellowcube.warehouse_YC'),
-            # 'yc_min_number_attachments': 2,
         }
 
         self.browse_ref('pc_connect_warehouse_yellowcube.demo_connection_yc').write({
@@ -77,6 +139,8 @@ class yellowcube_testcase(common.TransactionCase):
             'connect_transport_id': self.ref('pc_connect_warehouse_yellowcube.fds_dummy_connection'),
             'yc_enable_art_file': False,
             'yc_enable_art_multifile': False,
+            'yc_attachments_from_invoice': 10,
+            'yc_attachments_from_picking': 10,
         })
 
         self.output_dir = '/tmp/test_yc_{0}'.format(_test_timestamp)
@@ -95,8 +159,11 @@ class yellowcube_testcase(common.TransactionCase):
         self.purchase_obj = self.registry('purchase.order')
         self.sale_obj = self.registry('sale.order')
         self.invoice_obj = self.registry('account.invoice')
-
+        self.att_obj = self.registry('ir.attachment')
         self.stock_connect_file = self.registry('stock.connect.file')
+
+        self.registry['ir.config_parameter']\
+            .set_param(cr, SUPERUSER_ID, 'ir_attachment.location', 'file')
         self._last_file_id = (self.stock_connect_file.search(cr, uid, [], order='id DESC', limit=1) or [0])[0]
 
         self.configuration = self.registry('configuration.data').get(cr, uid, [], context=ctx)
@@ -119,6 +186,34 @@ class yellowcube_testcase(common.TransactionCase):
                 pick.force_assign()
             elif pick.state == 'waiting':
                 pick.force_assign()
+            self.att_obj.create(cr, uid, {
+                'name': 'hello',
+                'res_id': pick.id,
+                'res_model': 'stock.picking',
+                'datas': base64.b64encode(MINIMALIST_PDF.format('Hello world')),
+            }, context=ctx)
+            self.att_obj.create(cr, uid, {
+                'name': 'other',
+                'res_id': pick.id,
+                'res_model': 'stock.picking',
+                'datas': base64.b64encode(MINIMALIST_PDF
+                                          .format('Other Attachment')),
+            }, context=ctx)
+
+        for invoice in self.test_sale.invoice_ids:
+            self.att_obj.create(cr, uid, {
+                'name': 'hello',
+                'res_id': invoice.id,
+                'res_model': 'account.invoice',
+                'datas': base64.b64encode(MINIMALIST_PDF.format('Hello world')),
+            }, context=ctx)
+            self.att_obj.create(cr, uid, {
+                'name': 'other',
+                'res_id': invoice.id,
+                'res_model': 'account.invoice',
+                'datas': base64.b64encode(MINIMALIST_PDF
+                                          .format('Other Attachment')),
+            }, context=ctx)
 
         # product.product
         if hasattr(self.product_obj, 'action_validated'):
@@ -133,6 +228,8 @@ class yellowcube_testcase(common.TransactionCase):
         self.pick_type_obj.write(cr, uid, picking_type_ids, {
             'warehouse_id': self.test_warehouse.id,
         }, context=ctx)
+
+        self.att_obj.force_storage(cr, uid, context=ctx)
 
 
     def _print_sale_pdfs(self):

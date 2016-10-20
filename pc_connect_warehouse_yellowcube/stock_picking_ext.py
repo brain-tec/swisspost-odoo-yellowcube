@@ -117,54 +117,43 @@ class stock_picking_ext(osv.Model):
 
         stock_picking_out = self.browse(cr, uid, ids[0], context=context)
 
+        number_of_attachments_to_use = context.\
+            get('yc_attachments_from_picking', 1)
+        if number_of_attachments_to_use == 0:
+            return {}
+
         # Caches the attachments for the picking.
-        att_ids = ir_attachment_obj.search(cr, uid, [('res_id', '=', stock_picking_out.id),
-                                                     ('res_model', '=', 'stock.picking'),
-                                                     ], context=context)
+        att_picking_ids = ir_attachment_obj.search(cr, uid, [
+            ('res_id', '=', stock_picking_out.id),
+            ('res_model', '=', 'stock.picking'),
+        ], order='create_date DESC', limit=number_of_attachments_to_use,
+                                                   context=context)
 
-        # Gets the attachment for the delivery slip, since we must attach it for sure.
-        att_picking_ids = ir_attachment_obj.search(cr, uid, [('id', 'in', att_ids),
-                                                             ('document_type', '=', 'picking_out_report'),
-                                                             ], context=context)
-        if len(att_picking_ids) != 1:
-            if context.get('yc_min_number_attachments') != 0:
-                raise Warning(_('A bad number of picking reports was found ({0}) '
-                                'on picking with ID={1}, while just one was expected').format(len(att_picking_ids),
-                                                                                              stock_picking_out.id))
+        if len(att_picking_ids) == 0:
+            logger.warning(_('A bad number of picking reports was found '
+                             '({0}) on picking with ID={1}, '
+                             'while at least one was expected')
+                           .format(len(att_picking_ids), stock_picking_out.id))
             return result
-
-        # Determines if we have to attach also the picking report.
-        att_barcode_ids = []
-        if ir_module_obj.search(cr, uid, [('name', '=', 'pc_delivery_carrier_label_postlogistics'),
-                                          ('state', '=', 'installed'),
-                                          ], limit=1, count=True, context=context) \
-           and (not stock_picking_out.uses_bulkfreight):
-            att_barcode_ids = ir_attachment_obj.search(cr, uid, [('id', 'in', att_ids),
-                                                                 ('document_type', '=', 'barcode_out_report'),
-                                                                 ], context=context)
-            if len(att_barcode_ids) > 1:
-                raise Warning(_('A bad number of barcode reports was found ({0}) '
-                                'for picking with ID={1}, while one or none was expected').format(len(att_picking_ids),
-                                                                                                  stock_picking_out.id))
 
         # We compute the name of the output filename to be indicated on the WAB.
         output_filename = stock_picking_out.get_filename_for_wab(extension)
 
-        # Determines the ID of the attachment to send with the WAB. It will be only the ID of the picking
-        # if no barcode needs to be attached, BUT it will be *a new* attachment, created ad-hoc, with is the
-        # concatenation of the picking and the barcode.
-        if not att_barcode_ids:
-            attachment_to_send_id = att_picking_ids[0]  # Just the (only) delivery slip found.
+        if len(att_picking_ids) == 1:
+            attachment_to_send_id = att_picking_ids[0]
         else:
-            # Here we need to create a new attachment which is the concatenation of the picking and the barcode.
-            attachment_to_send_id = stock_picking_out._get_attachment_id_for_picking_and_barcode_concatenated(att_picking_ids[0], att_barcode_ids[0], extension)
+            attachment_to_send_id = stock_picking_out.\
+                _get_attachment_id_for_picking_and_barcode_concatenated\
+                (att_picking_ids, extension)
 
-        att = ir_attachment_obj.browse(cr, uid, attachment_to_send_id, context=context)
-        result[output_filename] = ir_attachment_obj._full_path(cr, uid, attachments_location, att.store_fname)
+        att = ir_attachment_obj.browse(cr, uid, attachment_to_send_id,
+                                       context=context)
+        result[output_filename] = ir_attachment_obj._full_path(cr, uid,
+                                                               att.store_fname)
 
         return result
 
-    def _get_attachment_id_for_picking_and_barcode_concatenated(self, cr, uid, ids, att_picking_id, att_barcode_id, extension, context=None):
+    def _get_attachment_id_for_picking_and_barcode_concatenated(self, cr, uid, ids, att_picking_ids, extension, context=None):
         ''' Returns the ID of the attachment which consist of the concatenation of the picking and barcode attachments
             the ID of which is received as arguments. If the attachment doesn't exist, it creates it; otherwise just
             returns it.
@@ -197,8 +186,9 @@ class stock_picking_ext(osv.Model):
                 # First, we create a temporary PDF file having the content of the concatenation.
                 fd, tmp_path = mkstemp(prefix='delivery_slip_and_barcode_', dir="/tmp")
                 paths_of_files_to_concatenate = []
-                for att_to_concatenate in ir_attachment_obj.browse(cr, uid, [att_picking_id, att_barcode_id], context=context):
-                    att_to_concatenate_full_path = ir_attachment_obj._full_path(cr, uid, attachments_location, att_to_concatenate.store_fname)
+                for att_to_concatenate in ir_attachment_obj.browse(cr, uid, att_picking_ids, context=context):
+                    att_to_concatenate_full_path = ir_attachment_obj.\
+                        _full_path(cr, uid, att_to_concatenate.store_fname)
                     paths_of_files_to_concatenate.append(att_to_concatenate_full_path)
                 concatenate_pdfs(tmp_path, paths_of_files_to_concatenate)
 
@@ -212,11 +202,12 @@ class stock_picking_ext(osv.Model):
                     'res_model': 'stock.picking',
                     'res_id': stock_picking_out.id,
                     'type': 'binary',
-                    'description': _('Attachment for picking with ID={0}. It is the concatenation of '
-                                     'the attachments of the picking (attach. id={1}) '
-                                     'and the barcode report (attach. ID={2}'.format(stock_picking_out.id,
-                                                                                     att_picking_id,
-                                                                                     att_barcode_id)),
+                    'description':
+                        _('Attachment for picking with ID={0}. '
+                          'Autogenerated from attachments: {1}'.format(
+                            stock_picking_out.id,
+                            ', '.join(map(str, att_picking_ids))
+                        )),
                 }
                 attachment_id = ir_attachment_obj.create(cr, uid, values_create_att, context=context)
 

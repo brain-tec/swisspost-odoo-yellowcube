@@ -84,9 +84,8 @@ class yellowcube_wab_xml_factory(xml_abstract_factory):
         @return: dictionary <KEY=output_filename, VALUE=original_path>.
         """
         result = {}
-        min_number_attachements = self.context['yc_min_number_attachments']
         sale_order = stock_picking.sale_id
-        self.context['yc_customer_order_no'] = stock_picking.id
+        self.context['yc_customer_order_no'] = stock_picking.yellowcube_customer_order_no
 
         yc_sender = self.get_param('sender', required=True)
         if not yc_sender:
@@ -101,16 +100,12 @@ class yellowcube_wab_xml_factory(xml_abstract_factory):
         if attach_invoice:
             invoice_file_extension = 'pcl' if (self.get_param('wab_invoice_send_mode') == 'pcl_wab') else 'pdf'
             for invoice in sale_order.invoice_ids:
-                result.update(invoice.get_attachment_wab(invoice_file_extension))
-        else:
-            min_number_attachements -= 1
+                result.update(invoice.with_context(self.context).get_attachment_wab(invoice_file_extension))
 
         # Adds the attachment for the stock.picking.
-        result.update(stock_picking.get_attachment_wab())
+        result.update(stock_picking.with_context(self.context).get_attachment_wab())
         del self.context['yc_customer_order_no']
         del self.context['yc_sender']
-        if len(result) < min_number_attachements and stock_picking.type == 'out':
-            raise Warning("Not enough attachments found. Set context 'yc_min_number_attachments' accordingly or check picking.", str(result))
         return result
 
     def generate_root_element(self, stock_picking):
