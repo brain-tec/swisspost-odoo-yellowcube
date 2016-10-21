@@ -23,6 +23,9 @@ from openerp.osv import osv, fields
 import decimal
 from openerp.osv.orm import except_orm
 import openerp.addons.decimal_precision as dp
+from configuration_data_ext import _DATE_SELECTION
+from dateutil import relativedelta
+from openerp.tools.translate import _
 
 
 class product_template_ext(osv.Model):
@@ -63,7 +66,28 @@ class product_template_ext(osv.Model):
 
         return {'value': {'value': value}}
 
+    def _expiration_uom(self, cr, uid, tuples=True, uom='days', value=0, context=None):
+        ret = []
+        for f in _DATE_SELECTION:
+            if tuples:
+                ret.append(f)
+            elif f[0] == uom:
+                args = {uom: value * -1}
+                return relativedelta.relativedelta(**args)
+        return ret
+
     _columns = {
+        # Expiration dates for the warehouse process.
+        'expiration_block_time': fields.float('Expiration Block Time', required=True),
+        'expiration_block_time_uom': fields.selection(_expiration_uom,
+                                                      string='Unit of Measure for the Expiration Block Time',
+                                                      required=False),
+        'expiration_alert_time': fields.float('Expiration Alert Time', required=True),
+        'expiration_alert_time_uom': fields.selection(_expiration_uom,
+                                                      string='Unit of Measure for the Expiration Alert Time', required=False),
+        'expiration_accept_time': fields.float('Expiration Accept Time', required=True),
+        'expiration_accept_time_uom': fields.selection(_expiration_uom,
+                                                       string='Unit of Measure for the Expiration Accept Time', required=False),
         # Attributes related to the features a product can have.
         'weight': fields.float("Weight", digits_compute=dp.get_precision('Stock Weight')),
         'length': fields.float('Length', digits_compute=dp.get_precision('Stock Length'), help='Length of the product (in centimeters)'),
