@@ -22,6 +22,13 @@
 from openerp.osv import osv, fields, orm
 from openerp.tools.translate import _
 from openerp.tools import DEFAULT_SERVER_DATETIME_FORMAT
+from openerp import api
+from openerp.addons.pc_connect_master.utilities.pdf import concatenate_pdfs
+from tempfile import mkstemp
+import os
+import base64
+import logging
+logger = logging.getLogger(__name__)
 
 
 class account_invoice_ext(osv.Model):
@@ -73,6 +80,11 @@ class account_invoice_ext(osv.Model):
 
         result = {}
 
+        number_of_attachments_to_use = context.\
+            get('yc_attachments_from_invoice', 1)
+        if number_of_attachments_to_use == 0:
+            return {}
+
         ir_attachment_obj = self.pool.get('ir.attachment')
         ir_config_parameter_obj = self.pool.get('ir.config_parameter')
 
@@ -80,22 +92,101 @@ class account_invoice_ext(osv.Model):
 
         account_invoice = self.browse(cr, uid, ids[0], context=context)
 
-        att_ids = ir_attachment_obj.search(cr, uid, [('res_id', '=', account_invoice.id),
-                                                     ('res_model', '=', 'account.invoice'),
-                                                     ('document_type', '=', 'invoice_report'),
-                                                     ], context=context)
-        if len(att_ids) != 1:
-            if context.get('yc_min_number_attachments') != 0:
-                raise Warning(_('A bad number of invoice reports was found ({0}) '
-                                'for invoice with ID={1}, while just one was expected').format(len(att_ids),
-                                                                                               account_invoice.id))
-            else:
-                return result
+        att_picking_ids = ir_attachment_obj.search(cr, uid, [
+            ('res_id', '=', account_invoice.id),
+            ('res_model', '=', 'account.invoice'),
+        ], order='create_date DESC', limit=number_of_attachments_to_use,
+                                           context=context)
+        if len(att_picking_ids) == 0:
+            logger.warning(_('A bad number of picking reports was found '
+                             '({0}) on invoice with ID={1}, '
+                             'while at least one was expected')
+                           .format(len(att_picking_ids), account_invoice.id))
+            return result
 
         output_filename = account_invoice.get_filename_for_wab(extension)
-        att = ir_attachment_obj.browse(cr, uid, att_ids[0], context=context)
-        result[output_filename] = ir_attachment_obj._full_path(cr, uid, attachments_location, att.store_fname)
+
+        if len(att_picking_ids) == 1:
+            attachment_to_send_id = att_picking_ids[0]
+        else:
+            attachment_to_send_id = account_invoice.\
+                _get_attachment_id_for_invoices_concatenated\
+                (att_picking_ids, extension)
+
+        att = ir_attachment_obj.browse(cr, uid, attachment_to_send_id,
+                                       context=context)
+        result[output_filename] = ir_attachment_obj._full_path(cr, uid,
+                                                               att.store_fname)
 
         return result
+
+
+    def _get_attachment_id_for_invoices_concatenated(self, cr, uid, ids,
+                                                     att_picking_ids, extension,
+                                                     context=None):
+        ''' Returns the ID of the attachment which consist of the concatenation of the picking and barcode attachments
+            the ID of which is received as arguments. If the attachment doesn't exist, it creates it; otherwise just
+            returns it.
+        '''
+        if context is None:
+            context = {}
+        if type(ids) is not list:
+            ids = [ids]
+
+        ir_attachment_obj = self.pool.get('ir.attachment')
+        ir_config_parameter_obj = self.pool.get('ir.config_parameter')
+
+        invoice = self.browse(cr, uid, ids[0], context=context)
+
+        if 'output_filename' not in context:
+            output_filename = invoice.get_filename_for_wab(extension)
+        else:
+            output_filename = context['output_filename']
+        attachments_location = ir_config_parameter_obj.get_param(cr, uid, 'ir_attachment.location')
+
+        # First we check if we already have the attachment. If we don't have it, we create it.
+        att_ids = ir_attachment_obj.search(cr, uid, [('res_id', '=', invoice.id),
+                                                     ('res_model', '=', 'account.invoice'),
+                                                     ('name', '=', output_filename),
+                                                     ], limit=1, context=context)
+        if att_ids:
+            attachment_id = att_ids[0]
+        else:
+            try:
+                # First, we create a temporary PDF file having the content of the concatenation.
+                fd, tmp_path = mkstemp(prefix='concatenated_invoices_', dir="/tmp")
+                paths_of_files_to_concatenate = []
+                for att_to_concatenate in ir_attachment_obj.browse(cr, uid, att_picking_ids, context=context):
+                    att_to_concatenate_full_path = ir_attachment_obj.\
+                        _full_path(cr, uid, att_to_concatenate.store_fname)
+                    paths_of_files_to_concatenate.append(att_to_concatenate_full_path)
+                concatenate_pdfs(tmp_path, paths_of_files_to_concatenate)
+
+                # Then we create an attachment with the content of that file.
+                with open(tmp_path, "rb") as f:
+                    attachment_content_base64 = base64.b64encode(f.read())
+                values_create_att = {
+                    'name': output_filename,
+                    'datas': attachment_content_base64,
+                    'datas_fname': output_filename,
+                    'res_model': 'account.invoice',
+                    'res_id': invoice.id,
+                    'type': 'binary',
+                    'description':
+                        _('Attachment for invoice with ID={0}. '
+                          'Autogenerated from attachments: {1}').format(
+                            invoice.id,
+                            ', '.join(map(str, att_picking_ids)))
+                        ,
+                }
+                attachment_id = ir_attachment_obj.create(cr, uid, values_create_att, context=context)
+
+            finally:
+                if fd:
+                    os.close(fd)
+                if tmp_path:
+                    os.remove(tmp_path)
+
+        return attachment_id
 
 # vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:

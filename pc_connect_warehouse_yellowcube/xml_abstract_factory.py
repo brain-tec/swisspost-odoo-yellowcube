@@ -122,6 +122,8 @@ class xml_abstract_factory():
             self.uid = env.uid
         self.connection_id = context['stock_connect_id']
         self.context['lang'] = self.pool['stock.connect'].browse(self.cr, self.uid, self.connection_id, self.context).yc_language
+        for p in ['attachments_from_invoice', 'attachments_from_picking']:
+            self.context['yc_%s' % p] = self.get_param(p) or 0
         self.main_file_id = None
         self.print_errors = self.context.get('yc_print_errors', True)
         self.cr.execute('select current_catalog')
