@@ -69,11 +69,13 @@ class stock_picking_config(osv.Model):
                                       ])
 
         # Looks for old pickings.
+        old_picking_ids = None
         if domain_regular_pickings:
             domain_regular_pickings.extend(common_domain)
             old_picking_ids = set(stock_picking_obj.search(cr, uid, domain_regular_pickings, context=context))
 
         # Looks for old back-orders.
+        old_backorders_ids = None
         if domain_backorders:
             domain_backorders.extend(common_domain)
             old_backorders_ids = set(stock_picking_obj.search(cr, uid, domain_backorders, context=context))

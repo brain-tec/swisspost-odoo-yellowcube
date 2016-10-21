@@ -22,9 +22,7 @@ from openerp import api
 from openerp.osv import osv, fields
 from openerp.tools.translate import _
 import logging
-from dateutil import relativedelta
 import datetime
-from configuration_data_ext import _DATE_SELECTION
 from openerp.tools import DEFAULT_SERVER_DATETIME_FORMAT
 logger = logging.getLogger(__name__)
 import decimal
@@ -217,20 +215,11 @@ class product_product_ext_lot(osv.Model):
             uom_value_selection = self._expiration_uom_get_selection(cr, uid, value, context)  # Returns None if not found.
             return uom_value_selection
 
-    def _expiration_uom(self, cr, uid, tuples=True, uom='days', value=0, context=None):
-        ret = []
-        for f in _DATE_SELECTION:
-            if tuples:
-                ret.append(f)
-            elif f[0] == uom:
-                args = {uom: value * -1}
-                return relativedelta.relativedelta(**args)
-        return ret
-
     def _expiration_uom_get_selection(self, cr, uid, value_to_search, context):
         ''' Given a value displayed in a selection field, it returns the value stored in the selection, or None if it was not found.
         '''
-        uom_allowed_values = self._expiration_uom(cr, uid, context=context)
+        uom_allowed_values = self.pool['product.template'].\
+            _expiration_uom(cr, uid, context=context)
         uom_value_selection = None
         for uom_allowed_value in uom_allowed_values:
             uom_value_displayed = uom_allowed_value[1]
@@ -289,18 +278,6 @@ class product_product_ext_lot(osv.Model):
         return res
 
     _columns = {
-        # Expiration dates for the warehouse process.
-        'expiration_block_time': fields.float('Expiration Block Time', required=True),
-        'expiration_block_time_uom': fields.selection(_expiration_uom,
-                                                      string='Unit of Measure for the Expiration Block Time',
-                                                      required=False),
-        'expiration_alert_time': fields.float('Expiration Alert Time', required=True),
-        'expiration_alert_time_uom': fields.selection(_expiration_uom,
-                                                      string='Unit of Measure for the Expiration Alert Time', required=False),
-        'expiration_accept_time': fields.float('Expiration Accept Time', required=True),
-        'expiration_accept_time_uom': fields.selection(_expiration_uom,
-                                                       string='Unit of Measure for the Expiration Accept Time', required=False),
-
         # Attributes related to the features a product can have.
         'weight': fields.float("Weight", digits_compute=dp.get_precision('Stock Weight')),
         'length': fields.float('Length', digits_compute=dp.get_precision('Stock Length'), help='Length of the product (in centimeters)'),
