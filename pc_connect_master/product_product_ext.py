@@ -171,62 +171,9 @@ class product_product_ext_lot(osv.Model):
                             if field[4] >= 0:
                                 issue.write({'color': field[4]})
 
-    # The following functions tie the dates of the 'Inventory' tab to the company's system's parameters.
-    # Values on the product have precedence over those defined by default.
-    def _onchange_times(self, cr, uid, ids, time_field_value, field_odoo, field_uom_odoo, kind, context=None):
-        IS_UOM = True
-        if not time_field_value:
-            # Loads the default time value, and the default unit of measure for that value.
-            default_value = self.get_expiration_time_value(cr, uid, kind, not IS_UOM, context)
-            default_uom_id = self.get_expiration_time_value(cr, uid, kind, IS_UOM, context)
-
-            # Finds the value stored in the selection corresponding to the value displayed in the selection.
-            uom_value_selection = self._expiration_uom_get_selection(cr, uid, default_uom_id, context)
-
-            return {'value': {field_odoo: float(default_value), field_uom_odoo: uom_value_selection}}
-        else:
-            return {'value': {field_odoo: float(time_field_value)}}
-
-    def onchange_expiration_block_time(self, cr, uid, ids, expiration_block_time, context=None):
-        return self._onchange_times(cr, uid, ids, expiration_block_time, 'expiration_block_time', 'expiration_block_time_uom', 'block', context)
-
-    def onchange_expiration_alert_time(self, cr, uid, ids, expiration_alert_time, context=None):
-        return self._onchange_times(cr, uid, ids, expiration_alert_time, 'expiration_alert_time', 'expiration_alert_time_uom', 'alert', context)
-
-    def onchange_expiration_accept_time(self, cr, uid, ids, expiration_accept_time, context=None):
-        return self._onchange_times(cr, uid, ids, expiration_accept_time, 'expiration_accept_time', 'expiration_accept_time_uom', 'accept', context)
-
     @api.one
     def onchange_check_decimals(self, value, decimal_accuracy_class):
         return self.product_tpml_id.onchange_check_decimals(value, decimal_accuracy_class)
-
-    def get_expiration_time_value(self, cr, uid, kind, is_uom=False, context=None):
-        if is_uom:
-            key = 'post_default_expiration_{0}_time_uom'.format(kind)
-        else:
-            key = 'post_default_expiration_{0}_time'.format(kind)
-
-        value = self.pool.get('configuration.data').get(cr, uid, [], context=context)[key]
-        if not is_uom:
-            # If not is_uom then we don't query the UOM but the value associated to it...
-            return value
-        else:
-            # If it's a UOM then we get the value to be stored in the selection field.
-            uom_value_selection = self._expiration_uom_get_selection(cr, uid, value, context)  # Returns None if not found.
-            return uom_value_selection
-
-    def _expiration_uom_get_selection(self, cr, uid, value_to_search, context):
-        ''' Given a value displayed in a selection field, it returns the value stored in the selection, or None if it was not found.
-        '''
-        uom_allowed_values = self.pool['product.template'].\
-            _expiration_uom(cr, uid, context=context)
-        uom_value_selection = None
-        for uom_allowed_value in uom_allowed_values:
-            uom_value_displayed = uom_allowed_value[1]
-            if uom_value_displayed == value_to_search:
-                uom_value_selection = uom_allowed_value[0]
-                break
-        return uom_value_selection
 
     def _compute_packing(self, cr, uid, ids, field_name, arg, context=None):
         ''' Computes the 'packing' for a product.
@@ -325,13 +272,6 @@ class product_product_ext_lot(osv.Model):
     _defaults = {
         'target_state': 'inactive',
         'weight': 0.00,
-
-        'expiration_block_time': lambda self, cr, uid, context: self.get_expiration_time_value(cr, uid, 'block', context=context),
-        'expiration_block_time_uom': lambda self, cr, uid, context: self.get_expiration_time_value(cr, uid, 'block', True, context),
-        'expiration_alert_time': lambda self, cr, uid, context: self.get_expiration_time_value(cr, uid, 'alert', context=context),
-        'expiration_alert_time_uom': lambda self, cr, uid, context: self.get_expiration_time_value(cr, uid, 'alert', True, context),
-        'expiration_accept_time': lambda self, cr, uid, context: self.get_expiration_time_value(cr, uid, 'accept', context=context),
-        'expiration_accept_time_uom': lambda self, cr, uid, context: self.get_expiration_time_value(cr, uid, 'accept', True, context),
     }
 
 # vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:
