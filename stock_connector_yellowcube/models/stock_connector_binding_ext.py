@@ -15,29 +15,39 @@ class StockConnectorBindingExt(models.Model):
     product_product_id = fields.Many2one('product.product',
                                          string='Product',
                                          compute='get_res_id',
-                                         inverse='set_res_id')
+                                         inverse='set_res_id_by_product')
 
     stock_location_id = fields.Many2one('stock.location',
                                         string='Location',
                                         compute='get_res_id',
-                                        inverse='set_res_id')
+                                        inverse='set_res_id_by_location')
 
     delivery_carrier_id = fields.Many2one('delivery.carrier',
                                           string='Shipping method',
                                           compute='get_res_id',
-                                          inverse='set_res_id')
+                                          inverse='set_res_id_by_carrier')
 
     @api.one
     @api.depends('res_id')
     def get_res_id(self):
-        for field in self.set_res_id._depends:
+        for field in [
+            'product_product_id',
+            'stock_location_id',
+            'delivery_carrier_id',
+        ]:
             setattr(self, field, self.res_id)
 
     @api.one
-    @api.depends('product_product_id',
-                 'stock_location_id',
-                 'delivery_carrier_id')
-    def set_res_id(self):
-        for field in self.set_res_id._depends:
-            if self.res_id != getattr(self, field):
-                self.res_id = getattr(self, field)
+    @api.depends('product_product_id')
+    def set_res_id_by_product(self):
+        self.res_id = self.product_product_id.id
+
+    @api.one
+    @api.depends('stock_location_id')
+    def set_res_id_by_location(self):
+        self.res_id = self.stock_location_id.id
+
+    @api.one
+    @api.depends('delivery_carrier_id')
+    def set_res_id_by_carrier(self):
+        self.res_id = self.delivery_carrier_id.id
