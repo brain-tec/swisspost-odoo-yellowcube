@@ -354,6 +354,7 @@ class stock_connect_yellowcube(osv.Model):
             # Back-orders are never processed
             if picking.do_not_send_to_warehouse or (picking.state != 'assigned'):
                 stock_events_ignored.append(event)
+                event.write({"info": "Ignored until ready to be sent."})
                 continue
 
             picking_type = picking.picking_type_id.code if hasattr(picking, 'picking_type_id') else None

@@ -20,12 +20,10 @@
 ##############################################################################
 from openerp.osv import osv, fields
 from openerp.tools.translate import _
-import logging
-logger = logging.getLogger(__name__)
 from openerp.tests import common
 from ..xml_abstract_factory import get_factory
 from datetime import datetime
-from ..xsd.xml_tools import nspath, create_root, create_element, xml_to_string, schema_namespaces
+from ..xsd.xml_tools import nspath, create_root, create_element, xml_to_string, schema_namespaces, _str
 import unittest2
 import re
 from lxml import etree
@@ -35,6 +33,8 @@ from openerp.addons.report_webkit.webkit_report import WebKitParser
 from openerp import SUPERUSER_ID
 import base64
 import traceback
+import logging
+logger = logging.getLogger(__name__)
 
 _test_timestamp = datetime.today().strftime('%Y%m%d%H%M%S')
 
@@ -172,6 +172,15 @@ class yellowcube_testcase(common.TransactionCase):
         self.test_delivery_method = self.browse_ref('pc_connect_warehouse_yellowcube.yc_delivery_test')
 
         # sale.order
+        # Now we change some data of the partner on purpose to check language
+        partner_new_data = {
+            'lastname': u'wëÏrd',
+            'firstname': u'ñämëç',
+            'city': u'WËïrdëst ÇïtY',
+        }
+        self.test_sale.partner_id.write(partner_new_data)
+        self.test_sale.partner_invoice_id.write(partner_new_data)
+        self.test_sale.partner_shipping_id.write(partner_new_data)
         # cr.execute('delete from wkf_instance where res_id=%s and res_type=%s', (self.test_sale.id, 'sale.order'))
         self.browse_ref('sale.trans_draft_sent').write({'condition': 'True'})
         self.browse_ref('sale.trans_draft_router').write({'condition': 'True'})
@@ -267,7 +276,7 @@ class yellowcube_testcase(common.TransactionCase):
 
     def _get_file_node(self, file_name):
         file_id = self.stock_connect_file.search(self.cr, self.uid, [('name', '=', file_name)], context=self.context)
-        return etree.XML(str(self.stock_connect_file.browse(self.cr, self.uid, file_id, context=self.context)[0].content))
+        return etree.XML(_str(self.stock_connect_file.browse(self.cr, self.uid, file_id, context=self.context)[0].content))
 
     def _create_mirror_war_from_wab(self, wab_node, returngoods=False):
         ns = schema_namespaces['warr']
@@ -367,6 +376,6 @@ class yellowcube_testcase(common.TransactionCase):
                                                node_id,
                                                extra)
         f = open(name, 'w')
-        f.write(xml_to_string(node))
+        f.write(xml_to_string(node).encode('utf-8'))
 
 # vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:

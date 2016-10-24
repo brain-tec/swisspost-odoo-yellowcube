@@ -335,7 +335,7 @@ class yellowcube_wab_xml_factory(xml_abstract_factory):
         else:
             name1 = partner.lastname
             if partner.firstname:
-                name1 = '{0} {1}'.format(partner.firstname, partner.lastname).strip()
+                name1 = ('%s %s' % (partner.firstname, partner.lastname)).strip()
         if len(name1) <= FIELDS_LENGHT_LIMIT:
             ret.append(name1)
         elif ' ' in name1 or '-' in name1:
