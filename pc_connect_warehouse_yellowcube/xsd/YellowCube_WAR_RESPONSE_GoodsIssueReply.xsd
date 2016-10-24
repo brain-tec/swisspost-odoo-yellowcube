@@ -4,9 +4,10 @@
 <!--   ***   WSDL YellowCube -  	(c) Swiss Post Ltd., CH - 3030 Berne				-->
 <!--   ***   Version 1.00 05.01.2015                                                    -->
 <!--   ***                                                                              -->
-<!--   ***   1.00 initial version                                                       -->
-<!--   ***   1.07 Version LOGOS  -->
-<!--   ***   1.08 Array of SerialNumbers until char(1024)   -->
+<!--   ***   V01.00  05.01.2015		Initial version                                                       -->
+<!--   ***   V01.07 						Version LOGOS  -->
+<!--   ***   V01.08 						Array of SerialNumbers until char(1024)   -->
+<!--   ***   V01.09  25.07.2016		Transaction_Type and StockType are optional   -->
 <xs:schema xmlns:warr="https://service.swisspost.ch/apache/yellowcube/YellowCube_WAR_RESPONSE_GoodsIssueReply.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:altova="http://www.altova.com/xml-schema-extensions" targetNamespace="https://service.swisspost.ch/apache/yellowcube/YellowCube_WAR_RESPONSE_GoodsIssueReply.xsd">
 	<xs:element name="WAR_List">
 		<xs:annotation>
@@ -376,12 +377,12 @@ des Distanzhändlers.</xs:documentation>
 					</xs:annotation>
 				</xs:element>
 				<xs:element ref="warr:StorageLocation"/>
-				<xs:element ref="warr:TransactionType">
+				<xs:element ref="warr:TransactionType" minOccurs="0">
 					<xs:annotation>
 						<xs:documentation>Bewegungsart (Bestandsführung) gemäss Werteliste.</xs:documentation>
 					</xs:annotation>
 				</xs:element>
-				<xs:element ref="warr:StockType"/>
+				<xs:element ref="warr:StockType" minOccurs="0"/>
 				<xs:element ref="warr:QuantityUOM"/>
 				<xs:element ref="warr:ReturnReason" minOccurs="0"/>
 				<xs:element ref="warr:SerialNumbers" minOccurs="0"/>
@@ -502,6 +503,13 @@ YAFS=YC Available for Sales</xs:documentation>
 		</xs:simpleType>
 	</xs:element>
 	<xs:element name="TransactionType">
+		<xs:annotation>
+			<xs:appinfo>
+				<altova:exampleValues>
+					<altova:example value="601"/>
+				</altova:exampleValues>
+			</xs:appinfo>
+		</xs:annotation>
 		<xs:simpleType>
 			<xs:restriction base="xs:int">
 				<xs:totalDigits value="3"/>
@@ -517,6 +525,13 @@ S - Gesperrt
 3 - Gesperrt
 0 oder „ „ - Frei verwendbar
 F - Frei verwendbar</xs:documentation>
+			<xs:appinfo>
+				<altova:exampleValues>
+					<altova:example value="0"/>
+					<altova:example value="F"/>
+					<altova:example value="S"/>
+				</altova:exampleValues>
+			</xs:appinfo>
 		</xs:annotation>
 		<xs:simpleType>
 			<xs:restriction base="xs:string">
