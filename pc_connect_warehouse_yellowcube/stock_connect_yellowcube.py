@@ -360,10 +360,16 @@ class stock_connect_yellowcube(osv.Model):
             picking_type = picking.picking_type_id.code if hasattr(picking, 'picking_type_id') else None
             factory = None
 
+            # check which message has to be used:
+            # outgoing pickings from a sale order are WAB
+            # incoming pickings from a purchase order are WBL
+            # incoming pickings from a sale order that have the return fields set, are WAB-RETOURE
             if picking.sale_id and picking_type in ['outgoing', None]:
                 factory = wab_factory
             elif picking.purchase_id and picking_type in ['incoming', None]:
                 factory = wbl_factory
+            elif picking.sale_id and picking.yellowcube_return_reason and picking.yellowcube_return_origin_order and picking_type in ['incoming', None]:
+                factory = wab_factory
             else:
                 factory = None
             context['warehouse_id'] = event.warehouse_id.id
