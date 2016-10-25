@@ -376,6 +376,6 @@ class yellowcube_testcase(common.TransactionCase):
                                                node_id,
                                                extra)
         f = open(name, 'w')
-        f.write(xml_to_string(node).encode('utf-8'))
+        f.write(xml_to_string(node))
 
 # vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:

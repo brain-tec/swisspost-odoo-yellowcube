@@ -115,8 +115,12 @@ class stock_connect_yellowcube(osv.Model):
         created_art_products = []
         for _file in this.stock_connect_file_ids:
             if _file.type == 'art' and _file.input == False:
-                if _file.state in [FILE_STATE_READY, FILE_STATE_DRAFT] or datetime.strptime(_file.create_date, DEFAULT_SERVER_DATETIME_FORMAT) > limit_date or \
-                        _file.server_ack is False:
+                if (_file.state in [
+                    FILE_STATE_READY, FILE_STATE_DRAFT
+                ]
+                    or datetime.strptime(_file.create_date,
+                                         DEFAULT_SERVER_DATETIME_FORMAT)
+                        > limit_date or _file.server_ack is False):
                     if _file.model == 'stock.location':
                         complete = True
                         for p in missing_product_ids or []:
@@ -286,6 +290,7 @@ class stock_connect_yellowcube(osv.Model):
             if error:
                 _file.write({'error': True, 'info': error})
 
+
     def get_last_file_for_record(self, cr, uid, _id, model, item_id, _type=None, context=None):
         file_obj = self.pool['stock.connect.file']
         domain = [
@@ -302,6 +307,7 @@ class stock_connect_yellowcube(osv.Model):
     def _process_stock_picking_assigned(self, cr, uid, ids, event_ids, ctx=None):
         if ctx is None:
             ctx = {}
+        ctx['check_date_ready_for_export'] = True
 
         if isinstance(ids, list) and len(ids) > 1:
             ret = []
@@ -357,7 +363,8 @@ class stock_connect_yellowcube(osv.Model):
                 event.write({"info": "Ignored until ready to be sent."})
                 continue
 
-            picking_type = picking.picking_type_id.code if hasattr(picking, 'picking_type_id') else None
+            picking_type = None
+
             factory = None
 
             if picking.sale_id and picking_type in ['outgoing', None]:
@@ -459,6 +466,7 @@ class stock_connect_yellowcube(osv.Model):
         for event_to_ignore in stock_events_ignored:
             event_to_ignore.write({'state': EVENT_STATE_IGNORED, 'info': ''})
 
+        del ctx['check_date_ready_for_export']
         return [x.id for x in ret]
 
     @api.cr_uid_id

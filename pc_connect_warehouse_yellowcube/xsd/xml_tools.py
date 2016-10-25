@@ -73,7 +73,7 @@ xml_export_filename_translation = maketrans('- /\\', '____')
 
 def open_xml(file_text, _type=None, print_error=True, repair=True, parser=None):
     try:
-        node = etree.XML(_str(file_text), parser=parser)
+        node = etree.XML(file_text.encode('utf-8'), parser=parser)
     except Exception as e:
         raise Warning(format_exception(e))
     if repair:
@@ -134,7 +134,7 @@ def create_element(entity, text=None, attrib=None, ns=None):
     return element
 
 
-def xml_to_string(xml_node, remove_ns=False, encoding='unicode', xml_declaration=False, pretty_print=True, **kargs):
+def xml_to_string(xml_node, remove_ns=False, encoding='utf-8', xml_declaration=False, pretty_print=True, **kargs):
     if remove_ns:
         def _remove_ns(node):
             if node.tag == etree.Comment:
