@@ -409,12 +409,19 @@ class stock_connect_yellowcube_soap(osv.Model):
                 continue
             success = self._get_soap_file(cr, uid, ids, server, *action, context=ctx2)
 
-            if success and action[1] == 'bar_req':
-                this.write({'yc_bar_last_check': datetime_now_str})
-            elif success and action[1] == 'war_req':
-                this.write({'yc_war_last_check': datetime_now_str})
-            elif success and action[1] == 'wba_req':
-                this.write({'yc_wba_last_check': datetime_now_str})
+            if success and action[1] in ['bar_req', 'war_req', 'wba_req']:
+                if isinstance(success, etree._Element):
+                    type_ = action[1][:3]
+                    expr = "//*[local-name()='{0}']".format(
+                        type_.upper())
+                    items = success.xpath(expr)
+                    if len(items) > 0:
+                        this.write({
+                            'yc_{0}_last_check'.format(type_): datetime_now_str
+                        })
+                    else:
+                        logger.info('{0} response was empty'.format(action[1]))
+
         return True
 
     def _attempt_to_download_bar(self, cr, uid, ids, context=None):
