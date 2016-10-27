@@ -447,7 +447,7 @@ class stock_connect_yellowcube_soap(osv.Model):
             attempt_to_download_bar = False
 
         # On production check if we're in the configured time window and no WAR or WBL are received
-        elif stock_connect.yc_operating_mode = 'P':
+        elif stock_connect.yc_operating_mode == 'P':
             current_hour = now.hour + now.minute / 60.0  # Converts the hour to a decimal number.
             timewindow_is_opened = stock_connect.yc_bar_check_starting_hour <= current_hour <= stock_connect.yc_bar_check_ending_hour
             bar_was_retrieved_today = stock_connect._datefield_encodes_today_date('yc_bar_last_check', now, current_timezone, context=context)
