@@ -27,3 +27,8 @@ class TestBase(TransactionCase):
             'yc_parameter_sender': 'YCTest',
             'yc_parameter_operating_mode': 'T',
         })
+        # We set a partner with very strange name an address
+        self.partner_customer = self.browse_ref('base.res_partner_address_4')
+        self.partner_customer.name += u'xçÇäÜ\u039B\u03A9x'
+        self.partner_customer.city += u'xçÇäÜ\u039B\u03A9x'
+        self.partner_customer.street += u'xçÇäÜ\u039B\u03A9x'

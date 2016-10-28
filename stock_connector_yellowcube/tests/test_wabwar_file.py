@@ -38,7 +38,7 @@ class TestWabWarFile(test_base.TestBase):
         picking_type.return_picking_type_id = picking_ret_type
         # Now we create a picking, and confirm it
         self.picking = self.env['stock.picking'].create({
-            'partner_id': self.ref('base.res_partner_address_4'),
+            'partner_id': self.partner_customer.id,
             'picking_type_id': picking_type.id,
             'location_id': self.ref('stock.stock_location_stock'),
             'location_dest_id': self.ref('stock.stock_location_customers'),
