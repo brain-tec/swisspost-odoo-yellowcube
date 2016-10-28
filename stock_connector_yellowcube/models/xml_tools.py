@@ -139,11 +139,34 @@ class XmlTools:
                                           sys.exc_info()[0] or '',
                                           _traceback)
 
-    def open_xml(self, file_text, _type=None, parser=None):
+    def open_xml(self, file_text, _type=None, parser=False,
+                 avoid_unicode_error=True):
+        """
+        :param file_text: content of the file
+        :param _type: type to validate against using XSD
+        :param parser: None is a valid value, so False as default means to use
+            recommended parser
+        :param avoid_unicode_error: Try to fix an error with unicode on XML
+        :return:
+        """
+        if parser is False:
+            parser = etree.XMLParser(recover=True)
+        node = None
         try:
-            node = etree.XML(str(file_text), parser=parser)
+            node = etree.XML(file_text, parser=parser)
         except Exception as e:
-            raise Warning(self.format_exception(e))
+            if avoid_unicode_error and 'Unicode strings with ' \
+                                       'encoding declaration are ' \
+                                       'not supported.' in str(e):
+                try:
+                    declaration_end = file_text.index('?>') + 2
+                    node = etree.XML(file_text[declaration_end:],
+                                     parser=parser)
+                except Exception as e2:
+                    logger.error(self.format_exception(e2))
+                    node = None
+            if node is None:
+                raise Warning(self.format_exception(e))
         if self.repair:
             if _type is None:
                 _type = (node.xpath("//*[local-name() = 'ControlReference']"
@@ -162,7 +185,10 @@ class XmlTools:
         return node.xpath(path, namespaces=self.schema_namespaces)
 
     def _str(self, value):
-        return str(value).decode('UTF-8')
+        if isinstance(value, unicode):
+            return str(value.encode('UTF-8')).decode('UTF-8')
+        else:
+            return str(value).decode('UTF-8',)
 
     def create_comment(self, text):
         return etree.Comment(text=text)
@@ -188,7 +214,7 @@ class XmlTools:
             element.text = self._str(text)
         return element
 
-    def xml_to_string(self, xml_node, remove_ns=False, encoding='UTF-8',
+    def xml_to_string(self, xml_node, remove_ns=False, encoding='unicode',
                       xml_declaration=True, pretty_print=True, **kargs):
         if remove_ns:
             def _remove_ns(node):
@@ -204,6 +230,8 @@ class XmlTools:
                         ret.append(_remove_ns(child))
                 return ret
             xml_node = _remove_ns(xml_node)
+        if encoding.lower() == 'unicode':
+            xml_declaration = False
         return etree.tostring(xml_node, xml_declaration=xml_declaration,
                               encoding=encoding, pretty_print=pretty_print,
                               **kargs)

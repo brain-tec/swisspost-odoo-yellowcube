@@ -21,12 +21,11 @@ class TestWblWbaFile(test_base.TestBase):
     def setUp(self):
         super(TestWblWbaFile, self).setUp()
         # First we set a supplier
-        self.supplier = self.browse_ref('base.res_partner_address_4')
         self.backend.yc_parameter_default_supplier_no = 'partner{id}'
         # self.backend.get_binding(supplier, 'yc_SupplierNo', '0000200020')
         # Then we create a picking, and confirm it
         self.picking = self.env['stock.picking'].create({
-            'partner_id': self.supplier.id,
+            'partner_id': self.partner_customer.id,
             'picking_type_id': self.ref('stock.picking_type_in'),
             'location_id': self.ref('stock.stock_location_suppliers'),
             'location_dest_id': self.ref('stock.stock_location_stock'),
