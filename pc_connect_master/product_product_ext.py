@@ -173,7 +173,7 @@ class product_product_ext_lot(osv.Model):
 
     @api.one
     def onchange_check_decimals(self, value, decimal_accuracy_class):
-        return self.product_tpml_id.onchange_check_decimals(value, decimal_accuracy_class)
+        return self.product_tmpl_id.onchange_check_decimals(value, decimal_accuracy_class)
 
     def _compute_packing(self, cr, uid, ids, field_name, arg, context=None):
         ''' Computes the 'packing' for a product.
