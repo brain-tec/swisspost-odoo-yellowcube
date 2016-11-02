@@ -174,9 +174,10 @@ class yellowcube_testcase(common.TransactionCase):
         # sale.order
         # Now we change some data of the partner on purpose to check language
         partner_new_data = {
-            'lastname': u'wëÏrd',
-            'firstname': u'ñämëç',
-            'city': u'WËïrdëst ÇïtY',
+            'lastname': u'wëÏrd\u039B\u03A9x',
+            'firstname': u'ñämëç\u039B\u03A9x',
+            'city': u'WËïrdëst ÇïtY\u039B\u03A9x',
+            'street': u'WËïrdëst streeeetY\u039B\u03A9x',
         }
         self.test_sale.partner_id.write(partner_new_data)
         self.test_sale.partner_invoice_id.write(partner_new_data)
@@ -312,7 +313,7 @@ class yellowcube_testcase(common.TransactionCase):
             order_line = create_element('CustomerOrderDetail', ns=ns)
             order_line.append(create_element('BVPosNo', nspath(line, 'PosNo')[0].text, ns=ns))
             order_line.append(create_element('CustomerOrderPosNo', nspath(line, 'PosNo')[0].text, ns=ns))
-            order_line.append(create_element('YCArticleNo', 'YC{0}'.format(nspath(line, 'ArticleNo')[0].text), ns=ns))
+            order_line.append(create_element('YCArticleNo', u'YC{0}'.format(nspath(line, 'ArticleNo')[0].text), ns=ns))
             order_line.append(create_element('Plant', 'Y005', ns=ns))
             order_line.append(create_element('StorageLocation', 'YROD' if returngoods else 'YAFS', ns=ns))
             order_line.append(create_element('TransactionType', '601', ns=ns))
@@ -355,7 +356,7 @@ class yellowcube_testcase(common.TransactionCase):
             order_line = create_element('GoodsReceiptDetail', ns=ns)
             order_line.append(create_element('BVPosNo', nspath(line, 'PosNo')[0].text, ns=ns))
             order_line.append(create_element('SupplierOrderPosNo', nspath(line, 'PosNo')[0].text, ns=ns))
-            order_line.append(create_element('YCArticleNo', 'YC{0}'.format(nspath(line, 'ArticleNo')[0].text), ns=ns))
+            order_line.append(create_element('YCArticleNo', u'YC{0}'.format(nspath(line, 'ArticleNo')[0].text), ns=ns))
             order_line.append(create_element('Plant', 'Y005', ns=ns))
             order_line.append(create_element('StorageLocation', 'YROD' if not returngoods else 'YAFS', ns=ns))
             order_line.append(create_element('QuantityUOM',

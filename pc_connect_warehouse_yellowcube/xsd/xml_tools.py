@@ -71,15 +71,30 @@ for prefix in schema_namespaces:
 xml_export_filename_translation = maketrans('- /\\', '____')
 
 
-def open_xml(file_text, _type=None, print_error=True, repair=True, parser=None):
+def open_xml(file_text, _type=None, parser=False,
+             avoid_unicode_error=True, repair=True, print_error=True):
+    if parser is False:
+        parser = etree.XMLParser(recover=True)
+    node = None
     try:
-        node = etree.XML(file_text.encode('utf-8'), parser=parser)
+        node = etree.XML(file_text, parser=parser)
     except Exception as e:
-        raise Warning(format_exception(e))
+        if avoid_unicode_error and 'Unicode strings with ' \
+                                   'encoding declaration are ' \
+                                   'not supported.' in str(e):
+            try:
+                declaration_end = file_text.index('?>') + 2
+                node = etree.XML(file_text[declaration_end:],
+                                 parser=parser)
+            except Exception as e2:
+                logger.error(format_exception(e2))
+                node = None
+        if node is None:
+            raise Warning(format_exception(e))
     if repair:
         if _type is None:
-            _type = (node.xpath("//*[local-name() = 'ControlReference']/*[local-name() = 'Type']")
-                     or
+            _type = (node.xpath("//*[local-name() = 'ControlReference']"
+                                "/*[local-name() = 'Type']") or
                      node.xpath("//ControlReference/Type"))[0].text.lower()
         err = validate_xml(_type.lower(), node, print_error)
         if err:
@@ -87,7 +102,8 @@ def open_xml(file_text, _type=None, print_error=True, repair=True, parser=None):
                 node = repair_xml_file(node, _type.lower(),
                                        print_error=print_error)
             except Exception as e:
-                raise Warning('{0}: {1}'.format(err, format_exception(e)))
+                raise Warning('{0}: {1}'.format(err,
+                                                format_exception(e)))
     return node
 
 
@@ -105,7 +121,7 @@ def export_filename(original, context=None):
 
 
 def _str(value):
-    if type(value) is unicode:
+    if isinstance(value, unicode):
         # If it's of type unicode, then str() will be in the range ord(character) < 128, thus will fail.
         return str(value.encode('utf-8')).decode('utf-8')
     else:
@@ -145,6 +161,8 @@ def xml_to_string(xml_node, remove_ns=False, encoding='utf-8', xml_declaration=F
                     ret.append(_remove_ns(child))
             return ret
         xml_node = _remove_ns(xml_node)
+    if encoding.lower() == 'unicode':
+        xml_declaration = False
     return etree.tostring(xml_node, xml_declaration=xml_declaration, encoding=encoding, pretty_print=pretty_print, **kargs)
 
 
