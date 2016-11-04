@@ -15,6 +15,7 @@ import logging
 import pip
 from tempfile import mkstemp
 from openerp.addons.stock_connector_sftp.models import sftp_transport
+from openerp.addons.stock_connector.models import backend_processor
 from openerp.tests import TransactionCase
 from openerp.tools import safe_eval
 logger = logging.getLogger(__name__)
@@ -39,6 +40,8 @@ class TestSFTP(TransactionCase):
         self.transport = None
 
     def prepare_test(self):
+        backend_processor.CheckBackends()
+
         if self.transport:
             return True
         parameter_obj = self.env['ir.config_parameter']

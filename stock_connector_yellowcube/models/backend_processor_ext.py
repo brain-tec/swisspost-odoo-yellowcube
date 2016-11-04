@@ -10,6 +10,8 @@ from openerp.tools.translate import _
 from openerp.addons.stock_connector import BackendProcessor
 from openerp.addons.connector import backend
 from openerp.addons.stock_connector import stock_backend_alpha
+from openerp.addons.stock_connector.models.backend_processor\
+    import CheckBackends as oldCheckBackends
 from .art_processor import ArtProcessor
 from .bar_processor import BarProcessor
 from .bur_processor import BurProcessor
@@ -29,6 +31,12 @@ PROCESSORS_FOR_IMPORT = {
     'BAR': lambda s, f: BarProcessor(s).yc_read_bar_file(f),
     'BUR': lambda s, f: BurProcessor(s).yc_read_bur_file(f),
 }
+
+
+def CheckBackends():
+    oldCheckBackends()
+    if wh_yc_backend not in backend.BACKENDS.backends:
+        backend.BACKENDS.register_backend(wh_yc_backend)
 
 
 @wh_yc_backend

@@ -14,6 +14,12 @@ stock_backend = backend.Backend('stock')
 stock_backend_alpha = backend.Backend(parent=stock_backend, version='0.1')
 
 
+def CheckBackends():
+    for x in [stock_backend, stock_backend_alpha]:
+        if x not in backend.BACKENDS.backends:
+            backend.BACKENDS.register_backend(x)
+
+
 @stock_backend_alpha
 class BackendProcessor(ConnectorUnit):
     """
