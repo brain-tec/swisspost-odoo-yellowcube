@@ -12,4 +12,5 @@ from openerp import models, fields
 class StockPickingTypeExt(models.Model):
     _inherit = 'stock.picking.type'
 
-    return_type_id = fields.Many2one('stock.picking.return_type', 'Return Type')
+    return_type_id = fields.Many2one('stock.picking.return_type',
+                                     'Return Type')

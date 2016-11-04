@@ -40,5 +40,4 @@ class StockPickingReturnTypeExt(models.Model):
             domain.extend(args)
         ids2 = self.search(domain)
         ret1.extend(self.browse(ids2.ids).name_get())
-        print ret1
         return ret1
