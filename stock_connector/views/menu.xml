@@ -36,5 +36,11 @@
             sequence="50"
             action="product_uom_iso_code_action"
         />
+        <menuitem id="stock_connect_stock_picking_return_type_menu"
+            parent="stock_connect_menu"
+            name="Return Types"
+            sequence="60"
+            action="stock_picking_return_type_action"
+        />
     </data>
 </odoo>

@@ -23,10 +23,14 @@
         'stock_connector',
     ],
     'data': [
+        # views
         'views/res_partner_ext.xml',
         'views/stock_connector_backend_ext.xml',
         'views/stock_connector_yellowcube.xml',
         'views/stock_location_ext.xml',
+        'views/stock_picking_return_type_ext.xml',
+        # data
+        'data/stock.picking.return_type.csv',
     ],
     'qweb': [
     ],

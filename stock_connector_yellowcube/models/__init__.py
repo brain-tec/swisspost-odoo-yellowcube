@@ -12,6 +12,7 @@ from . import res_partner_ext
 from . import stock_connector_backend_ext
 from . import stock_connector_binding_ext
 from . import stock_location_ext
+from . import stock_picking_return_type_ext
 # Backend objects
 from . import backend_processor_ext
 from . import event_processor_ext

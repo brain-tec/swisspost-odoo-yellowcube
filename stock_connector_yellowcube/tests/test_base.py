@@ -7,6 +7,8 @@
 #    See LICENSE file for full licensing details.
 ##############################################################################
 from openerp.tests import TransactionCase
+from openerp.addons.stock_connector_yellowcube.models.backend_processor_ext\
+    import CheckBackends
 import logging
 _logger = logging.getLogger(__name__)
 
@@ -15,6 +17,7 @@ class TestBase(TransactionCase):
 
     def setUp(self):
         super(TestBase, self).setUp()
+        CheckBackends()
         # We create the basic backend
         self.backend = self.env['stock_connector.backend'].create({
             'name': 'Backend YC Test',
