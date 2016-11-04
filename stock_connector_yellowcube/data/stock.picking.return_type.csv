@@ -1,0 +1,15 @@
+id,name,yc_code
+yc_stock_picking_return_type_r01,"Bestellung irrtümlich aufgegeben",R01
+yc_stock_picking_return_type_r02,"Günstigeren Preis entdeckt",R02
+yc_stock_picking_return_type_r03,"Keinen Grund angeben",R03
+yc_stock_picking_return_type_r04,"Lieferung kam nicht rechtzeitig an",R04
+yc_stock_picking_return_type_r05,"Versandverpackung und Artikel beschädigt",R05
+yc_stock_picking_return_type_r06,"Anderen Artikel geliefert als bestellt",R06
+yc_stock_picking_return_type_r07,"Defekt/funktioniert nicht einwandfrei",R07
+yc_stock_picking_return_type_r08,"Wurde über die bestellte Ware hinaus geliefert",R08
+yc_stock_picking_return_type_r09,"Gefällt mir nicht mehr",R09
+yc_stock_picking_return_type_r10,"Kleidungsstück zu klein",R10
+yc_stock_picking_return_type_r11,"Kleidungsstück zu gross",R11
+yc_stock_picking_return_type_r12,"Entspricht nicht der erwarteten Ausführung",R12
+yc_stock_picking_return_type_r13,"Falsch bestellt: Stil/Grösse/Farbe",R13
+yc_stock_picking_return_type_r14,"Entspricht nicht der Beschreibung auf der Website",R14

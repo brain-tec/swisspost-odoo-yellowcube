@@ -29,6 +29,9 @@
         'views/stock_connector_file.xml',
         'views/stock_connector_transport.xml',
         'views/stock_connector.xml',
+        'views/stock_picking_ext.xml',
+        'views/stock_picking_return_type.xml',
+        'views/stock_return_picking.xml',
         'views/menu.xml',
         # Security
         'security/ir.model.access.csv',

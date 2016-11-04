@@ -23,7 +23,9 @@ class WabProcessor(FileProcessor):
     def yc_create_wab_file(self, picking_event):
         record = picking_event.get_record()
         is_return = False
-        if record.picking_type_id.default_location_dest_id:
+        if record.return_type_id:
+            is_return = True
+        elif record.picking_type_id.default_location_dest_id:
             if record.picking_type_id.default_location_dest_id\
                     .return_location:
                 is_return = True
