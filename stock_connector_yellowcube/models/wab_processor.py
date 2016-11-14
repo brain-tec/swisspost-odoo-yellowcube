@@ -109,6 +109,9 @@ class WabProcessor(FileProcessor):
             position.append(create('Quantity', line.product_qty))
             position.append(create('QuantityISO',
                                    line.product_uom_id.iso_code))
+            if record.return_type_id:
+                position.append(create('ReturnReason',
+                                       record.return_type_id.yc_code))
 
         xml_errors = tools.validate_xml(root)
         if xml_errors:
