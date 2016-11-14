@@ -36,6 +36,8 @@ class TestWabWarFile(test_base.TestBase):
             'default_location_dest_id': return_location.id,
         })
         picking_type.return_picking_type_id = picking_ret_type
+        picking_type.return_type_id = self\
+            .ref('stock_connector_yellowcube.yc_stock_picking_return_type_r01')
         # Now we create a picking, and confirm it
         self.picking = self.env['stock.picking'].create({
             'partner_id': self.partner_customer.id,
@@ -111,7 +113,9 @@ class TestWabWarFile(test_base.TestBase):
         new_event = self.create_wab_from_picking(return_pick)
         self.assertEqual(new_event.state, 'done',
                          self.backend.output_for_debug)
-        self.assertEqual(self.backend.file_ids[-1].transmit, 'out')
+        last_file = self.backend.file_ids[-1]
+        self.assertEqual(last_file.transmit, 'out')
+        self.assertIn('ReturnReason>R01<', last_file.content)
 
     def create_wab_from_picking(self, picking_to_process):
         proc = self.backend.get_processor()
