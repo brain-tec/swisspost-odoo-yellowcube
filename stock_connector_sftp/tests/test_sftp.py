@@ -14,6 +14,7 @@ import socket
 import logging
 import pip
 from tempfile import mkstemp
+import json
 from openerp.addons.stock_connector_sftp.models import sftp_transport
 from openerp.addons.stock_connector.models import backend_processor
 from openerp.tests import TransactionCase
@@ -25,6 +26,7 @@ class TestSFTP(TransactionCase):
 
     _sftp_process = None
     _sftp_key_file = None
+    _sftp_config_file = None
 
     def _unlink_if_exists(self, path):
         if os.path.exists(path):
@@ -82,6 +84,10 @@ class TestSFTP(TransactionCase):
                 'sftp_password': 'admin',
                 'sftp_rsa_key': None,
             }
+            _, self._sftp_config_file = mkstemp()
+            with open(self._sftp_config_file, 'w') as fp:
+                fp.write(json.dumps(values))
+            values = {'sftp_config_file': self._sftp_config_file}
         values2 = {
             'version': 'stock_connector_sftp.transport'
         }
@@ -97,6 +103,7 @@ class TestSFTP(TransactionCase):
             self._sftp_process.terminate()
         self._unlink_if_exists(self._sftp_key_file)
         self._unlink_if_exists(self._sftp_key_file + '.pub')
+        self._unlink_if_exists(self._sftp_config_file)
         super(TestSFTP, self).tearDown()
 
     def test_connection(self):

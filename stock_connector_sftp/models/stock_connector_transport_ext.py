@@ -12,10 +12,11 @@ from openerp import models, api, fields
 class StockConnectorTransportExt(models.Model):
     _inherit = 'stock_connector.transport'
 
-    sftp_password = fields.Char('Password')
-    sftp_username = fields.Char('Username')
-    sftp_rsa_key = fields.Text('RSA key')
-    sftp_path = fields.Char('Path')
+    sftp_config_file = fields.Char('Configuration File (JSON)')
+    sftp_password = fields.Char('Password (override)')
+    sftp_username = fields.Char('Username (override)')
+    sftp_rsa_key = fields.Text('RSA key (override)')
+    sftp_path = fields.Char('Path (override)')
 
     @api.model
     def select_versions(self):
