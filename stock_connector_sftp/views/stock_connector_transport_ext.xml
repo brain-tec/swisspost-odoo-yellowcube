@@ -10,6 +10,7 @@
                 <group position="after">
                     <group string="Secure FTP"
                            attrs="{'invisible': [('version', '!=', 'stock_connector_sftp.transport')]}">
+                        <field name="sftp_config_file"/>
                         <field name="sftp_path"/>
                         <field name="sftp_username"/>
                         <field name="sftp_password"/>

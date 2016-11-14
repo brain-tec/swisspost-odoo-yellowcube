@@ -14,6 +14,7 @@ from StringIO import StringIO
 from openerp.exceptions import UserError
 from openerp.tools import ustr
 import stat
+import json
 _logger = logging.getLogger(__name__)
 # _logger.setLevel(logging.DEBUG)
 
@@ -25,10 +26,21 @@ class SFTPTransport:
 
     def __init__(self, backend):
         self.backend = backend
-        self.username = backend.transport_id.sftp_username or None
-        self.password = backend.transport_id.sftp_password or None
-        self.path = backend.transport_id.sftp_path or None
-        self.rsa_key = backend.transport_id.sftp_rsa_key or None
+        json_config = {}
+        if backend.transport_id.sftp_config_file:
+            with open(backend.transport_id.sftp_config_file, 'r') as fp:
+                json_config = json.load(fp)
+            _logger.debug('Values found on config file: %s',
+                          (','.join([x for x in json_config
+                                     if json_config[x]])))
+        self.username = backend.transport_id.sftp_username or\
+            json_config.get('sftp_username', None)
+        self.password = backend.transport_id.sftp_password or\
+            json_config.get('sftp_password', None)
+        self.path = backend.transport_id.sftp_path or\
+            json_config.get('sftp_path', None)
+        self.rsa_key = backend.transport_id.sftp_rsa_key or\
+            json_config.get('sftp_rsa_key', None)
         self.retries = 3
 
     def test_connection(self):
