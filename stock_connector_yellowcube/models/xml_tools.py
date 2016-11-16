@@ -94,11 +94,13 @@ class XmlTools:
     print_error = True
     repair = False
     timestamp = False
+    error_log_level = None
 
     def __init__(self, _type=None, default_ns=None,
                  print_error=True, repair=False,
                  schema_paths=None,
-                 schema_namespaces=None):
+                 schema_namespaces=None,
+                 error_log_level=logging.DEBUG):
 
         self.schemas = {}
 
@@ -119,6 +121,7 @@ class XmlTools:
         elif self._type in self.schema_namespaces:
             self.default_ns = self.schema_namespaces[self._type]
         self.print_error = print_error
+        self.error_log_level = error_log_level
         self.repair = repair
         now = datetime.now()
         ts_args = [now.year, now.month, now.day,
@@ -172,7 +175,7 @@ class XmlTools:
                 _type = (node.xpath("//*[local-name() = 'ControlReference']"
                          "/*[local-name() = 'Type']") or
                          node.xpath("//ControlReference/Type"))[0].text.lower()
-            err = self.validate_xml(_type.lower(), node, self.print_error)
+            err = self.validate_xml(_type.lower(), node)
             if err:
                 try:
                     node = self.repair_xml_file(node, _type.lower())
@@ -276,17 +279,17 @@ class XmlTools:
                     schema_name,
                     self.format_exception(e))
                 if self.print_error:
-                    logger.error(err)
+                    logger.log(self.error_log_level, err)
                 return err
         if not self.schemas[schema_name].validate(xml_node):
             if self.print_error:
-                logger.error(
-                    "[{0}] Error validating node: {1}".format(
-                        schema_name,
-                        self.schemas[schema_name].error_log.last_error))
-                logger.error('-' * 15)
-                logger.error(self.xml_to_string(xml_node))
-                logger.error('-' * 15)
+                logger.log(self.error_log_level,
+                           "[%s] Error validating node: %s"
+                           % (schema_name,
+                              self.schemas[schema_name].error_log.last_error))
+                logger.log(self.error_log_level, '-' * 15)
+                logger.log(self.error_log_level, self.xml_to_string(xml_node))
+                logger.log(self.error_log_level, '-' * 15)
             return self.schemas[schema_name].error_log.last_error
         else:
             return None

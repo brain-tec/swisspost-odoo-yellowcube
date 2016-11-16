@@ -22,6 +22,7 @@
                                     <field name="yc_parameter_create_art_multifile" />
                                     <field name="yc_parameter_default_supplier_no" />
                                     <field name="yc_parameter_on_art_set_missing_default_code" />
+                                    <field name="yc_parameter_autoprocess_picking_events" />
                                 </group>
                                 <group colspan="2" col="2" string="Synchronization">
                                     <field name="yc_parameter_sync_products" />
