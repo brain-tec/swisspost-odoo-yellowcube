@@ -20,6 +20,9 @@ from .war_processor import WarProcessor
 from .wba_processor import WbaProcessor
 from .wbl_processor import WblProcessor
 from lxml import etree
+import logging
+logger = logging.getLogger(__name__)
+
 
 # Here we define the backend and the current version
 wh_yc_backend = backend.Backend(parent=stock_backend_alpha,
@@ -212,3 +215,13 @@ class BackendProcessorExt(BackendProcessor):
 
     def yc_create_wbl_file(self, event):
         return WblProcessor(self).yc_create_wbl_file(event)
+
+    def notify_new_event(self, new_event):
+        super(BackendProcessorExt, self).notify_new_event(new_event)
+        if (
+            new_event.state == 'ready' and
+            new_event.res_model == 'stock.picking' and
+            self.yc_get_parameter('autoprocess_picking_events')
+        ):
+            logger.debug('Processing new_event picking')
+            self.yc_create_wab_file(new_event)

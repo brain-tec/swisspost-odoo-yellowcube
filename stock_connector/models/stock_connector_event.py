@@ -11,8 +11,8 @@ from openerp.addons.connector.event import on_record_write
 
 
 @on_record_write(model_names=['stock.move', 'stock.picking'])
-def register_picking_change(session, model_name, record_id, vals):
-    if 'state' not in vals:
+def register_picking_change(session, model_name, record_id, vals=None):
+    if vals is not None and 'state' not in vals:
         return True
     record = session.env[model_name].browse(record_id)
     if model_name == 'stock.move':
@@ -20,7 +20,7 @@ def register_picking_change(session, model_name, record_id, vals):
                                        'stock.picking',
                                        record.picking_id.id,
                                        vals)
-    elif model_name == 'stock.picking' and 'state' in vals:
+    elif model_name == 'stock.picking':
         key = '{0}_state_{1}'.format(model_name, record.state)
         event_obj = session.env['stock_connector.event']
         domain = [
@@ -29,14 +29,19 @@ def register_picking_change(session, model_name, record_id, vals):
             ('res_id', '=', record_id),
             ('state', 'not in', ['done', 'cancel']),
         ]
-        if not event_obj.search(domain, limit=1, count=True):
+        new_event = event_obj.search(domain, limit=1)
+        if len(new_event) == 0:
             values = {
                 'res_model': model_name,
                 'res_id': record_id,
                 'code': key,
                 'context': str(session.context)
             }
-            event_obj.create(values)
+            new_event = event_obj.create(values)
+        for backend in session.env['stock_connector.backend'].search([]):
+            # A change may not create a new event,
+            # but it can be important to the backend
+            backend.notify_new_event(new_event)
 
 
 class StockConnectorEvent(models.Model):

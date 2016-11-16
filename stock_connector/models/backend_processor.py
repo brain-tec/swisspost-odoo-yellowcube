@@ -9,6 +9,8 @@
 from openerp.addons.connector.connector import ConnectorUnit
 from openerp.addons.connector import backend
 import re
+import logging
+logger = logging.getLogger(__name__)
 # Here we define the backend and the current version
 stock_backend = backend.Backend('stock')
 stock_backend_alpha = backend.Backend(parent=stock_backend, version='0.1')
@@ -69,3 +71,7 @@ class BackendProcessor(ConnectorUnit):
                         ('state', '!=', 'cancel'),
                     ], limit=1, count=True):
                         transport.get_file(filename)
+
+    def notify_new_event(self, new_event):
+        logger.debug('New event notified: %s %s %s' %
+                     (new_event.res_model, new_event.res_id, new_event.code))

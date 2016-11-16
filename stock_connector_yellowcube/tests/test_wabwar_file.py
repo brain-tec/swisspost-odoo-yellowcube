@@ -39,13 +39,9 @@ class TestWabWarFile(test_base.TestBase):
         picking_type.return_type_id = self\
             .ref('stock_connector_yellowcube.yc_stock_picking_return_type_r01')
         # Now we create a picking, and confirm it
-        self.picking = self.env['stock.picking'].create({
+        self.sale = self.env['sale.order'].create({
             'partner_id': self.partner_customer.id,
-            'picking_type_id': picking_type.id,
-            'location_id': self.ref('stock.stock_location_stock'),
-            'location_dest_id': self.ref('stock.stock_location_customers'),
-            'carrier_id': self.ref('delivery.delivery_carrier'),
-            'move_lines': [
+            'order_line': [
                 (0, 0, {'name': 'product_product_7',
                         'product_id': self.ref('product.product_product_7'),
                         'product_uom_qty': 1,
@@ -58,10 +54,21 @@ class TestWabWarFile(test_base.TestBase):
                         }),
             ],
         })
+        self.sale.action_confirm()
+        self.picking = self.sale.picking_ids[0]
+        self.picking.write({
+            'picking_type_id': picking_type.id,
+            'location_id': self.ref('stock.stock_location_stock'),
+            'location_dest_id': self.ref('stock.stock_location_customers'),
+            'carrier_id': self.ref('delivery.delivery_carrier')
+        })
         self.picking.action_confirm()
         self.picking.force_assign()
 
-    def test_create_wab_and_war_files(self):
+    def test_create_wab_and_war_files_by_sale_corfirmation(self):
+        self.test_create_wab_and_war_files(True)
+
+    def test_create_wab_and_war_files(self, confirm_sale=False):
         _logger.info('Creating WAB file')
 
         # At beginning, it must be empty
@@ -69,14 +76,28 @@ class TestWabWarFile(test_base.TestBase):
 
         # We find the event
         picking_to_process = self.picking
-        self.create_wab_from_picking(picking_to_process)
+        if confirm_sale:
+            self.assertEqual(len(self.backend.file_ids), 0)
+            self.backend.yc_parameter_autoprocess_picking_events = True
+            self.assertEqual(len(self.backend.file_ids), 0)
+            self.assertNotEquals(self.sale.state, 'done')
+            self.sale.action_done()
+            self.assertEqual(self.sale.state, 'done')
+        else:
+            _logger.debug('Processing picking')
+            self.create_wab_from_picking(picking_to_process)
         self.assertEqual(len(self.backend.file_ids), 1,
                          self.backend.output_for_debug)
-        self.assertEqual(self.backend.file_ids[-1].transmit, 'out')
+        wab_file = self.backend.file_ids[-1]
+        self.assertEqual(wab_file.transmit, 'out')
+        self.assertIn(picking_to_process.id,
+                      [x.res_id
+                       for x in wab_file.child_ids
+                       if x.res_model == 'stock.picking'])
 
         # Now, we will create a war file from the wab file
         _logger.info('Creating WAR file')
-        wab_content = self.backend.file_ids[-1].content
+        wab_content = wab_file.content
         war_content = self.create_war_from_wab(wab_content)
 
         # Now, we save the file, and process it
@@ -89,12 +110,13 @@ class TestWabWarFile(test_base.TestBase):
         proc.processors['WAR'](proc, war_file)
         self.assertEquals(war_file.state, 'done',
                           self.backend.output_for_debug)
-        self.assertIn(self.picking.id,
+        self.assertIn(picking_to_process.id,
                       [x.res_id
                        for x in war_file.child_ids
-                       if x.res_model == 'stock.picking'])
-        self.assertEquals(self.picking.state, 'done')
-        for move in self.picking.pack_operation_product_ids:
+                       if x.res_model == 'stock.picking'],
+                      self.backend.output_for_debug)
+        self.assertEquals(picking_to_process.state, 'done')
+        for move in picking_to_process.pack_operation_product_ids:
             self.assertEquals(move.state, 'done')
 
         # After the picking is processed, we check a return can be made
@@ -125,7 +147,8 @@ class TestWabWarFile(test_base.TestBase):
             ('code', '=', 'stock.picking_state_assigned'),
         ], limit=1)
         self.assertEqual(len(event), 1)
-        proc.yc_create_wab_file(event)
+        if event.state != 'done':
+            proc.yc_create_wab_file(event)
         return event
 
     def create_war_from_wab(self, wab_content):

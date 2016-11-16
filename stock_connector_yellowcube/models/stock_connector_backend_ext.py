@@ -43,6 +43,10 @@ class StockConnectorBackendExt(models.Model):
         'Sync Inventory Updates (BAR)',
         default=True,
     )
+    yc_parameter_autoprocess_picking_events = fields.Boolean(
+        'Auto-Process events on pickings',
+        default=False,
+    )
 
     yc_parameter_depositor_no = fields.Char('DepositorNo')
     yc_parameter_partner_no = fields.Char('PartnerNo')

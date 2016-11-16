@@ -17,7 +17,7 @@
     'images': [
     ],
     'depends': [
-        'stock',
+        'sale_stock',
         'product',
         'delivery',
         'stock_connector',

@@ -107,6 +107,14 @@ class StockConnectorBackend(models.Model):
         return processor_class(environment)
 
     @api.multi
+    def notify_new_event(self, event):
+        """
+        This method gets notified of new events pending events
+        """
+        return self.get_processor('stock_connector.backend')\
+                   .notify_new_event(event) or True
+
+    @api.multi
     def process_events(self):
         """
         This method processes pending events

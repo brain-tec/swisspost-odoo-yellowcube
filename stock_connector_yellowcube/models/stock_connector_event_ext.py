@@ -1,0 +1,22 @@
+# -*- coding: utf-8 -*-
+##############################################################################
+#
+#    Copyright (c) 2016 brain-tec AG (http://www.braintec-group.com)
+#    All Right Reserved
+#
+#    See LICENSE file for full licensing details.
+##############################################################################
+from openerp.addons.connector.event import on_record_write
+from openerp.addons.stock_connector.models.stock_connector_event\
+    import register_picking_change
+
+
+@on_record_write(model_names=['sale.order'])
+def register_sale_order_change(session, model_name, record_id, vals):
+    if 'state' not in vals:
+        return True
+    pickings = session.env['stock.picking']\
+        .search([('sale_id', '=', record_id)])
+    for picking in pickings:
+        # This triggers an event update on every picking
+        register_picking_change(session, 'stock.picking', picking.id)
