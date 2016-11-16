@@ -44,6 +44,16 @@ def register_picking_change(session, model_name, record_id, vals=None):
             backend.notify_new_event(new_event)
 
 
+def CheckEvents():
+    """
+    Tests on OCA connector reset the registered events
+    :return:
+    """
+    on_record_write.subscribe(register_picking_change,
+                              model_names=['stock.move', 'stock.picking'],
+                              replacing=register_picking_change)
+
+
 class StockConnectorEvent(models.Model):
     _name = 'stock_connector.event'
 

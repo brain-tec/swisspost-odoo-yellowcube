@@ -141,6 +141,7 @@ class TestWabWarFile(test_base.TestBase):
 
     def create_wab_from_picking(self, picking_to_process):
         proc = self.backend.get_processor()
+        self.assertNotEquals(picking_to_process.state, 'draft')
         event = self.env['stock_connector.event'].search([
             ('res_id', '=', picking_to_process.id),
             ('res_model', '=', 'stock.picking'),
