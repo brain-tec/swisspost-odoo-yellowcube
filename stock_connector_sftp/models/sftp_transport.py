@@ -117,7 +117,7 @@ class SFTPTransport:
                     time.sleep(1)
 
     def close(self):
-        self.connection.close()
+        # self.connection.close()
         self.transport.close()
         self.connection = None
         self.transport = None

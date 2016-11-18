@@ -29,6 +29,7 @@
     'js': [
     ],
     'external_dependencies': {
+        'python': ['paramiko'],
     },
     'installable': True,
     'application': False,
