@@ -35,7 +35,7 @@ class stock_return_picking_ext(osv.osv_memory):
     def _create_returns(self, cr, uid, ids, context=None):
         data = self.read(cr, uid, ids[0], context=context)
         if not data['yellowcube_return']:
-            return super(stock_return_picking_ext, self)._create_returns(self, cr, uid, ids, context=context)
+            return super(stock_return_picking_ext, self)._create_returns(cr, uid, ids, context=context)
         if 'location_id' in data:
             default_location_dest_id = data['location_id'][0]
         else:
