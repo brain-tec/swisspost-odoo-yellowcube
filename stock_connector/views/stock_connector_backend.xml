@@ -21,6 +21,12 @@
                                     name="file_count" widget="statinfo"
                                     options="{'label_field': 'Files'}"/>
                             </button>
+                            <button type="action"
+                                    name="%(stock_connector_binding_action)d"
+                                    string="Bindings"
+                                    icon="fa-chain"
+                                    class="oe_stat_button"
+                            />
                         </div>
                         <label for="name" class="oe_edit_only"/>
                         <h1>
