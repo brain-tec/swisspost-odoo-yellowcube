@@ -168,7 +168,7 @@ class BackendProcessorExt(BackendProcessor):
         return getattr(self.backend_record, name)
 
     def yc_save_file(self, root, related_ids, tools, _type, transmit='out',
-                     suffix=None):
+                     suffix=None, cancel_duplicates=False):
         """
         Saves the XML file into Odoo
 
@@ -184,8 +184,13 @@ class BackendProcessorExt(BackendProcessor):
         @param _type: type of file
         @type _type: string
 
-        :param transmit: is the file to be sent, or just received?
-        :type string
+        @param transmit: is the file to be sent, or just received?
+        @type transmit: string
+
+        @param suffix: file suffix
+
+        @param cancel_duplicates: if true, files that match the filename
+            (except) timestamp, are cancelled if not send.
         """
         output = tools.xml_to_string(root)
         format_args = {
@@ -198,7 +203,8 @@ class BackendProcessorExt(BackendProcessor):
             format_args['suffix'] = '_%s' % suffix
         elif len(related_ids) == 1:
             format_args['suffix'] = '_%s' % related_ids[0][1]
-        filename = '{sender}_{type}_{ts}{suffix}.xml'.format(**format_args)
+        filename_template = '{sender}_{type}_{ts}{suffix}.xml'
+        filename = filename_template.format(**format_args)
         vals = {
             'name': filename,
             'type': _type,
@@ -208,6 +214,24 @@ class BackendProcessorExt(BackendProcessor):
             'backend_id': self.backend_record.id,
             'transmit': transmit,
         }
+        if cancel_duplicates:
+            format_args['ts'] = '%'
+            # fns is the template we try to avoid duplicating
+            fns = filename_template.format(**format_args)
+            old_files = self.env['stock_connector.file'].search([
+                ('name', 'ilike', fns[:1+fns.index('%')]),
+                ('name', 'ilike', fns[fns.index('%'):]),
+                ('state', '=', 'ready'),
+            ])
+            if len(old_files) > 0:
+                logger.info('%s file overrides old files not send: %s'
+                            % (filename, ' '.join(old_files.mapped('name'))))
+                old_files.write({'state': 'cancel'})
+                vals['child_ids'].extend([
+                    (0, 0, {'res_model': 'stock_connector.file',
+                            'res_id': x.id})
+                    for x in old_files
+                ])
         self.env['stock_connector.file'].create(vals)
 
     def yc_create_wab_file(self, event):
