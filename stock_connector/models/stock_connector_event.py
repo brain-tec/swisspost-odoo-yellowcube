@@ -6,8 +6,10 @@
 #
 #    See LICENSE file for full licensing details.
 ##############################################################################
-from openerp import models, fields, api
+from openerp import models, fields, api, exceptions
 from openerp.addons.connector.event import on_record_write
+import logging
+logger = logging.getLogger(__name__)
 
 
 @on_record_write(model_names=['stock.move', 'stock.picking'])
@@ -85,3 +87,13 @@ class StockConnectorEvent(models.Model):
 
     def get_record(self):
         return self.env[self.res_model].browse(self.res_id)
+
+    @api.multi
+    def process_event(self):
+        self.ensure_one()
+        if 'backend_id' not in self.env.context:
+            raise exceptions\
+                .UserError('Missing Backend. Open through backend form view.')
+        logger.info('Processing event %s' % self.id)
+        return self.env['stock_connector.backend']\
+            .browse(self.env.context['backend_id']).process_event(self) or True

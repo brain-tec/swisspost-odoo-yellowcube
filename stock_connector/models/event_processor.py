@@ -8,6 +8,8 @@
 ##############################################################################
 from openerp.addons.connector.connector import ConnectorUnit
 from .backend_processor import stock_backend_alpha
+import logging
+logger = logging.getLogger(__name__)
 
 
 @stock_backend_alpha
@@ -25,7 +27,7 @@ class EventProcessor(ConnectorUnit):
         @param event: Event to process
         @type event: record
         """
-        pass
+        logger.debug('Unimplemented function')
 
     def process_events(self):
         for event in self.search_open_events():
