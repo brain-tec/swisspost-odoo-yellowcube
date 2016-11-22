@@ -139,14 +139,14 @@ class yellowcube_bar_xml_factory(xml_abstract_factory):
 
             # Checks <StorageLocation> and <StockType>
             # Notes: Check together with StorageLocation against location_id on stock.move - alarm if wrong.
-            #        If free type (' ', '0', 'F') use the StorageLocation, otherwise location YBLK.
+            #        If free type (' ', '0', 'F', 'U') use the StorageLocation, otherwise location YBLK.
             storage_location = nspath(article, "bar:StorageLocation")[0].text
             stock_type = nspath(article, "bar:StockType")[0].text
 
             # If there exists the tag <StockType>, then we follow the rules.
             location_to_use_ids = False
-            if stock_type in ('X', 'S', '2', '3', '0', 'F', ' '):
-                if stock_type in ('0', 'F', ' '):
+            if stock_type in ('X', 'S', '2', '3', '0', 'F', 'U', ' '):
+                if stock_type in ('0', 'F', 'U', ' '):
                     location_to_use = storage_location
                 else:
                     location_to_use = 'YBLK'
