@@ -80,7 +80,7 @@ class ArtProcessor(FileProcessor):
             else:
                 suffix = products[0].id if add_suffix else None
                 self.yc_save_file(root, related_ids, tools, 'ART',
-                                  suffix=suffix)
+                                  suffix=suffix, cancel_duplicates=True)
                 self.backend_record.output_for_debug += 'ART file processed\n'
         else:
             self.backend_record.output_for_debug += 'ART file skipped.\n'

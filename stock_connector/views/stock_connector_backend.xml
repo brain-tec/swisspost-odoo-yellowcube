@@ -22,6 +22,13 @@
                                     options="{'label_field': 'Files'}"/>
                             </button>
                             <button type="action"
+                                    name="%(stock_connector_event_action)d"
+                                    string="Events"
+                                    icon="fa-stack-overflow"
+                                    class="oe_stat_button"
+                                    context="{'backend_id': active_id}"
+                            />
+                            <button type="action"
                                     name="%(stock_connector_binding_action)d"
                                     string="Bindings"
                                     icon="fa-chain"
@@ -43,17 +50,6 @@
                                         <field name="file_regex" colspan="2"/>
                                     </group>
                                     <field name="output_for_debug" colspan="4"/>
-                                </page>
-                                <page string='Bindings' name='binding' groups='base.group_no_one'>
-                                    <field name='binding_ids'>
-                                        <tree editable='top'>
-                                            <field name='binding'/>
-                                            <field name='res_model'/>
-                                            <field name='res_id'/>
-                                            <field name='name'/>
-                                            <field name='group'/>
-                                        </tree>
-                                    </field>
                                 </page>
                             </notebook>
                         </group>
