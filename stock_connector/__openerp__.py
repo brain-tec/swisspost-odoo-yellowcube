@@ -25,8 +25,8 @@
         # Views
         'views/product_uom_ext.xml',
         'views/stock_connector_binding.xml',
-        'views/stock_connector_backend.xml',  # depends _binding
         'views/stock_connector_event.xml',
+        'views/stock_connector_backend.xml',  # depends _binding, _event
         'views/stock_connector_file.xml',
         'views/stock_connector_transport.xml',
         'views/stock_connector.xml',
