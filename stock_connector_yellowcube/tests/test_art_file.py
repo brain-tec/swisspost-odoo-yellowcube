@@ -19,11 +19,11 @@ class TestArtFile(test_base.TestBase):
     def test_create_art_file(self):
         _logger.info('Creating ART file')
         # At beginning, it must be empty
-        self.assertEqual(len(self.backend.file_ids), 0)
+        self.assertEqual(len(self.backend_files_for_test()), 0)
         proc = self.backend.get_processor()
         # No products Files are still 0
         proc.yc_create_art([])
-        self.assertEqual(len(self.backend.file_ids), 0)
+        self.assertEqual(len(self.backend_files_for_test()), 0)
         # Only one file
         self.backend.yc_parameter_create_art_multifile = False
         products = [
@@ -31,13 +31,19 @@ class TestArtFile(test_base.TestBase):
             self.browse_ref('product.product_product_9'),
         ]
         proc.yc_create_art(products)
-        self.assertEqual(len(self.backend.file_ids), 1)
-        self.assertEqual(self.backend.file_ids[0].transmit, 'out')
+        backend_files = self.backend_files_for_test()
+        self.assertEqual(len(backend_files), 1, self.backend.output_for_debug)
+        self.assertEqual(backend_files[0].transmit, 'out')
+        old_names = backend_files.mapped('name')
         proc.yc_create_art(products)
-        self.assertEqual(len(self.backend.file_ids), 1,
+        self.assertEqual(self.backend_files_for_test().mapped('name'),
+                         old_names,
                          'ART files are created only once when needed')
         # Now with multifile
-        self.backend.file_ids.unlink()
+        self.backend_files_for_test().unlink()
         self.backend.yc_parameter_create_art_multifile = True
         proc.yc_create_art(products)
-        self.assertEqual(len(self.backend.file_ids), len(products))
+        self.assertEqual(len(self.backend_files_for_test()), len(products))
+
+    def backend_files_for_test(self):
+        return self.backend.file_ids.filtered(lambda x: x.state != 'cancel')
