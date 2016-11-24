@@ -40,10 +40,11 @@ def register_picking_change(session, model_name, record_id, vals=None):
                 'context': str(session.context)
             }
             new_event = event_obj.create(values)
-        for backend in session.env['stock_connector.backend'].search([]):
+        for backend in session.env['stock_connector.backend']\
+                .sudo().search([]):
             # A change may not create a new event,
             # but it can be important to the backend
-            backend.notify_new_event(new_event)
+            backend.notify_new_event(new_event.sudo())
 
 
 def CheckEvents():

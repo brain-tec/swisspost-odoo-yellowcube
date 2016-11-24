@@ -24,7 +24,7 @@ class TestWblWbaFile(test_base.TestBase):
         self.backend.yc_parameter_default_supplier_no = 'partner{id}'
         # self.backend.get_binding(supplier, 'yc_SupplierNo', '0000200020')
         # Then we create a picking, and confirm it
-        self.picking = self.env['stock.picking'].create({
+        self.picking = self.env['stock.picking'].sudo(self.user).create({
             'partner_id': self.partner_customer.id,
             'picking_type_id': self.ref('stock.picking_type_in'),
             'location_id': self.ref('stock.stock_location_suppliers'),
