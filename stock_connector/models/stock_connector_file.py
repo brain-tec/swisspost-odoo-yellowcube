@@ -35,7 +35,8 @@ class StockConnectorFile(models.Model):
                  auto_join=True, string='Attachments')
     attachment_count = fields.Integer(compute='_get_attachment_count',
                                       store=False)
-    backend_id = fields.Many2one('stock_connector.backend', readonly=True)
+    backend_id = fields.Many2one('stock_connector.backend', readonly=True,
+                                 required=True)
 
     transmit = fields.Selection([('out', 'To send'),
                                  ('in', 'Received')])

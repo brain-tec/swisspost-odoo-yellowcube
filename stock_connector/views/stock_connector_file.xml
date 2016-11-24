@@ -62,6 +62,7 @@
                         <group>
                             <field name="state"/>
                             <field name="name"/>
+                            <field name="backend_id" readonly="0" groups="base.group_no_one"/>
                             <field name="transmit"/>
                             <field name="type"/>
                             <field name="info"/>
