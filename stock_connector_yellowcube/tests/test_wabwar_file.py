@@ -39,7 +39,7 @@ class TestWabWarFile(test_base.TestBase):
         picking_type.return_type_id = self\
             .ref('stock_connector_yellowcube.yc_stock_picking_return_type_r01')
         # Now we create a picking, and confirm it
-        self.sale = self.env['sale.order'].create({
+        self.sale = self.env['sale.order'].sudo(self.user).create({
             'partner_id': self.partner_customer.id,
             'order_line': [
                 (0, 0, {'name': 'product_product_7',
@@ -120,7 +120,7 @@ class TestWabWarFile(test_base.TestBase):
             self.assertEquals(move.state, 'done')
 
         # After the picking is processed, we check a return can be made
-        return_obj = self.env['stock.return.picking']
+        return_obj = self.env['stock.return.picking'].sudo(self.user)
         return_vals = return_obj.with_context(
             {'active_id': self.picking.id, }).default_get(
             ['product_return_moves'])
@@ -129,7 +129,8 @@ class TestWabWarFile(test_base.TestBase):
             return_wiz.with_context({
                 'active_id': self.picking.id,
             })._create_returns()
-        return_pick = self.env['stock.picking'].browse(return_pick_id)
+        return_pick = self.env['stock.picking'].sudo(self.user)\
+            .browse(return_pick_id)
         return_pick.action_confirm()
         return_pick.force_assign()
         new_event = self.create_wab_from_picking(return_pick)
