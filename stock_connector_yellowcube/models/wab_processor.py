@@ -66,7 +66,7 @@ class WabProcessor(FileProcessor):
                                   lambda s: s.ref or s.id)
         partner.append(create('PartnerReference', partner_ref))
         if record.partner_id.title:
-            partner.append(create('Title', record.partner_id.tittle.name))
+            partner.append(create('Title', record.partner_id.title.name))
         partner.append(create('Name1', record.partner_id.name))
         partner.append(create('Street', record.partner_id.street))
         partner.append(create('CountryCode',
