@@ -363,13 +363,13 @@ class stock_connect_yellowcube(osv.Model):
                 event.write({"info": "Ignored until ready to be sent."})
                 continue
 
-            picking_type = None
+            #picking_type = None
 
             factory = None
 
-            if picking.sale_id and picking_type in ['outgoing', None]:
+            if picking.sale_id and picking.type in ['outgoing', None]:
                 factory = wab_factory
-            elif picking.purchase_id and picking_type in ['incoming', None]:
+            elif picking.purchase_id and picking.type in ['incoming', None]:
                 factory = wbl_factory
             else:
                 factory = None
