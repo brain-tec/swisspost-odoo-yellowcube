@@ -66,7 +66,7 @@
 				<button name="action_view_delivery" position="replace">
 					<!-- Makes the button 'View Delivery Order' visible even if it was already delivered. -->
 					<button name="action_view_delivery" string="View Delivery Order" type="object" class="oe_highlight"
-						attrs="{'invisible': ['|',('picking_ids','in',(False,[])),('state', 'not in', ('progress','manual'))]}"
+						attrs="{'invisible': ['|', '|',('picking_ids', '=', False), ('picking_ids', '=', []), ('state', 'not in', ('progress','manual'))]}"
 						groups="base.group_user,pc_connect_master.pc_client" />
 				</button>
 			</field>
