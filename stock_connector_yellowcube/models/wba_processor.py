@@ -40,9 +40,8 @@ class WbaProcessor(FileProcessor):
                     continue
                 splits_to_do.append((picking, splits))
                 for wba_line in self.path(wba, '//wba:GoodsReceiptDetail'):
-                    split = self.yc_read_wba_line(errors, order_no, wba_line)
-                    if split is not None:
-                        splits.append(split)
+                    splits.extend(
+                        self.yc_read_wba_line(errors, order_no, wba_line))
         except Exception as e:
             errors.append(self.tools.format_exception(e))
 
@@ -72,7 +71,7 @@ class WbaProcessor(FileProcessor):
         :return:
         """
         for split in splits:
-            related = ('stock.pack.operation', split['move'].id)
+            related = ('stock.move', split['move'].id)
             if related not in related_ids:
                 related_ids.append(related)
             self.env['stock.move'].split(**split)
@@ -83,25 +82,46 @@ class WbaProcessor(FileProcessor):
         :param list errors:
         :param str order_no:
         :param lxml.etree._ElementTree._ElementTree wba_line:
-        :return: dict
+        :return: list of split dict
         """
         pos_no = self.path(wba_line,
                            'wba:SupplierOrderPosNo')[0].text
-        move = self.find_binding(pos_no,
+        pack = self.find_binding(pos_no,
                                  'SupplierOrderNo{0}'.format(order_no)).record
-        if not move:
-            errors.append(_('Cannot find binding for move {0}'
-                            ' of order {1}'.format(pos_no,
-                                                   order_no)))
-            return None
-        split = {
-            'move': move,
-        }
+        if pack:
+            moves = pack.picking_id.move_lines.filtered(
+                lambda x: (
+                    x.product_id == pack.product_id and
+                    x.state in ['confirmed', 'assigned']
+                )
+            )
+        else:
+            moves = None
+        if not moves:
+            errors.append(_('Cannot find binding for moves for operation {0}'
+                            ' of order {1}').format(pos_no,
+                                                    order_no))
+            return []
+        splits = []
         qty_uom = self.path(wba_line, 'wba:QuantityUOM')[0]
-        split['qty'] = float(qty_uom.text)
-        uom_code = move.product_uom_id.iso_code
-        if uom_code != qty_uom.get('QuantityISO'):
-            errors.append(_('Move {0} differ'
-                            'in ISO code'.format(pos_no)))
-            return None
-        return split
+        qty_todo = float(qty_uom.text)
+        for move in moves:
+            if qty_todo == 0:
+                break
+            split = {
+                'move': move,
+            }
+            splits.append(split)
+            qty = min(qty_todo, move.product_uom_qty)
+            qty_todo -= qty
+            split['qty'] = qty
+            uom_code = move.product_uom.iso_code
+            if uom_code != qty_uom.get('QuantityISO'):
+                errors.append(_('Move {0} differ'
+                                'in ISO code'.format(pos_no)))
+                return []
+        if qty_todo > 0:
+            errors.append(_('File excesses qty on stock moves by %s'
+                            ' for product %s') % (
+                qty_todo, pack.product_id.default_code))
+        return splits
