@@ -20,8 +20,11 @@ class WbaProcessor(FileProcessor):
         super(WbaProcessor, self).__init__(backend, 'wba')
 
     def yc_read_wba_file(self, wba_file):
-        self.backend_record.output_for_debug +=\
-            'Reading WBA file {0}\n'.format(wba_file.name)
+        wba_file.info = ''
+        self.log_message(
+            'Reading WBA file {0}\n'.format(wba_file.name),
+            file_record=wba_file,
+            timestamp=True)
 
         errors = []
         related_ids = []
@@ -50,8 +53,9 @@ class WbaProcessor(FileProcessor):
 
         if errors:
             wba_file.state = 'error'
-            self.backend_record.output_for_debug +=\
-                'WBA file errors:\n{0}\n'.format('\n'.join(errors))
+            self.log_message(
+                'WBA file errors:\n{0}\n'.format('\n'.join(errors)),
+                file_record=wba_file)
         else:
             for picking, splits in splits_to_do:
                 self.yc_process_wba_split(picking, related_ids, splits)
@@ -61,7 +65,7 @@ class WbaProcessor(FileProcessor):
             wba_file.state = 'done'
             wba_file.child_ids = [(0, 0, {'res_model': x[0], 'res_id': x[1]})
                                   for x in related_ids]
-            self.backend_record.output_for_debug += 'WBA file processed\n'
+            self.log_message('WBA file processed\n', file_record=wba_file)
 
     def yc_process_wba_split(self, picking, related_ids, splits):
         """

@@ -24,8 +24,11 @@ class BurProcessor(FileProcessor):
         """
         :param openerp.osv.orm.browse_record bur_file:
         """
-        self.backend_record.output_for_debug +=\
-            'Reading BUR file {0}\n'.format(bur_file.name)
+        bur_file.info = ''
+        self.log_message(
+            'Reading BUR file {0}\n'.format(bur_file.name),
+            file_record=bur_file,
+            timestamp=True)
 
         errors = []
         related_ids = []
@@ -53,8 +56,9 @@ class BurProcessor(FileProcessor):
 
         if errors:
             bur_file.state = 'error'
-            self.backend_record.output_for_debug +=\
-                'BUR file errors:\n{0}\n'.format('\n'.join(errors))
+            self.log_message(
+                'BUR file errors:\n{0}\n'.format('\n'.join(errors)),
+                file_record=bur_file)
         else:
             for move_to_do in moves_to_do:
                 self.yc_process_bur_move(lot_map, move_to_do, related_ids)
@@ -62,7 +66,7 @@ class BurProcessor(FileProcessor):
             bur_file.write({'child_ids': [
                 (0, 0, {'res_model': x, 'res_id': y}) for x, y in related_ids
             ]})
-            self.backend_record.output_for_debug += 'BUR file processed\n'
+            self.log_message('BUR file processed\n', file_record=bur_file)
 
     def yc_process_bur_move(self, lot_map, move_to_do, related_ids):
         """

@@ -61,11 +61,11 @@ class ArtProcessor(FileProcessor):
                                                  product_errors, change_flag)
             if product_errors:
                 full_errors.extend(product_errors)
-                self.backend_record.output_for_debug +=\
+                self.log_message(
                     'Error on product #{0}: {1}\n'.format(
                         product.id,
                         product.name
-                    )
+                    ), timestamp=True)
                 for p in product_errors:
                     article_list.append(tools.create_comment(p))
             else:
@@ -75,18 +75,18 @@ class ArtProcessor(FileProcessor):
         if related_ids:
             errors = tools.validate_xml(root)
             if errors:
-                self.backend_record.output_for_debug +=\
-                    'ART file errors:\n{0}\n'.format(errors)
+                self.log_message('ART file errors:\n{0}\n'.format(errors))
+
             else:
                 suffix = products[0].id if add_suffix else None
                 self.yc_save_file(root, related_ids, tools, 'ART',
                                   suffix=suffix, cancel_duplicates=True)
-                self.backend_record.output_for_debug += 'ART file processed\n'
+                self.log_message('ART file processed\n')
         else:
-            self.backend_record.output_for_debug += 'ART file skipped.\n'
+            self.log_message('ART file skipped.\n')
             if full_errors:
-                self.backend_record.output_for_debug\
-                    += 'Full list of errors:\n%s\n' % '\n'.join(full_errors)
+                self.log_message('Full list of errors:\n%s\n'
+                                 % '\n'.join(full_errors))
 
     def xml_tools_args(self):
         kwargs = {
@@ -136,6 +136,8 @@ class ArtProcessor(FileProcessor):
         article.append(create('NetWeight', str(product.weight),
                               {'ISO': 'KGM'}))
         article.append(create('BatchMngtReq', '1' if product.tracking else 0))
+        # Unimplemented element: MinRemLife
+        # Unimplemented element: PeriodExpDateType
         article.append(create('SerialNoFlag', '0'))
         uom_node = create('UnitsOfMeasure')
         article.append(uom_node)

@@ -43,6 +43,10 @@ class EventProcessorExt(EventProcessor):
                                     ]:
                 logger.debug('Ignoring event %s with code %s'
                              % (event.id, event.code))
+                if self.backend_record.yc_parameter_cancel_ignored_events:
+                    logger.info('Cancelling ignored event %s with code %s'
+                                % (event.id, event.code))
+                    event.state = 'cancel'
                 return
             elif code == 'outgoing' or is_return:
                 if self.backend_record.yc_parameter_sync_picking_out:
@@ -53,7 +57,7 @@ class EventProcessorExt(EventProcessor):
                     self.backend_record.get_processor().\
                         yc_create_wbl_file(event)
         else:
-            logger.debug('Ignoring event %s with model %s'
+            logger.debug('Event %s with model %s is unrelated to YC'
                          % (event.id, event.res_model))
         return True
 
