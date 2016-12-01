@@ -75,6 +75,13 @@ class StockConnectorBackendExt(models.Model):
                          ('group', '=', 'StorageLocation')],
                  string='Storage Locations')
 
+    yc_parameter_limit_to_storage_location_id = fields.\
+        Many2one('stock.location', 'Limit WAB and WBL to a unique location')
+
+    yc_parameter_cancel_ignored_events = fields.\
+        Boolean('Cancel Ignored Events (Never activate on multi-backend!!!)',
+                default=False)
+
     yc_delivery_carrier_ids = fields.\
         One2many('stock_connector.binding', 'backend_id',
                  domain=[('res_model', '=', 'delivery.carrier'),

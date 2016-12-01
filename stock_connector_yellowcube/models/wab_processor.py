@@ -29,8 +29,11 @@ class WabProcessor(FileProcessor):
             if record.picking_type_id.default_location_dest_id\
                     .return_location:
                 is_return = True
-        self.backend_record.output_for_debug +=\
-            'Creating WAB file for {0}\n'.format(record.name)
+        picking_event.info = ''
+        self.log_message(
+            'Creating WAB file for {0}\n'.format(record.name),
+            event=picking_event,
+            timestamp=True)
         get_binding = self.backend_record.get_binding
         kwargs = {
             '_type': 'wab',
@@ -117,8 +120,9 @@ class WabProcessor(FileProcessor):
         if xml_errors:
             errors.append(str(xml_errors))
         if errors:
-            self.backend_record.output_for_debug +=\
-                'WAB file errors:\n{0}\n'.format('\n'.join(errors))
+            self.log_message(
+                'WAB file errors:\n{0}\n'.format('\n'.join(errors)),
+                event=picking_event)
         else:
             related_ids = [
                 ('stock_connector.event', picking_event.id),
@@ -128,4 +132,4 @@ class WabProcessor(FileProcessor):
                               cancel_duplicates=True)
             picking_event.state = 'done'
             record.printed = True
-            self.backend_record.output_for_debug += 'WAB file processed\n'
+            self.log_message('WAB file processed\n', event=picking_event)

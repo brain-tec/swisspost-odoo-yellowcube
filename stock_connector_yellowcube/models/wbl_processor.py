@@ -22,8 +22,11 @@ class WblProcessor(FileProcessor):
 
     def yc_create_wbl_file(self, picking_event):
         record = picking_event.get_record()
-        self.backend_record.output_for_debug += \
-            'Creating WBL file for {0}\n'.format(record.name)
+        picking_event.info = ''
+        self.log_message(
+            'Creating WBL file for {0}\n'.format(record.name),
+            event=picking_event,
+            timestamp=True)
         get_binding = self.backend_record.get_binding
         kwargs = {
             '_type': 'wbl',
@@ -89,8 +92,9 @@ class WblProcessor(FileProcessor):
 
         errors = tools.validate_xml(root)
         if errors:
-            self.backend_record.output_for_debug += \
-                'WBL file errors:\n{0}\n'.format(errors)
+            self.log_message(
+                'WBL file errors:\n{0}\n'.format(errors),
+                event=picking_event)
         else:
             related_ids = [
                 ('stock_connector.event', picking_event.id),
@@ -100,7 +104,7 @@ class WblProcessor(FileProcessor):
                               cancel_duplicates=True)
             picking_event.state = 'done'
             record.printed = True
-            self.backend_record.output_for_debug += 'WBL file processed\n'
+            self.log_message('WBL file processed\n', event=picking_event)
 
     @classmethod
     def get_supplier_mo(cls, partner, pattern):

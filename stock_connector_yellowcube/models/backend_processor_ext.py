@@ -234,11 +234,32 @@ class BackendProcessorExt(BackendProcessor):
                 ])
         self.env['stock_connector.file'].create(vals)
 
+    def yc_check_valid_location(self, event):
+        if event.res_model != 'stock.picking':
+            # No picking, no problem
+            return True
+        valid_location = self.yc_get_parameter('limit_to_storage_location_id')
+        if not valid_location:
+            return True
+        record = event.get_record()
+        if valid_location == record.location_id:
+            return True
+        elif valid_location == record.location_dest_id:
+            return True
+        else:
+            return False
+
     def yc_create_wab_file(self, event):
-        return WabProcessor(self).yc_create_wab_file(event)
+        if self.yc_check_valid_location(event):
+            return WabProcessor(self).yc_create_wab_file(event)
+        else:
+            return False
 
     def yc_create_wbl_file(self, event):
-        return WblProcessor(self).yc_create_wbl_file(event)
+        if self.yc_check_valid_location(event):
+            return WblProcessor(self).yc_create_wbl_file(event)
+        else:
+            return False
 
     def notify_new_event(self, new_event):
         super(BackendProcessorExt, self).notify_new_event(new_event)

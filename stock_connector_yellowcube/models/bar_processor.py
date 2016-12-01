@@ -24,8 +24,11 @@ class BarProcessor(FileProcessor):
         """
         :param openerp.osv.orm.browse_record bar_file:
         """
-        self.backend_record.output_for_debug +=\
-            'Reading BAR file {0}\n'.format(bar_file.name)
+        bar_file.info = ''
+        self.log_message(
+            'Reading BAR file {0}\n'.format(bar_file.name),
+            file_record=bar_file,
+            timestamp=True)
 
         errors = []
         related_ids = []
@@ -53,8 +56,9 @@ class BarProcessor(FileProcessor):
 
         if errors:
             bar_file.state = 'error'
-            self.backend_record.output_for_debug +=\
-                'BAR file errors:\n{0}\n'.format('\n'.join(errors))
+            self.log_message(
+                'BAR file errors:\n{0}\n'.format('\n'.join(errors)),
+                file_record=bar_file)
         else:
             for key in bindings_to_do:
                 self.get_binding(bindings_to_do[key], 'YCArticleNo', key)
@@ -64,7 +68,7 @@ class BarProcessor(FileProcessor):
             bar_file.write({'child_ids': [
                 (0, 0, {'res_model': x, 'res_id': y}) for x, y in related_ids
             ]})
-            self.backend_record.output_for_debug += 'BAR file processed\n'
+            self.log_message('BAR file processed\n', file_record=bar_file)
 
     def yc_read_bar_line(self, bar_article, bindings_to_do, errors):
         """

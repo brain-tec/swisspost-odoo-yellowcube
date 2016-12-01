@@ -32,6 +32,8 @@ class TestBase(TransactionCase):
             'yc_parameter_receiver': 'YELLOWCUBE',
             'yc_parameter_sender': 'YCTest',
             'yc_parameter_operating_mode': 'T',
+            'yc_parameter_limit_to_storage_location_id':
+                self.ref('stock.stock_location_stock'),
         })
         # We get a user for creating every element
         self.user = self.browse_ref('base.user_demo')

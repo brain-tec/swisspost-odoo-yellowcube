@@ -7,6 +7,9 @@
 #    See LICENSE file for full licensing details.
 ##############################################################################
 from .xml_tools import XmlTools
+from datetime import datetime
+import logging
+logger = logging.getLogger(__name__)
 
 WAB_WAR_ORDERNO_GROUP = 'WAB_WAR_ORDERNO_GROUP'
 WBL_WBA_ORDERNO_GROUP = 'WBL_WBA_ORDERNO_GROUP'
@@ -37,3 +40,13 @@ class FileProcessor(object):
 
     def find_binding(self, *args):
         return self.backend_record.find_binding(*args)
+
+    def log_message(self, msg, event=None, file_record=None, timestamp=False):
+        logger.debug(msg)
+        if timestamp:
+            msg = '%s %s' % (datetime.now(), msg)
+        self.backend_record.output_for_debug += msg
+        if event:
+            event.info += msg
+        if file_record:
+            file_record.info += msg

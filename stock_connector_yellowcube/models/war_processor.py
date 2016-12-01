@@ -20,8 +20,11 @@ class WarProcessor(FileProcessor):
         super(WarProcessor, self).__init__(backend, 'war')
 
     def yc_read_war_file(self, war_file):
-        self.backend_record.output_for_debug +=\
-            'Reading WAR file {0}\n'.format(war_file.name)
+        war_file.info = ''
+        self.log_message(
+            'Reading WAR file {0}\n'.format(war_file.name),
+            file_record=war_file,
+            timestamp=True)
 
         errors = []
         related_ids = []
@@ -50,8 +53,9 @@ class WarProcessor(FileProcessor):
 
         if errors:
             war_file.state = 'error'
-            self.backend_record.output_for_debug +=\
-                'WAR file errors:\n{0}\n'.format('\n'.join(errors))
+            self.log_message(
+                'WAR file errors:\n{0}\n'.format('\n'.join(errors)),
+                file_record=war_file)
         else:
             for picking, splits in splits_to_do:
                 self.yc_process_war_splits(picking, related_ids, splits)
@@ -61,7 +65,7 @@ class WarProcessor(FileProcessor):
             war_file.state = 'done'
             war_file.child_ids = [(0, 0, {'res_model': x[0], 'res_id': x[1]})
                                   for x in related_ids]
-            self.backend_record.output_for_debug += 'WAR file processed\n'
+            self.log_message('WAR file processed\n', file_record=war_file)
 
     def yc_process_war_splits(self, picking, related_ids, splits):
         """
