@@ -23,6 +23,9 @@ class EventProcessorExt(EventProcessor):
         if event.res_model == 'stock.picking':
             code = record.picking_type_id.code
             is_return = False
+            is_internal_pick = (
+                code == 'internal'
+            )
             if record.picking_type_id.default_location_dest_id:
                 if record.picking_type_id.default_location_dest_id\
                         .return_location:
@@ -48,7 +51,7 @@ class EventProcessorExt(EventProcessor):
                                 % (event.id, event.code))
                     event.state = 'cancel'
                 return
-            elif code == 'outgoing' or is_return:
+            elif code == 'outgoing' or is_return or is_internal_pick:
                 if self.backend_record.yc_parameter_sync_picking_out:
                     self.backend_record.get_processor()\
                         .yc_create_wab_file(event)
@@ -56,6 +59,8 @@ class EventProcessorExt(EventProcessor):
                 if self.backend_record.yc_parameter_sync_picking_in:
                     self.backend_record.get_processor().\
                         yc_create_wbl_file(event)
+            else:
+                logger.warning('Event %s escaped normal processing', event.id)
         else:
             logger.debug('Event %s with model %s is unrelated to YC'
                          % (event.id, event.res_model))
