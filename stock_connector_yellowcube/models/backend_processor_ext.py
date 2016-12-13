@@ -253,12 +253,14 @@ class BackendProcessorExt(BackendProcessor):
         if self.yc_check_valid_location(event):
             return WabProcessor(self).yc_create_wab_file(event)
         else:
+            logger.debug('Invalid location')
             return False
 
     def yc_create_wbl_file(self, event):
         if self.yc_check_valid_location(event):
             return WblProcessor(self).yc_create_wbl_file(event)
         else:
+            logger.debug('Invalid location')
             return False
 
     def notify_new_event(self, new_event):
