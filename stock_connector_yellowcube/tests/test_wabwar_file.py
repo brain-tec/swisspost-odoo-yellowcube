@@ -189,8 +189,9 @@ class TestWabWarFile(test_base.TestBase):
             war_line = create('CustomerOrderDetail')
             war_customer_list.append(war_line)
             war_line.append(create('BVPosNo', bvposno))
+            posno = path(wab_line, 'wab:PosNo')[0].text
             war_line.append(create('CustomerOrderPosNo',
-                                   path(wab_line, 'wab:PosNo')[0].text))
+                                   '%06d' % int(posno)))
             war_line.append(create('YCArticleNo',
                                    path(wab_line, 'wab:ArticleNo')[0].text))
             war_line.append(create('Plant'))

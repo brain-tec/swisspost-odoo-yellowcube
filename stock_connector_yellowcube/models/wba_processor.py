@@ -90,7 +90,7 @@ class WbaProcessor(FileProcessor):
         """
         pos_no = self.path(wba_line,
                            'wba:SupplierOrderPosNo')[0].text
-        pack = self.find_binding(pos_no,
+        pack = self.find_binding(int(pos_no),
                                  'SupplierOrderNo{0}'.format(order_no)).record
         if pack:
             moves = pack.picking_id.move_lines.filtered(

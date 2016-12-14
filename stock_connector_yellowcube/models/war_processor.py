@@ -90,6 +90,7 @@ class WarProcessor(FileProcessor):
         """
         pos_no = self.path(war_line,
                            'war:CustomerOrderPosNo')[0].text
+        pos_no = int(pos_no)
         pack = self.find_binding(pos_no,
                                  'CustomerOrderNo{0}'.format(order_no)).record
         if pack:

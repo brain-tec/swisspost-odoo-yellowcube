@@ -114,8 +114,9 @@ class TestWblWbaFile(test_base.TestBase):
             wba_line = create('GoodsReceiptDetail')
             wba_Supplier_list.append(wba_line)
             wba_line.append(create('BVPosNo', bvposno))
+            posno = path(wbl_line, 'wbl:PosNo')[0].text
             wba_line.append(create('SupplierOrderPosNo',
-                                   path(wbl_line, 'wbl:PosNo')[0].text))
+                                   '%06d' % int(posno)))
             wba_line.append(create('YCArticleNo',
                                    path(wbl_line, 'wbl:ArticleNo')[0].text))
             wba_line.append(create('Plant'))
