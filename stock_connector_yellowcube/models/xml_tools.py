@@ -194,7 +194,7 @@ class XmlTools:
             return str(value).decode('UTF-8',)
 
     def create_comment(self, text):
-        return etree.Comment(text=text)
+        return etree.Comment(text=str(text))
 
     def create_element(self, entity, text=None, attrib=None, ns=None):
         ns = ns or self.default_ns
