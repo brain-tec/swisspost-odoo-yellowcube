@@ -61,7 +61,7 @@ class ArtProcessor(FileProcessor):
                                                  product_errors, change_flag)
             errors = tools.validate_xml(article)
             if errors:
-                product_errors.append(errors)
+                product_errors.append(str(errors))
             if product_errors:
                 full_errors.extend(product_errors)
                 self.log_message(
