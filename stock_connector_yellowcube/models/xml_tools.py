@@ -293,3 +293,12 @@ class XmlTools:
             return self.schemas[schema_name].error_log.last_error
         else:
             return None
+
+
+class Dict2Object:
+
+    def __init__(self, dictionary=None):
+        self.__dict__ = dictionary or {}
+
+    def __setattr__(self, key, value):
+        self.__dict__[key] = value
