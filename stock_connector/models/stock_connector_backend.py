@@ -33,6 +33,8 @@ class StockConnectorBackend(models.Model):
     input_path = fields.Char('Transport Input Path')
     output_path = fields.Char('Transport Output Path')
     file_regex = fields.Char('Transport File filter', default='.*')
+    remove_remote_files = fields.Boolean(
+        'Remove Remote Files, if already on system', default=False)
 
     output_for_debug = fields.Text(readonly=True, default='')
     file_ids = fields.One2many('stock_connector.file', 'backend_id',

@@ -67,6 +67,10 @@ class SFTPTransport:
                 'content': ustr(content),
             })
 
+    def remove_file(self, filename):
+        _logger.info('External file removed %s' % filename)
+        self.connection.remove(filename)
+
     def change_dir(self, path):
         self.connection.chdir(path)
 

@@ -71,6 +71,8 @@ class BackendProcessor(ConnectorUnit):
                         ('state', '!=', 'cancel'),
                     ], limit=1, count=True):
                         transport.get_file(filename)
+                    elif backend.remove_remote_files:
+                        transport.remove_file(filename)
 
     def notify_new_event(self, new_event):
         logger.debug('New event notified: %s %s %s' %

@@ -48,6 +48,7 @@
                                         <field name="input_path" colspan="2"/>
                                         <field name="output_path" colspan="2"/>
                                         <field name="file_regex" colspan="2"/>
+                                        <field name="remove_remote_files" colspan="2"/>
                                     </group>
                                     <field name="output_for_debug" colspan="4"/>
                                 </page>

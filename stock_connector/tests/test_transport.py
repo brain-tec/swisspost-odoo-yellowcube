@@ -42,6 +42,7 @@ class TestTransport(TransactionCase):
                 ('test_connection', ['self']),
                 ('send_file', ['self', 'connector_file']),
                 ('get_file', ['self', 'filename']),
+                ('remove_file', ['self', 'filename']),
                 ('change_dir', ['self', 'path']),
                 ('list_dir', ['self']),
                 ('open', ['self']),

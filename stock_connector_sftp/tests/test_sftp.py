@@ -38,6 +38,7 @@ class TestSFTP(TransactionCase):
             'name': 'Backend SFTP Test',
             'input_path': '.',
             'output_path': '.',
+            'remove_remote_files': True,
         })
         self.transport = None
 
@@ -116,7 +117,7 @@ class TestSFTP(TransactionCase):
         self.assertTrue(self.backend.test_connection(),
                         'Problem while testing connection')
 
-    def test_connection_list_put_and_get(self):
+    def test_connection_list_put_get_and_remove(self):
         """
         This test tests the connection to an SFTP server in local,
         and sends a file.
@@ -134,6 +135,7 @@ class TestSFTP(TransactionCase):
             transport.connection.get(remote_path,
                                      '{0}.remote_get'.format(self
                                                              ._sftp_key_file))
+            transport.remove(remote_path)
 
         self._unlink_if_exists('{0}.remote_get'.format(self._sftp_key_file))
         self._unlink_if_exists('{0}.remote_put'.format(self._sftp_key_file))
