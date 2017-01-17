@@ -65,6 +65,54 @@ class TestWblWbaFile(test_base.TestBase):
         _logger.info('Creating WBA file')
         wbl_content = self.backend.file_ids[-1].content
 
+        lines = self.picking.pack_operation_product_ids.mapped('product_id')
+        idx = 0
+        for line in lines:
+            # We must be able to process line be line
+            self.assertNotEquals(self.picking.state, 'done',
+                                 self.backend.output_for_debug)
+            idx += 1
+            old_moves = self.env['stock.move'].search(
+                [('picking_id', '=', self.picking.id),
+                 ('state', '=', 'done')],
+                count=True
+            )
+            _logger.info('Creating WBA file %s/%s'
+                         % (idx, len(lines)))
+            wba_content = self.create_wba_from_wbl(wbl_content,
+                                                   limit_posno=idx)
+            wba_file = self.env['stock_connector.file'].create({
+                'name': 'file.xml',
+                'backend_id': self.backend.id,
+                'content': wba_content
+            })
+
+            _logger.info('Processing WBA file')
+            self.backend.output_for_debug = ''
+            proc.processors['WBA'](proc, wba_file)
+            self.assertEquals(old_moves, 0)
+        self.assertEquals(wba_file.state, 'done',
+                          self.backend.output_for_debug)
+        new_moves = self.env['stock.move'].search(
+            [('picking_id', '=', self.picking.id),
+             ('state', '=', 'done')],
+            count=True
+        )
+        self.assertNotEquals(new_moves, 0)
+        self.assertTrue(len(self.picking.pack_operation_product_ids) > 0)
+        self.assertTrue(all([
+                            x.qty_done == x.product_qty
+                            for x in
+                            self.picking.pack_operation_product_ids
+                            ]),
+                        'All operations are not done:\n %s'
+                        % '\n '.join(['%s %s/%s' %
+                                      (x.product_id.name, x.qty_done,
+                                       x.product_qty)
+                                      for x in
+                                      self.picking.pack_operation_ids
+                                      if x.qty_done != x.product_qty]))
+
         wba_content = self.create_wba_from_wbl(wbl_content)
 
         # Now, we save the file, and process it
@@ -84,7 +132,7 @@ class TestWblWbaFile(test_base.TestBase):
         for move in self.picking.pack_operation_product_ids:
             self.assertEquals(move.state, 'done')
 
-    def create_wba_from_wbl(self, wbl_content):
+    def create_wba_from_wbl(self, wbl_content, limit_posno=False):
         processor = self.backend.get_processor()
         tools = xml_tools.XmlTools(_type='wba')
         create = tools.create_element
@@ -111,6 +159,8 @@ class TestWblWbaFile(test_base.TestBase):
         bvposno = 0
         for wbl_line in path(wbl, '//wbl:Position'):
             bvposno += 1
+            if limit_posno and bvposno != limit_posno:
+                continue
             wba_line = create('GoodsReceiptDetail')
             wba_Supplier_list.append(wba_line)
             wba_line.append(create('BVPosNo', bvposno))
