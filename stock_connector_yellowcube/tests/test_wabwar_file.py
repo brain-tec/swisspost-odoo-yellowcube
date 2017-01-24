@@ -44,12 +44,12 @@ class TestWabWarFile(test_base.TestBase):
             'order_line': [
                 (0, 0, {'name': 'product_product_7',
                         'product_id': self.ref('product.product_product_7'),
-                        'product_uom_qty': 1,
+                        'product_uom_qty': 100,
                         'product_uom': self.ref('product.product_uom_unit'),
                         }),
                 (0, 0, {'name': 'product_product_9',
                         'product_id': self.ref('product.product_product_9'),
-                        'product_uom_qty': 1,
+                        'product_uom_qty': 100,
                         'product_uom': self.ref('product.product_uom_unit'),
                         }),
             ],
@@ -63,7 +63,7 @@ class TestWabWarFile(test_base.TestBase):
             'carrier_id': self.ref('delivery.delivery_carrier')
         })
         self.picking.action_confirm()
-        self.picking.force_assign()
+        self.picking.sudo().force_assign()
 
     def test_create_wab_and_war_files_by_sale_corfirmation(self):
         self.test_create_wab_and_war_files(True)
