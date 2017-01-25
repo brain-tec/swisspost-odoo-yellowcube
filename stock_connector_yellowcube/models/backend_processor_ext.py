@@ -239,15 +239,30 @@ class BackendProcessorExt(BackendProcessor):
             # No picking, no problem
             return True
         valid_location = self.yc_get_parameter('limit_to_storage_location_id')
-        if not valid_location:
-            return True
         record = event.get_record()
-        if valid_location == record.location_id:
-            return True
-        elif valid_location == record.location_dest_id:
-            return True
+
+        if valid_location:
+            # This location is accepted if appears in one side
+            if valid_location == record.location_id:
+                return True
+            elif valid_location == record.location_dest_id:
+                return True
+            else:
+                return False
+
+        if self.yc_get_parameter('limit_to_binding_locations'):
+            # This locations must appear on both sides
+            limit_locations = self.backend_record.yc_storage_location_ids \
+                .mapped('res_id')
+            if record.location_dest_id.id not in limit_locations:
+                return False
+            elif record.location_id.id not in limit_locations:
+                return False
+            else:
+                return True
         else:
-            return False
+            # Else, everything is OK
+            return True
 
     def yc_create_wab_file(self, event):
         if self.yc_check_valid_location(event):
