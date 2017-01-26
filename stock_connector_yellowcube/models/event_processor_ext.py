@@ -36,6 +36,11 @@ class EventProcessorExt(EventProcessor):
                              % event.id)
                 event.state = 'cancel'
                 return
+            elif record.do_not_sync_with_connector:
+                logger.debug('Canceling event %s marked not to be synced'
+                             % event.id)
+                event.state = 'cancel'
+                return
             elif record.state in ['done', 'cancel']:
                 logger.debug('Canceling event %s with picking state %s'
                              % (event.id, record.state))
