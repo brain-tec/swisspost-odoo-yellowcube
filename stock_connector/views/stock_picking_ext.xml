@@ -9,6 +9,10 @@
                     name="return_type_id"
                     attrs="{'readonly': [('state', 'in', ['cancel', 'done'])]}"
                 />
+                <field
+                    name="do_not_sync_with_connector"
+                    attrs="{'readonly': [('state', 'in', ['cancel', 'done'])]}"
+                />
             </field>
         </field>
     </record>
@@ -19,6 +23,7 @@
         <field name="arch" type="xml">
             <field name="return_picking_type_id" position="after">
                 <field name="return_type_id"/>
+                <field name="do_not_sync_with_connector"/>
             </field>
         </field>
     </record>

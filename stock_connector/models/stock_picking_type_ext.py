@@ -14,3 +14,4 @@ class StockPickingTypeExt(models.Model):
 
     return_type_id = fields.Many2one('stock.picking.return_type',
                                      'Return Type')
+    do_not_sync_with_connector = fields.Boolean()
