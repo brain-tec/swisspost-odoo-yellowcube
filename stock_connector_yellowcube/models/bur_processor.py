@@ -162,7 +162,7 @@ class BurProcessor(FileProcessor):
         move_to_do['location_id'] = source_loc_binding.res_id
         move_to_do['location_dest_id'] = dest_loc_binding.res_id
         quantity = self.path(bur_move, 'bur:QuantityUOM')[0]
-        move_to_do['product_uom_qty'] = float(quantity.text)
+        move_to_do['product_uom_qty'] = float(quantity.text or 0)
         move_to_do['product_uom'] = product.uom_id.id
         if product.uom_id.iso_code != quantity.get('QuantityISO'):
             errors.append(_('Distinct UOM for {0}')
