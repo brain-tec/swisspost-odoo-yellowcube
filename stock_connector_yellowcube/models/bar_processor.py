@@ -117,7 +117,7 @@ class BarProcessor(FileProcessor):
                 return None
             product_to_do['location_id'] = location_binding.res_id
         quantity = self.path(bar_article, 'bar:QuantityUOM')[0]
-        product_to_do['new_quantity'] = float(quantity.text)
+        product_to_do['new_quantity'] = float(quantity.text or 0)
         if product.uom_id.iso_code != quantity.get('QuantityISO'):
             errors.append(_('Distinct UOM for {0}')
                           .format(yc_article_no))

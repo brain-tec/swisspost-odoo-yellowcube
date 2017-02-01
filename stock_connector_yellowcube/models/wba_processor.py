@@ -115,7 +115,7 @@ class WbaProcessor(FileProcessor):
         if pack:
             product = pack.product_id
             qty_uom = self.path(wba_line, 'wba:QuantityUOM')[0]
-            qty_todo = float(qty_uom.text)
+            qty_todo = float(qty_uom.text or 0)
         else:
             errors.append(_('Cannot find binding for moves for operation {0}'
                             ' of order {1}').format(pos_no,
