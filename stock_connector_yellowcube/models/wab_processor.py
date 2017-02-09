@@ -128,8 +128,13 @@ class WabProcessor(FileProcessor):
                 ('stock_connector.event', picking_event.id),
                 (picking_event.res_model, picking_event.res_id),
             ]
-            self.yc_save_file(root, related_ids, tools, 'WAB', suffix=order_no,
-                              cancel_duplicates=True)
+            file_record = self.yc_save_file(
+                root, related_ids, tools, 'WAB', suffix=order_no,
+                cancel_duplicates=True
+            )
             picking_event.state = 'done'
             record.printed = True
-            self.log_message('WAB file processed\n', event=picking_event)
+            self.log_message(
+                'WAB file processed. %s (#%s)\n' % (
+                    file_record.name, file_record.id),
+                event=picking_event)

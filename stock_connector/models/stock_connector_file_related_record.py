@@ -19,7 +19,8 @@ class StockConnecrFileRelatedRecord(models.Model):
         self.name = record.name_get()[0][1] if record else 'UNAVAILABLE RECORD'
 
     name = fields.Char(compute='_get_name', store=False)
-    parent_id = fields.Many2one('stock_connector.file', 'Parent')
+    parent_id = fields.Many2one('stock_connector.file', 'Parent',
+                                ondelete='cascade')
     res_model = fields.Char('Model', required=True)
     res_id = fields.Integer('Resource ID', required=True)
 
