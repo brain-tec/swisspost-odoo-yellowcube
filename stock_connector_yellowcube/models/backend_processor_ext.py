@@ -232,7 +232,7 @@ class BackendProcessorExt(BackendProcessor):
                             'res_id': x.id})
                     for x in old_files
                 ])
-        self.env['stock_connector.file'].create(vals)
+        return self.env['stock_connector.file'].create(vals)
 
     def yc_check_valid_location(self, event):
         if event.res_model != 'stock.picking':
