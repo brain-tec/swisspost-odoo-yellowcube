@@ -114,6 +114,26 @@
             </field>
         </record>
 
+
+        <record id="stock_connector_file_view_search" model="ir.ui.view">
+            <field name="name">stock_connector.file.search</field>
+            <field name="model">stock_connector.file</field>
+            <field name="arch" type="xml">
+                <search>
+                    <field
+                        name="name"
+                        filter_domain="[('name', 'ilike', self)]"/>
+                    <field
+                        name="type"
+                        filter_domain="[('type', 'ilike', self)]"/>
+                    <field
+                        name="content"
+                        filter_domain="[('content', 'ilike', self)]"/>
+                    <field name="state"/>
+                </search>
+            </field>
+        </record>
+
         <record id="stock_connector_file_action" model="ir.actions.act_window">
             <field name="name">Warehouse Files</field>
             <field name="res_model">stock_connector.file</field>
