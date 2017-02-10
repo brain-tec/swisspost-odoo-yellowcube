@@ -57,15 +57,19 @@ class SFTPTransport:
             connector_file.state = 'done'
 
     def get_file(self, filename):
-        with tempfile.NamedTemporaryFile() as temp:
-            self.connection.get(filename, temp.name)
-            content = file(temp.name).read()
-            self.backend.env['stock_connector.file'].create({
-                'backend_id': self.backend.id,
-                'name': filename,
-                'transmit': 'in',
-                'content': ustr(content),
-            })
+        try:
+            with tempfile.NamedTemporaryFile() as temp:
+                self.connection.get(filename, temp.name)
+                content = file(temp.name).read()
+                self.backend.env['stock_connector.file'].create({
+                    'backend_id': self.backend.id,
+                    'name': filename,
+                    'transmit': 'in',
+                    'content': ustr(content),
+                })
+        except:
+            _logger.error('get_file(%s)' % filename)
+            raise
 
     def remove_file(self, filename):
         _logger.info('External file removed %s' % filename)

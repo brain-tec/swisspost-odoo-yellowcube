@@ -13,7 +13,7 @@ import time
 import socket
 import logging
 import pip
-from tempfile import mkstemp
+from tempfile import mkstemp, mkdtemp
 import json
 from openerp.addons.stock_connector_sftp.models import sftp_transport
 from openerp.addons.stock_connector.models import backend_processor
@@ -49,9 +49,10 @@ class TestSFTP(TransactionCase):
             return True
         parameter_obj = self.env['ir.config_parameter']
         param_value = parameter_obj.get_param('test_sftp_config')
+        self.tmp_server_dir = mkdtemp('test_sftp')
         fd, self._sftp_key_file = mkstemp(suffix='.key',
                                           prefix='sftpserver_test_key',
-                                          dir='/tmp')
+                                          dir=self.tmp_server_dir)
         if param_value:
             values = safe_eval(param_value)
             if values.get('ignore', False):
@@ -77,7 +78,7 @@ class TestSFTP(TransactionCase):
                 "-k", self._sftp_key_file,
                 '-p', str(port),
                 '-l', 'INFO'
-            ], cwd='/tmp', stdout=subprocess.PIPE)
+            ], cwd=self.tmp_server_dir, stdout=subprocess.PIPE)
             time.sleep(1)
             values = {
                 'sftp_path': 'localhost:{0}'.format(port),
@@ -135,7 +136,7 @@ class TestSFTP(TransactionCase):
             transport.connection.get(remote_path,
                                      '{0}.remote_get'.format(self
                                                              ._sftp_key_file))
-            transport.remove(remote_path)
+            transport.remove_file(remote_path)
 
         self._unlink_if_exists('{0}.remote_get'.format(self._sftp_key_file))
         self._unlink_if_exists('{0}.remote_put'.format(self._sftp_key_file))
