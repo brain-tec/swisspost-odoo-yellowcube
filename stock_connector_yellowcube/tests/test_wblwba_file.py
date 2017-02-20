@@ -110,7 +110,7 @@ class TestWblWbaFile(test_base.TestBase):
                                       (x.product_id.name, x.qty_done,
                                        x.product_qty)
                                       for x in
-                                      self.picking.pack_operation_ids
+                                      self.picking.pack_operation_product_ids
                                       if x.qty_done != x.product_qty]))
 
         wba_content = self.create_wba_from_wbl(wbl_content)

@@ -127,7 +127,7 @@ class WarProcessor(FileProcessor):
             self, original_picking, states=None):
         candidate_pickings = self.env['stock.picking'].search([
             ('group_id', '=', original_picking.group_id.id),
-            ('state', 'in', states or ['ready', 'assigned']),
+            ('state', 'in', states or ['assigned', 'waiting']),
             ('location_id', '=', original_picking.location_dest_id.id)
         ])
         return candidate_pickings
@@ -142,16 +142,21 @@ class WarProcessor(FileProcessor):
             if related not in related_ids:
                 related_ids.append(related)
             operation.qty_done += split['qty']
+        self.yc_confirm_picking(picking, related_ids)
+
+    def yc_confirm_picking(self, picking, related_ids):
         picking.do_recompute_remaining_quantities()
         if all(picking.pack_operation_product_ids.mapped(
-            lambda x: x.product_qty == x.qty_done
+                lambda x: x.product_qty == x.qty_done
         )):
             picking.action_done()
-            for related in self.\
-                    yc_get_related_pickings_by_destination(picking,
-                                                           states=['waiting']):
-                related.force_assign()
-                related_ids.append(('stock.picking', related.id))
+        states = ['waiting', 'confirmed', 'partially_available']
+        for related in self. \
+                yc_get_related_pickings_by_destination(picking,
+                                                       states=states):
+            related.do_recompute_remaining_quantities()
+            related.action_assign()
+            related_ids.append(('stock.picking', related.id))
 
     def yc_read_war_line(self, war_ctx, war_line):
         # Variables to use from context
