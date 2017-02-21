@@ -47,6 +47,9 @@ class FileProcessor(object):
             msg = '%s %s' % (datetime.now(), msg)
         self.backend_record.output_for_debug += msg
         if event:
-            event.info += msg
+            if event.info:
+                event.info += msg
+            else:
+                event.info = msg
         if file_record:
             file_record.info += msg
