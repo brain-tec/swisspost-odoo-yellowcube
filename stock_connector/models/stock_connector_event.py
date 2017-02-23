@@ -85,6 +85,9 @@ class StockConnectorEvent(models.Model):
     state = fields.Selection(selection='select_state',
                              required=True, default='ready')
     info = fields.Text()
+    date_action_last = fields.Datetime(
+        string="Last automated action",
+        readonly=False, required=False)
 
     def get_record(self):
         return self.env[self.res_model].browse(self.res_id)
@@ -92,9 +95,21 @@ class StockConnectorEvent(models.Model):
     @api.multi
     def process_event(self):
         self.ensure_one()
-        if 'backend_id' not in self.env.context:
-            raise exceptions\
-                .UserError('Missing Backend. Open through backend form view.')
+
+        backend_id = self.env.context.get('backend_id', False)
+        backend_env = self.env['stock_connector.backend']
+        auto_backend = self.env.context.get('auto_backend', False)
+        if not backend_id:
+            if auto_backend:
+                last = False
+                for backend_id in backend_env.search([]).ids:
+                    last = self.with_context(
+                        backend_id=backend_id,
+                    ).process_event()
+                return last
+            else:
+                raise exceptions.UserError(
+                    'Missing Backend. Open through backend form view.')
+
         logger.info('Processing event %s' % self.id)
-        return self.env['stock_connector.backend']\
-            .browse(self.env.context['backend_id']).process_event(self) or True
+        return backend_env.browse(backend_id).process_event(self) or True
