@@ -17,6 +17,7 @@
     'images': [
     ],
     'depends': [
+        'base_action_rule',
         'connector',
         'stock',
         'product',
@@ -37,6 +38,7 @@
         # Security
         'security/ir.model.access.csv',
         # Data
+        'data/base_action_rule.xml',
         'data/product.uom.csv',
     ],
     'qweb': [
