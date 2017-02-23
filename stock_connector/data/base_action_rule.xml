@@ -1,0 +1,44 @@
+<odoo>
+    <data noupdate="1">
+        <record
+            model="ir.filters"
+            id="filter_event_ready">
+            <field name="name">Ready events</field>
+            <field name="model_id">stock_connector.event</field>
+            <field name="domain">[('state', '=', 'ready')]</field>
+            <field name="user_id" eval="False"/>
+        </record>
+
+        <record
+            model="base.action.rule"
+            id="action_rule_stock_connector_event_ready">
+            <field name="name">Event is ready for process</field>
+            <field name="model_id"
+                   ref="stock_connector.model_stock_connector_event" />
+            <field name="active" eval="0"/>
+            <field name="kind">on_time</field>
+            <field name="trg_date_id"
+                   search="[('model', '=', 'stock_connector.event'), ('name', '=', 'date_action_last')]"/>
+            <field name="trg_date_range">5</field>
+            <field name="trg_date_range_type">minutes</field>
+            <field name="filter_id" ref="filter_event_ready"/>
+            <field name="server_action_ids" eval="[(6, 0, [ref('stock_connector_event_execute_action')])]"/>
+        </record>
+
+        <record
+            model="base.action.rule"
+            id="action_rule_stock_connector_backend_files">
+            <field name="name">Synchronize Backend files</field>
+            <field name="model_id"
+                   ref="stock_connector.model_stock_connector_backend" />
+            <field name="active" eval="0"/>
+            <field name="kind">on_time</field>
+            <field name="trg_date_id"
+                   search="[('model', '=', 'stock_connector.backend'), ('name', '=', 'date_action_last')]"/>
+            <field name="trg_date_range">5</field>
+            <field name="trg_date_range_type">minutes</field>
+            <field name="server_action_ids" eval="[(6, 0, [ref('stock_connector_backend_sync_action')])]"/>
+        </record>
+
+    </data>
+</odoo>

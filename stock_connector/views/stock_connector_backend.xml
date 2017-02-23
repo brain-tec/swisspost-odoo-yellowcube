@@ -1,6 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
     <data>
+        <!-- Action Rule Action -->
+        <record id="backend_base_action_rule_act" model="ir.actions.act_window">
+            <field name="name">Automated Backend Actions</field>
+            <field name="res_model">base.action.rule</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="view_id" ref="base_action_rule.view_base_action_rule_tree"/>
+            <field name="domain">[
+                ('model', 'in', [
+                    'stock_connector.event',
+                    'stock_connector.file',
+                    'stock_connector.backend',
+                ]),
+                '|', ('active', '=', True), ('active', '=', False),
+                ]</field>
+            <field name="context">
+                {'default_model': 'stock_connector.backend'}
+            </field>
+        </record>
 
         <record id="stock_connector_backend_view_form" model="ir.ui.view">
             <field name="name">stock_connector.backend.form</field>
@@ -11,7 +30,7 @@
                         <button name='test_connection' type='object' string='Test Connection' />
                         <button name='synchronize_files' type='object' string='Synchronize Files' />
                         <button name='synchronize_backend' type='object' string='Synchronize Backend' />
-                        <button name='process_events' type='object' string='Process Events' />
+                        <button name='process_events' type='object' string='Process Events'/>
                     </header>
                     <sheet>
                         <div class='oe_button_box'>
@@ -34,6 +53,12 @@
                                     icon="fa-chain"
                                     class="oe_stat_button"
                             />
+                            <button type="action"
+                                    name="%(backend_base_action_rule_act)d"
+                                    string="Automatisation"
+                                    icon="fa-gear"
+                                    class="oe_stat_button"
+                            />
                         </div>
                         <label for="name" class="oe_edit_only"/>
                         <h1>
@@ -51,6 +76,15 @@
                                         <field name="remove_remote_files" colspan="2"/>
                                     </group>
                                     <field name="output_for_debug" colspan="4"/>
+                                </page>
+                                <page string="Automatisation" name="action_rules" group="base.group_no_one">
+                                    <group colspan="4" col="4">
+                                        <field name="date_action_last"/>
+                                        <field name="date_last_backend_sync"/>
+                                        <field name="date_last_file_process"/>
+                                        <field name="date_last_event_process"/>
+                                    </group>
+                                    <field name="action_rule_ids" readonly="1"/>
                                 </page>
                             </notebook>
                         </group>
@@ -76,6 +110,17 @@
             <field name="view_type">form</field>
             <field name="view_mode">tree,form</field>
             <field name="view_id" ref="stock_connector_backend_view_tree"/>
+        </record>
+
+        <record id="stock_connector_backend_sync_action" model="ir.actions.server">
+            <field name="name">Synchronize Backend</field>
+            <field name="model_id"
+                   ref="stock_connector.model_stock_connector_backend"/>
+            <field name="code">
+log('Auto-executing backend sync')
+self.pool['stock_connector.backend'].automatize(
+    cr, uid, context['active_id'], context=context)
+            </field>
         </record>
 
     </data>

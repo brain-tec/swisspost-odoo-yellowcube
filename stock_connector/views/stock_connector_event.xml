@@ -91,5 +91,18 @@
             <field name="view_id" ref="stock_connector_event_view_kanban"/>
         </record>
 
+        <record id="stock_connector_event_execute_action" model="ir.actions.server">
+            <field name="name">Execute Event</field>
+            <field name="model_id"
+                   ref="stock_connector.model_stock_connector_event"/>
+            <field name="code">
+log('Auto-executing events')
+ctx = context.copy()
+ctx['auto_backend'] = True
+self.pool['stock_connector.event'].process_event(
+    cr, uid, ctx['active_id'], context=ctx)
+            </field>
+        </record>
+
     </data>
 </odoo>
