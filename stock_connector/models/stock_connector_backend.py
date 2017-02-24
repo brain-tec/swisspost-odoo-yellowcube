@@ -10,6 +10,7 @@ from openerp import models, fields, api
 from openerp.addons.connector.session import ConnectorSession
 from openerp.addons.connector.connector \
     import ConnectorUnit, ConnectorEnvironment
+from .constants import SQL_RELEASE, SQL_ROLLBACK, SQL_SAVEPOINT
 import logging
 _logger = logging.getLogger(__name__)
 
@@ -46,6 +47,38 @@ class StockConnectorBackend(models.Model):
 
     transport_id = fields.Many2one('stock_connector.transport', 'Transport',
                                    required=False)
+
+    action_rule_ids = fields.One2many(
+        'base.action.rule', string='Automated Actions',
+        compute='compute_action_rule_ids'
+    )
+
+    date_last_backend_sync = fields.Datetime(
+        readonly=False, required=True, default=fields.Datetime.now())
+    date_last_file_process = fields.Datetime(
+        readonly=False, required=True, default=fields.Datetime.now())
+    date_last_event_process = fields.Datetime(
+        readonly=False, required=True, default=fields.Datetime.now())
+    date_action_last = fields.Datetime(
+        string="Last automated action",
+        readonly=False, required=False)
+
+    @api.one
+    def compute_action_rule_ids(self):
+        models = self.env['ir.model'].search([
+            ('name', 'in', [
+                'stock_connector.backend',
+                'stock_connector.event',
+                'stock_connector.file',
+            ])]
+        )
+        self.action_rule_ids = self.env['base.action.rule'].search([
+            ('model_id', 'in', models.ids),
+            '|',
+            ('active', '=', True),
+            ('active', '=', False),
+        ])
+        _logger.info(self.action_rule_ids.mapped('name'))
 
     @api.one
     def _get_file_count(self):
@@ -121,25 +154,30 @@ class StockConnectorBackend(models.Model):
         """
         This method gets notified of new events pending events
         """
+        self.date_last_event_process = fields.Datetime.now()
         return self.get_processor('stock_connector.event')\
-                   .process_event(event) or True
+            .process_event(event) or True
 
     @api.multi
-    def process_events(self):
+    def process_events(self, auto=False):
         """
         This method processes pending events
         """
-        self.output_for_debug = ''
+        self.date_last_event_process = fields.Datetime.now()
+        if not auto:
+            self.output_for_debug = ''
         return self.get_processor('stock_connector.event')\
                    .process_events() or True
 
     @api.multi
-    def synchronize_backend(self):
+    def synchronize_backend(self, auto=False):
         """
         This method synchronizes the warehouse and the external warehouse
         """
         self.ensure_one()
-        self.output_for_debug = ''
+        self.date_last_backend_sync = fields.Datetime.now()
+        if not auto:
+            self.output_for_debug = ''
         try:
             return self.get_processor().synchronize() or True
         except:
@@ -200,12 +238,37 @@ class StockConnectorBackend(models.Model):
             raise
 
     @api.multi
-    def synchronize_files(self):
+    def synchronize_files(self, auto=False):
         self.ensure_one()
-        self.output_for_debug = ''
+        self.date_last_file_process = fields.Datetime.now()
+        if not auto:
+            self.output_for_debug = ''
         try:
             return self.get_processor().synchronize_files() or True
         except Exception as e:
             _logger.error(str(e))
             _logger.error(self.output_for_debug)
             raise
+
+    @api.multi
+    def automatize(self):
+        self.ensure_one()
+        methods = [
+            'process_events',
+            'synchronize_backend',
+            'synchronize_files',
+        ]
+        for method_name in methods:
+            savepoint_name = "stock_connector_backend_automatize_%s_%s" % (
+                self.id, method_name)
+            try:
+                self.env.cr.execute(SQL_SAVEPOINT % savepoint_name)
+                with api.Environment.manage():
+                    method = getattr(self, method_name)
+                    method(auto=True)
+            except Exception as e:
+                _logger.error('%s: %s' % (method_name, str(e)))
+                self.env.cr.execute(SQL_ROLLBACK % savepoint_name)
+                self.env.invalidate_all()
+            else:
+                self.env.cr.execute(SQL_RELEASE % savepoint_name)
