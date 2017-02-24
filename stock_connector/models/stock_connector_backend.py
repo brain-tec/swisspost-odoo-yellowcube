@@ -10,9 +10,7 @@ from openerp import models, fields, api
 from openerp.addons.connector.session import ConnectorSession
 from openerp.addons.connector.connector \
     import ConnectorUnit, ConnectorEnvironment
-from .constants import SQL_RELEASE, SQL_ROLLBACK
-from stock_connector.models.constants import SQL_SAVEPOINT, SQL_ROLLBACK, \
-    SQL_RELEASE
+from .constants import SQL_RELEASE, SQL_ROLLBACK, SQL_SAVEPOINT
 import logging
 _logger = logging.getLogger(__name__)
 
