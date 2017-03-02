@@ -9,6 +9,8 @@
 from .xml_tools import XmlTools
 from .file_processor import FileProcessor, WAB_WAR_ORDERNO_GROUP
 
+XML_NAME_LENGTH_LIMIT = 35
+
 
 class WabProcessor(FileProcessor):
     """
@@ -70,7 +72,7 @@ class WabProcessor(FileProcessor):
         partner.append(create('PartnerReference', partner_ref))
         if record.partner_id.title:
             partner.append(create('Title', record.partner_id.title.name))
-        partner.append(create('Name1', record.partner_id.name))
+        self.yc_create_longname_element(tools, partner, record.partner_id)
         partner.append(create('Street', record.partner_id.street))
         partner.append(create('CountryCode',
                               record.partner_id.country_id.code))

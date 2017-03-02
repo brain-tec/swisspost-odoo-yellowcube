@@ -200,8 +200,8 @@ class BackendProcessorExt(BackendProcessor):
             'suffix': '',
         }
         if suffix is not None:
-            format_args['suffix'] = '_%s' % suffix
-        elif len(related_ids) == 1:
+            format_args['suffix'] = '_%s' % (suffix or related_ids[0][1])
+        elif len(related_ids) == 1 and not cancel_duplicates:
             format_args['suffix'] = '_%s' % related_ids[0][1]
         filename_template = '{sender}_{type}_{ts}{suffix}.xml'
         filename = filename_template.format(**format_args)

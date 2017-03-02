@@ -37,6 +37,7 @@ class ArtProcessor(FileProcessor):
         root.append(article_list)
         related_ids = []
         full_errors = []
+        sent_products = []
         for product in products:
             product_errors = []
             change_flag = 'I'
@@ -74,6 +75,7 @@ class ArtProcessor(FileProcessor):
             else:
                 article_list.append(article)
                 related_ids.append(('product.product', product.id))
+                sent_products.append(product)
 
         if related_ids:
             errors = tools.validate_xml(root)
@@ -84,7 +86,9 @@ class ArtProcessor(FileProcessor):
                 suffix = products[0].id if add_suffix else None
                 self.yc_save_file(root, related_ids, tools, 'ART',
                                   suffix=suffix, cancel_duplicates=True)
-                self.log_message('ART file processed\n')
+                self.log_message('ART file processed, '
+                                 'with the next products: %s\n'
+                                 % [x.default_code for x in sent_products])
         else:
             self.log_message('ART file skipped.\n')
             if full_errors:
@@ -155,10 +159,20 @@ class ArtProcessor(FileProcessor):
                 AND res_id = %s
         """
         self.env.cr.execute(lang_query, (product.product_tmpl_id.id, ))
-        desc_node.append(create('ArticleDescription', product.name,
+        if len(product.name) > 40:
+            _desc = tools._str(product.name)[40]
+            desc_node.append(tools.create_comment(product.name))
+        else:
+            _desc = False
+        desc_node.append(create('ArticleDescription', _desc or product.name,
                                 {'ArticleDescriptionLC': 'en'}))
         for result in self.env.cr.fetchall():
-            desc_node.append(create('ArticleDescription', result[0],
+            if len(result[0]) > 40:
+                _desc = tools._str(result[0])[40]
+                desc_node.append(tools.create_comment(result[0]))
+            else:
+                _desc = False
+            desc_node.append(create('ArticleDescription', _desc or result[0],
                                     {'ArticleDescriptionLC': result[1][:2]}))
 
         return article
