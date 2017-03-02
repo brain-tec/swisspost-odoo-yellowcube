@@ -54,7 +54,8 @@ class WblProcessor(FileProcessor):
                                                'default_supplier_no')))
         header.append(create('SupplierNo', supplier_order_no))
 
-        header.append(create('SupplierName1', record.partner_id.name))
+        self.yc_create_longname_element(tools, header, record.partner_id,
+                                        tag='SupplierName%s')
         header.append(create('SupplierStreet', record.partner_id.street))
         header.append(create('SupplierCountryCode',
                              record.partner_id.country_id.code))

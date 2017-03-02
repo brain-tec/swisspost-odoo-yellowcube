@@ -58,7 +58,8 @@ class TestWblWbaFile(test_base.TestBase):
         ], limit=1)
         self.assertEqual(len(event), 1)
         proc.yc_create_wbl_file(event)
-        self.assertEqual(len(self.backend.file_ids), 1)
+        self.assertEqual(len(self.backend.file_ids), 1,
+                         self.backend.output_for_debug)
         self.assertEqual(self.backend.file_ids[0].transmit, 'out')
 
         # Now, we will create a wba file from the wbl file

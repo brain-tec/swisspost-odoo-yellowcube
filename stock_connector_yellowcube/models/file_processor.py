@@ -53,3 +53,32 @@ class FileProcessor(object):
                 event.info = msg
         if file_record:
             file_record.info += msg
+
+    def yc_create_longname_element(self, tools, node, record, tag='Name%s',
+                                   limit=4, name_limit=35):
+        name = record.name
+
+        name_parts = [name]
+        if len(name) > name_limit:
+            node.append(tools.create_comment(name))
+            idx = 1
+            name_parts = []
+            last_part = None
+            name_words = map(tools._str, name.split())
+            for word in name_words:
+                if idx > limit:
+                    break
+                if last_part is None:
+                    last_part =\
+                        word if len(word) < name_limit else word[:name_limit]
+                elif len(last_part) + len(word) >= name_limit:
+                    idx += 1
+                    name_parts.append(last_part)
+                    last_part = word
+                else:
+                    last_part = "%s %s" % (last_part, word)
+
+        idx = 1
+        for part in name_parts:
+            node.append(tools.create_element(tag % idx, part))
+            idx += 1
