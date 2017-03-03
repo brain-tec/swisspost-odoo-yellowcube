@@ -15,6 +15,7 @@
                         <field name="sftp_username"/>
                         <field name="sftp_password"/>
                         <field name="sftp_rsa_key"/>
+                        <field name="sftp_read_attrs"/>
                     </group>
                 </group>
             </field>
