@@ -29,7 +29,7 @@ class TestSFTP(TransactionCase):
     _sftp_config_file = None
 
     def _unlink_if_exists(self, path):
-        if os.path.exists(path):
+        if path and os.path.exists(path):
             os.unlink(path)
 
     def setUp(self):
@@ -85,6 +85,7 @@ class TestSFTP(TransactionCase):
                 'sftp_username': 'admin',
                 'sftp_password': 'admin',
                 'sftp_rsa_key': None,
+                'sftp_read_attrs': False,
             }
             _, self._sftp_config_file = mkstemp()
             with open(self._sftp_config_file, 'w') as fp:
@@ -103,8 +104,9 @@ class TestSFTP(TransactionCase):
         if self._sftp_process:
             logger.debug('Stopping sftp server')
             self._sftp_process.terminate()
-        self._unlink_if_exists(self._sftp_key_file)
-        self._unlink_if_exists(self._sftp_key_file + '.pub')
+        if self._sftp_key_file:
+            self._unlink_if_exists(self._sftp_key_file)
+            self._unlink_if_exists(self._sftp_key_file + '.pub')
         self._unlink_if_exists(self._sftp_config_file)
         super(TestSFTP, self).tearDown()
 
@@ -141,6 +143,13 @@ class TestSFTP(TransactionCase):
         self._unlink_if_exists('{0}.remote_get'.format(self._sftp_key_file))
         self._unlink_if_exists('{0}.remote_put'.format(self._sftp_key_file))
 
+    def test_connection_list_put_get_and_remove_with_attrs(self):
+        if not self.prepare_test():
+            logger.warning("Ignoring SFTP tests")
+            return
+        self.backend.transport_id.sftp_read_attrs = True
+        self.test_connection_list_put_get_and_remove()
+
     def test_connection_list_put_and_get_different_connections(self):
         """
         This test tests the connection to an SFTP server in local,
@@ -165,6 +174,14 @@ class TestSFTP(TransactionCase):
         self._unlink_if_exists('{0}.remote_get'.format(self._sftp_key_file))
         self._unlink_if_exists('{0}.remote_put'.format(self._sftp_key_file))
 
+    def test_connection_list_put_and_get_different_connections_with_attrs(
+            self):
+        if not self.prepare_test():
+            logger.warning("Ignoring SFTP tests")
+            return
+        self.backend.transport_id.sftp_read_attrs = True
+        self.test_connection_list_put_and_get_different_connections()
+
     def test_stock_connection_methods(self):
         """
         This test tests the stock.connect methods,
@@ -173,5 +190,8 @@ class TestSFTP(TransactionCase):
         if not self.prepare_test():
             logger.warning("Ignoring SFTP tests")
             return
+        self.assertTrue(self.backend.synchronize_files(),
+                        self.backend.output_for_debug)
+        self.backend.transport_id.sftp_read_attrs = True
         self.assertTrue(self.backend.synchronize_files(),
                         self.backend.output_for_debug)

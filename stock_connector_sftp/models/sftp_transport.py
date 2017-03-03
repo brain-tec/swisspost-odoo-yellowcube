@@ -41,6 +41,7 @@ class SFTPTransport:
             json_config.get('sftp_path', None)
         self.rsa_key = backend.transport_id.sftp_rsa_key or\
             json_config.get('sftp_rsa_key', None)
+        self.read_attrs = backend.transport_id.sftp_read_attrs
         self.retries = 3
 
     def test_connection(self):
@@ -80,9 +81,13 @@ class SFTPTransport:
 
     def list_dir(self):
         result = []
-        for remote_file in self.connection.listdir_attr():
-            if remote_file.st_mode & stat.S_IFREG:
-                result.append(remote_file.filename)
+        if self.read_attrs:
+            for remote_file in self.connection.listdir_attr():
+                if remote_file.st_mode & stat.S_IFREG:
+                    result.append(remote_file.filename)
+        else:
+            for name in self.connection.listdir():
+                result.append(name)
         return result
 
     def open(self):

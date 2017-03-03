@@ -17,6 +17,8 @@ class StockConnectorTransportExt(models.Model):
     sftp_username = fields.Char('Username (override)')
     sftp_rsa_key = fields.Text('RSA key (override)')
     sftp_path = fields.Char('Path (override)')
+    sftp_read_attrs = fields.Boolean('Read attributes before download',
+                                     default=False)
 
     @api.model
     def select_versions(self):
