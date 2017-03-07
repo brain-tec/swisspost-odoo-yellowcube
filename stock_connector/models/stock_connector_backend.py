@@ -66,7 +66,7 @@ class StockConnectorBackend(models.Model):
     @api.one
     def compute_action_rule_ids(self):
         models = self.env['ir.model'].search([
-            ('name', 'in', [
+            ('model', 'in', [
                 'stock_connector.backend',
                 'stock_connector.event',
                 'stock_connector.file',
@@ -78,7 +78,6 @@ class StockConnectorBackend(models.Model):
             ('active', '=', True),
             ('active', '=', False),
         ])
-        _logger.info(self.action_rule_ids.mapped('name'))
 
     @api.one
     def _get_file_count(self):
@@ -170,6 +169,13 @@ class StockConnectorBackend(models.Model):
                    .process_events() or True
 
     @api.multi
+    def process_file(self, file_record):
+        """
+        This method gets notified of new events pending events
+        """
+        return self.get_processor().process_file(file_record) or True
+
+    @api.multi
     def synchronize_backend(self, auto=False):
         """
         This method synchronizes the warehouse and the external warehouse
@@ -216,6 +222,12 @@ class StockConnectorBackend(models.Model):
 
         value = missing(record) if callable(missing) else missing
         if value:
+            if isinstance(value, int):
+                # If type integer, we can avoid collisions
+                #  Trick: Pass as missing 1, and continuous numbers will be
+                #  assign for each collision
+                while self.find_binding(value, group):
+                    value += 1
             vals = {
                 'backend_id': self.id,
                 'res_model': res_model,
@@ -258,6 +270,7 @@ class StockConnectorBackend(models.Model):
             'synchronize_backend',
             'synchronize_files',
         ]
+        self.output_for_debug = 'Automatized process\n\n'
         for method_name in methods:
             savepoint_name = "stock_connector_backend_automatize_%s_%s" % (
                 self.id, method_name)
@@ -267,8 +280,10 @@ class StockConnectorBackend(models.Model):
                     method = getattr(self, method_name)
                     method(auto=True)
             except Exception as e:
-                _logger.error('%s: %s' % (method_name, str(e)))
+                error_text = '%s: %s' % (method_name, str(e))
+                _logger.error(error_text)
                 self.env.cr.execute(SQL_ROLLBACK % savepoint_name)
                 self.env.invalidate_all()
+                self.output_for_debug += error_text + '\n'
             else:
                 self.env.cr.execute(SQL_RELEASE % savepoint_name)

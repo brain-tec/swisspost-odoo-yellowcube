@@ -55,7 +55,7 @@ class WabProcessor(FileProcessor):
         header.append(create('DepositorNo',
                              self.yc_get_parameter('depositor_no')))
         order_no = get_binding(record, WAB_WAR_ORDERNO_GROUP,
-                               lambda s: str(s.id))
+                               lambda s: s.id)
         header.append(create('CustomerOrderNo', order_no))
         header.append(create('CustomerOrderDate',
                              record.min_date.split(' ')[0].replace('-', '')))
@@ -105,7 +105,7 @@ class WabProcessor(FileProcessor):
             order_positions.append(position)
             pos_no = get_binding(line,
                                  'CustomerOrderNo{0}'.format(order_no),
-                                 lambda s: str(pos_no_idx))
+                                 lambda s: pos_no_idx)
             position.append(create('PosNo', pos_no))
             position.append(create('ArticleNo',
                                    line.product_id.default_code or ''))
@@ -125,6 +125,7 @@ class WabProcessor(FileProcessor):
             self.log_message(
                 'WAB file errors:\n{0}\n'.format('\n'.join(errors)),
                 event=picking_event)
+            picking_event.state = 'error'
         else:
             related_ids = [
                 ('stock_connector.event', picking_event.id),

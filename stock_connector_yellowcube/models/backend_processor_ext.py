@@ -96,16 +96,19 @@ class BackendProcessorExt(BackendProcessor):
             ('state', '=', 'ready'),
         ])
         for file_to_import in files_to_import:
-            if self.file_type_is_enable(file_to_import.type):
-                proc = self.processors.get(file_to_import.type)
-                if proc:
-                    proc(self, file_to_import)
+            self._process_file(file_to_import)
 
         self.backend_record.output_for_debug += 'Ready for some exports\n'
         # Generating ART files
         products_to_export = self.yc_find_product_for_art()
         if products_to_export and self.file_type_is_enable('art'):
             self.yc_create_art(products_to_export)
+
+    def process_file(self, file_record):
+        if self.file_type_is_enable(file_record.type):
+            proc = self.processors.get(file_record.type)
+            if proc:
+                proc(self, file_record)
 
     def yc_create_art(self, products_to_export):
         """

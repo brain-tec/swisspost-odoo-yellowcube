@@ -12,6 +12,16 @@ from openerp import models, fields, api
 class StockPickingExt(models.Model):
     _inherit = 'stock.picking'
 
+    related_event_ids = fields.One2many(
+        'stock_connector.event', 'res_id', 'Backend Events',
+        domain=[('res_model', '=', 'stock.picking')], readonly=True
+    )
+    related_file_ids = fields.One2many(
+        'stock_connector.file', None,
+        'Backend Files', readonly=True,
+        compute='_get_related_file_ids'
+    )
+
     return_type_id = fields.Many2one('stock.picking.return_type',
                                      'Return Type')
 
@@ -29,3 +39,11 @@ class StockPickingExt(models.Model):
             vals['do_not_sync_with_connector'] \
                 = picking_type.do_not_sync_with_connector
         return super(StockPickingExt, self).create(vals)
+
+    @api.one
+    def _get_related_file_ids(self):
+        relation_records = self.env['stock_connector.file.record'].search([
+            ('res_model', '=', 'stock.picking'),
+            ('res_id', '=', self.id)
+        ])
+        self.related_file_ids = relation_records.mapped('parent_id')
