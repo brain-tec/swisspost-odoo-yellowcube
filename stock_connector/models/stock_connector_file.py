@@ -6,11 +6,14 @@
 #
 #    See LICENSE file for full licensing details.
 ##############################################################################
-from openerp import models, fields, api
+from openerp import models, fields, api, exceptions
+import logging
+logger = logging.getLogger(__name__)
 
 
 class StockConnectorFile(models.Model):
     _name = 'stock_connector.file'
+    _description = 'Warehouse File'
 
     @api.model
     def select_state(self):
@@ -65,3 +68,29 @@ class StockConnectorFile(models.Model):
                 'default_res_id': self.id,
             },
         }
+
+    @api.multi
+    def process_file(self):
+        self.ensure_one()
+
+        backend_id = self.env.context.get('backend_id', False)
+        backend_env = self.env['stock_connector.backend']
+        auto_backend = self.env.context.get('auto_backend', False)
+        if not backend_id:
+            backends = backend_env.search([])
+            if len(backends) == 1:
+                backend_id = backends.id
+        if not backend_id:
+            if auto_backend:
+                last = False
+                for backend_id in backend_env.search([]).ids:
+                    last = self.with_context(
+                        backend_id=backend_id,
+                    ).process_file()
+                return last
+            else:
+                raise exceptions.UserError(
+                    'Unknown Backend. Open through backend form view.')
+
+        logger.info('Processing file %s' % self.id)
+        return backend_env.browse(backend_id).process_file(self) or True

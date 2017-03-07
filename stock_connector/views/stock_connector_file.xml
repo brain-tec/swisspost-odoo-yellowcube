@@ -33,6 +33,10 @@
                                     <div t-attf-class="kanban_stock_connector_file_type_#{record.type.raw_value or ''}">
                                         <field name="type"/>
                                     </div>
+
+                                    <div t-if="record.state.raw_value=='ready'">
+	                                    <button type="object" name="process_file">Process</button>
+	                                </div>
                                 </div>
                                 <div class="oe_clear"></div>
                             </div>

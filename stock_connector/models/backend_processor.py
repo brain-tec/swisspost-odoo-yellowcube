@@ -6,10 +6,12 @@
 #
 #    See LICENSE file for full licensing details.
 ##############################################################################
+from openerp import api
 from openerp.addons.connector.connector import ConnectorUnit
 from openerp.addons.connector import backend
 import re
 import logging
+from .constants import SQL_SAVEPOINT, SQL_ROLLBACK, SQL_RELEASE
 logger = logging.getLogger(__name__)
 # Here we define the backend and the current version
 stock_backend = backend.Backend('stock')
@@ -44,6 +46,39 @@ class BackendProcessor(ConnectorUnit):
         transport = self.backend_record.\
             transport_id.get_transport().setup(self.backend_record)
         return transport.test_connection()
+
+    def use_failsafe_processing(self):
+        logger.debug("Implement your own failsafe check, for safety")
+        return True
+
+    def _process_file(self, file_record):
+        savepoint_name = "stock_connector_backend_process_file_%s" \
+                         % file_record.id
+        if not self.use_failsafe_processing():
+            return self.process_file(file_record)
+
+        result = False
+        try:
+            with api.Environment.manage():
+                self.env.cr.execute(SQL_SAVEPOINT % savepoint_name)
+                result = self.process_file(file_record) or True
+        except Exception as e:
+            logger.error(str(e))
+            old_info = file_record.info or ''
+            self.env.cr.execute(
+                SQL_ROLLBACK % savepoint_name)
+            file_record.write({
+                'info': 'Exception %s\n\n%s' % (str(e), old_info),
+                'state': 'error',
+            })
+            self.env.invalidate_all()
+        else:
+            self.env.cr.execute(
+                SQL_RELEASE % savepoint_name)
+        return result
+
+    def process_file(self, file_record):
+        logger.info('Unimplemented feature')
 
     def synchronize_files(self):
         backend = self.backend_record

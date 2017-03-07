@@ -59,6 +59,7 @@ def CheckEvents():
 
 class StockConnectorEvent(models.Model):
     _name = 'stock_connector.event'
+    _description = 'Warehouse Event'
 
     @api.model
     def select_state(self):
@@ -100,6 +101,10 @@ class StockConnectorEvent(models.Model):
         backend_env = self.env['stock_connector.backend']
         auto_backend = self.env.context.get('auto_backend', False)
         if not backend_id:
+            backends = backend_env.search([])
+            if len(backends) == 1:
+                backend_id = backends.id
+        if not backend_id:
             if auto_backend:
                 last = False
                 for backend_id in backend_env.search([]).ids:
@@ -109,7 +114,7 @@ class StockConnectorEvent(models.Model):
                 return last
             else:
                 raise exceptions.UserError(
-                    'Missing Backend. Open through backend form view.')
+                    'Unknown Backend. Open through backend form view.')
 
         logger.info('Processing event %s' % self.id)
         return backend_env.browse(backend_id).process_event(self) or True

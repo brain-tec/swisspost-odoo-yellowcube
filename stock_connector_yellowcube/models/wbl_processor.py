@@ -63,7 +63,7 @@ class WblProcessor(FileProcessor):
         header.append(create('SupplierCity', record.partner_id.city))
 
         order_no = get_binding(record, WBL_WBA_ORDERNO_GROUP,
-                               lambda s: str(s.id))
+                               lambda s: s.id)
         header.append(create('SupplierOrderNo', order_no))
         if record.date:
             header.append(create('SupplierOrderDate',
@@ -82,7 +82,7 @@ class WblProcessor(FileProcessor):
             position = create('Position')
             order_positions.append(position)
             pos_no = get_binding(line, 'SupplierOrderNo{0}'.format(order_no),
-                                 lambda s: str(pos_no_idx))
+                                 lambda s: pos_no_idx)
             position.append(create('PosNo', pos_no))
             position.append(create('ArticleNo',
                                    line.product_id.default_code or ''))
@@ -96,6 +96,7 @@ class WblProcessor(FileProcessor):
             self.log_message(
                 'WBL file errors:\n{0}\n'.format(errors),
                 event=picking_event)
+            picking_event.state = 'error'
         else:
             related_ids = [
                 ('stock_connector.event', picking_event.id),

@@ -13,6 +13,12 @@
                     name="do_not_sync_with_connector"
                     attrs="{'readonly': [('state', 'in', ['cancel', 'done'])]}"
                 />
+                <field
+                    name="related_event_ids"
+                    groups="base.group_no_one"/>
+                <field
+                    name="related_file_ids"
+                    groups="base.group_no_one"/>
             </field>
         </field>
     </record>
