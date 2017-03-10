@@ -11,6 +11,10 @@ import time
 import tempfile
 import logging
 from StringIO import StringIO
+
+from paramiko import SSHClient
+from paramiko import WarningPolicy
+
 from openerp.exceptions import UserError
 from openerp.tools import ustr
 import stat
@@ -46,6 +50,11 @@ class SFTPTransport:
 
     def test_connection(self):
         with self:
+            try:
+                stdin, stdout, stderr = self.transport.exec_command('locale')
+                _logger.info('locale: %s' % stdout.read())
+            except Exception as e:
+                _logger.info('Error when querying for locale: %s' % str(e))
             _logger.debug(self.list_dir())
         return True
 
@@ -114,14 +123,17 @@ class SFTPTransport:
         while self.connection is None:
             try:
                 # Opens the connection.
-                transport = paramiko.Transport((path, port))
-                transport.logger = _logger
-                transport.connect(username=self.username,
-                                  password=self.password,
-                                  pkey=rsa_key)
-                ssh = paramiko.SFTPClient.from_transport(transport)
-                self.transport = transport
-                self.connection = ssh
+                ssh = SSHClient()
+                ssh.logger = _logger
+                ssh.set_missing_host_key_policy(WarningPolicy())
+                ssh.connect(
+                    path, port=port,
+                    username=self.username,
+                    password=self.password,
+                    pkey=rsa_key)
+                sftp = ssh.open_sftp()
+                self.transport = ssh
+                self.connection = sftp
             except:
                 if retries <= 0:
                     raise
