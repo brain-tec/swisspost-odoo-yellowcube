@@ -59,6 +59,7 @@ class FileProcessor(object):
         name = record.name
 
         name_parts = [name]
+        partner_name_limit = limit - 1
         if len(name) > name_limit:
             node.append(tools.create_comment(name))
             idx = 1
@@ -66,7 +67,7 @@ class FileProcessor(object):
             last_part = None
             name_words = map(tools._str, name.split())
             for word in name_words:
-                if idx > limit:
+                if idx > partner_name_limit:
                     break
                 if last_part is None:
                     last_part =\
@@ -78,7 +79,12 @@ class FileProcessor(object):
                 else:
                     last_part = "%s %s" % (last_part, word)
 
+        if record.street2:
+            name_parts.append(record.street2)
+
         idx = 1
         for part in name_parts:
             node.append(tools.create_element(tag % idx, part))
             idx += 1
+            if idx > limit:
+                break
