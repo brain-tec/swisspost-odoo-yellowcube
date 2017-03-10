@@ -98,6 +98,7 @@ class TestSFTP(TransactionCase):
         self.backend.transport_id = self.env['stock_connector.transport']\
             .create(values2)
         self.transport = sftp_transport.SFTPTransport(self.backend)
+        self.transport.retries = 0
         return True
 
     def tearDown(self):
