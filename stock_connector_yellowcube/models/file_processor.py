@@ -62,25 +62,11 @@ class FileProcessor(object):
         partner_name_limit = limit - 1
         if len(name) > name_limit:
             node.append(tools.create_comment(name))
-            idx = 1
-            name_parts = []
-            last_part = None
-            name_words = map(tools._str, name.split())
-            for word in name_words:
-                if idx > partner_name_limit:
-                    break
-                if last_part is None:
-                    last_part =\
-                        word if len(word) < name_limit else word[:name_limit]
-                elif len(last_part) + len(word) >= name_limit:
-                    idx += 1
-                    name_parts.append(last_part)
-                    last_part = word
-                else:
-                    last_part = "%s %s" % (last_part, word)
+            name_parts = self._yc_chop_long_name(tools, name, name_limit,
+                                                 partner_name_limit)
 
         if record.street2:
-            name_parts.append(record.street2)
+            name_parts.extend(self._yc_chop_long_name(tools, record.street2))
 
         idx = 1
         for part in name_parts:
@@ -88,3 +74,23 @@ class FileProcessor(object):
             idx += 1
             if idx > limit:
                 break
+
+    def _yc_chop_long_name(self, tools, name, name_limit=35,
+                           partner_name_limit=1):
+        idx = 1
+        name_parts2 = []
+        last_part = None
+        name_words = map(tools._str, name.split())
+        for word in name_words:
+            if idx > partner_name_limit:
+                break
+            if last_part is None:
+                last_part = \
+                    word if len(word) < name_limit else word[:name_limit]
+            elif len(last_part) + len(word) >= name_limit:
+                idx += 1
+                name_parts2.append(last_part)
+                last_part = word
+            else:
+                last_part = "%s %s" % (last_part, word)
+        return name_parts2

@@ -116,3 +116,26 @@ class WblProcessor(FileProcessor):
             id=partner.id,
             name=partner.name,
         )
+
+    def yc_create_longname_element(self, tools, node, record, tag='Name%s',
+                                   limit=4, name_limit=35):
+        name = record.name
+
+        name_parts = [name]
+        partner_name_limit = limit - 2
+        if len(name) > name_limit:
+            node.append(tools.create_comment(name))
+            name_parts = self._yc_chop_long_name(tools, name, name_limit,
+                                                 partner_name_limit)
+        if record.additional_description:
+            name_parts.extend(self._yc_chop_long_name(tools, record
+                                                      .additional_description))
+        if record.street2:
+            name_parts.extend(self._yc_chop_long_name(tools, record.street2))
+
+        idx = 1
+        for part in name_parts:
+            node.append(tools.create_element(tag % idx, part))
+            idx += 1
+            if idx > limit:
+                break
