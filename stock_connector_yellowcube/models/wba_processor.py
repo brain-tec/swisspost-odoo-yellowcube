@@ -26,6 +26,8 @@ class WbaProcessor(FileProcessor):
             'Reading WBA file {0}\n'.format(wba_file.name),
             file_record=wba_file,
             timestamp=True)
+        if not self.validate_file(wba_file):
+            return
 
         errors = []
         all_wba_ctx = []
@@ -46,16 +48,10 @@ class WbaProcessor(FileProcessor):
                 wba_ctx.ignore_posno = False
                 wba_ctx.stop = False
 
-                order_no = self.path(wba, '//wba:SupplierOrderNo')[0].text
-                wba_ctx.order_no = order_no
-                picking = self.find_binding(order_no,
-                                            WBL_WBA_ORDERNO_GROUP).record
-                if not picking:
-                    errors.append(_('Cannot find binding'
-                                    'for order {0}').format(order_no))
+                picking = self.yc_wba_get_order(wba_ctx)
+
+                if wba_ctx.stop:
                     continue
-                else:
-                    wba_ctx.picking = picking
 
                 for wba_line in self.path(wba, '//wba:GoodsReceiptDetail'):
                     self.yc_read_wba_line(wba_ctx, wba_line)
@@ -69,10 +65,7 @@ class WbaProcessor(FileProcessor):
                 file_record=wba_file)
         else:
             for wba_ctx in all_wba_ctx:
-                self.yc_process_wba_split(
-                    wba_ctx.picking,
-                    wba_ctx.related_ids,
-                    wba_ctx.splits)
+                self.yc_wba_process_changes(wba_ctx)
                 related = ('stock.picking', picking.id)
                 if related not in wba_ctx.related_ids:
                     wba_ctx.related_ids.append(related)
@@ -80,6 +73,25 @@ class WbaProcessor(FileProcessor):
             wba_file.child_ids = [(0, 0, {'res_model': x[0], 'res_id': x[1]})
                                   for x in wba_ctx.related_ids]
             self.log_message('WBA file processed\n', file_record=wba_file)
+
+    def yc_wba_process_changes(self, wba_ctx):
+        self.yc_process_wba_split(
+            wba_ctx.picking,
+            wba_ctx.related_ids,
+            wba_ctx.splits)
+
+    def yc_wba_get_order(self, wba_ctx):
+        order_no = self.path(wba_ctx.xml, '//wba:SupplierOrderNo')[0].text
+        wba_ctx.order_no = order_no
+        picking = self.find_binding(order_no,
+                                    WBL_WBA_ORDERNO_GROUP).record
+        if not picking:
+            wba_ctx.errors.append(_('Cannot find binding'
+                                    'for order {0}').format(order_no))
+            wba_ctx.stop = True
+        else:
+            wba_ctx.picking = picking
+        return picking
 
     def yc_process_wba_split(self, picking, related_ids, splits):
         """

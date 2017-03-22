@@ -28,6 +28,8 @@ class WarProcessor(FileProcessor):
             'Reading WAR file {0}\n'.format(war_file.name),
             file_record=war_file,
             timestamp=True)
+        if not self.validate_file(war_file):
+            return
 
         errors = []
         related_ids = []

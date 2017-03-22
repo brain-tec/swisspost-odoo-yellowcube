@@ -17,10 +17,12 @@ WBL_WBA_ORDERNO_GROUP = 'WBL_WBA_ORDERNO_GROUP'
 
 class FileProcessor(object):
     _backend = None
+    _xml_type = None
 
     def __init__(self, backend, _type=None):
         self._backend = backend
         if _type is not None:
+            self._xml_type = _type
             self.tools = XmlTools(_type=_type)
 
     def __getattr__(self, attr):
@@ -94,3 +96,13 @@ class FileProcessor(object):
             else:
                 last_part = "%s %s" % (last_part, word)
         return name_parts2
+
+    def validate_file(self, file_record):
+        xml_root = self.tools.open_xml(file_record.content,
+                                       _type=self._xml_type)
+        error = self.tools.validate_xml(xml_root)
+        if error:
+            self.log_message(error, file_record=file_record, timestamp=True)
+            file_record.state = 'error'
+            return False
+        return True

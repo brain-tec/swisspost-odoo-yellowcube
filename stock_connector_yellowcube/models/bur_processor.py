@@ -29,6 +29,8 @@ class BurProcessor(FileProcessor):
             'Reading BUR file {0}\n'.format(bur_file.name),
             file_record=bur_file,
             timestamp=True)
+        if not self.validate_file(bur_file):
+            return
 
         errors = []
         related_ids = []
