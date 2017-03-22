@@ -40,4 +40,5 @@ class TestFileInput(test_base.TestBase):
                               self.backend.output_for_debug)
             self.assertEquals(input_file.state, 'error',
                               'File is empty, so it must be '
-                              'detected as an error')
+                              'detected as an error: %s' %
+                              self.backend.output_for_debug)

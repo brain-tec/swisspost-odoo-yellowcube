@@ -29,6 +29,8 @@ class BarProcessor(FileProcessor):
             'Reading BAR file {0}\n'.format(bar_file.name),
             file_record=bar_file,
             timestamp=True)
+        if not self.validate_file(bar_file):
+            return
 
         errors = []
         related_ids = []
