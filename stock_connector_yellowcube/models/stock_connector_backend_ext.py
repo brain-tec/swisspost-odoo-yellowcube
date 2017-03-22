@@ -18,6 +18,7 @@ OPERATING_MODE = [
 class StockConnectorBackendExt(models.Model):
     _inherit = 'stock_connector.backend'
 
+    yc_parameter_validate_files = fields.Boolean(default=True)
     yc_parameter_create_art_multifile = fields.Boolean(default=True)
     yc_parameter_on_art_set_missing_default_code = fields.Boolean(
         'Set product default_code if missing on ART file creation',
