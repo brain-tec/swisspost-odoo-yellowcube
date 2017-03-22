@@ -19,6 +19,7 @@
                                     <field name="yc_parameter_plant_id" colspan="2"/>
                                 </group>
                                 <group colspan="2" col="2" string="Configuration">
+                                    <field name="yc_parameter_validate_files" />
                                     <field name="yc_parameter_create_art_multifile" />
                                     <field name="yc_parameter_default_supplier_no" />
                                     <field name="yc_parameter_on_art_set_missing_default_code" />

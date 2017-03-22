@@ -43,12 +43,13 @@ class WbaProcessor(FileProcessor):
                 wba_ctx.related_ids = []
                 wba_ctx.file = wba_file
                 # Node specific parameters
+                wba_ctx.picking_write = {}
                 wba_ctx.splits = []
                 wba_ctx.xml = wba
                 wba_ctx.ignore_posno = False
                 wba_ctx.stop = False
 
-                picking = self.yc_wba_get_order(wba_ctx)
+                wba_ctx.picking = self.yc_wba_get_order(wba_ctx)
 
                 if wba_ctx.stop:
                     continue
@@ -66,7 +67,7 @@ class WbaProcessor(FileProcessor):
         else:
             for wba_ctx in all_wba_ctx:
                 self.yc_wba_process_changes(wba_ctx)
-                related = ('stock.picking', picking.id)
+                related = ('stock.picking', wba_ctx.picking.id)
                 if related not in wba_ctx.related_ids:
                     wba_ctx.related_ids.append(related)
             wba_file.state = 'done'
@@ -79,6 +80,8 @@ class WbaProcessor(FileProcessor):
             wba_ctx.picking,
             wba_ctx.related_ids,
             wba_ctx.splits)
+        if wba_ctx.picking_write:
+            wba_ctx.picking.write(wba_ctx.picking_write)
 
     def yc_wba_get_order(self, wba_ctx):
         order_no = self.path(wba_ctx.xml, '//wba:SupplierOrderNo')[0].text

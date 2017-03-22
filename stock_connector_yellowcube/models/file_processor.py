@@ -98,6 +98,8 @@ class FileProcessor(object):
         return name_parts2
 
     def validate_file(self, file_record):
+        if not self._backend.backend_record.yc_parameter_validate_files:
+            return True
         xml_root = self.tools.open_xml(file_record.content,
                                        _type=self._xml_type)
         error = self.tools.validate_xml(xml_root)
