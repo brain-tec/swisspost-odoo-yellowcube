@@ -78,6 +78,14 @@ class WabProcessor(FileProcessor):
                               record.partner_id.country_id.code))
         partner.append(create('ZIPCode', record.partner_id.zip))
         partner.append(create('City', record.partner_id.city))
+        if record.partner_id.phone:
+            partner.append(create('PhoneNo', record.partner_id.phone))
+        if record.partner_id.mobile:
+            partner.append(create('MobileNo', record.partner_id.mobile))
+        if record.partner_id.fax:
+            partner.append(create('FaxNo', record.partner_id.fax))
+        if record.partner_id.email:
+            partner.append(create('Email', record.partner_id.email))
         partner.append(create('LanguageCode',
                               (record.partner_id.lang or 'de')[:2]))
 

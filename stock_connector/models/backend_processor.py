@@ -103,7 +103,6 @@ class BackendProcessor(ConnectorUnit):
                         ('name', '=', filename),
                         ('backend_id', '=', backend.id),
                         ('transmit', '=', 'in'),
-                        ('state', '!=', 'cancel'),
                     ], limit=1, count=True):
                         transport.get_file(filename)
                     elif backend.remove_remote_files:
