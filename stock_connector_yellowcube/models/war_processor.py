@@ -152,6 +152,9 @@ class WarProcessor(FileProcessor):
                 lambda x: x.product_qty == x.qty_done
         )):
             picking.action_done()
+        self.yc_prepare_related_pickings(picking, related_ids)
+
+    def yc_prepare_related_pickings(self, picking, related_ids):
         states = ['waiting', 'confirmed', 'partially_available']
         for related in self. \
                 yc_get_related_pickings_by_destination(picking,
