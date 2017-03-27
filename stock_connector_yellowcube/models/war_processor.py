@@ -137,21 +137,23 @@ class WarProcessor(FileProcessor):
     def yc_process_war_splits(self, picking, related_ids, splits):
         """
         """
-
         for split in splits:
             operation = split['operation']
             related = ('stock.pack.operation', operation.id)
             if related not in related_ids:
                 related_ids.append(related)
             operation.qty_done += split['qty']
-        self.yc_confirm_picking(picking, related_ids)
+            operation.remaining_qty -= split['qty']
+        self.yc_confirm_picking(picking, related_ids, force=False)
 
-    def yc_confirm_picking(self, picking, related_ids):
+    def yc_confirm_picking(self, picking, related_ids, force=True):
         picking.do_recompute_remaining_quantities()
         if all(picking.pack_operation_product_ids.mapped(
                 lambda x: x.product_qty == x.qty_done
         )):
             picking.action_done()
+        elif force:
+            picking.do_transfer()
         self.yc_prepare_related_pickings(picking, related_ids)
 
     def yc_prepare_related_pickings(self, picking, related_ids):

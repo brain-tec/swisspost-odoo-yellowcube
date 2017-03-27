@@ -78,6 +78,18 @@ class StockConnectorEvent(models.Model):
         else:
             self.name = False
 
+    def create(self, vals):
+        ret = super(StockConnectorEvent, self).create(vals)
+        if ret.res_id != 0 and self.search([
+            ('res_model', '=', ret.res_model),
+            ('res_id', '=', ret.res_id),
+            ('code', '=', ret.code),
+            ('state', '=', ret.state),
+        ], count=True) > 1:
+            logger.warning('Duplicated event %s:%s %s' %
+                           (ret.res_model, ret.res_id, ret.code))
+        return ret
+
     name = fields.Char(compute='_get_name', store=False)
     res_model = fields.Char('Model', required=True, index=True)
     res_id = fields.Integer('Resource ID', required=True, index=True)
