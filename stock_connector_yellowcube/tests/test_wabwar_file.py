@@ -39,6 +39,10 @@ class TestWabWarFile(test_base.TestBase):
         picking_type.return_type_id = self\
             .ref('stock_connector_yellowcube.yc_stock_picking_return_type_r01')
         # Now we create a picking, and confirm it
+        self._change_product_qty(self.ref('product.product_product_7'),
+                                 100, check=False)
+        self._change_product_qty(self.ref('product.product_product_9'),
+                                 100, check=False)
         self.sale = self.env['sale.order'].sudo(self.user).create({
             'partner_id': self.partner_customer.id,
             'order_line': [
@@ -63,7 +67,7 @@ class TestWabWarFile(test_base.TestBase):
             'carrier_id': self.ref('delivery.delivery_carrier')
         })
         self.picking.action_confirm()
-        self.picking.sudo().force_assign()
+        self.picking.sudo().action_assign()
 
     def test_create_wab_and_war_files_by_sale_corfirmation(self):
         self.test_create_wab_and_war_files(True)
@@ -115,7 +119,8 @@ class TestWabWarFile(test_base.TestBase):
                        for x in war_file.child_ids
                        if x.res_model == 'stock.picking'],
                       self.backend.output_for_debug)
-        self.assertEquals(picking_to_process.state, 'done')
+        self.assertEquals(picking_to_process.state, 'done',
+                          self.backend.output_for_debug)
         for move in picking_to_process.pack_operation_product_ids:
             self.assertEquals(move.state, 'done')
 
@@ -209,3 +214,22 @@ class TestWabWarFile(test_base.TestBase):
         self.assertEquals(tools.validate_xml(war_root), None)
         war_content = tools.xml_to_string(war_root)
         return war_content
+
+    def _change_product_qty(self, product_id, qty, check=True,
+                            location_id=None):
+        if location_id is None:
+            location_id = self.ref('stock.stock_location_stock')
+        self.env['stock.change.product.qty'].create({
+            'product_id': product_id,
+            'new_quantity': qty,
+            'location_id': location_id
+        }).change_product_qty()
+        if check:
+            product = self.env['product.product'].with_context(
+                {'location_id': location_id})\
+                .browse(product_id)
+            self.assertEquals(
+                qty,
+                product._product_available()[product_id]['qty_available'],
+                product.default_code
+            )
