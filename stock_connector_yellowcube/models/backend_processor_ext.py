@@ -53,6 +53,8 @@ class BackendProcessorExt(BackendProcessor):
         self.processors = PROCESSORS_FOR_IMPORT.copy()
 
     def file_type_is_enable(self, _type):
+        if not _type:
+            return False
         _type = _type.lower()
         if _type == 'art':
             return self.backend_record.yc_parameter_sync_products
