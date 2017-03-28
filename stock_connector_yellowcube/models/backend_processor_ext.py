@@ -83,14 +83,7 @@ class BackendProcessorExt(BackendProcessor):
             ('name', 'ilike', '%.xml'),
         ])
         for file_to_detect in files_to_detect:
-            root = etree.XML(str(file_to_detect.content))
-            type_node = root.xpath("//*[local-name() = 'ControlReference']"
-                                   "/*[local-name() = 'Type']")
-            if type_node:
-                file_to_detect.type = type_node[0].text.upper()
-            else:
-                file_to_detect.state = 'error'
-                file_to_detect.info = _('Missing ControlReference with Type')
+            self.yc_detect_file_type(file_to_detect)
         files_to_import = self.env['stock_connector.file'].search([
             ('type', '!=', False),
             ('backend_id', '=', self.backend_record.id),
@@ -106,7 +99,19 @@ class BackendProcessorExt(BackendProcessor):
         if products_to_export and self.file_type_is_enable('art'):
             self.yc_create_art(products_to_export)
 
+    def yc_detect_file_type(self, file_to_detect):
+        root = etree.XML(str(file_to_detect.content))
+        type_node = root.xpath("//*[local-name() = 'ControlReference']"
+                               "/*[local-name() = 'Type']")
+        if type_node:
+            file_to_detect.type = type_node[0].text.upper()
+        else:
+            file_to_detect.state = 'error'
+            file_to_detect.info = _('Missing ControlReference with Type')
+
     def process_file(self, file_record):
+        if not file_record.type:
+            self.yc_detect_file_type(file_record)
         if self.file_type_is_enable(file_record.type):
             proc = self.processors.get(file_record.type)
             if proc:
