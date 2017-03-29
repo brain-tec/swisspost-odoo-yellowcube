@@ -43,11 +43,13 @@ class FileProcessor(object):
     def find_binding(self, *args):
         return self.backend_record.find_binding(*args)
 
-    def log_message(self, msg, event=None, file_record=None, timestamp=False):
+    def log_message(self, msg, event=None, file_record=None, timestamp=False,
+                    backend_silent=False):
         logger.debug(msg)
         if timestamp:
             msg = '%s %s' % (datetime.now(), msg)
-        self.backend_record.output_for_debug += msg
+        if not backend_silent:
+            self.backend_record.output_for_debug += msg
         if event:
             if event.info:
                 event.info += msg
@@ -105,6 +107,12 @@ class FileProcessor(object):
         error = self.tools.validate_xml(xml_root)
         if error:
             self.log_message(error, file_record=file_record, timestamp=True)
+            for key, schema in self.tools.schema_paths.items():
+                self.log_message(
+                    '%s %s' % (key, schema),
+                    file_record=file_record, timestamp=True,
+                    backend_silent=True
+                )
             file_record.state = 'error'
             return False
         return True
