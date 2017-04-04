@@ -8,6 +8,7 @@
 ##############################################################################
 from openerp.tools.translate import _
 from .file_processor import FileProcessor
+from .xml_tools import Dict2Object
 
 
 class BurProcessor(FileProcessor):
@@ -33,22 +34,40 @@ class BurProcessor(FileProcessor):
             return
 
         errors = []
+        info = []
         related_ids = []
         moves_to_do = []
         bindings_to_do = {}
         lot_map = {}
+        ignore_lots = False
+        if self.env['stock.config.settings'].default_get(
+                ['group_stock_production_lot']
+        )['group_stock_production_lot'] == 0:
+            ignore_lots = True
         try:
             for bur_move in self.path(self.tools.open_xml(bur_file.content,
                                                           _type='bur'),
                                       '//bur:BookingDetail'):
-                move_to_do = self.yc_read_bur_move(bindings_to_do, bur_move,
-                                                   errors, lot_map, bur_file)
+                bur_ctx = Dict2Object()
+                # Common values
+                bur_ctx.errors = errors
+                bur_ctx.info = info
+                bur_ctx.related_ids = related_ids
+                bur_ctx.moves_to_do = moves_to_do
+                bur_ctx.bindings_to_do = bindings_to_do
+                bur_ctx.lot_map = lot_map
+                bur_ctx.file = bur_file
+                bur_ctx.ignore_lots = ignore_lots
+                # Node values
+                bur_ctx.xml = bur_move
+
+                move_to_do = self.yc_read_bur_move(bur_ctx)
                 if move_to_do is None:
                     continue
-                moves_to_do.append(move_to_do)
+                bur_ctx.moves_to_do.append(move_to_do)
                 related_key = ('product.product', move_to_do['product_id'])
-                if related_key not in related_ids:
-                    related_ids.append(related_key)
+                if related_key not in bur_ctx.related_ids:
+                    bur_ctx.related_ids.append(related_key)
 
         except Exception as e:
             errors.append(self.tools.format_exception(e))
@@ -68,6 +87,8 @@ class BurProcessor(FileProcessor):
             bur_file.write({'child_ids': [
                 (0, 0, {'res_model': x, 'res_id': y}) for x, y in related_ids
             ]})
+            for msg in info:
+                self.log_message('%s\n' % msg, file_record=bur_file)
             self.log_message('BUR file processed\n', file_record=bur_file)
 
     def yc_process_bur_move(self, lot_map, move_to_do, related_ids):
@@ -78,35 +99,41 @@ class BurProcessor(FileProcessor):
         :param dict related_ids: elements that are touched by this BUR
         """
         if 'restrict_lot_id' in move_to_do:
-            lot = move_to_do['restrict_lot_id']
-            if lot_map[lot] is None:
+            lot_name = move_to_do['restrict_lot_id']
+            if lot_map[lot_name] is None:
                 lot = self.env['stock.production.lot'].search([
-                    ('name', '=', lot),
+                    ('name', '=', lot_name),
                     ('product_id', '=', move_to_do['product_id'])
                 ], limit=1)
                 if not lot:
                     lot = self.env['stock.production.lot'].create({
-                        'name': lot,
+                        'name': lot_name,
                         'product_id': move_to_do['product_id'],
                     })
-                move_to_do['restrict_lot_id'] = lot_map[lot] = lot.id
+                move_to_do['restrict_lot_id'] = lot_map[lot_name] = lot.id
             else:
-                move_to_do['restrict_lot_id'] = lot_map[lot]
+                move_to_do['restrict_lot_id'] = lot_map[lot_name]
         move = self.env['stock.move'].create(move_to_do)
         move.action_done()
         related_ids.append(('stock.move', move.id))
 
-    def yc_read_bur_move(self, bindings_to_do, bur_move, errors, lot_map,
-                         bur_file):
+    def yc_read_bur_move(self, bur_ctx):
         """
         Read a BUR node, and extract the information needed later for the move
-        :param dict bindings_to_do: bindings that are missing for products
-        :param lxml.etree._ElementTree._ElementTree bur_move: move to read
-        :param list errors: list of errors found
-        :param dict lot_map: lots to be found and/or created later
-        :param bur_file: Original BUR file record
+
+        bindings_to_do: bindings that are missing for products
+        bur_move: move to read
+        errors: list of errors found
+        lot_map: lots to be found and/or created later
+        bur_file: Original BUR file record
         :return:
         """
+        bur_move = bur_ctx.xml
+        bur_file = bur_ctx.file
+        errors = bur_ctx.errors
+        bindings_to_do = bur_ctx.bindings_to_do
+        lot_map = bur_ctx.lot_map
+
         move_to_do = {}
         bvposno = self.path(bur_move, 'bur:BVPosNo')[0].text
         move_to_do['name'] = '#'.join([
@@ -171,9 +198,11 @@ class BurProcessor(FileProcessor):
                           .format(yc_article_no))
             return None
         lot = self.path(bur_move, 'bur:Lot')
-        if lot:
+        if lot and not bur_ctx.ignore_lots:
             lot = lot[0].text
             move_to_do['restrict_lot_id'] = lot
             if lot not in lot_map:
                 lot_map[lot] = None
+        elif lot and bur_ctx.ignore_lots:
+            bur_ctx.info.append('WARNING: Lots are ignored!')
         return move_to_do
