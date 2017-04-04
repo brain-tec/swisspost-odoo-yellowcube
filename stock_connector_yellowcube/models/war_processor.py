@@ -150,6 +150,8 @@ class WarProcessor(FileProcessor):
         picking.do_recompute_remaining_quantities()
         if all(picking.pack_operation_product_ids.mapped(
                 lambda x: x.product_qty == x.qty_done
+        )) and all(picking.move_lines.mapped(
+            lambda x: x.state in ['assigned', 'done', 'cancel']
         )):
             picking.action_done()
         elif force:
