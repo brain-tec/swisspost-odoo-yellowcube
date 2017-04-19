@@ -15,6 +15,7 @@ import logging
 import pip
 from tempfile import mkstemp, mkdtemp
 import json
+from paramiko import AutoAddPolicy
 from openerp.addons.stock_connector_sftp.models import sftp_transport
 from openerp.addons.stock_connector.models import backend_processor
 from openerp.tests import TransactionCase
@@ -41,6 +42,7 @@ class TestSFTP(TransactionCase):
             'remove_remote_files': True,
         })
         self.transport = None
+        sftp_transport.SFTPTransport.HOST_KEY_POLICY = AutoAddPolicy()
 
     def prepare_test(self):
         backend_processor.CheckBackends()
