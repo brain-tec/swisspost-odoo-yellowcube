@@ -28,8 +28,15 @@ class TestBurFile(test_base.TestBase):
                     'StorageLocation',
                     'YROD')
 
-    def test_import_bur_file(self):
+    def test_import_bur_file_without_lots(self):
+        return self.test_import_bur_file(ignore_lots=True)
+
+    def test_import_bur_file(self, ignore_lots=False):
         _logger.info('Creating BUR file')
+
+        self.env['stock.config.settings'].create({
+            'group_stock_production_lot': 0 if ignore_lots else 1
+        }).execute()
 
         products = [
             # (product, bind_yc_ArtcileNo, lot)
@@ -68,14 +75,23 @@ class TestBurFile(test_base.TestBase):
             # 'All products have been used'
         )
         self.assertItemsEqual(
-            map(lambda x: (x['product'].id, float(x['qty'])), products),
+            map(lambda x: (
+                x['product'].id,
+                float(x['qty']),
+                None if ignore_lots else x['lot'],
+            ), products),
             bur_file.child_ids.filtered(
                 lambda x: x.res_model == 'stock.move'
             ).mapped(
                 lambda x: x.get_record()
             ).mapped(
-                lambda x: (x.product_id.id, float(x.product_uom_qty))
-            )
+                lambda x: (
+                    x.product_id.id,
+                    float(x.product_uom_qty),
+                    x.restrict_lot_id.name if x.restrict_lot_id else None,
+                )
+            ),
+            bur_file.info
             # 'All products have been processed'
         )
 

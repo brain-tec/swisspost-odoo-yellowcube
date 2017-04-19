@@ -226,7 +226,7 @@ class TestWabWarFile(test_base.TestBase):
         }).change_product_qty()
         if check:
             product = self.env['product.product'].with_context(
-                {'location_id': location_id})\
+                {'location': location_id})\
                 .browse(product_id)
             self.assertEquals(
                 qty,

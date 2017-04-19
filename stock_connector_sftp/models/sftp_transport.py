@@ -19,6 +19,8 @@ from openerp.exceptions import UserError
 from openerp.tools import ustr
 import stat
 import json
+
+
 _logger = logging.getLogger(__name__)
 # _logger.setLevel(logging.DEBUG)
 
@@ -27,6 +29,8 @@ class SFTPTransport:
 
     transport = None
     connection = None
+
+    HOST_KEY_POLICY = WarningPolicy()
 
     def __init__(self, backend):
         self.backend = backend
@@ -125,7 +129,7 @@ class SFTPTransport:
                 # Opens the connection.
                 ssh = SSHClient()
                 ssh.logger = _logger
-                ssh.set_missing_host_key_policy(WarningPolicy())
+                ssh.set_missing_host_key_policy(self.HOST_KEY_POLICY)
                 ssh.connect(
                     path, port=port,
                     username=self.username,
