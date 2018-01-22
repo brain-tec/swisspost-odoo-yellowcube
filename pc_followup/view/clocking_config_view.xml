@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+	<data>
+		<record id="followup_clocking_config_view" model="ir.ui.view">
+			<field name="name">followup_clocking_config_view</field>
+			<field name="model">configuration.data</field>
+			<field name="inherit_id" ref="pc_config.configuration_data_form" />
+			<field name="arch" type="xml">
+				<notebook position="inside">
+
+					<!-- Fills in the sheet for the configuration parameters of the follow-up 
+						clocking. -->
+					<page string="Clocking - Follow-up">
+						<group cols="2">
+							<group string="Follow-up Processing" colspan="1">
+								<div colspan="2">
+									When are the follow-ups processed/updated?
+								</div>
+								<group>
+									<field name="followup_processing_time_of_day" widget="float_time" />
+
+									<field name="followup_processing_monday" />
+									<field name="followup_processing_tuesday" />
+									<field name="followup_processing_wednesday" />
+									<field name="followup_processing_thursday" />
+									<field name="followup_processing_friday" />
+									<field name="followup_processing_saturday" />
+									<field name="followup_processing_sunday" />
+								</group>
+							</group>
+
+							<group string="Follow-up Handling" colspan="1">
+								<div colspan="2">
+									When are the follow-ups handled?
+								</div>
+								<group>
+									<field name="followup_handling_time_of_day" widget="float_time" />
+
+									<field name="followup_handling_monday" />
+									<field name="followup_handling_tuesday" />
+									<field name="followup_handling_wednesday" />
+									<field name="followup_handling_thursday" />
+									<field name="followup_handling_friday" />
+									<field name="followup_handling_saturday" />
+									<field name="followup_handling_sunday" />
+								</group>
+							</group>
+
+                            <group string="Follow-up Sending" colspan="1">
+                                <div colspan="2">
+                                    Everytime follow-ups are handled because of the massive handling scheduler,
+                                    and email is sent making use of the following email template.
+                                </div>
+                                <group>
+                                    <field name="followup_servicedesk_email_template_id" />
+                                    <field name="followup_servicedesk_email_address" />
+                                </group>
+                            </group>
+
+						</group>
+					</page>
+
+				</notebook>
+			</field>
+		</record>
+	</data>
+</openerp>

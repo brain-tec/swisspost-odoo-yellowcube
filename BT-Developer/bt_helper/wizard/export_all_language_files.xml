@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+
+        <record id="view_export_all_languages" model="ir.ui.view">
+            <field name="name">view_export_all_languages</field>
+            <field name="model">export.languages</field>
+            <field name="arch" type="xml">
+                <form string="Export All Languages" version="7.0">
+                    <field invisible="1" name="state" />
+
+                    <group colspan="4" states="set_export_configuration">
+                        <field name="format" />
+                        <field name="module_name_regexp" />
+                        <field name="destination_folder" />
+                        <field name="sort_po_files" attrs="{'invisible': [('format', '!=', 'po')]}" />
+                    </group>
+                    <group colspan="4" states="export_finished">
+                        <field name="info" nolabel="1" readonly="1" />
+                    </group>
+
+                    <group colspan="4">
+                        <button states="set_export_configuration" class="oe_left" name="export_all_languages" string="Export" type="object" icon="gtk-ok" />
+                        <button states="set_export_configuration,export_finished" class="oe_right" special="cancel" string="Close" icon="gtk-close" />
+                    </group>
+                </form>
+           </field>
+        </record>
+
+        <record id="action_export_all_languages" model="ir.actions.act_window">
+            <field name="name">Export All Languages</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">export.languages</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">form</field>
+            <field name="target">new</field>
+        </record>
+
+        <menuitem id="menu_export_all_languages"
+            name="Export All Languages"
+            action="action_export_all_languages"
+            parent="menu_helper" sequence="100"/>
+
+    </data>
+</openerp>

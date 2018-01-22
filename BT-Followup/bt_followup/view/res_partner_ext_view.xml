@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+	<data>
+
+		<!-- Partner Ext View -->
+		<record id="view_partner_ext_tree" model="ir.ui.view">
+			<field name="name">res.partner.ext.tree</field>
+			<field name="model">res.partner</field>
+			<field name="inherit_id" ref="base.view_partner_tree" />
+			<field name="arch" type="xml">
+				<field name="name" position="after">
+					<field name="in_followup_process" />
+					<field name="pending_followup" />
+					<field name="followup_responsible_id" />
+					<field name="followup_payment_next_action_date" />
+				</field>
+			</field>
+		</record>
+
+		<record id="view_partner_form_ext" model="ir.ui.view">
+			<field name="name">"view_partner_form_ext"</field>
+			<field name="inherit_id" ref="base.view_partner_form" />
+			<field name="model">res.partner</field>
+			<field name="groups_id" eval="[(4, ref('account.group_account_invoice'))]" />
+			<field name="arch" type="xml">
+				<page string="Accounting" position="before" version="7.0">
+					<page string="Invoice Follow-up" groups="account.group_account_invoice"
+						name="followup_tab">
+						<group colspan="2" col="4">
+							<field name="in_followup_process" />
+							<field name="pending_followup" />
+							<field name="followup_responsible_id" />
+							<field name="dunning_block" colspan='1'
+								attrs="{'readonly': [('has_parent','=',True)]}" />
+							<field name="dunning_block_date" colspan='2'
+								attrs="{'invisible': [('dunning_block', '=', False)], 'readonly': [('has_parent','=',True)]}" />
+						</group>
+                        
+						<group colspan="4" col="4">
+                            <field name="followup_payment_next_action_date" />
+							<field name="has_parent" invisible="True" />
+                            <field name="followup_payment_next_action" />
+						</group>
+
+						<label for="followup_payment_note" />
+						<group colspan="4" col="4">
+							<field name="followup_payment_note" nolabel="1" />
+						</group>
+
+						<group colspan="4" col="4">
+							<button name="do_handle_followup" type="object" string="Handle Follow-up"
+								groups="account.group_account_user" help="Handle Follow-up"
+                                attrs="{'invisible': [('pending_followup', '=', False)]}" />
+						</group>
+						<div class="oe_clear" />
+
+						<label for="invoice_followup_notes" />
+						<group colspan="4" col="4">
+							<field name="invoice_followup_notes" nolabel="1" />
+						</group>
+
+
+						<separator string="Dunned Invoices" />
+						<field name="dunned_invoice_ids" context="{'form_view_ref': 'account.invoice_form',}">
+							<tree string="Dunned Invoices">
+								<field name="internal_number" readonly="True" />
+								<field name="date_invoice" readonly="True" />
+								<field name="date_due" readonly="True" />
+								<field name="amount_total" readonly="True" />
+								<field name="residual" readonly="True" />
+
+								<field name="followup_level_id" readonly="True" />
+								<field name="followup_level_handled" readonly="True" />
+								<field name="followup_level_date" readonly="True" />
+							</tree>
+						</field>
+						<div class="oe_clear" />
+
+						<separator string="Follow-ups" />
+						<field name="followup_ids">
+							<tree string="Follow-ups">
+								<field name="followup_create_date" />
+                                <field name="followup_handled_date" />
+								<field name="followup_level_id" />
+								<field name="invoice_followup_id" />
+								<field name="email_date" />
+								<field name="email_subject" />
+								<field name="followup_parent_id" />
+                                <field name="followup_partner_id" />
+							</tree>
+						</field>
+						<div class="oe_clear" />
+
+						<separator string="Penalization Invoices" />
+						<field name="penalization_invoice_ids" context="{'form_view_ref': 'account.invoice_form',}">
+							<tree string="Penalization Invoices">
+								<field name="internal_number" readonly="True" />
+								<field name="date_invoice" readonly="True" />
+								<field name="date_due" readonly="True" />
+								<field name="amount_total" readonly="True" />
+								<field name="residual" readonly="True" />
+								<field name="followup_parent_id" readonly="True" />
+                                <field name="partner_id" readonly="True" />
+							</tree>
+						</field>
+						<div class="oe_clear" />
+
+
+						<separator string="Follow-up Mails" />
+						<field name="followup_mail_ids">
+							<tree string="Follow-up Mails">
+								<field name="date" />
+								<field name="subject" />
+								<field name="author_id" string="User" />
+                                <field name="email_to" string="Recipient" />
+							</tree>
+						</field>
+						<div class="oe_clear" />
+					</page>
+				</page>
+			</field>
+		</record>
+
+
+		<record id="customer_invoice_followup_search_view" model="ir.ui.view">
+			<field name="name">Search</field>
+			<field name="model">res.partner</field>
+			<field name="inherit_id" ref="base.view_res_partner_filter" />
+			<field name="arch" type="xml">
+				<search string="Search Partner" position="inside">
+					<group string="Invoice Follow-up">
+						<filter string="Partners In Follow-up Process" domain="[('in_followup_process', '=', True)]"
+							name="in_followup" />
+						<separator />
+						<filter string="Pending Follow-up Handle" domain="[('pending_followup', '=', True)]"
+							name="pending_followup" />
+						<separator />
+						<filter string="No Responsible Assigned"
+                            domain="[('followup_responsible_id', '=', False), ('in_followup_process', '=', True)]" />
+						<filter string="My Follow-ups"
+                            domain="[('followup_responsible_id','=', uid), ('in_followup_process', '=', True)]"
+							name="my" />
+					</group>
+					<group expand="1" string="Group By...">
+						<filter string="Follow-up Responsible" context="{'group_by':'followup_responsible_id'}" />
+					</group>
+				</search>
+			</field>
+		</record>
+
+
+	</data>
+</openerp>

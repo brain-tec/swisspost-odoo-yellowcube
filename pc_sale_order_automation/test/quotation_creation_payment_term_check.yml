@@ -1,0 +1,86 @@
+-
+  QUOTATION_CREATION_PAYMENT_TERM_CHANGE.
+  Checks that when the payment method changes, the payment term is changed accordingly in the sale order.
+-
+  !python {model: sale.order}: |
+    print 'Starting the test QUOTATION_CREATION_PAYMENT_TERM_CHANGE'
+    cr.execute("SAVEPOINT test;")
+
+-
+  QUOTATION_CREATION_PAYMENT_TERM_CHANGE. Creates a payment term with 99 days.
+-
+  !record {model: account.payment.term, id: QUOTATION_CREATION_PAYMENT_TERM_CHANGE_payment_term_99}:
+    name: '99 Days'
+    note: '99 Days'
+    line_ids:
+      - days: 99
+        days2: 0
+
+-
+  QUOTATION_CREATION_PAYMENT_TERM_CHANGE. Creates a payment term with 999 days.
+-
+  !record {model: account.payment.term, id: QUOTATION_CREATION_PAYMENT_TERM_CHANGE_payment_term_999}:
+    name: '999 Days'
+    note: '999 Days'
+    line_ids:
+      - days: 999
+        days2: 0
+
+-
+  QUOTATION_CREATION_PAYMENT_TERM_CHANGE. Creates a payment method with the payment term of 99 days.
+-
+  !record {model: payment.method, id: QUOTATION_CREATION_PAYMENT_TERM_CHANGE_payment_method_99}:
+    name: 'Invoice99'
+    epayment: True
+    payment_term_id: QUOTATION_CREATION_PAYMENT_TERM_CHANGE_payment_term_99
+
+-
+  QUOTATION_CREATION_PAYMENT_TERM_CHANGE. Creates a payment method with the payment term of 999 days.
+-
+  !record {model: payment.method, id: QUOTATION_CREATION_PAYMENT_TERM_CHANGE_payment_method_999}:
+    name: 'Invoice999'
+    epayment: True
+    payment_term_id: QUOTATION_CREATION_PAYMENT_TERM_CHANGE_payment_term_999
+
+-
+  QUOTATION_CREATION_PAYMENT_TERM_CHANGE. Creates a sale order with the payment method of 99 days.
+-
+  !record {model: sale.order, id: QUOTATION_CREATION_PAYMENT_TERM_CHANGE_sale_order_1}:
+    partner_id: base.res_partner_2
+    date_order: 2015-01-01
+    payment_method_id: QUOTATION_CREATION_PAYMENT_TERM_CHANGE_payment_method_99
+    automate_sale_order_process: True
+    carrier_id: delivery.delivery_carrier
+
+-
+  QUOTATION_CREATION_PAYMENT_TERM_CHANGE. Checks that the sale.order has the payment method of 99 days.
+-
+  !python {model: sale.order}: |
+    sale_order_id = ref('QUOTATION_CREATION_PAYMENT_TERM_CHANGE_sale_order_1')
+    sale_order_obj = self.browse(cr, uid, sale_order_id, context=context)
+    assert(sale_order_obj.payment_method_id.id == ref('QUOTATION_CREATION_PAYMENT_TERM_CHANGE_payment_method_99')), ("Payment method is incorrect.")
+    
+    payment_term_of_payment_method_id = self.pool.get('payment.method').browse(cr, uid, ref('QUOTATION_CREATION_PAYMENT_TERM_CHANGE_payment_method_99')).payment_term_id.id
+    payment_term_of_sale_order = sale_order_obj.payment_term.id
+    assert(payment_term_of_sale_order == payment_term_of_payment_method_id), ("The payment term of the payment method and the sale order do not match.")
+
+-
+  QUOTATION_CREATION_PAYMENT_TERM_CHANGE. Changes the payment method to the one with a payment term
+  of 999 days, and checks that now the sale.order has the payment method of 999 days.
+-
+  !python {model: sale.order}: |
+    sale_order_id = ref('QUOTATION_CREATION_PAYMENT_TERM_CHANGE_sale_order_1')
+    sale_order_obj = self.browse(cr, uid, sale_order_id, context=context)
+    sale_order_obj.write({'payment_method_id': ref('QUOTATION_CREATION_PAYMENT_TERM_CHANGE_payment_method_999')})
+
+    assert(sale_order_obj.payment_method_id.id == ref('QUOTATION_CREATION_PAYMENT_TERM_CHANGE_payment_method_999')), ("Payment method is incorrect.")
+
+    payment_term_of_payment_method_id = self.pool.get('payment.method').browse(cr, uid, ref('QUOTATION_CREATION_PAYMENT_TERM_CHANGE_payment_method_999')).payment_term_id.id
+    payment_term_of_sale_order = sale_order_obj.payment_term.id
+    assert(payment_term_of_sale_order == payment_term_of_payment_method_id), ("The payment term of the payment method and the sale order do not match.")
+
+-
+  QUOTATION_CREATION_PAYMENT_TERM_CHANGE. Rollbacks.
+-
+  !python {model: sale.order}: |
+    cr.execute("ROLLBACK TO SAVEPOINT test;")

@@ -1,7 +1,7 @@
 # b-*- encoding: utf-8 -*-
 ##############################################################################
 #
-#    Copyright (c) 2015 brain-tec AG (http://www.brain-tec.ch)
+#    Copyright (c) 2015 brain-tec AG (http://www.braintec-group.com)
 #    All Right Reserved
 #
 #    This program is free software: you can redistribute it and/or modify
@@ -18,11 +18,8 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 ##############################################################################
-
 from openerp.osv import osv, fields
 from openerp.tools.translate import _
-import logging
-logger = logging.getLogger(__name__)
 
 
 class sale_exception_ext(osv.Model):
@@ -37,20 +34,20 @@ class sale_exception_ext(osv.Model):
                 # Of type add
                 except_obj = self.pool.get('sale.exception')
                 issue_obj = self.pool.get('project.issue')
-                if not isinstance(ids, list):
+                if type(ids) is not list:
                     ids = [ids]
                 for _id in ids:
                     # For each sale.order
                     for except_ in except_obj.browse(cr, uid, excep_values[2], context=context):
                         # And for each exception
                         for issue_id in issue_obj.find_resource_issues(cr,
-                                                                       uid,
-                                                                       'sale.order',
-                                                                       ids[0],
-                                                                       tags=['sale', 'sale-exception'],
-                                                                       create=True,
-                                                                       reopen=True,
-                                                                       context=context):
+                                                                        uid,
+                                                                        'sale.order',
+                                                                        ids[0],
+                                                                        tags=['sale', 'sale-exception'],
+                                                                        create=True,
+                                                                        reopen=True,
+                                                                        context=context):
                             # A message is trigger in a new/open issue
                             issue_obj.message_post(cr, uid, issue_id, _('Sale exception found.<br/><b>{0}</b>: {1}').format(except_.name, except_.description), context=context)
         return ret

@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+	<data>
+		<record id="purchase_order_reports_config_view" model="ir.ui.view">
+			<field name="name">purchase_order_reports_config_view</field>
+			<field name="model">configuration.data</field>
+			<field name="inherit_id" ref="pc_connect_master.post_ecommerce_config_view" />
+			<field name="arch" type="xml">
+
+                <page string="Post Mail" position="inside">
+                    <group string="Purchase Orders" colspan="1">
+                        <field name="purchase_franking_country_code" />
+                        <field name="purchase_franking_zip" />
+                        <field name="purchase_franking_town" />
+                        <field name="purchase_postmail_rrn" />
+                        <field name="purchase_qr" />
+                    </group>
+                </page>
+
+                <page string="Reports" position="inside">
+                    <group string="Purchase Orders" colspan="1">
+                        <field name="purchase_logo" />
+                        <field name="purchase_ending_text" />
+                        <field name="purchase_report_num_lines_per_page_first" />
+                        <field name="purchase_report_num_lines_per_page_not_first" />
+                        <field name="purchase_company_address_id" />
+                        <field name="purchase_report_print_delivery_address" />
+                    </group>
+                </page>
+
+            </field>
+        </record>
+    </data>
+</openerp>

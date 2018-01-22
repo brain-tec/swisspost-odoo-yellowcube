@@ -1,0 +1,894 @@
+# Translation of OpenERP Server.
+# This file contains the translation of the following modules:
+#    * bt_followup
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: OpenERP Server 7.0-20131118-002448\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2014-09-23 13:16+0000\n"
+"PO-Revision-Date: 2014-09-23 13:16+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: bt_followup
+#: model:email.template,subject:email_template_invoice_followup_default
+#: model:email.template,subject:email_template_invoice_followup_level0
+#: model:email.template,subject:email_template_invoice_followup_level1
+#: model:email.template,subject:email_template_invoice_followup_level2
+msgid "${user.company_id.name} Payment Reminder"
+msgstr "${user.company_id.name} Promemoria di Pagamento"
+
+#. module: bt_followup
+#: view:followup.level:0
+msgid "%%"
+msgstr "%%"
+
+#. module: bt_followup
+#: view:followup.level:0
+msgid "%(company_name)s"
+msgstr "%(company_name)s"
+
+#. module: bt_followup
+#: view:followup.level:0
+msgid "%(date)s"
+msgstr "%(date)s"
+
+#. module: bt_followup
+#: view:followup.level:0
+msgid "%(user_signature)s"
+msgstr "%(user_signature)s"
+
+#. module: bt_followup
+#: model:ir.actions.act_window,help:action_followup_config_form
+msgid "<p class=\"oe_view_nocontent_create\">\n"
+"                Click to define follow-up levels and their related actions.\n"
+"              </p><p>\n"
+"                For each step, specify the actions to be taken and delay in days. It is\n"
+"                possible to use print and email templates to send specific messages to\n"
+"                the customer.\n"
+"              </p>\n"
+"          "
+msgstr "<p class=\"oe_view_nocontent_create\">\n"
+"Cliccare per definire i livelli follow-up e le loro azioni correlate.\n"
+"</p><p>\n"
+"Per ogni step, specificare le azioni che dovranno essere intraprese e i giorni di ritardo.\n"
+"E' possibile usare i messaggi modello, di stampa e invio mail, per inviare specifici \n"
+"messaggi al cliente. </p>\n"
+"          "
+
+#. module: bt_followup
+#: view:res.partner:0
+msgid "Accounting"
+msgstr "Contabilità"
+
+#. module: bt_followup
+#: field:followup.level,manual_action_note:0
+msgid "Action To Do"
+msgstr "Azione Da Fare"
+
+#. module: bt_followup
+#: view:followup.level:0
+msgid "After"
+msgstr "After"
+
+#. module: bt_followup
+#: code:addons/bt_followup/res_partner_ext.py:150
+msgid "Amount"
+msgstr "Importo"
+
+#. module: bt_followup
+#: report:addons/bt_followup/report/invoice_followup_report.mako:115
+msgid "Amount"
+msgstr "Importo"
+
+#. module: bt_followup
+#: field:followup.level,manual_action_responsible_id:0
+msgid "Assign a Responsible"
+msgstr "Assign a Responsible"
+
+#. module: bt_followup
+#: view:account.invoice.followup.handle:0
+msgid "Cancel"
+msgstr "Annulla"
+
+#. module: bt_followup
+#: view:customer.invoices.followup.handle:0
+msgid "Cancel"
+msgstr "Annulla"
+
+#. module: bt_followup
+#: model:ir.model,name:model_res_company
+msgid "Companies"
+msgstr "Aziende"
+
+#. module: bt_followup
+#: field:followup.config,company_id:0
+msgid "Company"
+msgstr "Azienda"
+
+#. module: bt_followup
+#: view:followup.level:0
+msgid "Current Date"
+msgstr "Data Attuale"
+
+#. module: bt_followup
+#: report:addons/bt_followup/report/invoice_followup_report.mako:98
+msgid "Customer account statement"
+msgstr "Rendiconto cliente"
+
+#. module: bt_followup
+#: code:addons/bt_followup/account_invoice_ext.py:236
+msgid "Data Error"
+msgstr "Errore dati"
+
+#. module: bt_followup
+#: code:addons/bt_followup/res_partner_ext.py:148
+msgid "Date"
+msgstr "Data"
+
+#. module: bt_followup
+#: report:addons/bt_followup/report/invoice_followup_report.mako:113
+msgid "Date"
+msgstr "Data"
+
+#. module: bt_followup
+#: sql_constraint:followup.level:0
+msgid "Days of the follow-up levels must be different"
+msgstr "I giorni dei livelli dei solleciti di pagamento devono essere diversi"
+
+#. module: bt_followup
+#: report:addons/bt_followup/report/invoice_followup_report.mako:98
+msgid "Document"
+msgstr "Documento"
+
+#. module: bt_followup
+#: code:addons/bt_followup/res_partner_ext.py:0
+msgid "Due Date"
+msgstr "Data scadenza"
+
+#. module: bt_followup
+#: report:addons/bt_followup/report/invoice_followup_report.mako:0
+msgid "Due Date"
+msgstr "Data scadenza"
+
+#. module: bt_followup
+#: view:account.invoice:0
+msgid "Due Date"
+msgstr "Data scadenza"
+
+#. module: bt_followup
+#: field:followup.level,delay:0
+msgid "Due Days"
+msgstr "Giorni di Ritardo"
+
+#. module: bt_followup
+#: field:res.partner,dunned_invoice_ids:0
+msgid "Dunned Invoices"
+msgstr "Fatture Dunned"
+
+#. module: bt_followup
+#: view:res.partner:0
+msgid "Dunned Invoices"
+msgstr "Fatture Dunned"
+
+#. module: bt_followup
+#: code:addons/bt_followup/res_partner_ext.py:153
+msgid "Dunning Charge"
+msgstr "Carica Dunning"
+
+#. module: bt_followup
+#: report:addons/bt_followup/report/invoice_followup_report.mako:118
+msgid "Dunning Charge"
+msgstr "Spese Insoluto"
+
+#. module: bt_followup
+#: code:addons/bt_followup/res_partner_ext.py:152
+msgid "Dunning Level"
+msgstr "Dunning Livello"
+
+#. module: bt_followup
+#: report:addons/bt_followup/report/invoice_followup_report.mako:117
+msgid "Dunning Level"
+msgstr "Dunning Livello"
+
+#. module: bt_followup
+#: field:account.invoice,dunning_block:0
+msgid "Dunning block"
+msgstr "Blocco Dunning"
+
+#. module: bt_followup
+#: field:followup,email_date:0
+msgid "Email Date"
+msgstr "Email Data"
+
+#. module: bt_followup
+#: field:followup,email_subject:0
+msgid "Email Subject"
+msgstr "Oggetto Email"
+
+#. module: bt_followup
+#: field:followup.level,email_template_id:0
+msgid "Email Template"
+msgstr "Email Template"
+
+#. module: bt_followup
+#: report:addons/bt_followup/report/invoice_followup_report.mako:78
+msgid "Email"
+msgstr "Email"
+
+#. module: bt_followup
+#: field:followup.level,followup_config_id:0
+msgid "Follow Up Configurations"
+msgstr "Follow Up Configurations"
+
+#. module: bt_followup
+#: field:followup.level,name:0
+msgid "Follow-Up Action"
+msgstr "Follow-Up Action"
+
+#. module: bt_followup
+#: field:followup,followup_create_date:0
+msgid "Follow-Up Creation Date"
+msgstr "Follow-Up Creation Date"
+
+#. module: bt_followup
+#: field:account.invoice,followup_level_date:0
+msgid "Follow-Up Handling Date"
+msgstr "Follow-Up Handling Date"
+
+#. module: bt_followup
+#: field:followup,followup_parent_id:0
+msgid "Follow-Up Invoice"
+msgstr "Follow-Up Invoice"
+
+#. module: bt_followup
+#: field:account.invoice,followup_level_handled:0
+msgid "Follow-Up Level Handled"
+msgstr "Follow-Up Level Handled"
+
+#. module: bt_followup
+#: field:account.invoice,followup_level_id:0
+msgid "Follow-Up Level"
+msgstr "Follow-Up Level"
+
+#. module: bt_followup
+#: field:followup,followup_level_id:0
+msgid "Follow-Up Level"
+msgstr "Follow-Up Level"
+
+#. module: bt_followup
+#: view:account.invoice:0
+msgid "Follow-Up Mails"
+msgstr "Follow-Up Mails"
+
+#. module: bt_followup
+#: view:res.partner:0
+msgid "Follow-Up Mails"
+msgstr "Follow-Up Mails"
+
+#. module: bt_followup
+#: field:account.invoice,followup_parent_id:0
+msgid "Follow-Up Parent Invoice"
+msgstr "Follow-Up Parent Invoice"
+
+#. module: bt_followup
+#: field:account.invoice,followup_penalization_invoice_ids:0
+msgid "Follow-Up Penalization Invoices"
+msgstr "Follow-Up Penalization Invoices"
+
+#. module: bt_followup
+#: view:account.invoice:0
+msgid "Follow-Up Penalization Invoices"
+msgstr "Follow-Up Penalization Invoices"
+
+#. module: bt_followup
+#: view:res.partner:0
+msgid "Follow-Up Responsible"
+msgstr "Follow-Up Responsible"
+
+#. module: bt_followup
+#: view:account.invoice:0
+msgid "Follow-Up"
+msgstr "Solleciti di Pagamento"
+
+#. module: bt_followup
+#: field:account.invoice,followup_ids:0
+msgid "Follow-Up's"
+msgstr "Follow-Up's"
+
+#. module: bt_followup
+#: view:account.invoice:0
+msgid "Follow-Up's"
+msgstr "Follow-Up's"
+
+#. module: bt_followup
+#: view:res.partner:0
+msgid "Follow-Up's"
+msgstr "Follow-Up's"
+
+#. module: bt_followup
+#: field:res.partner,followup_ids:0
+msgid "Follow-Ups"
+msgstr "Follow-Ups"
+
+#. module: bt_followup
+#: view:account.invoice:0
+msgid "Follow-Ups"
+msgstr "Follow-Ups"
+
+#. module: bt_followup
+#: view:res.partner:0
+msgid "Follow-Ups"
+msgstr "Follow-Ups"
+
+#. module: bt_followup
+#: field:res.company,followup_analytic_account_id:0
+msgid "Follow-up Analytic Account"
+msgstr "Follow-up Analytic Account"
+
+#. module: bt_followup
+#: model:ir.model,name:model_followup_level
+msgid "Follow-up Criteria"
+msgstr "Criteri Solleciti di Pagamento"
+
+#. module: bt_followup
+#: view:account.invoice:0
+msgid "Follow-up Level"
+msgstr "Livello di Solleciti di Pagamento"
+
+#. module: bt_followup
+#: view:followup.level:0
+msgid "Follow-up Levels"
+msgstr "Follow-up Levels"
+
+#. module: bt_followup
+#: field:res.partner,followup_responsible_id:0
+msgid "Follow-up Responsible"
+msgstr "Responsabile Solleciti di Pagamento"
+
+#. module: bt_followup
+#: view:followup.level:0
+msgid "Follow-up Steps"
+msgstr "Passi Solleciti di Pagamento"
+
+#. module: bt_followup
+#: field:followup.config,followup_level:0
+msgid "Follow-up"
+msgstr "Follow-up"
+
+#. module: bt_followup
+#: view:followup.config:0
+msgid "Follow-up"
+msgstr "Follow-up"
+
+#. module: bt_followup
+#: code:addons/bt_followup/account_invoice_ext.py:237
+msgid "Following partner has no email address and the corresponding follow-up level includes action \"Send Mail\": "
+msgstr "Following partner has no email address and the corresponding follow-up level includes action \"Send Mail\": "
+
+#. module: bt_followup
+#: help:followup.level,sequence:0
+msgid "Gives the sequence order when displaying a list of follow-up lines."
+msgstr "Fornisce l'ordinamento quando è visualizzata una lista di solleciti di pagamento."
+
+#. module: bt_followup
+#: view:res.partner:0
+msgid "Group By..."
+msgstr "Raggruppa per..."
+
+#. module: bt_followup
+#: model:ir.model,name:model_customer_invoices_followup_handle
+msgid "Handle Follow-Up Invoices of the selected customers"
+msgstr "Handle Follow-Up Invoices of the selected customers"
+
+#. module: bt_followup
+#: model:ir.model,name:model_account_invoice_followup_handle
+msgid "Handle Follow-Up of the selected invoices"
+msgstr "Handle Follow-Up of the selected invoices"
+
+#. module: bt_followup
+#: view:account.invoice:0
+msgid "Handle Follow-Up"
+msgstr "Handle Follow-Up"
+
+#. module: bt_followup
+#: view:res.partner:0
+msgid "Handle Follow-Up"
+msgstr "Handle Follow-Up"
+
+#. module: bt_followup
+#: view:account.invoice.followup.handle:0
+msgid "Handle Follow-Ups"
+msgstr "Handle Follow-Ups"
+
+#. module: bt_followup
+#: view:customer.invoices.followup.handle:0
+msgid "Handle Follow-Ups"
+msgstr "Handle Follow-Ups"
+
+#. module: bt_followup
+#: model:ir.actions.act_window,name:action_handle_customers_invoice_follow_ups
+msgid "Handle Pending Follow-Ups"
+msgstr "Handle Pending Follow-Ups"
+
+#. module: bt_followup
+#: model:ir.actions.act_window,name:action_handle_invoice_follow_ups
+msgid "Handle Pending Follow-Ups"
+msgstr "Handle Pending Follow-Ups"
+
+#. module: bt_followup
+#: view:account.invoice.followup.handle:0
+msgid "Handle Pending Follow-Ups"
+msgstr "Handle Pending Follow-Ups"
+
+#. module: bt_followup
+#: view:customer.invoices.followup.handle:0
+msgid "Handle Pending Follow-Ups"
+msgstr "Handle Pending Follow-Ups"
+
+#. module: bt_followup
+#: field:res.partner,in_followup_process:0
+msgid "In Follow-Up Process"
+msgstr "In Follow-Up Process"
+
+#. module: bt_followup
+#: view:account.invoice:0
+msgid "In Follow-up Process"
+msgstr "In Follow-up Process"
+
+#. module: bt_followup
+#: help:account.invoice,followup_level_handled:0
+msgid "Indicates if the current follow-up level has already been handled (i.e., email sent, report printed...), preventing so the follow-up level from being handled multiple times"
+msgstr "Indicates if the current follow-up level has already been handled (i.e., email sent, report printed...), preventing so the follow-up level from being handled multiple times"
+
+#. module: bt_followup
+#: model:ir.ui.menu,name:menu_followup_configuration
+msgid "Invoice Follow-Up Configuration"
+msgstr "Invoice Followup Configuration"
+
+#. module: bt_followup
+#: field:account.invoice,invoice_followup_notes:0
+msgid "Invoice Follow-Up Notes"
+msgstr "Invoice Follow-Up Notes"
+
+#. module: bt_followup
+#: field:res.partner,invoice_followup_notes:0
+msgid "Invoice Follow-Up Notes"
+msgstr "Invoice Follow-Up Notes"
+
+#. module: bt_followup
+#: model:ir.actions.report.xml,name:invoice_followup_report
+msgid "Invoice Follow-Up Report"
+msgstr "Solleciti di Pagamento della Fattura""
+
+#. module: bt_followup
+#: model:ir.ui.menu,name:bt_invoice_followup_menu
+msgid "Invoice Follow-Up"
+msgstr "Solleciti di Pagamento della Fattura"
+
+#. module: bt_followup
+#: view:res.partner:0
+msgid "Invoice Follow-Up"
+msgstr "Solleciti di Pagamento della Fattura"
+
+#. module: bt_followup
+#: model:ir.actions.act_window,name:action_followup_config_form
+msgid "Invoice Follow-Ups"
+msgstr "Invoice Follow-Ups"
+
+#. module: bt_followup
+#: model:ir.model,name:model_followup_config
+msgid "Invoice Follow-up Configuration"
+msgstr "Invoice Follow-up Configuration"
+
+#. module: bt_followup
+#: view:res.partner:0
+msgid "Invoice Follow-up"
+msgstr "Invoice Follow-up"
+
+#. module: bt_followup
+#: code:addons/bt_followup/res_partner_ext.py:147
+msgid "Invoice No."
+msgstr "No. Fattura"
+
+#. module: bt_followup
+#: report:addons/bt_followup/report/invoice_followup_report.mako:112
+msgid "Invoice No."
+msgstr "No. Fattura"
+
+#. module: bt_followup
+#: model:ir.model,name:model_account_invoice
+msgid "Invoice"
+msgstr "Fattura"
+
+#. module: bt_followup
+#: field:mail.mail,followup_invoice_ids:0
+msgid "Invoices in Mail"
+msgstr "Invoices in Mail"
+
+#. module: bt_followup
+#: field:followup,email_id:0
+msgid "Mail"
+msgstr "Mail"
+
+#. module: bt_followup
+#: field:account.invoice,followup_email_ids:0
+msgid "Mail's"
+msgstr "Mail's"
+
+#. module: bt_followup
+#: field:followup.level,manual_action:0
+msgid "Manual Action"
+msgstr "Azione Manuale"
+
+#. module: bt_followup
+#: view:followup.level:0
+msgid "Manual Action"
+msgstr "Azione Manuale"
+
+#. module: bt_followup
+#: view:res.partner:0
+msgid "My Follow-ups"
+msgstr "I Miei Solleciti di Pagamento"
+
+#. module: bt_followup
+#: field:followup.config,name:0
+msgid "Name"
+msgstr "Nome"
+
+#. module: bt_followup
+#: view:res.partner:0
+msgid "No Responsible"
+msgstr "Nessun Responsabile"
+
+#. module: bt_followup
+#: code:addons/bt_followup/res_partner_ext.py:118
+msgid "No invoices to handle!"
+msgstr "Nessun fatture da trattare!"
+
+#. module: bt_followup
+#: view:customer.invoices.followup.handle:0
+msgid "Once pending follow-up are handled, you will not be able\n"
+"                        to modify it. All actions, defined in follow-up level \n"
+"                        of each overdue invoice of each partnber, will be executed."
+msgstr "Once pending follow-up are handled, you will not be able\n"
+"                        to modify it. All actions, defined in follow-up level \n"
+"                        of each overdue invoice of each partnber, will be executed."
+
+#. module: bt_followup
+#: view:account.invoice.followup.handle:0
+msgid "Once pending follow-up are handled, you will not be able\n"
+"                        to modify it. All actions, defined in follow-up level \n"
+"                        of each overdue invoice, will be executed."
+msgstr "Once pending follow-up are handled, you will not be able\n"
+"                        to modify it. All actions, defined in follow-up level \n"
+"                        of each overdue invoice, will be executed."
+
+#. module: bt_followup
+#: help:res.partner,pending_followup:0
+msgid "One or more invoices of customer are pending to handle the follow-up level."
+msgstr "Uno o più fatture di clienti sono in attesa di gestire il livello di follow-up."
+
+#. module: bt_followup
+#: help:res.partner,in_followup_process:0
+msgid "One or more invoices of customer is included in follow-up process."
+msgstr "One or more invoices of customer is included in follow-up process."
+
+#. module: bt_followup
+#: sql_constraint:followup.config:0
+msgid "Only one follow-up configuration per company is allowed"
+msgstr "È consentita una sola configurazione di follow-up per azienda"
+
+#. module: bt_followup
+#: view:account.invoice:0
+msgid "Other Info"
+msgstr "Altre informazioni"
+
+#. module: bt_followup
+#: report:addons/bt_followup/report/invoice_followup_report.mako:74
+msgid "Our Ref."
+msgstr "Our Ref."
+
+#. module: bt_followup
+#: model:ir.model,name:model_mail_mail
+msgid "Outgoing Mails"
+msgstr "Email in uscita"
+
+#. module: bt_followup
+#: field:followup,followup_partner_id:0
+msgid "Partner"
+msgstr "Partner"
+
+#. module: bt_followup
+#: field:mail.mail,followup_partner_id:0
+msgid "Partner"
+msgstr "Partner"
+
+#. module: bt_followup
+#: model:ir.model,name:model_res_partner
+msgid "Partner"
+msgstr "Partner"
+
+#. module: bt_followup
+#: view:followup.level:0
+msgid "Partner's Name"
+msgstr "Partner's Name"
+
+#. module: bt_followup
+#: view:res.partner:0
+msgid "Partners In Follow-up Process"
+msgstr "Partners In Follow-up Process"
+
+#. module: bt_followup
+#: field:followup,invoice_followup_id:0
+msgid "Penalization Invoice"
+msgstr "Penalizzazione Fattura"
+
+#. module: bt_followup
+#: field:res.partner,penalization_invoice_ids:0
+msgid "Penalization Invoices"
+msgstr "Penalization Invoices"
+
+#. module: bt_followup
+#: view:account.invoice:0
+msgid "Penalization Invoices"
+msgstr "Penalization Invoices"
+
+#. module: bt_followup
+#: view:res.partner:0
+msgid "Penalization Invoices"
+msgstr "Penalization Invoices"
+
+#. module: bt_followup
+#: code:addons/bt_followup/account_invoice_ext.py:332
+msgid "Penalization for Unpaid Invoifollowup_level_idce {0}"
+msgstr "Penalization for Unpaid Invoifollowup_level_idce {0}"
+
+#. module: bt_followup
+#: code:addons/bt_followup/followup_level.py:50
+msgid "Penalization"
+msgstr "Penalizzazione"
+
+#. module: bt_followup
+#: field:followup.level,product_id:0
+msgid "Penalization"
+msgstr "Penalizzazione"
+
+#. module: bt_followup
+#: field:res.partner,pending_followup:0
+msgid "Pending Follow-Up"
+msgstr "Pending Follow-Up"
+
+#. module: bt_followup
+#: view:account.invoice:0
+msgid "Pending Follow-up Handle"
+msgstr "Pending Follow-up Handle"
+
+#. module: bt_followup
+#: view:res.partner:0
+msgid "Pending Follow-up Handle"
+msgstr "Pending Follow-up Handle"
+
+#. module: bt_followup
+#: view:followup.level:0
+msgid "Percentage Character"
+msgstr "Percentuale Carattere"
+
+#. module: bt_followup
+#: field:followup.level,description:0
+msgid "Printed Message"
+msgstr "Mesasggio stampato"
+
+#. module: bt_followup
+#: view:followup.config:0
+msgid "Search Follow-up"
+msgstr "Search Follow-up"
+
+#. module: bt_followup
+#: view:res.partner:0
+msgid "Search Partner"
+msgstr "Cerca Partner"
+
+#. module: bt_followup
+#: view:followup.level:0
+msgid "Select Penalization"
+msgstr "Selezionare Penalizzazione"
+
+#. module: bt_followup
+#: field:account.invoice,followup_send_email:0
+msgid "Send Follow-Up Email"
+msgstr "Send Follow-Up Email"
+
+#. module: bt_followup
+#: field:followup.level,send_letter:0
+msgid "Send a Letter"
+msgstr "Invia Lettera"
+
+#. module: bt_followup
+#: view:followup.level:0
+msgid "Send a Letter"
+msgstr "Invia Lettera"
+
+#. module: bt_followup
+#: field:followup.level,send_email:0
+msgid "Send an Email"
+msgstr "Send an Email"
+
+#. module: bt_followup
+#: view:followup.level:0
+msgid "Send an Email"
+msgstr "Send an Email"
+
+#. module: bt_followup
+#: field:followup.level,sequence:0
+msgid "Sequence"
+msgstr "Sequence"
+
+#. module: bt_followup
+#: field:account.invoice,followup_skip_email_sending:0
+msgid "Skip Follow-Up Email Sending"
+msgstr "Salta Follow-Up Email Invio"
+
+#. module: bt_followup
+#: help:followup,followup_create_date:0
+msgid "The date in which the follow-up was created"
+msgstr "La data in cui è stato creato il follow-up"
+
+#. module: bt_followup
+#: help:account.invoice,followup_level_date:0
+msgid "The date in which the latest follow-up handling (i.e., sending email, printing report...) took place"
+msgstr "La data in cui l'ultima (ad esempio, l'invio di email, relazione stampa ...) di follow-up di movimentazione hanno avuto luogo"
+
+#. module: bt_followup
+#: help:followup.level,delay:0
+msgid "The number of days after the due date of the invoice to wait before sending the reminder.  Could be negative if you want to send a polite alert beforehand."
+msgstr "The number of days after the due date of the invoice to wait before sending the reminder.  Could be negative if you want to send a polite alert beforehand."
+
+#. module: bt_followup
+#: code:addons/bt_followup/account_invoice_ext.py:94
+msgid "This action can only be executed for customer invoices. Check Invoice "
+msgstr "This action can only be executed for customer invoices. Check Invoice "
+
+#. module: bt_followup
+#: view:followup.config:0
+msgid "To remind customers of paying their invoices, you can\n"
+"                        define different actions depending on how severely\n"
+"                        overdue the customer is. These actions are bundled\n"
+"                        into follow-up levels that are triggered when the due\n"
+"                        date of an invoice has passed a certain\n"
+"                        number of days. If there are other overdue invoices for the \n"
+"                        same customer, the actions of the most \n"
+"                        overdue invoice will be executed."
+msgstr "To remind customers of paying their invoices, you can\n"
+"                        define different actions depending on how severely\n"
+"                        overdue the customer is. These actions are bundled\n"
+"                        into follow-up levels that are triggered when the due\n"
+"                        date of an invoice has passed a certain\n"
+"                        number of days. If there are other overdue invoices for the \n"
+"                        same customer, the actions of the most \n"
+"                        overdue invoice will be executed."
+
+#. module: bt_followup
+#: code:addons/bt_followup/res_partner_ext.py:154
+msgid "Total"
+msgstr "Totale"
+
+#. module: bt_followup
+#: report:addons/bt_followup/report/invoice_followup_report.mako:119
+msgid "Total"
+msgstr "Totale"
+
+#. module: bt_followup
+#: code:addons/bt_followup/res_partner_ext.py:151
+msgid "Unpaid"
+msgstr "Non pagato"
+
+#. module: bt_followup
+#: report:addons/bt_followup/report/invoice_followup_report.mako:116
+msgid "Unpaid"
+msgstr "Non pagato"
+
+#. module: bt_followup
+#: code:addons/bt_followup/account_invoice_ext.py:93
+msgid "Usage Error"
+msgstr "Usage Error"
+
+#. module: bt_followup
+#: view:account.invoice:0
+msgid "User"
+msgstr "User"
+
+#. module: bt_followup
+#: view:res.partner:0
+msgid "User"
+msgstr "User"
+
+#. module: bt_followup
+#: view:followup.level:0
+msgid "User's Company Name"
+msgstr "User's Company Name"
+
+#. module: bt_followup
+#: view:followup.level:0
+msgid "User's Signature"
+msgstr "User's Signature"
+
+#. module: bt_followup
+#: code:addons/bt_followup/res_partner_ext.py:117
+msgid "Warning"
+msgstr "Attenzione"
+
+#. module: bt_followup
+#: help:followup.level,send_letter:0
+msgid "When processing, it will print a letter"
+msgstr "Se eseguito, verrà stampata una lettera"
+
+#. module: bt_followup
+#: help:followup.level,send_email:0
+msgid "When processing, it will send an email"
+msgstr "Durante l'elaborazione, invierà una email"
+
+#. module: bt_followup
+#: help:followup.level,manual_action:0
+msgid "When processing, it will set the manual action to be taken for that customer. "
+msgstr "Durante l'elaborazione, sarà impostare l'azione manuale da prendere per quel cliente. "
+
+#. module: bt_followup
+#: view:followup.level:0
+msgid "Write here the introduction in the letter,\n"
+"                            according to the level of the follow-up. You can\n"
+"                            use the following keywords in the text. Don't\n"
+"                            forget to translate in all languages you installed\n"
+"                            using to top right icon."
+msgstr "Scrivete qui l'introduzione nella lettera,\n"
+"in accordo col livello di follow-up. E' \n"
+"possibile usare le sequenti keywords nel testo. Non \n"
+"dimenticare di tradurre in tutte le lingue installate\n"
+"utilizzando l'icona in alto a destra"
+
+#. module: bt_followup
+#: constraint:followup.level:0
+msgid "Your description is invalid, use the right legend or %% if you want to use the percent character."
+msgstr "La descrizione non è valida, utilizza la legenda a destra oppure %% se vuoi "
+"usare il carattere percentuale."
+
+#. module: bt_followup
+#: view:followup.level:0
+msgid "days overdue, do the following actions:"
+msgstr "giorni di ritardo, eseguire le seguenti azioni:"
+
+#. module: bt_followup
+#: view:followup.level:0
+msgid "e.g. Call the customer, check if it's paid, ..."
+msgstr "e.g. Call the customer, check if it's paid, ..."
+
+#. module: bt_followup
+#: model:ir.model,name:model_followup
+msgid "followup"
+msgstr "followup"
+
+#. module: bt_followup
+#: view:account.invoice.followup.handle:0
+msgid "or"
+msgstr "or"
+
+#. module: bt_followup
+#: view:customer.invoices.followup.handle:0
+msgid "or"
+msgstr "or"
+
+#. module: bt_followup
+#: field:res.partner,followup_mail_ids:0
+msgid "unknown"
+msgstr "sconosciuto"
+
+#. module: bt_followup
+#: view:followup.level:0
+msgid "{partner_name}"
+msgstr "{partner_name}"
+

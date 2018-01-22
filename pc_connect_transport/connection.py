@@ -1,7 +1,7 @@
 # b-*- encoding: utf-8 -*-
 ##############################################################################
 #
-#    Copyright (c) 2015 brain-tec AG (http://www.brain-tec.ch)
+#    Copyright (c) 2015 brain-tec AG (http://www.braintec-group.com)
 #    All Right Reserved
 #
 #    This program is free software: you can redistribute it and/or modify

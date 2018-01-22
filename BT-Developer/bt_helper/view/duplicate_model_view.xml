@@ -1,0 +1,46 @@
+<openerp>
+
+	<data>
+		<record id="view_bt_helper_duplicate_model_form" model="ir.ui.view">
+			<field name="name">bt_helper_duplicate_model_form</field>
+			<field name="model">bt_helper.duplicate_model</field>
+			<field name="arch" type="xml">
+				<form string="Duplicate model" version="7.0">
+					<header>
+						<button name="duplicate_entries_model" string="Duplicate"
+							type="object" class="oe_highlight" colspan="4" />
+					</header>
+					<sheet>
+						<field name="model_id" context="{'show_model':1}" colspan="4" />
+						<field name="num_repetitions" colspan="4" />
+						<separator />
+					</sheet>
+
+				</form>
+			</field>
+		</record>
+
+		<record id="view_bt_helper_duplicate_model_tree" model="ir.ui.view">
+			<field name="name">bt_helper_duplicate_model_tree</field>
+			<field name="model">bt_helper.duplicate_model</field>
+			<field name="arch" type="xml">
+				<tree string="Duplicate model" version="7.0">
+					<field name="model_id" />
+					<field name="num_repetitions" />
+				</tree>
+			</field>
+		</record>
+
+		<record id="view_bt_helper_duplicate_model_search" model="ir.ui.view">
+			<field name="name">bt_helper_duplicate_model_search</field>
+			<field name="model">bt_helper.duplicate_model</field>
+			<field name="arch" type="xml">
+				<search string="Duplicate model" version="7.0">
+					<field name="model_id" />
+					<field name="num_repetitions"/>
+				</search>
+			</field>
+		</record>
+
+	</data>
+</openerp>

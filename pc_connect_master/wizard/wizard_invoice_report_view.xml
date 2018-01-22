@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+	<data>
+
+
+		<record model="ir.actions.act_window" id="action_wiz_invoice_report">
+			<field name="name">Chart of Open Invoices</field>
+			<field name="src_model">account.invoice</field>
+			<field name="res_model">pc_connect_master.wiz_invoice_report</field>
+			<field name="view_mode">form</field>
+			<field name="target">new</field>
+		</record>
+
+		<record model="ir.ui.view" id="wiz_invoice_report_form">
+			<field name="name">pc_connect_master.wiz_invoice_report</field>
+			<field name="model">pc_connect_master.wiz_invoice_report</field>
+			<field name="priority" eval="16" />
+			<field name="arch" type="xml">
+				<form string="Chart of Open Invoices" col="4" version="7.0">
+					<header>
+						<button type="special" special="cancel" string="Cancel"
+							icon="gtk-cancel" />
+
+						<button type="object" name="action_open" string="Open Report"
+							icon="gtk-apply" />
+					</header>
+
+					<sheet>
+                        <group>
+                            <field name="start_date" />
+                            <field name="end_date" />
+                            <p>- or -</p><br/>
+                            <field name="period" on_change="onchange_period(period)"/>
+                        </group>
+					</sheet>
+
+				</form>
+			</field>
+		</record>
+
+        <record id="invoice_report_summary" model="ir.ui.view">
+            <field name="name">pc_connect_master.invoice_report_summary</field>
+            <field name="model">account.invoice</field>
+            <field name="priority">9999</field>
+            <field name="arch" type="xml">
+                <tree string="Chart of Open Invoices">
+                    <field name="number"/>
+                    <field name="date_invoice"/>
+                    <field name="amount_to_pay" sum="Amount to pay"/>
+                    <field name="amount_total" sum="Total Amount"/>
+                    <field name="amount_tax" sum="Taxes"/>
+                    <field name="state"/>
+                </tree>
+            </field>
+        </record>
+
+	</data>
+</openerp>

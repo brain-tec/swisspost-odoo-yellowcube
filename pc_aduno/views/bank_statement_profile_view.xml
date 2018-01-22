@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<openerp>
+    <data>        
+    	<record model="ir.ui.view" id="statement_importer_view_form_inherit">
+            <field name="name">account.statement.profile.view.inherited</field>
+            <field name="priority">99990</field>
+        	<field name="model">account.statement.profile</field>
+            <field name="inherit_id" ref="account_statement_ext.statement_importer_view_form"/>
+            <field name="arch" type="xml">
+                <field name="commission_analytic_id" position="after">
+                    <field name="payment_type_discount_id" />
+                    <field name="payment_type_commission_id" />
+                    <field name="merchant_id" />
+                    <field name="merchant_subsidiary_id" />
+                </field>
+            </field>
+        </record>
+    </data>
+</openerp>

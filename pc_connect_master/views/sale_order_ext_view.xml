@@ -2,13 +2,35 @@
 <openerp>
 	<data>
 
+         <record id="view_order_form_ext" model="ir.ui.view">
+             <field name="name">view_order_form_ext</field>
+             <field name="model">sale.order</field>
+             <field name="inherit_id" ref="sale.view_order_form"/>
+             <field name="arch" type="xml">
+                 <field name="payment_term" position="before">
+                     <field name="invoice_policy" />
+                 </field>
+
+                 <notebook position="inside">
+                     <page string="Gift Cards" groups="base.group_user">
+                         <group>
+                             <group name="gift_card" groups="base.group_user">
+                                 <field name="gift_card_ids" nolabel="True" />
+                             </group>
+                         </group>
+                     </page>
+                 </notebook>
+             </field>
+        </record>
+
         <record id="sale_order_view_form_automation_ext" model="ir.ui.view">
             <field name="name">sale.order.view.form.automation</field>
             <field name="model">sale.order</field>
             <field name="inherit_id" ref="sale_payment_method.sale_order_view_form" />
             <field name="arch" type="xml">
                 <field name="payment_method_id" position="after">
-                    <field name="automation_finished" />
+                    <field name="stock_type_id" readonly="True" />
+                    <field name="automation_finished" readonly="True" />
                 </field>
             </field>
         </record>
@@ -55,6 +77,29 @@
             </field>
         </record>
 
+        <record id="view_quotation_tree_ext" model="ir.ui.view">
+            <field name="name">view_quotation_tree_ext</field>
+            <field name="model">sale.order</field>
+            <field name="inherit_id" ref="sale.view_quotation_tree" />
+            <field name="arch" type="xml">
+                <field name="state" position="before">
+                    <field name="shop_id" />
+                    <field name="carrier_id" />
+                </field>
+            </field>
+        </record>
+
+        <record id="view_order_tree_ext" model="ir.ui.view">
+            <field name="name">view_order_tree_ext</field>
+            <field name="model">sale.order</field>
+            <field name="inherit_id" ref="sale.view_order_tree" />
+            <field name="arch" type="xml">
+                <field name="state" position="before">
+                    <field name="shop_id" />
+                    <field name="carrier_id" />
+                </field>
+            </field>
+        </record>
 
 		<record
 			id="sale_order_search_ext_view"
@@ -119,6 +164,16 @@
 							icon="terp-personal"
 							name="this_year" />
 					</field>
+
+                    <xpath expr="//group[descendant-or-self::filter[@string='Order Date']]" position="inside">
+                        <filter string="Shop" icon="terp-personal"
+                                name="group_by_shop_id"
+                                context="{'group_by':'shop_id'}"/>
+                        <filter string="Delivery Method" icon="terp-personal"
+                                name="group_by_carrier_id"
+                                context="{'group_by':'carrier_id'}"/>
+                    </xpath>
+
 				</data>
 			</field>
 		</record>

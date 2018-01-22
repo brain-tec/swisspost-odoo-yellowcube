@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+	<data>
+		<record id="sale_order_line_form_ext_2_view" model="ir.ui.view">
+			<field name="name">sale.order.form.ext.2</field>
+			<field name="model">sale.order</field>
+			<field name="inherit_id" ref="one2many_filter.sale_order_line_form_ext_view" />
+			<field name="arch" type="xml">
+
+				
+				<xpath expr="//field[@name='order_line']/tree//field[@name='product_id']"
+					position="after">
+					<field name="is_discount" invisible="1" />
+				</xpath>
+
+
+				<field name="order_line" position="after">
+					<field name="discount_order_line_ids" readonly="1"
+						context="{'tree_view_ref':'stage_discount.view_order_line_tree_1', 
+					'form_view_ref':'stage_discount.view_order_line_form_1'}" />
+				</field>
+
+                <!-- We first add the field 'discount_type', because we need it to be in the view
+                     in order to use it. -->
+                <xpath expr="//field[@name='order_line']/tree[1]" position="inside">
+                    <field name="discount_type" invisible="1" />
+                </xpath>
+                <!-- This is the portion of sale.order lines which are on the top
+                     (those which are not discount - or shouldn't be) -->
+				<xpath expr="//field[@name='order_line']/tree[1]" position="attributes">
+					<attribute name="domain">[('is_discount', '=', False)]</attribute>
+					<attribute name="colors">
+					red:discount_type in ['subtotal'];
+                    black:discount_type in ['product'];
+                    green:is_discount==True and discount_type not in ['subtotal','product']
+                    </attribute>
+				</xpath>
+
+				<field name="amount_untaxed" position="after">
+					<div>
+						<label for="amount_discount" />
+					</div>
+					<field name="amount_discount" widget="monetary" nolabel="1"
+						readonly="1" options="{'currency_field': 'currency_id'}" />
+				</field>
+				<notebook position="inside">
+					<page string="Discount Payments" position="inside">
+
+						<group colspan="4">
+							<separator string="Use this template" colspan="2" />
+							<field name="discount_template_id" nolabel="1" widget="selection"
+								attrs="{'readonly':[('state','not in',['draft'])]}"
+								on_change="action_add_template(discount_template_id,discount_line_ids,partner_id)" />
+
+						</group>
+						<field name="is_rounded" string="Roudning" colspan="4"
+							invisible="1" />
+						<separator string="Discount Lines" colspan="4" />
+						<field name="discount_line_ids" nolabel="1" colspan="4"
+							attrs="{'readonly':[('state','not in',['draft'])]}" />
+					</page>
+				</notebook>
+			</field>
+		</record>
+	</data>
+</openerp>

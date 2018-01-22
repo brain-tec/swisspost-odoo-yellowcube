@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+
+    <!-- We define here the data which must not be modified by the user. -->
+	<data noupdate="0">
+        <record id="cron_check_old_draft_sale_orders" model="ir.cron">
+            <field name="name">PCAP - Check Old Draft Sale Orders</field>
+            <field name="model">sale.order</field>
+            <field name="function">cron_check_old_draft_sale_orders</field>
+            <field name="args" eval="()" />
+        </record>
+        <record id="send_invoices_to_doc_out" model="ir.cron">
+            <field name="name">PCAP - Doc-out: Send Invoices</field>
+            <field name="model">account.invoice</field>
+            <field name="function">cron_send_invoices_to_doc_out</field>
+            <field name="args" eval="()" />
+        </record>
+
+        <!-- We change the function used by the MRP scheduler to use our own,
+             sale order automation-compliant, implementation. -->
+        <record id="procurement.ir_cron_scheduler_action" model="ir.cron">
+            <field eval="'mrp_scheduler_for_sale_order_automation'" name="function"/>
+        </record>
+    </data>
+
+
+    <!-- We define here the data which may be modified by the user. -->
+    <data noupdate="1">
+        <record id="cron_check_old_draft_sale_orders" model="ir.cron">
+            <field name="interval_type">minutes</field>
+            <field name="interval_number" eval="15" />
+            <field name="numbercall" eval="-1" />
+            <field name="doall" eval="True" />
+            <field name="priority" eval="0" />
+            <field name="active" eval="False" />
+        </record>
+        <record id="send_invoices_to_doc_out" model="ir.cron">
+            <field name="interval_type">days</field>
+            <field name="interval_number" eval="1" />
+            <field name="numbercall" eval="-1" />
+            <field name="doall" eval="True" />
+            <field name="priority" eval="4" />
+            <field name="active" eval="False" />
+        </record>
+    </data>
+
+</openerp>

@@ -1,7 +1,7 @@
 # b-*- encoding: utf-8 -*-
 ##############################################################################
 #
-#    Copyright (c) 2015 brain-tec AG (http://www.brain-tec.ch)
+#    Copyright (c) 2015 brain-tec AG (http://www.braintec-group.com)
 #    All Right Reserved
 #
 #    This program is free software: you can redistribute it and/or modify
@@ -74,11 +74,15 @@ class stock_picking_config(osv.Model):
         if domain_regular_pickings:
             domain_regular_pickings.extend(common_domain)
             old_picking_ids = set(stock_picking_obj.search(cr, uid, domain_regular_pickings, context=context))
+        else:
+            old_picking_ids = set()
 
         # Looks for old back-orders.
         if domain_backorders:
             domain_backorders.extend(common_domain)
             old_backorders_ids = set(stock_picking_obj.search(cr, uid, domain_backorders, context=context))
+        else:
+            old_backorders_ids = set()
 
         pickings_to_alarm_ids = list(old_picking_ids | old_backorders_ids)
         for stock_picking in stock_picking_obj.browse(cr, uid, pickings_to_alarm_ids, context=context):

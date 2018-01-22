@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+    <data>
+
+		<!-- Picking List Report -->
+		<report id="report_barcode_label" string="Barcode Label"
+			model="stock.picking.out" name="barcode_label_report"
+			file="pc_delivery_carrier_label_postlogistics/reports/barcode_label.mako"
+			report_type="webkit" auto="False" />
+		<record id="report_barcode_label" model="ir.actions.report.xml">
+			<field name="webkit_header" ref="pc_generics.ir_report_quotation_order" />
+		</record>
+
+    </data>
+</openerp>

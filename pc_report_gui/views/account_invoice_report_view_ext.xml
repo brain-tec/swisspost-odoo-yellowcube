@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+
+        <!-- Extends the grouping of the 'Invoice Analysis' search-box. -->
+        <record id="view_account_invoice_report_search_ext" model="ir.ui.view">
+            <field name="name">view_account_invoice_report_search_ext</field>
+            <field name="model">account.invoice.report</field>
+            <field name="inherit_id" ref="account.view_account_invoice_report_search" />
+            <field name="arch" type="xml">
+                <filter string="Product" position="attributes">
+                    <attribute name="context">{'group_by_product': True, 'group_by':'product_id','set_visible':True,'residual_invisible':True}</attribute>
+                </filter>
+                <filter string="Product" position="after">
+                    <filter string="Product's Default Code" context="{'group_by_product': True, 'group_by':'product_default_code', 'set_visible':True, 'residual_invisible':True}" />
+                    <filter string="Product's Name" context="{'group_by_product': True, 'group_by':'product_name', 'set_visible':True, 'residual_invisible':True}" />
+                    <filter string="Invoice's Origin" context="{'group_by':'invoice_origin'}" />
+                    <filter string="Invoice's Name" context="{'group_by':'invoice_name'}" />
+                </filter>
+                <filter string="Partner" position="after">
+                    <filter string="Currency" context="{'group_by':'currency_id'}"/>
+                    <filter string="Partner's Main Category" context="{'group_by':'partner_main_category_id'}"/>
+                </filter>
+                <field name="date" position="after">
+                    <field name="date_invoice_from" filter_domain="[('date', '&gt;=', self)]" />
+                    <field name="date_invoice_to" filter_domain="[('date', '&lt;=', self)]" />
+                </field>
+            </field>
+        </record>
+
+        <!-- Extends the default view. -->
+        <record id="view_account_invoice_report_tree_ext" model="ir.ui.view">
+            <field name="name">view_account_invoice_report_tree_ext</field>
+            <field name="model">account.invoice.report</field>
+            <field name="inherit_id" ref="account.view_account_invoice_report_tree" />
+            <field name="arch" type="xml">
+                <field name="date" position="after">
+<!--                <field name="product_default_code" invisible="not context.get('group_by_product', False)" sum="Default Code" />
+                    <field name="product_name" invisible="not context.get('group_by_product', False)" sum="Name" />
+-->
+                    <field name="payment_date" />
+                    <field name="invoice_origin" />
+                    <field name="invoice_name" />
+                </field>
+
+                <field name="price_total" position="after">
+                    <field name="price_total_with_taxes" string="Total With Tax" />
+                </field>
+            </field>
+        </record>
+    </data>
+</openerp>

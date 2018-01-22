@@ -1,0 +1,21 @@
+<openerp>
+    <data noupdate='0'>
+    
+        <record id="intrum_category" model="project.category">
+            <field name="name">intrum</field>
+            <field name="priority">1</field>
+        </record>
+        
+        <record
+            id="intrum_project"
+            model="project.project">
+            <field name="name">Intrum</field>
+            <field
+                name="type_ids"
+                eval="[(6, 0, [ref('pc_issue.issue_new'), ref('pc_issue.issue_open'), ref('pc_issue.issue_done'), ref('pc_issue.issue_closed')])]" />
+            <field name="categ_ids" eval="[(6, 0, [ref('intrum_category')] )]"/>
+            <field name="color">9</field>
+        </record>
+        
+    </data>
+</openerp>

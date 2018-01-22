@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data noupdate="1">
+
+        <record id="email_template_tracking_email" model="email.template">
+            <field name="name">Tracking Email</field>
+            <field name="email_from">${user.email}</field>
+            <field name="subject">Your tracking email for picking ${object.name}</field>
+            <field name="email_to">${object.partner_id.email | safe}</field>
+            <field name="lang">${object.partner_id.lang}</field>
+            <field name="model_id" ref="stock.model_stock_picking_out"/>
+            <field name="auto_delete" eval="False" />
+
+            <field name="body_html"><![CDATA[
+            <div style="font-family: sans-serif; font-size: 12px;">
+                <p>Your <a href="${object.carrier_tracking_url | safe}">tracking URL</a> for the picking ${object.name}.</p>
+            </div>
+            ]]></field>
+        </record>
+
+    </data>
+</openerp>

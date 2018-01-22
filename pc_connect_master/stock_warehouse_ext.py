@@ -20,46 +20,26 @@
 ##############################################################################
 
 from openerp.osv import osv, fields, orm
-from openerp.tools.translate import _
 
 
 class stock_warehouse_ext(osv.Model):
     _inherit = 'stock.warehouse'
 
     def get_stock_location_ids(self, cr, uid, ids, context=None):
-        if not ids:
-            ids = self.search(cr, uid, [], context=context)
-        ret = []
-        for data in self.read(cr, uid, ids, ['lot_stock_id'], context=context):
-            loc_id = data['lot_stock_id']
-            if loc_id and loc_id[0] not in ret:
-                ret.append(loc_id[0])
-        return ret
-
-    def get_stock_location(self, cr, uid, ids, context=None):
-        ''' Gets the stock location for our warehouse (there must be just one warehouse).
-        '''
+        """ Returns all the stock location's IDs of the warehouses
+            the ID of which is received. If no IDs are sent, then returns
+            all the stock locations of all the warehouses of the system.
+        """
         if context is None:
             context = {}
+        if not ids:
+            ids = self.search(cr, uid, [], context=context)
+        elif type(ids) is not list:
+            ids = [ids]
 
-        warehouse_obj = self.pool.get('stock.warehouse')
-        warehouse_ids = warehouse_obj.search(cr, uid, [], context=context)
-
-        if not warehouse_ids:
-            raise orm.except_orm(_('No Warehouses Found'),
-                                 _('There were no warehouses found in the system.'))
-        if len(warehouse_ids) > 1:
-            raise orm.except_orm(_('Bad Number of Warehouses'),
-                                 _('{0} warehouses were found on the system, while just one is allowed.').format(len(warehouse_ids)))
-
-        # Gets the stock location for our warehouse.
-        stock_location = False
-        for warehouse in warehouse_obj.browse(cr, uid, warehouse_ids, context=context):
-            stock_location = warehouse.lot_stock_id
-        if not stock_location:
-            raise orm.except_orm(_('No Location Stock Defined'),
-                                 _('No location was defined for stock (Location Stock) on the warehouse.'))
-
-        return stock_location
+        ret = set()
+        for warehouse in self.browse(cr, uid, ids, context=context):
+            ret.add(warehouse.lot_stock_id.id)
+        return list(ret)
 
 # vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:

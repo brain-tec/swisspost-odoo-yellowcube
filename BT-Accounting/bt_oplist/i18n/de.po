@@ -1,0 +1,213 @@
+# Translation of OpenERP Server.
+# This file contains the translation of the following modules:
+#	* bt_oplist
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: OpenERP Server 6.0dev\n"
+"Report-Msgid-Bugs-To: support@openerp.com\n"
+"POT-Creation-Date: 2011-01-11 11:14+0000\n"
+"PO-Revision-Date: 2011-01-19 12:00+0000\n"
+"Last-Translator: Thorsten Vocks (OpenBig.org) <thorsten.vocks@big-"
+"consulting.net>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Launchpad-Export-Date: 2011-01-25 06:33+0000\n"
+"X-Generator: Launchpad (build 12177)\n"
+
+#. module: bt_oplist
+#: view:account.oplist.cust:0
+#: model:ir.actions.act_window,name:bt_oplist.action_cust_account_oplist
+#: model:ir.ui.menu,name:bt_oplist.menu_cust_account_oplist
+msgid "Cust OP List Report"
+msgstr "OP-Liste"
+
+#. module: bt_oplist
+#: view:account.oplist.cust:0
+msgid "Print OP List Report"
+msgstr "Drucke OP-Liste"
+
+#. module: bt_oplist
+#: view:account.oplist.cust:0
+#, python-format
+msgid "Cancel"
+msgstr "Abbrechen"
+
+#. module: bt_oplist
+#: field:account.oplist.cust,company_id:0
+msgid "Company"
+msgstr "Unternehmen"
+
+#. module: bt_oplist
+#: field:account.oplist.cust,partner_id:0
+msgid "Partner"
+msgstr "Partner"
+
+#. module: bt_oplist
+#: field:account.oplist.cust,result_selection:0
+msgid "Partner's"
+msgstr "Partner"
+
+#. module: bt_oplist
+#: field:account.oplist.cust,date2:0
+msgid "Duedate"
+msgstr "per Datum"
+
+#. module: bt_oplist
+#: view:account.oplist.cust:0
+msgid "This menu prints the op list report."
+msgstr "Über dieses Menü kann die OP-Liste ausgedruckt werden."
+
+#. module: bt_oplist
+#: report:account.oplist.cust:0
+#, python-format
+msgid "Journal"
+msgstr "Journal"
+
+#. module: bt_oplist
+#: report:account.oplist.cust:0
+msgid "-"
+msgstr "-"
+
+#. module: bt_oplist
+#: report:account.oplist.cust:0
+msgid "Entry Label"
+msgstr "Buchungstext"
+
+#. module: bt_oplist
+#: report:account.oplist.cust:0
+msgid "Account"
+msgstr "Konto"
+
+#. module: bt_oplist
+#: report:account.oplist.cust:0
+msgid "Initial Balance"
+msgstr "Startsaldo"
+
+#. module: bt_oplist
+#: report:account.oplist.cust:0
+msgid "Fiscal Year"
+msgstr "Geschäftsjahr"
+
+#. module: bt_oplist
+#: report:account.oplist.cust:0
+msgid "Ref"
+msgstr "Referenz"
+
+#. module: bt_oplist
+#: report:account.oplist.cust:0
+#, python-format
+msgid "Date"
+msgstr "Datum"
+
+#. module: bt_oplist
+#: report:account.oplist.cust:0
+msgid "Target Moves"
+msgstr "Filter Buchungen"
+
+#. module: bt_oplist
+#: report:account.oplist.cust:0
+msgid "OP List"
+msgstr "OP-Liste"
+
+#. module: bt_oplist
+#: report:account.oplist.cust:0
+msgid "Chart of Account"
+msgstr "Kontenplan"
+
+#. module: bt_oplist
+#: report:account.oplist.cust:0
+msgid "Currency"
+msgstr "Währung"
+
+#. module: bt_oplist
+#: report:account.oplist.cust:0
+msgid "Start Period"
+msgstr "Start Periode"
+
+#. module: bt_oplist
+#: report:account.oplist.cust:0
+msgid "Balance"
+msgstr "Saldo"
+
+#. module: bt_oplist
+#: report:account.oplist.cust:0
+msgid "Filters By"
+msgstr "Filter nach"
+
+#. module: bt_oplist
+#: report:account.oplist.cust:0
+msgid "End Period"
+msgstr "Ende der Periode"
+
+#. module: bt_oplist
+#: report:account.oplist.cust:0
+msgid "Start Date"
+msgstr "Start Datum"
+
+#. module: bt_oplist
+#: report:account.oplist.cust:0
+msgid "Credit"
+msgstr "Haben"
+
+#. module: bt_oplist
+#: report:account.oplist.cust:0
+msgid "End Date"
+msgstr "Ende Datum"
+
+#. module: bt_oplist
+#: report:account.oplist.cust:0
+msgid "JNRL"
+msgstr "JNRL"
+
+#. module: bt_oplist
+#: report:account.oplist.cust:0
+msgid "Debit"
+msgstr "Soll"
+
+#. module: bt_oplist
+#: report:account.oplist.cust:0
+msgid "Partner's"
+msgstr "Partner"
+
+#. module: bt_oplist
+#: report:account.oplist.cust:0
+msgid "Due date:"
+msgstr "per Datum:"
+
+#. module: bt_oplist
+#: report:account.oplist.cust:0
+msgid "Printing Date:"
+msgstr "Druckdatum:"
+
+#. module: bt_oplist
+#: report:account.oplist.cust:0
+msgid "Balance Brought Forward"
+msgstr "Saldovortrag"
+
+#. module: bt_oplist
+#: field:account.oplist.cust,filter_on_periods:0
+msgid "Filter on periods"
+msgstr "Filter nach Perioden"
+
+#. module: bt_oplist
+#: help:account.oplist.cust,filter_on_periods:0
+msgid "If this flag is set, it takes all open entries depending on the periods whose end date is lower or equal than the end date of the fiscalyear of the duedate."
+msgstr "Wenn dieses Flag gesetzt ist, werden alle offenen Einträge in Abhängigkeit der Perioden, deren Enddatum kleiner oder gleich wie das Enddatum des Finanzjahres des eingegeben Datum unter 'per Datum'."
+
+#. module: bt_oplist
+#: report:account.oplist.cust:0
+msgid "Filter on periods:"
+msgstr "Filter nach Perioden:"
+
+#. module: bt_oplist
+#: report:account.oplist.cust:0
+msgid "True"
+msgstr "Ja"
+
+#. module: bt_oplist
+#: report:account.oplist.cust:0
+msgid "False"
+msgstr "Nein"

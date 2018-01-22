@@ -1,7 +1,7 @@
 # b-*- encoding: utf-8 -*-
 ##############################################################################
 #
-#    Copyright (c) 2014 brain-tec AG (http://www.brain-tec.ch)
+#    Copyright (c) 2014 brain-tec AG (http://www.braintec-group.com)
 #    All Right Reserved
 #
 #    This program is free software: you can redistribute it and/or modify
@@ -21,12 +21,9 @@
 from openerp.osv import osv, fields, orm
 from openerp.tools.translate import _
 from xml_abstract_factory import get_factory
-from xml_abstract_factory import deprecated
-import datetime
+from datetime import datetime, timedelta
 from openerp.tools import DEFAULT_SERVER_DATETIME_FORMAT
 from openerp.addons.pc_connect_master.utilities.date_utilities import get_number_of_natural_days
-import logging
-logger = logging.getLogger(__name__)
 
 
 class product_product_ext(osv.Model):
@@ -38,6 +35,8 @@ class product_product_ext(osv.Model):
         '''
         if context is None:
             context = {}
+        if not isinstance(ids, list):
+            ids = [ids]
 
         product_uom_obj = self.pool.get('product.uom')
 
@@ -75,21 +74,25 @@ class product_product_ext(osv.Model):
             context = {}
 
         ret = []
-        now = datetime.datetime.now()
+        now = datetime.now()
         connect_pool = self.pool.get('stock.connect')
 
         # Gets all those stock.connect which have been set to check for the products which has not appeared in BAR for a certain amount of days.
-        connect_ids = connect_pool.search(cr, uid, [('yc_missing_bar_days_due', '>', '0')], context=context, order='yc_missing_bar_days_due DESC')
-        if connect_ids:
+        # If we have received a stock.connect in the context, we use it.
+        connect_ids = context.get('connect_ids')
+        if not connect_ids:
+            connect_ids = connect_pool.search(cr, uid, [('yc_missing_bar_days_due', '>', '0')], context=context, order='yc_missing_bar_days_due DESC')
+
+        for connect_id in connect_ids:
 
             # Gets the number of days to check against.
-            limit = connect_pool.read(cr, uid, connect_ids, ['yc_missing_bar_days_due'], context=context)[0]['yc_missing_bar_days_due']
+            limit = connect_pool.read(cr, uid, connect_id, ['yc_missing_bar_days_due'], context=context)['yc_missing_bar_days_due'] or 0
             context['yc_missing_bar_days_due'] = limit
 
             # Searches for those products which were absent in a BAR for the given amount of days.
             config_data = self.pool.get('configuration.data').get(cr, uid, [], context=context)
             actual_weekdays = config_data.get_open_days_support(context=context)
-            date_limit = now - datetime.timedelta(days=get_number_of_natural_days(now, limit, 'backward', actual_weekdays))
+            date_limit = now - timedelta(days=get_number_of_natural_days(now, limit, 'backward', actual_weekdays))
             domain = [('yc_last_bar_update', '<', date_limit.strftime(DEFAULT_SERVER_DATETIME_FORMAT))]
             if ids:
                 domain.append(('id', 'in', ids))
@@ -151,8 +154,8 @@ class product_product_ext(osv.Model):
             # if unset, return none products
             return []
 
-        delta_time = datetime.timedelta(days=connection.yc_missing_bar_days_due)
-        date_min_update = datetime.datetime.now() - delta_time
+        delta_time = timedelta(days=connection.yc_missing_bar_days_due)
+        date_min_update = datetime.now() - delta_time
 
         file_obj = self.pool.get('stock.connect.file')
         file_ids = file_obj.search(cr,
@@ -176,13 +179,41 @@ class product_product_ext(osv.Model):
         # We return those products that weren't updated in the last BAR files
         return [x for x in product_ids not in ok_products]
 
+    def get_ean_type(self, cr, uid, ids, context=None):
+        """ The ART needs to know the type of EAN sent. This type depends on
+            its length:
+            - length 8: "HK"
+            - length 12: "UC"
+            - length 13: "HE"
+            - length 14: "UC"
+
+            The constraint on the EAN prevents lengths different that those
+            listed ones, thus we don't check for different lengths (the only
+            exception being a length of zero, that means no EAN is set).
+        """
+        if context is None:
+            context = {}
+        if type(ids) is not list:
+            ids = [ids]
+
+        ean_types_depending_on_length = {
+            0: '',  # For the case in which we don't have an EAN.
+            8: 'HK',
+            12: 'UC',
+            13: 'HE',
+            14: 'UC'
+        }
+        product = self.browse(cr, uid, ids[0], context=context)
+        return ean_types_depending_on_length[len(product.ean13 or '')]
+
     _columns = {
         'yc_YCArticleNo': fields.char('YCArticleNo', readonly=False),
         'yc_track_outgoing_scan': fields.boolean('Scan Outgoing Lots', help="This is for the ART file of YellowCube"),
         'yc_under_delete_process': fields.boolean('Mark for deletion on YellowCube'),
         'yc_last_changeflag_submitted': fields.char('Last ChangeFlag sent to YellowCube', readonly=False),
         'yc_last_changeflag_submitted_date': fields.date('Last ChangeFlag sent to YellowCube (date)', readonly=False),
-        'yc_last_bar_update': fields.datetime('Last time this product appeared in a BAR file'),
+        'yc_last_bar_update': fields.datetime('Last time this product appeared in a BAR file',
+                                              help='The date stored is the Timestamp of the BAR file.'),
         'yc_bar_uom_id': fields.many2one('product.uom', string='Unit of Measure of last BAR',
                                          help='Stores the last UOM sent with the last BAR', readonly=True)
     }

@@ -1,7 +1,7 @@
 # b-*- encoding: utf-8 -*-
 ##############################################################################
 #
-#    Copyright (c) 2015 brain-tec AG (http://www.brain-tec.ch)
+#    Copyright (c) 2015 brain-tec AG (http://www.braintec-group.com)
 #    All Right Reserved
 #
 #    This program is free software: you can redistribute it and/or modify
@@ -18,11 +18,8 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 ##############################################################################
-
 from openerp.osv import osv, fields
 from openerp.tools.translate import _
-import logging
-logger = logging.getLogger(__name__)
 
 
 class ir_attachment_ext(osv.Model):
@@ -34,5 +31,6 @@ class ir_attachment_ext(osv.Model):
             if k in context and k not in ret:
                 ret[k] = context[k]
         return ret
+
 
 # vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:

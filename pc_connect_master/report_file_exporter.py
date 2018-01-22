@@ -1,7 +1,7 @@
 # b-*- encoding: utf-8 -*-
 ##############################################################################
 #
-#    Copyright (c) 2014 brain-tec AG (http://www.brain-tec.ch)
+#    Copyright (c) 2014 brain-tec AG (http://www.braintec-group.com)
 #    All Right Reserved
 #
 #    This program is free software: you can redistribute it and/or modify
@@ -18,7 +18,6 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 ##############################################################################
-
 from openerp.osv import osv, fields
 from openerp.tools.translate import _
 from openerp.addons.web.controllers.main import content_disposition
@@ -28,7 +27,7 @@ import StringIO
 import xlsxwriter
 import logging
 logger = logging.getLogger(__name__)
-
+logger.setLevel(logging.DEBUG)
 
 def export_decorator(mode):
     def _export_decorator(f):
@@ -49,7 +48,7 @@ class report_file_exporter(osv.osv_memory):
         if context is None:
             context = {}
 
-        if not isinstance(ids, list):
+        if type(ids) is not list:
             ids = [ids]
 
         wizard = self.browse(cr, uid, ids, context=context)[0]

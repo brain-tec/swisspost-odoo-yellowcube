@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+	<data>
+		<record id="export_step0_form" model="ir.ui.view">
+			<field name="name">export.step0.form</field>
+			<field name="model">export.wizard</field>
+			<field name="arch" type="xml">
+				<form string="Sharing: preparation" version="7.0">
+					<separator
+						string="Please select the configuration that you want to export." />
+					<group>
+						<field name="state" invisible="1" />
+						<field name="import" />
+						<group attrs="{'invisible': [('import', '=', True)]}">
+							<field name="name" readonly="1" />
+							<field name="get_selected_ids" readonly="1" />
+							<field name="level" states="draft" />
+							<field name="remove_binary" states="draft" />
+							<field name="data" filename="data_name" readonly="1"
+								states="done" />
+							<field name="data_name" invisible="1" />
+							<field name="export_xml" invisible="1" />
+						</group>
+						<group attrs="{'invisible': [('import', '=', False)]}">
+							<field name="data_import" attrs="{'required': [('import', '=', True)]}" />
+							<field name="module_id" attrs="{'required': [('import', '=', True)]}" />
+						</group>
+					</group>
+					<footer>
+						<button name="go_step_2" string="Next" type="object" class="oe_highlight"  attrs="{'invisible': [('import', '=', True)]}" />
+						<button name="go_step_3" string="Next" type="object" class="oe_highlight"  attrs="{'invisible': [('import', '=', False)]}" />
+						or
+						<button string="Cancel" class="oe_link" special="cancel" />
+					</footer>
+				</form>
+			</field>
+		</record>
+		<record id="action_export_wizard" model="ir.actions.act_window">
+			<field name="name">export Wizard</field>
+			<field name="type">ir.actions.act_window</field>
+			<field name="res_model">export.wizard</field>
+			<field name="view_type">form</field>
+			<field name="view_mode">form</field>
+			<field name="view_id" ref="export_step0_form" />
+			<field name="target">new</field>
+		</record>
+		<record id="action_share_wizard_step1" model="ir.actions.act_window">
+			<field name="name">export Wizard</field>
+			<field name="type">ir.actions.act_window</field>
+			<field name="res_model">export.wizard</field>
+			<field name="view_type">form</field>
+			<field name="view_mode">form</field>
+			<field name="view_id" ref="export_step0_form" />
+			<field name="target">new</field>
+		</record>
+	</data>
+</openerp>

@@ -1,7 +1,7 @@
 # b-*- encoding: utf-8 -*-
 ##############################################################################
 #
-#    Copyright (c) 2014 brain-tec AG (http://www.brain-tec.ch)
+#    Copyright (c) 2014 brain-tec AG (http://www.braintec-group.com)
 #    All Right Reserved
 #
 #    This program is free software: you can redistribute it and/or modify
@@ -18,18 +18,20 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 ##############################################################################
-
 from osv import osv, fields, orm
 from openerp.tools.translate import _
 from openerp.tools.safe_eval import safe_eval
-from utilities.misc import format_exception
+from openerp.addons.pc_log_data.log_data import write_log
+from utilities.others import format_exception
 from openerp import netsvc
 import time
-import datetime
+from datetime import datetime
+from datetime import time as datetime_time
 import pytz
+from utilities.memory import get_free_memory_in_kb
 import logging
 logger = logging.getLogger(__name__)
-
+logger.setLevel(logging.DEBUG)
 
 TIME_OF_DAY_1 = '{0}_time_of_day'
 TIME_OF_DAY_2 = '{0}_time_of_day_2'
@@ -55,6 +57,7 @@ class ir_cron_ext(osv.osv):
     _inherit = ['ir.cron', 'mail.thread']
 
     def _handle_callback_exception(self, cr, uid, model_name, method_name, args, job_id, job_exception):
+        write_log(self, cr, uid, 'ir.cron', '{0}.{1}'.format(model_name, method_name), job_id, 'Error on scheduler execution', correct=False, extra_information=format_exception(job_exception), context=None)
         return super(ir_cron_ext, self)._handle_callback_exception(cr, uid, model_name, method_name, args, job_id, job_exception)
 
     def _check_punchcard(self, cr, uid, job_id):
@@ -69,7 +72,7 @@ class ir_cron_ext(osv.osv):
         punch_obj = self.pool.get('ir.cron.punchcard')
 
         # Time to check if work can be done
-        now_local = datetime.datetime.now().replace(tzinfo=pytz.utc).astimezone(pytz.timezone(config.support_timezone))
+        now_local = datetime.now().replace(tzinfo=pytz.utc).astimezone(pytz.timezone(config.support_timezone))
 
         punch_values = {'ir_cron': job_id, 'execution_day': now_local.date()}
 
@@ -86,21 +89,21 @@ class ir_cron_ext(osv.osv):
 
         # We checked before that we have this time.
         tod = config[TIME_OF_DAY_1.format(job.punchcard_prefix)]
-        tod_1 = datetime.time(int(tod), int(round(60 * tod)) % 60).replace(tzinfo=pytz.timezone(config.support_timezone))
+        tod_1 = datetime_time(int(tod), int(round(60 * tod)) % 60).replace(tzinfo=pytz.timezone(config.support_timezone))
 
         # Second time is optional, thus may not exist, of exist but be empty.
         tod_2 = None
         if TIME_OF_DAY_2.format(job.punchcard_prefix) in config:
             tod = config[TIME_OF_DAY_2.format(job.punchcard_prefix)]
             if tod:
-                tod_2 = datetime.time(int(tod), int(round(60 * tod)) % 60).replace(tzinfo=pytz.timezone(config.support_timezone))
+                tod_2 = datetime_time(int(tod), int(round(60 * tod)) % 60).replace(tzinfo=pytz.timezone(config.support_timezone))
 
         # Third time is optional, thus may not exist, of exist but be empty.
         tod_3 = None
         if TIME_OF_DAY_3.format(job.punchcard_prefix) in config:
             tod = config[TIME_OF_DAY_3.format(job.punchcard_prefix)]
             if tod:
-                tod_3 = datetime.time(int(tod), int(round(60 * tod)) % 60).replace(tzinfo=pytz.timezone(config.support_timezone))
+                tod_3 = datetime_time(int(tod), int(round(60 * tod)) % 60).replace(tzinfo=pytz.timezone(config.support_timezone))
 
         exists_punchard_for_today = punch_obj.search(cr, uid, [('ir_cron', '=', job_id),
                                                                ('execution_day', '=', now_local.date()),
@@ -142,6 +145,7 @@ class ir_cron_ext(osv.osv):
         # is set to True, then we do not execute the scheduler.
         do_not_execute_schedulers = safe_eval(self.pool.get('ir.config_parameter').get_param(cr, uid, 'do_not_execute_schedulers', 'False'))
         if do_not_execute_schedulers is True:
+            logger.info('Schedulers are deactivated. ir.config_parameter do_not_execute_schedulers')
             return False
 
         # If, according to punchcards, it can not execute the scheduler, returns False.
@@ -152,20 +156,10 @@ class ir_cron_ext(osv.osv):
         ir_cron_punchcard_obj = self.pool.get('ir.cron.punchcard')
 
         # If we can execute, we log the punchcard...
-        ir_cron_punchcard_obj.create(cr, uid, punch_values)
-
-        # We limit the number of punchcards to the amount indicated in the configuration, thus
-        # we remove the extra ones (keeping only the newest ones).
-        configuration = self.pool.get('configuration.data').get(cr, uid, [])
-        if configuration.punchcards_limit:
-            punchcards_to_keep_ids = ir_cron_punchcard_obj.search(cr, uid, [('ir_cron', '=', job_id)], limit=configuration.punchcards_limit, order='execution_day DESC')
-            if punchcards_to_keep_ids:
-                punchards_to_remove_ids = ir_cron_punchcard_obj.search(cr, uid, [('ir_cron', '=', job_id),
-                                                                                 ('id', 'not in', punchcards_to_keep_ids),
-                                                                                 ])
-                ir_cron_punchcard_obj.unlink(cr, uid, punchards_to_remove_ids)
+        punchard_id = ir_cron_punchcard_obj.create(cr, uid, punch_values)
 
         # ... and continue with the normal execution of the scheduler.
+        initial_memory_kb = get_free_memory_in_kb()
         args = str2tuple(args)
         model = self.pool.get(model_name)
         ret = False
@@ -177,13 +171,22 @@ class ir_cron_ext(osv.osv):
                 if logger.isEnabledFor(logging.DEBUG):
                     start_time = time.time()
                 ret = method(cr, uid, *args)
-                if ret and isinstance(ret, str):
+                if ret and type(ret) is str:
                     ctx = {'thread_id': job_id, 'thread_model': 'ir.cron'}
+                    write_log(self, cr, uid, 'ir.cron', '{0}.{1}'.format(model_name, method_name), job_id, 'Successful scheduler execution', correct=True, extra_information=format_exception(ret), context=ctx)
                 if logger.isEnabledFor(logging.DEBUG):
                     end_time = time.time()
                     logger.debug('%.3fs (%s, %s)' % (end_time - start_time, model_name, method_name))
-            except Exception as e:
+
+                # Stores the moment in which we finished executing the method associated to the scheduler.
+                final_memory_kb = get_free_memory_in_kb()
+                ir_cron_punchcard_obj.write(cr, uid, punchard_id, {'end_date': fields.datetime.now(),
+                                                                   'difference_free_memory': final_memory_kb - initial_memory_kb,
+                                                                   })
+
+            except Exception, e:
                 self._handle_callback_exception(cr, uid, model_name, method_name, args, job_id, e)
+
         return ret
 
     def _get_punchcards(self, cr, uid, ids, name, arg, context=None):

@@ -1,0 +1,44 @@
+<openerp>
+    <data>
+
+        <!-- Definew the tree view. -->
+        <record id="view_stock_connect_email_tree" model="ir.ui.view">
+            <field name="name">view_stock_connect_email_tree</field>
+            <field name="model">mail.mail</field>
+            <field name="priority">9999</field>
+            <field name="arch" type="xml">
+                <tree string="Emails" colors="red:state=='exception';green:state=='sent';orange:state=='outgoing'">
+                    <field name="date" />
+                    <field name="subject" />
+                    <field name="state" />
+                </tree>
+            </field>
+        </record>
+
+        <!-- Receives the action. -->
+        <record id="action_stock_connect_email" model="ir.actions.act_window">
+            <field name="name">Emails</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">mail.mail</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <!-- We define the view to be used for the tree view. -->
+        <record id="action_stock_connect_email_tree" model="ir.actions.act_window.view">
+            <field name="sequence" eval="0" />
+            <field name="view_mode">tree</field>
+            <field name="view_id" ref="view_stock_connect_email_tree" />
+            <field name="act_window_id" ref="action_stock_connect_email" />
+        </record>
+
+        <!-- We define the view to be used for the form view, which is the default one. -->
+        <record id="action_stock_connect_email_form" model="ir.actions.act_window.view">
+            <field name="sequence" eval="1" />
+            <field name="view_mode">form</field>
+            <field name="view_id" ref="mail.view_mail_form" />
+            <field name="act_window_id" ref="action_stock_connect_email" />
+        </record>
+
+    </data>
+</openerp>

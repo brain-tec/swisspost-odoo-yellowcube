@@ -1,0 +1,62 @@
+# Translation of OpenERP Server.
+# This file contains the translation of the following modules:
+#	* bt_account
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: OpenERP Server 6.1-20120830-233304\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2012-11-27 10:59+0000\n"
+"PO-Revision-Date: 2012-11-27 10:59+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: bt_account
+#: selection:account.invoice.refund,filter_refund:0
+msgid "Create a draft Refund"
+msgstr "Gutschrift Rechnung"
+
+#. module: bt_account
+#: selection:account.invoice.refund,filter_refund:0
+msgid "Cancel: refund invoice and reconcile"
+msgstr "Storno der Rechnung"
+
+#. module: bt_account
+#: selection:account.invoice.refund,filter_refund:0
+msgid "Modify: refund invoice, reconcile and create a new draft invoice"
+msgstr "Modifiziere Rechnung"
+
+#. module: bt_account
+#: field:account.invoice,round_inv_to_05:0
+msgid "Round to 0.05"
+msgstr "Runden auf 0.05"
+
+#. module: bt_account
+#: help:account.invoice,round_inv_to_05:0
+msgid "Round invoice to 0.05 after booking (add difference to first tax line)"
+msgstr "Rechnung beim Buchen auf 0.05 runden (Differenz mit der erster Steuerzeile ausgleichen)"
+
+#. module: bt_account
+#: view:account.invoice:0
+msgid "Change rounding"
+msgstr "Rundung ändern"
+
+#. module: bt_account
+#: model:res.groups,name:bt_account.group_round_to_0_05
+msgid "Allows rounding to 0.05 for invoice"
+msgstr "Ermöglich Rundung auf 0.05 für Rechnung"
+
+#. module: bt_account
+#: view:account.invoice:0
+msgid "Currency"
+msgstr "Währung"
+
+#. module: bt_account
+#: code:addons/bt_account/account_invoice_tax_extended.py:0
+#, python-format
+msgid "The value 'Tax Included in Price' for taxes in the invoice lines cannot be mixed. They must either all be 'Tax Included in Price' or not."
+msgstr "Der Wert 'Preis inklusive Steuer' bei den Steuern in den Rechnungszeilen können nicht unterschiedlich sein. Sie müssen entweder alle 'Preis inklusive Steuer' sein oder nicht."

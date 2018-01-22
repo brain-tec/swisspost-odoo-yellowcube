@@ -1,0 +1,2 @@
+"id","child_parent_ids/id","active","currency_id/id","name","reconcile","financial_report_ids/id","credit","note","child_consol_ids/id","user_type/id","type","code","parent_id/id","parent_left","parent_right","debit","tax_ids/id","shortcut","company_id/id","exchange_rate","currency_mode"
+"2200","","True","","Umsatzsteuer","True","","","","","__export__.account_account_type_53","Regular","2200","","207","208","","","","base.main_company","","At Date"

@@ -1,0 +1,32 @@
+<BUR>
+    <ControlReference>
+        <Type>BUR</Type>
+        <Sender>YELLOWCUBE</Sender>
+        <Receiver>0000040730</Receiver>
+        <Timestamp>20141023173818</Timestamp>
+        <OperatingMode>T</OperatingMode>
+        <Version>1.0</Version>
+    </ControlReference>
+    <BookingVoucher>
+        <BookingVoucherHeader>
+            <BookingVoucherID>000</BookingVoucherID>
+            <BookingVoucherYear>2014</BookingVoucherYear>
+        </BookingVoucherHeader>
+        <BookingList>
+            <BookingDetail>
+            	<BookingVoucherNo>???</BookingVoucherNo>
+            	<BVNoYear>???</BVNoYear>
+                <BVPosNo>0001</BVPosNo>
+                <YCArticleNo>FOLDER_A3_001</YCArticleNo>
+                <Plant>Y019</Plant>
+                <StorageLocation>YAFS</StorageLocation>
+                <TransactionType>601</TransactionType>
+                <StockType>F</StockType>
+		        <Quantity>12</Quantity>
+		        <QuantityUOM>PCE</QuantityUOM>
+		        <QuantityISO>PCE</QuantityISO>
+                <ArticleNo>FOLDER_A3_001</ArticleNo>
+            </BookingDetail>
+        </BookingList>
+    </BookingVoucher>
+</BUR>

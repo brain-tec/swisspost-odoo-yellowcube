@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+	<data>
+		<record
+			model="ir.ui.view"
+			id="intrum_request_view_filter">
+			<field name="name">intrum.request.search</field>
+			<field name="model">intrum.request</field>
+			<field
+				name="arch"
+				type="xml">
+				<search string="Search Intrum Request">
+					<field name='positive_feedback'/>
+					<field name='create_uid'/>
+					<field name='response_code'/>
+					<field name='order_id'/>
+					<filter
+						string="Positive feedback"
+						domain="[('positive_feedback','=',True),]"
+						icon="terp-dolar_fb!"/>
+					<filter
+						string="Negative feedback"
+						domain="[('positive_feedback','=',False),('response_code','!=','0')]"
+						icon="terp-dolar_fb!"/>
+					<filter
+						string="Pending request"
+						domain="[('response_code','=','0')]"
+						icon="terp-dolar_fb!"/>
+					<separator/>
+					<filter
+						string="From sale order"
+						domain="[('order_id','!=',None)]"
+						icon="terp-dolar_so!"/>
+					<filter
+						string="From direct ask"
+						domain="[('order_id','=',None)]"
+						icon="terp-dolar_so!"/>
+					<separator/>
+					<filter
+						string="Asked by user"
+						domain="[('create_uid','=',uid)]"
+						icon="terp-personal"/>
+					
+				</search>
+
+			</field>
+		</record>
+
+		<record
+			model="ir.ui.view"
+			id="intrum_request_view_tree">
+			<field name="name">intrum.request.tree</field>
+			<field name="model">intrum.request</field>
+			<field
+				name="arch"
+				type="xml">
+				<tree
+					string="intrum Request"
+					colors="blue:response_code == '0';green:positive_feedback == True;red:positive_feedback == False">
+					<field name="create_uid" />
+					<field name="write_date" />
+					<field name="name" />
+					<field name="partner_id" />
+					<field name="order_amount" />
+					<field name="order_currency" />
+					<field name="response_code" />
+					<field name="positive_feedback" />
+				</tree>
+			</field>
+		</record>
+
+		<record
+			model="ir.ui.view"
+			id="intrum_request_view_kanban">
+			<field name="name">intrum.request.kanban</field>
+			<field name="model">intrum.request</field>
+			<field
+				name="arch"
+				type="xml">
+				<kanban
+					default_group_by='response_code'
+					create="false"
+					edit="false">
+					<field
+						name="response_code"
+						readonly="1" />
+					<templates>
+						<t t-name="kanban-box">
+							<div t-attf-class="oe_kanban_card oe_kanban_global_click">
+
+								<div class="oe_kanban_box_header ">
+									<i>
+										<field name="write_date" />
+									</i>
+								</div>
+								<div class="oe_kanban_content">
+
+									<table>
+										<tr>
+											<td>
+												<b>Customer</b>
+											</td>
+											<td>
+												<field name="partner_id" />
+											</td>
+										</tr>
+										<tr>
+											<td></td>
+											<td>
+												(
+												<field name="name" />
+												)
+											</td>
+										</tr>
+										<tr>
+											<td>
+												<b>Sale order</b>
+											</td>
+											<td>
+												<field name="order_id" />
+											</td>
+										</tr>
+										<tr>
+											<td>
+												<b>Cost</b>
+											</td>
+											<td>
+												<field name="order_amount" />
+												<field name="order_currency" />
+											</td>
+										</tr>
+									</table>
+								</div>
+								<div class="oe_kanban_footer_left">
+									<br />
+									Requested by:
+									<i>
+										<field name="create_uid" />
+									</i>
+								</div>
+								<div class="oe_clear" />
+							</div>
+						</t>
+					</templates>
+				</kanban>
+			</field>
+		</record>
+
+
+		<record
+			model="ir.actions.act_window"
+			id="action_show_intrum_requests">
+			<field name="name">intrum Requests</field>
+			<field name="res_model">intrum.request</field>
+			<field name="view_mode">tree,kanban,form</field>
+		</record>
+
+	</data>
+</openerp>

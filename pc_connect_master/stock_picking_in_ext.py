@@ -1,7 +1,7 @@
 # b-*- encoding: utf-8 -*-
 ##############################################################################
 #
-#    Copyright (c) 2015 brain-tec AG (http://www.brain-tec.ch)
+#    Copyright (c) 2015 brain-tec AG (http://www.braintec-group.com)
 #    All Right Reserved
 #
 #    This program is free software: you can redistribute it and/or modify
@@ -25,13 +25,18 @@ from openerp.tools.translate import _
 class stock_picking_in_ext(osv.Model):
     _inherit = 'stock.picking.in'
 
+    def set_mandatory_additional_shipping_codes(self, cr, uid, ids,
+                                                context=None):
+        return self.pool.get('stock.picking').\
+            set_mandatory_additional_shipping_codes(
+            cr, uid, ids, context=context)
+
+    def get_route(self, cr, uid, ids, context=None):
+        raise NotImplementedError(_(
+            "Method 'get_route' is not implemented in 'stock.picking.in'."))
+
     def is_last_picking(self, cr, uid, ids, context=None):
         raise NotImplementedError(_("Method 'is_last_picking' is not implemented in 'stock.picking.in'."))
-
-    def assign_lots(self, cr, uid, ids, context=None):
-        ''' Assigns lots to stock.moves.
-        '''
-        raise NotImplementedError(_("Method 'assign_lots' is not implemented in 'stock.picking.in'."))
 
     def set_stock_moves_done(self, cr, uid, ids, context=None):
         ''' Marks all the stock.moves as done.
@@ -42,6 +47,9 @@ class stock_picking_in_ext(osv.Model):
         ''' Returns the file name for this stock.picking.in.
         '''
         return self.pool.get('stock.picking').get_file_name(cr, uid, ids, context=context)
+
+    def get_ready_for_export(self, cr, uid, ids, name, args, context=None):
+        return self.pool.get('stock.picking').get_ready_for_export(cr, uid, ids, name, args, context)
 
     _columns = {
         'do_not_send_to_warehouse': fields.boolean('Do Not Send to Warehouse',
@@ -54,10 +62,26 @@ class stock_picking_in_ext(osv.Model):
         # even if it's going to be used only on the automation, since bulk freight in particular is used
         # outside the automation, so in the future packages may be needed outside it also.
         'uses_bulkfreight': fields.boolean('Picking Uses Bulk Freight?'),
+
+        'ready_for_export': fields.function(get_ready_for_export,
+                                            type='boolean',
+                                            string='Ready for Export?',
+                                            help='Indicates whether the stock.picking is ready for export to the warehouse.'),
+        'ready_for_export_manual': fields.boolean('Manual Ready for Export?',
+                                                  help="If checked, it overrides the field 'Ready for Export?' and marks the picking as being ready for export."),
+
+        'create_date': fields.datetime('Create Date', help="Redefined just to be able to use it from the model."),
+
+        'yc_mandatory_additional_shipping': fields.char(
+            'Mandatory additional services',
+            help='These mandatory additional service codes must '
+                 'be added to the WAB when submitting it to YellowCube.'),
     }
 
     _defaults = {
         'uses_bulkfreight': False,
+        'ready_for_export': False,
+        'ready_for_export_manual': False,
     }
 
 # vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:

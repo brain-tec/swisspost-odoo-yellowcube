@@ -1,7 +1,7 @@
 # b-*- encoding: utf-8 -*-
 ##############################################################################
 #
-#    Copyright (c) 2014 brain-tec AG (http://www.brain-tec.ch)
+#    Copyright (c) 2014 brain-tec AG (http://www.braintec-group.com)
 #    All Right Reserved
 #
 #    This program is free software: you can redistribute it and/or modify
@@ -18,38 +18,24 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 ##############################################################################
-# from osv import osv, fields
-# from tools.translate import _
+
 from xml_abstract_factory import xml_factory_decorator, xml_abstract_factory
-from openerp.addons.pc_connect_master.utilities.misc import format_exception
-from xsd.xml_tools import validate_xml, export_filename, create_root, schemas, xml_to_string
-from xsd.xml_tools import create_element as old_create_element
+from openerp.addons.pc_log_data.log_data import write_log
+from openerp.addons.pc_connect_master.utilities.others import format_exception
 from datetime import datetime
 from openerp.osv import osv
-from openerp.addons import decimal_precision as dp
-import datetime
 from openerp.tools import DEFAULT_SERVER_DATETIME_FORMAT
 from openerp.tools.translate import _
 from lxml import etree
 import logging
 logger = logging.getLogger(__name__)
+logger.setLevel(logging.INFO)
 
 
 _element_to_check = {
     'ArticleDescription': lambda text, attrib: (text[:40], attrib),
 }
 
-
-def create_element(entity, text=None, attrib=None, ns='https://service.swisspost.ch/apache/yellowcube/YellowCube_ART_REQUEST_Artikelstamm.xsd'):
-    element = old_create_element(entity, text, attrib, ns)
-    if entity in _element_to_check:
-        validation_errors = validate_xml('art', element, print_error=False)
-        if validation_errors:
-            f = _element_to_check[entity]
-            t, a = f(text, attrib)
-            logger.debug("Changing element {0} values {1}, {2} into: {3}, {4}".format(entity, text, attrib, t, a))
-            element = old_create_element(entity, t, a, ns)
-    return element
 
 
 @xml_factory_decorator("art")
@@ -66,6 +52,22 @@ class yellowcube_art_xml_factory(xml_abstract_factory):
     def __init__(self, *args, **kargs):
         logger.debug("ART factory created")
 
+    def create_element(self, entity, text=None, attrib=None,
+                       ns='https://service.swisspost.ch/apache/yellowcube/'
+                          'YellowCube_ART_REQUEST_Artikelstamm.xsd'):
+        element = self.xml_tools.create_element(entity, text, attrib, ns)
+        if entity in _element_to_check:
+            validation_errors = self.xml_tools.validate_xml('art', element,
+                                                            print_error=False)
+            if validation_errors:
+                f = _element_to_check[entity]
+                t, a = f(text, attrib)
+                logger.debug(
+                    "Changing element {0} values {1}, {2} into: {3}, {4}".format(
+                        entity, text, attrib, t, a))
+                element = self.xml_tools.create_element(entity, t, a, ns)
+        return element
+
     def _check(self, obj, cond, msg):
         if not cond:
             self.post_issue(obj, msg)
@@ -75,7 +77,7 @@ class yellowcube_art_xml_factory(xml_abstract_factory):
     def get_main_file_name(self, _object):
         art_date_format = self.get_param('file_date_sufix', required=True)
         return '{1}'.format(_object.name,
-                            datetime.datetime.now().strftime(art_date_format))
+                            datetime.now().strftime(art_date_format))
 
     def import_file(self, file_text):
         logger.debug("Unrequired functionality")
@@ -92,23 +94,27 @@ class yellowcube_art_xml_factory(xml_abstract_factory):
         # xml = '{0}<WAB xsi:noNamespaceSchemaLocation="YellowCube_WAB_Warenausgangsbestellung.xsd" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">\n'.format(xml)
         # xsi = 'http://www.host.org/2001/XMLSchema-instance'
         # art_loc = 'https://service.swisspost.ch/apache/yellowcube/YellowCube_ART_REQUEST_Artikelstamm.xsd'
-        xml_root = create_root('{{{art}}}ART')
+        xml_root = self.xml_tools.create_root('{{{art}}}ART')
 
         # WAB > ControlReference
-        now = datetime.datetime.now()
-        xml_control_reference = create_element('ControlReference')
-        xml_control_reference.append(create_element('Type', text='ART'))
-        xml_control_reference.append(create_element('Sender', text=self.get_param('sender', required=True)))
-        xml_control_reference.append(create_element('Receiver', text=self.get_param('receiver', required=True)))
-        xml_control_reference.append(create_element(
+        now = datetime.now()
+        xml_control_reference = self.create_element('ControlReference')
+        xml_control_reference.append(self.create_element('Type', text='ART'))
+        xml_control_reference.append(self.create_element(
+            'Sender', text=self.get_param('sender', required=True)))
+        xml_control_reference.append(self.create_element(
+            'Receiver', text=self.get_param('receiver', required=True)))
+        xml_control_reference.append(self.create_element(
             'Timestamp',
             text='{0:04d}{1:02d}{2:02d}{3:02d}{4:02d}{5:02d}'.format(now.year, now.month, now.day, now.hour, now.hour, now.minute)
         ))
-        xml_control_reference.append(create_element('OperatingMode', text=self.get_param('operating_mode', required=True)))
-        xml_control_reference.append(create_element('Version', text='1.0'))
+        xml_control_reference.append(self.create_element(
+            'OperatingMode',
+            text=self.get_param('operating_mode', required=True)))
+        xml_control_reference.append(self.create_element('Version', text='1.0'))
         xml_root.append(xml_control_reference)
 
-        xml_article_list = create_element('ArticleList')
+        xml_article_list = self.create_element('ArticleList')
         xml_root.append(xml_article_list)
         product_pool = self.pool.get('product.product')
         self.cr.execute("SELECT code FROM res_lang WHERE active")
@@ -121,7 +127,7 @@ class yellowcube_art_xml_factory(xml_abstract_factory):
             basic_domain.append(('id', 'in', self.force_product_ids))
         if self.ignore_product_ids:
             basic_domain.append(('id', 'not in', self.ignore_product_ids))
-
+        
         if self.get_param('enable_product_lifecycle'):
             # Field 'product_state' is defined on the product's lifecycle.
             basic_domain.append(('product_state', '!=', 'draft'))
@@ -143,8 +149,13 @@ class yellowcube_art_xml_factory(xml_abstract_factory):
         if empty_file:
             return None
 
-        xsd_error = validate_xml("art", xml_root, print_error=self.print_errors)
+        xsd_error = self.xml_tools.validate_xml(
+            "art", xml_root, print_error=self.print_errors)
         if xsd_error:
+            write_log(self, self.cr, self.uid, self._table,
+                      stock_location.name, stock_location.id,
+                      'XSD validation error', correct=False,
+                      extra_information=xsd_error)
             raise Warning(xsd_error)
         return xml_root
 
@@ -157,11 +168,11 @@ class yellowcube_art_xml_factory(xml_abstract_factory):
             '''
             return 1000000.0 * number
 
-        xml = create_element('Article')
+        xml = self.create_element('Article')
         xml.append(etree.Comment("Model: product.product ID: {0}".format(product.id)))
         errors_list = []
 
-        # The ChangeFlag tag is computed differently depending on if the
+        # The ChangeFlag tag is computed differently depending on if the 
         # product's lifecycle is enabled or not.
         change_flag = ''
         if self.get_param('enable_product_lifecycle'):
@@ -195,21 +206,26 @@ class yellowcube_art_xml_factory(xml_abstract_factory):
         height_format = '{{0:.{0}f}}'.format(dp_pool.precision_get(self.cr, self.uid, 'Stock Height'))
         volume_format = '{{0:.{0}f}}'.format(dp_pool.precision_get(self.cr, self.uid, 'Stock Volume'))
 
-        xml.append(create_element('ChangeFlag', change_flag))
-        xml.append(create_element('DepositorNo', self.get_param('depositor_no', required=True)))
-        xml.append(create_element('PlantID', self.get_param('plant_id', required=True)))
-        xml.append(create_element('ArticleNo', product.default_code))
+        xml.append(self.create_element('ChangeFlag', change_flag))
+        xml.append(self.create_element(
+            'DepositorNo', self.get_param('depositor_no', required=True)))
+        xml.append(self.create_element(
+            'PlantID', self.get_param('plant_id', required=True)))
+        xml.append(self.create_element('ArticleNo', product.default_code))
         if not product.uom_id.uom_iso:
-            logger.error(_("Undefined UOM ISO code: {0}").format(product.uom_id.name))
-        xml.append(create_element('BaseUOM', product.uom_id.uom_iso))
-        xml.append(create_element('NetWeight', weight_format.format(product.weight_net), {'ISO': 'KGM'}))
-        xml.append(create_element('BatchMngtReq', '1' if product.track_outgoing else '0'))
+            logger.error(_("Undefined UOM ISO code: {0}"
+                           ).format(product.uom_id.name))
+        xml.append(self.create_element('BaseUOM', product.uom_id.uom_iso))
+        xml.append(self.create_element(
+            'NetWeight', weight_format.format(product.weight_net), {'ISO': 'KGM'}))
+        xml.append(self.create_element(
+            'BatchMngtReq', '1' if product.track_outgoing else '0'))
 
         min_rem_life = product.expiration_accept_time
         period_exp_date_type = product.expiration_accept_time_uom
         if period_exp_date_type:
             # If they UOM is not set, then we don't add this field
-            xml.append(create_element('MinRemLife', int(min_rem_life)))
+            xml.append(self.create_element('MinRemLife', int(min_rem_life)))
             # Each Unit of Measure has a different code according to the mapping table X01.00
             translations = {'days': '',
                             'weeks': '1',
@@ -218,25 +234,38 @@ class yellowcube_art_xml_factory(xml_abstract_factory):
             error_message = _("Value for system's parameter 'default_expiration_accept_time_uom' is '{0}' while it must be one of {1}.").format(period_exp_date_type, ','.join(translations.keys()))
             partial_success = self._check(product, period_exp_date_type in translations, error_message)
             if partial_success:
-                xml.append(create_element('PeriodExpDateType', translations[period_exp_date_type]))
+                xml.append(self.create_element(
+                    'PeriodExpDateType', translations[period_exp_date_type]))
             else:
                 errors_list.append(error_message)
 
         # OPTIONAL xml.append(create_element('PeriodExpDateType', '???'))
-        xml.append(create_element('SerialNoFlag', '1' if product.yc_track_outgoing_scan else '0'))
+        xml.append(self.create_element(
+            'SerialNoFlag', '1' if product.yc_track_outgoing_scan else '0'))
 
-        xml_uom = create_element('UnitsOfMeasure')
+        xml_uom = self.create_element('UnitsOfMeasure')
         xml.append(xml_uom)
         if product.ean13:
-            xml_uom.append(create_element('EAN', product.ean13, {'EANType': 'HE'}))
-        xml_uom.append(create_element('AlternateUnitISO', product.uom_id.uom_iso))
-        xml_uom.append(create_element('GrossWeight', weight_format.format(product.weight), {'ISO': 'KGM'}))
-        xml_uom.append(create_element('Length', length_format.format(product.length), {'ISO': 'CMT'}))
-        xml_uom.append(create_element('Width', width_format.format(product.width), {'ISO': 'CMT'}))
-        xml_uom.append(create_element('Height', height_format.format(product.height), {'ISO': 'CMT'}))
-        xml_uom.append(create_element('Volume', volume_format.format(mtq_to_cmq(product.volume)), {'ISO': 'CMQ'}))
+            xml_uom.append(self.create_element(
+                'EAN', product.ean13, {'EANType': product.get_ean_type()}))
+        xml_uom.append(self.create_element(
+            'AlternateUnitISO', product.uom_id.uom_iso))
+        if not product.uom_id.uom_iso:
+            logger.error('Missing ISO code for UOM %s' % product.uom_id.name)
+        xml_uom.append(self.create_element(
+            'GrossWeight', weight_format.format(product.weight),
+            {'ISO': 'KGM'}))
+        xml_uom.append(self.create_element(
+            'Length', length_format.format(product.length), {'ISO': 'CMT'}))
+        xml_uom.append(self.create_element(
+            'Width', width_format.format(product.width), {'ISO': 'CMT'}))
+        xml_uom.append(self.create_element(
+            'Height', height_format.format(product.height), {'ISO': 'CMT'}))
+        xml_uom.append(self.create_element(
+            'Volume', volume_format.format(mtq_to_cmq(product.volume)),
+            {'ISO': 'CMQ'}))
 
-        xml_desc = create_element('ArticleDescriptions')
+        xml_desc = self.create_element('ArticleDescriptions')
         xml.append(xml_desc)
         product_pool = self.pool.get('product.product')
         names = {}
@@ -245,15 +274,20 @@ class yellowcube_art_xml_factory(xml_abstract_factory):
                 continue
             _name = product_pool.read(self.cr, self.uid, [product.id], ['name'], {'lang': lang})[0]['name']
             if lang[:2] not in names:
-                xml_desc.append(create_element('ArticleDescription', _name, {'ArticleDescriptionLC': lang[:2]}))
+                xml_desc.append(self.create_element(
+                    'ArticleDescription', _name,
+                    {'ArticleDescriptionLC': lang[:2]}))
                 names[lang[:2]] = _name
 
-        xsd_error = validate_xml(self._factory_name, xml, print_error=self.print_errors)
+        xsd_error = self.xml_tools.validate_xml(
+            self._factory_name, xml, print_error=self.print_errors)
         if xsd_error:
             if raise_error:
                 raise osv.except_osv('XSD validation error', xsd_error)
+            else:
+                write_log(self, self.cr, self.uid, 'product.product', product.name, product.id, 'XSD validation error', correct=False, extra_information=xsd_error)
         else:
-            date_current_str = datetime.datetime.now().strftime(DEFAULT_SERVER_DATETIME_FORMAT)
+            date_current_str = datetime.now().strftime(DEFAULT_SERVER_DATETIME_FORMAT)
             self.pool.get('product.product').write(self.cr,
                                                    self.uid,
                                                    [product.id],
@@ -279,7 +313,7 @@ class yellowcube_art_xml_factory(xml_abstract_factory):
                           ('id', 'not in', ignore_product_ids or []),
                           ('id', 'in', force_product_ids),
                           ]
-
+        
         if not force_product_ids:
             product_domain = [product_domain[1]]
         else:
@@ -301,10 +335,11 @@ class yellowcube_art_xml_factory(xml_abstract_factory):
                 try:
                     object_id = _object.id
                     # We generated the final filename, according to task with ID=2922
-                    object_filename = "{sender}_{factory_name}_{name}_sub{sub}.xml".format(sender=sender,
-                                                                                           factory_name=self._factory_name,
-                                                                                           name=export_filename(main_file_name, self.context),
-                                                                                           sub=product_id)
+                    object_filename = "{sender}_{factory_name}_{name}_sub{sub}.xml".format(
+                        sender=sender,
+                        factory_name=self._factory_name,
+                        name=self.xml_tools.export_filename(main_file_name, self.context),
+                        sub=product_id)
 
                     logger.debug("Exporting xml for {2} {0} into file {1}".format(object_id, object_filename, self._table))
                     # The name of the main xml, is appened to each related file
@@ -313,13 +348,15 @@ class yellowcube_art_xml_factory(xml_abstract_factory):
                     xml_node = self.generate_root_element(_object, domain=[('id', '=', product_id)])
                     if xml_node is None:
                         continue
-                    xml_output = xml_to_string(xml_node, remove_ns=True)
+                    xml_output = self.xml_tools.xml_to_string(xml_node, remove_ns=True)
                     # The associated files are copied
                     self.main_file_id = None
                     self.save_file(xml_output, object_filename, main=True, binary=False, record_id=product_id, model='product.product')
                     self.mark_as_exported(_object.id)
                     # Finally, the XML file is copied. This ensures that XML files have its dependencies copied to the folder
+                    write_log(self, self.cr, self.uid, self._table, _object.name, object_id, 'XML export successful', correct=True, extra_information=object_filename, context=self.context)
                 except Warning as e:
+                    write_log(self, self.cr, self.uid, self._table, _object.name, object_id, 'XML export error', correct=False, extra_information=format_exception(e), context=self.context)
                     logger.error("Exception exporting into xml {0}: {1}".format(object_id, format_exception(e)))
                 finally:
                     if 'filename_prefix' in self.context:

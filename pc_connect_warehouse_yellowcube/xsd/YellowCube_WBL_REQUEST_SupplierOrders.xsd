@@ -142,7 +142,7 @@
 					<xs:simpleType>
 						<xs:restriction base="xs:string">
 							<xs:minLength value="1"/>
-							<xs:maxLength value="10"/>
+  							<xs:maxLength value="10"/>
 							<xs:whiteSpace value="collapse"/>
 						</xs:restriction>
 					</xs:simpleType>

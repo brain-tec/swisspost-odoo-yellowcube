@@ -1,0 +1,224 @@
+# Translation of OpenERP Server.
+# This file contains the translation of the following modules:
+#	* bt_indicator
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: OpenERP Server 6.0dev\n"
+"Report-Msgid-Bugs-To: support@openerp.com\n"
+"POT-Creation-Date: 2011-01-11 11:14+0000\n"
+"PO-Revision-Date: 2011-01-19 12:00+0000\n"
+"Last-Translator: Thorsten Vocks (OpenBig.org) <thorsten.vocks@big-"
+"consulting.net>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Launchpad-Export-Date: 2011-01-25 06:33+0000\n"
+"X-Generator: Launchpad (build 12177)\n"
+
+#. module: bt_indicator
+#: view:account.indicator.cust:0
+#: model:ir.actions.act_window,name:bt_indicator.action_cust_account_indicator
+#: model:ir.ui.menu,name:bt_indicator.menu_cust_account_indicator
+msgid "Cust Indicator Report"
+msgstr "Bilanz/ER"
+
+#. module: bt_indicator
+#: view:account.indicator.cust.bilanz:0
+#: model:ir.actions.act_window,name:bt_indicator.action_cust_account_bilanz
+#: model:ir.ui.menu,name:bt_indicator.menu_cust_account_bilanz
+msgid "Balance sheet"
+msgstr "Bilanz"
+
+#. module: bt_indicator
+#: view:account.indicator.cust.er:0
+#: model:ir.actions.act_window,name:bt_indicator.action_cust_account_er
+#: model:ir.ui.menu,name:bt_indicator.menu_cust_account_er
+msgid "Income statement"
+msgstr "Erfolgsrechnung"
+
+#. module: bt_indicator
+#: field:account.indicator.cust,date_from:0
+#: field:account.indicator.cust.bilanz,date_from:0
+#: field:account.indicator.cust.er,date_from:0
+msgid "Start Date"
+msgstr "Start Datum"
+
+#. module: bt_indicator
+#: field:account.indicator.cust,date_to:0
+#: field:account.indicator.cust.bilanz,date_to:0
+#: field:account.indicator.cust.er,date_to:0
+msgid "End Date"
+msgstr "Ende Datum"
+
+#. module: bt_indicator
+#: field:account.indicator.cust,fiscalyear_id:0
+#: field:account.indicator.cust.bilanz,fiscalyear_id:0
+#: field:account.indicator.cust.er,fiscalyear_id:0
+msgid "Fiscal year"
+msgstr "Geschäftsjahr"
+
+#. module: bt_indicator
+#: view:account.indicator.cust:0
+msgid "Print Indicator Report"
+msgstr "Drucke Bilanz/ER"
+
+#. module: bt_indicator
+#: view:account.indicator.cust.bilanz:0
+msgid "Print Balance sheet Report"
+msgstr "Drucke Bilanz"
+
+#. module: bt_indicator
+#: view:account.indicator.cust.er:0
+msgid "Print Income statement Report"
+msgstr "Drucke ER"
+
+#. module: bt_indicator
+#: view:account.indicator.cust:0
+#: view:account.indicator.cust.bilanz:0
+#: view:account.indicator.cust.er:0
+#, python-format
+msgid "Cancel"
+msgstr "Abbrechen"
+
+#. module: bt_indicator
+#: view:account.indicator.cust:0
+msgid "This menu prints the indicator report."
+msgstr "Über dieses Menü kann die Bilanz/ER ausgedruckt werden."
+
+#. module: bt_indicator
+#: view:account.indicator.cust.bilanz:0
+msgid "This menu prints the Balance sheet report."
+msgstr "Über dieses Menü kann die Bilanz ausgedruckt werden."
+
+#. module: bt_indicator
+#: view:account.indicator.cust.er:0
+msgid "This menu prints the Income statement report."
+msgstr "Über dieses Menü kann die Erfolgsrechnung ausgedruckt werden."
+
+#. module: bt_indicator
+#: report:account.indicator.cust:0
+msgid "Balance sheet / income statement"
+msgstr "Bilanz / Erfolgsrechnung"
+
+#. module: bt_indicator
+#: report:account.indicator.cust.bilanz:0
+msgid "Balance sheet"
+msgstr "Bilanz"
+
+#. module: bt_indicator
+#: report:account.indicator.cust.er:0
+msgid "Income statement"
+msgstr "Erfolgsrechnung"
+
+#. module: bt_indicator
+#: report:account.indicator.cust:0
+#: report:account.indicator.cust.bilanz:0
+#: report:account.indicator.cust.er:0
+msgid "Page"
+msgstr "Seite"
+
+#. module: bt_indicator
+#: report:account.indicator.cust:0
+#: report:account.indicator.cust.bilanz:0
+#: report:account.indicator.cust.er:0
+msgid "Period from:"
+msgstr "Periode von:"
+
+#. module: bt_indicator
+#: report:account.indicator.cust:0
+#: report:account.indicator.cust.bilanz:0
+#: report:account.indicator.cust.er:0
+msgid "Period to:"
+msgstr "Periode bis:"
+
+#. module: bt_indicator
+#: report:account.indicator.cust:0
+#: report:account.indicator.cust.bilanz:0
+#: report:account.indicator.cust.er:0
+msgid "Date from:"
+msgstr "Datum von:"
+
+#. module: bt_indicator
+#: report:account.indicator.cust:0
+#: report:account.indicator.cust.bilanz:0
+#: report:account.indicator.cust.er:0
+msgid "Date to:"
+msgstr "Datum bis:"
+
+#. module: bt_indicator
+#: report:account.indicator.cust:0
+#: report:account.indicator.cust.bilanz:0
+#: report:account.indicator.cust.er:0
+msgid "Reporting year"
+msgstr "Berichtsjahr"
+
+#. module: bt_indicator
+#: report:account.indicator.cust:0
+#: report:account.indicator.cust.bilanz:0
+#: report:account.indicator.cust.er:0
+msgid "Previous year"
+msgstr "Vorjahr"
+
+#. module: bt_indicator
+#: report:account.indicator.cust:0
+#: report:account.indicator.cust.bilanz:0
+#: report:account.indicator.cust.er:0
+msgid "Change"
+msgstr "Veränderung"
+
+#. module: bt_indicator
+#: report:account.indicator.cust:0
+#: report:account.indicator.cust.bilanz:0
+#: report:account.indicator.cust.er:0
+msgid "Change %"
+msgstr "Veränderung %"
+
+#. module: bt_indicator
+#: report:account.indicator.cust:0
+#: report:account.indicator.cust.er:0
+msgid "Gross profit 1"
+msgstr "Bruttoergebnis 1"
+
+#. module: bt_indicator
+#: report:account.indicator.cust:0
+#: report:account.indicator.cust.er:0
+msgid "Gross profit 2"
+msgstr "Bruttoergebnis 2"
+
+#. module: bt_indicator
+#: report:account.indicator.cust:0
+#: report:account.indicator.cust.er:0
+msgid "Operating profit 1 (before financial result)"
+msgstr "Betriebserfolg 1 (vor Finanzerfolg)"
+
+#. module: bt_indicator
+#: report:account.indicator.cust:0
+#: report:account.indicator.cust.er:0
+msgid "Operating profit 2 (before depreciation)"
+msgstr "Betriebserfolg 2 (vor Abschreibungen)"
+
+#. module: bt_indicator
+#: report:account.indicator.cust:0
+#: report:account.indicator.cust.er:0
+msgid "Operating profit 3 (prior to addition to success)"
+msgstr "Betriebserfolg 3 (vor Nebenerfolg)"
+
+#. module: bt_indicator
+#: report:account.indicator.cust:0
+#: report:account.indicator.cust.er:0
+msgid "Operating profit 4"
+msgstr "Betriebserfolg 4"
+
+#. module: bt_indicator
+#: report:account.indicator.cust:0
+#: report:account.indicator.cust.er:0
+msgid "Corporate profits before taxes"
+msgstr "Unternehmensgewinn vor Steuern"
+
+#. module: bt_indicator
+#: report:account.indicator.cust:0
+#: report:account.indicator.cust.er:0
+msgid "Corporate profits"
+msgstr "Unternehmensgewinn"

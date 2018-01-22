@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+
+        <record id="sale_order_form_ext_view" model="ir.ui.view">
+            <field name="name">product_product_form_ext_view</field>
+            <field name="model">sale.order</field>
+            <field name="inherit_id" ref="sale.view_order_form" />
+            <field name="arch" type="xml">
+                <data>
+                    <notebook position="inside">
+                        <page name="audit_logs" string="Change Logs">
+                            <field name="audit_log_ids" colspan="4" nolabel="1" />
+                        </page>
+                    </notebook>
+                </data>
+            </field>
+        </record>
+
+    </data>
+</openerp>

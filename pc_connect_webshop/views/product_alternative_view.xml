@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <!-- Adds the tab to the product.product form. -->
+        <record id="product_alternative_form" model="ir.ui.view">
+            <field name="name">Product's Form View</field>
+            <field name="model">product.product</field>
+            <field name="inherit_id" ref="product_links.product_product_link_form" />
+            <field name="arch" type="xml">
+                <page string="Product Links" position="after">
+                    <page string="Alternative Products">
+                        <p>List of other products that could be displayed as alternative or replacement in case the stock runs out.</p>
+                        <field name="alternative_product_ids" nolabel="1" colspan="2"/>
+                    </page>
+                </page>
+            </field>
+        </record>
+
+        <record id="product_alternative_tree" model="ir.ui.view">
+            <field name="name">Product's Alternative Product's Tree View</field>
+            <field name="model">product.alternative</field>
+            <field name="arch" type="xml">
+                <tree string="Product's Alternative Products" version="7.0" editable="top">
+                    <field name="product_alternative_id"/>
+                </tree>
+            </field>
+        </record>
+
+    </data>
+</openerp>

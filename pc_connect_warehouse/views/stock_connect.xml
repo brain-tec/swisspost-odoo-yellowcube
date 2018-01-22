@@ -43,6 +43,7 @@
 							<field name="remote_file_template" />
 							<field name="limit_of_connections" />
                             <field name="log_about_already_existing_files" />
+                            <field name="promiscuous_file_import" />
 						</group>
 						<notebook>
 							<page string="Files" colspan="4">

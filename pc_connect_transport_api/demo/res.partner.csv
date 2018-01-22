@@ -1,0 +1,3 @@
+id,name,company_id/id,customer
+pc_connect_transport_api.demo_external_partner,Connect Transport API Demo External User,base.main_company,False
+pc_connect_transport_api.demo_internal_partner,Connect Transport API Demo Internal User,base.main_company,False

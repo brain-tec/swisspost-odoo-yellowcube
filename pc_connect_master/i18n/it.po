@@ -27,16 +27,6 @@ msgstr "1) saleorder_check_inventory_for_quotation"
 
 #. module: pc_connect_master
 #: selection:sale.order.automation_wiz,state:0
-msgid "10) print_in_remote"
-msgstr "10) print_in_remote"
-
-#. module: pc_connect_master
-#: selection:sale.order.automation_wiz,state:0
-msgid "11) finish_saleorder_automation"
-msgstr "11) finish_saleorder_automation"
-
-#. module: pc_connect_master
-#: selection:sale.order.automation_wiz,state:0
 msgid "2) saleorder_checkcredit"
 msgstr "2) saleorder_checkcredit"
 
@@ -700,6 +690,16 @@ msgstr "Default Credit Limit"
 #: model:ir.model.fields,field_description:field_configuration_data_default_credit_limit
 msgid "Default Credit Limit"
 msgstr "Default Credit Limit"
+
+#. module: pc_connect_master
+#: field:configuration.data,default_credit_limit_companies:0
+msgid "Default Credit Limit For Companies"
+msgstr "Default Credit Limit For Companies"
+
+#. module: pc_connect_master
+#: model:ir.model.fields,field_description:field_configuration_data_default_credit_limit_companies
+msgid "Default Credit Limit For Companies"
+msgstr "Default Credit Limit For Companies"
 
 #. module: pc_connect_master
 #: field:configuration.data,post_default_expiration_accept_time_uom:0
@@ -1570,6 +1570,11 @@ msgstr "Ora(e)"
 #: selection:configuration.data,sale_order_min_age_in_draft_uom:0
 msgid "Hour(s)"
 msgstr "Ora(e)"
+
+#. module: pc_connect_master
+#: help:configuration.data,invoice_report_show_bvr_when_zero_amount_total:0
+msgid "If checked, it prints the BVR always on invoices with an amount of zero with only the field for the quantity being blank (NOT voided, but empty)."
+msgstr "If checked, it prints the BVR always on invoices with an amount of zero with only the field for the quantity being blank (NOT voided, but empty)."
 
 #. module: pc_connect_master
 #: help:ir.cron,message_unread:0
@@ -2448,23 +2453,23 @@ msgstr "Casella Postale"
 
 #. module: pc_connect_master
 #: model:res.groups,name:pc_admin
-msgid "SwissPost Manager"
-msgstr "SwissPost Manager"
+msgid "PCAP Admin"
+msgstr "PCAP Admin"
 
 #. module: pc_connect_master
 #: model:res.groups,name:pc_client_plus
-msgid "SwissPost User Plus"
-msgstr "SwissPost User Plus"
+msgid "PCAP Client Plus"
+msgstr "PCAP Client Plus"
 
 #. module: pc_connect_master
 #: model:res.groups,name:pc_client
-msgid "SwissPost User"
-msgstr "SwissPost User"
+msgid "PCAP Client"
+msgstr "PCAP Client"
 
 #. module: pc_connect_master
 #: model:res.groups,name:pc_client_care
-msgid "SwissPost Support"
-msgstr "SwissPost Support"
+msgid "PCAP Customer Care"
+msgstr "PCAP Customer Care"
 
 #. module: pc_connect_master
 #: view:product.product:0
@@ -2727,6 +2732,11 @@ msgid "Pricelist"
 msgstr "Listino"
 
 #. module: pc_connect_master
+#: model:ir.model.fields,field_description:field_configuration_data_invoice_report_show_bvr_when_zero_amount_total
+msgid "Print BVR if Amount Total is Zero?"
+msgstr "Print BVR if Amount Total is Zero?"
+
+#. module: pc_connect_master
 #: view:product.product:0
 msgid "Product Alert Time (days)"
 msgstr "Product Alert Time (days)"
@@ -2855,6 +2865,16 @@ msgstr "Ordini d'Acquisto"
 #: code:addons/pc_connect_master/purchase_order_ext.py:79
 msgid "Purchase order, merged and ready to submit to provider"
 msgstr "Purchase order, merged and ready to submit to provider"
+
+#. module: pc_connect_master
+#: field:product.product,qty_on_assigned_moves:0
+msgid "Quantity Assigned on Moves"
+msgstr "Quantity Assigned on Moves"
+
+#. module: pc_connect_master
+#: model:ir.model.fields,field_description:field_product_product_qty_on_assigned_moves
+msgid "Quantity Assigned on Moves"
+msgstr "Quantity Assigned on Moves"
 
 #. module: pc_connect_master
 #: field:product.product,qty_on_sale:0
@@ -3674,6 +3694,11 @@ msgstr "The folder on the remote server to put to files to."
 #: help:configuration.data,default_credit_limit:0
 msgid "The global default credit limit applied to users with no credit limit set"
 msgstr "The global default credit limit applied to users with no credit limit set"
+
+#. module: pc_connect_master
+#: help:configuration.data,default_credit_limit_companies:0
+msgid "The global default credit limit applied to companies with no credit limit set"
+msgstr "The global default credit limit applied to companies with no credit limit set"
 
 #. module: pc_connect_master
 #: field:sale.order,invoices_printed:0

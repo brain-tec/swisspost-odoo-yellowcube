@@ -30,7 +30,6 @@ _logger = logging.getLogger(__name__)
 HEADER = """<?xml version="1.0" encoding="utf-8"?><documents> \n"""
 FOOTER = """</documents>"""
 
-
 class wizard_knowledge_export(osv.TransientModel):
 
     _name = 'pc.wz.knowledge.export'
@@ -41,7 +40,7 @@ class wizard_knowledge_export(osv.TransientModel):
         'attachment_ids': fields.many2many('ir.attachment', rel='wiz_know_attach', string="Attachments"),
         'report_file': fields.binary('Generated Report', readonly=True),
         'report_name': fields.char('Report name'),
-        'description': fields.text('Description'),
+        'description' : fields.text('Description'),
     }
     _defaults = {'state': 'draft'}
 
@@ -50,7 +49,7 @@ class wizard_knowledge_export(osv.TransientModel):
             xml_fname = HEADER
             for attachment in wiz.attachment_ids:
                 xml_fname += attachment.export_to_xml()
-            wiz.write({'report_file': base64.b64encode(xml_fname + FOOTER),
+            wiz.write({'report_file': base64.b64encode(xml_fname+FOOTER),
                        'report_name': 'export%s.xml' % fields.datetime.now(),
                        'state': 'done'})
 

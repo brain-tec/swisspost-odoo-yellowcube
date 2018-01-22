@@ -1,7 +1,7 @@
 # b-*- encoding: utf-8 -*-
 ##############################################################################
 #
-#    Copyright (c) 2015 brain-tec AG (http://www.brain-tec.ch)
+#    Copyright (c) 2015 brain-tec AG (http://www.braintec-group.com)
 #    All Right Reserved
 #
 #    This program is free software: you can redistribute it and/or modify
@@ -20,8 +20,6 @@
 ##############################################################################
 from openerp.osv import osv, fields
 from openerp.tools.translate import _
-import logging
-logger = logging.getLogger(__name__)
 
 
 _yc_basic_shipping_codes = [(x[1], '{1}: {0}'.format(*x)) for x in [
@@ -40,6 +38,13 @@ _yc_basic_shipping_codes = [(x[1], '{1}: {0}'.format(*x)) for x in [
     ('Fright/bulky goods Economy', 'LKW ECO'),
     ('Fright/small consignments Priority', 'LKW PRIO'),
     ('Fright/small consignments Express', 'LKW EXPRESS'),
+    ('Letter A-Post+ national with barcode', 'APOSTPLUS'),
+    ('Letter A-Post national', 'APOST'),
+    ('Letter B-Post national', 'BPOST'),
+    ('International small consignments-letter Priority', 'INTPRI'),
+    ('International small consignments-letter Economy', 'INTECO'),
+    ('Euro business parcel GLS', 'EBP GLS'),
+    ('International express currier shipment', 'URGENT'),
 ]]
 
 
@@ -54,7 +59,6 @@ class delivery_carrier_ext(osv.Model):
                                               help="SI; AS; BLN; SA; AZS, etc. Delimiter « ; » if more than one  element is available."),
 
         'pc_delivery_instructions': fields.char('Delivery Instructions', size=15),
-        'pc_freight_shipping': fields.boolean('Is it used for bulk freight?'),
         'pc_shipping_interface': fields.selection([('WSBC', 'WSBC'),
                                                    ('WEBSTAMP', 'WEBSTAMP'),
                                                    ('FRIGHT', 'FRIGHT'),
@@ -62,6 +66,13 @@ class delivery_carrier_ext(osv.Model):
                                                    ('PICKUP', 'PICKUP'),
                                                    ('MANUALLY', 'MANUALLY'),
                                                    ], string='Shipping Interface'),
+
+        'tracking_url_pattern': fields.char(
+            "Carrier reference URL",
+            help="This string must be configured to the URL pattern of the "
+                 "carrier. The carrier reference got from the warehouse "
+                 "will be replacing the placeholder (put placeholder "
+                 "string here)"),
     }
 
     def validate_yc_shipping_method(self, cr, uid, ids, context=None):

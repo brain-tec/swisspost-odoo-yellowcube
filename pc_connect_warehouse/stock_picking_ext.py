@@ -1,7 +1,7 @@
 # b-*- encoding: utf-8 -*-
 ##############################################################################
 #
-#    Copyright (c) 2015 brain-tec AG (http://www.brain-tec.ch)
+#    Copyright (c) 2015 brain-tec AG (http://www.braintec-group.com)
 #    All Right Reserved
 #
 #    This program is free software: you can redistribute it and/or modify
@@ -18,7 +18,6 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 ##############################################################################
-
 from openerp.osv import osv, fields
 from openerp.tools.translate import _
 from stock_event import check_all_events, EVENT_STATE_CANCEL
@@ -29,6 +28,7 @@ from datetime import datetime, timedelta
 from openerp.addons.pc_connect_master.utilities.date_utilities import get_number_of_natural_days
 import logging
 logger = logging.getLogger(__name__)
+logger.setLevel(logging.DEBUG)
 
 
 @job
@@ -65,6 +65,14 @@ class stock_picking_in_ext(osv.Model):
     def check_events_on_stock_picking_in(self, cr, uid, ids):
         return self.pool['stock.picking'].check_events_on_stock_picking(cr, uid, ids, context={'active_model': 'stock.picking.in'})
 
+    _columns = {
+        'event_ids': fields.one2many('stock.event', 'res_id', 'Events',
+                                     domain=[('model', 'in', ['stock.picking',
+                                                              'stock.picking.out',
+                                                              'stock.picking.in'])],
+                                     readonly=False),
+    }
+
     _constraints = [
         (check_events_on_stock_picking_in, 'check of events on this item', []),
     ]
@@ -75,6 +83,14 @@ class stock_picking_out_ext(osv.Model):
 
     def check_events_on_stock_picking_out(self, cr, uid, ids):
         return self.pool['stock.picking'].check_events_on_stock_picking(cr, uid, ids, context={'active_model': 'stock.picking.out'})
+
+    _columns = {
+        'event_ids': fields.one2many('stock.event', 'res_id', 'Events',
+                                     domain=[('model', 'in', ['stock.picking',
+                                                              'stock.picking.out',
+                                                              'stock.picking.in'])],
+                                     readonly=False),
+    }
 
     _constraints = [
         (check_events_on_stock_picking_out, 'check of events on this item', []),
@@ -137,6 +153,14 @@ class stock_picking_ext(osv.Model):
         for picking in self.browse(cr, uid, ids, context=context):
             if picking.type not in ['in']:
                 continue
+
+            # The jobs to check the partly fulfilled picking.in are disabled
+            # for C+C and C+R.
+            if picking.sale_id and \
+                    picking.sale_id.stock_type_id and \
+                    picking.sale_id.stock_type_id.route in ['c+c', 'c+r']:
+                continue
+
             # Now, any stock.picking.in will rise issues
             #  if not picking.backorder_id:
             #     continue
@@ -155,11 +179,14 @@ class stock_picking_ext(osv.Model):
             context = {}
         event_obj = self.pool.get('stock.event')
         picking = self.browse(cr, uid, ids, context)
+        picking_route = picking.get_route()
         model = 'stock.picking.{0}'.format(picking.type)
         state = 'new_picking_state_{0}'.format(picking.state)
         vals = {'event_code': state,
                 'model': model,
-                'res_id': ids}
+                'res_id': ids,
+                'picking_route': picking_route,
+                }
         event_obj.find_or_create(cr, uid, vals, context=context)
 
     def check_events_on_stock_picking(self, cr, uid, ids, context=None):
@@ -168,7 +195,7 @@ class stock_picking_ext(osv.Model):
         # For this check, we must be superuser
         uid = SUPERUSER_ID
 
-        if not isinstance(ids, list):
+        if type(ids) is not list:
             ids = [ids]
         for picking in self.browse(cr, uid, ids, context):
             warehouse_ids = []
@@ -199,32 +226,16 @@ class stock_picking_ext(osv.Model):
             ret[stock_picking.id] = stock_picking.min_date
         return ret
 
-    def get_ready_for_export(self, cr, uid, ids, name, args, context=None):
-        ''' A stock.picking is ready for export if its sale.orders have
-            printed both its invoices and delivery slips.
-        '''
-        if context is None:
-            context = {}
-
-        res = {}
-        for stock_picking in self.browse(cr, uid, ids, context=context):
-            res[stock_picking.id] = (stock_picking.sale_id.invoices_printed and stock_picking.sale_id.delivery_orders_printed)
-        return res
-
     _columns = {
         'process_date': fields.function(get_process_date,
                                         type='datetime',
                                         string="Process Date",
                                         store=False),
-
-        'ready_for_export': fields.function(get_ready_for_export,
-                                            type='boolean',
-                                            string='Is it ready for export?',
-                                            help='Indicates whether the stock.picking is ready for export to the warehouse.'),
-    }
-
-    _defaults = {
-        'ready_for_export': False,
+        'event_ids': fields.one2many('stock.event', 'res_id', 'Events',
+                                     domain=[('model', 'in', ['stock.picking',
+                                                              'stock.picking.out',
+                                                              'stock.picking.in'])],
+                                     readonly=False),
     }
 
 # vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:

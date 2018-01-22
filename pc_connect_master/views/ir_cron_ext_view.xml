@@ -6,9 +6,6 @@
 			<field name="name">Scheduler actions</field>
 			<field name="res_model">ir.cron</field>
 			<field name="view_mode">tree,form</field>
-            <field name="domain">
-                ['&amp;','|',('name','ilike','%mrp%'),'|',('name','ilike','%SwissPost%'),('name','ilike','%SPYCC%'),'|',('active','=',False),('active','=',True)]
-            </field>
 		</record>
 
         <record id="ir_cron_punchcard_view" model="ir.ui.view">
@@ -22,6 +19,8 @@
                             <tree string="Punchcard">
                                 <field name='create_uid' />
                                 <field name='create_date' />
+                                <field name='end_date' groups="base.group_no_one" />
+                                <field name='difference_free_memory' groups="base.group_no_one" />
                             </tree>
                         </field>
                     </page>

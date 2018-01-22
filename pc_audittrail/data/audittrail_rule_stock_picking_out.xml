@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+	<data noupdate="1">
+		<record id="pc_audittrail_rule_stock_picking_out" model="audittrail.rule" forcecreate="False">
+			<field name="name">Delivery Orders</field>
+			<field name="object_id" search="[('model','=','stock.picking.out')]" />
+			<field name="log_read">False</field>
+			<field name="log_write">True</field>
+			<field name="log_unlink">True</field>
+			<field name="log_create">True</field>
+			<field name="log_action">True</field>
+			<field name="log_workflow">True</field>
+		</record>
+	</data>
+</openerp>

@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+	<data>
+
+        <record id="invoice_form_ext" model="ir.ui.view">
+            <field name="name">invoice_form_ext</field>
+            <field name="model">account.invoice</field>
+            <field name="inherit_id" ref="account.invoice_form" />
+            <field name="arch" type="xml">
+                <field name="state" position="before">
+                  <button name="action_generate_carrier_label"
+                          string="Create Shipping Label" type="object"/>
+                </field>
+
+                <notebook position="inside">
+                    <page string="Barcode Label" name="page_barcode_label">
+                        <group>
+                            <field name="carrier_tracking_ref" />
+                            <field name="option_ids" />
+                        </group>
+                    </page>
+
+                    <page string="Report PF" name="page_report_pf">
+                        <group>
+                            <field name="title1" />
+                            <field name="title2" />
+                            <field name="title3" />
+                        </group>
+                    </page>
+
+                </notebook>
+
+            </field>
+        </record>
+
+    </data>
+</openerp>

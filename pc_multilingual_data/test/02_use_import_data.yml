@@ -1,0 +1,23 @@
+-
+  Here we use import_data to override the translation of an item
+-
+  !python {model: ir.ui.menu}: |
+    fields = ['id', 'name', '.lang']
+    cr.execute("SELECT code FROM res_lang WHERE active = true;");
+    test_langs = [x[0] for x in cr.fetchall()]
+    assert len(test_langs) > 1, "We need more than a language"
+    name_pattern = '{0} test for import_data'
+    datas = []
+    for lang in test_langs:
+      datas.append([
+        'pc_multilingual_data.test_ir_ui_menu_01',
+        name_pattern.format(lang),
+        lang])
+    result = self.import_data(cr, uid, fields, datas, context=context)
+    assert result[2] == 0, "There are not error messages"
+    assert result[0]*len(test_langs) == len(datas), "We get the number of items modified"
+    
+    for lang in test_langs:
+      context['lang'] = lang
+      item = self.browse(cr, uid, ref('test_ir_ui_menu_01'), context=context)
+      assert item.name == name_pattern.format(lang), "There is a menu with our special name"

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+	<data>
+		<record id="downloadable_binary_form_view" model="ir.ui.view">
+			<field name="name">downloadable_binary_form_view</field>
+			<field name="model">downloadable.binary</field>
+			<field name="arch" type="xml">
+				<form string="Download File">
+					<field name="binary" filename="binary_name" colspan="4" />
+					<field name="binary_name" invisible="1" />
+				</form>
+			</field>
+		</record>
+	</data>
+</openerp>
+

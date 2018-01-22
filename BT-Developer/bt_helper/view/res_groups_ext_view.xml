@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+    <data>
+        <record id="view_groups_form_ext" model="ir.ui.view">
+            <field name="name">view_groups_form_ext</field>
+            <field name="model">res.groups</field>
+            <field name="inherit_id" ref="base.view_groups_form"/>
+            <field name="arch" type="xml">
+            	<data>
+	                <xpath expr="//field[@name='name']" position="after">
+	                	<field name="xml_id"/>
+	                </xpath>
+                </data>
+            </field>
+        </record>
+        
+        <record id="view_groups_form_tree" model="ir.ui.view">
+            <field name="name">view_groups_tree</field>
+            <field name="model">res.groups</field>
+            <field name="arch" type="xml">
+                <tree string="Groups" version="7.0">
+                    <field name="full_name"/>
+                    <field name="xml_id"/>
+                </tree>
+            </field>
+        </record>
+
+    </data>
+</openerp>

@@ -1,0 +1,35 @@
+<openerp>
+	<data noupdate='0'>
+
+        <record id="test_stock_type_c_c" model="stock.type">
+            <field name="name">Test Stock Type All Checked</field>
+            <field name="credit_check" eval="True" />
+            <field name="availability_check" eval="True" />
+            <field name="dropship" eval="True" />
+            <field name="forced_picking_policy">one</field>
+            <field name="consider_aging" eval="True" />
+            <field name="route">c+c</field>
+        </record>
+
+        <record id="test_stock_type_regular_one" model="stock.type">
+            <field name="name">Test Stock Type Regular One</field>
+            <field name="credit_check" eval="False" />
+            <field name="availability_check" eval="False" />
+            <field name="dropship" eval="False" />
+            <field name="forced_picking_policy">one</field>
+            <field name="consider_aging" eval="False" />
+            <field name="route">regular</field>
+        </record>
+
+        <record id="test_stock_type_regular_direct" model="stock.type">
+            <field name="name">Test Stock Type Regular Direct</field>
+            <field name="credit_check" eval="False" />
+            <field name="availability_check" eval="False" />
+            <field name="dropship" eval="False" />
+            <field name="forced_picking_policy">direct</field>
+            <field name="consider_aging" eval="False" />
+            <field name="route">regular</field>
+        </record>
+
+    </data>
+</openerp>

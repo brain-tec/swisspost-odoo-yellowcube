@@ -1,0 +1,10 @@
+<openerp>
+	<data>
+		<!-- ========== -->
+		<!-- MENU ITEMS -->
+		<!-- ========== -->
+
+		<menuitem id="menu_helper" name="Helper" parent="base.menu_administration" sequence="99"/>
+
+	</data>
+</openerp>

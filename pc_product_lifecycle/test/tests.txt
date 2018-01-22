@@ -1,0 +1,107 @@
+THIS LISTS THE TESTS TO DO.
+
+
+----------------------------------------------------------------------------------------------------
+A. CREATION OF A PRODUCT.
+----------------------------------------------------------------------------------------------------
+
+A.1. A product is created without the default_code set: this must raise an exception.
+
+A.2. A product is created with the default_code set, but that default_code is already used for
+     another product which is not deactivated: this must raise an exception.
+
+A.3. A product is created with the default_code set, and it is unique in the system: the product
+     must be created, with product_state set to 'draft'; a warning must be shown under 
+     'Product Validation' complaining that weight and weight_net are not set.
+
+A.4. A product with product_state = 'draft'. We set weight and weight_net so that they are greater
+     than zero and weight < weight_net: the product must remain in product_state = 'draft', and its
+     'Product Validation' section must complain.
+
+A.5. A product with product_state = 'draft'. We set weight so that its value is greater
+     than zero: the product must remain in product_state = 'draft', and its
+     'Product Validation' section must complain.
+     
+A.6. A product with product_state = 'draft'. We set weight_net so that its value is greater
+     than zero: the product must remain in product_state = 'draft', and its
+     'Product Validation' section must complain.
+
+A.7. A product is created with the default_code set, and it is unique in the system. Also, weight
+     and weight_net are set, with weight >= weight_net: the product must be created, with
+     product_state set to 'validated'.
+
+A.8. A product is created with the default_code set, and it is unique in the system. Also, weight
+     and weight_net are set, with weight >= weight_net. Also, target_state is set to active: the
+     product must be created, with product_state set to 'in_production'.
+
+
+----------------------------------------------------------------------------------------------------
+B. FROM DRAFT TO VALIDATED.
+----------------------------------------------------------------------------------------------------
+
+B.1. A product with product_state = 'draft'. We set weight and weight_net so that they are greater
+     than zero and weight >= weight_net AND the product was not set from 'validated' to 'draft'
+     in the past: the product must have product_state = 'validated' automatically.
+
+B.2. A product with product_state = 'draft'. We set weight and weight_net so that they are greater
+     than zero and weight >= weight_net AND the product was set from 'validated' to 'draft'
+     in the past: the product must remain in product_state = 'draft' (we only automate this
+     transition if the transition between 'validated' and 'draft' was never done in the past).
+
+B.3. A product with product_state = 'draft' has weight and weight_net correctly set (but it's still
+     in product_state = 'draft'). In that case, pressing the button "Set to 'validated'" moves the
+     product to have product_state = 'validated'. 
+
+
+----------------------------------------------------------------------------------------------------
+C. FROM VALIDATED TO DRAFT.
+----------------------------------------------------------------------------------------------------
+
+C.1. A product can pass from product_state=draft to product_state=validated manually, anytime,
+     by pressing the button "Set to 'draft'".
+
+
+----------------------------------------------------------------------------------------------------
+D. FROM VALIDATED TO IN PRODUCTION.
+----------------------------------------------------------------------------------------------------
+
+D.1. A product with product_state = 'validated'. If target_state is set to 'active':
+     product_state=in_production automatically, and webshop_state=on_sale.
+
+D.2. A product with product_state = 'validated'. If button "Set to 'in production'" is pressed:
+     target_state is set to 'active' and product_state=in_production and webshop_state=on_sale.
+
+
+----------------------------------------------------------------------------------------------------
+E. FROM IN PRODUCTION TO END OF LIFE.
+----------------------------------------------------------------------------------------------------
+
+E.1. A product with product_state=in_production. Button "Set to 'end of life' is pressed:
+     product_state is set to 'end_of_life', webshop_state is set to 'not_visible', target_state is
+     set to 'inactive.
+
+E.2. A product with product_state=in_production. If target_state is set to 'inactive,
+     then target_state is set to 'end_of_life' and webshop_state is set to 'not_visible'.
+
+
+----------------------------------------------------------------------------------------------------
+F. FROM END OF LIFE TO DEACTIVATED.
+----------------------------------------------------------------------------------------------------
+
+<TODO>
+
+
+----------------------------------------------------------------------------------------------------
+G. FROM END OF LIFE TO IN PRODUCTION.
+----------------------------------------------------------------------------------------------------
+
+G.1. A product with product_state=end_of_life. If target_state is set to 'active', then
+     product_state is set to 'in_production' automatically.
+
+
+----------------------------------------------------------------------------------------------------
+H. FROM DEACTIVATED TO DRAFT.
+----------------------------------------------------------------------------------------------------
+
+<TODO>
+

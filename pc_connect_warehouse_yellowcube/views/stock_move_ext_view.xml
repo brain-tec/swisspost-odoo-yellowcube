@@ -1,5 +1,6 @@
 <openerp>
     <data>
+
         <record id="view_move_form_ext" model="ir.ui.view">
             <field name="name">view_move_form_ext</field>
             <field name="model">stock.move</field>
@@ -9,8 +10,61 @@
                     <field name="yc_booking_voucher_id" />
                     <field name="yc_booking_voucher_year" />
                 </group>
+                <group string="Traceability" position="after">
+                    <group string="Others">
+                        <field name="yc_qty_done" readonly="1" />
+                        <field name="yc_eod_received" readonly="1" />
+                    </group>
+                </group>
             </field>
         </record>
+        <!-- Makes the fields yc_qty_done & yc_eod_received editable for users
+             belonging to the group pc_admin -->
+        <record id="view_move_form_editable_ext" model="ir.ui.view">
+            <field name="name">view_move_form_editable_ext</field>
+            <field name="model">stock.move</field>
+            <field name="inherit_id" ref="pc_connect_warehouse_yellowcube.view_move_form_ext" />
+            <field name="groups_id" eval="[(6,0, [ref('pc_connect_master.pc_admin')])]" />
+            <field name="arch" type="xml">
+                <field name="yc_qty_done" position="attributes">
+                    <attribute name="readonly">0</attribute>
+                </field>
+                <field name="yc_eod_received" position="attributes">
+                    <attribute name="readonly">0</attribute>
+                </field>
+            </field>
+        </record>
+
+        <record id="view_move_picking_form_ext" model="ir.ui.view">
+            <field name="name">view_move_picking_form_ext</field>
+            <field name="model">stock.move</field>
+            <field name="inherit_id" ref="stock.view_move_picking_form" />
+            <field name="arch" type="xml">
+                <group string="Traceability" position="after">
+                    <group string="Others">
+                        <field name="yc_qty_done" readonly="1" />
+                        <field name="yc_eod_received" readonly="1" />
+                    </group>
+                </group>
+            </field>
+        </record>
+        <!-- Makes the fields yc_qty_done & yc_eod_received editable for users
+             belonging to the group pc_admin -->
+        <record id="view_move_picking_form_editable_ext" model="ir.ui.view">
+            <field name="name">view_move_picking_form_editable_ext</field>
+            <field name="model">stock.move</field>
+            <field name="inherit_id" ref="pc_connect_warehouse_yellowcube.view_move_picking_form_ext" />
+            <field name="groups_id" eval="[(6,0, [ref('pc_connect_master.pc_admin')])]" />
+            <field name="arch" type="xml">
+                <field name="yc_qty_done" position="attributes">
+                    <attribute name="readonly">0</attribute>
+                </field>
+                <field name="yc_eod_received" position="attributes">
+                    <attribute name="readonly">0</attribute>
+                </field>
+            </field>
+        </record>
+
         <record id="view_move_picking_tree_ext" model="ir.ui.view">
             <field name="name">view_move_tree_ext</field>
             <field name="model">stock.move</field>
@@ -19,7 +73,28 @@
                 <field name='product_id' position='before'>
                     <field name="yc_posno" readonly='1' string='YC PosNo'/>
                 </field>
+                <field name='product_qty' position='after'>
+                    <field name="yc_qty_done" readonly="1" />
+                    <field name="yc_eod_received" readonly="1" />
+                </field>
             </field>
         </record>
+        <!-- Makes the fields yc_qty_done & yc_eod_received editable for users
+             belonging to the group pc_admin -->
+        <record id="view_move_picking_tree_editable_ext" model="ir.ui.view">
+            <field name="name">view_move_picking_tree_editable_ext</field>
+            <field name="model">stock.move</field>
+            <field name="inherit_id" ref="pc_connect_warehouse_yellowcube.view_move_picking_tree_ext" />
+            <field name="groups_id" eval="[(6,0, [ref('pc_connect_master.pc_admin')])]" />
+            <field name="arch" type="xml">
+                <field name="yc_qty_done" position="attributes">
+                    <attribute name="readonly">0</attribute>
+                </field>
+                <field name="yc_eod_received" position="attributes">
+                    <attribute name="readonly">0</attribute>
+                </field>
+            </field>
+        </record>
+
     </data>
 </openerp>

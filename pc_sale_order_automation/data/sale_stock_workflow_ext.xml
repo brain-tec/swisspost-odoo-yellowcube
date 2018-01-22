@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+
+        <record id="trans_conditional_ship_except_ship_end" model="workflow.transition">
+            <field name="act_from" ref="sale_stock.act_ship_except"/>
+            <field name="act_to" ref="sale_stock.act_ship_end"/>
+            <field name="condition">test_ignore_shipping_exceptions()</field>
+        </record>
+
+    </data>
+</openerp>
+
+
+

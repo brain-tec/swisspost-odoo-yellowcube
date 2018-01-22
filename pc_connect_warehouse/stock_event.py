@@ -1,7 +1,7 @@
 # b-*- encoding: utf-8 -*-
 ##############################################################################
 #
-#    Copyright (c) 2015 brain-tec AG (http://www.brain-tec.ch)
+#    Copyright (c) 2015 brain-tec AG (http://www.braintec-group.com)
 #    All Right Reserved
 #
 #    This program is free software: you can redistribute it and/or modify
@@ -18,12 +18,14 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 ##############################################################################
-
 from openerp.osv import osv, fields
 from openerp.tools.translate import _
 import sys
+from openerp.addons.pc_connect_master.utilities.db import create_db_index
+from openerp.addons.pc_connect_master.stock_type import STOCK_ROUTE_TYPES
 import logging
 logger = logging.getLogger(__name__)
+logger.setLevel(logging.DEBUG if '--test-enable' in sys.argv else logging.INFO)
 
 
 EVENT_STATE_DRAFT = 'draft'
@@ -76,6 +78,11 @@ def check_all_events(self, cr, uid, ids, context, warehouse_id):
 class stock_event(osv.Model):
     _name = 'stock.event'
 
+    def init(self, cr):
+        """ Creates some indices that can not be created directly using the ORM
+        """
+        create_db_index(cr, 'stock_event_warehouse_id_event_code_model_res_id_index', 'stock_event', 'warehouse_id, event_code, model, res_id')
+
     def open_record(self, cr, uid, ids, context=None):
         if context is None:
             context = {}
@@ -123,16 +130,20 @@ class stock_event(osv.Model):
         return ret
 
     _columns = {
-        'warehouse_id': fields.many2one('stock.warehouse', 'Warehouse', required=True),
+        'warehouse_id': fields.many2one('stock.warehouse', 'Warehouse', required=True, select=True),
         'create_date': fields.datetime('Create date', required=False),
         'write_date': fields.datetime('Write date', required=False),
-        'event_code': fields.char('Event code', required=True),
+        'event_code': fields.char('Event code', required=True, select=True),
         'model': fields.char('res.model'),
         'res_id': fields.integer('resource ID'),
         'context': fields.text('context', required=True),
-        'state': fields.selection(_EVENT_STATE, string='state', required=True),
+        'state': fields.selection(_EVENT_STATE, string='state', required=True, select=True),
         'info': fields.text('Info', required=False),
         'error': fields.boolean('Error', required=False),
+        'picking_route': fields.selection(
+            STOCK_ROUTE_TYPES, string="Picking Route Type",
+            help="The routing indicated by the sale order associated to "
+                 "the picking associated to this event."),
     }
 
     _rec_name = 'event_code'

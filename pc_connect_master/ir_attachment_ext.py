@@ -1,7 +1,7 @@
 # b-*- encoding: utf-8 -*-
 ##############################################################################
 #
-#    Copyright (c) 2014 brain-tec AG (http://www.brain-tec.ch)
+#    Copyright (c) 2014 brain-tec AG (http://www.braintec-group.com)
 #    All Right Reserved
 #
 #    This program is free software: you can redistribute it and/or modify
@@ -76,6 +76,10 @@ class ir_attachment_ext(osv.Model):
     _columns = {
         'document_type': fields.selection(__sel_get_document_type, 'Document Type',
                                           help='Helps categorise the attachment.'),
+
+        'tags_ids': fields.many2many(
+            'ir.attachment.tag',
+            rel='tags_attachment_rel', id1='attachment_id', id2='tag_id'),
     }
 
 # vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:

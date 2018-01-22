@@ -13,3 +13,7 @@ FDS test creates a dummy server on /tmp, unless the system parameter `test_fds_c
 `'password': 'the_long_secure_password',`  
 `'rsa_key': None or 'the_base_64_rsa_key',`  
 `}`  
+
+
+In order to make the tests run, you need to install `sftpserver`, this way:
+`sudo pip install sftpserver`.

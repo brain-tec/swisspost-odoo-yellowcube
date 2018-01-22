@@ -1,0 +1,198 @@
+git_repositories:
+  - repository: git@github.com:brain-tec/odoo.git
+    branch: 7.0_PCAP1_integration
+    commitortag: de0a086f9f8c517fef47531b4c98442161e124ae
+    maindir: True
+    shallow: True
+  - repository: git@github.com:brain-tec/PCAP1.git
+    branch: 7.0
+    mainrepo: True
+    addons:
+      - pc_account
+      - pc_account_stage_discount
+      - pc_aduno
+      - pc_audittrail
+      - pc_config
+      - pc_connect_master
+      - pc_connect_transport
+      - pc_connect_transport_api
+      - pc_connect_transport_FDS
+      - pc_connect_transport_localsftp
+      - pc_connect_warehouse
+      - pc_connect_warehouse_external_email
+      - pc_connect_warehouse_yellowcube
+      - pc_connect_warehouse_yellowcube_soap
+      - pc_connect_webshop
+      - pc_delivery_carrier_label_postlogistics
+      - pc_docout
+      - pc_followup
+      - pc_generics
+      - pc_intrum
+      - pc_issue
+      - pc_log_data
+      - pc_multilingual_data
+      - pc_product_lifecycle
+      - pc_purchase
+      - pc_report_gui
+      - pc_report_gui_stage_discount
+      - pc_sale_order_automation
+      - pc_stock
+      - pc_unlink_failsafe
+      - BT-Followup/bt_followup
+      - BT-Accounting/bt_account
+      - BT-Accounting/bt_indicator
+      - BT-Accounting/bt_oplist
+      - BT-Accounting/bt_payment_difference
+      - BT-Accounting/bt_tax
+      - BT-Accounting/l10n_ch_base_bank
+      - BT-Accounting/l10n_ch_payment_slip
+      - BT-Developer/bt_helper
+      - BT-Developer/bt_export_all
+      - BT-Discount/stage_discount
+      - BT-Webkit/report_webkit
+      - BT-Utils/multilingual_import_export
+      - BT-Utils/one2many_filter
+      - BT-Utils/export_to_xml
+  - repository: git@github.com:brain-tec/web_selenium.git
+    branch: 7.0
+    addons:
+      - web_selenium
+  - repository: git@github.com:brain-tec/l10n-switzerland.git
+    branch: 7.0.project_PC_138
+    commitortag: 4fe6ea9fc24223b5f945dffa08665bcf5b1ca047
+    addons:
+      - l10n_ch_bank
+      - l10n_ch_dta
+      - l10n_ch_dta_base_transaction_id
+      - l10n_ch_payment_slip_account_statement_base_completion
+      - l10n_ch_payment_slip_base_transaction_id
+      - l10n_ch_scan_bvr
+      - l10n_ch_sepa
+      - l10n_ch_zip
+  - repository: git@github.com:brain-tec/partner-contact.git
+    branch: 7.0
+    commitortag: 6669fa3b678ff5332cf0295144b9c3dffcecd492
+    addons:
+      - base_location
+      - partner_firstname
+  - repository: git@github.com:brain-tec/bank-statement-reconcile.git
+    branch: 7.0
+    commitortag: a5829ca54d7a4fc399459b6ddc5578850661a851
+    addons:
+     - account_statement_base_completion
+     - account_statement_completion_voucher
+     - account_statement_ext
+     - account_statement_ext_voucher
+     - account_statement_so_completion
+     - account_statement_transactionid_completion
+     - base_transaction_id
+  - repository: git@github.com:brain-tec/connector.git
+    branch: 7.0
+    commitortag: b617dad99a7adc85734f40b46dd7b3709c4494a9
+    addons:
+     - connector
+     - connector_base_product
+  - repository: git@github.com:brain-tec/connector-ecommerce.git
+    branch: 7.0
+    commitortag: e268572a01976d80aed38aba1beebb2c69262163
+    addons:
+     - connector_ecommerce
+  - repository: git@github.com:brain-tec/e-commerce.git
+    branch: 7.0
+    commitortag: 25a24fddf5ba8f0698c59ba8cfbe0de3fbc2a37a
+    addons:
+     - product_links
+     - sale_automatic_workflow
+     - sale_automatic_workflow_exception
+     - sale_payment_method
+     - sale_payment_method_transaction_id
+  - repository: git@github.com:brain-tec/product-attribute.git
+    branch: 7.0
+    commitortag: f473d144999f74be74cbd4e4692a924040a71f2a
+    addons:
+     - base_custom_attributes
+     - partner_custom_attributes
+     - product_categ_attributes
+     - product_custom_attributes
+     - product_electronic
+     - product_extended
+     - product_gift
+     - product_icecat
+     - product_images
+     - product_index
+     - production_lot_custom_attributes
+     - product_listprice_upgrade
+     - product_lot_foundry
+     - product_m2mcategories
+     - product_multi_company
+     - product_multi_price
+     - product_prices_on_variant
+     - product_qt
+     - product_quick_stock_rule
+     - product_search_reference
+     - product_sequence
+     - product_series
+     - product_size
+  - repository: git@github.com:brain-tec/sale-workflow.git
+    branch: 7.0
+    commitortag: 8bf5c24c7a320eb1ab8e1a87b4c271290dea3c7d
+    addons:
+     - mail_quotation
+     - product_special_type
+     - product_special_type_invoice
+     - product_special_type_sale
+     - sale_condition_text
+     - sale_exceptions
+  - repository: git@github.com:brain-tec/noviat-apps.git
+    branch: 7.0
+    commitortag: 6aa346eb105ea666a8e88c721f2aa69c29a2303f
+    addons:
+     - account_pain
+  - repository: git@github.com:brain-tec/server-tools.git
+    branch: 7.0
+    commitortag: 79cee3880eea527c3a293efecc739cd1b407dadf
+    addons:
+     - dbfilter_from_header
+  - repository: git@github.com:zbeanz/openerp-7-web-addons.git
+    branch: master
+    commitortag: b910d931aa73ced736cb8b9f38f506b74c9785c2
+    addons:
+     - web_printscreen_zb
+  - repository: git@github.com:camptocamp/swisspost_odoo.git
+    branch: 7.0
+    commitortag: 35c2d8737300add989afc5c47be5a6167b5d46d4
+    addons:
+     - specific-parts/specific-addons/ecommerce_webservice
+     - specific-parts/specific-addons/ecommerce_webservice_swisspost
+     - specific-parts/specific-addons/swisspost_api_v2
+     - specific-parts/specific-addons/sftp_synchronizer
+     - specific-parts/specific-addons/google_shop
+  - repository: git@github.com:brain-tec/carrier-delivery.git
+    branch: 7.0_PCAP1_integration
+    commitortag: 7d6b1a5ab4f8d3894739a3134ef9412226d54fdb
+    addons:
+     - base_delivery_carrier_label
+     - delivery_carrier_label_postlogistics
+     - delivery_carrier_label_postlogistics_shop_logo
+  - repository: git@github.com:brain-tec/bank-payment.git
+    branch: 7.0.project_PO_138
+    commitortag: 7ef044c19bd40837c4c7c2dfb6a06a8fb326330f
+    addons:
+     - account_banking
+     - account_banking_camt
+
+add_deb_pkgs:
+  - python-paramiko
+  - php5-cli
+  - ttf-mscorefonts-installer
+add_pip_pkgs:
+  - openpyxl
+  - unidecode
+  - anybox.testing.datetime
+  - pysimplesoap
+  - inflection
+  - pycountry
+  - flask
+  - sftpserver
+  - suds-jurko
+  - SOAPpy

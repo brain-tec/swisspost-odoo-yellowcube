@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+	<data>
+		<record id="view_followup_tree" model="ir.ui.view">
+			<field name="name">view_followup_tree</field>
+			<field name="model">followup</field>
+			<field name="arch" type="xml">
+				<tree string="Follow-ups">
+					<field name="followup_create_date" />
+					<field name="followup_handled_date" />
+					<field name="followup_level_id" />
+					<!-- <field name="followup_responsible_id" /> -->
+					<field name="invoice_followup_id" />
+					<field name="email_date" />
+					<field name="email_subject" />
+					<field name="followup_parent_id" />
+				</tree>
+			</field>
+		</record>
+	</data>
+</openerp>

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+	<data>
+		<record id="account_invoice_discounted_reports_config_view" model="ir.ui.view">
+			<field name="name">account_invoice_discounted_reports_config_view</field>
+			<field name="model">configuration.data</field>
+			<field name="inherit_id" ref="pc_account.post_ecommerce_config_view_ext" />
+			<field name="arch" type="xml">
+
+                <field name="invoice_ending_text_for_refunds" position="after">
+                    <field name="invoice_report_discounted_total_amount_active" />
+                    <field name="invoice_report_discounted_total_amount_text"
+                        attrs="{'invisible': [('invoice_report_discounted_total_amount_active', '=', False)]}" />
+                </field>
+
+            </field>
+        </record>
+    </data>
+</openerp>

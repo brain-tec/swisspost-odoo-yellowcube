@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+	<data>
+
+		<record model="ir.actions.act_window" id="action_sale_order_auto_joiner">
+			<field name="name">Automation Joiner (Admin)</field>
+			<field name="src_model">sale.order</field>
+			<field name="res_model">sale.order.automation_wiz</field>
+			<field name="view_mode">form</field>
+			<field name="target">new</field>
+		</record>
+
+		<record model="ir.ui.view" id="sale_order_auto_joiner_view">
+			<field name="name">sale_order_auto_joiner</field>
+			<field name="model">sale.order.automation_wiz</field>
+			<field name="priority" eval="16" />
+			<field name="arch" type="xml">
+				<form string="Sale order automation joiner" version="7.0">
+					<header>
+						<button type="special" special="cancel" string="Cancel"
+							icon="gtk-cancel" />
+
+						<button type="object" name="do_join" string="Join automation" 
+							icon="gtk-apply" />
+
+					</header>
+
+					<sheet>
+                        <p style="color: red">
+                            <strong>Warning:</strong> This will create a new job; so remember to remove the old one and
+                            do all the process with care.
+                        </p>
+						<group col='4'>
+						<field name="order_id" colspan="4"/>
+						<field name="state" colspan="4"/>
+						<field name="when" colspan="4"/>
+						</group>
+					</sheet>
+
+				</form>
+			</field>
+		</record>
+
+		<record
+			model="ir.values"
+			id="sale_order_joiner">
+			<field
+				name="model_id"
+				ref="sale.model_sale_order" />
+			<field name="name">Automation Joiner (Admin)</field>
+			<field name="key2">client_action_multi</field>
+			<field
+				name="value"
+				eval="'ir.actions.act_window,' + str(ref('action_sale_order_auto_joiner'))" />
+			<field name="key">action</field>
+			<field name="model">sale.order</field>
+		</record>
+
+	</data>
+</openerp>

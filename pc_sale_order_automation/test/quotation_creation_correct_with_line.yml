@@ -1,0 +1,57 @@
+-
+  QUOTATION_CREATION_CORRECT_WITH_LINE.
+  Checks that it is possible to create a quotation in the system with a line.
+  (with the exception of the payment term, which is tested in another test).
+-
+  !python {model: sale.order}: |
+    print 'Starting the test QUOTATION_CREATION_CORRECT_WITH_LINE'
+    cr.execute("SAVEPOINT test;")
+
+-
+  QUOTATION_CREATION_CORRECT_WITH_LINE. Creates a payment term.
+-
+  !record {model: account.payment.term, id: QUOTATION_CREATION_CORRECT_WITH_LINE_payment_term_1}:
+    name: '99 Days'
+    note: '99 Days'
+    line_ids:
+      - days: 99
+        days2: 0
+
+-
+  QUOTATION_CREATION_CORRECT_WITH_LINE. Creates a payment method with the previous payment term.
+-
+  !record {model: payment.method, id: QUOTATION_CREATION_CORRECT_WITH_LINE_payment_method_1}:
+    name: 'Invoice'
+    epayment: True
+    payment_term_id: QUOTATION_CREATION_CORRECT_WITH_LINE_payment_term_1
+
+-
+  QUOTATION_CREATION_CORRECT_WITH_LINE. Creates a sale order with all its fields set.
+-
+  !record {model: sale.order, id: QUOTATION_CREATION_CORRECT_WITH_LINE_sale_order_1}:
+    partner_id: base.res_partner_2
+    date_order: '2015-01-01'
+    payment_method_id: QUOTATION_CREATION_CORRECT_WITH_LINE_payment_method_1
+    automate_sale_order_process: True
+    carrier_id: delivery.delivery_carrier
+    order_line:
+      - product_id: product.product_product_48
+        name: 'Product Name'
+        product_uom_qty: 1
+        price_unit: 1
+
+-
+  QUOTATION_CREATION_CORRECT_WITH_LINE. Checks that the sale.order was correctly created.
+-
+  !python {model: sale.order}: |
+    print 'Items created'
+    sale_order_id = ref('QUOTATION_CREATION_CORRECT_WITH_LINE_sale_order_1')
+    sale_order_obj = self.browse(cr, uid, sale_order_id, context=context)
+
+    assert(len(sale_order_obj.order_line) == 1), ("The quotation should have 1 order line, but it has {0}.".format(len(sale_order_obj.order_line)))
+
+-
+  QUOTATION_CREATION_CORRECT_WITH_LINE. Rollbacks.
+-
+  !python {model: sale.order}: |
+    cr.execute("ROLLBACK TO SAVEPOINT test;")

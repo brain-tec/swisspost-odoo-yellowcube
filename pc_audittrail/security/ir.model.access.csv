@@ -1,0 +1,4 @@
+"id","active","perm_create","perm_unlink","group_id/id","name","model_id/id","perm_read","perm_write"
+"audittrail_rule_acl","True","True","False","connector.group_connector_manager","audittrail rule manager","audittrail.model_audittrail_rule","True","True"
+"audittrail_logline_acl","True","False","False","connector.group_connector_manager","audittrail log line reader","audittrail.model_audittrail_log_line","True","False"
+"audittrail_line_acl","True","False","False","connector.group_connector_manager","audittrail log reader","audittrail.model_audittrail_log","True","False"

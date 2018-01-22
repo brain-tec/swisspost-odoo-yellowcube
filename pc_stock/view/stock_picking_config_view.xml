@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+	<data>
+
+        <record id="action_edit_type_of_gift_text" model="ir.actions.act_window">
+            <field name="name">Edit Type of Gift Texts</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">gift.text.type</field>
+			<field name="view_type">form</field>
+			<field name="view_mode">tree,form</field>
+        </record>
+
+        <record id="post_ecommerce_config_view_ext" model="ir.ui.view">
+            <field name="name">post_ecommerce_config_view_ext</field>
+            <field name="model">configuration.data</field>
+            <field name="inherit_id" ref="pc_connect_master.post_ecommerce_config_view" />
+            <field name="arch" type="xml">
+                <page string="Reports" position="inside">
+                    <group string="Stock Pickings">
+                        <field name="stock_picking_logo" />
+                        <field name="stock_picking_ending_text" />
+                        <field name="stock_picking_report_num_lines_per_page_first" />
+                        <field name="stock_picking_report_num_lines_per_page_not_first" />
+                        <field name="stock_picking_report_text_for_partial_deliveries" />
+                        <field name="stock_picking_report_show_lots" />
+                        <field name="stock_picking_report_print_invoice_address" />
+
+                        <field name="stock_picking_report_delivery_method_size" />
+                        <field name="stock_picking_report_delivery_method_weight" />
+                        <field name="stock_picking_report_customer_phone_size" />
+                        <field name="stock_picking_report_customer_phone_weight" />
+                        <field name="stock_picking_report_delivery_optional_info_width_left" />
+
+                        <field name="stock_picking_include_backorder_items" />
+                        <field name="stock_picking_backorder_line_text" />
+
+                        <group colspan="2">
+                            <button type="action" string="Edit Types of Gift-texts" name="%(action_edit_type_of_gift_text)d" />
+                        </group>
+                    </group>
+                </page>
+            </field>
+        </record>
+
+		<record id="stock_picking_reports_config_view" model="ir.ui.view">
+			<field name="name">stock_picking_reports_config_view</field>
+			<field name="model">configuration.data</field>
+			<field name="inherit_id" ref="pc_generics.reports_config_view" />
+			<field name="arch" type="xml">
+                <page string="Post Mail" position="inside">
+                    <group cols="2">
+                        <group string="Stock Pickings" colspan="1">
+                            <field name="stock_picking_franking_country_code" />
+                            <field name="stock_picking_franking_zip" />
+                            <field name="stock_picking_franking_town" />
+                            <field name="stock_picking_postmail_rrn" />
+                            <field name="stock_picking_qr" />
+                        </group>
+                    </group>
+                </page>
+            </field>
+        </record>
+
+    </data>
+</openerp>

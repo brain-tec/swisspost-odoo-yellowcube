@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+
+        <record id="trans_conditional_invoice_except_invoice_end" model="workflow.transition">
+            <field name="act_from" ref="sale.act_invoice_except"/>
+            <field name="act_to" ref="sale.act_invoice_end"/>
+            <field name="condition">test_ignore_invoice_exceptions()</field>
+        </record>
+
+        <!-- We don't move from act_invoice_end to act_done directly anymore,
+             but we check first if we are under the invoice_policy == 'delivery',
+             and in that case we create an invoice per picking, and until all
+             being 'paid', we can not say the sale.order is in state 'done'. -->
+        <record id="act_wait_all_invoices_end" model="workflow.activity">
+            <field name="wkf_id" ref="sale.wkf_sale"/>
+            <field name="name">wait_all_invoices_end</field>
+            <field name="kind">dummy</field>
+        </record>
+        <record id="sale.trans_invoice_end_done" model="workflow.transition">
+            <field name="act_from" ref="sale.act_invoice_end"/>
+            <field name="act_to" ref="act_wait_all_invoices_end"/>
+        </record>
+        <record id="trans_wait_all_invoices_end_to_done" model="workflow.transition">
+            <field name="act_from" ref="act_wait_all_invoices_end"/>
+            <field name="act_to" ref="sale.act_done"/>
+            <field name="condition">check_all_invoices_created_and_paid()</field>
+        </record>
+
+    </data>
+</openerp>

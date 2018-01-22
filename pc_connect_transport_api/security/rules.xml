@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data noupdate="0">
+        <record id="rule_own_connect_transport_api_internal" model="ir.rule">
+            <field name="name">Own Connect Transport API internal</field>
+            <field name="model_id" ref="model_connect_transport_api" />
+
+            <field name="perm_read" eval="True" />
+            <field name="perm_write" eval="False" />
+            <field name="perm_create" eval="False" />
+            <field name="perm_unlink" eval="False" />
+
+            <field name="domain_force">
+                [
+                ('internal_user_id', '=', user.id),
+                ]
+            </field>
+
+            <field name="groups" eval="[(4, ref('group_connect_transport_api_internal'))]" />
+        </record>
+    </data>
+</openerp>

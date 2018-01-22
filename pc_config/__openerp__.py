@@ -20,7 +20,7 @@
 ##############################################################################
 
 {
-    "name": "SwissPost YellowCube Odoo / Config",
+    "name": "PostCommerce AP1/Config",
     "version": "1.0",
     "description": "Defines a place where all the configuration parameters are displayed and set.",
     "author": "Brain-tec",

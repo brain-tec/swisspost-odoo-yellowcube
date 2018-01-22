@@ -1,0 +1,12 @@
+<openerp>
+	<data noupdate="True">
+		<record id="checkpoint_rule_product" model="checkpoint.management">
+			<field name="ir_model_id" search="[('model','=','product.product')]"/>
+			<field name="automatic_process">True</field>
+		</record>
+		<record id="checkpoint_rule_product_category" model="checkpoint.management">
+			<field name="ir_model_id" search="[('model','=','product.category')]"/>
+			<field name="automatic_process">True</field>
+		</record>
+	</data>
+</openerp>

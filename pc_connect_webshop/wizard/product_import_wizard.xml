@@ -1,0 +1,37 @@
+<openerp>
+	<data>
+		<record
+			id="import_product_wizard_view"
+			model="ir.ui.view">
+			<field name="name">product.import_wizard.form</field>
+			<field name="model">product.import_wizard</field>
+			<field name="arch" type="xml">
+				<form string="Product import" version="7.0">
+					<field name="file" colspan='4' nolabel='0'/>
+					<field name="type" colspan='4' nolabel='0'/>
+					<field name="message" invisible="not context.get('info',True)" colspan='4'/>
+					<button name="do_import" string="Import" type="object" class="oe_highlight" invisible="not context.get('error',True)" />
+					<button string="Close" special="cancel" />
+				</form>
+			</field>
+		</record>
+
+		<record id="action_import_product_wizard" model="ir.actions.act_window">
+			<field name="name">Import products by .csv</field>
+			<field name="type">ir.actions.act_window</field>
+			<field name="res_model">product.import_wizard</field>
+			<field name="view_type">form</field>
+			<field name="view_mode">form</field>
+			<field name="view_id" ref="import_product_wizard_view" />
+			<field name="target">new</field>
+		</record>
+
+		<record model="ir.values" id="import_product_wizard">
+			<field name="name">Import products by .csv</field>
+			<field name="key2">client_action_multi</field>
+			<field name="value" eval="'ir.actions.act_window,' + str(ref('action_import_product_wizard'))" />
+			<field name="key">action</field>
+			<field name="model">product.product</field>
+		</record>
+	</data>
+</openerp>

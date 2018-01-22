@@ -1,0 +1,673 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<ART xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="YellowCube_ART_Artikelstamm_New-20140502.xsd">
+  <ControlReference>
+    <Type>ART</Type>
+    <Sender>Mustersender</Sender>
+    <Receiver>YELLOWCUBE</Receiver>
+    <Timestamp>20140728083605</Timestamp>
+    <OperatingMode>P</OperatingMode>
+    <Version>1.0</Version>
+  </ControlReference>
+  <ArticleList>
+  <Article>
+      <ChangeFlag>I</ChangeFlag>
+      <DepositorNo>0000040451</DepositorNo>
+      <PlantID>Y009</PlantID>
+      <ArticleNo>4015400619338</ArticleNo>
+      <BaseUOM>PCE</BaseUOM>
+      <NetWeight ISO="GRM">1249</NetWeight>
+      <BatchMngtReq>0</BatchMngtReq>
+      <UnitsOfMeasure>
+        <EAN EANType="HE">4015400619338</EAN>
+        <AlternateUnitISO>PCE</AlternateUnitISO>
+        <GrossWeight ISO="GRM">1249</GrossWeight>
+        <Length ISO="MMT">115</Length>
+        <Width ISO="MMT">329</Width>
+        <Height ISO="MMT">207</Height>
+      </UnitsOfMeasure>
+      <ArticleDescriptions>
+        <ArticleDescription ArticleDescriptionLC="de">Pampers Active Fit</ArticleDescription>
+      </ArticleDescriptions>
+    </Article>
+    <Article>
+      <ChangeFlag>I</ChangeFlag>
+      <DepositorNo>0000040451</DepositorNo>
+      <PlantID>Y009</PlantID>
+      <ArticleNo>4015400617693</ArticleNo>
+      <BaseUOM>PCE</BaseUOM>
+      <NetWeight ISO="GRM">2951</NetWeight>
+      <BatchMngtReq>0</BatchMngtReq>
+      <UnitsOfMeasure>
+        <EAN EANType="HE">4015400617693</EAN>
+        <AlternateUnitISO>PCE</AlternateUnitISO>
+        <GrossWeight ISO="GRM">2951</GrossWeight>
+        <Length ISO="MMT">243</Length>
+        <Width ISO="MMT">417</Width>
+        <Height ISO="MMT">210</Height>
+      </UnitsOfMeasure>
+      <ArticleDescriptions>
+        <ArticleDescription ArticleDescriptionLC="de">Pampers Active Fit</ArticleDescription>
+      </ArticleDescriptions>
+    </Article>
+    <Article>
+      <ChangeFlag>I</ChangeFlag>
+      <DepositorNo>0000040451</DepositorNo>
+      <PlantID>Y009</PlantID>
+      <ArticleNo>4015400619369</ArticleNo>
+      <BaseUOM>PCE</BaseUOM>
+      <NetWeight ISO="GRM">1244</NetWeight>
+      <BatchMngtReq>0</BatchMngtReq>
+      <UnitsOfMeasure>
+        <EAN EANType="HE">4015400619369</EAN>
+        <AlternateUnitISO>PCE</AlternateUnitISO>
+        <GrossWeight ISO="GRM">1244</GrossWeight>
+        <Length ISO="MMT">115</Length>
+        <Width ISO="MMT">269</Width>
+        <Height ISO="MMT">225</Height>
+      </UnitsOfMeasure>
+      <ArticleDescriptions>
+        <ArticleDescription ArticleDescriptionLC="de">Pampers Active Fit</ArticleDescription>
+      </ArticleDescriptions>
+    </Article>
+    <Article>
+      <ChangeFlag>I</ChangeFlag>
+      <DepositorNo>0000040451</DepositorNo>
+      <PlantID>Y009</PlantID>
+      <ArticleNo>4015400617778</ArticleNo>
+      <BaseUOM>PCE</BaseUOM>
+      <NetWeight ISO="GRM">2852</NetWeight>
+      <BatchMngtReq>0</BatchMngtReq>
+      <UnitsOfMeasure>
+        <EAN EANType="HE">4015400617778</EAN>
+        <AlternateUnitISO>PCE</AlternateUnitISO>
+        <GrossWeight ISO="GRM">2852</GrossWeight>
+        <Length ISO="MMT">245</Length>
+        <Width ISO="MMT">297</Width>
+        <Height ISO="MMT">243</Height>
+      </UnitsOfMeasure>
+      <ArticleDescriptions>
+        <ArticleDescription ArticleDescriptionLC="de">Pampers Active Fit</ArticleDescription>
+      </ArticleDescriptions>
+    </Article>
+    <Article>
+      <ChangeFlag>I</ChangeFlag>
+      <DepositorNo>0000040451</DepositorNo>
+      <PlantID>Y009</PlantID>
+      <ArticleNo>4015400619420</ArticleNo>
+      <BaseUOM>PCE</BaseUOM>
+      <NetWeight ISO="GRM">1251</NetWeight>
+      <BatchMngtReq>0</BatchMngtReq>
+      <UnitsOfMeasure>
+        <EAN EANType="HE">4015400619420</EAN>
+        <AlternateUnitISO>PCE</AlternateUnitISO>
+        <GrossWeight ISO="GRM">1251</GrossWeight>
+        <Length ISO="MMT">115</Length>
+        <Width ISO="MMT">264</Width>
+        <Height ISO="MMT">225</Height>
+      </UnitsOfMeasure>
+      <ArticleDescriptions>
+        <ArticleDescription ArticleDescriptionLC="de">Pampers Active Fit</ArticleDescription>
+      </ArticleDescriptions>
+    </Article>
+    <Article>
+      <ChangeFlag>I</ChangeFlag>
+      <DepositorNo>0000040451</DepositorNo>
+      <PlantID>Y009</PlantID>
+      <ArticleNo>4015400617792</ArticleNo>
+      <BaseUOM>PCE</BaseUOM>
+      <NetWeight ISO="GRM">2724</NetWeight>
+      <BatchMngtReq>0</BatchMngtReq>
+      <UnitsOfMeasure>
+        <EAN EANType="HE">4015400617792</EAN>
+        <AlternateUnitISO>PCE</AlternateUnitISO>
+        <GrossWeight ISO="GRM">2724</GrossWeight>
+        <Length ISO="MMT">243</Length>
+        <Width ISO="MMT">277</Width>
+        <Height ISO="MMT">243</Height>
+      </UnitsOfMeasure>
+      <ArticleDescriptions>
+        <ArticleDescription ArticleDescriptionLC="de">Pampers Active Fit</ArticleDescription>
+      </ArticleDescriptions>
+    </Article>
+    <Article>
+      <ChangeFlag>I</ChangeFlag>
+      <DepositorNo>0000040451</DepositorNo>
+      <PlantID>Y009</PlantID>
+      <ArticleNo>4015400619482</ArticleNo>
+      <BaseUOM>PCE</BaseUOM>
+      <NetWeight ISO="GRM">1330</NetWeight>
+      <BatchMngtReq>0</BatchMngtReq>
+      <UnitsOfMeasure>
+        <EAN EANType="HE">4015400619482</EAN>
+        <AlternateUnitISO>PCE</AlternateUnitISO>
+        <GrossWeight ISO="GRM">1330</GrossWeight>
+        <Length ISO="MMT">120</Length>
+        <Width ISO="MMT">255</Width>
+        <Height ISO="MMT">240</Height>
+      </UnitsOfMeasure>
+      <ArticleDescriptions>
+        <ArticleDescription ArticleDescriptionLC="de">Pampers Active Fit</ArticleDescription>
+      </ArticleDescriptions>
+    </Article>
+    <Article>
+      <ChangeFlag>I</ChangeFlag>
+      <DepositorNo>0000040451</DepositorNo>
+      <PlantID>Y009</PlantID>
+      <ArticleNo>4015400622543</ArticleNo>
+      <BaseUOM>PCE</BaseUOM>
+      <NetWeight ISO="GRM">2886</NetWeight>
+      <BatchMngtReq>0</BatchMngtReq>
+      <UnitsOfMeasure>
+        <EAN EANType="HE">4015400622543</EAN>
+        <AlternateUnitISO>PCE</AlternateUnitISO>
+        <GrossWeight ISO="GRM">2886</GrossWeight>
+        <Length ISO="MMT">253</Length>
+        <Width ISO="MMT">275</Width>
+        <Height ISO="MMT">259</Height>
+      </UnitsOfMeasure>
+      <ArticleDescriptions>
+        <ArticleDescription ArticleDescriptionLC="de">Pampers Active Fit</ArticleDescription>
+      </ArticleDescriptions>
+    </Article>
+    <Article>
+      <ChangeFlag>I</ChangeFlag>
+      <DepositorNo>0000040451</DepositorNo>
+      <PlantID>Y009</PlantID>
+      <ArticleNo>4015400619512</ArticleNo>
+      <BaseUOM>PCE</BaseUOM>
+      <NetWeight ISO="GRM">1337</NetWeight>
+      <BatchMngtReq>0</BatchMngtReq>
+      <UnitsOfMeasure>
+        <EAN EANType="HE">4015400619512</EAN>
+        <AlternateUnitISO>PCE</AlternateUnitISO>
+        <GrossWeight ISO="GRM">1337</GrossWeight>
+        <Length ISO="MMT">120</Length>
+        <Width ISO="MMT">250</Width>
+        <Height ISO="MMT">240</Height>
+      </UnitsOfMeasure>
+      <ArticleDescriptions>
+        <ArticleDescription ArticleDescriptionLC="de">Pampers Active Fit</ArticleDescription>
+      </ArticleDescriptions>
+    </Article>
+    <Article>
+      <ChangeFlag>I</ChangeFlag>
+      <DepositorNo>0000040451</DepositorNo>
+      <PlantID>Y009</PlantID>
+      <ArticleNo>4015400625612</ArticleNo>
+      <BaseUOM>PCE</BaseUOM>
+      <NetWeight ISO="GRM">1164</NetWeight>
+      <BatchMngtReq>0</BatchMngtReq>
+      <UnitsOfMeasure>
+        <EAN EANType="HE">4015400625612</EAN>
+        <AlternateUnitISO>PCE</AlternateUnitISO>
+        <GrossWeight ISO="GRM">1164</GrossWeight>
+        <Length ISO="MMT">114</Length>
+        <Width ISO="MMT">211</Width>
+        <Height ISO="MMT">358</Height>
+      </UnitsOfMeasure>
+      <ArticleDescriptions>
+        <ArticleDescription ArticleDescriptionLC="de">Pampers Baby Dry</ArticleDescription>
+      </ArticleDescriptions>
+    </Article>
+    <Article>
+      <ChangeFlag>I</ChangeFlag>
+      <DepositorNo>0000040451</DepositorNo>
+      <PlantID>Y009</PlantID>
+      <ArticleNo>4015400625650</ArticleNo>
+      <BaseUOM>PCE</BaseUOM>
+      <NetWeight ISO="GRM">1259</NetWeight>
+      <BatchMngtReq>0</BatchMngtReq>
+      <UnitsOfMeasure>
+        <EAN EANType="HE">4015400625650</EAN>
+        <AlternateUnitISO>PCE</AlternateUnitISO>
+        <GrossWeight ISO="GRM">1259</GrossWeight>
+        <Length ISO="MMT">115</Length>
+        <Width ISO="MMT">205</Width>
+        <Height ISO="MMT">395</Height>
+      </UnitsOfMeasure>
+      <ArticleDescriptions>
+        <ArticleDescription ArticleDescriptionLC="de">Pampers Baby Dry</ArticleDescription>
+      </ArticleDescriptions>
+    </Article>
+    <Article>
+      <ChangeFlag>I</ChangeFlag>
+      <DepositorNo>0000040451</DepositorNo>
+      <PlantID>Y009</PlantID>
+      <ArticleNo>4015400629856</ArticleNo>
+      <BaseUOM>PCE</BaseUOM>
+      <NetWeight ISO="GRM">3386</NetWeight>
+      <BatchMngtReq>0</BatchMngtReq>
+      <UnitsOfMeasure>
+        <EAN EANType="HE">4015400629856</EAN>
+        <AlternateUnitISO>PCE</AlternateUnitISO>
+        <GrossWeight ISO="GRM">3386</GrossWeight>
+        <Length ISO="MMT">319</Length>
+        <Width ISO="MMT">361</Width>
+        <Height ISO="MMT">229</Height>
+      </UnitsOfMeasure>
+      <ArticleDescriptions>
+        <ArticleDescription ArticleDescriptionLC="de">Pampers Baby Dry</ArticleDescription>
+      </ArticleDescriptions>
+    </Article>
+    <Article>
+      <ChangeFlag>I</ChangeFlag>
+      <DepositorNo>0000040451</DepositorNo>
+      <PlantID>Y009</PlantID>
+      <ArticleNo>4015400629870</ArticleNo>
+      <BaseUOM>PCE</BaseUOM>
+      <NetWeight ISO="GRM">3112</NetWeight>
+      <BatchMngtReq>0</BatchMngtReq>
+      <UnitsOfMeasure>
+        <EAN EANType="HE">4015400629870</EAN>
+        <AlternateUnitISO>PCE</AlternateUnitISO>
+        <GrossWeight ISO="GRM">3112</GrossWeight>
+        <Length ISO="MMT">278</Length>
+        <Width ISO="MMT">361</Width>
+        <Height ISO="MMT">229</Height>
+      </UnitsOfMeasure>
+      <ArticleDescriptions>
+        <ArticleDescription ArticleDescriptionLC="de">Pampers Baby Dry</ArticleDescription>
+      </ArticleDescriptions>
+    </Article>
+    <Article>
+      <ChangeFlag>I</ChangeFlag>
+      <DepositorNo>0000040451</DepositorNo>
+      <PlantID>Y009</PlantID>
+      <ArticleNo>4015400625711</ArticleNo>
+      <BaseUOM>PCE</BaseUOM>
+      <NetWeight ISO="GRM">1381</NetWeight>
+      <BatchMngtReq>0</BatchMngtReq>
+      <UnitsOfMeasure>
+        <EAN EANType="HE">4015400625711</EAN>
+        <AlternateUnitISO>PCE</AlternateUnitISO>
+        <GrossWeight ISO="GRM">1381</GrossWeight>
+        <Length ISO="MMT">118</Length>
+        <Width ISO="MMT">370</Width>
+        <Height ISO="MMT">221</Height>
+      </UnitsOfMeasure>
+      <ArticleDescriptions>
+        <ArticleDescription ArticleDescriptionLC="de">Pampers Baby Dry</ArticleDescription>
+      </ArticleDescriptions>
+    </Article>
+    <Article>
+      <ChangeFlag>I</ChangeFlag>
+      <DepositorNo>0000040451</DepositorNo>
+      <PlantID>Y009</PlantID>
+      <ArticleNo>4015400629894</ArticleNo>
+      <BaseUOM>PCE</BaseUOM>
+      <NetWeight ISO="GRM">3526</NetWeight>
+      <BatchMngtReq>0</BatchMngtReq>
+      <UnitsOfMeasure>
+        <EAN EANType="HE">4015400629894</EAN>
+        <AlternateUnitISO>PCE</AlternateUnitISO>
+        <GrossWeight ISO="GRM">3526</GrossWeight>
+        <Length ISO="MMT">276</Length>
+        <Width ISO="MMT">370</Width>
+        <Height ISO="MMT">243</Height>
+      </UnitsOfMeasure>
+      <ArticleDescriptions>
+        <ArticleDescription ArticleDescriptionLC="de">Pampers Baby Dry</ArticleDescription>
+      </ArticleDescriptions>
+    </Article>
+    <Article>
+      <ChangeFlag>I</ChangeFlag>
+      <DepositorNo>0000040451</DepositorNo>
+      <PlantID>Y009</PlantID>
+      <ArticleNo>4015400625742</ArticleNo>
+      <BaseUOM>PCE</BaseUOM>
+      <NetWeight ISO="GRM">1309</NetWeight>
+      <BatchMngtReq>0</BatchMngtReq>
+      <UnitsOfMeasure>
+        <EAN EANType="HE">4015400625742</EAN>
+        <AlternateUnitISO>PCE</AlternateUnitISO>
+        <GrossWeight ISO="GRM">1309</GrossWeight>
+        <Length ISO="MMT">118</Length>
+        <Width ISO="MMT">319</Width>
+        <Height ISO="MMT">221</Height>
+      </UnitsOfMeasure>
+      <ArticleDescriptions>
+        <ArticleDescription ArticleDescriptionLC="de">Pampers Baby Dry</ArticleDescription>
+      </ArticleDescriptions>
+    </Article>
+    <Article>
+      <ChangeFlag>I</ChangeFlag>
+      <DepositorNo>0000040451</DepositorNo>
+      <PlantID>Y009</PlantID>
+      <ArticleNo>4015400646211</ArticleNo>
+      <BaseUOM>PCE</BaseUOM>
+      <NetWeight ISO="GRM">3581</NetWeight>
+      <BatchMngtReq>0</BatchMngtReq>
+      <UnitsOfMeasure>
+        <EAN EANType="HE">4015400646211</EAN>
+        <AlternateUnitISO>PCE</AlternateUnitISO>
+        <GrossWeight ISO="GRM">3581</GrossWeight>
+        <Length ISO="MMT">252</Length>
+        <Width ISO="MMT">404</Width>
+        <Height ISO="MMT">244</Height>
+      </UnitsOfMeasure>
+      <ArticleDescriptions>
+        <ArticleDescription ArticleDescriptionLC="de">Pampers Baby Dry</ArticleDescription>
+      </ArticleDescriptions>
+    </Article>
+    <Article>
+      <ChangeFlag>I</ChangeFlag>
+      <DepositorNo>0000040451</DepositorNo>
+      <PlantID>Y009</PlantID>
+      <ArticleNo>4015400646105</ArticleNo>
+      <BaseUOM>PCE</BaseUOM>
+      <NetWeight ISO="GRM">1529</NetWeight>
+      <BatchMngtReq>0</BatchMngtReq>
+      <UnitsOfMeasure>
+        <EAN EANType="HE">4015400646105</EAN>
+        <AlternateUnitISO>PCE</AlternateUnitISO>
+        <GrossWeight ISO="GRM">1529</GrossWeight>
+        <Length ISO="MMT">118</Length>
+        <Width ISO="MMT">339</Width>
+        <Height ISO="MMT">234</Height>
+      </UnitsOfMeasure>
+      <ArticleDescriptions>
+        <ArticleDescription ArticleDescriptionLC="de">Pampers Baby Dry</ArticleDescription>
+      </ArticleDescriptions>
+    </Article>
+    <Article>
+      <ChangeFlag>I</ChangeFlag>
+      <DepositorNo>0000040451</DepositorNo>
+      <PlantID>Y009</PlantID>
+      <ArticleNo>4015400646266</ArticleNo>
+      <BaseUOM>PCE</BaseUOM>
+      <NetWeight ISO="GRM">3725</NetWeight>
+      <BatchMngtReq>0</BatchMngtReq>
+      <UnitsOfMeasure>
+        <EAN EANType="HE">4015400646266</EAN>
+        <AlternateUnitISO>PCE</AlternateUnitISO>
+        <GrossWeight ISO="GRM">3725</GrossWeight>
+        <Length ISO="MMT">250</Length>
+        <Width ISO="MMT">393</Width>
+        <Height ISO="MMT">254</Height>
+      </UnitsOfMeasure>
+      <ArticleDescriptions>
+        <ArticleDescription ArticleDescriptionLC="de">Pampers Baby Dry</ArticleDescription>
+      </ArticleDescriptions>
+    </Article>
+    <Article>
+      <ChangeFlag>I</ChangeFlag>
+      <DepositorNo>0000040451</DepositorNo>
+      <PlantID>Y009</PlantID>
+      <ArticleNo>4015400646310</ArticleNo>
+      <BaseUOM>PCE</BaseUOM>
+      <NetWeight ISO="GRM">3685</NetWeight>
+      <BatchMngtReq>0</BatchMngtReq>
+      <UnitsOfMeasure>
+        <EAN EANType="HE">4015400646310</EAN>
+        <AlternateUnitISO>PCE</AlternateUnitISO>
+        <GrossWeight ISO="GRM">3685</GrossWeight>
+        <Length ISO="MMT">252</Length>
+        <Width ISO="MMT">383</Width>
+        <Height ISO="MMT">258</Height>
+      </UnitsOfMeasure>
+      <ArticleDescriptions>
+        <ArticleDescription ArticleDescriptionLC="de">Pampers Baby Dry</ArticleDescription>
+      </ArticleDescriptions>
+    </Article>
+    <Article>
+      <ChangeFlag>I</ChangeFlag>
+      <DepositorNo>0000040451</DepositorNo>
+      <PlantID>Y009</PlantID>
+      <ArticleNo>4015400646198</ArticleNo>
+      <BaseUOM>PCE</BaseUOM>
+      <NetWeight ISO="GRM">1388</NetWeight>
+      <BatchMngtReq>0</BatchMngtReq>
+      <UnitsOfMeasure>
+        <EAN EANType="HE">4015400646198</EAN>
+        <AlternateUnitISO>PCE</AlternateUnitISO>
+        <GrossWeight ISO="GRM">1388</GrossWeight>
+        <Length ISO="MMT">125</Length>
+        <Width ISO="MMT">283</Width>
+        <Height ISO="MMT">253</Height>
+      </UnitsOfMeasure>
+      <ArticleDescriptions>
+        <ArticleDescription ArticleDescriptionLC="de">Pampers Baby Dry</ArticleDescription>
+      </ArticleDescriptions>
+    </Article>
+    <Article>
+      <ChangeFlag>I</ChangeFlag>
+      <DepositorNo>0000040451</DepositorNo>
+      <PlantID>Y009</PlantID>
+      <ArticleNo>4015400621881</ArticleNo>
+      <BaseUOM>PCE</BaseUOM>
+      <NetWeight ISO="GRM">624</NetWeight>
+      <BatchMngtReq>0</BatchMngtReq>
+      <UnitsOfMeasure>
+        <EAN EANType="HE">4015400621881</EAN>
+        <AlternateUnitISO>PCE</AlternateUnitISO>
+        <GrossWeight ISO="GRM">624</GrossWeight>
+        <Length ISO="MMT">141</Length>
+        <Width ISO="MMT">217</Width>
+        <Height ISO="MMT">108</Height>
+      </UnitsOfMeasure>
+      <ArticleDescriptions>
+        <ArticleDescription ArticleDescriptionLC="de">Pampers Feuchte Tücher Sensitive</ArticleDescription>
+      </ArticleDescriptions>
+    </Article>
+    <Article>
+      <ChangeFlag>I</ChangeFlag>
+      <DepositorNo>0000040451</DepositorNo>
+      <PlantID>Y009</PlantID>
+      <ArticleNo>4015400630791</ArticleNo>
+      <BaseUOM>PCE</BaseUOM>
+      <NetWeight ISO="GRM">106</NetWeight>
+      <BatchMngtReq>0</BatchMngtReq>
+      <UnitsOfMeasure>
+        <EAN EANType="HE">4015400630791</EAN>
+        <AlternateUnitISO>PCE</AlternateUnitISO>
+        <GrossWeight ISO="GRM">106</GrossWeight>
+        <Length ISO="MMT">87</Length>
+        <Width ISO="MMT">181</Width>
+        <Height ISO="MMT">14</Height>
+      </UnitsOfMeasure>
+      <ArticleDescriptions>
+        <ArticleDescription ArticleDescriptionLC="de">Pampers Feuchte Tücher Sensitive,</ArticleDescription>
+      </ArticleDescriptions>
+    </Article>
+    <Article>
+      <ChangeFlag>I</ChangeFlag>
+      <DepositorNo>0000040451</DepositorNo>
+      <PlantID>Y009</PlantID>
+      <ArticleNo>4015400621966</ArticleNo>
+      <BaseUOM>PCE</BaseUOM>
+      <NetWeight ISO="GRM">483</NetWeight>
+      <BatchMngtReq>0</BatchMngtReq>
+      <UnitsOfMeasure>
+        <EAN EANType="HE">4015400621966</EAN>
+        <AlternateUnitISO>PCE</AlternateUnitISO>
+        <GrossWeight ISO="GRM">483</GrossWeight>
+        <Length ISO="MMT">91</Length>
+        <Width ISO="MMT">185</Width>
+        <Height ISO="MMT">55</Height>
+      </UnitsOfMeasure>
+      <ArticleDescriptions>
+        <ArticleDescription ArticleDescriptionLC="de">Pampers Feuchte Tücher Sensitive</ArticleDescription>
+      </ArticleDescriptions>
+    </Article>
+    <Article>
+      <ChangeFlag>I</ChangeFlag>
+      <DepositorNo>0000040451</DepositorNo>
+      <PlantID>Y009</PlantID>
+      <ArticleNo>4015400623496</ArticleNo>
+      <BaseUOM>PCE</BaseUOM>
+      <NetWeight ISO="GRM">493</NetWeight>
+      <BatchMngtReq>0</BatchMngtReq>
+      <UnitsOfMeasure>
+        <EAN EANType="HE">4015400623496</EAN>
+        <AlternateUnitISO>PCE</AlternateUnitISO>
+        <GrossWeight ISO="GRM">493</GrossWeight>
+        <Length ISO="MMT">90</Length>
+        <Width ISO="MMT">182</Width>
+        <Height ISO="MMT">61</Height>
+      </UnitsOfMeasure>
+      <ArticleDescriptions>
+        <ArticleDescription ArticleDescriptionLC="de">Pampers Feuchte Tücher New Baby Sensitiv</ArticleDescription>
+      </ArticleDescriptions>
+    </Article>
+    <Article>
+      <ChangeFlag>I</ChangeFlag>
+      <DepositorNo>0000040451</DepositorNo>
+      <PlantID>Y009</PlantID>
+      <ArticleNo>4015400623588</ArticleNo>
+      <BaseUOM>PCE</BaseUOM>
+      <NetWeight ISO="GRM">1488</NetWeight>
+      <BatchMngtReq>0</BatchMngtReq>
+      <UnitsOfMeasure>
+        <EAN EANType="HE">4015400623588</EAN>
+        <AlternateUnitISO>PCE</AlternateUnitISO>
+        <GrossWeight ISO="GRM">1488</GrossWeight>
+        <Length ISO="MMT">91</Length>
+        <Width ISO="MMT">185</Width>
+        <Height ISO="MMT">165</Height>
+      </UnitsOfMeasure>
+      <ArticleDescriptions>
+        <ArticleDescription ArticleDescriptionLC="de">Pampers Feuchte Tücher New Baby Sensitiv</ArticleDescription>
+      </ArticleDescriptions>
+    </Article>
+    <Article>
+      <ChangeFlag>I</ChangeFlag>
+      <DepositorNo>0000040451</DepositorNo>
+      <PlantID>Y009</PlantID>
+      <ArticleNo>4015400622048</ArticleNo>
+      <BaseUOM>PCE</BaseUOM>
+      <NetWeight ISO="GRM">1454</NetWeight>
+      <BatchMngtReq>0</BatchMngtReq>
+      <UnitsOfMeasure>
+        <EAN EANType="HE">4015400622048</EAN>
+        <AlternateUnitISO>PCE</AlternateUnitISO>
+        <GrossWeight ISO="GRM">1454</GrossWeight>
+        <Length ISO="MMT">91</Length>
+        <Width ISO="MMT">185</Width>
+        <Height ISO="MMT">147</Height>
+      </UnitsOfMeasure>
+      <ArticleDescriptions>
+        <ArticleDescription ArticleDescriptionLC="de">Pampers Feuchte Tücher Sensitive</ArticleDescription>
+      </ArticleDescriptions>
+    </Article>
+    <Article>
+      <ChangeFlag>I</ChangeFlag>
+      <DepositorNo>0000040451</DepositorNo>
+      <PlantID>Y009</PlantID>
+      <ArticleNo>4015400622116</ArticleNo>
+      <BaseUOM>PCE</BaseUOM>
+      <NetWeight ISO="GRM">2422</NetWeight>
+      <BatchMngtReq>0</BatchMngtReq>
+      <UnitsOfMeasure>
+        <EAN EANType="HE">4015400622116</EAN>
+        <AlternateUnitISO>PCE</AlternateUnitISO>
+        <GrossWeight ISO="GRM">2422</GrossWeight>
+        <Length ISO="MMT">91</Length>
+        <Width ISO="MMT">185</Width>
+        <Height ISO="MMT">245</Height>
+      </UnitsOfMeasure>
+      <ArticleDescriptions>
+        <ArticleDescription ArticleDescriptionLC="de">Pampers Feuchte Tücher Senstive</ArticleDescription>
+      </ArticleDescriptions>
+    </Article>
+    <Article>
+      <ChangeFlag>I</ChangeFlag>
+      <DepositorNo>0000040451</DepositorNo>
+      <PlantID>Y009</PlantID>
+      <ArticleNo>4015400622284</ArticleNo>
+      <BaseUOM>PCE</BaseUOM>
+      <NetWeight ISO="GRM">6105</NetWeight>
+      <BatchMngtReq>0</BatchMngtReq>
+      <UnitsOfMeasure>
+        <EAN EANType="HE">4015400622284</EAN>
+        <AlternateUnitISO>PCE</AlternateUnitISO>
+        <GrossWeight ISO="GRM">6105</GrossWeight>
+        <Length ISO="MMT">198</Length>
+        <Width ISO="MMT">299</Width>
+        <Height ISO="MMT">223</Height>
+      </UnitsOfMeasure>
+      <ArticleDescriptions>
+        <ArticleDescription ArticleDescriptionLC="de">Pampers Feuchte Tücher Sensitive</ArticleDescription>
+      </ArticleDescriptions>
+    </Article>
+    <Article>
+      <ChangeFlag>I</ChangeFlag>
+      <DepositorNo>0000040451</DepositorNo>
+      <PlantID>Y009</PlantID>
+      <ArticleNo>4015400622840</ArticleNo>
+      <BaseUOM>PCE</BaseUOM>
+      <NetWeight ISO="GRM">414</NetWeight>
+      <BatchMngtReq>0</BatchMngtReq>
+      <UnitsOfMeasure>
+        <EAN EANType="HE">4015400622840</EAN>
+        <AlternateUnitISO>PCE</AlternateUnitISO>
+        <GrossWeight ISO="GRM">414</GrossWeight>
+        <Length ISO="MMT">91</Length>
+        <Width ISO="MMT">185</Width>
+        <Height ISO="MMT">49</Height>
+      </UnitsOfMeasure>
+      <ArticleDescriptions>
+        <ArticleDescription ArticleDescriptionLC="de">Pampers Feuchte Tücher Fresh Clean</ArticleDescription>
+      </ArticleDescriptions>
+    </Article>
+    <Article>
+      <ChangeFlag>I</ChangeFlag>
+      <DepositorNo>0000040451</DepositorNo>
+      <PlantID>Y009</PlantID>
+      <ArticleNo>4015400622772</ArticleNo>
+      <BaseUOM>PCE</BaseUOM>
+      <NetWeight ISO="GRM">1250</NetWeight>
+      <BatchMngtReq>0</BatchMngtReq>
+      <UnitsOfMeasure>
+        <EAN EANType="HE">4015400622772</EAN>
+        <AlternateUnitISO>PCE</AlternateUnitISO>
+        <GrossWeight ISO="GRM">1250</GrossWeight>
+        <Length ISO="MMT">91</Length>
+        <Width ISO="MMT">185</Width>
+        <Height ISO="MMT">147</Height>
+      </UnitsOfMeasure>
+      <ArticleDescriptions>
+        <ArticleDescription ArticleDescriptionLC="de">Pampers Feuchte Tücher Fresh Clean</ArticleDescription>
+      </ArticleDescriptions>
+    </Article>
+    <Article>
+      <ChangeFlag>I</ChangeFlag>
+      <DepositorNo>0000040451</DepositorNo>
+      <PlantID>Y009</PlantID>
+      <ArticleNo>4015400623892</ArticleNo>
+      <BaseUOM>PCE</BaseUOM>
+      <NetWeight ISO="GRM">2081</NetWeight>
+      <BatchMngtReq>0</BatchMngtReq>
+      <UnitsOfMeasure>
+        <EAN EANType="HE">4015400623892</EAN>
+        <AlternateUnitISO>PCE</AlternateUnitISO>
+        <GrossWeight ISO="GRM">2081</GrossWeight>
+        <Length ISO="MMT">91</Length>
+        <Width ISO="MMT">185</Width>
+        <Height ISO="MMT">245</Height>
+      </UnitsOfMeasure>
+      <ArticleDescriptions>
+        <ArticleDescription ArticleDescriptionLC="de">Pampers Feuchte Tücher Fresh Clean</ArticleDescription>
+      </ArticleDescriptions>
+    </Article>
+    <Article>
+      <ChangeFlag>I</ChangeFlag>
+      <DepositorNo>0000040451</DepositorNo>
+      <PlantID>Y009</PlantID>
+      <ArticleNo>4015400622598</ArticleNo>
+      <BaseUOM>PCE</BaseUOM>
+      <NetWeight ISO="GRM">5277</NetWeight>
+      <BatchMngtReq>0</BatchMngtReq>
+      <UnitsOfMeasure>
+        <EAN EANType="HE">4015400622598</EAN>
+        <AlternateUnitISO>PCE</AlternateUnitISO>
+        <GrossWeight ISO="GRM">5277</GrossWeight>
+        <Length ISO="MMT">198</Length>
+        <Width ISO="MMT">299</Width>
+        <Height ISO="MMT">223</Height>
+      </UnitsOfMeasure>
+      <ArticleDescriptions>
+        <ArticleDescription ArticleDescriptionLC="de">Pampers Feuchte Tücher Fresh Clean</ArticleDescription>
+      </ArticleDescriptions>
+    </Article>
+   </ArticleList>
+</ART>

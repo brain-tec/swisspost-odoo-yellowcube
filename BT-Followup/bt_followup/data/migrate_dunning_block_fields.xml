@@ -1,0 +1,7 @@
+<openerp>
+	<data noupdate="0">
+
+		<function model="res.partner" name="migrate_dunning_block_fields" eval="([])"/>
+
+	</data>
+</openerp>

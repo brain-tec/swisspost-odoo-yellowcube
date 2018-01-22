@@ -3,6 +3,7 @@
 #
 #    Copyright (c) 2015 brain-tec AG (http://www.braintec-group.com)
 #    All Right Reserved
+#    Copyright 2017 Camptocamp SA
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Affero General Public License as
@@ -25,18 +26,18 @@ from utilities import filters
 from openerp.addons.connector.session import ConnectorSession
 from openerp.addons.connector.queue.job import job, related_action
 from openerp.tools.translate import _
-from utilities.pdf import associate_ir_attachment_with_object, get_pdf_from_report
+from utilities.reports import \
+    get_pdf_from_report, \
+    associate_ir_attachment_with_object
 import base64
 import netsvc
 import logging
 logger = logging.getLogger(__name__)
+logger.setLevel(logging.INFO)
 
 
 class sale_order_ext(osv.Model):
     _inherit = 'sale.order'
-
-    def _get_configuration_data(self, cr, uid, ids, context=None):
-        return self.pool.get('configuration.data').get(cr, uid, [], context=context)
 
     # BEGIN OF THE CODE WHICH DEFINES THE NEW FILTERS TO ADD TO THE OBJECT.
     def _replace_week_placeholders(self, cr, uid, args, context=None):
@@ -64,10 +65,12 @@ class sale_order_ext(osv.Model):
         return invoice_vals
 
     def copy(self, cr, uid, ids, defaults={}, context=None):
-        _defaults = {'invoices_printed': False,
-                     'delivery_orders_printed': False,
-                     'state': 'draft',
-                     }
+        _defaults = {
+            'state': 'draft',
+            'automation_finished': False,
+            'invoice_policy': False,
+            'gift_card_ids': False,
+        }
         _defaults.update(defaults)
         return super(sale_order_ext, self).copy(cr, uid, ids, _defaults, context=context)
 
@@ -127,37 +130,63 @@ class sale_order_ext(osv.Model):
         return True
 
     def print_and_attach_invoice_report(self, cr, uid, ids, context=None):
-        ''' Prints and attaches the invoice reports for the invoices associated
-            to this sale.order.
-        '''
-
+        """ Prints and attaches the invoice reports for the invoices associated
+            to this sale.order, plus all the invoices associated to the
+            purchases that were generated because of the sale.order
+            (this will only happen for dropships).
+        """
         if context is None:
             context = {}
-        if not isinstance(ids, list):
+        if type(ids) is not list:
             ids = [ids]
 
         result_success = True
 
         ir_attachment_obj = self.pool.get('ir.attachment')
+        conf_obj = self.pool.get('configuration.data')
+        invoice_obj = self.pool.get('account.invoice')
 
-        report_name = self._get_configuration_data(cr, uid, ids, context=context).report_account_invoice.report_name
+        conf_data = conf_obj.get(cr, uid, [], context=context)
+        report_name = conf_data.report_account_invoice.report_name
         if not report_name:
-            raise Exception(_("No report for account.invoice was found in SwissPost Connector > Reports"))
+            raise Exception(
+                _("No report for account.invoice was found in "
+                  "Post Configuration > Reports"))
 
         sale_order = self.browse(cr, uid, ids[0], context=context)
 
-        for invoice in sale_order.invoice_ids:
-            file_name = invoice.get_file_name(context=context)
-            if not ir_attachment_obj.search(cr, uid, [('res_model', '=', 'account.invoice'),
-                                                      ('res_id', '=', invoice.id),
-                                                      ('name', '=', file_name)]):
+        # We have to print all the invoices associated to the sale.order,
+        # plus all the invoices associated to the purchases that were generated
+        # because of the sale.order (this will only happen for dropships).
+        inv_to_print_ids = [inv.id for inv in sale_order.invoice_ids]
+        for purchase in sale_order.purchase_dropship_ids:
+            inv_to_print_ids.extend([inv.id for inv in purchase.invoice_ids])
 
-                pdf_data = get_pdf_from_report(cr, uid, 'report.' + report_name, {'ids': invoice.id, 'model': 'account.invoice'}, context=context)
-                attach_id = associate_ir_attachment_with_object(self, cr, uid, pdf_data,
-                                                                file_name, 'account.invoice', invoice.id)
-                if attach_id:
-                    ir_attachment_obj.write(cr, uid, attach_id, {'document_type': 'invoice_report'}, context=context)
-                result_success = result_success and bool(attach_id)
+        for invoice_id in inv_to_print_ids:
+            invoice = invoice_obj.browse(cr, uid, invoice_id, context=context)
+            if invoice.state not in ('draft', 'cancel'):
+                file_name = invoice.get_file_name()
+                if not ir_attachment_obj.search(
+                        cr, uid, [('res_model', '=', 'account.invoice'),
+                                  ('res_id', '=', invoice_id),
+                                  ('name', '=', file_name),
+                                  ], count=True, limit=1, context=context):
+
+                    pdf_data = get_pdf_from_report(
+                        cr, uid, 'report.' + report_name,
+                        {'ids': invoice_id, 'model': 'account.invoice'},
+                        context=context)
+                    attach_id = associate_ir_attachment_with_object(
+                        self, cr, uid, pdf_data, file_name,
+                        'account.invoice', invoice_id)
+                    pdf_data = None
+
+                    if attach_id:
+                        ir_attachment_obj.write(
+                            cr, uid, attach_id,
+                            {'document_type': 'invoice_report'},
+                            context=context)
+                    result_success = result_success and bool(attach_id)
 
         return result_success
 
@@ -171,7 +200,7 @@ class sale_order_ext(osv.Model):
         '''
         if context is None:
             context = {}
-        if not isinstance(ids, list):
+        if type(ids) is not list:
             ids = [ids]
 
         result_success = True
@@ -179,18 +208,27 @@ class sale_order_ext(osv.Model):
         ir_attachment_obj = self.pool.get('ir.attachment')
         stock_picking_obj = self.pool.get('stock.picking.out')
 
+        conf_data = self.pool.get('configuration.data').\
+            get(cr, uid, [], context=context)
+
+        order = self.browse(cr, uid, ids[0], context=context)
+
+        valid_states_domain = ['assigned']
+        if order.is_dropship():
+            valid_states_domain.append('confirmed')
         stock_picking_domain = [('sale_id', 'in', ids),
-                                ('state', 'in', ['assigned', 'done'])]
+                                ('state', 'in', valid_states_domain)]
+
         if picking_to_print_id:
-            stock_picking_domain.append((('id', '=', picking_to_print_id)))
+            stock_picking_domain.append(('id', '=', picking_to_print_id))
         stock_picking_ids = stock_picking_obj.search(cr, uid, stock_picking_domain, context=context)
 
         if not stock_picking_ids:
             raise Exception(_("There are no associated delivery orders in state assigned or done for sale order with IDs={0}").format(','.join(map(str, ids))))
 
-        report_name = self._get_configuration_data(cr, uid, ids, context=context).report_stock_picking.report_name
+        report_name = conf_data.report_stock_picking.report_name
         if not report_name:
-            raise Exception(_("No report for stock.picking was found in SwissPost Connector > Reports"))
+            raise Exception(_("No report for stock.picking was found in Post Configuration > Reports"))
 
         for stock_picking in stock_picking_obj.browse(cr, uid, stock_picking_ids, context=context):
             file_name = stock_picking.get_file_name()
@@ -201,6 +239,8 @@ class sale_order_ext(osv.Model):
                 pdf_data = get_pdf_from_report(cr, uid, 'report.' + report_name, {'ids': stock_picking.id, 'model': 'stock.picking.out'}, context=context)
                 attach_id = associate_ir_attachment_with_object(self, cr, uid, pdf_data,
                                                                 file_name, 'stock.picking.out', stock_picking.id)
+                pdf_data = None
+
                 if attach_id:
                     ir_attachment_obj.write(cr, uid, attach_id, {'document_type': 'picking_out_report'}, context=context)
                 result_success = result_success and bool(attach_id)
@@ -214,7 +254,7 @@ class sale_order_ext(osv.Model):
         '''
         if context is None:
             context = {}
-        if not isinstance(ids, list):
+        if type(ids) is not list:
             ids = [ids]
 
         self.print_and_attach_invoice_report(cr, uid, ids, context=context)
@@ -286,15 +326,38 @@ class sale_order_ext(osv.Model):
         '''
         if context is None:
             context = {}
-        if not isinstance(ids, list):
+        if type(ids) is not list:
             ids = [ids]
 
         sale_order = self.browse(cr, uid, ids[0], context=context)
         return any([picking.backorder_id for picking in sale_order.picking_ids])
 
+    def is_dropship(self, cr, uid, ids, context=None):
+        """ Indicates whether the sale.order requires a dropship.
+        """
+        if context is None:
+            context = {}
+        if type(ids) is not list:
+            ids = [ids]
+
+        order = self.browse(cr, uid, ids[0], context=context)
+        return order.stock_type_id and order.stock_type_id.dropship
+
+    def _get_first_invoice(self, cr, uid, ids, field, arg=None, context=None):
+        res = {}
+
+        account_invoice_obj = self.pool.get('account.invoice')
+
+        for sale_order_id in ids:
+            invoice_ids = account_invoice_obj.search(cr, uid, [('sale_ids', 'in', sale_order_id)], order='create_date', context=context, limit=1)
+            if invoice_ids:
+                res[sale_order_id] = invoice_ids[0]
+            else:
+                res[sale_order_id] = False
+
+        return res
+
     _columns = {
-        'invoices_printed': fields.boolean('The invoices have been printed', help='Have the invoices been printed?'),
-        'delivery_orders_printed': fields.boolean('The delivery order have been printed', help='Have the delivery orders been printed?'),
         'automation_finished': fields.boolean('Has Automation Finished?', help='Indicates if the sale.order automation has reached its last state and finished.'),
 
         # Overrides this existing field to make it required=True.
@@ -303,6 +366,13 @@ class sale_order_ext(osv.Model):
         # Gift-text fields.
         'additional_message_type': fields.many2one('gift.text.type', 'Gift Text Type'),
         'additional_message_content': fields.text('Message Content', size=2000, translate=True, required=False, help='Content of the gift-text.'),
+
+        # Gift cards
+        'gift_card_ids': fields.one2many('gift.card', 'sale_order_id', 'Gift-Card used'),
+
+        # Gets the first invoice that was created from those associated to qthis sale.order.
+        'first_invoice_id': fields.function(_get_first_invoice, string='First Invoice', type='many2one', relation='account.invoice', store=False,
+                                            help='Returns the first invoice which was created for this sale.order.'),
 
         # Fields required by the shops.
         'delivery_date': fields.date(string="delivery_date"),
@@ -313,11 +383,24 @@ class sale_order_ext(osv.Model):
                                                         ('SMS', 'SMS'),
                                                         ('EMAIL', 'EMAIL'),
                                                         ], string="delivery_notification_type"),
+
+        'invoice_policy': fields.selection([('order', 'Invoice Ordered Quantities'),
+                                            ('delivery', 'Invoice Delivered Quantities'),
+                                            ], string='Invoicing Policy', readonly=True,
+                                           help="Determines the invoicing policy, which will override the one defined on the sale order"),
+
+        'purchase_dropship_ids': fields.many2many(
+            'purchase.order', 'sale_purchase_dropship_rel',
+            'sale_id', 'purchase_id', 'Purchase Order for Dropship',
+            help="Purchase orders used to dropship this sale order."),
+
+        'stock_type_id': fields.related(
+            'carrier_id', 'stock_type_id', type='many2one',
+            relation='stock.type', string='Stock Type', readonly=True,
+            help="Related to the field indicated in the Delivery Method."),
     }
 
     _defaults = {
-        'invoices_printed': False,
-        'delivery_orders_printed': False,
         'automation_finished': False,
     }
 

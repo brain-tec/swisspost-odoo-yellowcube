@@ -1,0 +1,309 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+	<data>
+		<record id="invoice_followup_header_webkit" model="ir.header_webkit">
+			<field name="name">Invoice Follow-up Header Webkit</field>
+			<field name="orientation">Portrait</field>
+			<field name="format">A4</field>
+            <field eval="54.00" name="margin_top"/>
+            <field eval="25.00" name="margin_bottom"/>
+            <field eval="20.00" name="margin_left"/>
+            <field eval="20.00" name="margin_right"/>
+			<field name="html"><![CDATA[<html>
+	<head>
+        <meta content="text/html; charset=UTF-8" http-equiv="content-type"/>
+        <style type="text/css">${css}</style>
+    </head>
+    <body  style="border:0; margin: 0;"  >
+        <div id="report_header" class="report_header" >
+            <div class="report_header_image">
+                ${objects[0].get_logo_bt_followup()}
+            </div>
+        	<div style="clear:both;"></div>
+        </div>      
+        <div style="clear:both;"></div>
+    </body>
+</html>]]></field>
+
+
+			<field name="css"><![CDATA[
+    
+
+body {
+    font-size:  8pt;
+}
+
+div {
+    margin:             0;
+    padding:            0;
+}
+
+table {
+    padding:    0;
+    margin:     0;
+    border-collapse:    collapse;
+}
+
+tr {
+    padding:    0;
+    margin:     0;
+}
+
+td{
+    padding:    0;
+    margin:     0;
+}
+
+
+.content_wrapper {
+    margin-left: 0;
+}
+
+.report_header  {
+    float:  left;
+}
+
+.report_header_image{
+    width:      17cm;
+    float:      left;
+    padding-bottom: 15mm;
+}
+
+.header_image{
+    width:      43mm;
+    padding:    0;
+    float:      left;
+}
+
+.report_header_text{
+    float:          left;
+    width:          17cm;
+    margin:         0;
+    padding:        0;
+    margin-top:     10px;
+    margin-bottom:  5px;
+    
+    font-size:      9pt;
+    font-weight:    bold;
+    color:          #D41024;
+    text-align:     left;
+}
+
+.report_header_text_1, .report_header_text_2, .report_header_text_3, .report_header_text_4,
+.report_rest_header_1_1, .report_rest_header_1_2, .report_rest_header_1_3, .report_rest_header_1_4 {
+    width:  42mm;
+    float:  left;
+}
+
+.mydiv {
+    float:          left;
+    width:          17cm !important;
+}
+
+.report_data_header_no_first{
+	height:	13mm;
+}
+
+.rest_header_nofirst, .rest_header_first {
+    font-weight:    bold; 
+    float:          left;
+    width:          17cm;
+    font-size:      9pt;     <td>Total</td>
+                </tr>
+                    <tr>
+                        <td>SAJ/2014/1472</td>
+                        <td>2014-05-12</td>
+                        <td>2014-07-31</td>
+                        <td>1'721,66</td>
+                        <td>1'721,66</td>
+                        <td>Send reminder letter and email</td>
+                        <td>42,00</td>
+                        <td>1'763,66</td>
+                    </tr>
+                    
+        
+                        <tr>
+                            <td colspan = "7"  style="border-top: solid 1px #000;font-size:8pt;padding-top:5px;">Total</td>
+                            <td  style="border-top: solid 1px #000;font-size:8pt;padding-top:5px;" >1'763,66&nbsp;€</td>
+}
+
+
+.rest_header_nofirst {
+	margin-top:	5mm; 
+}
+
+.report_rest_header {
+    margin-bottom:  5mm;
+}
+
+.report_rest_header, .report_rest_header_1, .report_rest_header_2, .report_rest_header_3 {
+    float:              left;
+    width:              17cm;
+}
+
+.report_rest_header_3 {
+    margin-top:     2cm;
+    margin-bottom:  2mm;
+}
+
+.report_rest_header {
+    margin-left: 0;
+}
+
+.report_rest_header_1 {
+    background-color:   none;
+}
+
+.report_rest_header_2 {
+    height:             3cm;
+    background-color:   none;
+}
+
+.report_rest_header_2_1, .report_rest_header_3_1 {
+    width:              94mm;
+    float:              left;
+}
+
+.report_rest_header_2_2, .report_rest_header_3_2 {
+    width:              74mm;
+    float:              left;
+}
+
+
+.report_data_header {
+    vertical-align: top;
+    text-align:     left;
+    font-weight:    bold;
+    float:          left;
+    width:          17cm;
+    font-size:      8pt;
+    
+    border-top:     solid 1px #000;
+    border-bottom:  solid 1px #000;
+    
+    
+    margin-top:     5px;
+    margin-bottom:  5px;
+    padding-top:    5px;
+    padding-bottom: 3px;
+}
+
+.report_data {
+    float:  left;
+    width:          17cm;
+}
+
+.report_data_hline {
+    font-size:  8pt;
+}
+     
+.report_data_line {
+    vertical-align: top !important;
+    text-align:     left;
+    font-size:      8pt;
+    padding-top:    3px;
+    padding-bottom: 3px;
+}
+
+.report_rest_header_td {
+    vertical-align: top;
+    text-align:     left;
+    font-size:      10pt;
+}
+
+.report_rest_header_td_small {
+    vertical-align: top;
+    text-align:     left;
+    font-size:      8pt;
+}
+
+.report_adv_text {
+    vertical-align: top;
+    text-align:     left;
+    float:          left;
+    width:          17cm;
+    margin-top:     5px;
+    margin-bottom:  5px;
+}
+
+.report_free_text {
+    vertical-align: top;
+    text-align:     left;
+    float:          left;
+    margin-top:     5px;
+    margin-bottom:  5px;
+}
+
+.data_ending_div {
+    width:          17cm;
+    height:         5px;
+    font-size:      5px;
+    margin-top:     5px;    
+    margin-bottom:  5px;
+    
+    border-top:     solid 1px #000;
+    border-bottom:  0;
+}
+
+.data_ending_td{
+    border-top:     solid 1px #000;
+}
+
+@media print  
+{
+    div{
+        page-break-inside: avoid;
+    }
+    
+    .avoid_page_break {
+        page-break-inside: avoid !important;
+        padding:0;
+        margin:0;
+    }
+
+    table.print_friendly tr td, table.print_friendly tr th{
+        page-break-inside: avoid;
+    }
+}
+
+.footer {
+    width:  17cm;
+    padding-top :5mm;
+}
+
+.disclaimer {
+    font-size:    6pt;
+    font-weight:    bold;
+}
+
+.bank_data{
+    font-size:	    7pt;
+}
+
+.marg_bot {
+    margin-bottom:  2mm;
+}
+
+.product_to_repair{
+	width:			17cm;
+	padding-top:	10px;
+	padding-bottom:	30px;
+	float:left;
+}
+
+.product_to_repair table tr td{
+	font-size: 8pt;
+	border: solid 1px #0A0A0A;
+	text-align:center;
+}
+
+.quotation_notes{
+	margin-top:10mm;
+	width:17cm;
+}
+
+]]></field>
+		</record>
+
+	</data>
+</openerp>

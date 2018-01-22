@@ -1,7 +1,7 @@
 # b-*- encoding: utf-8 -*-
 ##############################################################################
 #
-#    Copyright (c) 2015 brain-tec AG (http://www.brain-tec.ch)
+#    Copyright (c) 2015 brain-tec AG (http://www.braintec-group.com)
 #    All Right Reserved
 #
 #    This program is free software: you can redistribute it and/or modify
@@ -18,7 +18,6 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 ##############################################################################
-
 from openerp.osv import osv, fields
 from openerp.tools.translate import _
 from openerp.addons.email_template.email_template import mako_template_env
@@ -26,6 +25,7 @@ from openerp import tools
 import traceback
 import logging
 logger = logging.getLogger(__name__)
+logger.setLevel(logging.DEBUG)
 
 
 class email_template_ext(osv.osv):
@@ -69,17 +69,18 @@ class email_template_ext(osv.osv):
             logger.exception(e)
             issue_obj = self.pool.get('project.issue')
             for issue_id in issue_obj.find_resource_issues(cr,
-                                                           uid,
-                                                           model,
-                                                           res_id,
-                                                           tags=['email.template', 'error'],
-                                                           create=True,
-                                                           reopen=True,
-                                                           context=context):
+                                                            uid,
+                                                            model,
+                                                            res_id,
+                                                            tags=['email.template', 'error'],
+                                                            create=True,
+                                                            reopen=True,
+                                                            context=context):
                 # A message is trigger in a new/open issue
                 issue_obj.message_post(cr, uid, issue_id, _('Exception on email.template<br/><b>{0}</b>:<br/>{1}<br/>{2}').format(e,
-                                                                                                                                  traceback.format_exc(limit=10).replace('\n', '<br/>'),
-                                                                                                                                  template.replace('<', '&lt;').replace('\n', '<br/>')), context=context)
+                                                                                                                                   traceback.format_exc(limit=10).replace('\n', '<br/>'),
+                                                                                                                                   template.replace('<', '&lt;').replace('\n', '<br/>')), context=context)
             return u""
+
 
 # vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:

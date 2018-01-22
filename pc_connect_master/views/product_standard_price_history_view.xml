@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+	<data>
+
+		<record id="product_standard_price_history_tree_view" model="ir.ui.view">
+			<field name="name">product_standard_price_history_tree_view</field>
+			<field name="model">pc_connect_master.product_standard_price_history</field>
+			<field name="arch" type="xml">
+				<tree string="Cost Price Historical" create="false">
+                    <field name="create_date" string="Date" />
+                    <field name="standard_price_value" string="Cost Price" />
+				</tree>
+			</field>
+		</record>
+
+    </data>
+</openerp>

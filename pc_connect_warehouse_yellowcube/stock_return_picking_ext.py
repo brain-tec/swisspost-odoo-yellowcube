@@ -1,7 +1,7 @@
 # b-*- encoding: utf-8 -*-
 ##############################################################################
 #
-#    Copyright (c) 2015 brain-tec AG (http://www.brain-tec.ch)
+#    Copyright (c) 2015 brain-tec AG (http://www.braintec-group.com)
 #    All Right Reserved
 #
 #    This program is free software: you can redistribute it and/or modify
@@ -27,15 +27,18 @@ from stock_picking_ext import RETURN_REASON_CODES
 from openerp.release import version_info
 import logging
 logger = logging.getLogger(__name__)
+logger.setLevel(logging.DEBUG)
 
 
 class stock_return_picking_ext(osv.osv_memory):
     _inherit = 'stock.return.picking'
 
     def _create_returns(self, cr, uid, ids, context=None):
+        if not isinstance(ids, list):
+            ids = [ids]
         data = self.read(cr, uid, ids[0], context=context)
         if not data['yellowcube_return']:
-            return super(stock_return_picking_ext, self)._create_returns(self, cr, uid, ids, context=context)
+            return super(stock_return_picking_ext, self).create_returns(cr, uid, ids, context=context)
         if 'location_id' in data:
             default_location_dest_id = data['location_id'][0]
         else:
@@ -79,7 +82,7 @@ class stock_return_picking_ext(osv.osv_memory):
 
         if moves_to_unreserve:
             move_obj.do_unreserve(cr, uid, moves_to_unreserve, context=context)
-            # break the link between moves in order to be able to fix them later if needed
+            #break the link between moves in order to be able to fix them later if needed
             move_obj.write(cr, uid, moves_to_unreserve, {'move_orig_ids': False}, context=context)
 
 #       Create new picking for returned products
@@ -127,10 +130,6 @@ class stock_return_picking_ext(osv.osv_memory):
                 set_invoice_state_to_none = False
             if new_qty:
                 # The return of a return should be linked with the original's destination move if it was not cancelled
-                if move.origin_returned_move_id.move_dest_id.id and move.origin_returned_move_id.move_dest_id.state != 'cancel':
-                    move_dest_id = move.origin_returned_move_id.move_dest_id.id
-                else:
-                    move_dest_id = False
 
                 returned_lines += 1
                 vals = {
@@ -138,6 +137,10 @@ class stock_return_picking_ext(osv.osv_memory):
                     'state': 'draft',
                 }
                 if version_info[0] > 7:
+                    if move.origin_returned_move_id.move_dest_id.id and move.origin_returned_move_id.move_dest_id.state != 'cancel':
+                        move_dest_id = move.origin_returned_move_id.move_dest_id.id
+                    else:
+                        move_dest_id = False
                     vals.update({
                         'product_id': data_get.product_id.id,
                         'product_uom_qty': new_qty,
@@ -160,7 +163,7 @@ class stock_return_picking_ext(osv.osv_memory):
                         'date': date_cur,
                         'prodlot_id': data_get.prodlot_id.id,
                     })
-                new_move = move_obj.copy(cr, uid, move.id, vals, context=context)
+                new_move = move_obj.copy(cr, uid, move.id, vals , context=context)
                 move_obj.write(cr, uid, [move.id], {'move_history_ids2': [(4, new_move)]}, context=context)
         if not returned_lines:
             raise osv.except_osv(_('Warning!'), _("Please specify at least one non-zero quantity."))
@@ -233,7 +236,7 @@ class stock_return_picking_ext(osv.osv_memory):
             context['yellowcube_return_automate'] = True
             if not data['yellowcube_return_reason']:
                 raise osv.except_osv(_('Missing field'), _('Return reason'))
-        return super(stock_return_picking_ext, self).create_returns(cr, uid, ids, context=context)
+        return self._create_returns(cr, uid, ids, context=context)
 
     def default_get(self, cr, uid, fields, context=None):
         """
@@ -260,7 +263,8 @@ class stock_return_picking_ext(osv.osv_memory):
             res['sale_id'] = pick.sale_id.id
             res['yellowcube_return'] = True
             res['yellowcube_return_origin_order'] = pick.sale_id.id
-        res['location_id'] = pick.picking_type_id.warehouse_id.lot_input_id.id
+        if version_info[0] > 7:
+            res['location_id'] = pick.picking_type_id.warehouse_id.lot_input_id.id
         if not self._get_return_loc(pick.location_id, res):
             for move in pick.move_lines:
                 if self._get_return_loc(move.location_id, res):

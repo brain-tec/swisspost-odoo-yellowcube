@@ -20,13 +20,8 @@
 ##############################################################################
 
 from osv import orm, osv, fields
-from openerp.tools.translate import _
-from utilities.misc import format_exception
-import datetime
-from datetime import timedelta
+from datetime import datetime, timedelta
 from openerp.tools import DEFAULT_SERVER_DATETIME_FORMAT
-import logging
-logger = logging.getLogger(__name__)
 
 
 class queue_worker_ext(orm.Model):
@@ -43,7 +38,7 @@ class queue_worker_ext(orm.Model):
             which had failed because of a concurrent update error, and then requeue them.
         '''
         job_obj = self.pool.get('queue.job')
-        now = datetime.datetime.now()
+        now = datetime.now()
         conf_data = self.pool.get('configuration.data').get(cr, uid, [], context=context)
 
         super(queue_worker_ext, self).enqueue_jobs(cr, uid, context)
@@ -59,8 +54,8 @@ class queue_worker_ext(orm.Model):
         # From those jobs, only requeues those which were created a number
         # of minutes ago, to avoid requeueing them forever.
         for job in job_obj.browse(cr, uid, requeue_job_ids, context=context):
-            job_date_created = datetime.datetime.strptime(job.date_created, DEFAULT_SERVER_DATETIME_FORMAT)
-            if now <= (job_date_created + datetime.timedelta(minutes=conf_data.concurrent_access_requeue_num_minutes)):
+            job_date_created = datetime.strptime(job.date_created, DEFAULT_SERVER_DATETIME_FORMAT)
+            if now <= (job_date_created + timedelta(minutes=conf_data.concurrent_access_requeue_num_minutes)):
                 job.requeue()
 
         return True

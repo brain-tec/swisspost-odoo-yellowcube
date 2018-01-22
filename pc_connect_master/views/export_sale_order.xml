@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+	<data>
+		<record
+			id="view_sale_order_export"
+			model="ir.ui.view">
+			<field name="name">Sales Order Export</field>
+			<field name="model">report.file.exporter</field>
+			<field
+				name="arch"
+				type="xml">
+				<form
+					string="Export invoices"
+					version="7.0">
+					<field name="message" readonly="1"/>
+					<field
+						name="file"
+						filename="file_name"
+						readonly='1' />
+					<field name="file_ext" attrs="{'invisible': [('ready', '=', True)]}"/>
+					<br />
+					<button
+						name="export_report"
+						string="Create report file"
+						type="object"
+						class="oe_highlight"
+						attrs="{'invisible': [('ready', '=', True)]}"
+						context="{'var_format':'csv', 'var_fields':('id', 'partner_id/name', 'partner_id/company', 'partner_id/zip', 'partner_id/city', 'date_order', 'amount_total', 'payment_method_id/name', 'state', 'order_line/name', 'order_line/product_uom_qty', 'order_line/price_unit', 'order_line/price_subtotal') }" />
+
+					<button
+						string="Close"
+						special="cancel" />
+					<field
+						name="file_name"
+						invisible="1" />
+					<field
+						name="ready"
+						invisible="1" />
+				</form>
+			</field>
+		</record>
+
+		<record
+			id="action_view_sale_order_export"
+			model="ir.actions.act_window">
+			<field name="name">Export Sale Orders</field>
+			<field name="type">ir.actions.act_window</field>
+			<field name="res_model">report.file.exporter</field>
+			<field name="view_type">form</field>
+			<field name="view_mode">form</field>
+			<field name="view_id" ref="view_sale_order_export" />
+			<field name="target">new</field>
+		</record>
+
+		<record
+			model="ir.values"
+			id="sale_order_export">
+			<field
+				name="model_id"
+				ref="sale.model_sale_order" />
+			<field name="name">Export Invoices</field>
+			<field name="key2">client_action_multi</field>
+			<field
+				name="value"
+				eval="'ir.actions.act_window,' + str(ref('action_view_sale_order_export'))" />
+			<field name="key">action</field>
+			<field name="model">sale.order</field>
+		</record>
+	</data>
+</openerp>

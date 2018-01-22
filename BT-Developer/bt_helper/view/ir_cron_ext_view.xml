@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+    <data>
+        <record id="ir_cron_view_tree_ext" model="ir.ui.view">
+            <field name="name">ir_cron_view_tree_ext</field>
+            <field name="model">ir.cron</field>
+            <field name="inherit_id" ref="base.ir_cron_view_tree"/>
+            <field name="arch" type="xml">
+            	<data>
+	                <xpath expr="//field[@name='numbercall']" position="after">
+	                	<button name="button_execute_job" string="Execute Job" type="object" icon="gtk-execute"/>
+	                </xpath>
+                </data>
+            </field>
+        </record>
+
+        <record id="ir_cron_view_form_ext" model="ir.ui.view">
+            <field name="name">ir_cron_view_form_ext</field>
+            <field name="model">ir.cron</field>
+            <field name="inherit_id" ref="base.ir_cron_view"/>
+            <field name="arch" type="xml">
+            	<data>
+	                <xpath expr="//notebook[1]" position="after">
+	                	<button name="button_execute_job" colspan="1" string="Execute Job" type="object" icon="gtk-execute"/>
+	                </xpath>
+                </data>
+            </field>
+        </record>
+    </data>
+</openerp>

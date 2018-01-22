@@ -1,0 +1,63 @@
+-
+  QUOTATION_CREATION_CORRECT.
+  Checks that it is possible to create a quotation in the system, and that its fields are correctly set
+  (with the exception of the payment term, which is tested in another test).
+-
+  !python {model: sale.order}: |
+    print 'Starting the test QUOTATION_CREATION_CORRECT'
+    cr.execute("SAVEPOINT test;")
+
+-
+  QUOTATION_CREATION_CORRECT. Creates a payment term.
+-
+  !record {model: account.payment.term, id: QUOTATION_CREATION_CORRECT_payment_term_1}:
+    name: '99 Days'
+    note: '99 Days'
+    line_ids:
+      - days: 99
+        days2: 0
+
+-
+  QUOTATION_CREATION_CORRECT. Creates a payment method with the previous payment term.
+-
+  !record {model: payment.method, id: QUOTATION_CREATION_CORRECT_payment_method_1}:
+    name: 'Invoice'
+    epayment: True
+    payment_term_id: QUOTATION_CREATION_CORRECT_payment_term_1
+
+-
+  QUOTATION_CREATION_CORRECT. Creates a sale order with all its fields set.
+-
+  !record {model: sale.order, id: QUOTATION_CREATION_CORRECT_sale_order_1}:
+    partner_id: base.res_partner_2
+    date_order: 2015-01-01
+    payment_method_id: QUOTATION_CREATION_CORRECT_payment_method_1
+    automate_sale_order_process: True
+    carrier_id: delivery.delivery_carrier
+
+-
+  QUOTATION_CREATION_CORRECT. Checks that the sale.order was correctly created.
+-
+  !python {model: sale.order}: |
+    sale_order_id = ref('QUOTATION_CREATION_CORRECT_sale_order_1')
+    sale_order_obj = self.browse(cr, uid, sale_order_id, context=context)
+
+    ids = self.search(cr, uid, [('id', '=', sale_order_id)], context=context)
+    assert(len(ids) == 1), ("There should be just one sale.order with ID={0}.".format(sale_order_id))
+
+    assert(sale_order_obj.partner_id.id == ref('base.res_partner_2')), ("partner_id is incorrectly set.")
+    assert(sale_order_obj.partner_invoice_id.id == ref('base.res_partner_2')), ("partner_invoice_id is incorrectly set.")
+    assert(sale_order_obj.partner_shipping_id.id == ref('base.res_partner_2')), ("partner_shipping_id is incorrectly set.")
+
+    assert(sale_order_obj.date_order.startswith('2015-01-01')), ("date_order is incorrectly set: {0}".format(sale_order_obj.date_order))
+    assert(sale_order_obj.payment_method_id.id == ref('QUOTATION_CREATION_CORRECT_payment_method_1')), ("payment_method_id is incorrectly set.")
+    assert(sale_order_obj.automate_sale_order_process == True), ("automate_sale_order_process is incorrectly set.")
+    assert(sale_order_obj.carrier_id.id == ref('delivery.delivery_carrier')), ("carrier_id is incorrectly set.")
+
+    assert(sale_order_obj.state == 'draft'), ("state is incorrect")
+
+-
+  QUOTATION_CREATION_CORRECT. Rollbacks.
+-
+  !python {model: sale.order}: |
+    cr.execute("ROLLBACK TO SAVEPOINT test;")

@@ -1,0 +1,467 @@
+# Translation of OpenERP Server.
+# This file contains the translation of the following modules:
+#
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: OpenERP Server 7.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2016-06-15 13:14+0000\n"
+"PO-Revision-Date: 2016-06-15 13:14+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: pc_report_gui
+#: model:ir.ui.menu,name:pc_menu_reports_accounting
+msgid "Accounting"
+msgstr "Finanzen"
+
+#. module: pc_report_gui
+#: view:stock.production.lot:0
+msgid "Best Before Date"
+msgstr "Mindesthaltbarkeitsdatum"
+
+#. module: pc_report_gui
+#: help:account.invoice,discount:0
+msgid "Computes the total amount discounted on the invoice."
+msgstr "Berechnet den Gesamtrabatt der Rechnung."
+
+#. module: pc_report_gui
+#: view:res.partner:0
+msgid "Country"
+msgstr "Land"
+
+#. module: pc_report_gui
+#: field:res.partner,create_date:0
+msgid "Create date"
+msgstr "Erstellungsdatum"
+
+#. module: pc_report_gui
+#: model:ir.model.fields,field_description:field_res_partner_create_date
+msgid "Create date"
+msgstr "Erstellungsdatum"
+
+#. module: pc_report_gui
+#: view:account.invoice.report:0
+msgid "Currency"
+msgstr "Währung"
+
+#. module: pc_report_gui
+#: model:ir.actions.act_window,name:action_customer_invoices_by_invoice_date
+msgid "Customer Invoices by Invoice Date"
+msgstr "Kundenrechnungen nach Rechnungsdatum"
+
+#. module: pc_report_gui
+#: model:ir.ui.menu,name:pc_menu_reports_accounting_customer_invoices_by_invoice_date
+msgid "Customer Invoices by Invoice Date"
+msgstr "Kundenrechnungen nach Rechnungsdatum"
+
+#. module: pc_report_gui
+#: model:ir.actions.act_window,name:action_customer_invoices_by_payment_date
+msgid "Customer Invoices by Payment Date"
+msgstr "Kundenrechnungen nach Zahlungsdatum"
+
+#. module: pc_report_gui
+#: model:ir.ui.menu,name:pc_menu_reports_accounting_customer_invoices_by_payment_date
+msgid "Customer Invoices by Payment Date"
+msgstr "Kundenrechnungen nach Zahlungsdatum"
+
+#. module: pc_report_gui
+#: model:ir.actions.act_window,name:action_customer_refunds_by_invoice_date
+msgid "Customer Refunds by Invoice Date"
+msgstr "Kundengutschriften nach Rechnungsdatum"
+
+#. module: pc_report_gui
+#: model:ir.ui.menu,name:pc_menu_reports_accounting_customer_refunds_by_invoice_date
+msgid "Customer Refunds by Invoice Date"
+msgstr "Kundengutschriften nach Rechnungsdatum"
+
+#. module: pc_report_gui
+#: model:ir.actions.act_window,name:action_customer_refunds_by_payment_date
+msgid "Customer Refunds by Payment Date"
+msgstr "Kundengutschriften nach Zahlungsdatum"
+
+#. module: pc_report_gui
+#: model:ir.ui.menu,name:pc_menu_reports_accounting_customer_refunds_by_payment_date
+msgid "Customer Refunds by Payment Date"
+msgstr "Kundengutschriften nach Zahlungsdatum"
+
+#. module: pc_report_gui
+#: model:ir.actions.act_window,name:action_customers_reporting
+msgid "Customers"
+msgstr "Kunden"
+
+#. module: pc_report_gui
+#: model:ir.ui.menu,name:pc_menu_reports_sales_customers
+msgid "Customers"
+msgstr "Kunden"
+
+#. module: pc_report_gui
+#: field:account.invoice.report,product_default_code:0
+msgid "Default Code"
+msgstr "Nummer"
+
+#. module: pc_report_gui
+#: model:ir.model.fields,field_description:field_account_invoice_report_product_default_code
+msgid "Default Code"
+msgstr "Nummer"
+
+#. module: pc_report_gui
+#: view:account.invoice:0
+msgid "Due Date"
+msgstr "Fälligkeit"
+
+#. module: pc_report_gui
+#: view:stock.production.lot:0
+msgid "End of Life Date"
+msgstr "Ablaufdatum"
+
+#. module: pc_report_gui
+#: model:ir.ui.menu,name:pc_menu_reports_warehouse_inventory_analysis
+msgid "Inventory Analysis"
+msgstr "Statistik Lagerbestand"
+
+#. module: pc_report_gui
+#: model:ir.ui.menu,name:pc_menu_reports_accounting_invoice_analysis
+msgid "Invoice Analysis"
+msgstr "Rechnungsanalyse"
+
+#. module: pc_report_gui
+#: field:account.invoice,date_invoice_from:0
+msgid "Invoice Date from"
+msgstr "Rechnungsdatum ab"
+
+#. module: pc_report_gui
+#: field:account.invoice.report,date_invoice_from:0
+msgid "Invoice Date from"
+msgstr "Rechnungsdatum ab"
+
+#. module: pc_report_gui
+#: model:ir.model.fields,field_description:field_account_invoice_date_invoice_from
+msgid "Invoice Date from"
+msgstr "Rechnungsdatum ab"
+
+#. module: pc_report_gui
+#: model:ir.model.fields,field_description:field_account_invoice_report_date_invoice_from
+msgid "Invoice Date from"
+msgstr "Rechnungsdatum ab"
+
+#. module: pc_report_gui
+#: field:account.invoice,date_invoice_to:0
+msgid "Invoice Date to"
+msgstr "Rechnungsdatum"
+
+#. module: pc_report_gui
+#: field:account.invoice.report,date_invoice_to:0
+msgid "Invoice Date to"
+msgstr "Rechnungsdatum"
+
+#. module: pc_report_gui
+#: model:ir.model.fields,field_description:field_account_invoice_date_invoice_to
+msgid "Invoice Date to"
+msgstr "Rechnungsdatum"
+
+#. module: pc_report_gui
+#: model:ir.model.fields,field_description:field_account_invoice_report_date_invoice_to
+msgid "Invoice Date to"
+msgstr "Rechnungsdatum"
+
+#. module: pc_report_gui
+#: model:ir.model,name:model_account_invoice
+msgid "Invoice"
+msgstr "Rechnung"
+
+#. module: pc_report_gui
+#: model:ir.model,name:model_account_invoice_report
+msgid "Invoices Statistics"
+msgstr "Statistik Rechnungen"
+
+#. module: pc_report_gui
+#: help:product.product,orderpoints_qty_max:0
+msgid "It displays the maximum quantity of the first orderpoint of the product."
+msgstr "Es zeigt die Höchstmenge des ersten Bestellzeitpunktes des Produkts."
+
+#. module: pc_report_gui
+#: help:product.product,orderpoints_qty_min:0
+msgid "It displays the minimum quantity of the first orderpoint of the product."
+msgstr "Es zeigt die maximale Menge der ersten Nachbestellregel des Produkts."
+
+#. module: pc_report_gui
+#: help:product.product,orderpoints_qty_multiple:0
+msgid "It displays the quantity multiple of the first orderpoint of the product."
+msgstr "Es zeigt die Mehrfachmenge der ersten Nachbestellregel des Produkts."
+
+#. module: pc_report_gui
+#: field:account.invoice,partner_main_category_id:0
+msgid "Main Category of the Partner"
+msgstr "Hauptkategorie des Partners"
+
+#. module: pc_report_gui
+#: model:ir.model.fields,field_description:field_account_invoice_partner_main_category_id
+msgid "Main Category of the Partner"
+msgstr "Hauptkategorie des Partners"
+
+#. module: pc_report_gui
+#: model:ir.ui.menu,name:pc_menu_reports_dashboard
+msgid "My Dashboard"
+msgstr "Mein Dashboard"
+
+#. module: pc_report_gui
+#: field:account.invoice.report,product_name:0
+msgid "Name"
+msgstr "Bezeichnung"
+
+#. module: pc_report_gui
+#: model:ir.model.fields,field_description:field_account_invoice_report_product_name
+msgid "Name"
+msgstr "Bezeichnung"
+
+#. module: pc_report_gui
+#: field:product.product,orderpoints_qty_max:0
+msgid "Orderpoint Maximum Quantity"
+msgstr "Bestellzeitpunkt Maximalmenge"
+
+#. module: pc_report_gui
+#: model:ir.model.fields,field_description:field_product_product_orderpoints_qty_max
+msgid "Orderpoint Maximum Quantity"
+msgstr "Bestellzeitpunkt Maximalmenge"
+
+#. module: pc_report_gui
+#: field:product.product,orderpoints_qty_min:0
+msgid "Orderpoint Minimum Quantity"
+msgstr "Bestellzeitpunkt Minimalmenge"
+
+#. module: pc_report_gui
+#: model:ir.model.fields,field_description:field_product_product_orderpoints_qty_min
+msgid "Orderpoint Minimum Quantity"
+msgstr "Bestellzeitpunkt Minimalmenge"
+
+#. module: pc_report_gui
+#: view:product.product:0
+msgid "Orderpoint Qty. Max."
+msgstr "Bestellzeitpunkt Maximalmenge"
+
+#. module: pc_report_gui
+#: view:product.product:0
+msgid "Orderpoint Qty. Min."
+msgstr "Bestellzeitpt Min Menge"
+
+#. module: pc_report_gui
+#: view:product.product:0
+msgid "Orderpoint Qty. Mult."
+msgstr "Bestellzeitpt Mehrf Mge"
+
+#. module: pc_report_gui
+#: field:product.product,orderpoints_qty_multiple:0
+msgid "Orderpoint Quantity Multiple"
+msgstr "Bestellzeitpunkt Mehrfachmenge"
+
+#. module: pc_report_gui
+#: model:ir.model.fields,field_description:field_product_product_orderpoints_qty_multiple
+msgid "Orderpoint Quantity Multiple"
+msgstr "Bestellzeitpunkt Mehrfachmenge"
+
+#. module: pc_report_gui
+#: model:ir.model,name:model_res_partner
+msgid "Partner"
+msgstr "Partner"
+
+#. module: pc_report_gui
+#: view:account.invoice.report:0
+msgid "Partner"
+msgstr "Partner"
+
+#. module: pc_report_gui
+#: field:account.invoice.report,partner_main_category_id:0
+msgid "Partner's Main Category"
+msgstr "Hauptkategorie des Partners"
+
+#. module: pc_report_gui
+#: model:ir.model.fields,field_description:field_account_invoice_report_partner_main_category_id
+msgid "Partner's Main Category"
+msgstr "Hauptkategorie des Partners"
+
+#. module: pc_report_gui
+#: view:account.invoice.report:0
+msgid "Partner's Main Category"
+msgstr "Hauptkategorie des Partners"
+
+#. module: pc_report_gui
+#: view:account.invoice:0
+msgid "Partner's Main Category"
+msgstr "Hauptkategorie des Partners"
+
+#. module: pc_report_gui
+#: field:account.invoice,payment_date_from:0
+msgid "Payment Date from"
+msgstr "Zahlungsdatum ab"
+
+#. module: pc_report_gui
+#: model:ir.model.fields,field_description:field_account_invoice_payment_date_from
+msgid "Payment Date from"
+msgstr "Zahlungsdatum ab"
+
+#. module: pc_report_gui
+#: field:account.invoice,payment_date_to:0
+msgid "Payment Date to"
+msgstr "Zahlungsdatum bis"
+
+#. module: pc_report_gui
+#: model:ir.model.fields,field_description:field_account_invoice_payment_date_to
+msgid "Payment Date to"
+msgstr "Zahlungsdatum bis"
+
+#. module: pc_report_gui
+#: field:account.invoice,payment_date:0
+msgid "Payment Date"
+msgstr "Zahlungsdatum"
+
+#. module: pc_report_gui
+#: field:account.invoice.report,payment_date:0
+msgid "Payment Date"
+msgstr "Zahlungsdatum"
+
+#. module: pc_report_gui
+#: model:ir.model.fields,field_description:field_account_invoice_payment_date
+msgid "Payment Date"
+msgstr "Zahlungsdatum"
+
+#. module: pc_report_gui
+#: model:ir.model.fields,field_description:field_account_invoice_report_payment_date
+msgid "Payment Date"
+msgstr "Zahlungsdatum"
+
+#. module: pc_report_gui
+#: view:account.invoice:0
+msgid "Payment Date"
+msgstr "Zahlungsdatum"
+
+#. module: pc_report_gui
+#: model:ir.model,name:model_product_product
+msgid "Product"
+msgstr "Produkt"
+
+#. module: pc_report_gui
+#: view:account.invoice.report:0
+msgid "Product"
+msgstr "Produkt"
+
+#. module: pc_report_gui
+#: view:stock.production.lot:0
+msgid "Product"
+msgstr "Produkt"
+
+#. module: pc_report_gui
+#: view:account.invoice.report:0
+msgid "Product's Default Code"
+msgstr "Artikelnummer"
+
+#. module: pc_report_gui
+#: view:account.invoice.report:0
+msgid "Product's Name"
+msgstr "Produktname"
+
+#. module: pc_report_gui
+#: model:ir.actions.act_window,name:action_products_reporting
+msgid "Products"
+msgstr "Produkte"
+
+#. module: pc_report_gui
+#: model:ir.actions.act_window,name:action_serial_number_reporting
+msgid "Products"
+msgstr "Produkte"
+
+#. module: pc_report_gui
+#: model:ir.ui.menu,name:pc_menu_reports_warehouse_products
+msgid "Products"
+msgstr "Produkte"
+
+#. module: pc_report_gui
+#: model:ir.ui.menu,name:pc_menu_reports
+msgid "Reports"
+msgstr "Statistiken"
+
+#. module: pc_report_gui
+#: model:ir.ui.menu,name:pc_menu_reports_sales
+msgid "Sales"
+msgstr "Verkaufsaufträge"
+
+#. module: pc_report_gui
+#: model:ir.ui.menu,name:pc_menu_reports_warehouse_serial_number
+msgid "Serial Number"
+msgstr "Seriennummer"
+
+#. module: pc_report_gui
+#: view:res.partner:0
+msgid "Sign-up Date"
+msgstr "Anmeldedatum"
+
+#. module: pc_report_gui
+#: help:account.invoice,payment_date:0
+msgid "Stores the most recent date of the payment associated to this invoice, that is of its account.move.lines."
+msgstr "Speichert das Datum der letzten Zahlung zu Rechnung, respektive seiner Buchungszeilen."
+
+#. module: pc_report_gui
+#: view:account.invoice:0
+msgid "This Month"
+msgstr "Diesen Monat"
+
+#. module: pc_report_gui
+#: view:account.invoice:0
+msgid "This Week"
+msgstr "Diese Woche"
+
+#. module: pc_report_gui
+#: view:account.invoice:0
+msgid "This Year"
+msgstr "Dieses Jahr"
+
+#. module: pc_report_gui
+#: view:account.invoice:0
+msgid "This month"
+msgstr "Diesen Monat"
+
+#. module: pc_report_gui
+#: view:account.invoice:0
+msgid "This week"
+msgstr "Diese Woche"
+
+#. module: pc_report_gui
+#: view:account.invoice:0
+msgid "This year"
+msgstr "Dieses Jahr"
+
+#. module: pc_report_gui
+#: view:account.invoice:0
+msgid "Today"
+msgstr "Heute"
+
+#. module: pc_report_gui
+#: field:account.invoice,discount:0
+msgid "Total Discount"
+msgstr "Gesamtrabatt"
+
+#. module: pc_report_gui
+#: model:ir.model.fields,field_description:field_account_invoice_discount
+msgid "Total Discount"
+msgstr "Gesamtrabatt"
+
+#. module: pc_report_gui
+#: model:ir.ui.menu,name:pc_menu_reports_accounting_vat_report
+msgid "VAT Report"
+msgstr "MwSt Bericht"
+
+#. module: pc_report_gui
+#: model:ir.ui.menu,name:pc_menu_reports_warehouse
+msgid "Warehouse"
+msgstr "Lager"
+
+#. module: pc_report_gui
+#: view:account.invoice.report:0
+msgid "{'group_by_product': True, 'group_by':'product_id','set_visible':True,'residual_invisible':True}"
+msgstr "{'group_by_product': True, 'group_by':'product_id','set_visible':True,'residual_invisible':True}"
+

@@ -1,0 +1,25 @@
+<openerp>
+	<data noupdate='0'>
+
+        <record id="excep_order_check_duplicated_webshop_ref" model="sale.exception">
+			<field name="active" eval="False" />
+		</record>
+
+		<record id="excep_no_payment_term" model="sale.exception">
+			<field name="active" eval="False" />
+		</record>
+		
+        <record id="excep_order_delivery_method" model="sale.exception">
+            <field name="active" eval="False" />
+        </record>
+        
+        <record id="excep_order_payment_method" model="sale.exception">
+            <field name="active" eval="False" />
+        </record>
+		
+        <record id="excep_order_check_credit" model="sale.exception">
+            <field name="active" eval="False"/>
+        </record>
+
+	</data>
+</openerp>

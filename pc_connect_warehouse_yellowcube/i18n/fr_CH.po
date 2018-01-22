@@ -326,16 +326,6 @@ msgid "Destination Location"
 msgstr "Destination Location"
 
 #. module: pc_connect_warehouse_yellowcube
-#: help:stock.connect,yc_invoice_pcl_printer_destination:0
-msgid "Destination of the file the PCL printer prints to. It must be a file, NOT a folder."
-msgstr "Destination of the file the PCL printer prints to. It must be a file, NOT a folder."
-
-#. module: pc_connect_warehouse_yellowcube
-#: help:stock.connect.yellowcube,yc_invoice_pcl_printer_destination:0
-msgid "Destination of the file the PCL printer prints to. It must be a file, NOT a folder."
-msgstr "Destination of the file the PCL printer prints to. It must be a file, NOT a folder."
-
-#. module: pc_connect_warehouse_yellowcube
 #: selection:stock.connect,yc_operating_mode:0
 msgid "Development"
 msgstr "Development"
@@ -1040,16 +1030,6 @@ msgid "Name of Order & Name of Delivery"
 msgstr "Name of Order & Name of Delivery"
 
 #. module: pc_connect_warehouse_yellowcube
-#: help:stock.connect,yc_invoice_pcl_printer_name:0
-msgid "Name of the PCL printer."
-msgstr "Name of the PCL printer."
-
-#. module: pc_connect_warehouse_yellowcube
-#: help:stock.connect.yellowcube,yc_invoice_pcl_printer_name:0
-msgid "Name of the PCL printer."
-msgstr "Name of the PCL printer."
-
-#. module: pc_connect_warehouse_yellowcube
 #: field:stock.connect.yellowcube,name:0
 msgid "Name"
 msgstr "Nom"
@@ -1183,51 +1163,6 @@ msgstr "Out-of-sync with BAR file"
 #: code:addons/pc_connect_warehouse_yellowcube/yellowcube_wab_xml_factory.py:219
 msgid "P.O. Box"
 msgstr "Case Postale"
-
-#. module: pc_connect_warehouse_yellowcube
-#: field:stock.connect,yc_invoice_pcl_printer_destination:0
-msgid "PCL Printer Destination"
-msgstr "PCL Printer Destination"
-
-#. module: pc_connect_warehouse_yellowcube
-#: field:stock.connect.yellowcube,yc_invoice_pcl_printer_destination:0
-msgid "PCL Printer Destination"
-msgstr "PCL Printer Destination"
-
-#. module: pc_connect_warehouse_yellowcube
-#: model:ir.model.fields,field_description:field_stock_connect_yc_invoice_pcl_printer_destination
-msgid "PCL Printer Destination"
-msgstr "PCL Printer Destination"
-
-#. module: pc_connect_warehouse_yellowcube
-#: model:ir.model.fields,field_description:field_stock_connect_yellowcube_yc_invoice_pcl_printer_destination
-msgid "PCL Printer Destination"
-msgstr "PCL Printer Destination"
-
-#. module: pc_connect_warehouse_yellowcube
-#: field:stock.connect,yc_invoice_pcl_printer_name:0
-msgid "PCL Printer Name"
-msgstr "PCL Printer Name"
-
-#. module: pc_connect_warehouse_yellowcube
-#: field:stock.connect.yellowcube,yc_invoice_pcl_printer_name:0
-msgid "PCL Printer Name"
-msgstr "PCL Printer Name"
-
-#. module: pc_connect_warehouse_yellowcube
-#: model:ir.model.fields,field_description:field_stock_connect_yc_invoice_pcl_printer_name
-msgid "PCL Printer Name"
-msgstr "PCL Printer Name"
-
-#. module: pc_connect_warehouse_yellowcube
-#: model:ir.model.fields,field_description:field_stock_connect_yellowcube_yc_invoice_pcl_printer_name
-msgid "PCL Printer Name"
-msgstr "PCL Printer Name"
-
-#. module: pc_connect_warehouse_yellowcube
-#: view:stock.connect:0
-msgid "PCL"
-msgstr "PCL"
 
 #. module: pc_connect_warehouse_yellowcube
 #: selection:delivery.carrier,yc_basic_shipping:0
@@ -1723,36 +1658,6 @@ msgstr "Scan Outgoing Lots"
 #: model:ir.model,name:model_stock_production_lot
 msgid "Serial Number"
 msgstr "Numéro de lot"
-
-#. module: pc_connect_warehouse_yellowcube
-#: field:stock.connect,yc_invoice_pcl_printer_silent_printing:0
-msgid "Silent PCL Printing?"
-msgstr "Silent PCL Printing?"
-
-#. module: pc_connect_warehouse_yellowcube
-#: field:stock.connect.yellowcube,yc_invoice_pcl_printer_silent_printing:0
-msgid "Silent PCL Printing?"
-msgstr "Silent PCL Printing?"
-
-#. module: pc_connect_warehouse_yellowcube
-#: model:ir.model.fields,field_description:field_stock_connect_yc_invoice_pcl_printer_silent_printing
-msgid "Silent PCL Printing?"
-msgstr "Silent PCL Printing?"
-
-#. module: pc_connect_warehouse_yellowcube
-#: model:ir.model.fields,field_description:field_stock_connect_yellowcube_yc_invoice_pcl_printer_silent_printing
-msgid "Silent PCL Printing?"
-msgstr "Silent PCL Printing?"
-
-#. module: pc_connect_warehouse_yellowcube
-#: help:stock.connect,yc_invoice_pcl_printer_silent_printing:0
-msgid "Silents the messages associated with the printing of PCL files."
-msgstr "Silents the messages associated with the printing of PCL files."
-
-#. module: pc_connect_warehouse_yellowcube
-#: help:stock.connect.yellowcube,yc_invoice_pcl_printer_silent_printing:0
-msgid "Silents the messages associated with the printing of PCL files."
-msgstr "Silents the messages associated with the printing of PCL files."
 
 #. module: pc_connect_warehouse_yellowcube
 #: code:addons/pc_connect_warehouse_yellowcube/yellowcube_bar_xml_factory.py:336

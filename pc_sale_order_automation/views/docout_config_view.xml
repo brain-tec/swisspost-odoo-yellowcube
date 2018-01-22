@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+
+        <record id="configuration_data_form_ext_2" model="ir.ui.view">
+            <field name="name">configuration_data_form_ext_2</field>
+            <field name="model">configuration.data</field>
+            <field name="inherit_id" ref="pc_docout.configuration_data_form_ext" />
+            <field name="arch" type="xml">
+                <page name="doc_out" position="inside">
+
+                    <group cols="2">
+                        <group string="Invoice Sending" colspan="1">
+                            <div colspan="2">
+                                When are the invoices going to be sent to the doc-out? <br/>
+                                The prefix for the punchcard is <i>docout_invoice</i>.
+                            </div>
+                            <group>
+                                <field name="docout_invoice_time_of_day" widget="float_time" />
+                                <field name="docout_invoice_monday" />
+                                <field name="docout_invoice_tuesday" />
+                                <field name="docout_invoice_wednesday" />
+                                <field name="docout_invoice_thursday" />
+                                <field name="docout_invoice_friday" />
+                                <field name="docout_invoice_saturday" />
+                                <field name="docout_invoice_sunday" />
+                            </group>
+                            <group>
+                                <field name="docout_invoice_activate_send_to_email" />
+                                <field name="docout_invoice_email_template_to_docout_id" />
+                                <field name="docout_invoice_email_address" />
+                                <separator colspan="2" />
+                                <field name="docout_invoice_activate_send_to_server" />
+                                <field name="docout_invoice_connect_transport_id" />
+                                <field name="docout_invoice_folder" />
+                                <field name="docout_invoice_sending_option" />
+                            </group>
+                        </group>
+                    </group>
+
+                </page>
+            </field>
+        </record>
+
+    </data>
+</openerp>

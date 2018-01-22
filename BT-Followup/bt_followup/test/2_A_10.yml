@@ -1,0 +1,154 @@
+-
+  2.A.10. If the follow-up level requires sending an email and the field
+          'Skip Follow-Up Email Sending' is activated, no email must be sent for that invoice.
+-
+  !python {model: account.invoice}: |
+    print 'Starting the test 2.A.10.'
+    cr.execute("SAVEPOINT test;")
+
+-
+  2.A.10. Sets the system parameter with the location of webkit.
+-
+  !python {model: ir.config_parameter}: |
+    from openerp import SUPERUSER_ID
+    self.set_param(cr, SUPERUSER_ID, 'webkit_path', '/home/openerp/wkhtmltopdf-amd64', context)
+
+
+-
+  2.A.10. Defines a bank account for the company (this is needed for follow-ups)
+-
+  !record {model: res.partner.bank, id: res_partner_bank_2_A_10}:
+    state: bank
+    acc_number: 123
+    partner_id: base.main_partner
+    bank: base.res_bank_1
+    bank_name: 'Test Bank'
+    company_id: base.main_company
+
+-
+  2.A.10. Creates an invoice with one line.
+-
+  !record {model: account.invoice, id: account_invoice_2_A_10}:
+    partner_id: base.res_partner_address_4
+    journal_id: account.sales_journal
+    account_id: account.a_recv
+    date_due: !eval datetime.today().strftime("%Y-%m-%d")
+    invoice_line:
+      - product_id: product.product_product_48
+        name: 'USB Adapter'
+        quantity: 18.0
+        uos_id: product.product_uom_unit
+        price_unit: 5.0
+
+-
+  2.A.10. Gets the delay of the first follow-up level and sets the due date of the invoice to be greater (one more) than that delay.
+         Makes sure that the follow-up level is going to send an email.
+-
+  !python {model: followup.level}: |
+    from openerp import SUPERUSER_ID
+    from datetime import datetime, timedelta
+    # Gets the follow-up levels associated to the company of the admin.
+    superuser_id = self.pool.get('res.users').search(cr, uid, [('id', '=', SUPERUSER_ID)], limit=1, context=context)[0]
+    company_id = self.pool.get('res.company').search(cr, uid, [('id', '=', superuser_id)], limit=1, context=context)[0]
+    followup_config_id = self.pool.get('followup.config').search(cr, uid, [('company_id', '=', company_id)], context=context)[0]
+    followup_level_ids = self.pool.get('followup.level').search(cr, uid, [('followup_config_id', '=', followup_config_id)], context=context)
+
+    # Stores the ID of the first follow-up level.
+    context['first_followup_level'] = followup_level_ids[0]
+
+    # Gets the delay of the first follow-up level (they are sorted).
+    delay = self.pool.get('followup.level').browse(cr, uid, followup_level_ids[0], context=context).delay
+    context['followup_level_delay'] = delay
+
+    # Gets the invoice
+    invoice_obj = self.pool.get('account.invoice').browse(cr, uid, ref('account_invoice_2_A_10'))
+
+    # Sets the delay of the invoice to be just one day before the day in which the first follow-up level applies.
+    new_due_date = (datetime.now() - timedelta(delay + 1)).strftime("%Y-%m-%d")
+    invoice_obj.write({'date_due': new_due_date, 'payment_term': None})
+
+    # Makes the follow-up level to send an email.
+    self.pool.get('followup.level').write(cr, uid, context['first_followup_level'], {'send_email': True}, context=context)
+
+-
+  2.A.10. Checks if the state of the newly created invoice is in state 'draft'.
+-
+  !assert {model: account.invoice, id: account_invoice_2_A_10, string: 'State should be in state draft.'}:
+    - state == 'draft'
+
+-
+  2.A.10. Makes sure that we **do want to skip** the follow-up emails for this invoice.
+-
+  !python {model: account.invoice}: |
+    invoice_obj = self.browse(cr, uid, ref('account_invoice_2_A_10'))
+    invoice_obj.write({'followup_skip_email_sending': True})
+
+-
+  2.A.10. Validates invoice by clicking on the 'Validate' button.
+-
+  !workflow {model: account.invoice, action: invoice_open, ref: account_invoice_2_A_10}
+
+-
+  2.A.10. Checks if the state of the newly created invoice is in state 'open'.
+-
+  !assert {model: account.invoice, id: account_invoice_2_A_10, string: 'State should be in state open.'}:
+    - state == 'open'
+
+-
+  2.A.10. Checks if the due days of the opened invoice is one plus the delay of the first follow-up level.
+-
+  !python {model: account.invoice}: |
+    invoice_obj = self.browse(cr, uid, ref('account_invoice_2_A_10'))
+    assert(invoice_obj.follow_up_date_due_days == (context['followup_level_delay'] + 1)), ("'Due days' should be {0}, but it is {1}".format(context['followup_level_delay'] - 1, invoice_obj.follow_up_date_due_days))
+
+-
+  2.A.10. Checks that 1) there is not follow-up level associated to the invoice,
+                      2) its follow-up level has not been handled,
+                      3) its handling date is empty.
+-
+  !python {model: account.invoice}: |
+    invoice_obj = self.browse(cr, uid, ref('account_invoice_2_A_10'))
+    assert(not invoice_obj.followup_level_id), ("'Follow-up Level' should be not set, but it is set to {0}.".format(invoice_obj.followup_level_id))
+    assert(not invoice_obj.followup_level_handled), ("'Follow-up Level Handled' should be not set, but it is set to {0}.".format(invoice_obj.followup_level_handled))
+    assert(not invoice_obj.followup_level_date), ("'Follow-up Handling Date' should be not set, but it is set to {0}.".format(invoice_obj.followup_level_date))
+
+-
+  2.A.10. Checks that there are not any emails yet.
+-
+  !python {model: mail.mail}: |
+    mail_ids = self.search(cr, uid, [], context=context)
+    assert(len(mail_ids) == 0), ("There should be no emails, but there are {0}.".format(len(mail_ids)))
+
+-
+  2.A.10. Executes the scheduler which updates the follow-up levels, and handles the invoice.
+-
+  !python {model: account.invoice}: |
+    self.cron_update_invoice_followup_level(cr, uid, context)
+
+    # Stores the date in which the scheduler was called (today).
+    from datetime import datetime
+    context['date_followup_levels_were_updated'] = datetime.now().strftime("%Y-%m-%d")
+    
+    # Handles the invoice ***a day after***.
+    import anybox.testing.datetime
+    from datetime import datetime, timedelta
+    import time
+
+    datetime.set_now(datetime.now() + timedelta(1))
+    invoice_obj = self.pool.get('account.invoice').browse(cr, uid, ref('account_invoice_2_A_10'))
+    invoice_obj.do_handle_followup()
+    context['date_handling_was_done'] = datetime.now().strftime("%Y-%m-%d")
+    datetime.real_now()
+
+-
+  2.A.10 Checks that no email is actually generated
+-
+  !python {model: mail.mail}: |
+    mail_ids = self.search(cr, uid, [], context=context)
+    assert(len(mail_ids) == 0), ("There should be no emails, but there are {0}.".format(len(mail_ids)))
+
+-
+  2.A.10. Rollbacks.
+-
+  !python {model: account.invoice}: |
+    cr.execute("ROLLBACK TO SAVEPOINT test;")

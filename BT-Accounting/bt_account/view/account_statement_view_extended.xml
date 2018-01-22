@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+     <data>
+        <record id="view_account_statement_from_invoice_lines_ext" model="ir.ui.view">
+            <field name="name">account.statement.from.invoice.lines.form.ext</field>
+            <field name="model">account.statement.from.invoice.lines</field>
+            <field name="inherit_id" ref="account_voucher.view_account_statement_from_invoice_lines" />
+            <field name="arch" type="xml">
+            	<data>
+            		<xpath expr="/form/field[@name='line_ids']" position="replace">
+                		<field height="300" width="700" name="line_ids" 
+                			colspan="4" 
+                			nolabel="1" 
+                			domain="[('account_id.type','in',['receivable','payable']),('reconcile_id','=',False), ('state', '=', 'valid')]" 
+                			context="{'tree_view_ref':'bt_account.account_move_line_tree_due_date'}"
+                			/>
+            		</xpath>
+           		</data>
+            </field>
+        </record>
+        
+       <record id="account_move_line_tree_due_date" model="ir.ui.view">
+            <field name="name">account_move_line_tree_due_date</field>
+            <field name="model">account.move.line</field>
+            <field eval="1" name="priority"/>
+            <field name="arch" type="xml">
+                <tree string="Journal Items" version="7.0">
+                    <field name="journal_id" />
+                    <field name="period_id" />
+                    <field name="date"/>
+					<field name="date_maturity"/>
+                    <field name="name"/>
+                    <field name="ref"/>
+                    <field name="partner_id" />
+                    <field name="account_id" />
+                    <field name="analytic_account_id" />
+                    <field name="move_id" />
+                    <field name="debit" />
+                    <field name="credit"/>
+                    <field name="reconcile"/>
+                </tree>
+            </field>
+        </record>
+        
+        
+     </data>
+ </openerp>

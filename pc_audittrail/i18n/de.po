@@ -1,0 +1,212 @@
+# Translation of OpenERP Server.
+# This file contains the translation of the following modules:
+#
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: OpenERP Server 7.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2016-06-15 06:53+0000\n"
+"PO-Revision-Date: 2016-06-15 06:53+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: pc_audittrail
+#: code:addons/pc_audittrail/get_data_fix.py:155
+msgid "'%s' Model does not exist..."
+msgstr "Das Modell '%s' existiert nicht..."
+
+#. module: pc_audittrail
+#: model:ir.ui.menu,name:management_audit_account_invoice
+msgid "Account Invoice"
+msgstr "Rechnung"
+
+#. module: pc_audittrail
+#: model:ir.actions.act_window,name:action_show_audit_trail_log_account_invoice
+msgid "Audit Log (Account Invoice)"
+msgstr "Nachverfolgung (Rechnung)"
+
+#. module: pc_audittrail
+#: model:ir.actions.act_window,name:action_show_audit_trail_log_stock_picking_out
+msgid "Audit Log (Deliveries in/out)"
+msgstr "Nachverfolgung (ein-/ausgehende Lieferungen)"
+
+#. module: pc_audittrail
+#: model:ir.actions.act_window,name:action_show_audit_trail_log_res_partner
+msgid "Audit Log (Partners)"
+msgstr "Nachverfolgung (Kontakte)"
+
+#. module: pc_audittrail
+#: model:ir.actions.act_window,name:action_show_audit_trail_log_product_product
+msgid "Audit Log (Products)"
+msgstr "Nachverfolgung (Produkte)"
+
+#. module: pc_audittrail
+#: model:ir.actions.act_window,name:action_show_audit_trail_log_sale_order
+msgid "Audit Log (Sale Orders)"
+msgstr "Nachverfolgung (Verkaufsaufträge)"
+
+#. module: pc_audittrail
+#: field:account.invoice,audit_log_ids:0
+msgid "Audit Logs"
+msgstr "Nachverfolgungen"
+
+#. module: pc_audittrail
+#: field:product.product,audit_log_ids:0
+msgid "Audit Logs"
+msgstr "Nachverfolgungen"
+
+#. module: pc_audittrail
+#: field:res.partner,audit_log_ids:0
+msgid "Audit Logs"
+msgstr "Nachverfolgungen"
+
+#. module: pc_audittrail
+#: field:sale.order,audit_log_ids:0
+msgid "Audit Logs"
+msgstr "Nachverfolgungen"
+
+#. module: pc_audittrail
+#: field:stock.picking.out,audit_log_ids:0
+msgid "Audit Logs"
+msgstr "Nachverfolgungen"
+
+#. module: pc_audittrail
+#: model:ir.model.fields,field_description:field_account_invoice_audit_log_ids
+msgid "Audit Logs"
+msgstr "Nachverfolgungen"
+
+#. module: pc_audittrail
+#: model:ir.model.fields,field_description:field_product_product_audit_log_ids
+msgid "Audit Logs"
+msgstr "Nachverfolgungen"
+
+#. module: pc_audittrail
+#: model:ir.model.fields,field_description:field_res_partner_audit_log_ids
+msgid "Audit Logs"
+msgstr "Nachverfolgungen"
+
+#. module: pc_audittrail
+#: model:ir.model.fields,field_description:field_sale_order_audit_log_ids
+msgid "Audit Logs"
+msgstr "Nachverfolgungen"
+
+#. module: pc_audittrail
+#: model:ir.model.fields,field_description:field_stock_picking_audit_log_ids
+msgid "Audit Logs"
+msgstr "Nachverfolgungen"
+
+#. module: pc_audittrail
+#: model:ir.actions.act_window,name:action_show_audit_trail_rule
+msgid "Audit Rules"
+msgstr "Nachverfolgungsregeln"
+
+#. module: pc_audittrail
+#: model:ir.ui.menu,name:management_audit
+msgid "Audits"
+msgstr "Nachverfolgungen"
+
+#. module: pc_audittrail
+#: view:account.invoice:0
+msgid "Change Logs"
+msgstr "Änderungsprotokolle"
+
+#. module: pc_audittrail
+#: view:product.product:0
+msgid "Change Logs"
+msgstr "Änderungsprotokolle"
+
+#. module: pc_audittrail
+#: view:res.partner:0
+msgid "Change Logs"
+msgstr "Änderungsprotokolle"
+
+#. module: pc_audittrail
+#: view:sale.order:0
+msgid "Change Logs"
+msgstr "Änderungsprotokolle"
+
+#. module: pc_audittrail
+#: view:stock.picking.out:0
+msgid "Change Logs"
+msgstr "Änderungsprotokolle"
+
+#. module: pc_audittrail
+#: model:ir.ui.menu,name:management_audit_stock_picking_out
+msgid "Deliveries"
+msgstr "Lieferungen"
+
+#. module: pc_audittrail
+#: model:ir.model,name:model_stock_picking_out
+msgid "Delivery Orders"
+msgstr "Lieferaufträge"
+
+#. module: pc_audittrail
+#: model:ir.model,name:model_account_invoice
+msgid "Invoice"
+msgstr "Rechnung"
+
+#. module: pc_audittrail
+#: model:ir.actions.act_window,name:action_show_audit_trail_log_others
+msgid "Others"
+msgstr "Andere"
+
+#. module: pc_audittrail
+#: model:ir.ui.menu,name:management_audit_other
+msgid "Others"
+msgstr "Andere"
+
+#. module: pc_audittrail
+#: model:ir.model,name:model_res_partner
+msgid "Partner"
+msgstr "Kontakte"
+
+#. module: pc_audittrail
+#: model:ir.ui.menu,name:management_audit_partners
+msgid "Partners"
+msgstr "Kontakte"
+
+#. module: pc_audittrail
+#: model:ir.model,name:model_stock_picking
+msgid "Picking List"
+msgstr "Lieferschein"
+
+#. module: pc_audittrail
+#: model:ir.model,name:model_product_product
+msgid "Product"
+msgstr "Produkt"
+
+#. module: pc_audittrail
+#: model:ir.ui.menu,name:management_audit_product_product
+msgid "Products"
+msgstr "Produkte"
+
+#. module: pc_audittrail
+#: model:ir.ui.menu,name:management_audit_rule
+msgid "Rules"
+msgstr "Regeln"
+
+#. module: pc_audittrail
+#: model:ir.ui.menu,name:management_audit_sale_orders
+msgid "Sale Orders"
+msgstr "Verkaufsaufträge"
+
+#. module: pc_audittrail
+#: model:ir.model,name:model_sale_order
+msgid "Sales Order"
+msgstr "Verkaufsauftrag"
+
+#. module: pc_audittrail
+#: field:stock.picking,audit_log_ids:0
+msgid "unknown"
+msgstr "unbekannt"
+
+#. module: pc_audittrail
+#: model:ir.model.fields,field_description:field_stock_picking_audit_log_ids_4518
+msgid "unknown"
+msgstr "unbekannt"
+

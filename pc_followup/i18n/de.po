@@ -1,0 +1,1204 @@
+# Translation of OpenERP Server.
+# This file contains the translation of the following modules:
+#
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: OpenERP Server 7.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2016-06-15 13:14+0000\n"
+"PO-Revision-Date: 2016-06-15 13:14+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: pc_followup
+#: model:email.template,body_html:email_template_send_followup_to_docout
+msgid "<div style=\"font-family: sans-serif; font-size: 12px;\">\n"
+"                <p>One or more follow-up letters were attached to be printed in the doc-out.</p>   \n"
+"            </div>"
+msgstr "<div style=\"font-family: sans-serif; font-size: 12px;\">\n"
+"                <p>Eine oder mehrere Mahnungen zum Druck sind angehängt.</p>   \n"
+"            </div>"
+
+#. module: pc_followup
+#: model:email.template,body_html:email_template_followup_handled
+msgid "<p>The following invoices had a follow-up level which has been handled:</p>\n"
+"<p>${object.get_list_of_invoices_with_followup_handled()}</p>\n"
+"\n"
+"<p>The following invoices had a follow-up level which could <strong>not</strong> be handled (see the issues associated in OpenERP):</p>\n"
+"<p>${object.get_list_of_invoices_with_error_while_handling_followup()}</p>"
+msgstr "<p>Die folgenden Rechnungen haben eine verarbeitete Mahnstufe:</p>\n"
+"<p>${object.get_list_of_invoices_with_followup_handled()}</p>\n"
+"\n"
+"<p>Die folgenden Rechnungen haben eine Mahnstufe, konnten aber <strong>nicht</strong> verarbeitet werden (siehe Aufgabe im Odoo):</p>\n"
+"<p>${object.get_list_of_invoices_with_error_while_handling_followup()}</p>"
+
+#. module: pc_followup
+#: report:addons/pc_followup/report/invoice_followup_report.mako:119
+msgid "Amount"
+msgstr "Betrag"
+
+#. module: pc_followup
+#: help:configuration.data,followup_handling_friday:0
+msgid "Are follow-ups handled on Friday?"
+msgstr "Verarbeite Mahnstufen am Freitag?"
+
+#. module: pc_followup
+#: help:configuration.data,followup_handling_monday:0
+msgid "Are follow-ups handled on Monday?"
+msgstr "Verarbeite Mahnstufen am Montag?"
+
+#. module: pc_followup
+#: help:configuration.data,followup_handling_saturday:0
+msgid "Are follow-ups handled on Saturday?"
+msgstr "Verarbeite Mahnstufen am Samstag?"
+
+#. module: pc_followup
+#: help:configuration.data,followup_handling_sunday:0
+msgid "Are follow-ups handled on Sunday?"
+msgstr "Verarbeite Mahnstufen am Sonntag?"
+
+#. module: pc_followup
+#: help:configuration.data,followup_handling_thursday:0
+msgid "Are follow-ups handled on Thursday?"
+msgstr "Verarbeite Mahnstufen am Donnerstag?"
+
+#. module: pc_followup
+#: help:configuration.data,followup_handling_tuesday:0
+msgid "Are follow-ups handled on Tuesday?"
+msgstr "Verarbeite Mahnstufen am Dienstag?"
+
+#. module: pc_followup
+#: help:configuration.data,followup_handling_wednesday:0
+msgid "Are follow-ups handled on Wednesday?"
+msgstr "Verarbeite Mahnstufen am Mittwoch?"
+
+#. module: pc_followup
+#: help:configuration.data,followup_print_friday:0
+msgid "Are follow-ups printed on Friday?"
+msgstr "Drucke Mahnstufen am Freitag?"
+
+#. module: pc_followup
+#: help:configuration.data,followup_print_monday:0
+msgid "Are follow-ups printed on Monday?"
+msgstr "Drucke Mahnstufen am Montag?"
+
+#. module: pc_followup
+#: help:configuration.data,followup_print_saturday:0
+msgid "Are follow-ups printed on Saturday?"
+msgstr "Drucke Mahnstufen am Sonntag?"
+
+#. module: pc_followup
+#: help:configuration.data,followup_print_sunday:0
+msgid "Are follow-ups printed on Sunday?"
+msgstr "Drucke Mahnstufen am Sonntag?"
+
+#. module: pc_followup
+#: help:configuration.data,followup_print_thursday:0
+msgid "Are follow-ups printed on Thursday?"
+msgstr "Drucke Mahnstufen am Donnerstag?"
+
+#. module: pc_followup
+#: help:configuration.data,followup_print_tuesday:0
+msgid "Are follow-ups printed on Tuesday?"
+msgstr "Drucke Mahnstufen am Dienstag?"
+
+#. module: pc_followup
+#: help:configuration.data,followup_print_wednesday:0
+msgid "Are follow-ups printed on Wednesday?"
+msgstr "Drucke Mahnstufen am Mittwoch?"
+
+#. module: pc_followup
+#: help:configuration.data,followup_processing_friday:0
+msgid "Are follow-ups processed on Friday?"
+msgstr "Aktualisiere Mahnstufen am Freitag?"
+
+#. module: pc_followup
+#: help:configuration.data,followup_processing_monday:0
+msgid "Are follow-ups processed on Monday?"
+msgstr "Aktualisiere Mahnstufen am Montag?"
+
+#. module: pc_followup
+#: help:configuration.data,followup_processing_saturday:0
+msgid "Are follow-ups processed on Saturday?"
+msgstr "Aktualisiere Mahnstufen am Samstag?"
+
+#. module: pc_followup
+#: help:configuration.data,followup_processing_sunday:0
+msgid "Are follow-ups processed on Sunday?"
+msgstr "Aktualisiere Mahnstufen am Sonntag?"
+
+#. module: pc_followup
+#: help:configuration.data,followup_processing_thursday:0
+msgid "Are follow-ups processed on Thursday?"
+msgstr "Aktualisiere Mahnstufen am Donnerstag?"
+
+#. module: pc_followup
+#: help:configuration.data,followup_processing_tuesday:0
+msgid "Are follow-ups processed on Tuesday?"
+msgstr "Aktualisiere Mahnstufen am Dienstag?"
+
+#. module: pc_followup
+#: help:configuration.data,followup_processing_wednesday:0
+msgid "Are follow-ups processed on Wednesday?"
+msgstr "Aktualisiere Mahnstufen am Mittwoch?"
+
+#. module: pc_followup
+#: help:configuration.data,docout_followup_friday:0
+msgid "Are follow-ups sent to doc-out on Friday?"
+msgstr "Werden Mahnungen freitags an doc-out gesendet?"
+
+#. module: pc_followup
+#: help:configuration.data,docout_followup_monday:0
+msgid "Are follow-ups sent to doc-out on Monday?"
+msgstr "Werden Mahnungen montags an doc-out gesendet?"
+
+#. module: pc_followup
+#: help:configuration.data,docout_followup_saturday:0
+msgid "Are follow-ups sent to doc-out on Saturday?"
+msgstr "Werden Mahnungen samstags an doc-out gesendet?"
+
+#. module: pc_followup
+#: help:configuration.data,docout_followup_sunday:0
+msgid "Are follow-ups sent to doc-out on Sunday?"
+msgstr "Werden Mahnungen sonntags an doc-out gesendet?"
+
+#. module: pc_followup
+#: help:configuration.data,docout_followup_thursday:0
+msgid "Are follow-ups sent to doc-out on Thursday?"
+msgstr "Werden Mahnungen donnerstags an doc-out gesendet?"
+
+#. module: pc_followup
+#: help:configuration.data,docout_followup_tuesday:0
+msgid "Are follow-ups sent to doc-out on Tuesday?"
+msgstr "Werden Mahnungen dienstags an doc-out gesendet?"
+
+#. module: pc_followup
+#: help:configuration.data,docout_followup_wednesday:0
+msgid "Are follow-ups sent to doc-out on Wednesday?"
+msgstr "Werden Mahnungen mittwochs an doc-out gesendet?"
+
+#. module: pc_followup
+#: field:followup.level,block_new_invoice:0
+msgid "Block new Invoices"
+msgstr "Bestellungen auf Rechnung sperren"
+
+#. module: pc_followup
+#: model:ir.model.fields,field_description:field_followup_level_block_new_invoice
+msgid "Block new Invoices"
+msgstr "Bestellungen auf Rechnung sperren"
+
+#. module: pc_followup
+#: view:configuration.data:0
+msgid "Clocking - Follow-up"
+msgstr "Zeitplanung - Mahnungen"
+
+#. module: pc_followup
+#: field:configuration.data,followup_franking_country_code:0
+msgid "Country Code"
+msgstr "Ländercode"
+
+#. module: pc_followup
+#: model:ir.model.fields,field_description:field_configuration_data_followup_franking_country_code
+msgid "Country Code"
+msgstr "Ländercode"
+
+#. module: pc_followup
+#: report:addons/pc_followup/report/invoice_followup_report.mako:47
+msgid "Customer number"
+msgstr "Kundennummer"
+
+#. module: pc_followup
+#: report:addons/pc_followup/report/invoice_followup_report.mako:115
+msgid "Date"
+msgstr "Datum"
+
+#. module: pc_followup
+#: view:account.invoice:0
+msgid "Date"
+msgstr "Datum"
+
+#. module: pc_followup
+#: report:addons/pc_followup/report/invoice_followup_report.mako:97
+msgid "Delivery Address"
+msgstr "Lieferadresse"
+
+#. module: pc_followup
+#: field:configuration.data,docout_followup_email_address:0
+msgid "Doc-out Email Address"
+msgstr "Doc-out E-Mail-Adresse"
+
+#. module: pc_followup
+#: model:ir.model.fields,field_description:field_configuration_data_docout_followup_email_address
+msgid "Doc-out Email Address"
+msgstr "Doc-out E-Mail-Adresse"
+
+#. module: pc_followup
+#: field:configuration.data,docout_followup_email_template_to_docout_id:0
+msgid "Doc-out Email Template"
+msgstr "Doc-out Email Vorlage"
+
+#. module: pc_followup
+#: model:ir.model.fields,field_description:field_configuration_data_docout_followup_email_template_to_docout_id
+msgid "Doc-out Email Template"
+msgstr "Doc-out Email Vorlage"
+
+#. module: pc_followup
+#: model:email.template,subject:email_template_send_followup_to_docout
+msgid "Doc-out Follow-up Sending"
+msgstr "Doc-out Mahnung senden"
+
+#. module: pc_followup
+#: field:configuration.data,docout_followup_folder:0
+msgid "Doc-out Remote Folder"
+msgstr "Doc-out Ordner auf Zielserver"
+
+#. module: pc_followup
+#: model:ir.model.fields,field_description:field_configuration_data_docout_followup_folder
+msgid "Doc-out Remote Folder"
+msgstr "Doc-out Ordner auf Zielserver"
+
+#. module: pc_followup
+#: field:configuration.data,docout_followup_connect_transport_id:0
+msgid "Doc-out Server Connection"
+msgstr "Doc-out-Server-Verbindung"
+
+#. module: pc_followup
+#: model:ir.model.fields,field_description:field_configuration_data_docout_followup_connect_transport_id
+msgid "Doc-out Server Connection"
+msgstr "Doc-out-Server-Verbindung"
+
+#. module: pc_followup
+#: view:configuration.data:0
+msgid "Doc-out"
+msgstr "Doc-out"
+
+#. module: pc_followup
+#: help:account.invoice,partner_invoice_dunning_block:0
+msgid "Does the partner has a dunning block?"
+msgstr "Hat der Partner eine Mahnsperre?"
+
+#. module: pc_followup
+#: help:account.invoice,epayment:0
+msgid "Does the payment method has epayment?"
+msgstr "Ist die Zahlungsmethode eine online-Zahlung?"
+
+#. module: pc_followup
+#: report:addons/pc_followup/report/invoice_followup_report.mako:116
+msgid "Due date"
+msgstr "Fälligkeitsdatum"
+
+#. module: pc_followup
+#: view:account.invoice:0
+msgid "Dunning Block (Invoice)"
+msgstr "Mahnsperre (Rechnung)"
+
+#. module: pc_followup
+#: view:account.invoice:0
+msgid "Dunning Block (Partner)"
+msgstr "Dunning Block (Partner)"
+
+#. module: pc_followup
+#: view:account.invoice:0
+msgid "Dunning Block Ending Date (Invoice))"
+msgstr "Mahnsperre Enddatum (Rechnung)"
+
+#. module: pc_followup
+#: view:account.invoice:0
+msgid "Dunning Block Ending Date (Partner)"
+msgstr "Mahnsperre Enddatum (Partner)"
+
+#. module: pc_followup
+#: report:addons/pc_followup/report/invoice_followup_report.mako:42
+msgid "E-Mail"
+msgstr "E-Mail"
+
+#. module: pc_followup
+#: field:configuration.data,followup_servicedesk_email_template_id:0
+msgid "Email Template"
+msgstr "Email Vorlage"
+
+#. module: pc_followup
+#: model:ir.model.fields,field_description:field_configuration_data_followup_servicedesk_email_template_id
+msgid "Email Template"
+msgstr "Email Vorlage"
+
+#. module: pc_followup
+#: model:ir.model,name:model_email_template
+msgid "Email Templates"
+msgstr "E-Mail Vorlagen"
+
+#. module: pc_followup
+#: field:configuration.data,followup_servicedesk_email_address:0
+msgid "Email"
+msgstr "Email"
+
+#. module: pc_followup
+#: model:ir.model.fields,field_description:field_configuration_data_followup_servicedesk_email_address
+msgid "Email"
+msgstr "Email"
+
+#. module: pc_followup
+#: help:account.invoice,partner_dunning_block_ending_date:0
+msgid "Ending block for the partner's dunning block."
+msgstr "Enddatum der Mahnsperre des Kunden"
+
+#. module: pc_followup
+#: view:configuration.data:0
+msgid "Everytime follow-ups are handled because of the massive handling scheduler,\n"
+"                            and email is sent to a service-desk service, if the email address is defined\n"
+"                            below."
+msgstr "Bei jeder Verarbeitung der anstehenden Mahnungen,\n"
+"                            wird eine Email and den Servicedesk gesendet\n"
+"                            falls diese untenstehend angegeben wurde."
+
+#. module: pc_followup
+#: help:configuration.data,docout_followup_time_of_day:0
+msgid "Files will be sent to the doc-out not earlier than this hour."
+msgstr "Die Dateien werden nach dieser Zeit an doc-out gesendet (bei der nächsten Ausführung des geplanten Vorganges)."
+
+#. module: pc_followup
+#: view:account.invoice:0
+msgid "Follow-Up Process"
+msgstr "Mahnungsaktualisierung"
+
+#. module: pc_followup
+#: model:ir.model,name:model_followup_level
+msgid "Follow-up Criteria"
+msgstr "Mahnkriterien"
+
+#. module: pc_followup
+#: view:configuration.data:0
+msgid "Follow-up Handling"
+msgstr "Mahnstufenverarbeitung"
+
+#. module: pc_followup
+#: view:configuration.data:0
+msgid "Follow-up Processing"
+msgstr "Mahnstufen-Aktualisierung"
+
+#. module: pc_followup
+#: view:configuration.data:0
+msgid "Follow-up Sending"
+msgstr "Mahnungsversand"
+
+#. module: pc_followup
+#: model:ir.actions.act_window,name:action_followup_outlook_invoices
+msgid "Follow-ups"
+msgstr "Mahnungen"
+
+#. module: pc_followup
+#: model:ir.ui.menu,name:pc_menu_sales_sales_followup_outlook_invoices
+msgid "Follow-ups"
+msgstr "Mahnungen"
+
+#. module: pc_followup
+#: view:account.invoice:0
+msgid "Follow-ups"
+msgstr "Mahnungen"
+
+#. module: pc_followup
+#: view:configuration.data:0
+msgid "Follow-ups"
+msgstr "Mahnungen"
+
+#. module: pc_followup
+#: view:account.invoice:0
+msgid "For more information, see the"
+msgstr "Weitere Informationen finden Sie in der"
+
+#. module: pc_followup
+#: field:configuration.data,followup_handling_friday:0
+msgid "Handle on Friday?"
+msgstr "Verarbeite am Freitag?"
+
+#. module: pc_followup
+#: model:ir.model.fields,field_description:field_configuration_data_followup_handling_friday
+msgid "Handle on Friday?"
+msgstr "Verarbeite am Freitag?"
+
+#. module: pc_followup
+#: field:configuration.data,followup_handling_monday:0
+msgid "Handle on Monday?"
+msgstr "Verarbeite am Montag?"
+
+#. module: pc_followup
+#: model:ir.model.fields,field_description:field_configuration_data_followup_handling_monday
+msgid "Handle on Monday?"
+msgstr "Verarbeite am Montag?"
+
+#. module: pc_followup
+#: field:configuration.data,followup_handling_saturday:0
+msgid "Handle on Saturday?"
+msgstr "Verarbeite am Samstag?"
+
+#. module: pc_followup
+#: model:ir.model.fields,field_description:field_configuration_data_followup_handling_saturday
+msgid "Handle on Saturday?"
+msgstr "Verarbeite am Samstag?"
+
+#. module: pc_followup
+#: field:configuration.data,followup_handling_sunday:0
+msgid "Handle on Sunday?"
+msgstr "Verarbeite am Sonntag?"
+
+#. module: pc_followup
+#: model:ir.model.fields,field_description:field_configuration_data_followup_handling_sunday
+msgid "Handle on Sunday?"
+msgstr "Verarbeite am Sonntag?"
+
+#. module: pc_followup
+#: field:configuration.data,followup_handling_thursday:0
+msgid "Handle on Thursday?"
+msgstr "Verarbeite am Donnerstag?"
+
+#. module: pc_followup
+#: model:ir.model.fields,field_description:field_configuration_data_followup_handling_thursday
+msgid "Handle on Thursday?"
+msgstr "Verarbeite am Donnerstag?"
+
+#. module: pc_followup
+#: field:configuration.data,followup_handling_tuesday:0
+msgid "Handle on Tuesday?"
+msgstr "Verarbeite am Dienstag?"
+
+#. module: pc_followup
+#: model:ir.model.fields,field_description:field_configuration_data_followup_handling_tuesday
+msgid "Handle on Tuesday?"
+msgstr "Verarbeite am Dienstag?"
+
+#. module: pc_followup
+#: field:configuration.data,followup_handling_wednesday:0
+msgid "Handle on Wednesday?"
+msgstr "Verarbeite am Mittwoch?"
+
+#. module: pc_followup
+#: model:ir.model.fields,field_description:field_configuration_data_followup_handling_wednesday
+msgid "Handle on Wednesday?"
+msgstr "Verarbeite am Mittwoch?"
+
+#. module: pc_followup
+#: view:account.invoice:0
+msgid "Handled"
+msgstr "Verarbeitet"
+
+#. module: pc_followup
+#: view:account.invoice:0
+msgid "Handling Date"
+msgstr "Verarbeitungsdatum"
+
+#. module: pc_followup
+#: view:account.invoice:0
+msgid "Help & Support"
+msgstr "Hilfe & Support"
+
+#. module: pc_followup
+#: report:addons/pc_followup/report/invoice_followup_report.mako:48
+msgid "Invoice date"
+msgstr "Rechnungsdatum"
+
+#. module: pc_followup
+#: report:addons/pc_followup/report/invoice_followup_report.mako:49
+msgid "Invoice number"
+msgstr "Rechnungsnummer"
+
+#. module: pc_followup
+#: code:addons/pc_followup/models/account_invoice_ext.py:178
+msgid "Invoice {0} (with id={1}) requires manual action."
+msgstr "Rechnung {0} (mit id={1}) benötigt eine manuelle Bearbeitung."
+
+#. module: pc_followup
+#: model:ir.model,name:model_account_invoice
+msgid "Invoice"
+msgstr "Rechnung"
+
+#. module: pc_followup
+#: report:addons/pc_followup/report/invoice_followup_report.mako:129
+msgid "Invoice"
+msgstr "Rechnung"
+
+#. module: pc_followup
+#: code:addons/pc_followup/models/account_invoice_ext.py:345
+msgid "It was not possible to send an email to inform about the handling of the follow-ups."
+msgstr "Es war nicht möglich das Email zur Verarbeitung der Mahnungen zu versenen."
+
+#. module: pc_followup
+#: report:addons/pc_followup/report/invoice_followup_report.mako:117
+msgid "Justifying document"
+msgstr "Beschreibung"
+
+#. module: pc_followup
+#: report:addons/pc_followup/report/invoice_followup_report.mako:114
+msgid "Justifying"
+msgstr "Rechnungsnummer"
+
+#. module: pc_followup
+#: view:followup.level:0
+msgid "Lastname of the partner"
+msgstr "Nachname des Partners"
+
+#. module: pc_followup
+#: model:email.template,subject:email_template_followup_handled
+msgid "List of follow-ups handled, and not handled because of an error"
+msgstr "Übersicht über verarbeitete und nicht verarbeitete Mahnstufen"
+
+#. module: pc_followup
+#: field:configuration.data,followup_logo:0
+msgid "Logo"
+msgstr "Logo"
+
+#. module: pc_followup
+#: model:ir.model.fields,field_description:field_configuration_data_followup_logo
+msgid "Logo"
+msgstr "Logo"
+
+#. module: pc_followup
+#: code:addons/pc_followup/report/invoice_followup_report_ext.py:58
+msgid "Mahnung"
+msgstr "Mahnung"
+
+#. module: pc_followup
+#: code:addons/pc_followup/models/account_invoice_ext.py:178
+msgid "Manual action required"
+msgstr "Manuelle Bearbeitung erforderlich"
+
+#. module: pc_followup
+#: code:addons/pc_followup/models/account_invoice_ext.py:177
+msgid "Manual action required. Invoice {0} (with id={1}) requires manual action."
+msgstr "Manuelle bearbeitung nötig. Die Rechnung {0} (mit id={1}) benötigt eine manuelle Bearbeitung."
+
+#. module: pc_followup
+#: view:followup.level:0
+msgid "Name of the partner"
+msgstr "Name des Partners"
+
+#. module: pc_followup
+#: code:addons/pc_followup/models/res_partner_ext.py:167
+msgid "No invoices in a blocking dunning process."
+msgstr "Keine Rechnungen in einem Mahnprozess mit Mahnsperre."
+
+#. module: pc_followup
+#: view:followup.level:0
+msgid "Number of days to pay the follow-up."
+msgstr "Anzahl Tage um die gemahnte Rechnung zu bezahlen."
+
+#. module: pc_followup
+#: report:addons/pc_followup/report/invoice_followup_report.mako:118
+msgid "Overdue fee"
+msgstr "Mahngebühren"
+
+#. module: pc_followup
+#: report:addons/pc_followup/report/invoice_followup_report.mako:33
+msgid "Page"
+msgstr "Seite"
+
+#. module: pc_followup
+#: model:ir.model,name:model_res_partner
+msgid "Partner"
+msgstr "Partner"
+
+#. module: pc_followup
+#: field:account.invoice,partner_invoice_dunning_block:0
+msgid "Partner's Dunning Block"
+msgstr "Mahnsperre des Partners"
+
+#. module: pc_followup
+#: model:ir.model.fields,field_description:field_account_invoice_partner_invoice_dunning_block
+msgid "Partner's Dunning Block"
+msgstr "Mahnsperre des Partners"
+
+#. module: pc_followup
+#: field:account.invoice,partner_dunning_block_ending_date:0
+msgid "Partner's Dunning Block's Ending Date"
+msgstr "Enddatum der Mahnsperre des Kunden"
+
+#. module: pc_followup
+#: model:ir.model.fields,field_description:field_account_invoice_partner_dunning_block_ending_date
+msgid "Partner's Dunning Block's Ending Date"
+msgstr "Enddatum der Mahnsperre des Kunden"
+
+#. module: pc_followup
+#: field:account.invoice,epayment:0
+msgid "Payment Method has Epayment?"
+msgstr "Zahlungsmethode ist online-Zahlung?"
+
+#. module: pc_followup
+#: model:ir.model.fields,field_description:field_account_invoice_epayment
+msgid "Payment Method has Epayment?"
+msgstr "Zahlungsmethode ist online-Zahlung?"
+
+#. module: pc_followup
+#: code:addons/pc_followup/models/res_partner_ext.py:163
+msgid "Payment method invoice is blocked because of open invoice(s) in dunning process."
+msgstr "Zahlungsmethode Rechnung wird wegen offener gemahnter Rechnung(en) gesperrt."
+
+#. module: pc_followup
+#: report:addons/pc_followup/report/invoice_followup_report.mako:41
+msgid "Phone"
+msgstr "Telefon"
+
+#. module: pc_followup
+#: report:addons/pc_followup/report/invoice_followup_report.mako:113
+msgid "Pos."
+msgstr "Pos."
+
+#. module: pc_followup
+#: view:configuration.data:0
+msgid "Post Mail"
+msgstr "Post Mail"
+
+#. module: pc_followup
+#: field:configuration.data,followup_print_friday:0
+msgid "Print on Friday?"
+msgstr "Drucken am Freitag?"
+
+#. module: pc_followup
+#: model:ir.model.fields,field_description:field_configuration_data_followup_print_friday
+msgid "Print on Friday?"
+msgstr "Drucken am Freitag?"
+
+#. module: pc_followup
+#: field:configuration.data,followup_print_monday:0
+msgid "Print on Monday?"
+msgstr "Drucken am Montag?"
+
+#. module: pc_followup
+#: model:ir.model.fields,field_description:field_configuration_data_followup_print_monday
+msgid "Print on Monday?"
+msgstr "Drucken am Montag?"
+
+#. module: pc_followup
+#: field:configuration.data,followup_print_saturday:0
+msgid "Print on Saturday?"
+msgstr "Drucken am Samstag?"
+
+#. module: pc_followup
+#: model:ir.model.fields,field_description:field_configuration_data_followup_print_saturday
+msgid "Print on Saturday?"
+msgstr "Drucken am Samstag?"
+
+#. module: pc_followup
+#: field:configuration.data,followup_print_sunday:0
+msgid "Print on Sunday?"
+msgstr "Drucken am Sonntag?"
+
+#. module: pc_followup
+#: model:ir.model.fields,field_description:field_configuration_data_followup_print_sunday
+msgid "Print on Sunday?"
+msgstr "Drucken am Sonntag?"
+
+#. module: pc_followup
+#: field:configuration.data,followup_print_thursday:0
+msgid "Print on Thursday?"
+msgstr "Drucken am Donnerstag?"
+
+#. module: pc_followup
+#: model:ir.model.fields,field_description:field_configuration_data_followup_print_thursday
+msgid "Print on Thursday?"
+msgstr "Drucken am Donnerstag?"
+
+#. module: pc_followup
+#: field:configuration.data,followup_print_tuesday:0
+msgid "Print on Tuesday?"
+msgstr "Drucken am Dienstag?"
+
+#. module: pc_followup
+#: model:ir.model.fields,field_description:field_configuration_data_followup_print_tuesday
+msgid "Print on Tuesday?"
+msgstr "Drucken am Dienstag?"
+
+#. module: pc_followup
+#: field:configuration.data,followup_print_wednesday:0
+msgid "Print on Wednesday?"
+msgstr "Drucken am Mittwoch?"
+
+#. module: pc_followup
+#: model:ir.model.fields,field_description:field_configuration_data_followup_print_wednesday
+msgid "Print on Wednesday?"
+msgstr "Drucken am Mittwoch?"
+
+#. module: pc_followup
+#: field:configuration.data,followup_processing_friday:0
+msgid "Process on Friday?"
+msgstr "Aktualisiere am Freitag?"
+
+#. module: pc_followup
+#: model:ir.model.fields,field_description:field_configuration_data_followup_processing_friday
+msgid "Process on Friday?"
+msgstr "Aktualisiere am Freitag?"
+
+#. module: pc_followup
+#: field:configuration.data,followup_processing_monday:0
+msgid "Process on Monday?"
+msgstr "Aktualisiere am Montag?"
+
+#. module: pc_followup
+#: model:ir.model.fields,field_description:field_configuration_data_followup_processing_monday
+msgid "Process on Monday?"
+msgstr "Aktualisiere am Montag?"
+
+#. module: pc_followup
+#: field:configuration.data,followup_processing_saturday:0
+msgid "Process on Saturday?"
+msgstr "Aktualisiere am Samstag?"
+
+#. module: pc_followup
+#: model:ir.model.fields,field_description:field_configuration_data_followup_processing_saturday
+msgid "Process on Saturday?"
+msgstr "Aktualisiere am Samstag?"
+
+#. module: pc_followup
+#: field:configuration.data,followup_processing_sunday:0
+msgid "Process on Sunday?"
+msgstr "Aktualisiere am Sonntag?"
+
+#. module: pc_followup
+#: model:ir.model.fields,field_description:field_configuration_data_followup_processing_sunday
+msgid "Process on Sunday?"
+msgstr "Aktualisiere am Sonntag?"
+
+#. module: pc_followup
+#: field:configuration.data,followup_processing_thursday:0
+msgid "Process on Thursday?"
+msgstr "Aktualisiere am Donnerstag?"
+
+#. module: pc_followup
+#: model:ir.model.fields,field_description:field_configuration_data_followup_processing_thursday
+msgid "Process on Thursday?"
+msgstr "Aktualisiere am Donnerstag?"
+
+#. module: pc_followup
+#: field:configuration.data,followup_processing_tuesday:0
+msgid "Process on Tuesday?"
+msgstr "Aktualisiere am Dienstag?"
+
+#. module: pc_followup
+#: model:ir.model.fields,field_description:field_configuration_data_followup_processing_tuesday
+msgid "Process on Tuesday?"
+msgstr "Aktualisiere am Dienstag?"
+
+#. module: pc_followup
+#: field:configuration.data,followup_processing_wednesday:0
+msgid "Process on Wednesday?"
+msgstr "Aktualisiere am Mittwoch?"
+
+#. module: pc_followup
+#: model:ir.model.fields,field_description:field_configuration_data_followup_processing_wednesday
+msgid "Process on Wednesday?"
+msgstr "Aktualisiere am Mittwoch?"
+
+#. module: pc_followup
+#: field:configuration.data,followup_qr:0
+msgid "QR"
+msgstr "2D-Matrix"
+
+#. module: pc_followup
+#: model:ir.model.fields,field_description:field_configuration_data_followup_qr
+msgid "QR"
+msgstr "2D-Matrix"
+
+#. module: pc_followup
+#: field:configuration.data,followup_postmail_rrn:0
+msgid "RRN"
+msgstr "RRN"
+
+#. module: pc_followup
+#: model:ir.model.fields,field_description:field_configuration_data_followup_postmail_rrn
+msgid "RRN"
+msgstr "RRN"
+
+#. module: pc_followup
+#: help:configuration.data,followup_postmail_rrn:0
+msgid "RRN, to be used in the franking part of the address window."
+msgstr "RRN für Frankatur im Adressblock"
+
+#. module: pc_followup
+#: report:addons/pc_followup/report/invoice_followup_report.mako:50
+msgid "Reminder date"
+msgstr "Datum der Mahnung"
+
+#. module: pc_followup
+#: view:configuration.data:0
+msgid "Reports"
+msgstr "Belege"
+
+#. module: pc_followup
+#: field:account.invoice,responsible_id:0
+msgid "Responsible of the invoice"
+msgstr "Verantwortlich für die Rechnung"
+
+#. module: pc_followup
+#: model:ir.model.fields,field_description:field_account_invoice_responsible_id
+msgid "Responsible of the invoice"
+msgstr "Verantwortlich für die Rechnung"
+
+#. module: pc_followup
+#: code:addons/pc_followup/models/sale_order_ext.py:48
+msgid "Sale order cancelled due to pending follow-up actions"
+msgstr "Bestellung abgebrochen aufgrund pendenter Mahnvorgänge"
+
+#. module: pc_followup
+#: model:ir.model,name:model_sale_order
+msgid "Sales Order"
+msgstr "Verkaufsauftrag"
+
+#. module: pc_followup
+#: selection:configuration.data,docout_followup_sending_option:0
+msgid "Send each file separately"
+msgstr "Sende jede Datei einzeln"
+
+#. module: pc_followup
+#: field:configuration.data,docout_followup_friday:0
+msgid "Send on Friday?"
+msgstr "An Freitagen versenden?"
+
+#. module: pc_followup
+#: model:ir.model.fields,field_description:field_configuration_data_docout_followup_friday
+msgid "Send on Friday?"
+msgstr "An Freitagen versenden?"
+
+#. module: pc_followup
+#: field:configuration.data,docout_followup_monday:0
+msgid "Send on Monday?"
+msgstr "An Montagen versenden?"
+
+#. module: pc_followup
+#: model:ir.model.fields,field_description:field_configuration_data_docout_followup_monday
+msgid "Send on Monday?"
+msgstr "An Montagen versenden?"
+
+#. module: pc_followup
+#: field:configuration.data,docout_followup_saturday:0
+msgid "Send on Saturday?"
+msgstr "An Samstagen versenden?"
+
+#. module: pc_followup
+#: model:ir.model.fields,field_description:field_configuration_data_docout_followup_saturday
+msgid "Send on Saturday?"
+msgstr "An Samstagen versenden?"
+
+#. module: pc_followup
+#: field:configuration.data,docout_followup_sunday:0
+msgid "Send on Sunday?"
+msgstr "An Sonntagen versenden?"
+
+#. module: pc_followup
+#: model:ir.model.fields,field_description:field_configuration_data_docout_followup_sunday
+msgid "Send on Sunday?"
+msgstr "An Sonntagen versenden?"
+
+#. module: pc_followup
+#: field:configuration.data,docout_followup_thursday:0
+msgid "Send on Thursday?"
+msgstr "An Donnerstagen versenden?"
+
+#. module: pc_followup
+#: model:ir.model.fields,field_description:field_configuration_data_docout_followup_thursday
+msgid "Send on Thursday?"
+msgstr "An Donnerstagen versenden?"
+
+#. module: pc_followup
+#: field:configuration.data,docout_followup_tuesday:0
+msgid "Send on Tuesday?"
+msgstr "An Dienstagen versenden?"
+
+#. module: pc_followup
+#: model:ir.model.fields,field_description:field_configuration_data_docout_followup_tuesday
+msgid "Send on Tuesday?"
+msgstr "An Dienstagen versenden?"
+
+#. module: pc_followup
+#: field:configuration.data,docout_followup_wednesday:0
+msgid "Send on Wednesday?"
+msgstr "Am Mittwoch versenden?"
+
+#. module: pc_followup
+#: model:ir.model.fields,field_description:field_configuration_data_docout_followup_wednesday
+msgid "Send on Wednesday?"
+msgstr "Am Mittwoch versenden?"
+
+#. module: pc_followup
+#: selection:configuration.data,docout_followup_sending_option:0
+msgid "Send the concatenation of all files"
+msgstr "Alle Mahnungen in einer Datei zusammenfassen"
+
+#. module: pc_followup
+#: code:addons/pc_followup/models/email_template_ext.py:67
+msgid "Sender email is missing or empty after template rendering. Specify one to deliver your message"
+msgstr "Die Email fehlt oder ist leer nach dem die Vorlage ausgefüllt wurde. Bitte eine gültige Vorlage für den Versand der Email konfigurieren."
+
+#. module: pc_followup
+#: field:configuration.data,docout_followup_sending_option:0
+msgid "Sending Option"
+msgstr "Übermittlungsoption"
+
+#. module: pc_followup
+#: model:ir.model.fields,field_description:field_configuration_data_docout_followup_sending_option
+msgid "Sending Option"
+msgstr "Übermittlungsoption"
+
+#. module: pc_followup
+#: report:addons/pc_followup/report/invoice_followup_report.mako:44
+msgid "Tax number"
+msgstr "MwSt.-Nr."
+
+#. module: pc_followup
+#: help:configuration.data,followup_qr:0
+msgid "The QR code which appears within the address window."
+msgstr "Die 2D-Matrix, die im Adressfenster erscheint."
+
+#. module: pc_followup
+#: view:followup.level:0
+msgid "The bank account of the client."
+msgstr "Das Bankkonto des Kunden."
+
+#. module: pc_followup
+#: code:addons/pc_followup/report/invoice_followup_report_ext.py:110
+msgid "The company does not have a bank account defined."
+msgstr "Das Unternehmen verfügt nicht über ein Bankkonto."
+
+#. module: pc_followup
+#: help:configuration.data,docout_followup_connect_transport_id:0
+msgid "The connection to the doc-out server."
+msgstr "Die Verbindung zum doc-out-Server."
+
+#. module: pc_followup
+#: view:followup.level:0
+msgid "The date of yesterday."
+msgstr "Das Datum von gestern."
+
+#. module: pc_followup
+#: view:followup.level:0
+msgid "The due date to pay the follow-up."
+msgstr "Das Fälligkeitsdatum, um die Mahnung zu bezahlen."
+
+#. module: pc_followup
+#: help:configuration.data,docout_followup_email_address:0
+msgid "The email address for the doc-out."
+msgstr "E-Mail-Adresse für doc-out."
+
+#. module: pc_followup
+#: help:configuration.data,followup_servicedesk_email_address:0
+msgid "The email address to use when sending the summary email to the follow-up service-desk service."
+msgstr "Emailadresse an die das Zusammenfassungsmail der Mahnverarbeitung gesendet wird"
+
+#. module: pc_followup
+#: help:configuration.data,docout_followup_email_template_to_docout_id:0
+msgid "The email template for the email which sends the follow-up to the doc-out."
+msgstr "Die E-Mail-Vorlage für die E-Mail, die die Mahnungen an Doc-out sendet."
+
+#. module: pc_followup
+#: help:configuration.data,followup_servicedesk_email_template_id:0
+msgid "The email template to use when sending the summary email to the follow-up service-desk service."
+msgstr "Die E-Mail-Vorlage für die E-Mail, die die Mahnungsverabeitungszusammenfassung an den Service-desk sendet."
+
+#. module: pc_followup
+#: help:configuration.data,docout_followup_folder:0
+msgid "The folder on the remote server to put to files to."
+msgstr "Ordner auf dem entfernten Server, auf dem die Dateien abgelegt werden."
+
+#. module: pc_followup
+#: help:configuration.data,followup_logo:0
+msgid "The logo which appears at the top of the report."
+msgstr "Das Logo, das im Belegskopf angedruckt wird."
+
+#. module: pc_followup
+#: view:configuration.data:0
+msgid "The preffix for the punchcard is"
+msgstr "Planer-Kürzel für die Tagszeit-Ausführung: "
+
+#. module: pc_followup
+#: code:addons/pc_followup/models/account_invoice_ext.py:240
+msgid "This is a follow-up pro-forma invoice which comes from invoice {0}."
+msgstr "Dies ist eine Mahngebühr zur Rechnung {0} ."
+
+#. module: pc_followup
+#: field:configuration.data,docout_followup_time_of_day:0
+msgid "Time of Day"
+msgstr "Uhrzeit"
+
+#. module: pc_followup
+#: field:configuration.data,followup_handling_time_of_day:0
+msgid "Time of Day"
+msgstr "Uhrzeit"
+
+#. module: pc_followup
+#: field:configuration.data,followup_print_time_of_day:0
+msgid "Time of Day"
+msgstr "Uhrzeit"
+
+#. module: pc_followup
+#: field:configuration.data,followup_processing_time_of_day:0
+msgid "Time of Day"
+msgstr "Uhrzeit"
+
+#. module: pc_followup
+#: model:ir.model.fields,field_description:field_configuration_data_docout_followup_time_of_day
+msgid "Time of Day"
+msgstr "Uhrzeit"
+
+#. module: pc_followup
+#: model:ir.model.fields,field_description:field_configuration_data_followup_handling_time_of_day
+msgid "Time of Day"
+msgstr "Uhrzeit"
+
+#. module: pc_followup
+#: model:ir.model.fields,field_description:field_configuration_data_followup_print_time_of_day
+msgid "Time of Day"
+msgstr "Uhrzeit"
+
+#. module: pc_followup
+#: model:ir.model.fields,field_description:field_configuration_data_followup_processing_time_of_day
+msgid "Time of Day"
+msgstr "Uhrzeit"
+
+#. module: pc_followup
+#: help:configuration.data,followup_print_time_of_day:0
+msgid "Time of day to do the follow-up printing."
+msgstr "Uhrzeit für den Druck der Mahnungen."
+
+#. module: pc_followup
+#: help:configuration.data,followup_handling_time_of_day:0
+msgid "Time of day to do the follow-up processing."
+msgstr "Uhrzeit für die Aktualisierung der Mahnstufen."
+
+#. module: pc_followup
+#: help:configuration.data,followup_processing_time_of_day:0
+msgid "Time of day to do the follow-up processing."
+msgstr "Uhrzeit für die Aktualisierung der Mahnstufen."
+
+#. module: pc_followup
+#: help:configuration.data,followup_franking_town:0
+msgid "Town within the country, to be used in the franking part of the address window."
+msgstr "Ort für Frankatur im Adressblock"
+
+#. module: pc_followup
+#: field:configuration.data,followup_franking_town:0
+msgid "Town"
+msgstr "Ort"
+
+#. module: pc_followup
+#: model:ir.model.fields,field_description:field_configuration_data_followup_franking_town
+msgid "Town"
+msgstr "Ort"
+
+#. module: pc_followup
+#: help:configuration.data,followup_franking_country_code:0
+msgid "Two-letters country code, to be used in the franking part of the address window."
+msgstr "ISO-Ländercode (2-stellig) für Frankatur im Adressblock"
+
+#. module: pc_followup
+#: field:res.partner,under_followup_block:0
+msgid "Under followup block"
+msgstr "Mahnsperre vorhanden"
+
+#. module: pc_followup
+#: model:ir.model.fields,field_description:field_res_partner_under_followup_block
+msgid "Under followup block"
+msgstr "Mahnsperre vorhanden"
+
+#. module: pc_followup
+#: code:addons/pc_followup/models/email_template_ext.py:67
+msgid "Warning!"
+msgstr "Warnung!"
+
+#. module: pc_followup
+#: report:addons/pc_followup/report/invoice_followup_report.mako:43
+msgid "Web"
+msgstr "Web"
+
+#. module: pc_followup
+#: view:configuration.data:0
+msgid "When are the follow-ups going to be sent to the doc-out?"
+msgstr "Wann werden die Mahnungen an Doc-out geendet?"
+
+#. module: pc_followup
+#: view:configuration.data:0
+msgid "When are the follow-ups handled?"
+msgstr "Wann sollen Mahnungen verarbeitet werden?"
+
+#. module: pc_followup
+#: view:configuration.data:0
+msgid "When are the follow-ups processed/updated?"
+msgstr "Wann sollen Mahnungen aktualisiert werden?"
+
+#. module: pc_followup
+#: help:configuration.data,followup_franking_zip:0
+msgid "ZIP within the country, to be used in the franking part of the address window."
+msgstr "PLZ, die in der Frankatur des Adressblocks angedruckt wird."
+
+#. module: pc_followup
+#: field:configuration.data,followup_franking_zip:0
+msgid "ZIP"
+msgstr "PLZ"
+
+#. module: pc_followup
+#: model:ir.model.fields,field_description:field_configuration_data_followup_franking_zip
+msgid "ZIP"
+msgstr "PLZ"
+
+#. module: pc_followup
+#: view:res.partner:0
+msgid "account.group_account_invoice,pc_connect_master.pc_client"
+msgstr "account.group_account_invoice,pc_connect_master.pc_client"
+
+#. module: pc_followup
+#: model:ir.model,name:model_configuration_data
+msgid "configuration.data"
+msgstr "configuration.data"
+
+#. module: pc_followup
+#: view:configuration.data:0
+msgid "docout_followup"
+msgstr "docout_followup"
+
+#. module: pc_followup
+#: view:account.invoice:0
+msgid "follow-up user manual"
+msgstr "Zuständiger Benutzer für die manuelle Bearbeitung der Mahnung"
+
+#. module: pc_followup
+#: model:ir.model,name:model_ir_attachment
+msgid "ir.attachment"
+msgstr "ir.attachment"
+
+#. module: pc_followup
+#: code:addons/pc_followup/models/account_invoice_ext.py:226
+msgid "{0}\n"
+"This invoice is under a follow-up process."
+msgstr "{0}\nDiese Rechnung ist Teil eines Mahnlaufs."
+
+#. module: pc_followup
+#: view:followup.level:0
+msgid "{account_number}"
+msgstr "{account_number}"
+
+#. module: pc_followup
+#: view:followup.level:0
+msgid "{new_due_date}"
+msgstr "{new_due_date}"
+
+#. module: pc_followup
+#: view:followup.level:0
+msgid "{num_days}"
+msgstr "{num_days}"
+
+#. module: pc_followup
+#: view:followup.level:0
+msgid "{partner_firstname}"
+msgstr "{partner_firstname}"
+
+#. module: pc_followup
+#: view:followup.level:0
+msgid "{partner_lastname}"
+msgstr "{partner_lastname}"
+
+#. module: pc_followup
+#: view:followup.level:0
+msgid "{yesterday}"
+msgstr "{yesterday}"
+

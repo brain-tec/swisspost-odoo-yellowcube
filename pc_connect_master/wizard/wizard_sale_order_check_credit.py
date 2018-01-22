@@ -21,8 +21,6 @@
 
 from osv import osv, fields
 from openerp.tools.translate import _
-import logging
-logger = logging.getLogger(__name__)
 
 
 class sale_order_check_credit(osv.TransientModel):
@@ -34,17 +32,8 @@ class sale_order_check_credit(osv.TransientModel):
         if context is None:
             context = {}
 
-        result = ''
-        for sale_order in self.pool.get(context['active_model']).browse(cr, uid, context.get('active_ids', []), context=context):
-            check_credit_result = sale_order.check_credit()
-            if check_credit_result['decision'] is False:
-                result_description = 'REJECT\n({0})'.format(check_credit_result['description'])
-            else:
-                result_description = 'ACCEPT\n({0})'.format(check_credit_result['description'])
-            result = '{original}Sale Order {sale_order} with ID={id}: {result}\n\n'.format(original=result,
-                                                                                           sale_order=sale_order.name,
-                                                                                           id=sale_order.id,
-                                                                                           result=result_description)
+        result = self._do_credit_check_get_result(
+            cr, uid, context.get('active_ids', []), context=context)
 
         self.write(cr, uid, ids, {'result': result}, context=context)
         ctx = context.copy()
@@ -56,5 +45,25 @@ class sale_order_check_credit(osv.TransientModel):
                 'target': 'new',
                 'context': ctx,
                 }
+
+    def _do_credit_check_get_result(self, cr, uid, ids, context=None):
+        """ Gets the result of the credit check, to be returned to the wizard.
+        """
+        result = ''
+        for sale_order in self.pool.get(context['active_model']).browse(
+                cr, uid, ids, context=context):
+            check_credit_result = sale_order.check_credit()
+            if check_credit_result['decision'] is False:
+                result_description = 'REJECT\n({0})'.format(
+                    check_credit_result['description'])
+            else:
+                result_description = 'ACCEPT\n({0})'.format(
+                    check_credit_result['description'])
+            result = _('{original}Sale Order {sale_order} with ID={id}: '
+                       '{result}\n\n').format(original=result,
+                                              sale_order=sale_order.name,
+                                              id=sale_order.id,
+                                              result=result_description)
+        return result
 
 # vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:

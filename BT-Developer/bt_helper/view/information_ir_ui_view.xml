@@ -1,0 +1,53 @@
+<openerp>
+	<data>
+		<record id="view_ir_ui_view_information_form" model="ir.ui.view">
+			<field name="name">ir_ui_view_information_form</field>
+			<field name="model">bt_helper.ir_ui_view_information</field>
+			<field name="arch" type="xml">
+				<form string="IU View inforamtion" version="7.0">
+					<sheet>
+						<group string="Initial Field">
+							<field name="view_id" />
+
+						</group>
+						<group string="Related views">
+							<field name="related_view_ids" nolabel="1">
+								<tree string="Related views" version="7.0">
+									<field name="id" />
+									<field name="inherit_id" />
+									<field name="name" />
+									<field name="priority" string="Priority" />
+									<field name="xml_id" />
+									<button name="action_delete" string="Delete" type="object"
+										icon="gtk-undelete" />
+								</tree>
+							</field>
+						</group>
+					</sheet>
+				</form>
+			</field>
+		</record>
+
+		<record id="view_ir_ui_view_information_tree" model="ir.ui.view">
+			<field name="name">ir_ui_view_information_tree</field>
+			<field name="model">bt_helper.ir_ui_view_information</field>
+			<field name="arch" type="xml">
+				<tree string="IU View Information" version="7.0">
+					<field name="view_id" />
+				</tree>
+			</field>
+		</record>
+
+		<record id="action_view_information_ir_ui_view" model="ir.actions.act_window">
+			<field name="name">View information</field>
+			<field name="type">ir.actions.act_window</field>
+			<field name="res_model">bt_helper.ir_ui_view_information</field>
+			<field name="view_type">form</field>
+			<field name="view_mode">tree,form</field>
+		</record>
+
+		<menuitem name="View Information" action="action_view_information_ir_ui_view"
+			id="menu_view_information_ir_ui_view" parent="menu_helper" sequence="2" />
+
+	</data>
+</openerp>

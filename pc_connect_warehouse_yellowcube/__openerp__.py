@@ -1,7 +1,7 @@
 # b-*- encoding: utf-8 -*-
 ##############################################################################
 #
-#    Copyright (c) 2015 brain-tec AG (http://www.brain-tec.ch)
+#    Copyright (c) 2015 brain-tec AG (http://www.braintec-group.com)
 #    All Right Reserved
 #
 #    This program is free software: you can redistribute it and/or modify
@@ -20,14 +20,10 @@
 ##############################################################################
 
 {
-    "name": "SwissPost YellowCube Odoo / Connect Warehouse YellowCube",
-
+    "name": "PostCommerce AP1/Connect Warehouse YellowCube",
     "version": "1.0",
-
     "description": "Provides an interface to create and manage connections to YellowCube",
-
     "author": "Brain-tec",
-
     "category": "",
 
     'depends': ['account',
@@ -39,11 +35,15 @@
                 'purchase',
                 'product',
                 'stock',
+                'pc_account',
+                'pc_stock',
+                'pc_log_data',
                 'report_webkit',
                 ],
 
     "data": ['security/ir.model.access.csv',
              'data/schedulers.xml',
+             'data/tracking_email_template.xml',
 
              'views/configuration_data.xml',
              'views/delivery_carrier_ext_view.xml',
@@ -57,6 +57,9 @@
              'views/product_product_ext_view.xml',
              'views/sale_order_ext_view.xml',
              'views/res_partner_ext_view.xml',
+
+             'wizard/stock_partial_picking_view_ext.xml',
+             'wizard/stock_partial_picking_line_view_ext.xml',
              ],
 
     "demo": ['demo/connection.xml',

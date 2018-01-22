@@ -1,0 +1,66 @@
+<openerp>
+	<data>
+		<record id="view_bt_helper_workflow_updated_form" model="ir.ui.view">
+			<field name="name">bt_helper_workflow_updated_form</field>
+			<field name="model">workflow_update</field>
+			<field name="arch" type="xml">
+				<form string="Workflow To Update" version="7.0">
+					<header>
+						<button string="Calculate" icon="gtk-execute" name="do_update_workflow"
+							type="object" colspan="4" />
+
+					</header>
+					<sheet>
+						<group colspan="4">
+							<field name="name" />
+							<field name="workflow_id" />
+							<field name="conditions" colspan="4" />
+							<field name="workflow_row_update_ids" colspan="4"
+								context="{'default_workflow_id': workflow_id}">
+								<tree editable="top">
+									<field name="state" />
+									<field name="activity_id" domain="[('wkf_id', '=', workflow_id)]" />
+									<field name="status" />
+									<field name="workflow_id" invisible="1" />
+								</tree>
+							</field>
+						</group>
+					</sheet>
+					<footer>
+						<group colspan="4">
+							<separator string="To test:" colspan="4" />
+							<field name="id_to_check" />
+							<button string="Give the activity" icon="gtk-execute"
+								name="do_give_activity_name" type="object" colspan="4" />
+						</group>
+					</footer>
+				</form>
+			</field>
+		</record>
+
+
+
+		<!-- <record id="view_bt_helper_workflow_updated_tree" model="ir.ui.view"> 
+			<field name="name">bt_helper_workflow_updated_tree_view</field> <field name="model">workflow_updated</field> 
+			<field name="type">tree</field> <field name="arch" type="xml"> <tree string="Workflow 
+			To Update" version="7.0"> <field name="workflow_id" /> <button string="Calculate" 
+			icon="gtk-execute" name="do_update_workflow" type="object" colspan="4" /> 
+			</tree> </field> </record> <record id="view_bt_helper_workflow_updated_search" 
+			model="ir.ui.view"> <field name="name">bt_helper_workflow_updated_search</field> 
+			<field name="model">workflow_updated</field> <field name="type">search</field> 
+			<field name="arch" type="xml"> <search string="Workflow To Update"> <field 
+			name="workflow_id" /> </search> </field> </record> -->
+
+
+		<record id="action_view_workflow_update" model="ir.actions.act_window">
+			<field name="name">Update workflow</field>
+			<field name="type">ir.actions.act_window</field>
+			<field name="res_model">workflow_update</field>
+			<field name="view_type">form</field>
+			<field name="view_mode">tree,form</field>
+		</record>
+		<menuitem name="Update workflow" action="action_view_workflow_update"
+			id="menu_menu_action_view_workflow_update" parent="menu_helper"
+			sequence="5" />
+	</data>
+</openerp>

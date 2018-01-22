@@ -1,0 +1,10 @@
+<openerp>
+    <data>
+        <record id="bvr_res_partner_bank" model="res.partner.bank">
+            <field name="state">bvr</field>
+            <field name="acc_number">25-9778-2</field>
+            <field name="partner_id" ref="base.res_partner_2" />
+            <field name="bank" ref="base.res_bank_1" />
+        </record>
+    </data>
+</openerp>

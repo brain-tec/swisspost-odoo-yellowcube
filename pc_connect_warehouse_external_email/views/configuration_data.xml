@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+	<data>
+
+		<record id="external_email_connector_config_view" model="ir.ui.view">
+			<field name="name">external_email_connector_config_view</field>
+			<field name="model">configuration.data</field>
+			<field name="inherit_id" ref="pc_config.configuration_data_form" />
+			<field name="arch" type="xml">
+				<notebook position="inside">
+					<page string="External Email Connector">
+
+                        <group colspan="1">
+                            <div colspan="2">
+                                When is the External Email Connector going to be sent? <br/>
+                                The prefix for the punchcard is <i>email_connector</i>.
+                            </div>
+                            <group string="Punchcard Configuration">
+                                <field name="email_connector_times_a_day" />
+                                <field name="email_connector_time_of_day" widget="float_time" />
+                                <field name="email_connector_time_of_day_2" widget="float_time"
+                                    attrs="{'invisible': [('email_connector_times_a_day', 'in', ('1'))]}" />
+                                <field name="email_connector_time_of_day_3" widget="float_time"
+                                    attrs="{'invisible': [('email_connector_times_a_day', 'in', ('1', '2'))]}" />
+                                <field name="email_connector_monday" />
+                                <field name="email_connector_tuesday" />
+                                <field name="email_connector_wednesday" />
+                                <field name="email_connector_thursday" />
+                                <field name="email_connector_friday" />
+                                <field name="email_connector_saturday" />
+                                <field name="email_connector_sunday" />
+                            </group>
+                            <group string="Email Configuration">
+                                <field name="email_connector_email_template_id" />
+                                <field name="email_connector_email_address_primary" />
+                                <field name="email_connector_email_address_secondary" />
+                            </group>
+                        </group>
+
+					</page>
+
+				</notebook>
+			</field>
+		</record>
+
+        <record id="external_email_connector_report_config_view" model="ir.ui.view">
+            <field name="name">external_email_connector_report_config_view</field>
+            <field name="model">configuration.data</field>
+            <field name="inherit_id" ref="pc_connect_master.post_ecommerce_config_view" />
+            <field name="arch" type="xml">
+                <page string="Reports" position="inside">
+                    <group string="External Email Connector" colspan="1">
+                        <field name="email_connector_report_picking_list" />
+                        <field name="email_connector_report_picking_list_logo" />
+                        <field name="email_connector_report_picking_list_num_lines" />
+                    </group>
+                </page>
+            </field>
+        </record>
+
+	</data>
+</openerp>

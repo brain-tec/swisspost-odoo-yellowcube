@@ -1,0 +1,522 @@
+# Translation of OpenERP Server.
+# This file contains the translation of the following modules:
+#
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: OpenERP Server 7.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2016-06-15 06:54+0000\n"
+"PO-Revision-Date: 2016-06-15 06:54+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: pc_sale_order_automation
+#: model:email.template,body_html:email_template_send_invoice_to_docout
+msgid "<div style=\"font-family: sans-serif; font-size: 12px;\">\n"
+"                <p>One or more invoices were attached to be printed in the doc-out.</p>   \n"
+"            </div>"
+msgstr "<div style=\"font-family: sans-serif; font-size: 12px;\">\n"
+"                <p>Eine oder mehrere Rechnungen wurden zum Ausdruck angehängt.</p>   \n"
+"            </div>"
+
+#. module: pc_sale_order_automation
+#: sql_constraint:packaging_type:0
+msgid "A given configuration can not have duplicated packaging types."
+msgstr "Verpackungstypen müssen einmalig sein."
+
+#. module: pc_sale_order_automation
+#: view:configuration.data:0
+msgid "Alarming"
+msgstr "Alarmierung"
+
+#. module: pc_sale_order_automation
+#: model:ir.actions.act_window,name:action_sale_order_auto_joiner
+msgid "Automation Joiner (Admin)"
+msgstr "Automatisierungseinbindung (Admin)"
+
+#. module: pc_sale_order_automation
+#: code:addons/pc_sale_order_automation/stock_move_ext.py:215
+msgid "Back order <em>%s</em> has been <b>created</b>."
+msgstr "Lieferrückstand <em>%s</em> wurde <b>erstellt</b>."
+
+#. module: pc_sale_order_automation
+#: code:addons/pc_sale_order_automation/sale_order_ext.py:879
+msgid "Bad UOM (Unit of Measurement) indicated for the aging of the sale orders."
+msgstr "Unzulässige Masseinheit für die Bestellverzögerung konfiguriert."
+
+#. module: pc_sale_order_automation
+#: code:addons/pc_sale_order_automation/sale_order_ext.py:879
+msgid "Bad Unit of Measurement."
+msgstr "Unzulässige Masseinheit."
+
+#. module: pc_sale_order_automation
+#: field:configuration.data,block_duplicated_quotations_from_webshop:0
+msgid "Block duplicated web-shop sale orders from automation"
+msgstr "Aktivierung Sperre für doppelte Auftragsübermittlung"
+
+#. module: pc_sale_order_automation
+#: code:addons/pc_sale_order_automation/packaging_type.py:42
+msgid "Can not remove the Packaging Type."
+msgstr "Der Verpackungstyp konnte nicht entfernt werden."
+
+#. module: pc_sale_order_automation
+#: view:sale.order.automation_wiz:0
+msgid "Cancel"
+msgstr "Abbrechen"
+
+#. module: pc_sale_order_automation
+#: field:delivery.carrier,carrier_for_bulk_freight_id:0
+msgid "Carrier for Bulk Freight"
+msgstr "Frachtführer für Stückgut"
+
+#. module: pc_sale_order_automation
+#: model:ir.model.fields,field_description:field_delivery_carrier_carrier_for_bulk_freight_id
+msgid "Carrier for Bulk Freight"
+msgstr "Frachtführer für Stückgut"
+
+#. module: pc_sale_order_automation
+#: model:ir.model,name:model_delivery_carrier
+msgid "Carrier"
+msgstr "Frachtführer"
+
+#. module: pc_sale_order_automation
+#: field:packaging_type,configuration_id:0
+msgid "Configuration Data"
+msgstr "Konfiguration"
+
+#. module: pc_sale_order_automation
+#: model:ir.model.fields,field_description:field_packaging_type_configuration_id
+msgid "Configuration Data"
+msgstr "Konfiguration"
+
+#. module: pc_sale_order_automation
+#: field:configuration.data,packaging_carrier_bulk_freight_id:0
+msgid "Default Delivery Carrier for Bulk Freight"
+msgstr "Standard Frachtführer für Stückgut"
+
+#. module: pc_sale_order_automation
+#: model:ir.model.fields,field_description:field_configuration_data_packaging_carrier_bulk_freight_id
+msgid "Default Delivery Carrier for Bulk Freight"
+msgstr "Standard Frachtführer für Stückgut"
+
+#. module: pc_sale_order_automation
+#: help:configuration.data,packaging_carrier_bulk_freight_id:0
+msgid "Default delivery carrier to be used in case the delivery is not sent as multi-parcel but as bulk freight AND no other mapping is implemented on the carrier defined by the sale.order."
+msgstr "Standard Frachführer für Stückgut, der verwendet wird, falls die gewählte Paketversandart nicht mehr zulässig ist, auf dieser aber kein alternativer Frachtführer für Stückgut definiert ist."
+
+#. module: pc_sale_order_automation
+#: model:ir.model,name:model_stock_picking_out
+msgid "Delivery Orders"
+msgstr "Lieferaufträge"
+
+#. module: pc_sale_order_automation
+#: model:email.template,subject:email_template_send_invoice_to_docout
+msgid "Doc-out Invoice Sending"
+msgstr "[TEST] Doc-out Rechnungsversand"
+
+#. module: pc_sale_order_automation
+#: code:addons/pc_sale_order_automation/stock_move_ext.py:57
+msgid "Error!"
+msgstr "Fehler!"
+
+#. module: pc_sale_order_automation
+#: code:addons/pc_sale_order_automation/sale_order_ext.py:71
+msgid "Finished automated process."
+msgstr "Automatisierungsprozess abgeschlossen."
+
+#. module: pc_sale_order_automation
+#: view:sale.order:0
+msgid "Help & Support"
+msgstr "Hilfe & Support"
+
+#. module: pc_sale_order_automation
+#: help:configuration.data,packaging_enabled:0
+msgid "If chekced, then the sale order automation will do packaging."
+msgstr "Falls diese Option angewählt ist, wird die Auslieferung in der Automatisierung auf Pakete aufgeteilt (entsprechend der Verpackungsregeln)."
+
+#. module: pc_sale_order_automation
+#: view:sale.order:0
+msgid "In order to automate the sale order process, check \n"
+"				        'Automation Information' > 'Automate Sale Order Process'."
+msgstr "Um den Bestellvorgang zu automatisieren, muss der Schalter\n"
+"				        'Automatisiere Bestellung' im Reiter 'Automatisierung' aktiviert werden."
+
+#. module: pc_sale_order_automation
+#: model:ir.model,name:model_stock_picking_in
+msgid "Incoming Shipments"
+msgstr "Anlieferung"
+
+#. module: pc_sale_order_automation
+#: help:product.product,packaging_qty_per_parcel:0
+msgid "Integer specifying how many of this product will fit into one parcel of the selected packaging type, in the UOM of the product."
+msgstr "Ganzzahl, die vorgibt welche Menge der Produkte in ihrer Standard Masseinheit in diesem Verpackungstyp Platz finden können."
+
+#. module: pc_sale_order_automation
+#: view:product.product:0
+msgid "Inventory"
+msgstr "Bestand"
+
+#. module: pc_sale_order_automation
+#: view:configuration.data:0
+msgid "Invoice Sending"
+msgstr "Rechnungsversand"
+
+#. module: pc_sale_order_automation
+#: model:ir.model,name:model_account_invoice
+msgid "Invoice"
+msgstr "Rechnung"
+
+#. module: pc_sale_order_automation
+#: view:sale.order.automation_wiz:0
+msgid "Join automation"
+msgstr "Automatisierung starten"
+
+#. module: pc_sale_order_automation
+#: help:configuration.data,packaging_type_ids:0
+msgid "List of packaging types."
+msgstr "Liste der Verpackungsarten."
+
+#. module: pc_sale_order_automation
+#: model:ir.model,name:manually_force_validation
+msgid "Manually force validation of sale order"
+msgstr "Bestellung verarbeiten erzwingen"
+
+#. module: pc_sale_order_automation
+#: field:configuration.data,packaging_parcel_limit:0
+msgid "Max. Number of Parcels before Bulk Freight"
+msgstr "Maximale Anzahl der Pakete"
+
+#. module: pc_sale_order_automation
+#: model:ir.model.fields,field_description:field_configuration_data_packaging_parcel_limit
+msgid "Max. Number of Parcels before Bulk Freight"
+msgstr "Maximale Anzahl der Pakete"
+
+#. module: pc_sale_order_automation
+#: help:configuration.data,packaging_parcel_limit:0
+msgid "Maximum number of parcels until the delivery will be considered bulk freight."
+msgstr "Maximale Anzahl der Pakete bevor die Versandart auf die konfigurierte alternative Versandart für Stückgut geändert wird"
+
+#. module: pc_sale_order_automation
+#: code:addons/pc_sale_order_automation/stock_picking_in_ext.py:42
+msgid "Method 'assign_packages' is not implemented in 'stock.picking.in'."
+msgstr "Der Automatisierungsschritt 'assign_packages' ist für eingehende Lieferungen nicht implementiert."
+
+#. module: pc_sale_order_automation
+#: code:addons/pc_sale_order_automation/stock_picking_in_ext.py:39
+msgid "Method 'compute_num_packages' is not implemented in 'stock.picking.in'."
+msgstr "Der Automatisierungsschritt 'compute_num_packages' ist für eingehende Lieferungen nicht implementiert."
+
+#. module: pc_sale_order_automation
+#: code:addons/pc_sale_order_automation/stock_picking_in_ext.py:36
+msgid "Method 'create_backorder' is not implemented in 'stock.picking.in'."
+msgstr "Der Automatisierungsschritt 'create_backorder' ist für eingehende Lieferungen nicht implementiert."
+
+#. module: pc_sale_order_automation
+#: code:addons/pc_sale_order_automation/stock_picking_in_ext.py:30
+msgid "Method 'is_backorder_required' is not implemented in 'stock.picking.in'."
+msgstr "Der Automatisierungsschritt 'is_backorder_required' ist für eingehende Lieferungen nicht implementiert."
+
+#. module: pc_sale_order_automation
+#: code:addons/pc_sale_order_automation/stock_picking_ext.py:242
+msgid "Method compute_num_packages was called over product with ID={0} but either field packaging_type or packaging_qty_per_parcel was not set."
+msgstr "Der Automatisierungsschritt 'compute_num_packages' wurde für das Produkt mit ID={0} aufgerufen, aber für das Produkt wurde der Verpackungstyp oder die Anzahl Produkte pro Verpackungstyp nicht definiert."
+
+#. module: pc_sale_order_automation
+#: code:addons/pc_sale_order_automation/stock_picking_ext.py:241
+msgid "Missing Data on Product Regarding Packaging"
+msgstr "Dem Produkt fehlen die Verpackungsinformationen"
+
+#. module: pc_sale_order_automation
+#: code:addons/pc_sale_order_automation/sale_order_ext.py:78
+msgid "Moving to state: {0}"
+msgstr "Verschiebe in den Status: {0}"
+
+#. module: pc_sale_order_automation
+#: field:configuration.data,packaging_enabled:0
+msgid "Must Packaging Be Done?"
+msgstr "Soll die Verpackung erfolgen?"
+
+#. module: pc_sale_order_automation
+#: model:ir.model.fields,field_description:field_configuration_data_packaging_enabled
+msgid "Must Packaging Be Done?"
+msgstr "Soll die Verpackung erfolgen?"
+
+#. module: pc_sale_order_automation
+#: field:packaging_type,name:0
+msgid "Name"
+msgstr "Bezeichnung"
+
+#. module: pc_sale_order_automation
+#: model:ir.model.fields,field_description:field_packaging_type_name
+msgid "Name"
+msgstr "Bezeichnung"
+
+#. module: pc_sale_order_automation
+#: model:sale.exception,name:excep_order_check_credit
+msgid "Negative Credit Check."
+msgstr "Bonitätsprüfung negativ."
+
+#. module: pc_sale_order_automation
+#: code:addons/pc_sale_order_automation/sale_order_ext.py:334
+msgid "Negative result of credit check"
+msgstr "Negatives Ergebnis der Bonitätsprüfung"
+
+#. module: pc_sale_order_automation
+#: code:addons/pc_sale_order_automation/sale_order_ext.py:708
+msgid "No Carrier Defined for Bulk Freight"
+msgstr "Der Frachtführer für Stückgut ist nicht definiert"
+
+#. module: pc_sale_order_automation
+#: code:addons/pc_sale_order_automation/sale_order_ext.py:709
+msgid "No carrier delivery was found nor defined in the configuration for a bulk freight sending."
+msgstr "Es wurde weder ein Standard Frachtführer noch ein alternativer Frachtführer für Stückgut auf der gewählten Versandart definiert."
+
+#. module: pc_sale_order_automation
+#: view:sale.order:0
+msgid "Once it is automate it cannot be stopped, and no more actions must be done over the sale\n"
+"						order object, (unless an error happens)."
+msgstr "Wenn die Automatisierung aktiviert wurde, kann sie nicht mehr abgebrochen werden und keine weiteren manuellen Schritte\n"
+"						sind für die Bestellung durchzuführen, solange kein Fehler auftritt."
+
+#. module: pc_sale_order_automation
+#: code:addons/pc_sale_order_automation/sale_order_ext.py:271
+msgid "Option '{0}' is not allowed for the sale.order automation."
+msgstr "Die Option '{0}' ist nicht zulässig für die Bestellautomatisierung."
+
+#. module: pc_sale_order_automation
+#: view:configuration.data:0
+msgid "Packaging & Franking Multi-Parcel Deliveries"
+msgstr "Verpackung und Frankierung von Mehr-Packetlieferungen."
+
+#. module: pc_sale_order_automation
+#: view:product.product:0
+msgid "Packaging & Franking Multi-Parcel Deliveries"
+msgstr "Verpackung und Frankierung von Mehr-Packetlieferungen."
+
+#. module: pc_sale_order_automation
+#: field:product.product,packaging_qty_per_parcel:0
+msgid "Packaging Quantity"
+msgstr "Kombimenge Verpackung"
+
+#. module: pc_sale_order_automation
+#: model:ir.model.fields,field_description:field_product_product_packaging_qty_per_parcel
+msgid "Packaging Quantity"
+msgstr "Kombimenge Verpackung"
+
+#. module: pc_sale_order_automation
+#: field:product.product,packaging_type_id:0
+msgid "Packaging Type"
+msgstr "Verpackungsart"
+
+#. module: pc_sale_order_automation
+#: field:stock.tracking,packaging_type_id:0
+msgid "Packaging Type"
+msgstr "Verpackungsart"
+
+#. module: pc_sale_order_automation
+#: model:ir.model.fields,field_description:field_product_product_packaging_type_id
+msgid "Packaging Type"
+msgstr "Verpackungsart"
+
+#. module: pc_sale_order_automation
+#: model:ir.model.fields,field_description:field_stock_tracking_packaging_type_id
+msgid "Packaging Type"
+msgstr "Verpackungsart"
+
+#. module: pc_sale_order_automation
+#: field:configuration.data,packaging_type_ids:0
+msgid "Packaging Types"
+msgstr "Verpackungsarten"
+
+#. module: pc_sale_order_automation
+#: model:ir.model.fields,field_description:field_configuration_data_packaging_type_ids
+msgid "Packaging Types"
+msgstr "Verpackungsarten"
+
+#. module: pc_sale_order_automation
+#: view:packaging_type:0
+msgid "Packaging Types"
+msgstr "Verpackungsarten"
+
+#. module: pc_sale_order_automation
+#: help:product.product,packaging_type_id:0
+msgid "Packaging type to be used with this product."
+msgstr "Die für dieses Produkt zu verwendende Verpackungsart."
+
+#. module: pc_sale_order_automation
+#: model:ir.model,name:model_stock_tracking
+msgid "Packs"
+msgstr "Pakete"
+
+#. module: pc_sale_order_automation
+#: view:configuration.data:0
+msgid "Partial Deliveries"
+msgstr "Teillieferungen"
+
+#. module: pc_sale_order_automation
+#: model:ir.model,name:model_stock_picking
+msgid "Picking List"
+msgstr "Lieferschein"
+
+#. module: pc_sale_order_automation
+#: model:ir.model,name:model_product_product
+msgid "Product"
+msgstr "Produkt"
+
+#. module: pc_sale_order_automation
+#: view:sale.order:0
+msgid "Sale Order Automation"
+msgstr "Automatisierte Bestellungsverarbeitung"
+
+#. module: pc_sale_order_automation
+#: code:addons/pc_sale_order_automation/sale_order_ext.py:1016
+msgid "Sale Order {0} (ID={1}) is more than {2} {3} old since it was created."
+msgstr "Die Bestellung {0} (ID={1}) ist älter als {2} {3} seit sie erstellt wurde."
+
+#. module: pc_sale_order_automation
+#: view:configuration.data:0
+msgid "Sale Orders"
+msgstr "Verkaufsaufträge"
+
+#. module: pc_sale_order_automation
+#: view:sale.order.automation_wiz:0
+msgid "Sale order automation joiner"
+msgstr "Starter für Bestellungsautomatisierung"
+
+#. module: pc_sale_order_automation
+#: code:addons/pc_sale_order_automation/sale_order_ext.py:138
+msgid "Sale order was cancelled, and will be ignored."
+msgstr "Die Bestellung wurde abgebrochen und wird ignoriert."
+
+#. module: pc_sale_order_automation
+#: model:ir.model,name:model_sale_order
+msgid "Sales Order"
+msgstr "Bestellung"
+
+#. module: pc_sale_order_automation
+#: model:sale.exception,name:excep_order_delivery_method
+msgid "Sales order does not have a delivery method"
+msgstr "Die Bestellung hat keine Versandart"
+
+#. module: pc_sale_order_automation
+#: model:sale.exception,name:excep_order_payment_method
+msgid "Sales order does not have a payment method"
+msgstr "Die Bestellung hat keine Zahlart"
+
+#. module: pc_sale_order_automation
+#: model:sale.exception,name:excep_no_payment_term
+msgid "Sales order does not have a payment term"
+msgstr "Die Bestellung hat keine Zahlungsbedingung"
+
+#. module: pc_sale_order_automation
+#: model:ir.model,name:model_stock_move
+msgid "Stock Move"
+msgstr "Bestandsbuchung"
+
+#. module: pc_sale_order_automation
+#: code:addons/pc_sale_order_automation/packaging_type.py:43
+msgid "The Packaging Types {0} can not be removed because the products with the following IDs have it set: {1}"
+msgstr "Die Verpackungsart {0} kann nicht entfernt werden, da diese von den Produkten mit den IDs: {1} verwendet werden."
+
+#. module: pc_sale_order_automation
+#: help:delivery.carrier,carrier_for_bulk_freight_id:0
+msgid "The carrier to use instead of this one if a bulk freight has to be used."
+msgstr "Alternativer Frachtträger, falls eine Lieferung als Stückgut versendet werden muss."
+
+#. module: pc_sale_order_automation
+#: code:addons/pc_sale_order_automation/sale_order_ext.py:323
+msgid "The credit of the sale order is not allowed."
+msgstr "Die Kreditlinie ist für diese Bestellung nicht gültig."
+
+#. module: pc_sale_order_automation
+#: help:packaging_type,name:0
+msgid "The name of the package type."
+msgstr "Name der Verpackungsart."
+
+#. module: pc_sale_order_automation
+#: view:configuration.data:0
+msgid "The prefix for the punchcard is"
+msgstr "Erkennungszeichen für die Zeitstempelkontrolle."
+
+#. module: pc_sale_order_automation
+#: model:sale.exception,description:excep_order_delivery_method
+msgid "The sales order does not have a delivery method."
+msgstr "Die Bestellung hat keine Versandart"
+
+#. module: pc_sale_order_automation
+#: model:sale.exception,description:excep_no_payment_term
+msgid "The sales order does not have a payment term."
+msgstr "Die Bestellung hat keine Zahlungsbedingung"
+
+#. module: pc_sale_order_automation
+#: model:sale.exception,description:excep_order_payment_method
+msgid "The sales order does not have a paymnet method."
+msgstr "Die Bestellung hat keine Zahlart"
+
+#. module: pc_sale_order_automation
+#: model:sale.exception,description:excep_order_check_credit
+msgid "The sales order has not passed the credit check process successfully (for more details see the corresponding issue)."
+msgstr "Die Bestellung wurde bei der Bonitätsprüfung gestoppt (Details siehe Vorfall / Alarmierung)."
+
+#. module: pc_sale_order_automation
+#: view:sale.order.automation_wiz:0
+msgid "This will create a new job; so remember to remove the old one and\n"
+"                            do all the process with care."
+msgstr "Dies wird einen neuen Auftrag für die Automatisierung erzeugen. Stellen Sie sicher,\n"
+"                           dass alte Aufträge gelöscht und kontrollieren Sie die Verarbeitung."
+
+#. module: pc_sale_order_automation
+#: code:addons/pc_sale_order_automation/stock_move_ext.py:58
+msgid "Total quantity after split exceeds the quantity to split for this product: \"{0}\" (id: {1})."
+msgstr "Die Gesamtmenge nach der Aufteilung übersteigt die zulässige Menge für dieses Produkt: \"{0}\" (id: {1})."
+
+#. module: pc_sale_order_automation
+#: code:addons/pc_sale_order_automation/sale_order_ext.py:140
+msgid "Transition from state {0} ignored, as sale order is Cancelled."
+msgstr "Die Überführung vom Status {0} wurde ignoriert, da die Bestellung abgebrochen wurde."
+
+#. module: pc_sale_order_automation
+#: view:sale.order.automation_wiz:0
+msgid "Warning:"
+msgstr "Warnung:"
+
+#. module: pc_sale_order_automation
+#: view:configuration.data:0
+msgid "When are the invoices going to be sent to the doc-out?"
+msgstr "Wann werden die Rechnungen an Doc-out geendet?"
+
+#. module: pc_sale_order_automation
+#: model:ir.model,name:model_configuration_data
+msgid "configuration.data"
+msgstr "Konfiguration"
+
+#. module: pc_sale_order_automation
+#: model:ir.model,name:model_delivery_carrier_bulk_freight_mapping
+msgid "delivery.carrier.bulk_freight_mapping"
+msgstr "delivery.carrier.bulk_freight_mapping"
+
+#. module: pc_sale_order_automation
+#: view:configuration.data:0
+msgid "docout_invoice"
+msgstr "docout_invoice"
+
+#. module: pc_sale_order_automation
+#: model:ir.model,name:model_ir_attachment
+msgid "ir.attachment"
+msgstr "ir.attachment"
+
+#. module: pc_sale_order_automation
+#: model:ir.model,name:model_packaging_type
+msgid "packaging_type"
+msgstr "packaging_type"
+
+#. module: pc_sale_order_automation
+#: model:ir.model,name:model_sale_order_automation_wiz
+msgid "sale.order.automation_wiz"
+msgstr "sale.order.automation_wiz"
+

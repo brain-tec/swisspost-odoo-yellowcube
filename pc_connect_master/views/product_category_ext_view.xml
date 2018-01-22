@@ -1,0 +1,21 @@
+<openerp>
+    <data>
+
+        <!-- Inherit Form View to Modify it -->
+        <record id="product_category_yc_form_view" model="ir.ui.view">
+            <field name="name">product_category_yc_form_view</field>
+            <field name="model">product.category</field>
+            <field name="inherit_id" ref="product.product_category_form_view"/>
+            <field name="arch" type="xml">
+                <field name="type" position="after">
+                    <field name="id" invisible="True" />
+                    <field name="yc_allowed_delivery_method_ids"
+                           context="{'default_product_category_id': id, 'from_product_category': True}" />
+
+                    <field name="yc_mandatory_additional_option_ids" />
+                </field>
+            </field>
+        </record>
+
+    </data>
+</openerp>

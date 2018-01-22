@@ -1,0 +1,32 @@
+<WBA>
+    <ControlReference>
+        <Type>WBA</Type>
+        <Sender>YELLOWCUBE</Sender>
+        <Receiver>0000040730</Receiver>
+        <Timestamp>20141023173818</Timestamp>
+        <OperatingMode>T</OperatingMode>
+        <Version>1.0</Version>
+    </ControlReference>
+    <GoodsReceipt>
+        <GoodsReceiptHeader>
+            <BookingVoucherID>000</BookingVoucherID>
+            <BookingVoucherYear>2014</BookingVoucherYear>
+            <SupplierNo>000</SupplierNo>
+            <SupplierOrderNo>PO00001</SupplierOrderNo>
+        </GoodsReceiptHeader>
+        <GoodsReceiptList>
+            <GoodsReceiptDetail>
+                <BVPosNo>0001</BVPosNo>
+                <SupplierOrderPosNo>1</SupplierOrderPosNo>
+                <YCArticleNo>FOLDER_A3_001</YCArticleNo>
+                <ArticleNo>FOLDER_A3_001</ArticleNo>
+                <Plant>Y019</Plant>
+                <StorageLocation>YROD</StorageLocation>
+                <TransactionType>101</TransactionType>
+                <StockType>F</StockType>
+                <QuantityUOM QuantityISO="PCE">12.000</QuantityUOM>
+                <EndOfDeliveryFlag>1</EndOfDeliveryFlag>
+            </GoodsReceiptDetail>
+        </GoodsReceiptList>
+    </GoodsReceipt>
+</WBA>

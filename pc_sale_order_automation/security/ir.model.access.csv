@@ -1,0 +1,6 @@
+id,active,group_id/id,name,model_id/id,perm_create,perm_read,perm_write,perm_unlink
+packaging_type_stock_user,True,stock.group_stock_user,access_packaging_type_stock_user,pc_sale_order_automation.model_packaging_type,0,1,0,0
+packaging_type_pc_admin,True,pc_connect_master.pc_admin,access_packaging_type_pc_admin,pc_sale_order_automation.model_packaging_type,1,1,1,1
+stock_type_stock_user,True,stock.group_stock_user,access_stock_type_stock_user,pc_connect_master.model_stock_type,0,1,0,0
+stock_type_sale_salesman,True,base.group_sale_salesman,access_stock_type_sale_salesman,pc_connect_master.model_stock_type,0,1,0,0
+stock_type_pc_admin,True,pc_connect_master.pc_admin,access_stock_type_pc_admin,pc_connect_master.model_stock_type,1,1,1,1

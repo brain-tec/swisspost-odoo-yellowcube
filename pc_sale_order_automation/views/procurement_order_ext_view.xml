@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+
+        <record id="procurement_form_view_ext" model="ir.ui.view">
+            <field name="name">procurement.order.form.ext</field>
+            <field name="model">procurement.order</field>
+            <field name="inherit_id" ref="procurement.procurement_form_view" />
+            <field name="arch" type="xml">
+                <field name="priority" position="after">
+                    <field name="sale_id" />
+                    <field name="original_purchase_id" />
+                </field>
+            </field>
+        </record>
+
+        <record id="procurement_tree_view_ext" model="ir.ui.view">
+            <field name="name">procurement.order.tree.ext</field>
+            <field name="model">procurement.order</field>
+            <field name="inherit_id" ref="procurement.procurement_tree_view" />
+            <field name="arch" type="xml">
+                <field name="date_planned" position="after">
+                    <field name="sale_id" />
+                    <field name="original_purchase_id" />
+                    <field name="purchase_id" />
+                </field>
+            </field>
+        </record>
+
+    </data>
+</openerp>

@@ -6,7 +6,7 @@
 			<field name="name">configuration_data_form</field>
 			<field name="model">configuration.data</field>
 			<field name="arch" type="xml">
-				<form string="SwissPost Connector" col="4" version="7.0">
+				<form string="Post Configuration" col="4" version="7.0">
 					<header>
 					</header>
 
@@ -17,7 +17,9 @@
 							<field name='debug'/>
 						</group>
 
-						<notebook>						
+						<notebook>
+
+							<page string="Post Mail" />						
 							<!-- Each module defines its own tabs -->
 						</notebook>
 					</sheet>
@@ -30,14 +32,14 @@
 			<field name="model">configuration.data</field>
 			<field name="type">tree</field>
 			<field name="arch" type="xml">
-				<tree string="SwissPost Connector" version="7.0">
+				<tree string="Post Configuration" version="7.0">
 					<field name="name" />
 
 				</tree>
 			</field>
 		</record>
 
-		<menuitem name="SwissPost Connector" action="action_configuration_data"
+		<menuitem name="Post Configuration" action="action_configuration_data"
 			id="menuitem_configuration_data" parent="base.menu_config" sequence="0" />
 
 	</data>

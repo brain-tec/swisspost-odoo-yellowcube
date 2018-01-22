@@ -1,0 +1,9 @@
+id,active,group_id/id,name,model_id/id,perm_create,perm_read,perm_write,perm_unlink
+ir_model_data_import_manager,True,connector.group_connector_manager,ir_model_data_import_manager,base.model_ir_model_data,True,True,True,True
+res_country_crud,True,base.group_user,Res country CRUD permissions,base.model_res_country,1,1,1,1
+product_manual,True,connector.group_connector_manager,product_manual,pc_connect_webshop.model_product_manual,1,1,1,1
+product_alternative,True,connector.group_connector_manager,product_alternative,pc_connect_webshop.model_product_alternative,1,1,1,1
+pc_client_sees_product_image,True,pc_connect_master.pc_client,product_image_r,product_images.model_product_images,0,1,0,0
+pc_client_sees_product_link,True,pc_connect_master.pc_client,product_link_r,product_links.model_product_link,0,1,0,0
+pc_client_sees_product_manual,True,pc_connect_master.pc_client,product_manual_r,pc_connect_webshop.model_product_manual,0,1,0,0
+pc_client_sees_product_alternative,True,pc_connect_master.pc_client,product_alternative_r,pc_connect_webshop.model_product_alternative,0,1,0,0

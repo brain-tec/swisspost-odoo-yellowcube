@@ -19,6 +19,7 @@
 								<field name="yc_enable_war_file" />
 								<field name="yc_enable_wba_file" />
 								<field name="yc_enable_wbl_file" />
+                                <field name="yc_ignore_ean" />
 							</group>
                             <group string="WAB">
                                 <field name="yc_wab_add_invoicing_address" />
@@ -28,8 +29,21 @@
                                 <field name="yc_wab_pickingmessage_mapping" />
                                 <field name="yc_wab_invoice_send_mode" />
                             </group>
+                            <group string="WAR">
+                                <field name="yc_war12_dummy_lot_name" />
+                            </group>
+                            <group string="WBA">
+                                <field name="yc_wba_invoice_on_import" />
+                                <field name="yc_wba_confirm" />
+                                <field name="yc_wba_confirm_time" />
+                                <field name="yc_wba_auto_cancel_backorder" />
+                                <field name="yc_wba_cancel_time" />
+                                <field name="yc_wba_outgoing_redirect" />
+                                <field name="yc_wba_respect_eod_flag" />
+                            </group>
 							<group string="XML header">
-								<field name="yc_language" class="oe_highlight" />
+                                <field name="yc_language_setting" class="oe_highlight" />
+								<field name="yc_language_default" class="oe_highlight" />
 								<field name="yc_depositor_no" class="oe_highlight" />
 								<field name="yc_plant_id" class="oe_highlight" />
 								<field name="yc_sender" class="oe_highlight" />
@@ -37,11 +51,6 @@
 								<field name="yc_supplier_no" class="oe_highlight" />
 								<field name="yc_partner_no" class="oe_highlight" />
 								<field name="yc_operating_mode" class="oe_highlight" />
-							</group>
-							<group string="PCL">
-								<field name="yc_invoice_pcl_printer_name" />
-								<field name="yc_invoice_pcl_printer_destination" />
-								<field name="yc_invoice_pcl_printer_silent_printing" />
 							</group>
 							<group string="Lot checking">
 								<field name="yc_missing_bar_days_due" class="oe_highlight" />

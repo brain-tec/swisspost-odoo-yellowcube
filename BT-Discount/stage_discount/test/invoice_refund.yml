@@ -1,0 +1,101 @@
+-
+  Test invoice refund [INVOICE REFUND OF % DISCOUNT].
+  Create a draft refund.
+-
+  !record {model: account.invoice, id: account_invoice_refund_1a}:
+    account_id: account.a_recv
+    company_id: base.main_company
+    currency_id: base.EUR
+    invoice_line:
+      - account_id: account.a_sale
+        name: 'Test example'
+        price_unit: 450.0
+        quantity: 1.0
+        product_id: product.product_product_3
+        uos_id: product.product_uom_unit
+      
+
+    journal_id: account.bank_journal
+    partner_id: base.res_partner_12
+    reference_type: none
+-
+  I create a discount invoice line which value is percentage of 10%.
+-
+  !record {model: stage_discount.discount_line, id: discount_line_refund}:
+    discount_type: 'percentage'
+    discount_value: 10
+    description: 'Example percentage amount'
+    is_rounded: true
+    invoice_id: account_invoice_refund_1a
+
+-
+  Calculate the discount
+-
+  !python {model: account.invoice}: |
+    self.button_reset_taxes(cr, uid, [ref("account_invoice_refund_1a")])
+
+
+-
+  Check it!!
+-
+
+  !assert {model: account.invoice, id: account_invoice_refund_1a}:
+    - amount_discount == -45.0
+    - amount_untaxed == 405.0
+    - amount_tax == 0.0
+    - amount_total == 405.0
+-
+  I Validate invoice by clicking on Validate button
+-
+  !workflow {model: account.invoice, action: invoice_open, ref: account_invoice_refund_1a}
+
+-
+  Check balance
+-
+
+  !assert {model: account.invoice, id: account_invoice_refund_1a}:
+    - amount_discount == -45
+    - amount_untaxed == 405.0
+    - amount_tax == 0.0
+    - amount_total == 405.0    
+    - residual  == 405.0
+ 
+-
+  I verify that account move is created, and contains valid values.
+-
+  !python {model: account.invoice}: |
+    inv = self.browse(cr, uid, ref('account_invoice_refund_1a'))
+    move = inv.move_id
+    assert(len(move.line_id) == 3), ('Only 3 lines should appear ',len(move.line_id))
+    for line in move.line_id:
+         assert(line.credit!=0 or line.debit!=0), ('Both lines cannot be 0')
+         assert(line.debit in [405.0,  45.0, 0.0]), ('Debit can only belong to these values but it is:',line.debit)
+         assert(line.credit in [0,450.0]), ('Credit can only belong to these values but it is:', line.credit)
+         assert(line.state=='valid'), ('It should be in state valid')
+
+-
+  I refund the invoice Using Refund Button
+-
+  !record {model: account.invoice.refund, id: account_invoice_refund_wizard_0}:
+    description: Refund To China Export
+    period: account.period_5
+    filter_refund: refund
+-
+  I clicked on refund button
+-
+  !python {model: account.invoice.refund}: |
+    self.invoice_refund(cr, uid, [ref("account_invoice_refund_wizard_0")], {"lang": 'en_US', "tz": False, "active_model": "account.invoice", "active_ids": [ref("account_invoice_refund_1a")], "type": "out_invoice", "active_id": ref("account_invoice_refund_1a"), })
+
+-
+  I clicked on refund button
+-
+  !python {model: account.invoice}: |
+    refound_ids = self.search(cr, uid, [('name','=', 'Refund To China Export')])
+    assert(len(refound_ids) == 1), ('Only 1 object show be returned ',len(refound_ids))
+    refound = self.browse(cr, uid, refound_ids[0])
+    assert(refound.amount_discount == -45), ('Wrong calculation')
+    assert(refound.amount_untaxed == 405.0), ('Wrong calculation')
+    assert(refound.amount_tax == 0.0), ('Wrong calculation')
+    assert(refound.amount_total == 405.0), ('Wrong calculation')
+    assert(refound.residual  == 405.0), ('Wrong calculation')
+

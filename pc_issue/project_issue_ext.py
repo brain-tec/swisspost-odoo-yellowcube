@@ -1,7 +1,7 @@
 # b-*- encoding: utf-8 -*-
 ##############################################################################
 #
-#    Copyright (c) 2015 brain-tec AG (http://www.brain-tec.ch)
+#    Copyright (c) 2017 brain-tec AG (http://www.braintec-group.com)
 #    All Right Reserved
 #
 #    This program is free software: you can redistribute it and/or modify
@@ -18,33 +18,52 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 ##############################################################################
-
 from openerp.osv import osv, fields
 from openerp.tools.translate import _
 from openerp import SUPERUSER_ID
-import logging
-logger = logging.getLogger(__name__)
 
 
 class project_issue_ext(osv.Model):
     _inherit = 'project.issue'
 
-    def create_issue(self, cr, uid, res_model, res_id, error_message, tags=None, context=None):
-        ''' Eases the creation of an issue: creates an issue with the indicated tags over
-            the indicated res_id of the corresponding res_model. If no tags are indicated,
-            then the issues are logged to the ['error'] category.
-        '''
-        if context is None:
-            context = {}
+    def create_issue(self, cr, uid, res_model, res_id, issue_body,
+                     issue_subject=None, tags=None, create=True,
+                     reopen=True, context=None):
+        """ Eases the creation of an issue: creates an issue with the
+            indicated tags over the indicated res_id of the corresponding
+            res_model. If no tags are indicated, then the issues are
+            logged to the ['error'] category.
+
+        :param cr: 
+        :param uid: 
+        :param res_model: 
+        :param res_id: 
+        :param issue_body: 
+        :param issue_subject: 
+        :param tags: 
+        :param create: 
+        :param reopen: 
+        :param context: 
+        :return: 
+        """
         if tags is None:
             tags = ['error']
+        if context is None:
+            context = {}
+        if issue_subject:
+            issue_subject = issue_body
 
         new_cr = self.pool.db.cursor()
         try:
             project_issue_obj = self.pool.get('project.issue')
-            issue_ids = project_issue_obj.find_resource_issues(new_cr, uid, res_model, res_id, tags=tags, create=True, reopen=True, context=context)
+            issue_ids = project_issue_obj.find_resource_issues(
+                new_cr, uid, res_model, res_id, tags=tags, create=create,
+                reopen=reopen, context=context)
             for issue_id in issue_ids:
-                project_issue_obj.message_post(new_cr, uid, issue_id, error_message, context=context)
+                project_issue_obj.message_post(
+                    new_cr, uid, issue_id, body=issue_body,
+                    subject=issue_subject, context=context)
+
         finally:
             new_cr.commit()
             new_cr.close()
@@ -120,7 +139,7 @@ class project_issue_ext(osv.Model):
                 # If there is a tag filter, only consider those issues that share at least a tag name
                 for issue in self.browse(cr, uid, issue_ids, context=context):
                     for categ in issue.categ_ids:
-                        if categ.name in tags_set:
+                        if (not tags_set) or (categ.name in tags_set):
                             set_ids.append(issue.id)
                             break
 
@@ -162,7 +181,7 @@ class project_issue_ext(osv.Model):
 
             model_name = model_obj.read(cr, uid, model_ids, ['name'], context=context)[0]['name']
             data = self.pool.get(table_name).read(cr, uid, res_id, ['name'], context=context)
-            if data and ('name' in data):
+            if data and data.get('name'):
                 obj_name = data['name'].encode('ascii', 'xmlcharrefreplace')
             else:
                 obj_name = '?{0}:{1}'.format(table_name, res_id)
@@ -194,8 +213,8 @@ class project_issue_ext(osv.Model):
         return True
 
     _columns = {
-        'model_id': fields.many2one('ir.model', 'Model', required=False),
-        'res_id': fields.integer('Resource ID', required=False),
+        'model_id': fields.many2one('ir.model', 'Model', required=False, select=True),
+        'res_id': fields.integer('Resource ID', required=False, select=True),
     }
 
     _constraints = [(_reopen_tasks, _("No task with open issues can be closed"), ['stage_id', 'task_id'])]
@@ -210,7 +229,7 @@ def __open_record_issue(self, cr, uid, ids, create=True, tags=None, context=None
     if context is None:
         context = {}
     ids = ids or context.get('active_ids', [context['active_id']])
-    if not isinstance(ids, list):
+    if type(ids) != list:
         ids = [ids]
     table_name = context.get('active_model', self._name)
     issue_ids = self.pool.get('project.issue').find_resource_issues(cr, uid, table_name, ids[0], tags=tags, create=create, reopen=create, context=context)
@@ -249,7 +268,7 @@ def __open_record_issue_v2(self, cr, uid, ids, create=True, tags=None, context=N
     if context is None:
         context = {}
     ids = ids or context.get('active_ids', [context['active_id']])
-    if not isinstance(ids, list):
+    if type(ids) != list:
         ids = [ids]
     table_name = context.get('active_model', self._name)
     vals = {
@@ -275,5 +294,4 @@ def __open_record_issue_v2(self, cr, uid, ids, create=True, tags=None, context=N
 
 osv.Model.open_record_issue = __open_record_issue
 osv.Model.open_record_issue_v2 = __open_record_issue_v2
-
 # vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:

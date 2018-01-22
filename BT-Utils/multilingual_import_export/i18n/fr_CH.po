@@ -1,0 +1,27 @@
+# Translation of OpenERP Server.
+# This file contains the translation of the following modules:
+#
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: OpenERP Server 7.0-20140728-231228\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2014-12-02 13:48+0000\n"
+"PO-Revision-Date: 2014-12-02 13:48+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: pc_multilingual_data
+#: field:res.users,use_multilang:0
+msgid "Use multilingual export"
+msgstr "Use multilingual export"
+
+#. module: pc_multilingual_data
+#: model:ir.model,name:pc_multilingual_data.model_res_users
+msgid "Users"
+msgstr "Utilisateur"
+

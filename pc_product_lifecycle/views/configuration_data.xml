@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+	<data>
+		<record id="product_lifecycle_config_view" model="ir.ui.view">
+			<field name="name">product_lifecycle_config_view</field>
+			<field name="model">configuration.data</field>
+			<field name="inherit_id" ref="pc_config.configuration_data_form" />
+			<field name="arch" type="xml">
+
+				<notebook position="inside">
+
+					<page string="Product's Lifecycle">
+						<group cols="2">
+							<field name="product_lifecycle_force_products_to_have_price" />
+                            <field name="product_lifecycle_force_products_to_have_weight" />
+                            <field name="plc_allow_free_change_of_webshop_state" />
+                            <field name="product_lifecycle_name_min_length" />
+                            <field name="product_lifecycle_name_max_length" />
+                            <field name="product_lifecycle_default_code_min_length" />
+                            <field name="product_lifecycle_default_code_max_length" />
+						</group>
+
+    					<group cols="2">
+    						<group string="Clocking - Warehouse" colspan="1">
+    							<label
+    								for="clocking_product_lifecycle_from_endoflife_to_deactivated" />
+    							<div>
+    								<field
+    									name="clocking_product_lifecycle_from_endoflife_to_deactivated"
+    									style="width: 30%%;" />
+    								<field
+    									name="clocking_product_lifecycle_from_endoflife_to_deactivated_uom"
+    									class="oe_no_button" style="width: 65%%;" />
+    							</div>
+    						</group>
+    					</group>
+                    </page>
+
+				</notebook>
+
+			</field>
+		</record>
+	</data>
+</openerp>

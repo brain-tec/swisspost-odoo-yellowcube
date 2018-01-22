@@ -1,0 +1,26 @@
+<openerp>
+    <data>
+        <record id="pc_connect_transport_api.view_stock_connect_file_form_ext" model="ir.ui.view" >
+            <field name="name">pc_connect_transport_api.view_stock_connect_file_form_ext</field>
+            <field name="model">stock.connect.file</field>
+            <field name="inherit_id" ref="pc_connect_warehouse.view_stock_connect_file_form"/>
+            <field name="priority">99999</field>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='input']" position="after">
+                    <field name="connect_transport_profile" readonly="1"/>
+                </xpath>
+            </field>
+        </record>
+        <record id="pc_connect_transport_api.view_stock_connect_file_tree_ext" model="ir.ui.view" >
+            <field name="name">pc_connect_transport_api.view_stock_connect_file_tree_ext</field>
+            <field name="model">stock.connect.file</field>
+            <field name="inherit_id" ref="pc_connect_warehouse.view_stock_connect_file_tree"/>
+            <field name="priority">99999</field>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='input']" position="after">
+                    <field name="connect_transport_profile" readonly="1"/>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</openerp>

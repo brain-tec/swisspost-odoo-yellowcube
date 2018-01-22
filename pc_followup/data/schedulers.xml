@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+
+    <!-- We define here the data which must not be modified by the user. -->
+	<data noupdate="0">
+		<record id="bt_followup.update_invoice_followup_level_cron" model="ir.cron">
+            <field name="name">PCAP - Follow-up: Update follow-up level of invoices</field>
+        </record>
+		<record id="handle_invoice_followup_action_cron" model="ir.cron" forcecreate="True">
+			<field name="name">PCAP - Follow-up: Handle follow-up action of invoices</field>
+			<field name="model" eval="'account.invoice'" />
+			<field name="function" eval="'cron_handle_invoice_followup_action'" />
+            <field name="args" eval="()" />
+		</record>
+        <record id="send_followups_to_doc_out" model="ir.cron">
+            <field name="name">PCAP - Doc-out: Send Follow-ups</field>
+            <field name="model">account.invoice</field>
+            <field name="function">cron_send_followups_to_doc_out</field>
+            <field name="args" eval="()" />
+        </record>
+	</data>
+
+    <!-- We define here the data which may be modified by the user. -->
+    <data noupdate="1">
+		<record id="bt_followup.update_invoice_followup_level_cron" model="ir.cron">
+            <field name="priority" eval="0" />
+            <field name="active" eval="False" />
+        </record>
+		<record id="handle_invoice_followup_action_cron" model="ir.cron" forcecreate="True">
+            <field name="priority" eval="1" />
+			<field name="active" eval="False" />
+			<field name="interval_number">1</field>
+			<field name="interval_type">days</field>
+			<field name="numbercall">-1</field>
+			<field name="doall" eval="False" />
+		</record>
+        <record id="send_followups_to_doc_out" model="ir.cron">
+            <field name="interval_type">days</field>
+            <field name="interval_number" eval="1" />
+            <field name="numbercall" eval="-1" />
+            <field name="doall" eval="True" />
+            <field name="priority" eval="4" />
+            <field name="active" eval="False" />
+        </record>
+    </data>
+
+</openerp>

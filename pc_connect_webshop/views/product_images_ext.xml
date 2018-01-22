@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+	<data>
+		<record
+			id="view_product_image_form_ext"
+			model="ir.ui.view">
+			<field name="name">product.images.form.ext</field>
+			<field name="model">product.images</field>
+			<field
+				name="inherit_id"
+				ref="product_images.view_product_image_form" />
+			<field
+				name="arch"
+				type="xml">
+				<data>
+					<field
+						name="name"
+						position="after">
+						<field
+							name='sort_order'
+							colspan='2' />
+					</field>
+				</data>
+			</field>
+		</record>
+
+	</data>
+</openerp>

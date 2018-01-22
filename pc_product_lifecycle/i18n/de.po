@@ -1,0 +1,459 @@
+# Translation of OpenERP Server.
+# This file contains the translation of the following modules:
+#
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: OpenERP Server 7.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2016-06-15 06:53+0000\n"
+"PO-Revision-Date: 2016-06-15 06:53+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: pc_product_lifecycle
+#: code:addons/pc_product_lifecycle/product_product_ext.py:560
+msgid "-Because of clocking, it is not possible to pass from state 'end of life' to state 'deactivated' yet."
+msgstr "-Aufgrund der Taktung kann der Status noch nicht von 'Lebensende' nach 'Deaktiviert' gewechselt werden."
+
+#. module: pc_product_lifecycle
+#: code:addons/pc_product_lifecycle/product_product_ext.py:455
+msgid "-ERROR: 'Can be Sold' must be either True or False, not NULL."
+msgstr "-verhindernd: 'verkaufbar' muss entweder wahr oder falsch sein, nicht NULL."
+
+#. module: pc_product_lifecycle
+#: code:addons/pc_product_lifecycle/product_product_ext.py:490
+msgid "-ERROR: Field 'track_incoming' must be checked if 'track_production' or 'track_outgoing' are set."
+msgstr "-verhindernd: Feld 'Verfolge Eingänge' muss aktiviert sein, wenn 'Verfolge Produktion' oder 'Verfolge Ausgänge' gesetzt sind."
+
+#. module: pc_product_lifecycle
+#: code:addons/pc_product_lifecycle/product_product_ext.py:494
+msgid "-ERROR: Field 'track_outgoing' must be checked if 'track_incoming' or 'track_production' are set."
+msgstr "-verhindernd: Feld 'Verfolge Ausgänge' muss aktiviert sein, wenn 'Verfolge Produktion' oder 'Verfolge Eingänge' gesetzt sind."
+
+#. module: pc_product_lifecycle
+#: code:addons/pc_product_lifecycle/product_product_ext.py:486
+msgid "-ERROR: Field 'track_production' must be checked if 'track_incoming' or 'track_outgoing' are set."
+msgstr "-verhindernd: Feld 'Verfolge Produktion' muss aktiviert sein, wenn 'Verfolge Eingänge' oder 'Verfolge Ausgänge' gesetzt sind."
+
+#. module: pc_product_lifecycle
+#: code:addons/pc_product_lifecycle/product_product_ext.py:211
+msgid "-ERROR: Lot {0} with ID={1} contains units of this product."
+msgstr "-verhindernd: Charge {0} mit ID={1} enthält Bestand dieses Produktes."
+
+#. module: pc_product_lifecycle
+#: code:addons/pc_product_lifecycle/product_product_ext.py:442
+msgid "-ERROR: Name is not set, or it is set but has a length different than {0}..{1}."
+msgstr "-verhindernd: Der Name ist nicht gesetzt oder nicht innerhalb der erlaubten Länge von {0}..{1}."
+
+#. module: pc_product_lifecycle
+#: code:addons/pc_product_lifecycle/product_product_ext.py:219
+msgid "-ERROR: Orderpoint {0} with ID={1} is active for this product."
+msgstr "-verhindernd: Meldebestand {0} mit ID={1} ist aktiviert für dieses Produkt."
+
+#. module: pc_product_lifecycle
+#: code:addons/pc_product_lifecycle/product_product_ext.py:451
+msgid "-ERROR: Pricing/Primary Category is not set, or it is set but its value is not a valid one."
+msgstr "-verhindernd: Die Hauptkategorie des Produktes ist nicht gesetzt oder enthält ungültige Parameter."
+
+#. module: pc_product_lifecycle
+#: code:addons/pc_product_lifecycle/product_product_ext.py:459
+msgid "-ERROR: Product Type is not set, or it is set but its value is not one of ('product', 'consu', 'service')."
+msgstr "-verhindernd: Produktart ist nicht gesetzt oder nicht einer der Werte ('Lagerprodukt', 'Verbrauchsmaterial', 'Dienstleistung')."
+
+#. module: pc_product_lifecycle
+#: code:addons/pc_product_lifecycle/product_product_ext.py:467
+msgid "-ERROR: Purchase Unit of Measure is not set, or it is set but its value is not a valid one."
+msgstr "-verhindernd: Einkaufsmengeneinheit ist nicht definiert oder ungültig."
+
+#. module: pc_product_lifecycle
+#: code:addons/pc_product_lifecycle/product_product_ext.py:192
+msgid "-ERROR: Purchase order {0} with ID={1} is not in state 'done' nor 'cancel' and contains this product."
+msgstr "-verhindernd: Einkaufsbestellung {0} mit ID={1} ist nicht im Status 'Erledigt' oder 'Abgebrochen' und enthält dieses Produkt."
+
+#. module: pc_product_lifecycle
+#: code:addons/pc_product_lifecycle/product_product_ext.py:447
+msgid "-ERROR: Reference is not set, or it is set but its value is not unique, or it has a length different than {0}..{1}"
+msgstr "-verhindernd: Referenz ist nicht gesetzt oder nicht eindeutig oder hat eine Länge abweichend von {0}..{1}"
+
+#. module: pc_product_lifecycle
+#: code:addons/pc_product_lifecycle/product_product_ext.py:182
+msgid "-ERROR: Sale order {0} with ID={1} is not in state 'done' nor 'cancel' and contains this product."
+msgstr "-verhindernd: Bestellung {0} mit ID={1} ist nicht im Status 'Erledigt' oder 'Abgebrochen' und enthält dieses Produkt."
+
+#. module: pc_product_lifecycle
+#: code:addons/pc_product_lifecycle/product_product_ext.py:202
+msgid "-ERROR: Stock picking {0} with ID={1} is not in state 'done' nor 'cancel' and contains this product."
+msgstr "-verhindernd: Lieferung {0} mit ID={1} ist nicht im Status 'Erledigt' oder 'Abgebrochen' und enthält dieses Produkt."
+
+#. module: pc_product_lifecycle
+#: code:addons/pc_product_lifecycle/product_product_ext.py:206
+msgid "-ERROR: This product has a 'quantity on hand' grater than zero ({0} units are available)"
+msgstr "-verhindernd: Dieses Produkt hat einen Bestand grösser als null ({0} Einheiten verfügbar)"
+
+#. module: pc_product_lifecycle
+#: code:addons/pc_product_lifecycle/product_product_ext.py:463
+msgid "-ERROR: Unit of Measure is not set, or it is set but its value is not a valid one."
+msgstr "-verhindernd: Lagermengeneinheit ist nicht definiert oder ungültig."
+
+#. module: pc_product_lifecycle
+#: code:addons/pc_product_lifecycle/product_product_ext.py:527
+msgid "-ERROR: Webshop state can not be '{0}' if Target State is 'Deactivated'."
+msgstr "-verhindernd: Webshop Status kann nicht '{0}' sein, wenn der Soll-Status 'Deaktiviert' ist."
+
+#. module: pc_product_lifecycle
+#: code:addons/pc_product_lifecycle/product_product_ext.py:521
+msgid "-ERROR: Webshop state can not be '{0}' if Target State is 'Draft'."
+msgstr "-verhindernd: Webshop Status kann nicht '{0}' sein, wenn der Soll-Status 'Entwurf' ist."
+
+#. module: pc_product_lifecycle
+#: code:addons/pc_product_lifecycle/product_product_ext.py:529
+msgid "-ERROR: Webshop state can not be '{0}' if Target State is 'End of life'."
+msgstr "-verhindernd: Webshop Status kann nicht '{0}' sein, wenn der Soll-Status 'Lebensende' ist."
+
+#. module: pc_product_lifecycle
+#: code:addons/pc_product_lifecycle/product_product_ext.py:525
+msgid "-ERROR: Webshop state can not be '{0}' if Target State is 'In production'."
+msgstr "-verhindernd: Webshop Status kann nicht '{0}' sein, wenn der Soll-Status 'In Produktion' ist."
+
+#. module: pc_product_lifecycle
+#: code:addons/pc_product_lifecycle/product_product_ext.py:523
+msgid "-ERROR: Webshop state can not be '{0}' if Target State is 'Validated'."
+msgstr "-verhindernd: Webshop Status kann nicht '{0}' sein, wenn der Soll-Status 'Validiert' ist."
+
+#. module: pc_product_lifecycle
+#: code:addons/pc_product_lifecycle/product_product_ext.py:482
+msgid "-ERROR: Weight is lower than Weight Net."
+msgstr "-verhindernd: Bruttogewicht ist kleiner als Nettogewicht."
+
+#. module: pc_product_lifecycle
+#: selection:product.product,target_state:0
+msgid "Active"
+msgstr "Aktiv"
+
+#. module: pc_product_lifecycle
+#: help:configuration.data,product_lifecycle_force_products_to_have_price:0
+msgid "Are products required to have a price which is greater than zero?"
+msgstr "Müssen Produkte einen positiven Preis haben?"
+
+#. module: pc_product_lifecycle
+#: help:configuration.data,product_lifecycle_force_products_to_have_weight:0
+msgid "Are products required to have a weight and net weight set?"
+msgstr "Müssen Produkte ein Brutto- und Nettogewicht haben?"
+
+#. module: pc_product_lifecycle
+#: view:configuration.data:0
+msgid "Clocking - Warehouse"
+msgstr "Taktung Produktlebenszyklus"
+
+#. module: pc_product_lifecycle
+#: selection:configuration.data,clocking_product_lifecycle_from_endoflife_to_deactivated_uom:0
+msgid "Day(s)"
+msgstr "Tag(e)"
+
+#. module: pc_product_lifecycle
+#: selection:product.product,product_state:0
+msgid "Deactivated"
+msgstr "deaktiviert"
+
+#. module: pc_product_lifecycle
+#: selection:product.product,product_state:0
+msgid "Draft"
+msgstr "Entwurf"
+
+#. module: pc_product_lifecycle
+#: selection:product.product,product_state:0
+msgid "End of Life"
+msgstr "Lebensende"
+
+#. module: pc_product_lifecycle
+#: selection:configuration.data,clocking_product_lifecycle_from_endoflife_to_deactivated_uom:0
+msgid "Hour(s)"
+msgstr "Stunde(n)"
+
+#. module: pc_product_lifecycle
+#: selection:product.product,product_state:0
+msgid "In Production"
+msgstr "In Produktion"
+
+#. module: pc_product_lifecycle
+#: selection:product.product,target_state:0
+msgid "Inactive"
+msgstr "Inaktiv"
+
+#. module: pc_product_lifecycle
+#: field:configuration.data,product_lifecycle_force_products_to_have_price:0
+msgid "Is Price Mandatory?"
+msgstr "Preis obligatorisch?"
+
+#. module: pc_product_lifecycle
+#: model:ir.model.fields,field_description:field_configuration_data_product_lifecycle_force_products_to_have_price
+msgid "Is Price Mandatory?"
+msgstr "Preis obligatorisch?"
+
+#. module: pc_product_lifecycle
+#: field:configuration.data,product_lifecycle_force_products_to_have_weight:0
+msgid "Is Weight Mandatory?"
+msgstr "Gewicht obligatorisch?"
+
+#. module: pc_product_lifecycle
+#: model:ir.model.fields,field_description:field_configuration_data_product_lifecycle_force_products_to_have_weight
+msgid "Is Weight Mandatory?"
+msgstr "Gewicht obligatorisch?"
+
+#. module: pc_product_lifecycle
+#: field:configuration.data,product_lifecycle_default_code_max_length:0
+msgid "Maximum Length for Product's Default Code"
+msgstr "Maximale Länge für Produktreferenz"
+
+#. module: pc_product_lifecycle
+#: model:ir.model.fields,field_description:field_configuration_data_product_lifecycle_default_code_max_length
+msgid "Maximum Length for Product's Default Code"
+msgstr "Maximale Länge für Produktreferenz"
+
+#. module: pc_product_lifecycle
+#: field:configuration.data,product_lifecycle_name_max_length:0
+msgid "Maximum Length for Product's Name"
+msgstr "Maximale Länge für Produktbezeichnung"
+
+#. module: pc_product_lifecycle
+#: model:ir.model.fields,field_description:field_configuration_data_product_lifecycle_name_max_length
+msgid "Maximum Length for Product's Name"
+msgstr "Maximale Länge für Produktbezeichnung"
+
+#. module: pc_product_lifecycle
+#: field:configuration.data,product_lifecycle_default_code_min_length:0
+msgid "Minimum Length for Product's Default Code"
+msgstr "Minimale Länge für Produktreferenz"
+
+#. module: pc_product_lifecycle
+#: model:ir.model.fields,field_description:field_configuration_data_product_lifecycle_default_code_min_length
+msgid "Minimum Length for Product's Default Code"
+msgstr "Minimale Länge für Produktreferenz"
+
+#. module: pc_product_lifecycle
+#: field:configuration.data,product_lifecycle_name_min_length:0
+msgid "Minimum Length for Product's Name"
+msgstr "Minimale Länge für Produktbezeichnung"
+
+#. module: pc_product_lifecycle
+#: model:ir.model.fields,field_description:field_configuration_data_product_lifecycle_name_min_length
+msgid "Minimum Length for Product's Name"
+msgstr "Minimale Länge für Produktbezeichnung"
+
+#. module: pc_product_lifecycle
+#: model:ir.model,name:model_ir_module_module
+msgid "Module"
+msgstr "Modul"
+
+#. module: pc_product_lifecycle
+#: code:addons/pc_product_lifecycle/product_product_ext.py:567
+msgid "No errors were found in the validation."
+msgstr "Keine Fehler für die Produktvalidierung gefunden."
+
+#. module: pc_product_lifecycle
+#: model:ir.model,name:model_res_partner
+msgid "Partner"
+msgstr "Kontakte"
+
+#. module: pc_product_lifecycle
+#: view:product.product:0
+msgid "Product Validation"
+msgstr "Produktvalidierung"
+
+#. module: pc_product_lifecycle
+#: model:ir.model,name:model_product_product
+msgid "Product"
+msgstr "Produkt"
+
+#. module: pc_product_lifecycle
+#: view:configuration.data:0
+msgid "Product's Lifecycle"
+msgstr "Produktlebenszyklus"
+
+#. module: pc_product_lifecycle
+#: constraint:product.product:0
+msgid "Reference field is duplicated with another product which is not in state 'deactivated'."
+msgstr "Die Produktreferenz ist bereits für ein anderes Produkt verwendet, das nicht im Status 'Deaktiviert' ist."
+
+#. module: pc_product_lifecycle
+#: view:product.product:0
+msgid "Set to 'deactivated'"
+msgstr "Setze auf 'Deaktiviert'"
+
+#. module: pc_product_lifecycle
+#: view:product.product:0
+msgid "Set to 'draft'"
+msgstr "Setze auf 'Entwurf'"
+
+#. module: pc_product_lifecycle
+#: view:product.product:0
+msgid "Set to 'end of life'"
+msgstr "Setze auf 'Lebensende'"
+
+#. module: pc_product_lifecycle
+#: view:product.product:0
+msgid "Set to 'in production'"
+msgstr "Setze auf 'In Produktion'"
+
+#. module: pc_product_lifecycle
+#: view:product.product:0
+msgid "Set to 'validated'"
+msgstr "Setze auf 'Validiert'"
+
+#. module: pc_product_lifecycle
+#: code:addons/pc_product_lifecycle/product_product_ext.py:58
+msgid "Some errors happened while validating the product:\n"
+" {0}"
+msgstr "Aufgetretene Fehler bei der Produkt-Validierung:\n"
+" {0}"
+
+#. module: pc_product_lifecycle
+#: field:product.product,product_state:0
+msgid "State"
+msgstr "Status"
+
+#. module: pc_product_lifecycle
+#: model:ir.model.fields,field_description:field_product_product_product_state
+msgid "State"
+msgstr "Status"
+
+#. module: pc_product_lifecycle
+#: field:product.product,target_state:0
+msgid "Target State"
+msgstr "Soll-Status"
+
+#. module: pc_product_lifecycle
+#: model:ir.model.fields,field_description:field_product_product_target_state
+msgid "Target State"
+msgstr "Soll-Status"
+
+#. module: pc_product_lifecycle
+#: sql_constraint:product.product:0
+msgid "The reference must be unique"
+msgstr "Die Referenz muss eindeutig sein"
+
+#. module: pc_product_lifecycle
+#: field:product.product,moved_manually_to_draft:0
+msgid "The stock was manually set to draft."
+msgstr "Das Produkt wurde manuell auf 'Entwurf' gesetzt."
+
+#. module: pc_product_lifecycle
+#: model:ir.model.fields,field_description:field_product_product_moved_manually_to_draft
+msgid "The stock was manually set to draft."
+msgstr "Das Produkt wurde manuell auf 'Entwurf' gesetzt."
+
+#. module: pc_product_lifecycle
+#: code:addons/pc_product_lifecycle/product_product_ext.py:356
+msgid "There is not any activity in the workflow with the name 'draft'."
+msgstr "Es gibt im Workflow keine Aktivität namens 'Entwurf'."
+
+#. module: pc_product_lifecycle
+#: code:addons/pc_product_lifecycle/product_product_ext.py:344
+msgid "There is not any workflow with the name '{0}'."
+msgstr "Es gibt keinen Workflow namens '{0}'."
+
+#. module: pc_product_lifecycle
+#: code:addons/pc_product_lifecycle/product_product_ext.py:551
+msgid "This product type does not uses the lifecycle."
+msgstr "Diese Produktart verwendet den Produktlebenszyklus nicht."
+
+#. module: pc_product_lifecycle
+#: field:configuration.data,clocking_product_lifecycle_from_endoflife_to_deactivated:0
+msgid "Time to wait from 'End of Life' to 'Deactivated'"
+msgstr "Wartezeit für den Wechsel von 'Lebensende' nach 'Deaktiviert'"
+
+#. module: pc_product_lifecycle
+#: model:ir.model.fields,field_description:field_configuration_data_clocking_product_lifecycle_from_endoflife_to_deactivated
+msgid "Time to wait from 'End of Life' to 'Deactivated'"
+msgstr "Wartezeit für den Wechsel von 'Lebensende' nach 'Deaktiviert'"
+
+#. module: pc_product_lifecycle
+#: field:product.product,action_date:0
+msgid "Timestamp of the workflow's state"
+msgstr "Zeitstempel des Workflow-Status"
+
+#. module: pc_product_lifecycle
+#: model:ir.model.fields,field_description:field_product_product_action_date
+msgid "Timestamp of the workflow's state"
+msgstr "Zeitstempel des Workflow-Status"
+
+#. module: pc_product_lifecycle
+#: view:product.product:0
+msgid "Timestamp of the workflow's state"
+msgstr "Zeitstempel des Workflow-Status"
+
+#. module: pc_product_lifecycle
+#: view:product.product:0
+msgid "True"
+msgstr "Wahr"
+
+#. module: pc_product_lifecycle
+#: field:configuration.data,clocking_product_lifecycle_from_endoflife_to_deactivated_uom:0
+msgid "UOM to wait from 'End of Life' to 'Deactivated'"
+msgstr "Einheit der Wartezeit von 'Lebensende' nach 'Deaktiviert'"
+
+#. module: pc_product_lifecycle
+#: model:ir.model.fields,field_description:field_configuration_data_clocking_product_lifecycle_from_endoflife_to_deactivated_uom
+msgid "UOM to wait from 'End of Life' to 'Deactivated'"
+msgstr "Einheit der Wartezeit von 'Lebensende' nach 'Deaktiviert'"
+
+#. module: pc_product_lifecycle
+#: help:configuration.data,clocking_product_lifecycle_from_endoflife_to_deactivated_uom:0
+msgid "UOM to wait from 'End of Life' to 'Deactivated'."
+msgstr "Einheit der Wartezeit von 'Lebensende' nach 'Deaktiviert'"
+
+#. module: pc_product_lifecycle
+#: view:product.product:0
+msgid "Update Workflow"
+msgstr "Aktualisiere Workflow"
+
+#. module: pc_product_lifecycle
+#: selection:product.product,product_state:0
+msgid "Validated"
+msgstr "Validiert"
+
+#. module: pc_product_lifecycle
+#: code:addons/pc_product_lifecycle/product_product_ext.py:57
+msgid "Validation error."
+msgstr "Validierungsfehler"
+
+#. module: pc_product_lifecycle
+#: code:addons/pc_product_lifecycle/product_product_ext.py:344
+msgid "Workflow name error"
+msgstr "Fehler beim Workflow Namen"
+
+#. module: pc_product_lifecycle
+#: code:addons/pc_product_lifecycle/product_product_ext.py:356
+msgid "Workflow's activity name error"
+msgstr "Fehler beim Aktivitätsnamen des Workflow"
+
+#. module: pc_product_lifecycle
+#: model:ir.model,name:model_configuration_data
+msgid "configuration.data"
+msgstr "Konfiguration"
+
+#. module: pc_product_lifecycle
+#: field:product.product,product_state_validation:0
+msgid "unknown"
+msgstr "unbekannt"
+
+#. module: pc_product_lifecycle
+#: field:product.product,stock_moves_exist:0
+msgid "unknown"
+msgstr "unbekannt"
+
+#. module: pc_product_lifecycle
+#: model:ir.model.fields,field_description:field_product_product_product_state_validation
+msgid "unknown"
+msgstr "unbekannt"
+
+#. module: pc_product_lifecycle
+#: model:ir.model.fields,field_description:field_product_product_stock_moves_exist
+msgid "unknown"
+msgstr "unbekannt"
+

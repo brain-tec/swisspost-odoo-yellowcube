@@ -1,0 +1,26 @@
+<openerp>
+    <data>
+        <record id="location_api_ROD" model="stock.location">
+			<field name="name">API_ROD</field>
+		</record>
+		<record id="location_api_AFS" model="stock.location">
+			<field name="name">API_AFS</field>
+		</record>
+		<record id="location_api_BLK" model="stock.location">
+			<field name="name">API_BLK</field>
+		</record>
+		<record id="location_api_SCR" model="stock.location">
+			<field name="name">API_SCR</field>
+		</record>
+
+        <record id="demo_warehouse" model="stock.warehouse">
+			<field name="name">Connect Transport API Test</field>
+            <field name="stock_connect_id" ref="pc_connect_transport_api.demo_connect" />
+			<field name="lot_input_id" ref="location_api_ROD" />
+			<field name="lot_stock_id" ref="location_api_AFS" />
+			<field name="lot_output_id" ref="stock.stock_location_output" />
+			<field name="lot_blocked_id" ref="location_api_BLK" />
+			<field name="lot_scrapping_id" ref="location_api_SCR" />
+		</record>
+    </data>
+</openerp>

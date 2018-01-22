@@ -1,8 +1,19 @@
 <openerp>
     <data>
 
-        <record id="view_delivery_carrier_form_ext" model="ir.ui.view">
-            <field name="name">view_delivery_carrier_form_ext</field>
+        <record id="view_delivery_carrier_tree_ext" model="ir.ui.view">
+            <field name="name">view_delivery_carrier_tree_ext</field>
+            <field name="model">delivery.carrier</field>
+            <field name="inherit_id" ref="delivery.view_delivery_carrier_tree" />
+            <field name="arch" type="xml">
+                <field name="name" position="after">
+                    <field name="stock_type_id" />
+                </field>
+            </field>
+        </record>
+
+        <record id="view_delivery_carrier_yc_enhancements_form_ext" model="ir.ui.view">
+            <field name="name">view_delivery_carrier_yc_enhancements_form_ext</field>
             <field name="model">delivery.carrier</field>
             <field name="inherit_id" ref="delivery.view_delivery_carrier_form" />
             <field name="arch" type="xml">
@@ -10,6 +21,22 @@
                     <field name="show_customer_phone_on_picking" />
                     <field name="show_name_on_picking" />
                 </field>
+				<field name="product_id" position="after">
+                    <field name="pc_freight_shipping" colspan="2" nolabel="0" />
+                    <field name="stock_type_id" />
+
+                    <group colspan="2">
+                        <field name="id" invisible="True" />
+
+                        <field name="carrier_replacement_ids" context="{'default_original_carrier_id': id}">
+                            <tree string="Alternative Delivery Methods" name="alternative_delivery_methods" editable="bottom">
+                                <field name="sequence" />
+                                <field name="original_carrier_id" invisible="1" />
+                                <field name="replacement_carrier_id" domain="[('id', '!=', original_carrier_id)]" />
+                            </tree>
+                        </field>
+                    </group>
+				</field>
             </field>        
         </record>
 

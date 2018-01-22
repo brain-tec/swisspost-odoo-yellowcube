@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <record id="view_view_search_ext" model="ir.ui.view">
+            <field name="name">view_view_search_ext</field>
+            <field name="model">ir.ui.view</field>
+            <field name="inherit_id" ref="base.view_view_search"/>
+            <field name="arch" type="xml">
+                <data>
+                    <xpath expr="//field[@name='name']" position="after">
+                        <field name="arch"/>
+                    </xpath>
+                </data>
+            </field>
+        </record>
+
+		<record id="view_ir_model_fields_ext" model="ir.ui.view">
+            <field name="name">view_ir_model_fields_ext</field>
+            <field name="model">ir.model.fields</field>
+            <field name="inherit_id" ref="base.view_model_fields_form"/>
+            <field name="arch" type="xml">
+                <data>
+                    <xpath expr="//sheet" position="inside">
+                        <field name="field_to_dict" widget="html" nolabel="0"/>
+                    </xpath>
+                </data>
+            </field>
+        </record>
+
+		<record id="view_ir_model_fields2_ext" model="ir.ui.view">
+            <field name="name">view_ir_model_fields2_ext</field>
+            <field name="model">ir.model</field>
+            <field name="inherit_id" ref="base.view_model_form"/>
+            <field name="arch" type="xml">
+                <data>
+                    <xpath expr="//field[@name='field_id']/form" position="inside">
+                        <field name="field_to_dict" widget="html" nolabel="0"/>
+                    </xpath>
+                </data>
+            </field>
+        </record>
+    </data>
+</openerp>

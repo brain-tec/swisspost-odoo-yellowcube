@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+	<data>
+	<menuitem id="menu_discount" name="Discount" parent="account.menu_finance" sequence="14" groups="account.group_account_user,account.group_account_manager"/>
+	
+		<menuitem action="action_discount_form" id="menu_action_discount_form"
+			parent="menu_discount" />
+
+		<record id="account.action_invoice_tree1" model="ir.actions.act_window">
+			<field name="context">{'custom_search_line_discount': True, 'default_type':'out_invoice', 'type':'out_invoice', 'journal_type': 'sale'}</field>
+		</record>
+		
+		<record id="account.action_invoice_tree3" model="ir.actions.act_window">
+			<field name="context">{'custom_search_line_discount': True, 'default_type':'out_refund', 'type':'out_refund', 'journal_type': 'sale_refund'}</field>
+		</record>
+		
+		<!-- <record id="sale.action_quotations" model="ir.actions.act_window">
+			<field name="context">{'custom_search_line_discount': True}</field>
+		</record>
+		<record id="sale.action_orders" model="ir.actions.act_window">
+			<field name="context">{'custom_search_line_discount': True}
+			</field>
+		</record> -->
+		
+	</data>
+</openerp>

@@ -1,0 +1,8 @@
+<openerp>
+    <data noupdate="0">
+
+        <function model="res.currency" name="create_ch5_currency_if_does_not_exist"
+            eval="([])"/>
+
+    </data>
+</openerp>

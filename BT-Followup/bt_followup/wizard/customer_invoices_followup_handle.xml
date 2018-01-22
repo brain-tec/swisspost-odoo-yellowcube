@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+	<data>
+
+
+		<record id="customer_invoices_followup_handle_view" model="ir.ui.view">
+			<field name="name">customer.invoices.followup.handle.form</field>
+			<field name="model">customer.invoices.followup.handle</field>
+			<field name="arch" type="xml">
+				<form string="Handle Pending Follow-ups" version="7.0">
+					<p class="oe_grey">
+						Once pending follow-up are handled, you will not be able
+						to modify it. All actions, defined in follow-up level
+						of each overdue invoice of each partner, will be executed.
+					</p>
+					<footer>
+						<button string="Handle Follow-ups" name="do_multi_handle_followup"
+							type="object" default_focus="1" class="oe_highlight" />
+						or
+						<button string="Cancel" class="oe_link" special="cancel" />
+					</footer>
+				</form>
+			</field>
+		</record>
+
+		<act_window id="action_handle_customers_invoice_follow_ups"
+			multi="True" key2="client_action_multi" name="Handle Pending Follow-ups"
+			res_model="customer.invoices.followup.handle" src_model="res.partner"
+			view_mode="form" target="new" view_type="form" />
+
+
+
+	</data>
+</openerp>

@@ -1,0 +1,39 @@
+<openerp>
+	<data>
+		<record id="view_bt_helper_name_generator_form" model="ir.ui.view">
+			<field name="name">bt_helper_name_generator_form</field>
+			<field name="model">bt_helper.name_generator</field>
+			<field name="arch" type="xml">
+				<form string="Name generator" version="7.0">
+					<sheet>
+						<group colspan="4">
+							<field name="name" />
+							<field name="python_code" colspan="4" />
+						</group>
+					</sheet>
+				</form>
+			</field>
+		</record>
+
+		<record id="view_bt_helper_name_generator_tree" model="ir.ui.view">
+			<field name="name">bt_helper_name_generator_tree</field>
+			<field name="model">bt_helper.name_generator</field>
+			<field name="arch" type="xml">
+				<tree string="Name generator" version="7.0">
+					<field name="name" />
+				</tree>
+			</field>
+		</record>
+
+		<record id="view_bt_helper_name_generator_search" model="ir.ui.view">
+			<field name="name">bt_helper_name_generator_search</field>
+			<field name="model">bt_helper.name_generator</field>
+			<field name="arch" type="xml">
+				<search string="Name generator" version="7.0">
+					<field name="name" />
+					<field name="python_code" />
+				</search>
+			</field>
+		</record>
+	</data>
+</openerp>

@@ -1,8 +1,13 @@
 -
   TEST_BAR_PROCESS_CORRECT_FILE. Tests a BAR file.
 -
-  !python {model: account.invoice}: |
+  !python {model: stock.connect}: |
     print 'Starting the test TEST_BAR_PROCESS_CORRECT_FILE.'
+    self.write(cr, uid, ref('pc_connect_warehouse_yellowcube.demo_connection_yc'), {
+      'type': 'yellowcube',
+      'connect_transport_id': ref('pc_connect_warehouse_yellowcube.fds_dummy_connection'),
+      'yc_enable_art_file': False,
+      })
     cr.execute("SAVEPOINT test;")
 -
   !python {model: workflow.transition}: |

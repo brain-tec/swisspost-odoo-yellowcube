@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+	<data>
+		<record id="view_discount_search" model="ir.ui.view">
+			<field name="name">stage_discount.discount.search</field>
+			<field name="model">stage_discount.discount</field>
+			<field name="arch" type="xml">
+				<search string="Discount Term">
+					<field name="name" string="Discount Term" />
+					<field name="active" />
+				</search>
+			</field>
+		</record>
+		<record id="view_discount_form" model="ir.ui.view">
+			<field name="name">stage_discount.discount.form</field>
+			<field name="model">stage_discount.discount</field>
+			<field name="arch" type="xml">
+				<form string="Discount Term" version="7.0">
+					<group col="4">
+						<field name="name" />
+						<field name="description" placeholder="Discount term explanation for the customer..." />
+						<field name="is_rounded" />
+					</group>
+					
+					<separator string="Discount lines" />
+					<field name="discount_line_ids" context="{'menu_item_discount_term': True}" />
+					<group groups="base.group_no_one">
+						<separator string="Testing:" colspan="4" />
+						<group col="4">
+
+								
+							<field name="test_value" class="oe_inline" />
+
+							<field name="test_tax_ids" widget="many2many_tags" />
+							<button string="Compute Value" name="action_test_the_value"
+								type="object" help="Test these values" />
+							<field name="test_note" placeholder="Discount field (only for testing purposes)..."
+							readonly="1"
+								colspan="4" />
+						</group>
+					</group>
+				</form>
+			</field>
+		</record>
+		<record id="view_discount_tree" model="ir.ui.view">
+			<field name="name">stage_discount.discount.tree</field>
+			<field name="model">stage_discount.discount</field>
+			<field name="arch" type="xml">
+				<tree string="Discount Term" version="7.0">
+					<field name="sequence" widget="handle" />
+					<field name="name" />
+					<field name="description" />
+				</tree>
+			</field>
+		</record>
+		<record id="action_discount_form" model="ir.actions.act_window">
+			<field name="name">Discount Terms</field>
+			<field name="res_model">stage_discount.discount</field>
+			<field name="view_type">form</field>
+			<field name="view_mode">tree,form</field>
+			<field name="search_view_id" ref="view_discount_search" />
+			<field name="domain" />
+		</record>
+
+	</data>
+</openerp>

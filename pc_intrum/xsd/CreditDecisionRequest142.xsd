@@ -1,0 +1,473 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Mit XMLSpy v2008 rel. 2 (http://www.altova.com) von . (Intrum Justitia) bearbeitet -->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" attributeFormDefault="unqualified">
+	<xs:element name="Request">
+		<xs:annotation>
+			<xs:documentation xml:lang="en">request to be sent from client to Intrum Justitia</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="Customer" maxOccurs="unbounded">
+					<xs:annotation>
+						<xs:documentation xml:lang="en">customer to be checked</xs:documentation>
+					</xs:annotation>
+					<xs:complexType>
+						<xs:choice>
+							<xs:element ref="Person"/>
+							<xs:element ref="Company"/>
+						</xs:choice>
+						<xs:attribute name="Reference" use="required">
+							<xs:annotation>
+								<xs:documentation xml:lang="en">unique identification of customer</xs:documentation>
+							</xs:annotation>
+							<xs:simpleType>
+								<xs:restriction base="xs:string">
+									<xs:minLength value="1"/>
+									<xs:maxLength value="32"/>
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:attribute>
+					</xs:complexType>
+				</xs:element>
+			</xs:sequence>
+			<xs:attribute name="ClientId" type="xs:long" use="required">
+				<xs:annotation>
+					<xs:documentation xml:lang="en">your client identification no. at Intrum Justitia</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="Version" type="xs:decimal" use="required">
+				<xs:annotation>
+					<xs:documentation xml:lang="en">interface version</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="SiteId" use="optional">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:minLength value="1"/>
+						<xs:maxLength value="60"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:attribute>
+			<xs:attribute name="SiteSubId" use="optional">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:minLength value="1"/>
+						<xs:maxLength value="60"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:attribute>
+			<xs:attribute name="Email" use="optional">
+				<xs:annotation>
+					<xs:documentation xml:lang="en">email address of your technical contact</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:minLength value="1"/>
+						<xs:maxLength value="254"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:attribute>
+			<xs:attribute name="RequestId" type="xs:string" use="optional">
+				<xs:annotation>
+					<xs:documentation xml:lang="en">unique identification of credit check request</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="UserID" use="required">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:minLength value="1"/>
+						<xs:maxLength value="30"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:attribute>
+			<xs:attribute name="Password" use="required">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:minLength value="1"/>
+						<xs:maxLength value="30"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:attribute>
+		</xs:complexType>
+	</xs:element>
+	<xs:complexType name="AddressType">
+		<xs:sequence>
+			<xs:element name="FirstLine" minOccurs="0">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:minLength value="1"/>
+						<xs:maxLength value="50"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="HouseNumber" minOccurs="0">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:minLength value="1"/>
+						<xs:maxLength value="35"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="CountryCode">
+				<xs:annotation>
+					<xs:documentation xml:lang="en">countrycode ISO2 or ISO3</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:minLength value="1"/>
+						<xs:maxLength value="3"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="PostCode">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:minLength value="1"/>
+						<xs:maxLength value="8"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="Town">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:minLength value="1"/>
+						<xs:maxLength value="50"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="PreviousAddressType">
+		<xs:sequence>
+			<xs:element name="Address" type="AddressType"/>
+			<xs:element name="EndDate" type="xs:date"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="CommunicationNumbersType">
+		<xs:sequence>
+			<xs:element name="TelephonePrivate" minOccurs="0">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:minLength value="1"/>
+						<xs:maxLength value="50"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="TelephoneOffice" minOccurs="0">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:minLength value="1"/>
+						<xs:maxLength value="50"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="Fax" minOccurs="0">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:minLength value="1"/>
+						<xs:maxLength value="50"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="Mobile" minOccurs="0">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:minLength value="1"/>
+						<xs:maxLength value="50"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="Email" minOccurs="0">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:minLength value="1"/>
+						<xs:maxLength value="50"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="Language">
+		<xs:simpleType>
+			<xs:restriction base="xs:string">
+				<xs:minLength value="2"/>
+				<xs:maxLength value="2"/>
+				<xs:enumeration value="de"/>
+				<xs:enumeration value="fr"/>
+				<xs:enumeration value="it"/>
+				<xs:enumeration value="en"/>
+				<xs:enumeration value="nl"/>
+			</xs:restriction>
+		</xs:simpleType>
+	</xs:element>
+	<xs:complexType name="ExtraInfoTypeType">
+		<xs:sequence>
+			<xs:element name="Name">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:minLength value="1"/>
+						<xs:maxLength value="30"/>
+						<xs:enumeration value="OCCUPATION"/>
+						<xs:enumeration value="OCCUPATIONCATEGORY"/>
+						<xs:enumeration value="EMPLOYER"/>
+						<xs:enumeration value="EMPLOYERADDRESS"/>
+						<xs:enumeration value="TAXNUMBER"/>
+						<xs:enumeration value="REGISTERNUMBER"/>
+						<xs:enumeration value="W-IDNR"/>
+						<xs:enumeration value="AGEVERIFICATION"/>
+						<xs:enumeration value="ORDERCLOSED"/>
+						<xs:enumeration value="ORDERAMOUNT"/>
+						<xs:enumeration value="ORDERCURRENCY"/>
+						<xs:enumeration value="ORDERID"/>
+						<xs:enumeration value="PAYMENTMETHOD"/>
+						<xs:enumeration value="IP"/>
+						<xs:enumeration value="CUSTOMERINFO1"/>
+						<xs:enumeration value="CUSTOMERINFO2"/>
+						<xs:enumeration value="KDN.ANREDE_ID"/>
+						<xs:enumeration value="KDN.DATUM_G"/>
+						<xs:enumeration value="KDN.EINKOMMEN_E"/>
+						<xs:enumeration value="KDN.EINKOMMENNETTO_E"/>
+						<xs:enumeration value="KDN.EINKOMMEN_FAKTOR"/>
+						<xs:enumeration value="KDN.NEBENBRUTTO_E"/>
+						<xs:enumeration value="KDN.NEBEN_E"/>
+						<xs:enumeration value="KDN.NEBEN_FAKTOR"/>
+						<xs:enumeration value="KDN.SONST_A"/>
+						<xs:enumeration value="KDN.FAMST_ID"/>
+						<xs:enumeration value="KDN.KIND1"/>
+						<xs:enumeration value="KDN.KIND2"/>
+						<xs:enumeration value="KDN.KIND3"/>
+						<xs:enumeration value="KDN.MIETE_A"/>
+						<xs:enumeration value="KDN.UST_A"/>
+						<xs:enumeration value="KDN.ZUS1_A"/>
+						<xs:enumeration value="KDN.SONST_A"/>
+						<xs:enumeration value="KDN.PLZ"/>
+						<xs:enumeration value="KDN2.ANREDE_ID"/>
+						<xs:enumeration value="KDN2.DATUM_G"/>
+						<xs:enumeration value="KDN2.EINKOMMENNETTO_E"/>
+						<xs:enumeration value="KDN2.EINKOMMEN_E"/>
+						<xs:enumeration value="KDN2.EINKOMMEN_FAKTOR"/>
+						<xs:enumeration value="KDN2.PLZ"/>
+						<xs:enumeration value="KLK.ART_ID"/>
+						<xs:enumeration value="KLK.GLF"/>
+						<xs:enumeration value="KLK.KREDITSUMME"/>
+						<xs:enumeration value="KLK.ZINSSATZ"/>
+						<xs:enumeration value="KLK.GRUND_ID"/>
+						<xs:enumeration value="DELIVERY_LASTNAME"/>
+						<xs:enumeration value="DELIVERY_FIRSTNAME"/>
+						<xs:enumeration value="DELIVERY_FIRSTLINE"/>
+						<xs:enumeration value="DELIVERY_HOUSENUMBER"/>
+						<xs:enumeration value="DELIVERY_COUNTRYCODE"/>
+						<xs:enumeration value="DELIVERY_POSTCODE"/>
+						<xs:enumeration value="DELIVERY_TOWN"/>
+						<xs:enumeration value="DELIVERY_REFERENCE"/>
+						<xs:enumeration value="INCOME_CATEGORY"/>
+						<xs:enumeration value="CREDIT_CHECK_MODEL"/>
+						<xs:enumeration value="RC16_RESIDENCE_CONFIRMATION"/>
+						<xs:enumeration value="RC16_ACCOUNT_CHECKING"/>
+						<xs:enumeration value="RC16_NATIONALITY_CH"/>
+						<xs:enumeration value="RC16_RESIDENCE_PERMIT"/>
+						<xs:enumeration value="RC16_DURATION_OF_STAY"/>
+						<xs:enumeration value="RC16_ARREAR_PAID"/>
+						<xs:enumeration value="RC16_PAYMENT_AGREEMENT"/>
+						<xs:enumeration value="RC16_APPLICATION_FORM"/>
+						<xs:enumeration value="CLIENT_CLASSIFICATION"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="Value">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:minLength value="1"/>
+						<xs:maxLength value="500"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="Person" type="PersonType"/>
+	<xs:element name="Company" type="CompanyType"/>
+	<xs:complexType name="PersonType">
+		<xs:sequence>
+			<xs:element name="LastName">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:minLength value="1"/>
+						<xs:maxLength value="35"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="FirstName">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:minLength value="1"/>
+						<xs:maxLength value="35"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="Gender" minOccurs="0">
+				<xs:simpleType>
+					<xs:restriction base="xs:integer">
+						<xs:enumeration value="1">
+							<xs:annotation>
+								<xs:documentation xml:lang="en">male</xs:documentation>
+							</xs:annotation>
+						</xs:enumeration>
+						<xs:enumeration value="2">
+							<xs:annotation>
+								<xs:documentation xml:lang="en">female</xs:documentation>
+							</xs:annotation>
+						</xs:enumeration>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="DateOfBirth" type="xs:date" minOccurs="0"/>
+			<xs:element name="MaritalStatus" minOccurs="0">
+				<xs:simpleType>
+					<xs:restriction base="xs:integer">
+						<xs:enumeration value="1">
+							<xs:annotation>
+								<xs:documentation xml:lang="en">single</xs:documentation>
+							</xs:annotation>
+						</xs:enumeration>
+						<xs:enumeration value="2">
+							<xs:annotation>
+								<xs:documentation xml:lang="en">married</xs:documentation>
+							</xs:annotation>
+						</xs:enumeration>
+						<xs:enumeration value="3">
+							<xs:annotation>
+								<xs:documentation xml:lang="en">divorced</xs:documentation>
+							</xs:annotation>
+						</xs:enumeration>
+						<xs:enumeration value="5">
+							<xs:annotation>
+								<xs:documentation xml:lang="en">widowed</xs:documentation>
+							</xs:annotation>
+						</xs:enumeration>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element ref="Language" minOccurs="0"/>
+			<xs:element name="Nationality" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation xml:lang="en">country Code ISO2 or ISO3</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:minLength value="2"/>
+						<xs:maxLength value="3"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="ResidencePermit" minOccurs="0">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:enumeration value="A"/>
+						<xs:enumeration value="B"/>
+						<xs:enumeration value="C"/>
+						<xs:enumeration value="D"/>
+						<xs:enumeration value="G"/>
+						<xs:enumeration value="L"/>
+						<xs:enumeration value="F"/>
+						<xs:enumeration value="N"/>
+						<xs:enumeration value="S"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="ResidentSince" type="xs:date" minOccurs="0"/>
+			<xs:element name="CurrentAddress" type="AddressType" minOccurs="0"/>
+			<xs:element name="PreviousAddress" type="PreviousAddressType" minOccurs="0"/>
+			<xs:element name="CommunicationNumbers" type="CommunicationNumbersType" minOccurs="0"/>
+			<xs:element name="ExtraInfo" type="ExtraInfoTypeType" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="DeliveryAddress" type="DeliveryAddressType" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="CompanyType">
+		<xs:sequence>
+			<xs:element name="CompanyName1">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:minLength value="1"/>
+						<xs:maxLength value="60"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="CompanyName2" minOccurs="0">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:minLength value="1"/>
+						<xs:maxLength value="35"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="CurrentAddress" type="AddressType" minOccurs="0"/>
+			<xs:element name="PreviousAddress" type="PreviousAddressType" minOccurs="0"/>
+			<xs:element name="CommunicationNumbers" type="CommunicationNumbersType" minOccurs="0"/>
+			<xs:element name="OrderingPerson" type="OrderingPersonType" minOccurs="0"/>
+			<xs:element name="ExtraInfo" type="ExtraInfoTypeType" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="DeliveryAddress" type="DeliveryAddressType" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="OrderingPersonType">
+		<xs:sequence>
+			<xs:element name="Person" type="PersonType"/>
+			<xs:element name="Function">
+				<xs:simpleType>
+					<xs:restriction base="xs:integer">
+						<xs:enumeration value="1">
+							<xs:annotation>
+								<xs:documentation>owner/ managing director</xs:documentation>
+							</xs:annotation>
+						</xs:enumeration>
+						<xs:enumeration value="2">
+							<xs:annotation>
+								<xs:documentation>associate</xs:documentation>
+							</xs:annotation>
+						</xs:enumeration>
+						<xs:enumeration value="3">
+							<xs:annotation>
+								<xs:documentation>member of board</xs:documentation>
+							</xs:annotation>
+						</xs:enumeration>
+						<xs:enumeration value="4">
+							<xs:annotation>
+								<xs:documentation>authorized signatory</xs:documentation>
+							</xs:annotation>
+						</xs:enumeration>
+						<xs:enumeration value="5">
+							<xs:annotation>
+								<xs:documentation>head of</xs:documentation>
+							</xs:annotation>
+						</xs:enumeration>
+						<xs:enumeration value="6">
+							<xs:annotation>
+								<xs:documentation>busines unit manager</xs:documentation>
+							</xs:annotation>
+						</xs:enumeration>
+						<xs:enumeration value="7">
+							<xs:annotation>
+								<xs:documentation>assistant</xs:documentation>
+							</xs:annotation>
+						</xs:enumeration>
+						<xs:enumeration value="8">
+							<xs:annotation>
+								<xs:documentation>employee</xs:documentation>
+							</xs:annotation>
+						</xs:enumeration>
+						<xs:enumeration value="9">
+							<xs:annotation>
+								<xs:documentation>freelancer</xs:documentation>
+							</xs:annotation>
+						</xs:enumeration>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="DeliveryAddressType">
+		<xs:choice>
+			<xs:element ref="Company"/>
+			<xs:element ref="Person"/>
+		</xs:choice>
+	</xs:complexType>
+</xs:schema>

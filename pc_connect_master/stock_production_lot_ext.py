@@ -1,7 +1,7 @@
 # b-*- encoding: utf-8 -*-
 ##############################################################################
 #
-#    Copyright (c) 2014 brain-tec AG (http://www.brain-tec.ch)
+#    Copyright (c) 2014 brain-tec AG (http://www.braintec-group.com)
 #    All Right Reserved
 #
 #    This program is free software: you can redistribute it and/or modify
@@ -22,82 +22,99 @@
 from openerp.osv import osv, orm, fields
 from openerp.tools.translate import _
 from openerp.tools.safe_eval import safe_eval
-from openerp.tools import DEFAULT_SERVER_DATE_FORMAT, DEFAULT_SERVER_DATETIME_FORMAT
+from openerp.tools import \
+    DEFAULT_SERVER_DATE_FORMAT, DEFAULT_SERVER_DATETIME_FORMAT
 import base64
+import openerp.addons.decimal_precision as dp
 from dateutil import relativedelta
-import datetime
+from datetime import datetime, timedelta
 import logging
 logger = logging.getLogger(__name__)
+logger.setLevel(logging.INFO)
 
 
 class stock_production_lot_ext(osv.Model):
     _name = 'stock.production.lot'
     _inherit = ['stock.production.lot', 'mail.thread']
 
-    def to_remove(self, cr, uid, ids, context=None):
-        ''' Returns whether a lot must be removed, according to its removal_date.
-        '''
-        if context is None:
-            context = {}
-        for lot in self.browse(cr, uid, ids, context=context):
-            if lot.removal_date and lot.removal_date < fields.date.today():
-                return True
-        return False
-
-    def _get_virtual_available(self, cr, uid, ids, field, arg, context=None):
-        ret = {}
-        for lot in self.browse(cr, uid, ids, context=context):
-            if lot.to_remove():
-                ret[lot.id] = 0
-                continue
-            ret[lot.id] = lot.stock_available
-            for move in lot.move_ids:
-                if move.location_id.usage in ['internal'] or move.location_dest_id.usage in ['internal']:
-                    if move.state in ['assigned']:
-                        ret[lot.id] -= move.product_qty
-        return ret
-
     def _get_virtual_available_for_sale(self, cr, uid, ids, fields, arg, context=None):
-        ''' Gets the amount which is available for sale for the current lot.
-            The amount available for sale is taken from the stock location of the warehouse.
-        '''
+        """ Returns the quantity for lots which is available: belonging
+            to lots which are still usable (i.e. not to be removed) and
+            belonging to stock moves which come or move to an internal
+            location and which are not assigned (because those are
+            not available anymore).
+        """
         if context is None:
             context = {}
-        if not isinstance(ids, list):
+        if type(ids) is not list:
             ids = [ids]
 
-        # Gets the current warehouse. There must be just one warehouse.
-        stock_location_ids = self.pool.get('stock.warehouse').get_stock_location_ids(cr, uid, [], context=context)
-
+        # Gets the stock locations of all the warehouses that we have.
+        # If there are no stock locations, it complains; if a stock
+        # location is set on the context, then it uses that one instead.
+        stock_location_ids = self.pool.get('stock.warehouse').\
+            get_stock_location_ids(cr, uid, [], context=context)
         if not stock_location_ids:
-            raise orm.except_orm(_('No Location Stock Defined'),
-                                 _('No location was defined for stock (Location Stock) on the warehouse.'))
+            raise orm.except_orm(
+                _('No Location Stock Defined'),
+                _('No location was defined for stock (Location Stock) on '
+                  'the warehouses.'))
         elif 'use_stock_location_id' in context:
             stock_location_ids = [context['use_stock_location_id']]
 
+        # Returns the quantity for lots which is available: belonging
+        # to lots which are still usable (i.e. not to be removed) and
+        # belonging to stock moves which come or move to an internal
+        # location (which is handily provided by the object
+        # stock.report.prodlots) and which are not assigned (because those are
+        # not available anymore in the SOA).
         res = {}.fromkeys(ids, 0.0)
         for lot in self.browse(cr, uid, ids, context=context):
             if lot.to_remove():
                 res[lot.id] = 0
-                continue
 
-            # Gets the quantity we have of this lot in the stock location.
-            cr.execute('''SELECT prodlot_id, qty
-                          FROM stock_report_prodlots
-                          WHERE location_id in ({location})
-                          AND prodlot_id = {lot}'''.format(location=','.join(map(str, stock_location_ids)),
-                                                           lot=lot.id))
-            res.update(dict(cr.fetchall()))
+            else:
+                # Gets the quantity we have of this lot in the stock locations.
+                cr.execute(
+                    """SELECT prodlot_id, qty
+                       FROM stock_report_prodlots
+                       WHERE location_id in ({location})
+                       AND prodlot_id = {lot}""".format(
+                        location=','.join(map(str, stock_location_ids)),
+                        lot=lot.id))
+                res.update(dict(cr.fetchall()))
 
-            # We don't take into account the quantity which has been already assigned.
-#             for move in lot.move_ids:
-#                 if (move.location_id.id == stock_location.id) and (move.state == 'assigned'):
-#                         res[lot.id] -= move.product_qty
-            for move in lot.move_ids:
-                if move.state == 'assigned' and move.location_id.id in stock_location_ids:
-                    res[lot.id] -= move.product_qty
+                # We don't take into account the quantity which has been
+                # already assigned, since it's not substracted from the
+                # stock.report.prodlots object until its 'done', i.e. until
+                # the delivery is sent.
+                for move in lot.move_ids:
+                    if move.state == 'assigned' and \
+                       move.location_id.id in stock_location_ids:
+                        res[lot.id] -= move.product_qty
 
         return res
+
+    def to_remove(self, cr, uid, ids, context=None):
+        """ Returns whether a lot must be removed, according to
+            its removal_date.
+        """
+        if context is None:
+            context = {}
+        if type(ids) is not list:
+            ids = [ids]
+
+        # The field 'removal_date' is a datetime, thus the limit will be
+        # tomorrow (just in case a lot expires today at 23:59:59).
+        today = datetime.strptime(
+            fields.date.today(), DEFAULT_SERVER_DATE_FORMAT)
+        limit_removal_date = datetime.strftime(
+            today + timedelta(1), DEFAULT_SERVER_DATETIME_FORMAT)
+
+        for lot in self.browse(cr, uid, ids, context=context):
+            if lot.removal_date and lot.removal_date < limit_removal_date:
+                return True
+        return False
 
     def _search_virtual_available_for_sale(self, cr, uid, obj, field_name, args, context=None):
         ''' Search function to be able to search on the field virtual_available_for_sale.
@@ -109,7 +126,7 @@ class stock_production_lot_ext(osv.Model):
 
         # Searches for those lots which have a virtual available greater than zero.
         lots_ids = self.search(cr, uid, ['|', ('removal_date', '=', False),
-                                         ('removal_date', '>=', fields.date.today()),
+                                              ('removal_date', '>=', fields.date.today()),
                                          ], context=context)
 
         operator = args[0][1]  # The operator to use on the comparison.
@@ -136,7 +153,7 @@ class stock_production_lot_ext(osv.Model):
             return '<i>Missing</i>'
 
     def write(self, cr, uid, ids, values, context=None):
-        if not isinstance(ids, list):
+        if type(ids) is not list:
             ids = [ids]
         for _id in ids:
             old_values = self.read(cr, uid, _id, [x for x in values], context=context)
@@ -167,11 +184,11 @@ class stock_production_lot_ext(osv.Model):
         return ret
 
     def _get_lot_date(self, cr, uid, product, lot, field, context=None):
-        lot_creation_date = lot.production_date and datetime.datetime.strptime(lot.production_date, '%Y-%m-%d %H:%M:%S')
-        lot_use_date = lot.use_date and datetime.datetime.strptime(lot.use_date, '%Y-%m-%d %H:%M:%S')
+        lot_creation_date = lot.production_date and datetime.strptime(lot.production_date, '%Y-%m-%d %H:%M:%S')
+        lot_use_date = lot.use_date and datetime.strptime(lot.use_date, '%Y-%m-%d %H:%M:%S')
 
         duration_create = getattr(product, field[0])
-        date_create = duration_create and lot_creation_date + datetime.timedelta(days=duration_create) or None
+        date_create = duration_create and lot_creation_date + timedelta(days=duration_create) or None
 
         duration_end = None
         if lot_use_date:
@@ -180,7 +197,7 @@ class stock_production_lot_ext(osv.Model):
                 if f == 'removal_time':
                     f = 'block_time'
                 f = 'expiration_{0}'.format(f)
-                v = float(getattr(product, f))
+                v = getattr(product, f)
                 u = getattr(product, '{0}_uom'.format(f))
                 if u and v:
                     duration_end = self._expiration_uom(cr, uid, False, u, v, context=context)
@@ -196,7 +213,7 @@ class stock_production_lot_ext(osv.Model):
             return date_end
 
     def _set_expiry_dates(self, cr, uid, ids, context=None):
-        if isinstance(ids, list):
+        if type(ids) is list:
             for _id in ids:
                 self._set_expiry_dates(cr, uid, _id, context)
             return True
@@ -270,7 +287,7 @@ class stock_production_lot_ext(osv.Model):
         encoded_data = base64.b64encode(data_csv)
 
         lot_name = self.browse(cr, uid, ids, context)[0].name
-        current_time_str = datetime.datetime.now().strftime('%Y-%m-%d-%H-%M-%S')
+        current_time_str = datetime.now().strftime('%Y-%m-%d-%H-%M-%S')
         attachment_name = 'customers_with_lot_{0}_report_date_{1}.csv'.format(lot_name, current_time_str)
 
         ir_attachment_obj = self.pool.get('ir.attachment')
@@ -323,7 +340,7 @@ class stock_production_lot_ext(osv.Model):
         # We first remove all the lots which reached the removal date.
         # The removal date is a datetime, but we remove them if they reached the day of today.
         today_date_str = fields.date.today()
-        today_datetime_str = datetime.datetime.strptime(today_date_str, DEFAULT_SERVER_DATE_FORMAT).strftime(DEFAULT_SERVER_DATETIME_FORMAT)
+        today_datetime_str = datetime.strptime(today_date_str, DEFAULT_SERVER_DATE_FORMAT).strftime(DEFAULT_SERVER_DATETIME_FORMAT)
 
         for location_id in stock_location_ids:
 
@@ -402,17 +419,14 @@ class stock_production_lot_ext(osv.Model):
         return True
 
     _columns = {
-        'virtual_available_for_sale': fields.function(_get_virtual_available_for_sale,
-                                                      type='float',
-                                                      string='Virtual Available for Sale',
-                                                      help='Quantity available for sale for this lot in the location stock',
-                                                      store=False,
-                                                      fnct_search=_search_virtual_available_for_sale),
-        'virtual_available': fields.function(_get_virtual_available,
-                                             type='float',
-                                             string='Virtual available',
-                                             help='Quantity not assigned to moves',
-                                             store=False),
+        'virtual_available_for_sale': fields.function(
+            _get_virtual_available_for_sale,
+            type='float',string='Virtual Available for Sale',
+            help='Quantity available for sale for this lot in '
+                 'the location stock which has not been assigned yet.',
+            digits_compute=dp.get_precision('Product Unit of Measure'),
+            store=False, fnct_search=_search_virtual_available_for_sale),
+
         'production_date': fields.datetime('Production Date',
                                            help='This is the date on which the goods with this Serial Number were produced.'),
     }

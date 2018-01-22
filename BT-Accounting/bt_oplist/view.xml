@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<openerp>
+	<data>
+        <report 
+			auto="False" 
+			id="account_oplist_cust" 
+			menu="False" 
+			model="account.account" 
+			name="account.oplist.cust" 
+			rml="bt_oplist/report/oplist_report.rml" 
+			string="OP List Report Cust"/>
+
+			
+	</data>
+</openerp>
+
+

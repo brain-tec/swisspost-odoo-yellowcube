@@ -20,6 +20,7 @@
 							<br/>
 							<field name="yc_wsdl_endpoint" placeholder="Required for SOAP" />
 							<field name="yc_soap_debugfile" placeholder="Set for debug file" />
+							<field name="yc_bur_send_elapsed_days"/>
 							<field name="yc_last_bur_check" />
 							<field name="yc_bar_last_check" />
 							<field name="yc_war_last_check" />

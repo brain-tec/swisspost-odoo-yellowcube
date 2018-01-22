@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+
+        <record id="view_product_normal_form" model="ir.ui.view">
+            <field name="name">product.normal.form</field>
+            <field name="model">product.product</field>
+            <field name="inherit_id" ref="pc_connect_master.view_product_normal_form" />
+            <field name="arch" type="xml">
+
+                <group name="other_information" position="after">
+                    <separator string="Manuals" colspan="4"/>
+                    <newline/>
+                    <field name="manual_ids" nolabel="1" colspan="2"/>
+                </group>
+
+            </field>
+        </record>
+
+    </data>
+</openerp>

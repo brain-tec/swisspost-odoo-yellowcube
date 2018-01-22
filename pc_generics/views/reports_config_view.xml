@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+	<data>
+		<record id="reports_config_view" model="ir.ui.view">
+			<field name="name">reports_config_view</field>
+			<field name="model">configuration.data</field>
+			<field name="inherit_id" ref="pc_config.configuration_data_form" />
+			<field name="arch" type="xml">
+
+				<!-- Creates the sheet for the positioning of the ESR in the pc_account 
+					and pc_followup modules, so that the user can play with the positionings. -->
+				<notebook position="inside">
+					<page string="ESR">
+						<group cols="2">
+							<group string="Left Part" colspan="1">
+								<field name="esr_slip_bank_top" />
+								<field name="esr_slip_bank_left" />
+								<field name="esr_slip_bank_size" />
+
+								<field name="esr_slip_comp_top" />
+								<field name="esr_slip_comp_left" />
+								<field name="esr_slip_comp_size" />
+
+								<field name="esr_slip_bank_acc_top" />
+								<field name="esr_slip_bank_acc_left" />
+								<field name="esr_slip_bank_acc_size" />
+
+								<field name="esr_slip_amount_top" />
+								<field name="esr_slip_amount_right" />
+								<field name="esr_slip_amount_size" />
+
+								<field name="esr_slip_address_b_top" />
+								<field name="esr_slip_address_b_left" />
+								<field name="esr_slip_address_b_size" />
+
+								<field name="esr_slip_ref_top" />
+								<field name="esr_slip_ref_right" />
+								<field name="esr_slip_ref_size" />
+							</group>
+
+							<group string="Right Part" colspan="1">
+								<field name="esr_slip2_bank_top" />
+								<field name="esr_slip2_bank_left" />
+								<field name="esr_slip2_bank_size" />
+
+								<field name="esr_slip2_comp_top" />
+								<field name="esr_slip2_comp_left" />
+								<field name="esr_slip2_comp_size" />
+
+								<field name="esr_slip2_bank_acc_top" />
+								<field name="esr_slip2_bank_acc_left" />
+								<field name="esr_slip2_bank_acc_size" />
+
+								<field name="esr_slip2_amount_top" />
+								<field name="esr_slip2_amount_right" />
+								<field name="esr_slip2_amount_size" />
+
+								<field name="esr_slip2_address_b_top" />
+								<field name="esr_slip2_address_b_left" />
+								<field name="esr_slip2_address_b_size" />
+
+								<field name="esr_slip2_ref_top" />
+								<field name="esr_slip2_ref_right" />
+								<field name="esr_slip2_ref_size" />
+							</group>
+
+							<group string="Background" colspan="1">
+								<field name="esr_bvr_background_top" />
+								<field name="esr_bvr_background_left" />
+							</group>
+
+							<group string="OCR Code" colspan="1">
+								<field name="esr_ocrbb_top" />
+								<field name="esr_ocrbb_left" />
+								<field name="esr_ocrbb_size" />
+								<field name="esr_ocrbb_width" />
+								<field name="esr_ocrbb_digitref_start" />
+								<field name="esr_ocrbb_digitref_coefficient" />
+							</group>
+						</group>
+					</page>
+
+				</notebook>
+			</field>
+		</record>
+	</data>
+</openerp>

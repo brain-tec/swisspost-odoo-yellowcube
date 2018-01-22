@@ -1,0 +1,30 @@
+<openerp>
+	<data>
+		<record id="demo_connect_transport_wbl" model="connect.transport.api">
+			<field name="name">WBL profile</field>
+			<field name="stock_connect_id" ref="pc_connect_transport_api.demo_connect" />
+			<field name="warehouse_id" ref="pc_connect_transport_api.demo_warehouse" />
+			<field name="type">wbl</field>
+			<field name="priority">5</field>
+			<field name="input">1</field>
+			<field name="initial_state">draft</field>
+			<field name="enable_logs" eval="1"/>
+			<field name="logs_all_on_success" eval="1"/>
+			<field name="internal_user_id" ref="pc_connect_transport_api.demo_internal_user" />
+			<field name="external_user_id" ref="pc_connect_transport_api.demo_external_user" />
+		</record>
+		<record id="demo_connect_transport_war" model="connect.transport.api">
+			<field name="name">WAR profile</field>
+			<field name="stock_connect_id" ref="pc_connect_transport_api.demo_connect" />
+			<field name="warehouse_id" ref="pc_connect_transport_api.demo_warehouse" />
+			<field name="type">war</field>
+			<field name="priority">5</field>
+			<field name="input">1</field>
+			<field name="initial_state">done</field>
+			<field name="enable_logs" eval="1"/>
+			<field name="logs_all_on_success" eval="1"/>
+			<field name="internal_user_id" ref="pc_connect_transport_api.demo_internal_user" />
+			<field name="external_user_id" ref="pc_connect_transport_api.demo_external_user" />
+		</record>
+    </data>
+</openerp>

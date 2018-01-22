@@ -1,7 +1,7 @@
 # b-*- encoding: utf-8 -*-
 ##############################################################################
 #
-#    Copyright (c) 2015 brain-tec AG (http://www.brain-tec.ch)
+#    Copyright (c) 2015 brain-tec AG (http://www.braintec-group.com)
 #    All Right Reserved
 #
 #    This program is free software: you can redistribute it and/or modify
@@ -18,13 +18,13 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 ##############################################################################
-
 from openerp.osv import osv, fields
 from openerp.tools.translate import _
 from openerp.addons.base.res.res_partner import res_partner
 from openerp.addons.base.res.res_partner import _lang_get
 import logging
 logger = logging.getLogger(__name__)
+logger.setLevel(logging.DEBUG)
 
 
 class res_partner_ext(osv.Model):
@@ -36,9 +36,9 @@ class res_partner_ext(osv.Model):
 
         # If the partner has no selected a main category
         if 'main_category_id' not in ret:
-            #             # if the partner has parent we are going get the main_category of his parent
-            #             if 'default_parent_id' in context:
-            #                 parent = self.browse(cr, uid, context['default_parent_id'], context)
+#             # if the partner has parent we are going get the main_category of his parent
+#             if 'default_parent_id' in context:
+#                 parent = self.browse(cr, uid, context['default_parent_id'], context)
             if context.get('main_category_id', False):
                 ret['main_category_id'] = context['main_category_id']
         return ret
@@ -49,7 +49,7 @@ class res_partner_ext(osv.Model):
         '''
         if context is None:
             context = {}
-        if isinstance(ids, list):
+        if type(ids) is list:
             ids = ids[0]
 
         salutation = ''
@@ -88,6 +88,12 @@ class res_partner_ext(osv.Model):
         # Get tags in the screen
         categs = category[0][2] or []
 
+        return self._get_main_category_values(cr, uid, main_category, categs, parent_id, context=context)
+
+    def _get_main_category_values(self, cr, uid, main_category, categs, parent_id, context=None):
+        if context is None:
+            context = {}
+
         # If there is a selected main category
         if main_category:
             # We make sure it is part of the other tags
@@ -102,8 +108,11 @@ class res_partner_ext(osv.Model):
             # or the last tag
             # (remember, it is a required field)
             if parent_id:
-                parent = self.pool.get('res.partner').browse(cr, uid, parent_id, context=context)
-                logger.debug('value of parent {0}'.format(parent.main_category_id))
+                parent = self.pool.get('res.partner').browse(cr, uid,
+                                                             parent_id,
+                                                             context=context)
+                logger.debug(
+                    'value of parent {0}'.format(parent.main_category_id))
                 main_category = parent.main_category_id.id
             elif categs:
                 main_category = categs[-1]
@@ -143,7 +152,7 @@ class res_partner_ext(osv.Model):
 
         if context is None:
             context = {}
-        if isinstance(ids, list):
+        if type(ids) is list:
             ids = ids[0]
 
         res = self.check_credit_base(cr, uid, ids, amount, context=context)
@@ -169,7 +178,7 @@ class res_partner_ext(osv.Model):
         '''
         if context is None:
             context = {}
-        if isinstance(ids, list):
+        if type(ids) is list:
             ids = ids[0]
 
         res = {}
@@ -178,19 +187,25 @@ class res_partner_ext(osv.Model):
 
         # Start of 1st stage: Internal credit limit
         # get the parent's credit
-        while partner.parent_id:
+        while partner.parent_id and partner.id != partner.parent_id.id:
             partner = partner.parent_id
         credit_limit = partner.credit_limit
         credit = partner.credit
 
         if not credit_limit:
             config = self.pool.get('configuration.data').get(cr, uid, [], context=context)
-            credit_limit = config.default_credit_limit
+            if partner.is_company:
+                credit_limit = config.default_credit_limit_companies
+            if not credit_limit:
+                credit_limit = config.default_credit_limit
 
         # Check if the amount is smaller than the difference between credit_limit and credit
         if not credit:
             credit = 0.0
-        if amount <= (credit_limit - credit):
+        if credit_limit == 0.0:
+            res['decision'] = True
+            res['description'] = _("Internal credit check is disabled (credit_limit = 0.0).")
+        elif amount <= (credit_limit - credit):
             res['decision'] = True
             res['description'] = _("Internal credit check is positive.")
         else:
@@ -198,6 +213,19 @@ class res_partner_ext(osv.Model):
             res['description'] = _("Internal credit limit failed, remaining credit is: {0} for a request of {1}.").format(credit_limit - credit, amount)
 
         return res
+
+    def _check_parent_is_not_itself(self, cr, uid, ids, context=None):
+        """ Checks that no partner has itself as parent.
+        """
+        if not isinstance(ids, list):
+            ids = [ids]
+        if context is None:
+            context = {}
+
+        for partner in self.browse(cr, uid, ids, context=context):
+            if partner.parent_id and partner.id == partner.parent_id.id:
+                return False
+        return True
 
     _columns = {
         'main_category_id': fields.many2one('res.partner.category', string='Main Tag', required=False),
@@ -235,8 +263,6 @@ class res_partner_ext(osv.Model):
         # here so that we can use it without depending on that module.
         'company': fields.char('Company'),
 
-        'po_box': fields.char('P.O. Box', size=35, help='P.O. Box Number'),
-
         # Redefines the language to be mandatory for a res.partner.
         'lang': fields.selection(_lang_get, 'Language', required=True,
                                  help='If the selected language is loaded in the system, all documents related to this contact will be printed in this language. If not, it will be English.'),
@@ -249,23 +275,26 @@ class res_partner_ext(osv.Model):
     }
 
     _constraints = [(_check_zip_code_ch, 'The Zip code from CH must be a number between 1000 and 9999', ['zip']),
+                    (_check_parent_is_not_itself,
+                     'The partner can not have itself as the parent',
+                     ['parent_id']),
                     ]
 
 
 def _new_display_address(self, cr, uid, address, without_company=False, context=None):
-    '''
-    The purpose of this function is to build and return an address formatted accordingly to the
-    standards of the country where it belongs.
+    '''		
+    The purpose of this function is to build and return an address formatted accordingly to the		
+    standards of the country where it belongs.		
 
-    :param address: browse record of the res.partner to format
-    :returns: the address formatted in a display that fit its country habits (or the default ones
-        if not country is specified)
-    :rtype: string
+    :param address: browse record of the res.partner to format		
+    :returns: the address formatted in a display that fit its country habits (or the default ones		
+        if not country is specified)		
+    :rtype: string		
     '''
 
-    if isinstance(address, list):
+    if type(address) is list:
         address = self.pool.get('res.partner').browse(cr, uid, address[0], context=context)
-    elif isinstance(address, int):
+    elif type(address) is int:
         address = self.pool.get('res.partner').browse(cr, uid, address, context=context)
 
     address_special_type_args = {'address_special_type': '',

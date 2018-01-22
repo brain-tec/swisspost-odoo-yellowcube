@@ -1,0 +1,11 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_bt_followup_followup_level,bt_followup.followup.level,bt_followup.model_followup_level,account.group_account_invoice,1,0,0,0
+access_bt_followup_followup_level_manager,bt_followup.followup.level.manager,bt_followup.model_followup_level,account.group_account_manager,1,1,1,1
+access_bt_followup_followup_config_accountant,bt_followup.followup_config user,bt_followup.model_followup_config,account.group_account_invoice,1,0,0,0
+access_bt_followup_followup_config_manager,bt_followup.followup_config.manager,bt_followup.model_followup_config,account.group_account_manager,1,1,1,1
+access_bt_followup_followup,bt_followup.followup,bt_followup.model_followup,account.group_account_invoice,1,0,0,0
+access_bt_followup_followup_manager,bt_followup.followup.manager,bt_followup.model_followup,account.group_account_manager,1,1,1,1
+access_bt_followup_followup_level_user,bt_followup.followup.level,bt_followup.model_followup_level,account.group_account_user,1,1,1,1
+access_bt_followup_followup_config_user,bt_followup.followup_config user,bt_followup.model_followup_config,account.group_account_user,1,1,1,1
+access_bt_followup_followup_user,bt_followup.followup,bt_followup.model_followup,account.group_account_user,1,1,1,1
+access_bt_followup_followup_errors,bt_followup.followup.errors,bt_followup.model_followup_errors,account.group_account_invoice,1,1,1,1

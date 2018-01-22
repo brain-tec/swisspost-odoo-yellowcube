@@ -1,0 +1,64 @@
+<openerp>
+    <data noupdate="1">
+
+        <record id="pc_config.default_configuration_data" model="configuration.data">
+            <field name="esr_bvr_background_top">191.5</field>
+            <field name="esr_bvr_background_left">0</field>
+
+            <field name="esr_slip_bank_top">200</field>
+            <field name="esr_slip_bank_left">3</field>
+            <field name="esr_slip_bank_size">8</field>
+
+            <field name="esr_slip_comp_top">200</field>
+            <field name="esr_slip_comp_left">3</field>
+            <field name="esr_slip_comp_size">8</field>
+    
+            <field name="esr_slip_bank_acc_top">235</field>
+            <field name="esr_slip_bank_acc_left">27</field>
+            <field name="esr_slip_bank_acc_size">8</field>
+    
+            <field name="esr_slip_amount_top">243.5</field>
+            <field name="esr_slip_amount_right">154</field>
+            <field name="esr_slip_amount_size">11</field>
+
+            <field name="esr_slip_ref_top">253</field>
+            <field name="esr_slip_ref_right">5</field>
+            <field name="esr_slip_ref_size">8</field>
+
+            <field name="esr_slip_address_b_top">262</field>
+            <field name="esr_slip_address_b_left">5</field>
+            <field name="esr_slip_address_b_size">8</field>
+    
+            <field name="esr_slip2_bank_top">200</field>
+            <field name="esr_slip2_bank_left">64</field>
+            <field name="esr_slip2_bank_size">8</field>
+
+            <field name="esr_slip2_comp_top">200</field>
+            <field name="esr_slip2_comp_left">64</field>
+            <field name="esr_slip2_comp_size">8</field>
+    
+            <field name="esr_slip2_bank_acc_top">235</field>
+            <field name="esr_slip2_bank_acc_left">88</field>
+            <field name="esr_slip2_bank_acc_size">8</field>
+    
+            <field name="esr_slip2_amount_top">243.5</field>
+            <field name="esr_slip2_amount_right">92.5</field>
+            <field name="esr_slip2_amount_size">8</field>
+    
+            <field name="esr_slip2_ref_top">226</field>
+            <field name="esr_slip2_ref_right">125</field>
+            <field name="esr_slip2_ref_size">8</field>
+    
+            <field name="esr_slip2_address_b_top">238</field>
+            <field name="esr_slip2_address_b_left">125</field>
+            <field name="esr_slip2_address_b_size">8</field>
+    
+            <field name="esr_ocrbb_top">276</field>
+            <field name="esr_ocrbb_left">96</field>
+            <field name="esr_ocrbb_size">8</field>
+            <field name="esr_ocrbb_width">3</field>
+            <field name="esr_ocrbb_digitref_start">1.5</field>
+            <field name="esr_ocrbb_digitref_coefficient">2.0</field>
+        </record>
+    </data>
+</openerp>

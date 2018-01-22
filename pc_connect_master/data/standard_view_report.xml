@@ -1,0 +1,8 @@
+<openerp>
+	<data noupdate="0">
+
+		<function model="report.view" name="create_view_reports"
+			eval="([{'sale.order': None, 'sale.order.line': 'pc_connect_master.standard_view_report_tree_for_sale_order_line', 'product.product': None, 'stock.picking.out': None, 'account.invoice': None}])" />
+
+	</data>
+</openerp>

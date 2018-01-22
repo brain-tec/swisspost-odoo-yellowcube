@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+
+        <record id="view_cust_account_indicator" model="ir.ui.view">
+            <field name="name">Cust Account Indicator</field>
+            <field name="model">account.indicator.cust</field>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+            <form string="Cust Indicator Report">
+                <separator string="Cust Indicator Report" colspan="4"/>
+                <label colspan="4" nolabel="1" string="This menu prints the indicator report."/>
+                <newline/>
+                <!--<field name="chart_tax_id" widget='selection'/>-->
+                <!--field name="fiscalyear_id" on_change="onchange_fiscalyear(fiscalyear_id)"/-->
+                <field name="fiscalyear_id"/>
+                <!--<field name="based_on"/>-->
+                <!--<separator string="Periods"  colspan="4"/>
+                <field name="period_from"  domain="[('fiscalyear_id', '=', fiscalyear_id)]" attrs="{'readonly':[('filter','!=','filter_period')], 'required':[('filter', '=', 'filter_period')]}" />
+                <field name="period_to" domain="[('fiscalyear_id', '=', fiscalyear_id)]" attrs="{'readonly':[('filter','!=','filter_period')], 'required':[('filter', '=', 'filter_period')]}" />-->
+				<field name="filter" invisible="0" on_change="onchange_filter_cust(filter, fiscalyear_id)" colspan="4"/>
+				<separator string="Dates" colspan="4"/>
+				<field name="date_from" attrs="{'readonly':[('filter', '!=', 'filter_date')], 'required':[('filter', '=', 'filter_date')]}" colspan="4"/>
+				<field name="date_to" attrs="{'readonly':[('filter', '!=', 'filter_date')], 'required':[('filter', '=', 'filter_date')]}"  colspan="4"/>
+				<separator string="Periods"  colspan="4"/>
+				<field name="period_from"  domain="[('fiscalyear_id', '=', fiscalyear_id)]" attrs="{'readonly':[('filter','!=','filter_period')], 'required':[('filter', '=', 'filter_period')]}" colspan="4"/>
+				<field name="period_to" domain="[('fiscalyear_id', '=', fiscalyear_id)]" attrs="{'readonly':[('filter','!=','filter_period')], 'required':[('filter', '=', 'filter_period')]}" colspan="4"/>
+                <group col="2" colspan="4">
+                    <button icon='gtk-cancel' special="cancel"  string="Cancel" />
+                    <button name="create_indicator" string="Print Indicator Report" colspan="1" type="object" icon="gtk-ok"/>
+                </group>
+            </form>
+            </field>
+        </record>
+
+		<record id="view_cust_account_bilanz" model="ir.ui.view">
+            <field name="name">Cust Account Balance sheet</field>
+            <field name="model">account.indicator.cust.bilanz</field>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+            <form string="Balance sheet">
+                <separator string="Balance sheet" colspan="4"/>
+                <label colspan="4" nolabel="1" string="This menu prints the Balance sheet report."/>
+                <newline/>
+                <!--<field name="chart_tax_id" widget='selection'/>-->
+                <!--field name="fiscalyear_id" on_change="onchange_fiscalyear(fiscalyear_id, filter)"/-->
+                <field name="fiscalyear_id"/>
+                <!--<field name="based_on"/>-->
+                <!--<separator string="Periods"  colspan="4"/>
+                <field name="period_from"  domain="[('fiscalyear_id', '=', fiscalyear_id)]" attrs="{'readonly':[('filter','!=','filter_period')], 'required':[('filter', '=', 'filter_period')]}" />
+                <field name="period_to" domain="[('fiscalyear_id', '=', fiscalyear_id)]" attrs="{'readonly':[('filter','!=','filter_period')], 'required':[('filter', '=', 'filter_period')]}" />-->
+				<field name="filter" invisible="0" on_change="onchange_filter_cust(filter, fiscalyear_id)" colspan="4"/>
+				<separator string="Dates" colspan="4"/>
+				<field name="date_from" attrs="{'readonly':[('filter', '!=', 'filter_date')], 'required':[('filter', '=', 'filter_date')]}" colspan="4"/>
+				<field name="date_to" attrs="{'readonly':[('filter', '!=', 'filter_date')], 'required':[('filter', '=', 'filter_date')]}"  colspan="4"/>
+				<separator string="Periods"  colspan="4"/>
+				<field name="period_from"  domain="[('fiscalyear_id', '=', fiscalyear_id)]" attrs="{'readonly':[('filter','!=','filter_period')], 'required':[('filter', '=', 'filter_period')]}" colspan="4"/>
+				<field name="period_to" domain="[('fiscalyear_id', '=', fiscalyear_id)]" attrs="{'readonly':[('filter','!=','filter_period')], 'required':[('filter', '=', 'filter_period')]}" colspan="4"/>
+                <group col="2" colspan="4">
+                    <button icon='gtk-cancel' special="cancel"  string="Cancel" />
+                    <button name="create_indicator" string="Print Balance sheet Report" colspan="1" type="object" icon="gtk-ok"/>
+                </group>
+            </form>
+            </field>
+        </record>
+		
+		<record id="view_cust_account_er" model="ir.ui.view">
+            <field name="name">Income statement</field>
+            <field name="model">account.indicator.cust.er</field>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+            <form string="Erfolgsrechnung">
+                <separator string="Income statement" colspan="4"/>
+                <label colspan="4" nolabel="1" string="This menu prints the Income statement report."/>
+                <newline/>
+                <!--<field name="chart_tax_id" widget='selection'/>-->
+                <!--field name="fiscalyear_id" on_change="onchange_fiscalyear(fiscalyear_id)"/-->
+                <field name="fiscalyear_id"/>
+                <!--<field name="based_on"/>-->
+                <!--<separator string="Periods"  colspan="4"/>
+                <field name="period_from"  domain="[('fiscalyear_id', '=', fiscalyear_id)]" attrs="{'readonly':[('filter','!=','filter_period')], 'required':[('filter', '=', 'filter_period')]}" />
+                <field name="period_to" domain="[('fiscalyear_id', '=', fiscalyear_id)]" attrs="{'readonly':[('filter','!=','filter_period')], 'required':[('filter', '=', 'filter_period')]}" />-->
+				<field name="filter" invisible="0" on_change="onchange_filter_cust(filter, fiscalyear_id)" colspan="4"/>
+				<separator string="Dates" colspan="4"/>
+				<field name="date_from" attrs="{'readonly':[('filter', '!=', 'filter_date')], 'required':[('filter', '=', 'filter_date')]}" colspan="4"/>
+				<field name="date_to" attrs="{'readonly':[('filter', '!=', 'filter_date')], 'required':[('filter', '=', 'filter_date')]}"  colspan="4"/>
+				<separator string="Periods"  colspan="4"/>
+				<field name="period_from"  domain="[('fiscalyear_id', '=', fiscalyear_id)]" attrs="{'readonly':[('filter','!=','filter_period')], 'required':[('filter', '=', 'filter_period')]}" colspan="4"/>
+				<field name="period_to" domain="[('fiscalyear_id', '=', fiscalyear_id)]" attrs="{'readonly':[('filter','!=','filter_period')], 'required':[('filter', '=', 'filter_period')]}" colspan="4"/>
+                <group col="2" colspan="4">
+                    <button icon='gtk-cancel' special="cancel"  string="Cancel" />
+                    <button name="create_indicator" string="Print Income statement Report" colspan="1" type="object" icon="gtk-ok"/>
+                </group>
+            </form>
+            </field>
+        </record>
+
+        <record id="action_cust_account_indicator" model="ir.actions.act_window">
+            <field name="name">Cust Account Indicator</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">account.indicator.cust</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">form</field>
+            <field name="target">new</field>
+            <field name="help">This menu print a Indicator based on invoices or payments. You can select one or several periods of the fiscal year. Information required for a tax declaration is automatically generated by OpenERP from invoices (or payments, in some countries). This data is updated in real time. That's very useful because it enables you to preview at any time the tax that you owe at the start and end of the month or quarter.</field>
+        </record>
+		
+		<record id="action_cust_account_bilanz" model="ir.actions.act_window">
+            <field name="name">Cust Account Balance sheet</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">account.indicator.cust.bilanz</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">form</field>
+            <field name="target">new</field>
+            <field name="help">This menu print a Balance sheet based on invoices or payments. You can select one or several periods of the fiscal year. Information required for a tax declaration is automatically generated by OpenERP from invoices (or payments, in some countries). This data is updated in real time. That's very useful because it enables you to preview at any time the tax that you owe at the start and end of the month or quarter.</field>
+        </record>
+
+		<record id="action_cust_account_er" model="ir.actions.act_window">
+            <field name="name">Cust Account Income statement</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">account.indicator.cust.er</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">form</field>
+            <field name="target">new</field>
+            <field name="help">This menu print a Income statement based on invoices or payments. You can select one or several periods of the fiscal year. Information required for a tax declaration is automatically generated by OpenERP from invoices (or payments, in some countries). This data is updated in real time. That's very useful because it enables you to preview at any time the tax that you owe at the start and end of the month or quarter.</field>
+        </record>
+
+        <!--<menuitem
+            name="Cust Indicator Report"
+            parent="bt_account.menu_ch_report"
+            action="action_cust_account_indicator"
+            id="menu_cust_account_indicator"
+            icon="STOCK_PRINT"/>-->
+			
+		<menuitem
+            name="Balance sheet"
+            parent="bt_account.menu_ch_report"
+            action="action_cust_account_bilanz"
+            id="menu_cust_account_bilanz"
+            icon="STOCK_PRINT"/>
+			
+		<menuitem
+            name="Income statement"
+            parent="bt_account.menu_ch_report"
+            action="action_cust_account_er"
+            id="menu_cust_account_er"
+            icon="STOCK_PRINT"/>
+
+    </data>
+</openerp>

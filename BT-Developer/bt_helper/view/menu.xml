@@ -1,0 +1,29 @@
+<openerp>
+	<data>
+		<menuitem id="menu_duplication" name="Duplication"
+			parent="base.menu_administration" sequence="100" />
+
+		<record id="action_view_duplication_field" model="ir.actions.act_window">
+			<field name="name">Duplication fields</field>
+			<field name="type">ir.actions.act_window</field>
+			<field name="res_model">bt_helper.fields</field>
+			<field name="view_type">form</field>
+			<field name="view_mode">tree,form</field>
+		</record>
+
+		<menuitem name="Duplication Values" action="action_view_duplication_field"
+			id="menu_view_module_duplication_fields" parent="menu_duplication" sequence="1" />
+		
+		<record id="action_view_duplicate_model" model="ir.actions.act_window">
+			<field name="name">Duplicate model</field>
+			<field name="type">ir.actions.act_window</field>
+			<field name="res_model">bt_helper.duplicate_model</field>
+			<field name="view_type">form</field>
+			<field name="view_mode">tree,form</field>
+		</record>
+		
+		<menuitem name="Duplicate Model" action="action_view_duplicate_model"
+			id="menu_view_module_duplicate_model" parent="menu_duplication" sequence="1" />
+			
+	</data>
+</openerp>

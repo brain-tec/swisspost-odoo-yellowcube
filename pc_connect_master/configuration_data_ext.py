@@ -1,7 +1,7 @@
 # b-*- encoding: utf-8 -*-
 ##############################################################################
 #
-#    Copyright (c) 2015 brain-tec AG (http://www.brain-tec.ch)
+#    Copyright (c) 2015 brain-tec AG (http://www.braintec-group.com)
 #    All Right Reserved
 #
 #    This program is free software: you can redistribute it and/or modify
@@ -18,7 +18,6 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 ##############################################################################
-
 from openerp.osv import osv, fields
 from openerp.tools.translate import _
 
@@ -37,6 +36,13 @@ class configuration_data_ext(osv.Model):
         # Reports
         'report_account_invoice': fields.many2one('ir.actions.report.xml', "Invoice", domain=[('model', '=', 'account.invoice')]),
         'report_stock_picking': fields.many2one('ir.actions.report.xml', "Delivery", domain=[('model', '=', 'stock.picking.out')]),
+        'report_purchase_order': fields.many2one('ir.actions.report.xml', "Purchase Order", domain=[('model', '=', 'purchase.order')]),
+
+        'invoice_report_show_bvr_when_zero_amount_total': fields.boolean(
+            'Print BVR if Amount Total is Zero?',
+            help='If checked, it show the BVR always on invoices with '
+                 'an amount of zero with only the field for the quantity '
+                 'being blank (NOT voided, but empty).'),
 
         # Dates
         'post_default_expiration_block_time': fields.integer('Default Expiration Block Time'),
@@ -51,15 +57,38 @@ class configuration_data_ext(osv.Model):
         'default_credit_limit': fields.float(string='Default Credit Limit',
                                              help='The global default credit limit applied to users with no credit limit set',
                                              required=True),
+        'default_credit_limit_companies': fields.float(string='Default Credit Limit For Companies',
+                                                       help='The global default credit limit applied to companies with no credit limit set',
+                                                       required=True),
 
         # The email template to send the invoice to the partner.
         'invoice_to_partner_email_template_id': fields.many2one('email.template', 'Invoice to Partner Email Template', domain=[('model', '=', 'account.invoice')],
                                                                 help='The email template for the email which sends the invoice to the partner.'),
 
+        # The email template to send the purchase order to the supplier.
+        'purchase_to_supplier_email_template_id': fields.many2one('email.template', 'Purchase Order to Supplier',
+                                                                  domain=[('model', '=', 'purchase.order')],
+                                                                  help='The email template for the email which sends the purchase order to the supplier.'),
+
+        'purchase_alarming_days': fields.integer('Days from expected date to alarm',
+                                                 help='Laboral days (according to the warehouse) to wait once the expected date '
+                                                 'for a purchase order has been reached before an alarm is logged '
+                                                 'over the purchase order.'),
+
+        'purchase_schedule_date_consider_only_weekdays': fields.boolean('Make the Schedule Date consider only weekdays?',
+                                                                        help='If checked, the Schedule Date of each line of a purchase order '
+                                                                        'considers only the weekdays, i.e. it skips Saturdays and Sundays.'),
+
+        'supplier_prefix_ref': fields.char('Supplier Prefix for Reference', help='Prefix that will be added to received reference in suppliers.'),
 
         'concurrent_access_requeue_num_minutes': fields.integer('Concurrent Access Requeue Max Minutes',
                                                                 help='Stop requeueing a job automatically if it failed because of ' +
                                                                 'a concurrent access and this amount of minutes passed since its creation.'),
+
+        'ready_for_export_check_num_minutes': fields.integer('Ready for Export Max Minutes',
+                                                             help="The number of minutes allowed between the creation of the picking "
+                                                                  "and the moment in which we must alarm to indicate "
+                                                                  "that too much time passed between the first check and the present moment."),
 
         'punchcards_limit': fields.integer('Max Number of Punchards', help='The maximum number of punchards to keep in the history of punchards.'),
 
@@ -83,12 +112,20 @@ class configuration_data_ext(osv.Model):
                                                                 "many days an open back-order must be alarmed."),
 
         'execute_only_after_time_for_backorders': fields.float('Time for Execute Only After for Backorders', required=True,
-                                                               help='The time of the next day after which delayed backorders will be processed again.'),
+                                                                 help='The time of the next day after which delayed backorders will be processed again.'),
 
         'illegal_lots_destination_id': fields.many2one('stock.location', 'Location for Illegal Lots', domain=[('scrap_location', '=', True)],
                                                        help='Location where illegal quantities are put. Must be a scraping location. '
                                                             'Here go quantities from lots which are from products which do not track_production, '
                                                             'or unlotted quantities from products which do track_production.'),
+
+        'invoice_policy': fields.selection([('order', 'Invoice Ordered Quantities'),
+                                            ('delivery', 'Invoice Delivered Quantities'),
+                                            ], string='Invoicing Policy', required=True,
+                                           help="Determines the invoicing policy, which will override the one defined on the sale order."),
+
+        'gift_card_journal_id': fields.many2one(
+            'account.journal', 'Journal for Gift-cards')
     }
 
     _defaults = {
@@ -101,11 +138,18 @@ class configuration_data_ext(osv.Model):
         'post_default_expiration_accept_time_uom': 'Day(s)',
         'force_payment_term': True,
         'default_credit_limit': 1.0,
+        'default_credit_limit_companies': 0.0,
         'concurrent_access_requeue_num_minutes': 10,
+        'ready_for_export_check_num_minutes': 10,
         'punchcards_limit': 1000,
         'keep_only_mister_and_madam_titles': False,
         'default_picking_policy': 'one',
         'execute_only_after_time_for_backorders': 0.0,
+        'purchase_alarming_days': 0,
+        'purchase_schedule_date_consider_only_weekdays': False,
+        'invoice_policy': 'order',
+        'supplier_prefix_ref': 'LCHSUP-',
+        'invoice_report_show_bvr_when_zero_amount_total': False,
     }
 
 # vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:

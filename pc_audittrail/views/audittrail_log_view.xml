@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+
+        <record model="ir.actions.act_window" id="action_show_audit_trail_log_sale_order">
+            <field name="name">Audit Log (Sale Orders)</field>
+            <field name="res_model">audittrail.log</field>
+            <field name="view_mode">tree,form</field>
+            <field name="domain">[('object_id','=','sale.order')]</field>
+        </record>
+        <record model="ir.actions.act_window" id="action_show_audit_trail_log_product_product">
+            <field name="name">Audit Log (Products)</field>
+            <field name="res_model">audittrail.log</field>
+            <field name="view_mode">tree,form</field>
+            <field name="domain">[('object_id','=','product.product')]</field>
+        </record>
+        <record model="ir.actions.act_window" id="action_show_audit_trail_log_res_partner">
+            <field name="name">Audit Log (Partners)</field>
+            <field name="res_model">audittrail.log</field>
+            <field name="view_mode">tree,form</field>
+            <field name="domain">[('object_id','=','res.partner')]</field>
+        </record>
+        <record model="ir.actions.act_window" id="action_show_audit_trail_log_stock_picking_out">
+            <field name="name">Audit Log (Deliveries in/out)</field>
+            <field name="res_model">audittrail.log</field>
+            <field name="view_mode">tree,form</field>
+            <field name="domain">[('object_id','in',['stock.picking.out','stock.picking.in','stock.picking'])]</field>
+        </record>
+        <record model="ir.actions.act_window" id="action_show_audit_trail_log_account_invoice">
+            <field name="name">Audit Log (Account Invoice)</field>
+            <field name="res_model">audittrail.log</field>
+            <field name="view_mode">tree,form</field>
+            <field name="domain">[('object_id','=','account.invoice')]</field>
+        </record>
+        <record model="ir.actions.act_window" id="action_show_audit_trail_rule">
+            <field name="name">Audit Rules</field>
+            <field name="res_model">audittrail.rule</field>
+            <field name="view_mode">tree,form</field>
+            <field name="domain">[]</field>
+        </record>
+        <record model="ir.actions.act_window" id="action_show_audit_trail_log_others">
+            <field name="name">Others</field>
+            <field name="res_model">audittrail.log</field>
+            <field name="view_mode">tree,form</field>
+            <field name="domain">[('object_id','not in',['stock.picking.out','stock.picking.in','stock.picking','account.invoice','res.partner','product.product','sale.order'])]</field>
+        </record>
+    </data>
+</openerp>

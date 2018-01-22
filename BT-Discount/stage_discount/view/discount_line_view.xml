@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+	<data>
+		<!-- Discount Terms -->
+		<record id="view_discount_line_tree" model="ir.ui.view">
+			<field name="name">stage_discount.discount_line.tree</field>
+			<field name="model">stage_discount.discount_line</field>
+			<field name="arch" type="xml">
+				<tree string="Discount Term" editable="bottom"
+					colors="red:discount_type in ['subtotal'];
+                    black:discount_type in ['product'];
+                    green:discount_type not in ['subtotal','product'];">
+					<field name="sequence" widget="handle" />
+					<field name="discount_type" />
+                    <field name="product_id" attrs="{'readonly':[('discount_type','!=','product')]}" 
+                        on_change="onchange_product_id(product_id)"/>
+					<field name="description" invisible="'menu_item_discount_term' in context"
+                        attrs="{'readonly':[('discount_type','=','product')]}" />
+					<field name="description_template" invisible="'menu_item_discount_term' not in context" /> 
+					<field name="discount_value"
+						attrs="{'readonly':[('discount_type','in',['subtotal','product'])]}" />
+					<field name="tax_ids" domain="[('parent_id','=',False)]"
+						widget="many2many_tags" attrs="{'readonly':[('discount_type','in',['subtotal','product'])]}" />
+					<field name="account_analytic_id" groups="analytic.group_analytic_accounting"
+                                 domain="[('type','!=','view'), ('state','not in',('close','cancelled'))]"
+                                 attrs="{'readonly':[('discount_type','in',['subtotal'])]}"/>
+					<field name="account_id"  groups="analytic.group_analytic_accounting"
+                                 attrs="{'readonly':[('discount_type','in',['subtotal','product'])]}"/>
+					<field name="is_rounded" attrs="{'readonly':[('discount_type','not in',['percentage'])]}" />
+				</tree>
+			</field>
+		</record>
+		<record id="view_discount_line_form" model="ir.ui.view">
+			<field name="name">stage_discount.discount_line.form</field>
+			<field name="model">stage_discount.discount_line</field>
+			<field name="arch" type="xml">
+				<form string="Discount term" version="7.0">
+					<group>
+						<group string="Amount Computation">
+							<field name="discount_type" />
+                            <field name="product_id" attrs="{'readonly':[('discount_type','!=','product')]}"
+                                on_change="onchange_product_id(product_id)"/>
+							<label for="discount_value" string="Amount To Discount"
+								attrs="{'invisible':[('discount_type','in',['subtotal','product'])]}" />
+							<div attrs="{'invisible':[('discount_type','in',['subtotal'])]}">
+								<field name="discount_value" class="oe_inline" />
+							</div>
+							<label for="tax_ids" string="Tax:"
+								attrs="{'invisible':[('discount_type','in',['fixed'])]}" />
+							<div attrs="{'invisible':[('discount_type','in',['fixed'])]}">
+								<field name="tax_ids" class="oe_inline" />
+							</div>
+						</group>
+					</group>
+				</form>
+			</field>
+		</record>
+	</data>
+</openerp>

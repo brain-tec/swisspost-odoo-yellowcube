@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+
+        <record id="stock_partial_picking_line_list_ext" model="ir.ui.view">
+            <field name="name">stock_partial_picking_line_list_ext</field>
+            <field name="model">stock.partial.picking.line</field>
+            <field name="inherit_id" ref="stock.stock_partial_picking_line_list" />
+            <field name="arch" type="xml">
+                <field name="quantity" position="attributes">
+                    <attribute name="invisible">True</attribute>
+                </field>
+                <field name="quantity" position="after">
+                    <field name="yc_qty_done" />
+                </field>
+            </field>
+        </record>
+
+        <record id="stock_partial_picking_line_form_ext" model="ir.ui.view">
+            <field name="name">stock_partial_picking_line_form_ext</field>
+            <field name="model">stock.partial.picking.line</field>
+            <field name="inherit_id" ref="stock.stock_partial_picking_line_form" />
+            <field name="arch" type="xml">
+                <field name="quantity" position="attributes">
+                    <attribute name="invisible">True</attribute>
+                </field>
+                <field name="quantity" position="after">
+                    <field name="yc_qty_done" />
+                </field>
+            </field>
+        </record>
+
+    </data>
+</openerp>

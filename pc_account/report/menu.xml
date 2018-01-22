@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+    <data>
+
+		<!-- Invoice Report -->
+		<report id="report_invoice" string="(PCAP) Invoice"
+			model="account.invoice" name="pc_invoice_report"
+			file="pc_account/report/account_invoice.mako"
+			report_type="webkit" auto="False" />
+		<record id="report_invoice" model="ir.actions.report.xml">
+			<field name="webkit_header" ref="pc_generics.ir_report_quotation_order" />
+		</record>
+
+    </data>
+</openerp>

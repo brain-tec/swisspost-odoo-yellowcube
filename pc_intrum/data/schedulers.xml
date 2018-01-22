@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+
+    <!-- We define here the data which must not be modified by the user. -->
+    <data noupdate="0">
+        <record id="send_invoices_to_intrum" model="ir.cron">
+            <field name="name">PCAP - Intrum: Send Invoices</field>
+            <field name="model">account.invoice</field>
+            <field name="function">cron_send_invoices_to_intrum</field>
+            <field name="args" eval="()" />
+        </record>
+        <record id="send_payment_transactions_to_intrum" model="ir.cron">
+            <field name="name">PCAP - Intrum: Send Payment Transactions</field>
+            <field name="model">account.invoice</field>
+            <field name="function">cron_send_payment_transactions_to_intrum</field>
+            <field name="args" eval="()" />
+        </record>
+    </data>
+
+
+    <!-- We define here the data which may be modified by the user. -->
+    <data noupdate="1">
+        <record id="send_invoices_to_intrum" model="ir.cron">
+            <field name="interval_type">days</field>
+            <field name="interval_number" eval="7" />
+            <field name="numbercall" eval="-1" />
+            <field name="doall" eval="True" />
+            <field name="priority" eval="4" />
+            <field name="active" eval="False" />
+        </record>
+        <record id="send_payment_transactions_to_intrum" model="ir.cron">
+            <field name="interval_type">days</field>
+            <field name="interval_number" eval="7" />
+            <field name="numbercall" eval="-1" />
+            <field name="doall" eval="True" />
+            <field name="priority" eval="4" />
+            <field name="active" eval="False" />
+        </record>
+    </data>
+
+</openerp>

@@ -1,0 +1,49 @@
+<openerp>
+	<data noupdate='0'>
+
+        <!-- Carriers with a stock type for regular and picking_policy==one -->
+        <record id="delivery_carrier_one_a" model="delivery.carrier">
+            <field name="name">Carrier One A</field>
+            <field name="partner_id" ref="delivery.res_partner_23"/>
+            <field name="product_id" ref="delivery.product_product_delivery"/>
+            <field name="stock_type_id" ref="test_stock_type_regular_one"/>
+        </record>
+
+        <record id="delivery_carrier_one_b" model="delivery.carrier">
+            <field name="name">Carrier One B</field>
+            <field name="partner_id" ref="delivery.res_partner_23"/>
+            <field name="product_id" ref="delivery.product_product_delivery"/>
+            <field name="stock_type_id" ref="test_stock_type_regular_one"/>
+        </record>
+
+        <record id="delivery_carrier_one_c" model="delivery.carrier">
+            <field name="name">Carrier One C</field>
+            <field name="partner_id" ref="delivery.res_partner_23"/>
+            <field name="product_id" ref="delivery.product_product_delivery"/>
+            <field name="stock_type_id" ref="test_stock_type_regular_one"/>
+        </record>
+
+        <!-- Carriers with a stock type for regular and picking_policy==direct -->
+        <record id="delivery_carrier_direct_a" model="delivery.carrier">
+            <field name="name">Carrier Direct A</field>
+            <field name="partner_id" ref="delivery.res_partner_23"/>
+            <field name="product_id" ref="delivery.product_product_delivery"/>
+            <field name="stock_type_id" ref="test_stock_type_regular_direct"/>
+        </record>
+
+        <record id="delivery_carrier_direct_b" model="delivery.carrier">
+            <field name="name">Carrier Direct B</field>
+            <field name="partner_id" ref="delivery.res_partner_23"/>
+            <field name="product_id" ref="delivery.product_product_delivery"/>
+            <field name="stock_type_id" ref="test_stock_type_regular_direct"/>
+        </record>
+
+        <record id="delivery_carrier_direct_c" model="delivery.carrier">
+            <field name="name">Carrier Direct C</field>
+            <field name="partner_id" ref="delivery.res_partner_23"/>
+            <field name="product_id" ref="delivery.product_product_delivery"/>
+            <field name="stock_type_id" ref="test_stock_type_regular_direct"/>
+        </record>
+
+    </data>
+</openerp>

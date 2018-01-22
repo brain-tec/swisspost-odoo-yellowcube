@@ -1,0 +1,25 @@
+-
+  Here we use load to override the translation of an item
+-
+  !python {model: ir.ui.menu}: |
+    fields = ['id', 'name', '.lang']
+    cr.execute("SELECT code FROM res_lang WHERE active = true;");
+    test_langs = [x[0] for x in cr.fetchall()]
+    assert len(test_langs) > 1, "We need more than a language"
+    name_pattern = '{0} test for load'
+    data = []
+    for lang in test_langs:
+      data.append([
+        'multilingual_import_export.test_ir_ui_menu_01',
+        name_pattern.format(lang),
+        lang])
+    result = self.load(cr, uid, fields, data, context)
+    for msg in result['messages']:
+      assert msg['type'] != 'error', "There are not error messages"
+    for item_id in result['ids']:
+      assert item_id == ref('test_ir_ui_menu_01'), "Our test item is modified"
+    
+    for lang in test_langs:
+      context['lang'] = lang
+      item = self.browse(cr, uid, ref('test_ir_ui_menu_01'), context=context)
+      assert item.name == name_pattern.format(lang), "There is a menu with our special name"

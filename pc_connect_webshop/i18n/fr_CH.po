@@ -1,0 +1,387 @@
+# Translation of OpenERP Server.
+# This file contains the translation of the following modules:
+#	* pc_connect_webshop
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: OpenERP Server 7.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2016-06-15 06:53+0000\n"
+"PO-Revision-Date: 2016-06-15 06:53+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: pc_connect_webshop
+#: field:payment.method,allowed:0
+msgid "Allowed"
+msgstr "Allowed"
+
+#. module: pc_connect_webshop
+#: model:ir.model.fields,field_description:field_payment_method_allowed
+msgid "Allowed"
+msgstr "Allowed"
+
+#. module: pc_connect_webshop
+#: field:product.alternative,product_alternative_id:0
+msgid "Alternative Product"
+msgstr "Alternative Product"
+
+#. module: pc_connect_webshop
+#: model:ir.model.fields,field_description:field_product_alternative_product_alternative_id
+msgid "Alternative Product"
+msgstr "Alternative Product"
+
+#. module: pc_connect_webshop
+#: field:product.product,alternative_product_ids:0
+msgid "Alternative Products"
+msgstr "Alternative Products"
+
+#. module: pc_connect_webshop
+#: model:ir.model.fields,field_description:field_product_product_alternative_product_ids
+msgid "Alternative Products"
+msgstr "Alternative Products"
+
+#. module: pc_connect_webshop
+#: view:product.product:0
+msgid "Alternative Products"
+msgstr "Alternative Products"
+
+#. module: pc_connect_webshop
+#: selection:product.import_wizard,type:0
+msgid "Alternative"
+msgstr "Alternative"
+
+#. module: pc_connect_webshop
+#: view:product.manual:0
+msgid "Attachment"
+msgstr "Attachment"
+
+#. module: pc_connect_webshop
+#: field:checkpoint.management,automatic_process:0
+msgid "Automatic process"
+msgstr "Automatic process"
+
+#. module: pc_connect_webshop
+#: model:ir.model.fields,field_description:field_checkpoint_management_automatic_process
+msgid "Automatic process"
+msgstr "Automatic process"
+
+#. module: pc_connect_webshop
+#: model:ir.actions.act_window,name:action_checkpoint_management
+msgid "Checkpoint Management"
+msgstr "Checkpoint Management"
+
+#. module: pc_connect_webshop
+#: view:checkpoint.management:0
+msgid "Checkpoint Management"
+msgstr "Checkpoint Management"
+
+#. module: pc_connect_webshop
+#: model:ir.ui.menu,name:management_checkpoint
+msgid "Checkpoint"
+msgstr "Points de contrôle"
+
+#. module: pc_connect_webshop
+#: view:product.import_wizard:0
+msgid "Close"
+msgstr "Close"
+
+#. module: pc_connect_webshop
+#: model:ir.model,name:model_connector_checkpoint
+msgid "Connector Checkpoint"
+msgstr "Point de contrôle"
+
+#. module: pc_connect_webshop
+#: field:product.manual,description:0
+msgid "Description of the type of manual"
+msgstr "Description of the type of manual"
+
+#. module: pc_connect_webshop
+#: model:ir.model.fields,field_description:field_product_manual_description
+msgid "Description of the type of manual"
+msgstr "Description of the type of manual"
+
+#. module: pc_connect_webshop
+#: field:product.import_wizard,file:0
+msgid "File to import"
+msgstr "File to import"
+
+#. module: pc_connect_webshop
+#: model:ir.model.fields,field_description:field_product_import_wizard_file
+msgid "File to import"
+msgstr "File to import"
+
+#. module: pc_connect_webshop
+#: field:product.import_wizard,type:0
+msgid "File type"
+msgstr "File type"
+
+#. module: pc_connect_webshop
+#: model:ir.model.fields,field_description:field_product_import_wizard_type
+msgid "File type"
+msgstr "File type"
+
+#. module: pc_connect_webshop
+#: model:ir.actions.act_window,name:action_import_product_wizard
+msgid "Import products by .csv"
+msgstr "Import products by .csv"
+
+#. module: pc_connect_webshop
+#: view:product.import_wizard:0
+msgid "Import"
+msgstr "Import"
+
+#. module: pc_connect_webshop
+#: constraint:res.partner:0
+msgid "In case this field is empty it would be set to the webshop_account_id"
+msgstr "In case this field is empty it would be set to the webshop_account_id"
+
+#. module: pc_connect_webshop
+#: help:payment.method,allowed:0
+msgid "Is this payment method allowed for this webshop?"
+msgstr "Is this payment method allowed for this webshop?"
+
+#. module: pc_connect_webshop
+#: code:addons/pc_connect_webshop/product_images_ext.py:50
+msgid "It is required to have a unique picture with a sort order for a product"
+msgstr "It is required to have a unique picture with a sort order for a product"
+
+#. module: pc_connect_webshop
+#: sql_constraint:product.images:0
+msgid "It is required to have a unique picture with a sort order for a product"
+msgstr "It is required to have a unique picture with a sort order for a product"
+
+#. module: pc_connect_webshop
+#: field:product.manual,language_id:0
+msgid "Language"
+msgstr "Language"
+
+#. module: pc_connect_webshop
+#: model:ir.model.fields,field_description:field_product_manual_language_id
+msgid "Language"
+msgstr "Language"
+
+#. module: pc_connect_webshop
+#: view:product.product:0
+msgid "List of other products that could be displayed as alternative or replacement in case the stock runs out."
+msgstr "List of other products that could be displayed as alternative or replacement in case the stock runs out."
+
+#. module: pc_connect_webshop
+#: selection:product.import_wizard,type:0
+msgid "Manual"
+msgstr "Manual"
+
+#. module: pc_connect_webshop
+#: view:product.product:0
+msgid "Manuals"
+msgstr "Manuals"
+
+#. module: pc_connect_webshop
+#: selection:product.import_wizard,type:0
+msgid "Media pictures"
+msgstr "Media pictures"
+
+#. module: pc_connect_webshop
+#: field:product.import_wizard,message:0
+msgid "Message"
+msgstr "Message"
+
+#. module: pc_connect_webshop
+#: model:ir.model.fields,field_description:field_product_import_wizard_message
+msgid "Message"
+msgstr "Message"
+
+#. module: pc_connect_webshop
+#: field:checkpoint.management,ir_model_id:0
+msgid "Model"
+msgstr "Modèle"
+
+#. module: pc_connect_webshop
+#: model:ir.model.fields,field_description:field_checkpoint_management_ir_model_id
+msgid "Model"
+msgstr "Modèle"
+
+#. module: pc_connect_webshop
+#: model:ir.model,name:model_res_partner
+msgid "Partner"
+msgstr "Partenaire"
+
+#. module: pc_connect_webshop
+#: model:ir.model,name:model_payment_method
+msgid "Payment Method"
+msgstr "Méthode de paiement"
+
+#. module: pc_connect_webshop
+#: model:ir.actions.act_window,name:product_images_action
+msgid "Product Images"
+msgstr "Product Images"
+
+#. module: pc_connect_webshop
+#: model:ir.ui.menu,name:product_images_menu
+msgid "Product Images"
+msgstr "Product Images"
+
+#. module: pc_connect_webshop
+#: view:product.images:0
+msgid "Product Images"
+msgstr "Product Images"
+
+#. module: pc_connect_webshop
+#: view:product.product:0
+msgid "Product Links"
+msgstr "Product Links"
+
+#. module: pc_connect_webshop
+#: view:product.import_wizard:0
+msgid "Product import"
+msgstr "Product import"
+
+#. module: pc_connect_webshop
+#: field:product.manual,product_id:0
+msgid "Product"
+msgstr "Article"
+
+#. module: pc_connect_webshop
+#: model:ir.model,name:model_product_product
+msgid "Product"
+msgstr "Article"
+
+#. module: pc_connect_webshop
+#: model:ir.model.fields,field_description:field_product_manual_product_id
+msgid "Product"
+msgstr "Article"
+
+#. module: pc_connect_webshop
+#: view:product.alternative:0
+msgid "Product's Alternative Products"
+msgstr "Product's Alternative Products"
+
+#. module: pc_connect_webshop
+#: view:product.manual:0
+msgid "Product's Manuals"
+msgstr "Product's Manuals"
+
+#. module: pc_connect_webshop
+#: field:product.product,manual_ids:0
+msgid "Product's manuals"
+msgstr "Product's manuals"
+
+#. module: pc_connect_webshop
+#: model:ir.model.fields,field_description:field_product_product_manual_ids
+msgid "Product's manuals"
+msgstr "Product's manuals"
+
+#. module: pc_connect_webshop
+#: model:ir.model,name:model_product_images
+msgid "Products Image gallery"
+msgstr "Products Image gallery"
+
+#. module: pc_connect_webshop
+#: selection:product.import_wizard,type:0
+msgid "Related (link)"
+msgstr "Related (link)"
+
+#. module: pc_connect_webshop
+#: field:product.alternative,product_id:0
+msgid "Source Product"
+msgstr "Source Product"
+
+#. module: pc_connect_webshop
+#: model:ir.model.fields,field_description:field_product_alternative_product_id
+msgid "Source Product"
+msgstr "Source Product"
+
+#. module: pc_connect_webshop
+#: help:product.manual,attachment_id:0
+msgid "The URL to the file of the manual, as an attachment."
+msgstr "The URL to the file of the manual, as an attachment."
+
+#. module: pc_connect_webshop
+#: help:product.manual,language_id:0
+msgid "The language of the manual."
+msgstr "The language of the manual."
+
+#. module: pc_connect_webshop
+#: help:product.manual,product_id:0
+msgid "The product this manual relates to."
+msgstr "The product this manual relates to."
+
+#. module: pc_connect_webshop
+#: code:addons/pc_connect_webshop/res_partner_ext.py:97
+msgid "This partner doesn't have main tag."
+msgstr "This partner doesn't have main tag."
+
+#. module: pc_connect_webshop
+#: help:product.manual,description:0
+msgid "Type of the manual (e.g. user manual, safety-use manual, etc.)."
+msgstr "Type of the manual (e.g. user manual, safety-use manual, etc.)."
+
+#. module: pc_connect_webshop
+#: field:product.manual,attachment_id:0
+msgid "URL Attachment"
+msgstr "URL Attachment"
+
+#. module: pc_connect_webshop
+#: model:ir.model.fields,field_description:field_product_manual_attachment_id
+msgid "URL Attachment"
+msgstr "URL Attachment"
+
+#. module: pc_connect_webshop
+#: field:res.partner,webshop_account_id:0
+msgid "Webshop account"
+msgstr "Webshop account"
+
+#. module: pc_connect_webshop
+#: model:ir.model.fields,field_description:field_res_partner_webshop_account_id
+msgid "Webshop account"
+msgstr "Webshop account"
+
+#. module: pc_connect_webshop
+#: field:res.partner,webshop_address_id:0
+msgid "Webshop address"
+msgstr "Webshop address"
+
+#. module: pc_connect_webshop
+#: model:ir.model.fields,field_description:field_res_partner_webshop_address_id
+msgid "Webshop address"
+msgstr "Webshop address"
+
+#. module: pc_connect_webshop
+#: field:product.images,sort_order:0
+msgid "Webshop sort order"
+msgstr "Webshop sort order"
+
+#. module: pc_connect_webshop
+#: model:ir.model.fields,field_description:field_product_images_sort_order
+msgid "Webshop sort order"
+msgstr "Webshop sort order"
+
+#. module: pc_connect_webshop
+#: model:ir.model,name:model_checkpoint_management
+msgid "checkpoint.management"
+msgstr "checkpoint.management"
+
+#. module: pc_connect_webshop
+#: model:ir.model,name:model_pc_connect_webshop_installed
+msgid "pc_connect_webshop.installed"
+msgstr "pc_connect_webshop.installed"
+
+#. module: pc_connect_webshop
+#: model:ir.model,name:model_product_alternative
+msgid "product.alternative"
+msgstr "product.alternative"
+
+#. module: pc_connect_webshop
+#: model:ir.model,name:model_product_import_wizard
+msgid "product.import_wizard"
+msgstr "product.import_wizard"
+
+#. module: pc_connect_webshop
+#: model:ir.model,name:model_product_manual
+msgid "product.manual"
+msgstr "product.manual"
+

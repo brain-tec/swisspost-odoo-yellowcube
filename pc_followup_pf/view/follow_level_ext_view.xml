@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+	<data>
+
+		<record id="pc_view_followup_level_tree_ext" model="ir.ui.view">
+			<field name="name">pc_view_followup_level_tree_ext</field>
+			<field name="model">followup.level</field>
+			<field name="inherit_id" ref="pc_followup.pc_view_followup_level_tree" />
+			<field name="arch" type="xml">
+				<field name="block_new_invoice" position="after">
+					<field name="invoice_routing" />
+                    <field name="report_account_invoice" />
+                    <field name="use_barcode_address" />
+				</field>
+			</field>
+		</record>
+
+		<record id="view_followup_level_form_ext" model="ir.ui.view">
+			<field name="name">view_followup_level_form_ext</field>
+			<field name="model">followup.level</field>
+			<field name="inherit_id" ref="bt_followup.view_followup_level_form" />
+			<field name="arch" type="xml">
+
+                <xpath expr="//group[@string='Send a Letter']/p" position="before">
+                    <group>
+                        <field name="invoice_routing" />
+                        <field name="report_account_invoice" />
+                        <field name="docout_email_template_id" />
+                        <field name="use_barcode_address" />
+                        <field name="carrier_id"
+                               string="Carrier for the barcode"
+                               attrs="{'invisible':[('use_barcode_address', '=', False)]}" />
+                    </group>
+                </xpath>
+
+                <field name="description" position="before">
+                    <label for="letter_title" string="Title"
+                           attrs="{'invisible': [('send_letter', '=', False)]}" />
+                    <field name="letter_title" nolabel="1" colspan="2"
+                           placeholder="Title of the follow-up letter..."
+                           attrs="{'invisible': [('send_letter', '=', False)]}" />
+                    <label for="description" string="Body"
+                           attrs="{'invisible': [('send_letter', '=', False)]}" />
+                </field>
+			</field>
+		</record>
+
+	</data>
+</openerp>

@@ -1,0 +1,11 @@
+<openerp>
+	<data noupdate='0'>
+
+        <record id="test_payment_invoice" model="payment.method">
+            <field name="name">Test Invoice</field>
+            <field name="epayment" eval="True" />
+            <field name="payment_term_id" ref="test_payment_term_28d"/>
+        </record>
+
+    </data>
+</openerp>

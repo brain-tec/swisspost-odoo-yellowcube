@@ -1,13 +1,13 @@
 # Translation of OpenERP Server.
 # This file contains the translation of the following modules:
-#	* pc_connect_transport_localsftp
+#
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: OpenERP Server 7.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-06-15 06:53+0000\n"
-"PO-Revision-Date: 2016-06-15 06:53+0000\n"
+"POT-Creation-Date: 2016-06-15 13:14+0000\n"
+"PO-Revision-Date: 2016-06-15 13:14+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -18,22 +18,22 @@ msgstr ""
 #. module: pc_connect_transport_localsftp
 #: code:addons/pc_connect_transport_localsftp/connection_sftp.py:112
 msgid "A 'chdir' operation was attempted over a non-existing connection."
-msgstr "A 'chdir' operation was attempted over a non-existing connection."
+msgstr "Eine 'chdir' Operation wurde über eine nicht vorhandene Verbindung versucht."
 
 #. module: pc_connect_transport_localsftp
 #: code:addons/pc_connect_transport_localsftp/connection_sftp.py:103
 msgid "A 'directory list' operation was attempted over a non-existing connection."
-msgstr "A 'directory list' operation was attempted over a non-existing connection."
+msgstr "Eine 'Verzeichnisliste' Operation wurde über eine nicht vorhandene Verbindung versucht."
 
 #. module: pc_connect_transport_localsftp
 #: code:addons/pc_connect_transport_localsftp/connection_sftp.py:142
 msgid "A 'get' operation was attempted over a non-existing connection."
-msgstr "A 'get' operation was attempted over a non-existing connection."
+msgstr "Eine 'erhalten' Operation wurde über eine nicht vorhandene Verbindung versucht."
 
 #. module: pc_connect_transport_localsftp
 #: code:addons/pc_connect_transport_localsftp/connection_sftp.py:127
 msgid "A 'put' operation was attempted over a non-existing connection."
-msgstr "A 'put' operation was attempted over a non-existing connection."
+msgstr "Eine A 'senden' Operation wurde über eine nichtexistente Verbindung versucht."
 
 #. module: pc_connect_transport_localsftp
 #: selection:connect.transport.localsftp,type:0
@@ -43,12 +43,12 @@ msgstr "FDS"
 #. module: pc_connect_transport_localsftp
 #: help:connect.transport.localsftp,test_mode:0
 msgid "If active, no change in the server is done."
-msgstr "If active, no change in the server is done."
+msgstr "Wenn aktiv, wird keine Änderung am Server vorgenommen."
 
 #. module: pc_connect_transport_localsftp
 #: selection:connect.transport.localsftp,type:0
 msgid "Local SFTP"
-msgstr "Local SFTP"
+msgstr "Lokaler SFTP"
 
 #. module: pc_connect_transport_localsftp
 #: selection:connect.transport.localsftp,type:0
@@ -68,22 +68,22 @@ msgstr "Bezeichnung"
 #. module: pc_connect_transport_localsftp
 #: field:connect.transport.localsftp,password:0
 msgid "Password"
-msgstr "Password"
+msgstr "Passwort"
 
 #. module: pc_connect_transport_localsftp
 #: model:ir.model.fields,field_description:field_connect_transport_localsftp_password
 msgid "Password"
-msgstr "Password"
+msgstr "Passwort"
 
 #. module: pc_connect_transport_localsftp
 #: field:connect.transport.localsftp,rsa_key:0
 msgid "RSA Private Key"
-msgstr "RSA Private Key"
+msgstr "Privater Schlüssel (RSA)"
 
 #. module: pc_connect_transport_localsftp
 #: model:ir.model.fields,field_description:field_connect_transport_localsftp_rsa_key
 msgid "RSA Private Key"
-msgstr "RSA Private Key"
+msgstr "Privater Schlüssel (RSA)"
 
 #. module: pc_connect_transport_localsftp
 #: selection:connect.transport.localsftp,type:0
@@ -103,62 +103,62 @@ msgstr "Server URL"
 #. module: pc_connect_transport_localsftp
 #: field:connect.transport.localsftp,test_mode:0
 msgid "Test mode?"
-msgstr "Test mode?"
+msgstr "Testmodus?"
 
 #. module: pc_connect_transport_localsftp
 #: model:ir.model.fields,field_description:field_connect_transport_localsftp_test_mode
 msgid "Test mode?"
-msgstr "Test mode?"
+msgstr "Testmodus?"
 
 #. module: pc_connect_transport_localsftp
 #: help:connect.transport.localsftp,rsa_key:0
 msgid "The RSA private key to connect to the server."
-msgstr "The RSA private key to connect to the server."
+msgstr "Der private RSA-Schlüssel für die Verbindung zum Server."
 
 #. module: pc_connect_transport_localsftp
 #: help:connect.transport.localsftp,server_url:0
 msgid "The URL of the server."
-msgstr "The URL of the server."
+msgstr "Die URL des Servers."
 
 #. module: pc_connect_transport_localsftp
 #: help:connect.transport.localsftp,name:0
 msgid "The name of the connection."
-msgstr "The name of the connection."
+msgstr "Der Name der Verbindung."
 
 #. module: pc_connect_transport_localsftp
 #: help:connect.transport.localsftp,password:0
 msgid "The password to connect to the server."
-msgstr "The password to connect to the server."
+msgstr "Das Passwort für die Verbindung zum Server."
 
 #. module: pc_connect_transport_localsftp
 #: help:connect.transport.localsftp,type:0
 msgid "The type of the connection."
-msgstr "The type of the connection."
+msgstr "Art der Verbindung"
 
 #. module: pc_connect_transport_localsftp
 #: help:connect.transport.localsftp,username:0
 msgid "The username to connect to the server."
-msgstr "The username to connect to the server."
+msgstr "Der Benutzername für die Verbindung zum Server."
 
 #. module: pc_connect_transport_localsftp
 #: field:connect.transport.localsftp,type:0
 msgid "Type"
-msgstr "ArtTyp"
+msgstr "Typ"
 
 #. module: pc_connect_transport_localsftp
 #: model:ir.model.fields,field_description:field_connect_transport_localsftp_type
 msgid "Type"
-msgstr "ArtTyp"
+msgstr "Typ"
 
 #. module: pc_connect_transport_localsftp
 #: field:connect.transport.localsftp,username:0
 msgid "Username"
-msgstr "Username"
+msgstr "Benutzername"
 
 #. module: pc_connect_transport_localsftp
 #: model:ir.model.fields,field_description:field_connect_transport_localsftp_username
 msgid "Username"
-msgstr "Username"
+msgstr "Benutzername"
 
 #. module: pc_connect_transport_localsftp
 #: model:ir.model,name:model_connect_transport_localsftp

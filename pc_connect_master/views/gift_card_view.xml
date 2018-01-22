@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+	<data>
+
+		<record id="gift_card_view_form" model="ir.ui.view">
+			<field name="name">gift_card_view_form</field>
+			<field name="model">gift.card</field>
+			<field name="arch" type="xml">
+                <form string="Gift Card">
+                    <group name="info">
+                        <field name="name" />
+                        <field name="amount" />
+                        <field name="date" />
+                    </group>
+                </form>
+            </field>
+        </record>
+
+        <record id="gift_card_view_tree" model="ir.ui.view">
+			<field name="name">gift_card_view_tree</field>
+			<field name="model">gift.card</field>
+			<field name="arch" type="xml">
+                <tree string="Gift Card">
+                    <field name="name" />
+                    <field name="amount" />
+                    <field name="date" />
+                </tree>
+            </field>
+        </record>
+
+    </data>
+</openerp>

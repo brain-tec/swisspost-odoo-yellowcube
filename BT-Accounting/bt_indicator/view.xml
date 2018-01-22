@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<openerp>
+	<data>
+        <report 
+			auto="False" 
+			id="account_indicator_cust" 
+			menu="False" 
+			model="account.account" 
+			name="account.indicatior.cust" 
+			rml="bt_indicator/report/indicator_report.rml" 
+			string="Indicator Report Cust"/>
+
+        <!--<wizard
+            id="wizard_indicator_cust"
+            menu="False"
+            model="account.account"
+            name="account.indicator.cust"
+            string="Print Indicator Report Cust"/>
+        <menuitem
+            icon="STOCK_PRINT"
+            action="wizard_indicator_cust"
+            id="menu_wizard_indicator_cust"
+            parent="account.menu_finance_reporting"
+            type="wizard"/>-->
+		<!--<menuitem
+            id="menu_ch_report"
+            name="Offizielle Berichte CH"
+            groups="account.group_account_user,account.group_account_manager"
+            parent="account.menu_finance_reporting" sequence="3"/>-->
+			
+	</data>
+</openerp>
+
+

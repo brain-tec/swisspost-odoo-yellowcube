@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+	<data>
+		<record id="invoice_form_add_discount" model="ir.ui.view">
+			<field name="name">account.invoice.form</field>
+			<field name="model">account.invoice</field>
+			<field name="type">form</field>
+			<field name="inherit_id" ref="account.invoice_form" />
+			<field name="arch" type="xml">
+
+				<xpath expr="//button[@name='action_invoice_sent'][1]"
+					position="attributes">
+					<attribute name="context">{'custom_search_line_discount':False}
+					</attribute>
+				</xpath>
+				<xpath expr="//button[@name='action_invoice_sent'][2]"
+					position="attributes">
+					<attribute name="context">{'custom_search_line_discount':False}
+					</attribute>
+				</xpath>
+
+				<xpath expr="//button[@name='invoice_print'][1]" position="attributes">
+					<attribute name="context">{'custom_search_line_discount':False}
+					</attribute>
+				</xpath>
+
+				<xpath expr="//button[@name='invoice_print'][2]" position="attributes">
+					<attribute name="context">{'custom_search_line_discount':False}
+					</attribute>
+				</xpath>
+
+
+
+				<xpath expr="//button[@name='invoice_open'][1]" position="attributes">
+					<attribute name="context">{'custom_search_line_discount':False}
+					</attribute>
+				</xpath>
+				<xpath expr="//button[@name='invoice_open'][2]" position="attributes">
+					<attribute name="context">{'custom_search_line_discount':False}
+					</attribute>
+				</xpath>
+				<xpath expr="//button[@name='invoice_proforma2'][1]" position="attributes">
+					<attribute name="context">{'custom_search_line_discount':False}
+					</attribute>
+				</xpath>
+				<xpath expr="//button[@string='Refund Invoice'][1]" position="attributes">
+					<attribute name="context">{'custom_search_line_discount':False}
+					</attribute>
+				</xpath>
+
+				<xpath expr="//button[@name='invoice_cancel'][1]" position="attributes">
+					<attribute name="context">{'custom_search_line_discount':False}
+					</attribute>
+				</xpath>
+				<xpath expr="//button[@name='action_cancel_draft'][1]"
+					position="attributes">
+					<attribute name="context">{'custom_search_line_discount':False}
+					</attribute>
+				</xpath>
+				<xpath expr="//button[@string='Re-Open'][1]" position="attributes">
+					<attribute name="context">{'custom_search_line_discount':False}
+					</attribute>
+				</xpath>
+				<xpath expr="//button[@string='Print Invoice'][1]" position="attributes">
+					<attribute name="context">{'custom_search_line_discount':False}
+					</attribute>
+				</xpath>
+				<xpath
+					expr="//field[@name='invoice_line']/tree//field[@name='product_id']"
+					position="after">
+					<field name="is_discount" invisible="1" />
+				</xpath>
+				<field name="invoice_line" position="after">
+					<field name="discount_invoice_line_ids" readonly="1"
+						context="{'tree_view_ref':'stage_discount.view_invoice_line_tree_1',
+									  'form_view_ref':'stage_discount.view_invoice_line_form_1'}" />
+				</field>
+
+                <!-- We first add the field 'discount_type', because we need it to be in the view
+                     in order to use it. -->
+                <xpath expr="//field[@name='invoice_line']/tree[1]" position="inside">
+                    <field name="discount_type" invisible="1" />
+                </xpath>
+                <!-- This is the portion of sale.order lines which are on the top
+                     (those which are not discount - or shouldn't be) -->
+				<xpath expr="//field[@name='invoice_line']/tree[1]" position="attributes">
+					<attribute name="colors">
+					red:discount_type in ['subtotal'];
+                    black:discount_type in ['product'];
+                    green:is_discount==True and discount_type not in ['subtotal','product']
+                    </attribute>
+				</xpath>
+
+
+				<field name="amount_untaxed" position="after">
+					<div>
+						<label for="amount_discount" />
+					</div>
+					<field name="amount_discount" widget="monetary" nolabel="1"
+						readonly="1" options="{'currency_field': 'currency_id'}" />
+				</field>
+				<notebook position="inside">
+					<page string="Discount Payments" position="inside">
+
+						<group colspan="4">
+							<separator string="Use this template" colspan="2" />
+							<field name="discount_template_id" nolabel="1" widget="selection"
+								attrs="{'readonly':[('state','not in',['draft'])]}"
+								on_change="action_add_template(discount_template_id,discount_line_ids, partner_id)"
+								 />
+
+						</group>
+						<field name="is_rounded" string="Roudning" colspan="4"
+							invisible="1" />
+						<separator string="Discount Lines" colspan="4" />
+						<field name="discount_line_ids" nolabel="1" colspan="4"
+							attrs="{'readonly':[('state','not in',['draft'])]}"
+							 />
+					</page>
+				</notebook>
+			</field>
+		</record>
+	</data>
+</openerp>

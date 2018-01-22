@@ -1,0 +1,347 @@
+# Translation of OpenERP Server.
+# This file contains the translation of the following modules:
+#
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: OpenERP Server 7.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2016-06-15 13:14+0000\n"
+"PO-Revision-Date: 2016-06-15 13:14+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: pc_stock
+#: field:configuration.data,stock_picking_report_text_for_partial_deliveries:0
+msgid "Additional Text for Partial Deliveries"
+msgstr "Zusatztext bei Teillieferung"
+
+#. module: pc_stock
+#: model:ir.model.fields,field_description:field_configuration_data_stock_picking_report_text_for_partial_deliveries
+msgid "Additional Text for Partial Deliveries"
+msgstr "Zusatztext bei Teillieferung"
+
+#. module: pc_stock
+#: field:configuration.data,stock_picking_backorder_line_text:0
+msgid "Back order line text"
+msgstr "Bezeichnung Lieferrückstand"
+
+#. module: pc_stock
+#: field:configuration.data,stock_picking_franking_country_code:0
+msgid "Country Code"
+msgstr "Ländercode"
+
+#. module: pc_stock
+#: model:ir.model.fields,field_description:field_configuration_data_stock_picking_franking_country_code
+msgid "Country Code"
+msgstr "Ländercode"
+
+#. module: pc_stock
+#: report:addons/pc_stock/report/stock_picking.mako:69
+msgid "Customer number"
+msgstr "Kundennummer"
+
+#. module: pc_stock
+#: report:addons/pc_stock/report/stock_picking.mako:82
+msgid "Customer phone number"
+msgstr "Kundentelefonnummer"
+
+#. module: pc_stock
+#: report:addons/pc_stock/report/stock_picking.mako:137
+msgid "DELIVERY NUMBER"
+msgstr "LIEFERNUMMER"
+
+#. module: pc_stock
+#: report:addons/pc_stock/report/stock_picking.mako:71
+msgid "Date"
+msgstr "Datum"
+
+#. module: pc_stock
+#: model:ir.model,name:model_stock_picking_out
+msgid "Delivery Orders"
+msgstr "Lieferaufträge"
+
+#. module: pc_stock
+#: report:addons/pc_stock/report/stock_picking.mako:78
+msgid "Delivery method"
+msgstr "Auslieferungsmethode"
+
+#. module: pc_stock
+#: report:addons/pc_stock/report/stock_picking.mako:151
+msgid "Description"
+msgstr "Bezeichnung"
+
+#. module: pc_stock
+#: report:addons/pc_stock/report/stock_picking.mako:64
+msgid "E-Mail"
+msgstr "E-Mail"
+
+#. module: pc_stock
+#: model:ir.actions.act_window,name:action_edit_type_of_gift_text
+msgid "Edit Type of Gift Texts"
+msgstr "Geschenktext Typen editieren"
+
+#. module: pc_stock
+#: view:configuration.data:0
+msgid "Edit Types of Gift-texts"
+msgstr "Geschenktext Typen editieren"
+
+#. module: pc_stock
+#: field:configuration.data,stock_picking_ending_text:0
+msgid "Ending Text"
+msgstr "Abschlusstext"
+
+#. module: pc_stock
+#: model:ir.model.fields,field_description:field_configuration_data_stock_picking_ending_text
+msgid "Ending Text"
+msgstr "Abschlusstext"
+
+#. module: pc_stock
+#: field:configuration.data,stock_picking_include_backorder_items:0
+msgid "Include back order items"
+msgstr "Inklusive Lieferrückstände"
+
+#. module: pc_stock
+#: help:configuration.data,stock_picking_report_text_for_partial_deliveries:0
+msgid "In the case of the picking being part of a partial delivery this text will be printed at the end of all the pickings but the last one."
+msgstr "Zusatztext der auf allen Lieferscheinen von Teillieferungen angedruckt wird, ausser bei der letzten Teilllieferung."
+
+#. module: pc_stock
+#: report:addons/pc_stock/report/stock_picking.mako:122
+msgid "Invoice Address"
+msgstr "Rechnungsadresse"
+
+#. module: pc_stock
+#: field:configuration.data,stock_picking_logo:0
+msgid "Logo"
+msgstr "Logo"
+
+#. module: pc_stock
+#: model:ir.model.fields,field_description:field_configuration_data_stock_picking_logo
+msgid "Logo"
+msgstr "Logo"
+
+#. module: pc_stock
+#: report:addons/pc_stock/report/stock_picking.mako:152
+msgid "Lot No."
+msgstr "Losnummer"
+
+#. module: pc_stock
+#: report:addons/pc_stock/report/stock_picking.mako:193
+msgid "Note"
+msgstr "Notiz"
+
+#. module: pc_stock
+#: field:configuration.data,stock_picking_report_num_lines_per_page_first:0
+msgid "Num. Elements per Page (first)"
+msgstr "Anzahl Elemente pro Seite (erste)"
+
+#. module: pc_stock
+#: model:ir.model.fields,field_description:field_configuration_data_stock_picking_report_num_lines_per_page_first
+msgid "Num. Elements per Page (first)"
+msgstr "Anzahl Elemente pro Seite (erste)"
+
+#. module: pc_stock
+#: field:configuration.data,stock_picking_report_num_lines_per_page_not_first:0
+msgid "Num. Elements per Page (not first)"
+msgstr "Anzahl Elemente pro Seite (nachfolgende)"
+
+#. module: pc_stock
+#: model:ir.model.fields,field_description:field_configuration_data_stock_picking_report_num_lines_per_page_not_first
+msgid "Num. Elements per Page (not first)"
+msgstr "Anzahl Elemente pro Seite (nachfolgende)"
+
+#. module: pc_stock
+#: help:configuration.data,stock_picking_report_num_lines_per_page_first:0
+msgid "Number of lines to display on the first page."
+msgstr "Anzahl Zeilen, die auf der ersten Seite angedruckt werden."
+
+#. module: pc_stock
+#: help:configuration.data,stock_picking_report_num_lines_per_page_not_first:0
+msgid "Number of lines to display per page in the report for pages different than the first one."
+msgstr "Anzahl Zeilen, die auf der zweiten und den nachfolgenden Seiten angedruckt werden sollen."
+
+#. module: pc_stock
+#: report:addons/pc_stock/report/stock_picking.mako:52
+msgid "Page"
+msgstr "Seite"
+
+#. module: pc_stock
+#: report:addons/pc_stock/report/stock_picking.mako:63
+msgid "Phone"
+msgstr "Telefon"
+
+#. module: pc_stock
+#: model:ir.model,name:model_stock_picking
+msgid "Picking List"
+msgstr "Kommissionierliste"
+
+#. module: pc_stock
+#: report:addons/pc_stock/report/stock_picking.mako:148
+msgid "Pos."
+msgstr "Pos."
+
+#. module: pc_stock
+#: view:configuration.data:0
+msgid "Post Mail"
+msgstr "Post Mail"
+
+#. module: pc_stock
+#: field:configuration.data,stock_picking_report_print_invoice_address:0
+msgid "Print Invoice Address?"
+msgstr "Andruck der Rechnungsadresse"
+
+#. module: pc_stock
+#: model:ir.model.fields,field_description:field_configuration_data_stock_picking_report_print_invoice_address
+msgid "Print Invoice Address?"
+msgstr "Andruck der Rechnungsadresse"
+
+#. module: pc_stock
+#: field:configuration.data,stock_picking_report_show_lots:0
+msgid "Print Lots?"
+msgstr "Losnummern drucken"
+
+#. module: pc_stock
+#: model:ir.model.fields,field_description:field_configuration_data_stock_picking_report_show_lots
+msgid "Print Lots?"
+msgstr "Losnummern drucken"
+
+#. module: pc_stock
+#: report:addons/pc_stock/report/stock_picking.mako:149
+msgid "Product No."
+msgstr "Artikel-Nr."
+
+#. module: pc_stock
+#: field:configuration.data,stock_picking_qr:0
+msgid "QR"
+msgstr "2D-Matrix"
+
+#. module: pc_stock
+#: model:ir.model.fields,field_description:field_configuration_data_stock_picking_qr
+msgid "QR"
+msgstr "2D-Matrix"
+
+#. module: pc_stock
+#: report:addons/pc_stock/report/stock_picking.mako:156
+msgid "Quantity"
+msgstr "Menge"
+
+#. module: pc_stock
+#: field:configuration.data,stock_picking_postmail_rrn:0
+msgid "RRN"
+msgstr "RRN"
+
+#. module: pc_stock
+#: model:ir.model.fields,field_description:field_configuration_data_stock_picking_postmail_rrn
+msgid "RRN"
+msgstr "RRN"
+
+#. module: pc_stock
+#: help:configuration.data,stock_picking_postmail_rrn:0
+msgid "RRN, to be used in the franking part of the address window."
+msgstr "RRN für Frankatur im Adressblock"
+
+#. module: pc_stock
+#: view:configuration.data:0
+msgid "Reports"
+msgstr "Belege"
+
+#. module: pc_stock
+#: report:addons/pc_stock/report/stock_picking.mako:70
+msgid "Sale order number"
+msgstr "Bestellnummer"
+
+#. module: pc_stock
+#: model:ir.model,name:model_sale_order
+msgid "Sales Order"
+msgstr "Verkaufsauftrag"
+
+#. module: pc_stock
+#: model:ir.model,name:model_stock_move
+msgid "Stock Move"
+msgstr "Bestandesbuchung"
+
+#. module: pc_stock
+#: view:configuration.data:0
+msgid "Stock Pickings"
+msgstr "Lieferaufträge"
+
+#. module: pc_stock
+#: report:addons/pc_stock/report/stock_picking.mako:66
+msgid "Tax number"
+msgstr "MwSt.-Nr."
+
+#. module: pc_stock
+#: help:configuration.data,stock_picking_ending_text:0
+msgid "Text which is placed at the end of the delivery slip."
+msgstr "Text der am Ende des Lieferbeleges angedruckt wird."
+
+#. module: pc_stock
+#: help:configuration.data,stock_picking_qr:0
+msgid "The QR code which appears within the address window."
+msgstr "Die 2D-Matrix, die im Adressfenster erscheint."
+
+#. module: pc_stock
+#: help:configuration.data,stock_picking_logo:0
+msgid "The logo which appears at the top of the report."
+msgstr "Das Logo, das im Belegskopf angedruckt wird."
+
+#. module: pc_stock
+#: code:addons/pc_stock/configuration_data_ext.py:64
+msgid "The remaining items will be delivered at no additional cost."
+msgstr "Die ausstehenden Artikel werden ohne zusätzliche Kosten nachgeliefert."
+
+#. module: pc_stock
+#: help:configuration.data,stock_picking_franking_town:0
+msgid "Town within the country, to be used in the franking part of the address window."
+msgstr "Ort für Frankatur im Adressblock"
+
+#. module: pc_stock
+#: field:configuration.data,stock_picking_franking_town:0
+msgid "Town"
+msgstr "Ort"
+
+#. module: pc_stock
+#: model:ir.model.fields,field_description:field_configuration_data_stock_picking_franking_town
+msgid "Town"
+msgstr "Ort"
+
+#. module: pc_stock
+#: help:configuration.data,stock_picking_franking_country_code:0
+msgid "Two-letters country code, to be used in the franking part of the address window."
+msgstr "ISO-Ländercode (2-stellig) für Frankatur im Adressblock"
+
+#. module: pc_stock
+#: report:addons/pc_stock/report/stock_picking.mako:65
+msgid "Web"
+msgstr "Web"
+
+#. module: pc_stock
+#: report:addons/pc_stock/report/stock_picking.mako:73
+msgid "Your reference"
+msgstr "Ihre Referenz"
+
+#. module: pc_stock
+#: help:configuration.data,stock_picking_franking_zip:0
+msgid "ZIP within the country, to be used in the franking part of the address window."
+msgstr "PLZ, die in der Frankatur des Adressblocks angedruckt wird."
+
+#. module: pc_stock
+#: field:configuration.data,stock_picking_franking_zip:0
+msgid "ZIP"
+msgstr "PLZ"
+
+#. module: pc_stock
+#: model:ir.model.fields,field_description:field_configuration_data_stock_picking_franking_zip
+msgid "ZIP"
+msgstr "PLZ"
+
+#. module: pc_stock
+#: model:ir.model,name:model_configuration_data
+msgid "configuration.data"
+msgstr "configuration.data"
+

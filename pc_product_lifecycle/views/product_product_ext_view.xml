@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data noupdate="0">
+
+        <record id="view_product_normal_ext" model="ir.ui.view">
+            <field name="name">product.normal.form.ext</field>
+            <field name="model">product.product</field>
+            <field name="inherit_id" ref="product.product_normal_form_view" />
+            <field name="arch" type="xml">
+
+                <!-- Adds the workflow. -->
+                <xpath expr="/form/*" position="before">
+                    <header>
+                        <field name="product_state" widget="statusbar" />
+                    </header>
+                </xpath>
+
+                <!-- Adds the buttons to test the workflow. -->
+                <field name="product_state" position="before">
+                	<button name="update_workflow" string="Update Workflow" class="oe_highlight" type="object" groups="base.group_no_one" invisible="0" />
+                    <button name="signal_draft_to_validated" type="workflow" string="Set to 'validated'"
+                             attrs="{'invisible': [('product_state','not in',('draft'))]}" />
+                    <button name="signal_validated_to_draft" type="workflow" string="Set to 'draft'"
+                             attrs="{'invisible': [('product_state','not in',('validated'))]}" />
+                    <button name="signal_validated_to_in_production" type="workflow" string="Set to 'in production'"
+                             attrs="{'invisible': [('product_state','not in',('validated'))]}" />
+                    <button name="signal_in_production_to_end_of_life" type="workflow" string="Set to 'end of life'"
+                             attrs="{'invisible': [('product_state','not in',('in_production'))]}"
+                             groups="base.group_user" />
+                    <button name="signal_end_of_life_to_deactivated" type="workflow" string="Set to 'deactivated'"
+                             attrs="{'invisible': [('product_state','not in',('end_of_life'))]}" />
+                </field>
+
+                <!-- If in product_state 'in_production', then some fields are not editable. -->
+                <field name="default_code" position="replace">
+                    <field name="default_code" attrs="{'readonly': [('product_state', '!=', 'draft')]}" />
+                </field>
+                <field name="uom_id" position="replace">
+                    <field name="uom_id" attrs="{'readonly': [('product_state', 'in', ('in_production', 'end_of_life', 'deactivated'))]}" />
+                </field>
+
+                <!-- Adds the field to inform about the result of a workflow transition. -->
+                <field name="description" position="after">
+                    <group name="product_state_validation" string="Product Validation">
+                        <field name="product_state_validation" nolabel="1" />
+                    </group>
+                </field>
+
+                <xpath expr="//div[@name='ean']" position="after">
+                    <field name="action_date" readonly="1" string="Timestamp of the workflow's state" />
+                </xpath>
+
+            </field>
+        </record>
+
+    	<record id="view_product_tree_ext" model="ir.ui.view">
+    		<field name="name">view_product_tree_ext</field>
+    		<field name="model">product.product</field>
+    		<field name="inherit_id" ref="product.product_product_tree_view"/>
+    		<field name="arch" type="xml">
+    			<field name="state" position="attributes">
+    				<attribute name="invisible">True</attribute>
+    			</field>
+    		
+				<field name="state" position="before" >
+					<field name="webshop_state" />
+				</field>    			
+    		</field>
+    	</record>
+
+    </data>
+</openerp>

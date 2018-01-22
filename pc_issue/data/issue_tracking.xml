@@ -21,6 +21,11 @@
             <field name="priority">1</field>
         </record>
 
+        <record id="followup_category" model="project.category">
+            <field name="name">followup</field>
+            <field name="priority">1</field>
+        </record>
+
 		<record id="sale_category" model="project.category">
 			<field name="name">sale</field>
 		</record>
@@ -137,7 +142,7 @@
 			<field
 				name="parent_id"
 				eval="ref('support_project')" />
-			<field name="categ_ids" eval="[(6, 0, [ref('webshop_category'), ref('sale_category'), ref('sale_exception_category') ] )]"/>
+			<field name="categ_ids" eval="[(6, 0, [ref('webshop_category'), ref('sale_category'), ref('sale_exception_category'), ref('followup_category') ] )]"/>
 			<field name="color">3</field>
 		</record>
 

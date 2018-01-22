@@ -1,7 +1,7 @@
 # b-*- encoding: utf-8 -*-
 ##############################################################################
 #
-#    Copyright (c) 2015 brain-tec AG (http://www.brain-tec.ch)
+#    Copyright (c) 2015 brain-tec AG (http://www.braintec-group.com)
 #    All Right Reserved
 #
 #    This program is free software: you can redistribute it and/or modify
@@ -19,20 +19,17 @@
 #
 ##############################################################################
 
-
 def cr_uid_ids_context(f):
     """
     mock-up for the same function in v8
-
+    
     assures ids is a list
     """
-
     def _wrap(self, cr, uid, ids, *args, **kargs):
         if not isinstance(ids, list):
             ids = [ids]
         return f(self, cr, uid, ids, *args, **kargs)
     return _wrap
-
 
 def cr_uid_ids(f):
     return cr_uid_ids_context(f)

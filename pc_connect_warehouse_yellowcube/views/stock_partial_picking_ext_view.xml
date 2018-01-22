@@ -1,0 +1,32 @@
+<openerp>
+	<data>
+		<record id="view_stock_return_picking_form_ext" model="ir.ui.view">
+			<field name="inherit_id" ref="stock.stock_partial_picking_form" />
+			<field name="name">YC qty ext</field>
+			<field name="model">stock.partial.picking</field>
+			<field name="arch" type="xml">
+				<field name="quantity" position="after">
+					<field name="yc_qty_done" readonly="1" />
+                    <field name="yc_eod_received" readonly="1" />
+				</field>
+			</field>
+		</record>
+
+        <!-- Makes the fields editable for users belonging to the group pc_admin -->
+        <record id="view_stock_return_picking_form_editable_ext" model="ir.ui.view">
+			<field name="name">view_stock_return_picking_form_editable_ext</field>
+			<field name="model">stock.partial.picking</field>
+            <field name="inherit_id" ref="pc_connect_warehouse_yellowcube.view_stock_return_picking_form_ext" />
+            <field name="groups_id" eval="[(6,0, [ref('pc_connect_master.pc_admin')])]" />
+ 			<field name="arch" type="xml">
+                <field name="yc_qty_done" position="attributes">
+                    <attribute name="readonly">0</attribute>
+                </field>
+                <field name="yc_eod_received" position="attributes">
+                    <attribute name="readonly">0</attribute>
+                </field>
+			</field>
+		</record>
+
+	</data>
+</openerp>

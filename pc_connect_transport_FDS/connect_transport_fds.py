@@ -1,7 +1,7 @@
 # b-*- encoding: utf-8 -*-
 ##############################################################################
 #
-#    Copyright (c) 2015 brain-tec AG (http://www.brain-tec.ch)
+#    Copyright (c) 2015 brain-tec AG (http://www.braintec-group.com)
 #    All Right Reserved
 #
 #    This program is free software: you can redistribute it and/or modify
@@ -35,7 +35,7 @@ class connect_transport_fds(osv.Model):
         '''
         if context is None:
             context = {}
-        if not isinstance(ids, list):
+        if type(ids) is not list:
             ids = [ids]
 
         l = None
@@ -52,7 +52,7 @@ class connect_transport_fds(osv.Model):
         '''
         if context is None:
             context = {}
-        if not isinstance(ids, list):
+        if type(ids) is not list:
             ids = [ids]
 
         connection = self.pool.get('connect.transport').browse(cr, uid, ids[0], context=context)

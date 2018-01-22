@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+
+        <menuitem name="Procurement Orders"
+                  id="menu_procurement_action"
+                  parent="purchase.menu_procurement_management"
+                  action="procurement.procurement_action"
+                  sequence="14" />
+
+    </data>
+</openerp>

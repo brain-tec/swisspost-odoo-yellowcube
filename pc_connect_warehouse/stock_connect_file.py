@@ -1,7 +1,7 @@
 # b-*- encoding: utf-8 -*-
 ##############################################################################
 #
-#    Copyright (c) 2015 brain-tec AG (http://www.brain-tec.ch)
+#    Copyright (c) 2015 brain-tec AG (http://www.braintec-group.com)
 #    All Right Reserved
 #
 #    This program is free software: you can redistribute it and/or modify
@@ -18,11 +18,10 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 ##############################################################################
-
 from openerp.osv import osv, fields
 from openerp.tools.translate import _
-import logging
-logger = logging.getLogger(__name__)
+from openerp.addons.pc_connect_master.utilities.db import create_db_index
+import HTMLParser
 
 FILE_STATE_DRAFT = 'draft'
 FILE_STATE_READY = 'ready'
@@ -49,7 +48,7 @@ class stock_connect_file(osv.Model):
         pass
 
     def add_attachment(self, cr, uid, ids, data, filename, context=None):
-        if not isinstance(ids, list):
+        if type(ids) is not list:
             ids = [ids]
         for _id in ids:
             self.pool.get('ir.attachment').create(cr, uid, {'res_model': 'stock.connect.file',
@@ -76,7 +75,13 @@ class stock_connect_file(osv.Model):
         return super(stock_connect_file, self).create(cr, uid, vals, context=context)
 
     def write(self, cr, uid, ids, vals, context=None):
+
+        # It decodes encoded-HTML instances.
+        if 'info' in vals:
+            vals['info'] = HTMLParser.HTMLParser().unescape(vals['info'] or '')
+
         ret = super(stock_connect_file, self).write(cr, uid, ids, vals, context=context)
+
         if 'model' in vals or 'res_id' in vals:
             if not isinstance(ids, list):
                 ids = [ids]
@@ -85,6 +90,37 @@ class stock_connect_file(osv.Model):
                 if k not in item.related_ids:
                     item.write({'related_ids': item.related_ids + k[1:]})
         return ret
+
+    def copy(self, cr, uid, id, default=None, context=None):
+        filename = self.read(cr, uid, id, ['name'], context=context)['name']
+        if default:
+            if 'name' not in default:
+                default = default.copy()
+                default['name'] = 'copy_of_%s' % filename
+        else:
+            default = {
+                'name': 'copy_of_%s' % filename,
+            }
+        return super(stock_connect_file, self).copy(cr, uid, id,
+                                                    default=default,
+                                                    context=context)
+
+    def add_related_id(self, cr, uid, ids, model, res_id, context=None):
+        """ Adds a new entry for the related_ids.
+        """
+        if context is None:
+            context = {}
+        if type(ids) is not list:
+            ids = [ids]
+
+        for connect_file in self.browse(cr, uid, ids, context=context):
+            if not connect_file.related_ids:
+                new_related_ids = ',{0}:{1},'.format(model, res_id)
+            else:
+                new_related_ids = '{0}{1}:{2},'.format(
+                    connect_file.related_ids, model, res_id)
+            connect_file.write({'related_ids': new_related_ids})
+        return True
 
     def update_related_ids(self, cr, uid):
         pending_ids = self.search(cr, uid, [('related_ids', 'in', [False, ',', ''])])
@@ -113,6 +149,12 @@ class stock_connect_file(osv.Model):
             ids = self.search(cr, uid, domain, context=context)
             self.write(cr, uid, ids, {'priority': min_priority}, context=context)
 
+    def init(self, cr):
+        """ Creates some indices that can not be created directly using the ORM
+        """
+        # Compound index for priority DESC, name ASC, since saw in the profiling that it's used often.
+        create_db_index(cr, 'stock_connect_file_priority_desc_name_asc_index', 'stock_connect_file', 'priority DESC, name ASC')
+
     _columns = {
         'server_ack': fields.boolean("Received Acknowledge", help="By default is True, so special cases can set to False when waiting for ACK"),
         'type': fields.char("Type"),
@@ -125,15 +167,18 @@ class stock_connect_file(osv.Model):
         'model': fields.char('res.model'),
         'res_id': fields.integer('resource ID'),
         'related_ids': fields.char('related IDs'),
-        'name': fields.char('Filename', required=True),
+        'name': fields.char('Filename', required=True, copy=False),
         'binary_content': fields.boolean('Is the content binary?'),
         'content': fields.text('Content', required=False),
         'parent_file_id': fields.many2one('stock.connect.file', 'Parent file', required=False),
         'child_file_ids': fields.one2many('stock.connect.file', 'parent_file_id', 'Child files'),
         'info': fields.text('Info message', required=False),
-        'attachments': fields.one2many('ir.attachment', 'res_id', domain=[('res_model', '=', 'stock.connect.file')], string="Binary files"),
+        'attachments': fields.one2many('ir.attachment', 'res_id', domain=[('res_model', '=', 'stock.connect.file')], string="Binary files", select=True),
         'internal_index': fields.integer('Internal index of a file processed by items', required=False),
         'priority': fields.integer('Priority', required=False),
+        'is_summary': fields.boolean('Is a summary file?'),
+        'summary_file_id': fields.many2one('stock.connect.file',
+                                           'Summary file', required=False),
     }
 
     _defaults = {
@@ -143,6 +188,7 @@ class stock_connect_file(osv.Model):
         'priority': 0,
         'server_ack': True,
         'related_ids': ',',
+        'is_summary': False,
     }
 
     _sql_constraints = [

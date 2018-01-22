@@ -1,0 +1,78 @@
+<?xml version="1.0"?>
+<openerp>
+
+    <data noupdate="1">
+        <report id="bt_followup.invoice_followup_report" model="account.invoice" name="invoice_followup_report" string="Invoice Follow-Up Report"
+                file="pc_followup/report/invoice_followup_report.mako"
+                auto="True" header="True" menu="False"
+                report_type="webkit" webkit_header="pc_generics.ir_report_quotation_order"/>
+
+        <record id="bt_followup.email_template_invoice_followup_level1" model="email.template">
+            <field name="body_html">
+Presumably, it has escaped your attention that the payment is due. We ask you to transfer the open amount on the postal account {account_number} within {num_days} days, to compensate your customer and to avoid the blocking of the payment "per invoice".
+
+In this excerpt, all your payments until {new_due_date} are considered.
+
+If you have already arranged payment, please consider this letter as invalid.
+            </field>
+        </record>
+
+        <record id="bt_followup.email_template_invoice_followup_level2" model="email.template">
+            <field name="body_html">
+The payment type "per Invoice" is currently locked on the webshop.
+
+With this first reminder we would like to point out that the amount above is still open. We may ask you to transfer the total outstanding amount within {num_days} days with enclosed payment slip.
+
+In this excerpt, all your payments until {new_due_date} are considered.
+
+If you have already arranged payment, please consider this letter as invalid.
+            </field>
+        </record>
+
+        <record id="bt_followup.email_template_invoice_followup_level3" model="email.template">
+            <field name="body_html">
+Despite our previous letter of the amount above is still outstanding. We ask you once again to transfer the amount within {num_days} days with the attached payment slip to avoid that your dossier is sent to the collection agency Intrum Justitia.
+
+In this excerpt, all your payments until {new_due_date} are considered.
+
+If you have already arranged payment, please consider this letter as invalid.
+            </field>
+        </record>
+
+        <record id="bt_followup.demo_followup_line1" model="followup.level" forcecreate="False">
+            <field name="email_template_id" ref="bt_followup.email_template_invoice_followup_level1"/>
+            <field name="description">
+Presumably, it has escaped your attention that the payment is due. We ask you to transfer the open amount on the postal account {account_number} within {num_days} days, to compensate your customer and to avoid the blocking of the payment "per invoice".
+
+In this excerpt, all your payments until {new_due_date} are considered.
+
+If you have already arranged payment, please consider this letter as invalid.
+            </field>
+        </record>
+
+        <record id="bt_followup.demo_followup_line2" model="followup.level" forcecreate="False">
+            <field name="email_template_id" ref="bt_followup.email_template_invoice_followup_level2"/>
+            <field name="description">
+The payment type "per Invoice" is currently locked on the webshop.
+
+With this first reminder we would like to point out that the amount above is still open. We may ask you to transfer the total outstanding amount within {num_days} days with enclosed payment slip.
+
+In this excerpt, all your payments until {new_due_date} are considered.
+
+If you have already arranged payment, please consider this letter as invalid.
+            </field>
+        </record>
+
+        <record id="bt_followup.demo_followup_line3" model="followup.level" forcecreate="False">
+            <field name="email_template_id" ref="bt_followup.email_template_invoice_followup_level3"/>
+            <field name="description">
+Despite our previous letter of the amount above is still outstanding. We ask you once again to transfer the amount within {num_days} days with the attached payment slip to avoid that your dossier is sent to the collection agency Intrum Justitia.
+
+In this excerpt, all your payments until {new_due_date} are considered.
+
+If you have already arranged payment, please consider this letter as invalid.
+            </field>
+        </record>
+
+    </data>    
+</openerp>

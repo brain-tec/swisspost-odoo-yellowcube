@@ -1,7 +1,7 @@
 # b-*- encoding: utf-8 -*-
 ##############################################################################
 #
-#    Copyright (c) 2014 brain-tec AG (http://www.brain-tec.ch)
+#    Copyright (c) 2014 brain-tec AG (http://www.braintec-group.com)
 #    All Right Reserved
 #
 #    This program is free software: you can redistribute it and/or modify
@@ -156,14 +156,23 @@ def get_next_day_datetime(cr, uid, hour, minutes, timezone_str, actual_weekdays=
             6: False,  # Sunday.
         }
 
-    now_str = fields.datetime.now()
-    now = datetime.strptime(now_str, DEFAULT_SERVER_DATETIME_FORMAT)
+    now = datetime.now()
     now += timedelta(days=get_number_of_natural_days(now, 1, 'forward', actual_weekdays))
     next_date_datetime = now.replace(hour=hour, minute=minutes, second=0, microsecond=0)
 
     timezone_to_use = timezone(timezone_str)
     localised_time = timezone_to_use.localize(next_date_datetime)  # Sets it on the timezone indicated.
     next_date_datetime = localised_time.astimezone(timezone('Etc/UTC'))  # Odoo expects it on UTC-0
+
+    # Removes the info of the timezone, otherwise the dump() in the
+    # module 'pickle' by Python gets confused and says that
+    # Can't pickle <type 'datetime.datetime'>: it's not the same object as
+    # datetime.datetime.
+    next_date_datetime = datetime.strftime(next_date_datetime,
+                                           DEFAULT_SERVER_DATETIME_FORMAT)
+    next_date_datetime = datetime.strptime(next_date_datetime,
+                                           DEFAULT_SERVER_DATETIME_FORMAT)
+
     return next_date_datetime
 
 

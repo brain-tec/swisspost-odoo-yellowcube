@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>       
+        <record id="account_payment_term_line_form_customer_ext" model="ir.ui.view">
+            <field name="name">account.payment.term.line.form.ext</field>
+            <field name="model">account.payment.term.line</field>
+            <field name="inherit_id" ref="account.view_payment_term_line_form" />
+            <field name="arch" type="xml">
+            <data>    
+                <xpath expr="/form/group/group/field[@name='days2']" position="after">
+                    <field name="days_maturity" colspan="4"/>
+                </xpath>
+            </data>
+            </field>
+        </record>
+        
+        <record id="account_payment_term_line_tree_ext" model="ir.ui.view">
+            <field name="name">account.payment.term.line.tree.ext</field>
+            <field name="model">account.payment.term.line</field>
+            <field name="inherit_id" ref="account.view_payment_term_line_tree" />
+            <field name="arch" type="xml">
+            <data>
+                <xpath expr="/tree/field[@name='days2']" position="after">
+                    <field name="days_maturity"/>
+                </xpath>
+            </data>
+            </field>
+        </record>
+		
+		<record id="account_payment_view_payment_line_form_ext" model="ir.ui.view">
+            <field name="name">account.payment.view.payment.line.form.ext</field>
+            <field name="model">payment.line</field>
+            <field name="inherit_id" ref="account_payment.view_payment_line_form" />
+            <field name="arch" type="xml">
+            <data>
+                <xpath expr="/form/notebook/page/group/field[@name='move_line_id']" position="after">
+                    <field name="ref"/>
+                </xpath>
+            </data>
+            </field>
+        </record>
+		
+		<record id="account_payment_view_payment_order_form_ext" model="ir.ui.view">
+            <field name="name">account.payment.view.payment.order.form.ext</field>
+            <field name="model">payment.order</field>
+            <field name="inherit_id" ref="account_payment.view_payment_order_form" />
+            <field name="arch" type="xml">
+            <data>
+                <xpath expr="/form/sheet/field/form/notebook/page/group/field[@name='move_line_id']" position="after">
+                    <field name="ref"/>
+                </xpath>
+            </data>
+            </field>
+        </record>
+		
+    </data>
+</openerp>

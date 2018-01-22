@@ -2,14 +2,20 @@
 <openerp>
     <data>
 
-        <!-- Makes the column of the partner_id to be visible also by pc_client. -->
         <record id="invoice_tree_ext" model="ir.ui.view">
             <field name="name">invoice_tree_ext</field>
             <field name="model">account.invoice</field>
             <field name="inherit_id" ref="account.invoice_tree" />
             <field name="arch" type="xml">
+                <!-- Makes the column of the partner_id to be visible also by pc_client. -->
                 <field name="partner_id" position="attributes">
                     <attribute name="groups">base.group_user,pc_connect_master.pc_client</attribute>
+                </field>
+
+                <field name="origin" position="after">
+                    <field name="carrier_id" string="Delivery Method" />
+                    <field name="shop_id" />
+                    <field name="client_invoice_ref" />
                 </field>
             </field>
         </record>
@@ -25,19 +31,35 @@
                 </field>
 
                 <notebook position="inside">
+                    <page string="Automation Information" name="page_automation_information">
+                        <group>
+                            <field name="invoice_routing" />
+                            <field name="carrier_id" />
+                            <field name="automate_invoice_process" />
+                            <field name="automation_finished" readonly="True" />
+                        </group>
+                    </page>
+
                     <!-- Adds the Help & Support tab. -->
                     <page string="Help &amp; Support">
                         <!-- To be filled in with remarks related to help & support. -->
                      </page>
                 </notebook>
-                
+
                 <field name="origin" position="after">
                     <field name="send_invoice_to_partner" readonly="True" />
+                    <field name="shop_id" />
+                    <field name="client_invoice_ref" />
                 </field>
 
                 <field name="date_due" position="before">
                     <field name="date_cancel" widget="date" readonly="True"
                         attrs="{'invisible': [('state', '!=', 'cancel')]}"/>
+                </field>
+
+                <field name="move_id" position="after">
+                    <field name="refunded_invoice_id" readonly="True"
+                           attrs="{'invisible': [('type', '!=', 'out_refund')]}" />
                 </field>
 
             </field>
@@ -121,8 +143,15 @@
                             invisible="not context.get('in_default_action_invoice', False)" />
                     </field>
 
+                    <filter string="Due Date" position="after">
+                        <filter string="Delivery Method" context="{'group_by':'carrier_id'}"/>
+                        <filter string="Shop" context="{'group_by':'shop_id'}"/>
+                        <filter string="Client Invoice Ref" context="{'group_by':'client_invoice_ref'}"/>
+                    </filter>
+
                 </data>
             </field>
         </record>
+
     </data>
 </openerp>

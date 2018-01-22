@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+	<data>
+		<record id="view_change_loggers_form" model="ir.ui.view">
+			<field name="name">view_change_loggers_form</field>
+			<field name="model">bt_helper.change_loggers</field>
+			<field name="arch" type="xml">
+				<form string="Change logger">
+					<field name="name" />
+					<field name="btlogger_ids" colspan="4">
+						<tree string="Loggers" editable="top">
+							<field name="name" />
+							<field name="level" />
+							<field name="new_level" />
+						</tree>
+					</field>
+
+					<button name="update_loggers" string="Go" type="object"
+						icon="STOCK_SELECT_FONT" colspan="3" />
+					<button name="copy_current_level" string="Go" type="object"
+						icon="gtk-dnd-multiple" colspan="3" />
+						
+				</form>
+			</field>
+		</record>
+
+
+		<record id="view_change_loggers_tree" model="ir.ui.view">
+			<field name="name">view_change_loggers_tree</field>
+			<field name="model">bt_helper.change_loggers</field>
+			<field name="arch" type="xml">
+				<tree string="Change logger">
+					<field name="name" />
+					<field name="due_date" />
+					<button name="update_loggers" string="Go" type="object"
+						icon="STOCK_SELECT_FONT" colspan="3" />
+				</tree>
+			</field>
+		</record>
+
+		<record id="view_change_loggers_search" model="ir.ui.view">
+			<field name="name">view_change_loggers_search</field>
+			<field name="model">bt_helper.change_loggers</field>
+			<field name="arch" type="xml">
+				<search string="Change logger">
+					<field name="name" />
+					<field name="due_date" />
+				</search>
+			</field>
+		</record>
+		
+		<record id="logger_information" model="ir.actions.act_window">
+			<field name="name">Logger Information</field>
+			<field name="type">ir.actions.act_window</field>
+			<field name="res_model">bt_helper.change_loggers</field>
+			<field name="view_type">form</field>
+			<field name="view_mode">tree,form</field>
+			<field name="target" />
+		</record>
+
+
+		<menuitem name="Debug (loggers)" action="logger_information"
+			id="menu_logger_information" groups="base.group_no_one"
+			parent="menu_helper" sequence="15" />
+
+	</data>
+</openerp>
+

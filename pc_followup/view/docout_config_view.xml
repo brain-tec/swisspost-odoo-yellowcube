@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+
+        <record id="configuration_data_form_docout_followup" model="ir.ui.view">
+            <field name="name">configuration_data_form_docout_followup</field>
+            <field name="model">configuration.data</field>
+            <field name="inherit_id" ref="pc_docout.configuration_data_form_ext" />
+            <field name="arch" type="xml">
+                <page name="doc_out" position="inside">
+
+                    <group cols="2">
+                        <group string="Follow-up Sending" colspan="1">
+                            <div colspan="2">
+                                When are the follow-ups going to be sent to the doc-out? <br/>
+                                The preffix for the punchcard is <i>docout_followup</i>.
+                            </div>
+                            <group>
+                                <field name="docout_followup_time_of_day" widget="float_time" />
+                                <field name="docout_followup_monday" />
+                                <field name="docout_followup_tuesday" />
+                                <field name="docout_followup_wednesday" />
+                                <field name="docout_followup_thursday" />
+                                <field name="docout_followup_friday" />
+                                <field name="docout_followup_saturday" />
+                                <field name="docout_followup_sunday" />
+                            </group>
+                            <group>
+                                <field name="docout_followup_activate_send_to_email" />
+                                <field name="docout_followup_email_template_to_docout_id" />
+                                <field name="docout_followup_email_address" />
+                                <separator colspan="2" />
+                                <field name="docout_followup_activate_send_to_server" />
+                                <field name="docout_followup_connect_transport_id" />
+                                <field name="docout_followup_folder" />
+                                <field name="docout_followup_sending_option" />
+                            </group>
+                        </group>
+
+                    </group>
+                </page>
+            </field>
+        </record>
+
+    </data>
+</openerp>

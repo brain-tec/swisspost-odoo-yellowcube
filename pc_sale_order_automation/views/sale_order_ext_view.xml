@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+	<data>
+
+        <record id="sale_order_view_form_automation_ext" model="ir.ui.view">
+            <field name="name">sale.order.view.form.automation</field>
+            <field name="model">sale.order</field>
+            <field name="inherit_id" ref="pc_connect_master.sale_order_view_form_automation_ext" />
+            <field name="arch" type="xml">
+                <field name="automation_finished" position="before">
+                    <field name="manually_force_validation" />
+                    <field name="automate_sale_order_process" />
+                </field>
+            </field>
+        </record>
+
+        <record id="sale_order_view_form_ext" model="ir.ui.view">
+            <field name="name">sale.order.view.form.ext</field>
+            <field name="model">sale.order</field>
+            <field name="inherit_id" ref="pc_connect_master.sale_order_view_form_ext" />
+            <field name="arch" type="xml">
+
+			<page string="Help &amp; Support" position="inside">
+				<group string="Sale Order Automation" colspan='4'>
+					<div>
+						In order to automate the sale order process, check 
+				        'Automation Information' > 'Automate Sale Order Process'.
+						<br />
+						Once it is automate it cannot be stopped, and no more actions must be done over the sale
+						order object, (unless an error happens).
+					</div>
+				</group>
+			</page>
+
+            </field>
+        </record>
+
+        <!-- Actions -->
+        <record id="run_cancel_orders_server_action" model="ir.actions.server">
+            <field name="name">Cancel</field>
+            <field name="model_id" ref="sale.model_sale_order"/>
+            <field name="state">code</field>
+            <field name="code">
+                self.action_cancel(cr, uid, context['active_ids'], context=context)
+            </field>
+        </record>
+
+        <record id="run_cancel_orders_action" model="ir.values">
+            <field name="model_id" ref="sale.model_sale_order" />
+            <field name="name">Cancel</field>
+            <field name="key2">client_action_multi</field>
+            <field name="key">action</field>
+            <field name="model">sale.order</field>
+            <field name="value" eval="'ir.actions.server,' + str(ref('run_cancel_orders_server_action'))" />
+        </record>
+
+	</data>
+</openerp>

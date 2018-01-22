@@ -1,0 +1,132 @@
+-
+  3.A.3. If a dunned invoice has a follow-up level but is not handled, then handling it has no effect.
+-
+  !python {model: account.invoice}: |
+    print 'Starting the test 3.A.3.'
+    cr.execute("SAVEPOINT test;")
+
+-
+  2.A.2. Sets the system parameter with the location of webkit.
+-
+  !python {model: ir.config_parameter}: |
+    from openerp import SUPERUSER_ID
+    self.set_param(cr, SUPERUSER_ID, 'webkit_path', '/home/openerp/wkhtmltopdf-amd64', context)
+
+-
+  2.A.2. Defines a bank account for the company (this is needed for follow-ups)
+-
+  !record {model: res.partner.bank, id: res_partner_bank_3_A_3}:
+    state: bank
+    acc_number: 123
+    partner_id: base.main_partner
+    bank: base.res_bank_1
+    bank_name: 'Test Bank'
+    company_id: base.main_company
+
+
+-
+  3.A.3. Creates an invoice with one line. This will be the one to be dunned.
+-
+  !record {model: account.invoice, id: account_invoice_3_A_3_dunned}:
+    partner_id: base.res_partner_address_4
+    journal_id: account.sales_journal
+    account_id: account.a_recv
+    date_due: !eval datetime.today().strftime("%Y-%m-%d")
+    invoice_line:
+      - product_id: product.product_product_48
+        name: 'USB Adapter'
+        quantity: 18.0
+        uos_id: product.product_uom_unit
+        price_unit: 5.0
+
+-
+  3.A.3. Gets the delay of the first follow-up level and sets the due date of the invoice to be greater (one more) than that delay.
+-
+  !python {model: followup.level}: |
+    from openerp import SUPERUSER_ID
+    from datetime import datetime, timedelta
+    # Gets the follow-up levels associated to the company of the admin.
+    superuser_id = self.pool.get('res.users').search(cr, uid, [('id', '=', SUPERUSER_ID)], limit=1, context=context)[0]
+    company_id = self.pool.get('res.company').search(cr, uid, [('id', '=', superuser_id)], limit=1, context=context)[0]
+    followup_config_id = self.pool.get('followup.config').search(cr, uid, [('company_id', '=', company_id)], context=context)[0]
+    followup_level_ids = self.pool.get('followup.level').search(cr, uid, [('followup_config_id', '=', followup_config_id)], context=context)
+
+    # Stores the ID of the first follow-up level.
+    context['first_followup_level'] = followup_level_ids[0]
+
+    # Gets the delay of the first follow-up level (they are sorted).
+    delay = self.pool.get('followup.level').browse(cr, uid, followup_level_ids[0], context=context).delay
+    context['followup_level_delay'] = delay
+
+    # Gets the invoice.
+    invoice_dunned_obj = self.pool.get('account.invoice').browse(cr, uid, ref('account_invoice_3_A_3_dunned'))
+
+    # Sets the delay of the invoice to be just one day before the day in which the first follow-up level applies.
+    new_due_date = (datetime.now() - timedelta(delay + 1)).strftime("%Y-%m-%d")
+    invoice_dunned_obj.write({'date_due': new_due_date, 'payment_term': None})
+
+-
+  3.A.3. Checks if the state of the newly created invoice is in state 'draft'.
+-
+  !assert {model: account.invoice, id: account_invoice_3_A_3_dunned, string: 'State should be in state draft.'}:
+    - state == 'draft'
+
+-
+  3.A.3. Validates invoice by clicking on the 'Validate' button.
+-
+  !workflow {model: account.invoice, action: invoice_open, ref: account_invoice_3_A_3_dunned}
+
+-
+  3.A.3. Checks if the state of the newly created invoice are in state 'open'.
+-
+  !assert {model: account.invoice, id: account_invoice_3_A_3_dunned, string: 'State should be in state open for the dunned invoice.'}:
+    - state == 'open'
+
+-
+  3.A.3. Checks if the due days of the opened invoice is one plus the delay of the first follow-up level.
+-
+  !python {model: account.invoice}: |
+    invoice_dunned_obj = self.browse(cr, uid, ref('account_invoice_3_A_3_dunned'))
+    assert(invoice_dunned_obj.follow_up_date_due_days == (context['followup_level_delay'] + 1)), ("'Due days' should be {0} for the dunned invoice, but it is {1}".format(context['followup_level_delay'] - 1, invoice_obj.follow_up_date_due_days))
+
+-
+  3.A.3. Executes the scheduler which updates the follow-up levels.
+-
+  !python {model: account.invoice}: |
+    self.cron_update_invoice_followup_level(cr, uid, context)
+
+-
+  3.A.3. Checks that the invoice has a follow-up level associated, which has not yet been handled.
+-
+  !python {model: account.invoice}: |
+    invoice_dunned_obj = self.browse(cr, uid, ref('account_invoice_3_A_3_dunned'))
+    assert(invoice_dunned_obj.followup_level_id), ("The follow-up level should be set, but it is not.")
+    assert(not invoice_dunned_obj.followup_level_handled), ("The follow-up should not be handled, but it is.")
+
+-
+  3.A.3. Sets the dunning block over the invoice.
+-
+  !python {model: account.invoice}: |
+    invoice_dunned_obj = self.pool.get('account.invoice').browse(cr, uid, ref('account_invoice_3_A_3_dunned'))
+    invoice_dunned_obj.write({'invoice_dunning_block': True})
+
+-
+  3.A.3. Handles the invoice.
+-
+  !python {model: account.invoice}: |
+    invoice_dunned_obj = self.pool.get('account.invoice').browse(cr, uid, ref('account_invoice_3_A_3_dunned'))
+    invoice_dunned_obj.do_handle_followup()
+
+-
+  3.A.3. Checks that the invoice is still not handled.
+-
+  !python {model: account.invoice}: |
+    invoice_dunned_obj = self.browse(cr, uid, ref('account_invoice_3_A_3_dunned'))
+    assert(invoice_dunned_obj.followup_level_id), ("The follow-up level should be set, but it is not.")
+    assert(not invoice_dunned_obj.followup_level_handled), ("The follow-up should not have been handled, but it has been.")
+
+-
+  3.A.3. Rollbacks.
+-
+  !python {model: account.invoice}: |
+    cr.execute("ROLLBACK TO SAVEPOINT test;")

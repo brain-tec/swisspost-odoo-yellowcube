@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<WAB
+	xsi:noNamespaceSchemaLocation="YellowCube_WAB_Warenausgangsbestellung.xsd"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+
+	<ControlReference>
+
+		<Type>WAB</Type>
+
+		<Sender>Tradeshop</Sender>
+
+		<Receiver>YELLOWCUBE</Receiver>
+
+		<Timestamp>20140217140000</Timestamp>
+
+		<OperatingMode>T</OperatingMode>
+
+		<Version>1.0</Version>
+
+	</ControlReference>
+
+	<Order>
+
+		<OrderHeader>
+
+			<DepositorNo>0000099999</DepositorNo>
+
+			<CustomerOrderNo>2014-66140002</CustomerOrderNo>
+
+			<CustomerOrderDate>20140314</CustomerOrderDate>
+
+		</OrderHeader>
+
+		<PartnerAddress>
+
+			<Partner>
+
+				<PartnerType>WE</PartnerType>
+
+				<PartnerNo>0000300004</PartnerNo>
+
+				<PartnerReference>23423</PartnerReference>
+
+				<Title>Madame</Title>
+
+				<Name1>Muster M.</Name1>
+
+				<Name2>c/o Cailler</Name2>
+
+				<Name3 />
+
+				<Name4 />
+
+				<Street>Rue de la vieille ville 26</Street>
+
+				<CountryCode>CH</CountryCode>
+
+				<ZIPCode>1200</ZIPCode>
+
+				<City>Genève</City>
+
+				<POBox>Postfach</POBox>
+
+				<PhoneNo>031 338 11 11</PhoneNo>
+
+				<MobileNo>079 302 04 67</MobileNo>
+
+				<FaxNo>0860793020467</FaxNo>
+
+				<LanguageCode>fr</LanguageCode>
+
+			</Partner>
+
+		</PartnerAddress>
+
+		<ValueAddedServices>
+
+			<AdditionalService>
+
+				<BasicShippingServices>PRI</BasicShippingServices>
+
+				<AdditionalShippingServices>SI;AZS</AdditionalShippingServices>
+
+				<DeliveryInstructions />
+
+				<FrightShippingFlag>0</FrightShippingFlag>
+
+			</AdditionalService>
+
+		</ValueAddedServices>
+
+		<OrderPositions>
+
+			<Position>
+
+				<PosNo>10</PosNo>
+
+				<ArticleNo>660090</ArticleNo>
+
+				<EAN>7610006600901</EAN> <!--optional -->
+
+				<Plant>Y004</Plant>
+
+				<Quantity>1</Quantity>
+
+				<QuantityISO>PCE</QuantityISO>
+
+				<ShortDescription />
+
+			</Position>
+
+			<Position>
+
+				<PosNo>20</PosNo>
+
+				<ArticleNo>660091</ArticleNo>
+
+				<EAN>7610006600918</EAN> <!--optional -->
+
+				<Plant>Y004</Plant>
+
+				<Quantity>1</Quantity>
+
+				<QuantityISO>PCE</QuantityISO>
+
+				<ShortDescription>Notizblock schwarz</ShortDescription> <!--optional -->
+
+				<PickingMessage>Geschenkkarte Ostern 2014*beilegen</PickingMessage> <!--optional -->
+
+				<PickingMessageLC>de</PickingMessageLC> <!--optional -->
+
+			</Position>
+
+		</OrderPositions>
+
+		<OrderDocuments OrderDocumentsFlag="1">
+
+			<OrderDocFilenames>
+
+				<OrderDocFilename>LS66140002_140314.pdf</OrderDocFilename>
+
+				<OrderDocFilename>IV66140002_140314.pdf</OrderDocFilename>
+
+			</OrderDocFilenames>
+
+		</OrderDocuments>
+
+	</Order>
+
+</WAB>

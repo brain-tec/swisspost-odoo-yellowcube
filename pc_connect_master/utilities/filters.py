@@ -1,7 +1,7 @@
 # b-*- encoding: utf-8 -*-
 ##############################################################################
 #
-#    Copyright (c) 2014 brain-tec AG (http://www.brain-tec.ch)
+#    Copyright (c) 2014 brain-tec AG (http://www.braintec-group.com)
 #    All Right Reserved
 #
 #    This program is free software: you can redistribute it and/or modify
@@ -26,6 +26,7 @@ def _replace_week_placeholders(self, cr, uid, args, context=None):
     ''' Generates the placeholders for the XML which defines the filter for the current week.
         The code of this filter had to be done partially in Python, thus the reason of this function.
     '''
+    # Replaces the this_week placeholder (have a look at module sett_hr within bt_modules)
     if context is None:
         context = {}
     if context.get('this_week', False):
@@ -43,6 +44,7 @@ def _replace_quarter_placeholders(self, cr, uid, args, context=None):
     ''' Generates the placeholders for the XML which defines the filter for the current quarter.
         The code of this filter had to be done partially in Python, thus the reason of this function.
     '''
+    # Replaces the this_quarter placeholder (have a look at module sett_hr within bt_modules)
     if context is None:
         context = {}
     if context.get('this_quarter', False):
@@ -61,14 +63,15 @@ def _replace_delivery_to_customer_placeholders(self, cr, uid, args, context=None
         destination location when it is equal to the location "Partner Locations / Customer"
         The code of this filter had to be done partially in Python, thus the reason of this function.
     '''
+    # Replaces the partner_location_customer placeholder (have a look at module sett_hr within bt_modules)
     if context is None:
         context = {}
     if context.get('delivery_to_customer', False):
         stock_location_obj = self.pool.get('stock.location')
         for arg in args:
             customer_location_ids = stock_location_obj.search(cr, uid,
-                                                              [('complete_name', '=', 'Partner Locations / Customers')],
-                                                              context=context, limit=1)
+                                                          [('complete_name', '=', 'Partner Locations / Customers')], 
+                                                          context=context, limit=1)
             if len(arg) > 2:
                 if arg[2] == 'customer_location':
                     arg[2] = customer_location_ids[0]

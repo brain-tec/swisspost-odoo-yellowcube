@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<WAR>
+	<ControlReference>
+		<Type>WAR</Type>
+		<Sender>YELLOWCUBE</Sender>
+		<Receiver>0000090040</Receiver>
+		<Timestamp>20140829230003</Timestamp>
+		<OperatingMode>T</OperatingMode>
+		<Version>1.0</Version>
+	</ControlReference>
+	<GoodsIssue>
+		<GoodsIssueHeader>
+			<BookingVoucherID>4900109771</BookingVoucherID>
+			<BookingVoucherYear>2014</BookingVoucherYear>
+			<DepositorNo>0000023453</DepositorNo>
+		</GoodsIssueHeader>
+		<CustomerOrderHeader>
+			<YCDeliveryNo>0410001201</YCDeliveryNo>
+			<YCDeliveryDate>20141231</YCDeliveryDate>
+			<CustomerOrderNo>SO013-100000020</CustomerOrderNo>
+			<CustomerOrderDate>20130104</CustomerOrderDate>
+			<PostalShipmentNo>996008636610025090;996000169910007263;996008636610025084;996008636610025087</PostalShipmentNo>
+			<PartnerReference>??????</PartnerReference>
+		</CustomerOrderHeader>
+		<CustomerOrderList>
+			<CustomerOrderDetail>
+				<BVPosNo>1</BVPosNo>
+				<CustomerOrderPosNo>1</CustomerOrderPosNo>
+				<YCArticleNo>Y004101829</YCArticleNo>
+				<ArticleNo>PR/00005</ArticleNo> <!-- Optional -->
+				<EAN>7610006600390</EAN> <!-- Optional -->
+				<Lot>201305</Lot> <!-- Optional -->
+				<Plant>Y004</Plant>
+				<StorageLocation>YAFS</StorageLocation>
+				<TransactionType>601</TransactionType> <!-- Optional -->
+				<StockType>0</StockType> <!-- Optional -->
+				<QuantityUOM QuantityISO='PCE'>1</QuantityUOM>
+				<ReturnReason>R06</ReturnReason> <!-- Optional -->
+				<SerialNumbers>??????</SerialNumbers> <!-- Optional -->
+			</CustomerOrderDetail>
+		</CustomerOrderList>
+	</GoodsIssue>
+</WAR>

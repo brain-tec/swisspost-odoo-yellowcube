@@ -16,13 +16,6 @@
 									<field name="stock_connect_file_ids" />
 								</group>
 							</page>
-							<page string="Locations" colspan="4" groups="stock.group_locations">
-								<group>
-									<field name="lot_stock_id" />
-									<field name="lot_input_id" />
-									<field name="lot_output_id" />
-								</group>
-							</page>
 						</notebook>
 					</group>
 				</group>

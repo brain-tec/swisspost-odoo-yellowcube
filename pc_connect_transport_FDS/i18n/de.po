@@ -1,6 +1,6 @@
 # Translation of OpenERP Server.
 # This file contains the translation of the following modules:
-#	* pc_connect_transport_FDS
+#
 #
 msgid ""
 msgstr ""
@@ -23,12 +23,12 @@ msgstr "FDS"
 #. module: pc_connect_transport_FDS
 #: help:connect.transport.fds,test_mode:0
 msgid "If active, no change in the server is done."
-msgstr "If active, no change in the server is done."
+msgstr "Wenn aktiv, wird keine Änderung am Server vorgenommen."
 
 #. module: pc_connect_transport_FDS
 #: selection:connect.transport.fds,type:0
 msgid "Local SFTP"
-msgstr "Local SFTP"
+msgstr "Lokaler SFTP"
 
 #. module: pc_connect_transport_FDS
 #: selection:connect.transport.fds,type:0
@@ -48,22 +48,22 @@ msgstr "Bezeichnung"
 #. module: pc_connect_transport_FDS
 #: field:connect.transport.fds,password:0
 msgid "Password"
-msgstr "Password"
+msgstr "Passwort"
 
 #. module: pc_connect_transport_FDS
 #: model:ir.model.fields,field_description:field_connect_transport_fds_password
 msgid "Password"
-msgstr "Password"
+msgstr "Passwort"
 
 #. module: pc_connect_transport_FDS
 #: field:connect.transport.fds,rsa_key:0
 msgid "RSA Private Key"
-msgstr "RSA Private Key"
+msgstr "Privater Schlüssel (RSA)"
 
 #. module: pc_connect_transport_FDS
 #: model:ir.model.fields,field_description:field_connect_transport_fds_rsa_key
 msgid "RSA Private Key"
-msgstr "RSA Private Key"
+msgstr "Privater Schlüssel (RSA)"
 
 #. module: pc_connect_transport_FDS
 #: selection:connect.transport.fds,type:0
@@ -83,62 +83,62 @@ msgstr "Server URL"
 #. module: pc_connect_transport_FDS
 #: field:connect.transport.fds,test_mode:0
 msgid "Test mode?"
-msgstr "Test mode?"
+msgstr "Testmodus?"
 
 #. module: pc_connect_transport_FDS
 #: model:ir.model.fields,field_description:field_connect_transport_fds_test_mode
 msgid "Test mode?"
-msgstr "Test mode?"
+msgstr "Testmodus?"
 
 #. module: pc_connect_transport_FDS
 #: help:connect.transport.fds,rsa_key:0
 msgid "The RSA private key to connect to the server."
-msgstr "The RSA private key to connect to the server."
+msgstr "Der private RSA-Schlüssel für die Verbindung zum Server."
 
 #. module: pc_connect_transport_FDS
 #: help:connect.transport.fds,server_url:0
 msgid "The URL of the server."
-msgstr "The URL of the server."
+msgstr "Die URL des Servers."
 
 #. module: pc_connect_transport_FDS
 #: help:connect.transport.fds,name:0
 msgid "The name of the connection."
-msgstr "The name of the connection."
+msgstr "Der Name der Verbindung."
 
 #. module: pc_connect_transport_FDS
 #: help:connect.transport.fds,password:0
 msgid "The password to connect to the server."
-msgstr "The password to connect to the server."
+msgstr "Das Passwort für die Verbindung zum Server."
 
 #. module: pc_connect_transport_FDS
 #: help:connect.transport.fds,type:0
 msgid "The type of the connection."
-msgstr "The type of the connection."
+msgstr "Art der Verbindung"
 
 #. module: pc_connect_transport_FDS
 #: help:connect.transport.fds,username:0
 msgid "The username to connect to the server."
-msgstr "The username to connect to the server."
+msgstr "Der Benutzername für die Verbindung zum Server."
 
 #. module: pc_connect_transport_FDS
 #: field:connect.transport.fds,type:0
 msgid "Type"
-msgstr "ArtTyp"
+msgstr "Typ"
 
 #. module: pc_connect_transport_FDS
 #: model:ir.model.fields,field_description:field_connect_transport_fds_type
 msgid "Type"
-msgstr "ArtTyp"
+msgstr "Typ"
 
 #. module: pc_connect_transport_FDS
 #: field:connect.transport.fds,username:0
 msgid "Username"
-msgstr "Username"
+msgstr "Benutzername"
 
 #. module: pc_connect_transport_FDS
 #: model:ir.model.fields,field_description:field_connect_transport_fds_username
 msgid "Username"
-msgstr "Username"
+msgstr "Benutzername"
 
 #. module: pc_connect_transport_FDS
 #: model:ir.model,name:model_connect_transport_fds

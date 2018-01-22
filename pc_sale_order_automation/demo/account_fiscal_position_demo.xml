@@ -1,0 +1,10 @@
+<openerp>
+	<data noupdate='0'>
+
+        <record id="test_fiscal_position" model="account.fiscal.position">
+            <field name="name">Test Fiscal Position</field>
+            <field name="active" eval="True" />
+        </record>
+
+    </data>
+</openerp>

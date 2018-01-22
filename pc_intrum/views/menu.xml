@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+	<data>
+
+        <!-- Adds the option to the PC Sales module. -->
+        <menuitem
+            name="Intrum"
+            id="intrum_request_menuitem_pc_sales"
+            parent="pc_connect_master.pc_menu_sales"
+            sequence="100" />
+        <menuitem
+            name="Requests"
+            id="intrum_request_pc_sales"
+            parent="intrum_request_menuitem_pc_sales"
+            action="action_show_intrum_requests"
+            sequence="10" />
+	</data>
+</openerp>

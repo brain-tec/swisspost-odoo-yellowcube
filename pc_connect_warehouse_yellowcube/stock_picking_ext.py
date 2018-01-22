@@ -1,7 +1,7 @@
 # b-*- encoding: utf-8 -*-
 ##############################################################################
 #
-#    Copyright (c) 2015 brain-tec AG (http://www.brain-tec.ch)
+#    Copyright (c) 2015 brain-tec AG (http://www.braintec-group.com)
 #    All Right Reserved
 #
 #    This program is free software: you can redistribute it and/or modify
@@ -27,6 +27,7 @@ import os
 import base64
 import logging
 logger = logging.getLogger(__name__)
+logger.setLevel(logging.DEBUG)
 
 
 RETURN_REASON_CODES = [
@@ -52,13 +53,174 @@ CUSTOMER_ORDER_NUMBER_XSD_LIMIT = 35
 class stock_picking_ext(osv.Model):
     _inherit = 'stock.picking'
 
-    def get_filename_for_wab(self, cr, uid, ids, extension, context=None):
+    def create(self, cr, uid, values, context=None):
+        picking_id = super(stock_picking_ext, self).create(
+            cr, uid, values, context=context)
+
+        if 'sale_id' in values or 'carrier_id' in values:
+            self.set_mandatory_additional_shipping_codes(cr, uid, picking_id,
+                                                         context=context)
+
+        return picking_id
+
+    def write(self, cr, uid, ids, values, context=None):
+        ret = super(stock_picking_ext, self).write(
+            cr, uid, ids, values, context=None)
+
+        if 'sale_id' in values or 'carrier_id' in values:
+            self.set_mandatory_additional_shipping_codes(cr, uid, ids,
+                                                         context=context)
+
+        return ret
+
+    def set_mandatory_additional_shipping_codes(self, cr, uid, ids,
+                                                context=None):
+        """ Sets the mandatory additional shipping codes on the picking
+            depending on its carrier. The code which updates the services
+            depending on the products of the stock.moves are in that model.
+        """
+        if not isinstance(ids, list):
+            ids = [ids]
+        if context is None:
+            context = {}
+
+        sep = ';'
+
+        for picking in self.browse(cr, uid, ids, context=context):
+            mandatory_additional_options = set()
+
+            # Stores the already existing mandatory additional services,
+            # just in case the user had modified them manually.
+            if picking.yc_mandatory_additional_shipping:
+                original_mandatory_options = set(
+                    picking.yc_mandatory_additional_shipping.split(sep))
+                mandatory_additional_options.update(original_mandatory_options)
+            else:
+                original_mandatory_options = set()
+
+            # Adds the mandatory additional services by the picking's carrier.
+            carrier = picking.carrier_id
+            if carrier and carrier.yc_additional_shipping:
+                mandatory_additional_options.update(
+                    set(carrier.yc_additional_shipping.split(sep)))
+
+            # We update the list of mandatory additional shipping options
+            # but only if it changed.
+            if mandatory_additional_options and \
+                    original_mandatory_options != mandatory_additional_options:
+                self.write(cr, uid, picking.id, {
+                    'yc_mandatory_additional_shipping': sep.join(
+                        mandatory_additional_options),
+                }, context=context)
+
+        return True
+
+    def store_tracking_link(self, cr, uid, ids, context=None):
+        """ Stores the tracking link into the picking, formed by
+            taking the tracking url pattern defined in the carrier, and
+            the carrier's tracking reference stored in the picking.
+        """
+        if context is None:
+            context = {}
+        if type(ids) is not list:
+            ids = [ids]
+
+        for picking in self.browse(cr, uid, ids, context=context):
+            tracking_url_pattern = picking.carrier_id.tracking_url_pattern
+            tracking_ref = picking.carrier_tracking_ref
+            if tracking_url_pattern and tracking_ref:
+                tracking_url = tracking_url_pattern % tracking_ref
+                picking.write({'carrier_tracking_url': tracking_url})
+
+        return True
+
+    def send_tracking_email_to_client(self, cr, uid, ids, context=None):
+        """ Creates and equeues a confirmation email to the client
+            after receiving the WAR, only if the picking has set the
+            tracking link to be sent.
+        """
+        if context is None:
+            context = {}
+        if type(ids) is not list:
+            ids = [ids]
+
+        email_template_obj = self.pool.get('email.template')
+        mail_obj = self.pool.get('mail.mail')
+        project_issue_obj = self.pool.get('project.issue')
+
+        conf_data = self.pool.get('configuration.data').\
+            get(cr, uid, [], context=context)
+
+        errors = []
+        if conf_data.tracking_email_active:
+            tracking_email_template = conf_data.tracking_email_template_id
+            if tracking_email_template:
+                picking_ids = self.search(cr, uid, [
+                    ('id', 'in', ids),
+                    ('carrier_tracking_url', '!=', None),
+                ], context=context)
+
+                for picking in self.browse(cr, uid, picking_ids,
+                                           context=context):
+                    try:
+                        cr.execute('SAVEPOINT send_tracking_email')
+
+                        # Prepares the email for the sending.
+                        values = email_template_obj.\
+                            generate_email(cr, uid, tracking_email_template.id,
+                                           picking.id, context=context)
+                        mail_obj.create(cr, uid, values, context=context)
+
+                        # Copies the email's body to the chatter.
+                        self.message_post(
+                            cr, uid, [picking.id],
+                            body='Tracking email was sent to the partner' +
+                                 values['body_html'],
+                            context=context)
+
+                    except Exception as e:
+                        cr.execute('ROLLBACK TO SAVEPOINT send_tracking_email')
+
+                        errors.append(
+                            ([picking.id],
+                             _("The following errors happened while sending "
+                               "the tracking email for the picking with "
+                               "ID={0}: {1}").format(picking.id, str(e))))
+
+                    else:
+                        cr.execute('RELEASE SAVEPOINT send_tracking_email')
+
+            else:
+                errors.append((ids,_("There was no email template defined "
+                                     "for the tracking email.")))
+
+        if errors:
+            for picking_ids, error_message in errors:
+                for picking_id in picking_ids:
+                    issue_subject = \
+                        _('Errors when sending the tracking email.')
+                    issue_msg = \
+                        _('The tracking email for the picking with IDs={0} '
+                          'could not be sent because of the following '
+                          'error: {1}').format(picking_id, error_message)
+
+                    project_issue_obj.create_issue(
+                        cr, uid, 'stock.picking.out', picking_id, issue_msg,
+                        issue_subject=issue_subject,
+                        tags=['stock.picking.out', 'wab'],
+                        create=True, reopen=True, context=context)
+
+                    logger.warning(issue_msg)
+
+        return True
+
+    def get_filename_for_wab(self, cr, uid, ids, context=None):
         ''' Gets the filename for the picking file that is attached in the WAB,
             in the format the WAB expects.
         '''
         if context is None:
             raise Warning('context is missing when calling method get_filename_for_wab over stock.picking, and is required in this case.')
-        if not isinstance(ids, list):
+        if type(ids) is not list:
             ids = [ids]
 
         picking = self.browse(cr, uid, ids[0], context=context)
@@ -77,14 +239,13 @@ class stock_picking_ext(osv.Model):
 
         order_number = order_name
 
-        file_name = '{depositor_id}_{doc_type}{order_number}_{yymmdd}.{ext}'.format(depositor_id=depositor_id,
-                                                                                    doc_type=doc_type,
-                                                                                    order_number=order_number,
-                                                                                    yymmdd=yymmdd,
-                                                                                    ext=extension)
+        file_name = '{depositor_id}_{doc_type}{order_number}_{yymmdd}.pdf'.format(depositor_id=depositor_id,
+                                                                                  doc_type=doc_type,
+                                                                                  order_number=order_number,
+                                                                                  yymmdd=yymmdd)
         return file_name
 
-    def get_attachment_wab(self, cr, uid, ids, extension='pdf', context=None):
+    def get_attachment_wab(self, cr, uid, ids, context=None):
         ''' Returns a dictionary of the type
             <KEY=output_filename, VALUE=original_path_of_attachment>
             with as many keys as invoice-related attachments need to
@@ -102,7 +263,7 @@ class stock_picking_ext(osv.Model):
         '''
         if context is None:
             context = {}
-        if not isinstance(ids, list):
+        if type(ids) is not list:
             ids = [ids]
 
         result = {}
@@ -146,7 +307,7 @@ class stock_picking_ext(osv.Model):
                                                                                                   stock_picking_out.id))
 
         # We compute the name of the output filename to be indicated on the WAB.
-        output_filename = stock_picking_out.get_filename_for_wab(extension)
+        output_filename = stock_picking_out.get_filename_for_wab()
 
         # Determines the ID of the attachment to send with the WAB. It will be only the ID of the picking
         # if no barcode needs to be attached, BUT it will be *a new* attachment, created ad-hoc, with is the
@@ -161,14 +322,14 @@ class stock_picking_ext(osv.Model):
 
         return result
 
-    def _get_attachment_id_for_picking_and_barcode_concatenated(self, cr, uid, ids, att_picking_id, att_barcode_id, extension, context=None):
+    def _get_attachment_id_for_picking_and_barcode_concatenated(self, cr, uid, ids, att_picking_id, att_barcode_id, context=None):
         ''' Returns the ID of the attachment which consist of the concatenation of the picking and barcode attachments
             the ID of which is received as arguments. If the attachment doesn't exist, it creates it; otherwise just
             returns it.
         '''
         if context is None:
             context = {}
-        if not isinstance(ids, list):
+        if type(ids) is not list:
             ids = [ids]
 
         ir_attachment_obj = self.pool.get('ir.attachment')
@@ -176,7 +337,10 @@ class stock_picking_ext(osv.Model):
 
         stock_picking_out = self.browse(cr, uid, ids[0], context=context)
 
-        output_filename = stock_picking_out.get_filename_for_wab(extension)
+        if 'output_filename' not in context:
+            output_filename = stock_picking_out.get_filename_for_wab()
+        else:
+            output_filename = context['output_filename']
         attachments_location = ir_config_parameter_obj.get_param(cr, uid, 'ir_attachment.location')
 
         # First we check if we already have the attachment. If we don't have it, we create it.
@@ -259,18 +423,50 @@ class stock_picking_ext(osv.Model):
 
         ret = {}
         for delivery in self.browse(cr, uid, ids, context=context):
+            # make sure we have a default in any case
+            ret[delivery.id] = delivery.id
+
             if config.yc_customer_order_no_mode == 'id':
                 ret[delivery.id] = delivery.id
+                
+            elif config.yc_customer_order_no_mode == 'extref':
+                if delivery.type == 'out':
+                    ret[delivery.id] = '{0}-{1}'.format(delivery.sale_id.name.split('-')[-1], 
+                                                       delivery.name[-5:]).replace('/', '')
+                elif delivery.type == 'in':
+                    # do not append picking name for incoming pickings, as we
+                    # never send incoming backorders & the WBL SupplierOrderNo
+                    # is limited to max-lenght 20 characters in the WBL XSD
+                    ret[delivery.id] = '{0}'.format(delivery.purchase_id.name.split('-')[-1])   
+
             elif config.yc_customer_order_no_mode == 'name':
                 if delivery.type == 'out':
-                    ret[delivery.id] = '{0}{1}'.format(delivery.sale_id.name or delivery.purchase_id.name, delivery.name).replace('/', '').replace('-', '')
+                    ret[delivery.id] = '{0}-{1}'.format(delivery.sale_id.name or 
+                                                       delivery.purchase_id.name, 
+                                                       delivery.name).replace('/', '')
                 elif delivery.type == 'in':
-                    ret[delivery.id] = '{0}{1}'.format(delivery.purchase_id.name or delivery.sale_id.name, delivery.name).replace('/', '').replace('-', '')
+                    # do not append picking name for incoming pickings, as we
+                    # never send incoming backorders & the WBL SupplierOrderNo
+                    # is limited to max-lenght 20 characters in the WBL XSD
+                    ret[delivery.id] = '{0}'.format(delivery.purchase_id.name or delivery.sale_id.name)
 
-                if len(ret[delivery.id]) > CUSTOMER_ORDER_NUMBER_XSD_LIMIT:
-                    ret[delivery.id] = '{0}.id{1}'.format(delivery.type, delivery.id)
+            elif config.yc_customer_order_no_mode == 'order':
+                if delivery.sale_id:
+                    ret[delivery.id] = delivery.sale_id.name
+                elif delivery.purchase_id:
+                    ret[delivery.id] = delivery.purchase_id.name
+                else:
+                    # default to id
+                    ret[delivery.id] = delivery.id
+
             else:
-                ret[delivery.id] = None
+                # default to id
+                ret[delivery.id] = delivery.id
+
+            if (config.yc_customer_order_no_mode != 'id') and \
+               ret[delivery.id] and \
+               len(ret[delivery.id]) > CUSTOMER_ORDER_NUMBER_XSD_LIMIT:
+                ret[delivery.id] = '{0}.id{1}'.format(delivery.type, delivery.id)
         return ret
 
     @api.cr_uid_ids_context
@@ -300,14 +496,6 @@ class stock_picking_ext(osv.Model):
         return bool(equal_addresses)
 
     @api.cr_uid_ids_context
-    def is_first_delivery(self, cr, uid, ids, context=None):
-        ''' Returns whether this stock.picking is the first or only delivery for a given sale order.
-        '''
-        this = self.browse(cr, uid, ids[0], context)
-        res = (this.move_type == 'one') or ((this.move_type == 'direct') and (not this.backorder_id))
-        return bool(res)
-
-    @api.cr_uid_ids_context
     def payment_method_has_epayment(self, cr, uid, ids, context=None):
         ''' Returns whether the payment method has epayment.
         '''
@@ -335,7 +523,7 @@ class stock_picking_ext(osv.Model):
         '''
         if context is None:
             context = {}
-        if not isinstance(ids, list):
+        if type(ids) is not list:
             ids = [ids]
 
         picking_id = ids[0]
@@ -365,6 +553,14 @@ class stock_picking_ext(osv.Model):
         'yellowcube_return_automate': fields.boolean('Automate return-claim on confirm'),
         'yellowcube_return_reason': fields.selection(RETURN_REASON_CODES, 'Return reason (if and only if return)', help='Return reason in accordance with the Return-Reason Code List'),
         'yellowcube_exported_wab': fields.boolean('Has been exported into a wab file?'),
+        'carrier_tracking_url': fields.char(
+            'Carrier Tracking URL',
+            help='URL for the tracking webpage provided '
+                 'by the delivery carrier.'),
+        'yellowcube_last_confirmation_timestamp': fields.datetime(
+            string='Last confirmation file from YC',
+            help='Last time a confirmation file (WBA/WAR) was processed for '
+                 'this picking.'),
     }
 
     _default = {

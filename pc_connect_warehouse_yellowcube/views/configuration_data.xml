@@ -12,6 +12,11 @@
                         <field name="yc_ignore_events_until_process_date" />
                         <field name="yc_customer_order_no_mode" />
                     </group>
+                    <group string="Yellowcube Delivery Confirmation" colspan="2">
+                        <field name="tracking_email_active" />
+                        <field name="tracking_email_template_id"
+                               attrs="{'invisible':[('tracking_email_active', '=', False)]}"/>
+                    </group>
                 </page>
 
                 <page string="Products - Batch Management" position="inside">

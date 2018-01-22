@@ -1,0 +1,2298 @@
+# Translation of OpenERP Server.
+# This file contains the translation of the following modules:
+#    * bt_followup
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: OpenERP Server 7.0-20131118-002448\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2014-09-23 14:15+0000\n"
+"PO-Revision-Date: 2014-09-23 14:15+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+
+#. module: bt_followup
+#: view:followup.errors:0
+#: model:ir.actions.act_window,name:bt_followup.action_followup_errors
+#: model:ir.ui.menu,name:bt_followup.bt_invoice_followup_errors_menu
+msgid "Follow-up Errors"
+msgstr "Follow-up Fehler"
+
+#. module: bt_followup
+#: model:email.template,subject:bt_followup.email_template_invoice_followup_default
+#: model:email.template,subject:bt_followup.email_template_invoice_followup_level0
+#: model:email.template,subject:bt_followup.email_template_invoice_followup_level1
+#: model:email.template,subject:bt_followup.email_template_invoice_followup_level2
+msgid "${user.company_id.name} Payment Reminder"
+msgstr "${user.company_id.name} Zahlungserinnerung"
+
+#. module: bt_followup
+#: view:followup.level:0
+msgid "%%"
+msgstr "%%"
+
+#. module: bt_followup
+#: view:followup.level:0
+msgid "%(company_name)s"
+msgstr "%(company_name)s"
+
+#. module: bt_followup
+#: view:followup.level:0
+msgid "%(date)s"
+msgstr "%(date)s"
+
+#. module: bt_followup
+#: view:followup.level:0
+msgid "%(user_signature)s"
+msgstr "%(user_signature)s"
+
+#. module: bt_followup
+#: code:addons/bt_followup/account_invoice_ext.py:936
+msgid "(In addition to this next action, some of his/her children also have next actions to perform.)"
+msgstr "(Zusätzliche zu dieser \"Nächsten Aktion\", müssen auch auf den Kontakten des Partner \"Nächste Aktionen\" durchgeführt werden)"
+
+#. module: bt_followup
+#: code:addons/bt_followup/account_invoice_ext.py:938
+msgid "(This partner does not have next actions, but some of his/her children do have.)"
+msgstr "Dieser Kunde hat keine \"Nächste Aktionen\" durchzuführen, aber einige seiner Kontakte.)"
+
+#. module: bt_followup
+#: model:email.template,body_html
+msgid "<div style=\"font-family: 'Lucica Grande', Ubuntu, Arial, Verdana, sans-serif; font-size: 12px; color: rgb(34, 34, 34); background-color: rgb(255, 255, 255); \">\n"
+"    \n"
+"    <p>Dear ${object.name},</p>\n"
+"    <p>\n"
+"    Despite several reminders, your account is still not settled.\n"
+"Unless full payment is made in next 8 days, legal action for the recovery of the debt will be taken without\n"
+"further notice.\n"
+"I trust that this action will prove unnecessary and details of due payments is printed below.\n"
+"In case of any queries concerning this matter, do not hesitate to contact our accounting department.\n"
+"</p>\n"
+"<br/>\n"
+"Best Regards,\n"
+"<br/>\n"
+"<br/>\n"
+"${user.name}\n"
+"<br/>\n"
+"<br/>\n"
+"\n"
+"\n"
+"${object.get_invoice_followup_table_html() | safe}\n"
+"\n"
+"    <br/>\n"
+"\n"
+"</div>"
+msgstr "<div style=\"font-family: 'Lucica Grande', Ubuntu, Arial, Verdana, sans-serif; font-size: 12px; color: rgb(34, 34, 34); background-color: rgb(255, 255, 255); \">\n"
+"    \n"
+"    <p>Guten Tag ${object.name},</p>\n"
+"    <p>\n"
+"    Trotz einiger Erinnerungen sind noch nicht alle fälligen Rechnungen beglichen.\n"
+"Ohne deren volle Bezahlung in den nächsten 8 Tagen sehen wir uns gezwungen rechtliche Schritte einzuleiten.\n"
+"Wir vertrauen darauf, dass dies nicht nötig ist. Sie finden untenstehend alle offenen Forderungen.\n"
+"Bitte zögern Sie nicht mit uns Kontakt aufzunehmen, wenn Sie Fragen zu dieser Mahnung haben.\n"
+"</p>\n"
+"<br/>\n"
+"Mit freundlichen Grüssen,\n"
+"<br/>\n"
+"<br/>\n"
+"${user.name}\n"
+"<br/>\n"
+"<br/>\n"
+"\n"
+"\n"
+"${object.get_invoice_followup_table_html() | safe}\n"
+"\n"
+"    <br/>\n"
+"\n"
+"</div>"
+
+#. module: bt_followup
+#: model:email.template,body_html:bt_followup.email_template_invoice_followup_level2
+msgid "<div style=\"font-family: 'Lucica Grande', Ubuntu, Arial, Verdana, sans-serif; font-size: 12px; color: rgb(34, 34, 34); background-color: rgb(255, 255, 255); \">\n"
+"    \n"
+"    <p>Dear ${object.name},</p>\n"
+"    <p>\n"
+"    Despite several reminders, your account is still not settled.\n"
+"Unless full payment is made in next 8 days, legal action for the recovery of the debt will be taken without\n"
+"further notice.\n"
+"I trust that this action will prove unnecessary and details of due payments is printed below.\n"
+"In case of any queries concerning this matter, do not hesitate to contact our accounting department.\n"
+"</p>\n"
+"<br/>\n"
+"Best Regards,\n"
+"<br/>\n"
+"<br/>\n"
+"${user.name}\n"
+"<br/>\n"
+"<br/>\n"
+"\n"
+"\n"
+"${object.get_invoice_followup_table_html() | safe}\n"
+"\n"
+"    <br/>\n"
+"\n"
+"</div>"
+msgstr "<div style=\"font-family: 'Lucica Grande', Ubuntu, Arial, Verdana, sans-serif; font-size: 12px; color: rgb(34, 34, 34); background-color: rgb(255, 255, 255); \">\n"
+"    \n"
+"    <p>Guten Tag ${object.name},</p>\n"
+"    <p>\n"
+"    Trotz einiger Erinnerungen sind noch nicht alle fälligen Rechnungen beglichen.\n"
+"Ohne deren volle Bezahlung in den nächsten 8 Tagen sehen wir uns gezwungen rechtliche Schritte einzuleiten.\n"
+"Wir vertrauen darauf, dass dies nicht nötig ist. Sie finden untenstehend alle offenen Forderungen.\n"
+"Bitte zögern Sie nicht mit uns Kontakt aufzunehmen, wenn Sie Fragen zu dieser Mahnung haben.\n"
+"</p>\n"
+"<br/>\n"
+"Mit freundlichen Grüssen,\n"
+"<br/>\n"
+"<br/>\n"
+"${user.name}\n"
+"<br/>\n"
+"<br/>\n"
+"\n"
+"\n"
+"${object.get_invoice_followup_table_html() | safe}\n"
+"\n"
+"    <br/>\n"
+"\n"
+"</div>"
+
+#. module: bt_followup
+#: model:email.template,body_html
+msgid "<div style=\"font-family: 'Lucica Grande', Ubuntu, Arial, Verdana, sans-serif; font-size: 12px; color: rgb(34, 34, 34); background-color: rgb(255, 255, 255); \">\n"
+"    \n"
+"    <p>Dear ${object.name},</p>\n"
+"    <p>\n"
+"    Exception made if there was a mistake of ours, it seems that the following amount stays unpaid. Please, take\n"
+"appropriate measures in order to carry out this payment in the next 8 days.\n"
+"Would your payment have been carried out after this mail was sent, please ignore this message. Do not hesitate to\n"
+"contact our accounting department.\n"
+"    </p>\n"
+"<br/>\n"
+"Best Regards,\n"
+"<br/>\n"
+"<br/>\n"
+"${user.name}\n"
+"<br/>\n"
+"<br/>\n"
+"\n"
+"${object.get_invoice_followup_table_html() | safe}\n"
+"\n"
+"<br/>\n"
+"</div>"
+msgstr "<div style=\"font-family: 'Lucica Grande', Ubuntu, Arial, Verdana, sans-serif; font-size: 12px; color: rgb(34, 34, 34); background-color: rgb(255, 255, 255); \">\n"
+"    \n"
+"    <p>Guten Tag ${object.name},</p>\n"
+"    <p>\n"
+"    Vorbehältlich eines Fehlers bei uns sind die folgenden Beträge immer noch offen. Bitte\n"
+"bezahlen Sie die offenen Forderungen innert acht Tagen.\n"
+"Wenn Sie vor Versand dieser Mail bereits bezahlt haben, betrachten Sie diese Mail als gegenstandslos.\n"
+"Bitte zögern Sie nicht mit uns Kontakt aufzunehmen, wenn Sie Fragen zu dieser Mahnung haben.\n"
+"    </p>\n"
+"<br/>\n"
+"Mit freundlichen Grüssen\n"
+"<br/>\n"
+"<br/>\n"
+"${user.name}\n"
+"<br/>\n"
+"<br/>\n"
+"\n"
+"${object.get_invoice_followup_table_html() | safe}\n"
+"\n"
+"<br/>\n"
+"</div>"
+
+#. module: bt_followup
+#: model:email.template,body_html:bt_followup.email_template_invoice_followup_default
+msgid "<div style=\"font-family: 'Lucica Grande', Ubuntu, Arial, Verdana, sans-serif; font-size: 12px; color: rgb(34, 34, 34); background-color: rgb(255, 255, 255); \">\n"
+"    \n"
+"    <p>Dear ${object.name},</p>\n"
+"    <p>\n"
+"    Exception made if there was a mistake of ours, it seems that the following amount stays unpaid. Please, take\n"
+"appropriate measures in order to carry out this payment in the next 8 days.\n"
+"Would your payment have been carried out after this mail was sent, please ignore this message. Do not hesitate to\n"
+"contact our accounting department.\n"
+"    </p>\n"
+"<br/>\n"
+"Best Regards,\n"
+"<br/>\n"
+"<br/>\n"
+"${user.name}\n"
+"<br/>\n"
+"<br/>\n"
+"\n"
+"${object.get_invoice_followup_table_html() | safe}\n"
+"\n"
+"<br/>\n"
+"</div>"
+msgstr "<div style=\"font-family: 'Lucica Grande', Ubuntu, Arial, Verdana, sans-serif; font-size: 12px; color: rgb(34, 34, 34); background-color: rgb(255, 255, 255); \">\n"
+"    \n"
+"    <p>Guten Tag ${object.name},</p>\n"
+"    <p>\n"
+"    Vorbehältlich eines Fehlers bei uns sind die folgenden Beträge immer noch offen. Bitte\n"
+"bezahlen Sie die offenen Forderungen innert acht Tagen.\n"
+"Wenn Sie vor Versand dieser Mail bereits bezahlt haben, betrachten Sie diese Mail als gegenstandslos.\n"
+"Bitte zögern Sie nicht mit uns Kontakt aufzunehmen, wenn Sie Fragen zu dieser Mahnung haben.\n"
+"    </p>\n"
+"<br/>\n"
+"Mit freundlichen Grüssen\n"
+"<br/>\n"
+"<br/>\n"
+"${user.name}\n"
+"<br/>\n"
+"<br/>\n"
+"\n"
+"${object.get_invoice_followup_table_html() | safe}\n"
+"\n"
+"<br/>\n"
+"</div>"
+
+#. module: bt_followup
+#: model:email.template,body_html
+msgid "<div style=\"font-family: 'Lucica Grande', Ubuntu, Arial, Verdana, sans-serif; font-size: 12px; color: rgb(34, 34, 34); background-color: rgb(255, 255, 255); \">\n"
+"    \n"
+"    <p>Dear ${object.name},</p>\n"
+"   <p>\n"
+"    We are disappointed to see that despite sending a reminder, that your account is now seriously overdue.\n"
+"It is essential that immediate payment is made, otherwise we will have to consider placing a stop on your account\n"
+"which means that we will no longer be able to supply your company with (goods/services).\n"
+"Please, take appropriate measures in order to carry out this payment in the next 8 days.\n"
+"If there is a problem with paying invoice that we are not aware of, do not hesitate to contact our accounting\n"
+"department. so that we can resolve the matter quickly.\n"
+"Details of due payments is printed below.\n"
+" </p>\n"
+"<br/>\n"
+"Best Regards,\n"
+"    \n"
+"<br/>\n"
+"<br/>\n"
+"${user.name}\n"
+"    \n"
+"<br/>\n"
+"<br/>\n"
+"\n"
+"${object.get_invoice_followup_table_html() | safe}\n"
+"\n"
+"    <br/>\n"
+"\n"
+"</div>"
+msgstr "<div style=\"font-family: 'Lucica Grande', Ubuntu, Arial, Verdana, sans-serif; font-size: 12px; color: rgb(34, 34, 34); background-color: rgb(255, 255, 255); \">\n"
+"    \n"
+"    <p>Guten Tag ${object.name},</p>\n"
+"   <p>\n"
+"    Enttäuscht haben wir festgestellt, dass auch nach vorheriger Mahnung nicht alle ihrer Rechnungen bezahlt sind.\n"
+"Wir weisen Sie darauf hin, dass wir ohne unverzügliche Zahlung jede weitere Lieferung von Waren oder die \n"
+"Erbringung von Dienstleistungen einstellen.\n"
+"Bitte bezahlen Sie die offenen Forderungen innert acht Tagen.\n"
+"Sollte ein Problem mit der Bezahlung der Rechnung vorliegen, kontaktieren Sie uns bitte, so dass wir \n"
+"schnellsmöglich eine Lösung finden können.\n"
+"Details der offenen Forderungen finden Sie untenstehend\n"
+" </p>\n"
+"<br/>\n"
+"Mit freundlichen Grüssen\n"
+"    \n"
+"<br/>\n"
+"<br/>\n"
+"${user.name}\n"
+"    \n"
+"<br/>\n"
+"<br/>\n"
+"\n"
+"${object.get_invoice_followup_table_html() | safe}\n"
+"\n"
+"    <br/>\n"
+"\n"
+"</div>"
+
+#. module: bt_followup
+#: model:email.template,body_html:bt_followup.email_template_invoice_followup_level1
+msgid "<div style=\"font-family: 'Lucica Grande', Ubuntu, Arial, Verdana, sans-serif; font-size: 12px; color: rgb(34, 34, 34); background-color: rgb(255, 255, 255); \">\n"
+"    \n"
+"    <p>Dear ${object.name},</p>\n"
+"   <p>\n"
+"    We are disappointed to see that despite sending a reminder, that your account is now seriously overdue.\n"
+"It is essential that immediate payment is made, otherwise we will have to consider placing a stop on your account\n"
+"which means that we will no longer be able to supply your company with (goods/services).\n"
+"Please, take appropriate measures in order to carry out this payment in the next 8 days.\n"
+"If there is a problem with paying invoice that we are not aware of, do not hesitate to contact our accounting\n"
+"department. so that we can resolve the matter quickly.\n"
+"Details of due payments is printed below.\n"
+" </p>\n"
+"<br/>\n"
+"Best Regards,\n"
+"    \n"
+"<br/>\n"
+"<br/>\n"
+"${user.name}\n"
+"    \n"
+"<br/>\n"
+"<br/>\n"
+"\n"
+"${object.get_invoice_followup_table_html() | safe}\n"
+"\n"
+"    <br/>\n"
+"\n"
+"</div>"
+msgstr "<div style=\"font-family: 'Lucica Grande', Ubuntu, Arial, Verdana, sans-serif; font-size: 12px; color: rgb(34, 34, 34); background-color: rgb(255, 255, 255); \">\n"
+"    \n"
+"    <p>Guten Tag ${object.name},</p>\n"
+"   <p>\n"
+"    Enttäuscht haben wir festgestellt, dass auch nach vorheriger Mahnung nicht alle ihrer Rechnungen bezahlt sind.\n"
+"Wir weisen Sie darauf hin, dass wir ohne unverzügliche Zahlung jede weitere Lieferung von Waren oder die \n"
+"Erbringung von Dienstleistungen einstellen.\n"
+"Bitte bezahlen Sie die offenen Forderungen innert acht Tagen.\n"
+"Sollte ein Problem mit der Bezahlung der Rechnung vorliegen, kontaktieren Sie uns bitte, so dass wir \n"
+"schnellstmöglich eine Lösung finden können.\n"
+"Details der offenen Forderungen finden Sie untenstehend\n"
+" </p>\n"
+"<br/>\n"
+"Mit freundlichen Grüssen\n"
+"    \n"
+"<br/>\n"
+"<br/>\n"
+"${user.name}\n"
+"    \n"
+"<br/>\n"
+"<br/>\n"
+"\n"
+"${object.get_invoice_followup_table_html() | safe}\n"
+"\n"
+"    <br/>\n"
+"\n"
+"</div>"
+
+#. module: bt_followup
+#: model:email.template,body_html
+msgid "<div style=\"font-family: 'Lucica Grande', Ubuntu, Arial, Verdana, sans-serif; font-size: 12px; color: rgb(34, 34, 34); background-color: rgb(255, 255, 255); \">\n"
+"\n"
+"    <p>Dear ${object.name},</p>\n"
+"    <p>\n"
+"    Exception made if there was a mistake of ours, it seems that the following amount stays unpaid. Please, take\n"
+"appropriate measures in order to carry out this payment in the next 8 days.\n"
+"\n"
+"Would your payment have been carried out after this mail was sent, please ignore this message. Do not hesitate to\n"
+"contact our accounting department.  \n"
+"\n"
+"    </p>\n"
+"<br/>\n"
+"Best Regards,\n"
+"<br/>\n"
+"   <br/>\n"
+"${user.name}\n"
+"\n"
+"<br/>\n"
+"<br/>\n"
+"\n"
+"\n"
+"${object.get_invoice_followup_table_html() | safe}\n"
+"\n"
+"    <br/>\n"
+"\n"
+"</div>"
+msgstr "<div style=\"font-family: 'Lucica Grande', Ubuntu, Arial, Verdana, sans-serif; font-size: 12px; color: rgb(34, 34, 34); background-color: rgb(255, 255, 255); \">\n"
+"\n"
+"    <p>Guten Tag ${object.name},</p>\n"
+"    <p>\n"
+"    Vorbehältlich eines Fehlers bei uns sind die folgenden Beträge immer noch offen. Bitte\n"
+"bezahlen Sie die offenen Forderungen innert acht Tagen.\n"
+"\n"
+"Wenn Sie vor Versand dieser Mail bereits bezahlt haben, betrachten Sie diese Mail als gegenstandslos.\n"
+"Bitte zögern Sie nicht mit uns Kontakt aufzunehmen, wenn Sie Fragen zu dieser Mahnung haben.\n""\n"
+"    </p>\n"
+"<br/>\n"
+"Best Regards,\n"
+"<br/>\n"
+"   <br/>\n"
+"${user.name}\n"
+"\n"
+"<br/>\n"
+"<br/>\n"
+"\n"
+"\n"
+"${object.get_invoice_followup_table_html() | safe}\n"
+"\n"
+"    <br/>\n"
+"\n"
+"</div>"
+
+#. module: bt_followup
+#: model:email.template,body_html:bt_followup.email_template_invoice_followup_level0
+msgid "<div style=\"font-family: 'Lucica Grande', Ubuntu, Arial, Verdana, sans-serif; font-size: 12px; color: rgb(34, 34, 34); background-color: rgb(255, 255, 255); \">\n"
+"\n"
+"    <p>Dear ${object.name},</p>\n"
+"    <p>\n"
+"    Exception made if there was a mistake of ours, it seems that the following amount stays unpaid. Please, take\n"
+"appropriate measures in order to carry out this payment in the next 8 days.\n"
+"\n"
+"Would your payment have been carried out after this mail was sent, please ignore this message. Do not hesitate to\n"
+"contact our accounting department.  \n"
+"\n"
+"    </p>\n"
+"<br/>\n"
+"Best Regards,\n"
+"<br/>\n"
+"   <br/>\n"
+"${user.name}\n"
+"\n"
+"<br/>\n"
+"<br/>\n"
+"\n"
+"\n"
+"${object.get_invoice_followup_table_html() | safe}\n"
+"\n"
+"    <br/>\n"
+"\n"
+"</div>"
+msgstr "<div style=\"font-family: 'Lucica Grande', Ubuntu, Arial, Verdana, sans-serif; font-size: 12px; color: rgb(34, 34, 34); background-color: rgb(255, 255, 255); \">\n"
+"\n"
+"    <p>Guten Tag ${object.name},</p>\n"
+"    <p>\n"
+"    Vorbehältlich eines Fehlers bei uns sind die folgenden Beträge immer noch offen. Bitte\n"
+"bezahlen Sie die offenen Forderungen innert acht Tagen.\n"
+"\n"
+"Wenn Sie vor Versand dieser Mail bereits bezahlt haben, betrachten Sie diese Mail als gegenstandslos.\n"
+"Bitte zögern Sie nicht mit uns Kontakt aufzunehmen, wenn Sie Fragen zu dieser Mahnung haben.\n"
+"\"\"\n"
+"    </p>\n"
+"<br/>\n"
+"Best Regards,\n"
+"<br/>\n"
+"   <br/>\n"
+"${user.name}\n"
+"\n"
+"<br/>\n"
+"<br/>\n"
+"\n"
+"\n"
+"${object.get_invoice_followup_table_html() | safe}\n"
+"\n"
+"    <br/>\n"
+"\n"
+"</div>"
+
+#. module: bt_followup
+#: model:ir.actions.act_window,help:action_followup_config_form
+msgid "<p class=\"oe_view_nocontent_create\">\n"
+"					Click to define follow-up levels and their related\n"
+"					actions.\n"
+"				</p>\n"
+"				<p>\n"
+"					For each step, specify the actions to be taken and delay in days.\n"
+"					It is possible to use print and email templates to send specific messages to the customer.\n"
+"				</p>"
+msgstr "<p class=\"oe_view_nocontent_create\">\n"
+"					Hier können Mahnstufen mir den zugehörigen Aktionen erstellt werden.\n"
+"				</p>\n"
+"				<p>\n"
+"					Für jede Mahnstufe kann die Aktion und die Zeit seit Fälligkeit angegeben werden.\n"
+"					Mahnungen können gedruckt oder per E-Mail gesendet werden.\n"
+"				</p>"
+
+#. module: bt_followup
+#: model:ir.actions.act_window,help:action_followup_config_form
+msgid "<p class=\"oe_view_nocontent_create\">\n"
+"					Click to define follow-up levels and their related\n"
+"					actions.\n"
+"				</p>\n"
+"				<p>\n"
+"					For each step, specify the actions to be taken and delay in days.\n"
+"					It\n"
+"					is\n"
+"					possible to use print and email templates to send specific\n"
+"					messages to\n"
+"					the customer.\n"
+"				</p>"
+msgstr "<p class=\"oe_view_nocontent_create\">\n"
+"					Klicken Sie, um die Follow-up Ebenen und die damit verbundenen \n"
+"					Aktionen zu definieren.\n"
+"				</p>\n"
+"				<p>\n"
+"					Für jeden Schritt die Aktion welche ausgeführt wird und die verzögerung in Tagen festlegen.\n"
+"					Es\n"
+"					ist\n"
+"					möglich Druck und E-Mail Templates zu benutzen, um spezifische\n"
+"					Mitteilungen an den\n"
+"					Kunden zu senden.\n"
+"				</p>"
+
+#. module: bt_followup
+#: model:ir.actions.act_window,help:action_followup_config_form
+msgid "<p class=\"oe_view_nocontent_create\">\n"
+"                Click to define follow-up levels and their related actions.\n"
+"              </p><p>\n"
+"                For each step, specify the actions to be taken and delay in days. It is\n"
+"                possible to use print and email templates to send specific messages to\n"
+"                the customer.\n"
+"              </p>"
+msgstr "<p class=\"oe_view_nocontent_create\">\n"
+"                Klicken Sie hier um Mahnstufen und die damit verbunden Aktionen zu definieren.\n"
+"              </p><p>\n"
+"                Für jeden Schritt legen Sie Frist für Massnahmen fest. Sie können\n"
+"                E-Mail oder Briefe verwenden um den Kunden zu informieren.\n"
+"              </p>"
+
+#. module: bt_followup
+#: view:res.partner:0
+msgid "Accounting"
+msgstr "Finanzbuchhaltung"
+
+#. module: bt_followup
+#: field:followup.level,manual_action_note:0
+msgid "Action To Do"
+msgstr "Folgeaktion"
+
+#. module: bt_followup
+#: view:followup.level:0
+msgid "After"
+msgstr "Später"
+
+#. module: bt_followup
+#: code:addons/bt_followup/account_invoice_ext.py:665
+msgid "Amount"
+msgstr "Betrag"
+
+#. module: bt_followup
+#: code:addons/bt_followup/res_partner_ext.py:150
+msgid "Amount"
+msgstr "Betrag"
+
+#. module: bt_followup
+#: report:addons/bt_followup/report/invoice_followup_report.mako:115
+msgid "Amount"
+msgstr "Betrag"
+
+#. module: bt_followup
+#: field:followup.level,manual_action_responsible_id:0
+msgid "Assign a Responsible"
+msgstr "Bestimme einen Verantwortlichen"
+
+#. module: bt_followup
+#: help:res.partner,dunning_block:0
+msgid "Block the follow up process for this user"
+msgstr "Den Mahnprocess für diesen Bentutzer blockieren"
+
+#. module: bt_followup
+#: help:res.partner,dunning_block_value:0
+msgid "Block the follow up process for this user"
+msgstr "Den Mahnprocess für diesen Bentutzer blockieren"
+
+#. module: bt_followup
+#: model:followup.level,name:demo_followup_line3
+#: model:followup.level,name:bt_followup.demo_followup_line3
+msgid "Call the customer on the phone"
+msgstr "Kunden anrufen"
+
+#. module: bt_followup
+#: view:account.invoice.followup.handle:0
+msgid "Cancel"
+msgstr "Abbrechen"
+
+#. module: bt_followup
+#: view:customer.invoices.followup.handle:0
+msgid "Cancel"
+msgstr "Abbrechen"
+
+#. module: bt_followup
+#: model:ir.model,name:model_res_company
+msgid "Companies"
+msgstr "Unternehmen"
+
+#. module: bt_followup
+#: field:followup.config,company_id:0
+msgid "Company"
+msgstr "Unternehmen"
+
+#. module: bt_followup
+#: code:addons/bt_followup/account_invoice_ext.py:296
+msgid "Created follow-up mail for invoice "
+msgstr "Mahnungs-E-Mail erstellen"
+
+#. module: bt_followup
+#: code:addons/bt_followup/account_invoice_ext.py:291
+msgid "Created follow-up mail"
+msgstr "Mahnungs-E-Mail erstellen"
+
+#. module: bt_followup
+#: view:followup.level:0
+msgid "Current Date"
+msgstr "Laufendes Datum"
+
+#. module: bt_followup
+#: field:res.partner,followup_payment_note:0
+msgid "Customer Payment Promise"
+msgstr "Abmachung mit dem Kunden"
+
+#. module: bt_followup
+#: report:addons/bt_followup/report/invoice_followup_report.mako:98
+msgid "Customer account statement"
+msgstr "Kontoauszug des Kunden"
+
+#. module: bt_followup
+#: code:addons/bt_followup/account_invoice_ext.py:236
+msgid "Data Error"
+msgstr "Datenfehler"
+
+#. module: bt_followup
+#: code:addons/bt_followup/account_invoice_ext.py:663
+msgid "Date"
+msgstr "Datum"
+
+#. module: bt_followup
+#: code:addons/bt_followup/res_partner_ext.py:148
+msgid "Date"
+msgstr "Datum"
+
+#. module: bt_followup
+#: report:addons/bt_followup/report/invoice_followup_report.mako:113
+msgid "Date"
+msgstr "Datum"
+
+#. module: bt_followup
+#: code:addons/bt_followup/followup_level.py:65
+msgid "Days of the follow-up levels must be different"
+msgstr "Es können nicht zwei Mahnstufen am gleichen Tag definiert sein"
+
+#. module: bt_followup
+#: sql_constraint:followup.level:0
+msgid "Days of the follow-up levels must be different"
+msgstr "Es können nicht zwei Mahnstufen am gleichen Tag definiert sein"
+
+#. module: bt_followup
+#: field:followup.level,delay:0
+msgid "Delay"
+msgstr "Verzögerung"
+
+#. module: bt_followup
+#: model:email.template,body_html
+msgid "Despite our previous letter of the amount above is still outstanding. We ask you once again to transfer the amount within {num_days} days with the attached payment slip to avoid that your dossier is sent to the collection agency Intrum Justitia.\n"
+"\n"
+"In this excerpt, all your payments until {new_due_date} are considered.\n"
+"\n"
+"If you have already arranged payment, please consider this letter as invalid."
+msgstr "Trotz unseren bisherigen Schreiben ist der oben aufgeführte Betrag immer noch ausstehend. Wir bitten Sie noch einmal, den Betrag innerhalb von {num_days} Tagen mit beigefügtem Einzahlungsschein zu überweisen, um zu vermeiden, dass Ihr Dossier an die Inkassofirma Intrum Justitia weitergeleitet wird.\n"
+"\n"
+"In diesem Auszug sind sämtliche, von Ihnen bis zum {new_due_date} eingegangenen Zahlungen berücksichtigt.\n"
+"\n"
+"Sollten Sie die Zahlung bereits veranlasst haben, so betrachten Sie dieses Schreiben bitte als gegenstandslos."
+
+#. module: bt_followup
+#: model:email.template,body_html:email_template_invoice_followup_level3
+msgid "Despite our previous letter of the amount above is still outstanding. We ask you once again to transfer the amount within {num_days} days with the attached payment slip to avoid that your dossier is sent to the collection agency Intrum Justitia.\n"
+"\n"
+"In this excerpt, all your payments until {new_due_date} are considered.\n"
+"\n"
+"If you have already arranged payment, please consider this letter as invalid."
+msgstr "Trotz unseren bisherigen Schreiben ist der oben aufgeführte Betrag immer noch ausstehend. Wir bitten Sie noch einmal, den Betrag innerhalb von {num_days} Tagen mit beigefügtem Einzahlungsschein zu überweisen, um zu vermeiden, dass Ihr Dossier an die Inkassofirma Intrum Justitia weitergeleitet wird.\n"
+"\n"
+"In diesem Auszug sind sämtliche, von Ihnen bis zum {new_due_date} eingegangenen Zahlungen berücksichtigt.\n"
+"\n"
+"Sollten Sie die Zahlung bereits veranlasst haben, so betrachten Sie dieses Schreiben bitte als gegenstandslos."
+
+#. module: bt_followup
+#: model:followup.level,description
+msgid "Despite our previous letter of the amount above is still outstanding. We ask you once again to transfer the amount within {num_days} days with the attached payment slip to avoid that your dossier is sent to the collection agency Intrum Justitia.\n"
+"\n"
+"In this excerpt, all your payments until {new_due_date} are considered.\n"
+"\n"
+"If you have already arranged payment, please consider this letter as invalid."
+msgstr "Trotz unseren bisherigen Schreiben ist der oben aufgeführte Betrag immer noch ausstehend. Wir bitten Sie noch einmal, den Betrag innerhalb von {num_days} Tagen mit beigefügtem Einzahlungsschein zu überweisen, um zu vermeiden, dass Ihr Dossier an die Inkassofirma Intrum Justitia weitergeleitet wird.\n"
+"\n"
+"In diesem Auszug sind sämtliche, von Ihnen bis zum {new_due_date} eingegangenen Zahlungen berücksichtigt.\n"
+"\n"
+"Sollten Sie die Zahlung bereits veranlasst haben, so betrachten Sie dieses Schreiben bitte als gegenstandslos."
+
+#. module: bt_followup
+#: report:addons/bt_followup/report/invoice_followup_report.mako:98
+msgid "Document"
+msgstr "Dokument"
+
+#. module: bt_followup
+#: code:addons/bt_followup/account_invoice_ext.py:664
+msgid "Due Date"
+msgstr "Fälligkeit"
+
+#. module: bt_followup
+#: code:addons/bt_followup/res_partner_ext.py:149
+msgid "Due Date"
+msgstr "Fälligkeit"
+
+#. module: bt_followup
+#: field:account.invoice,follow_up_date_due:0
+msgid "Due Date"
+msgstr "Fälligkeit"
+
+#. module: bt_followup
+#: report:addons/bt_followup/report/invoice_followup_report.mako:114
+msgid "Due Date"
+msgstr "Fälligkeit"
+
+#. module: bt_followup
+#: view:account.invoice:0
+msgid "Due Date"
+msgstr "Fälligkeit"
+
+#. module: bt_followup
+#: field:account.invoice,follow_up_date_due_days:0
+msgid "Due Days"
+msgstr "Zahlungsverzug"
+
+#. module: bt_followup
+#: field:res.partner,dunned_invoice_ids:0
+msgid "Dunned Invoices"
+msgstr "Gemahnte Rechnung"
+
+#. module: bt_followup
+#: view:res.partner:0
+msgid "Dunned Invoices"
+msgstr "Gemahnte Rechnung"
+
+#. module: bt_followup
+#: field:account.invoice,partner_dunning_block:0
+msgid "Dunning Block (Customer)"
+msgstr "Mahnsperre (Kunde)"
+
+#. module: bt_followup
+#: field:account.invoice,invoice_dunning_block:0
+msgid "Dunning Block (Invoice)"
+msgstr "Mahnsperre (Rechnung)"
+
+#. module: bt_followup
+#: field:account.invoice,dunning_block_ending_date:0
+msgid "Dunning Block Ending Date"
+msgstr "Ende der Mahnsperre"
+
+#. module: bt_followup
+#: field:res.partner,dunning_block_date:0
+msgid "Dunning Block Ending Date"
+msgstr "Ende der Mahnsperre"
+
+#. module: bt_followup
+#: field:res.partner,dunning_block_date_value:0
+msgid "Dunning Block Ending Date"
+msgstr "Ende der Mahnsperre"
+
+#. module: bt_followup
+#: field:account.invoice,dunning_block:0
+msgid "Dunning Block"
+msgstr "Mahnsperre"
+
+#. module: bt_followup
+#: field:res.partner,dunning_block:0
+msgid "Dunning Block"
+msgstr "Mahnsperre"
+
+#. module: bt_followup
+#: field:res.partner,dunning_block_value:0
+msgid "Dunning Block"
+msgstr "Mahnsperre"
+
+#. module: bt_followup
+#: code:addons/bt_followup/account_invoice_ext.py:668
+msgid "Dunning Charge"
+msgstr "Mahngebühr"
+
+#. module: bt_followup
+#: code:addons/bt_followup/res_partner_ext.py:153
+msgid "Dunning Charge"
+msgstr "Mahngebühr"
+
+#. module: bt_followup
+#: report:addons/bt_followup/report/invoice_followup_report.mako:118
+msgid "Dunning Charge"
+msgstr "Mahngebühr"
+
+#. module: bt_followup
+#: code:addons/bt_followup/account_invoice_ext.py:667
+msgid "Dunning Level"
+msgstr "Mahnstufe"
+
+#. module: bt_followup
+#: code:addons/bt_followup/res_partner_ext.py:152
+msgid "Dunning Level"
+msgstr "Mahnstufe"
+
+#. module: bt_followup
+#: report:addons/bt_followup/report/invoice_followup_report.mako:117
+msgid "Dunning Level"
+msgstr "Mahnstufe"
+
+#. module: bt_followup
+#: field:account.invoice,partner_dunning_block:0
+msgid "Dunning block (Customer)"
+msgstr "Mahnsperre (Kunde)"
+
+#. module: bt_followup
+#: field:account.invoice,invoice_dunning_block:0
+msgid "Dunning block (Invoice)"
+msgstr "Mahnsperre (Rechnung)"
+
+#. module: bt_followup
+#: field:account.invoice,dunning_block_ending_date:0
+msgid "Dunning block ending date"
+msgstr "Enddatum Mahnsperre"
+
+#. module: bt_followup
+#: field:res.partner,dunning_block_date:0
+msgid "Dunning block ending date"
+msgstr "Enddatum Mahnsperre"
+
+#. module: bt_followup
+#: field:account.invoice,dunning_block:0
+msgid "Dunning block"
+msgstr "Mahnsperre"
+
+#. module: bt_followup
+#: field:res.partner,dunning_block:0
+msgid "Dunning block"
+msgstr "Mahnsperre"
+
+#. module: bt_followup
+#: field:res.partner,dunning_block_value:0
+msgid "Dunning block"
+msgstr "Mahnsperre"
+
+#. module: bt_followup
+#: field:followup,email_date:0
+msgid "Email Date"
+msgstr "E-Mail Datum"
+
+#. module: bt_followup
+#: field:followup,email_subject:0
+msgid "Email Subject"
+msgstr "E-Mail-Betreff"
+
+#. module: bt_followup
+#: field:followup.level,email_template_id:0
+msgid "Email Template"
+msgstr "E-Mail Vorlage"
+
+#. module: bt_followup
+#: model:ir.model,name:model_email_template
+msgid "Email Templates"
+msgstr "E-Mail Vorlagen"
+
+#. module: bt_followup
+#: report:addons/bt_followup/report/invoice_followup_report.mako:78
+msgid "Email"
+msgstr "E-Mail"
+
+#. module: bt_followup
+#: code:addons/bt_followup/account_invoice_ext.py:1461
+msgid "Error"
+msgstr "Fehler"
+
+#. module: bt_followup
+#: field:followup.level,followup_config_id:0
+msgid "Follow Up Configurations"
+msgstr "Mahnungskonfiguration"
+
+#. module: bt_followup
+#: field:followup.level,name:0
+msgid "Follow-Up Action"
+msgstr "Mahnungsmassnahme"
+
+#. module: bt_followup
+#: field:followup,followup_create_date:0
+msgid "Follow-Up Creation Date"
+msgstr "Erstellungsdatum der Mahnung"
+
+#. module: bt_followup
+#: field:followup,followup_handled_date:0
+msgid "Follow-Up Handled Date"
+msgstr "Follow-Up Handled Date"
+
+#. module: bt_followup
+#: field:account.invoice,followup_level_date:0
+msgid "Follow-Up Handling Date"
+msgstr "Bearbeitungsdatum der Mahnung"
+
+#. module: bt_followup
+#: field:followup,followup_parent_id:0
+msgid "Follow-Up Invoice"
+msgstr "Mahnung"
+
+#. module: bt_followup
+#: field:account.invoice,followup_level_handled:0
+msgid "Follow-Up Level Handled"
+msgstr "Mahnungen bearbeitet"
+
+#. module: bt_followup
+#: field:account.invoice,followup_level_id:0
+msgid "Follow-Up Level"
+msgstr "Mahnstufe"
+
+#. module: bt_followup
+#: field:followup,followup_level_id:0
+msgid "Follow-Up Level"
+msgstr "Mahnstufe"
+
+#. module: bt_followup
+#: view:account.invoice:0
+msgid "Follow-Up Mails"
+msgstr "Mahnungs-E-Mail"
+
+#. module: bt_followup
+#: view:res.partner:0
+msgid "Follow-Up Mails"
+msgstr "Mahnungs-E-Mail"
+
+#. module: bt_followup
+#: field:account.invoice,followup_parent_id:0
+msgid "Follow-Up Parent Invoice"
+msgstr "Zur Mahnung gehörende Rechnung"
+
+#. module: bt_followup
+#: field:account.invoice,followup_penalization_invoice_ids:0
+msgid "Follow-Up Penalization Invoices"
+msgstr "Rechnung über Mahngebühr"
+
+#. module: bt_followup
+#: view:account.invoice:0
+msgid "Follow-Up Penalization Invoices"
+msgstr "Rechnung über Mahngebühr"
+
+#. module: bt_followup
+#: view:res.partner:0
+msgid "Follow-Up Responsible"
+msgstr "Mahnungsverantwortlicher"
+
+#. module: bt_followup
+#: view:account.invoice:0
+msgid "Follow-Up"
+msgstr "Mahnung"
+
+#. module: bt_followup
+#: field:account.invoice,followup_ids:0
+msgid "Follow-Up's"
+msgstr "Mahnungen"
+
+#. module: bt_followup
+#: view:account.invoice:0
+msgid "Follow-Up's"
+msgstr "Mahnungen"
+
+#. module: bt_followup
+#: view:followup:0
+msgid "Follow-Up's"
+msgstr "Mahnungen"
+
+#. module: bt_followup
+#: view:res.partner:0
+msgid "Follow-Up's"
+msgstr "Mahnungen"
+
+#. module: bt_followup
+#: field:res.partner,followup_ids:0
+msgid "Follow-Ups"
+msgstr "Mahnungen"
+
+#. module: bt_followup
+#: view:account.invoice:0
+msgid "Follow-Ups"
+msgstr "Mahnungen"
+
+#. module: bt_followup
+#: view:res.partner:0
+msgid "Follow-Ups"
+msgstr "Mahnungen"
+
+#. module: bt_followup
+#: field:followup.level,name:0
+msgid "Follow-up Action"
+msgstr "Mahnungsmassnahme"
+
+#. module: bt_followup
+#: field:res.company,followup_analytic_account_id:0
+msgid "Follow-up Analytic Account"
+msgstr "Mahnung Kostenstelle"
+
+#. module: bt_followup
+#: field:followup,followup_create_date:0
+msgid "Follow-up Creation Date"
+msgstr "Mahnstufe erstellt am"
+
+#. module: bt_followup
+#: model:ir.model,name:model_followup_level
+msgid "Follow-up Criteria"
+msgstr "Mahnkriterien"
+
+#. module: bt_followup
+#: field:res.partner,followup_mail_ids:0
+msgid "Follow-up Emails"
+msgstr "Mahnungs-E-Mails"
+
+#. module: bt_followup
+#: field:followup,followup_handled_date:0
+msgid "Follow-up Handled Date"
+msgstr "Mahnstufe bearbeitet am"
+
+#. module: bt_followup
+#: field:account.invoice,followup_level_date:0
+msgid "Follow-up Handling Date"
+msgstr "Mahnstufe bearbeitet am"
+
+#. module: bt_followup
+#: field:followup,followup_parent_id:0
+msgid "Follow-up Invoice"
+msgstr "Rechnung über Mahngebühr"
+
+#. module: bt_followup
+#: field:account.invoice,followup_level_handled:0
+msgid "Follow-up Level Handled"
+msgstr "Mahnstufe bearbeitet"
+
+#. module: bt_followup
+#: field:account.invoice,followup_level_id:0
+msgid "Follow-up Level"
+msgstr "Mahnungsstufe"
+
+#. module: bt_followup
+#: field:followup,followup_level_id:0
+msgid "Follow-up Level"
+msgstr "Mahnungsstufe"
+
+#. module: bt_followup
+#: view:account.invoice:0
+msgid "Follow-up Level"
+msgstr "Mahnungsstufe"
+
+#. module: bt_followup
+#: view:followup.level:0
+msgid "Follow-up Levels"
+msgstr "Mahnstufen"
+
+#. module: bt_followup
+#: view:account.invoice:0
+msgid "Follow-up Mails"
+msgstr "Mahnungs-E-Mails"
+
+#. module: bt_followup
+#: view:res.partner:0
+msgid "Follow-up Mails"
+msgstr "Mahnungs-E-Mails"
+
+#. module: bt_followup
+#: field:account.invoice,followup_parent_id:0
+msgid "Follow-up Parent Invoice"
+msgstr "Mahnspesen für"
+
+#. module: bt_followup
+#: field:account.invoice,followup_penalization_invoice_ids:0
+msgid "Follow-up Penalization Invoices"
+msgstr "Rechnung über Mahnspesen"
+
+#. module: bt_followup
+#: view:account.invoice:0
+msgid "Follow-up Penalization Invoices"
+msgstr "Rechnung über Mahnspesen"
+
+#. module: bt_followup
+#: field:account.invoice,followup_responsible_id:0
+msgid "Follow-up Responsible"
+msgstr "Verantwortlicher für die Mahnung"
+
+#. module: bt_followup
+#: field:res.partner,followup_responsible_id:0
+msgid "Follow-up Responsible"
+msgstr "Verantwortlicher für Mahnungen"
+
+#. module: bt_followup
+#: view:account.invoice:0
+msgid "Follow-up Responsible"
+msgstr "Verantwortlicher für die Mahnung"
+
+#. module: bt_followup
+#: view:res.partner:0
+msgid "Follow-up Responsible"
+msgstr "Verantwortlicher für die Mahnung"
+
+#. module: bt_followup
+#: view:followup.level:0
+msgid "Follow-up Steps"
+msgstr "Mahnstufen"
+
+#. module: bt_followup
+#: field:followup.config,followup_level:0
+msgid "Follow-up"
+msgstr "Mahnung"
+
+#. module: bt_followup
+#: view:account.invoice:0
+msgid "Follow-up"
+msgstr "Mahnung"
+
+#. module: bt_followup
+#: view:followup.config:0
+msgid "Follow-up"
+msgstr "Mahnung"
+
+#. module: bt_followup
+#: field:account.invoice,followup_ids:0
+msgid "Follow-ups"
+msgstr "Mahnungen"
+
+#. module: bt_followup
+#: field:res.partner,followup_ids:0
+msgid "Follow-ups"
+msgstr "Mahnungen"
+
+#. module: bt_followup
+#: view:account.invoice:0
+msgid "Follow-ups"
+msgstr "Mahnungen"
+
+#. module: bt_followup
+#: view:followup:0
+msgid "Follow-ups"
+msgstr "Mahnungen"
+
+#. module: bt_followup
+#: view:res.partner:0
+msgid "Follow-ups"
+msgstr "Mahnungen"
+
+#. module: bt_followup
+#: code:addons/bt_followup/account_invoice_ext.py:322
+msgid "Following partner has no email address and the                                          corresponding follow-up level includes                                          action \"Send Mail\": "
+msgstr "Der zu mahnende Kunde hat keine E-Mailadresse. Gemäss der Mahnstufe müsste aber eine E-Mail gesendet werden."
+
+#. module: bt_followup
+#: code:addons/bt_followup/account_invoice_ext.py:150
+msgid "Following partner has no email address and the                                      corresponding follow-up level includes action \"Send Mail\": "
+msgstr "Der zu mahnende Kunde hat keine E-Mailadresse. Gemäss der Mahnstufe müsste aber eine E-Mail gesendet werden."
+
+#. module: bt_followup
+#: code:addons/bt_followup/account_invoice_ext.py:237
+msgid "Following partner has no email address and the corresponding follow-up level includes action \"Send Mail\": "
+msgstr "Der zu mahnende Kunde hat keine E-Mailadresse. Gemäss der Mahnstufe müsste aber eine E-Mail gesendet werden."
+
+#. module: bt_followup
+#: help:followup.level,sequence:0
+msgid "Gives the sequence order when         displaying a list of follow-up lines."
+msgstr "Legt die Reihenfolge fest, in der die Mahnungsliste sortiert wird."
+
+#. module: bt_followup
+#: help:followup.level,sequence:0
+msgid "Gives the sequence order when displaying a list of follow-up lines."
+msgstr "Legt die Reihenfolge fest, in der die Mahnungsliste sortiert wird."
+
+#. module: bt_followup
+#: view:res.partner:0
+msgid "Group By..."
+msgstr "Gruppiert je..."
+
+#. module: bt_followup
+#: model:ir.model,name:model_customer_invoices_followup_handle
+msgid "Handle Follow-Up Invoices of the selected customers"
+msgstr "Bearbeite Mahnungen der ausgewählten Kunden"
+
+#. module: bt_followup
+#: model:ir.model,name:model_account_invoice_followup_handle
+msgid "Handle Follow-Up of the selected invoices"
+msgstr "Bearbeite Mahnungen für die ausgewählen Rechnungen"
+
+#. module: bt_followup
+#: view:account.invoice:0
+msgid "Handle Follow-Up"
+msgstr "Bearbeite Mahnungen"
+
+#. module: bt_followup
+#: view:res.partner:0
+msgid "Handle Follow-Up"
+msgstr "Bearbeite Mahnungen"
+
+#. module: bt_followup
+#: view:account.invoice.followup.handle:0
+msgid "Handle Follow-Ups"
+msgstr "Bearbeite Mahnungen"
+
+#. module: bt_followup
+#: view:customer.invoices.followup.handle:0
+msgid "Handle Follow-Ups"
+msgstr "Bearbeite Mahnungen"
+
+#. module: bt_followup
+#: view:account.invoice:0
+msgid "Handle Follow-up"
+msgstr "Bearbeite Mahnung"
+
+#. module: bt_followup
+#: view:res.partner:0
+msgid "Handle Follow-up"
+msgstr "Bearbeite Mahnung"
+
+#. module: bt_followup
+#: view:account.invoice.followup.handle:0
+msgid "Handle Follow-ups"
+msgstr "Bearbeite Mahnungen"
+
+#. module: bt_followup
+#: view:customer.invoices.followup.handle:0
+msgid "Handle Follow-ups"
+msgstr "Bearbeite Mahnungen"
+
+#. module: bt_followup
+#: model:ir.actions.act_window,name:action_handle_customers_invoice_follow_ups
+msgid "Handle Pending Follow-Ups"
+msgstr "Bearbeite hängige Mahnungen"
+
+#. module: bt_followup
+#: model:ir.actions.act_window,name:action_handle_invoice_follow_ups
+msgid "Handle Pending Follow-Ups"
+msgstr "Bearbeite hängige Mahnungen"
+
+#. module: bt_followup
+#: view:account.invoice.followup.handle:0
+msgid "Handle Pending Follow-Ups"
+msgstr "Bearbeite hängige Mahnungen"
+
+#. module: bt_followup
+#: view:customer.invoices.followup.handle:0
+msgid "Handle Pending Follow-Ups"
+msgstr "Bearbeite hängige Mahnungen"
+
+#. module: bt_followup
+#: model:ir.actions.act_window,name:action_handle_customers_invoice_follow_ups
+msgid "Handle Pending Follow-ups"
+msgstr "Bearbeite hängige Mahnungen"
+
+#. module: bt_followup
+#: model:ir.actions.act_window,name:action_handle_invoice_follow_ups
+msgid "Handle Pending Follow-ups"
+msgstr "Bearbeite hängige Mahnungen"
+
+#. module: bt_followup
+#: view:account.invoice.followup.handle:0
+msgid "Handle Pending Follow-ups"
+msgstr "Bearbeite hängige Mahnungen"
+
+#. module: bt_followup
+#: view:customer.invoices.followup.handle:0
+msgid "Handle Pending Follow-ups"
+msgstr "Bearbeite hängige Mahnungen"
+
+#. module: bt_followup
+#: code:addons/bt_followup/account_invoice_ext.py:300
+msgid "Handling a follow-up can only be executed for customer's invoices."
+msgstr "Mahnungen können nur bei Kundenrechnungen angewendet werden."
+
+#. module: bt_followup
+#: field:res.partner,has_parent:0
+msgid "Has parent"
+msgstr "Hat übergeordneten Eintrag"
+
+#. module: bt_followup
+#: field:res.partner,in_followup_process:0
+msgid "In Follow-Up Process"
+msgstr "Im Mahnprozess"
+
+#. module: bt_followup
+#: field:res.partner,in_followup_process:0
+msgid "In Follow-up Process"
+msgstr "Im Mahnprozess"
+
+#. module: bt_followup
+#: view:account.invoice:0
+msgid "In Follow-up Process"
+msgstr "Im Mahnprozess"
+
+#. module: bt_followup
+#: help:account.invoice,followup_level_handled:0
+msgid "Indicates if the current follow-up level                                                  has already been handled (i.e., email sent,                                                  report printed...), preventing so the follow-up                                                  level from being handled multiple times"
+msgstr "Legt fest, ob der laufende Mahnlevel bereits behandelt wurde (z.B. die E-Mail versandt wurde), damit die gleiche Mahnstufe nicht mehrmals behandelt wird."
+
+#. module: bt_followup
+#: help:account.invoice,followup_level_handled:0
+msgid "Indicates if the current follow-up level has already been handled (i.e., email sent, report printed...), preventing so the follow-up level from being handled multiple times"
+msgstr "Legt fest, ob der laufende Mahnlevel bereits behandelt wurde (z.B. die E-Mail versandt wurde), damit die gleiche Mahnstufe nicht mehrmals behandelt wird."
+
+#. module: bt_followup
+#: model:ir.ui.menu,name:menu_followup_configuration
+msgid "Invoice Follow-Up Configuration"
+msgstr "Konfiguration der Mahnungen"
+
+#. module: bt_followup
+#: field:account.invoice,invoice_followup_notes:0
+msgid "Invoice Follow-Up Notes"
+msgstr "Bemerkungen zur Mahnung"
+
+#. module: bt_followup
+#: field:res.partner,invoice_followup_notes:0
+msgid "Invoice Follow-Up Notes"
+msgstr "Bemerkungen zur Mahnung"
+
+#. module: bt_followup
+#: model:ir.actions.report.xml,name:invoice_followup_report
+msgid "Invoice Follow-Up Report"
+msgstr "Mahnungsreport"
+
+#. module: bt_followup
+#: model:ir.ui.menu,name:bt_invoice_followup_menu
+msgid "Invoice Follow-Up"
+msgstr "Rechnung Follow-Up"
+
+#. module: bt_followup
+#: view:res.partner:0
+msgid "Invoice Follow-Up"
+msgstr "Rechnung Follow-Up"
+
+#. module: bt_followup
+#: model:ir.actions.act_window,name:action_followup_config_form
+msgid "Invoice Follow-Ups"
+msgstr "Mahnungen"
+
+#. module: bt_followup
+#: model:ir.model,name:model_followup_config
+msgid "Invoice Follow-up Configuration"
+msgstr "Konfiguration der Mahnungen"
+
+#. module: bt_followup
+#: model:ir.ui.menu,name:menu_followup_configuration
+msgid "Invoice Follow-up Configuration"
+msgstr "Konfiguration der Mahnungen"
+
+#. module: bt_followup
+#: field:account.invoice,invoice_followup_notes:0
+msgid "Invoice Follow-up Notes"
+msgstr "Kommentar zur Mahnung"
+
+#. module: bt_followup
+#: field:res.partner,invoice_followup_notes:0
+msgid "Invoice Follow-up Notes"
+msgstr "Kommentar zur Mahnung"
+
+#. module: bt_followup
+#: model:ir.ui.menu,name:bt_invoice_followup_menu
+msgid "Invoice Follow-up"
+msgstr "Mahnung"
+
+#. module: bt_followup
+#: view:res.partner:0
+msgid "Invoice Follow-up"
+msgstr "Mahnung"
+
+#. module: bt_followup
+#: model:ir.actions.act_window,name:action_followup_config_form
+msgid "Invoice Follow-ups"
+msgstr "Mahnungen"
+
+#. module: bt_followup
+#: code:addons/bt_followup/account_invoice_ext.py:0
+#: report:addons/bt_followup/report/invoice_followup_report.mako:0
+#: code:addons/bt_followup/res_partner_ext.py:0
+#, python-format
+msgid "Invoice No."
+msgstr "Rechnungs-Nr."
+
+#. module: bt_followup
+#: model:ir.model,name:model_account_invoice
+msgid "Invoice"
+msgstr "Rechnung"
+
+#. module: bt_followup
+#: field:mail.mail,followup_invoice_ids:0
+msgid "Invoices in Mail"
+msgstr "Rechnungen in der E-Mail"
+
+#. module: bt_followup
+#: field:account.invoice,dunning_block_date:0
+msgid "Last Dunning Block Update"
+msgstr "Mahnsperre zuletzt geändert am"
+
+#. module: bt_followup
+#: field:account.invoice,dunning_block_date:0
+msgid "Last Dunning block update"
+msgstr "Letztes Update Mahnsperre"
+
+#. module: bt_followup
+#: field:followup,email_id:0
+msgid "Mail"
+msgstr "E-Mail"
+
+#. module: bt_followup
+#: field:account.invoice,followup_email_ids:0
+msgid "Mail's"
+msgstr "E-Mails"
+
+#. module: bt_followup
+#: field:followup.level,manual_action:0
+msgid "Manual Action"
+msgstr "Manuelle Folgeaktion"
+
+#. module: bt_followup
+#: view:followup.level:0
+msgid "Manual Action"
+msgstr "Manuelle Folgeaktion"
+
+#. module: bt_followup
+#: view:res.partner:0
+msgid "My Follow-ups"
+msgstr "Meine Mahnungen"
+
+#. module: bt_followup
+#: field:followup.config,name:0
+msgid "Name"
+msgstr "Name"
+
+#. module: bt_followup
+#: field:res.partner,followup_payment_next_action_date:0
+msgid "Next Action Date"
+msgstr "Datum für die nächste Massnahme"
+
+#. module: bt_followup
+#: field:res.partner,followup_payment_next_action:0
+msgid "Next Action"
+msgstr "Nächste Massnahme"
+
+#. module: bt_followup
+#: view:res.partner:0
+msgid "No Responsible Assigned"
+msgstr "Kein Verantwortlicher zugewiesen"
+
+#. module: bt_followup
+#: report:addons/bt_followup/report/invoice_followup_report.mako:153
+msgid "No invoices in follow-up process to be printed!"
+msgstr "Keine Rechnungen im Mahnprozess zu drucken!"
+
+#. module: bt_followup
+#: code:addons/bt_followup/res_partner_ext.py:118
+msgid "No invoices to handle!"
+msgstr "Keine Rechnungen zu behandeln!"
+
+#. module: bt_followup
+#: view:res.partner:0
+msgid "No. Responsible"
+msgstr "Verantwortlicher"
+
+#. module: bt_followup
+#: view:followup.level:0
+msgid "Number of days to pay the follow-up."
+msgstr "Anzahl Tage um die Mahnung zu bezahlen."
+
+#. module: bt_followup
+#: view:customer.invoices.followup.handle:0
+msgid "Once pending follow-up are handled, you will not be able\n"
+"						to modify it. All actions, defined in follow-up level\n"
+"						of each overdue invoice of each partnber, will be executed."
+msgstr "Once pending follow-up are handled, you will not be able\n"
+"						to modify it. All actions, defined in follow-up level\n"
+"						of each overdue invoice of each partnber, will be executed."
+
+#. module: bt_followup
+#: view:customer.invoices.followup.handle:0
+msgid "Once pending follow-up are handled, you will not be able\n"
+"						to modify it. All actions, defined in follow-up level\n"
+"						of each overdue invoice of each partner, will be executed."
+msgstr "Sobald die hängige Mahnung verarbeitet wurde, kann dies nicht\n"
+"						mehr angepasst werden. Alle Aktionen, welche in der Mahnstufe\n"
+"						jeder fälligen Rechnung jedes Partners definiert sind, werden ausgeführt."
+
+#. module: bt_followup
+#: view:account.invoice.followup.handle:0
+msgid "Once pending follow-up are handled, you will not be able\n"
+"						to modify it. All actions, defined in follow-up level\n"
+"						of each overdue invoice, will be executed."
+msgstr "Sobald die hängige Mahnung verarbeitet wurde, kann dies nicht\n"
+"						mehr angepasst werden. Alle Aktionen, welche in der Mahnstufe\n"
+"						jeder fälligen Rechnung definiert sind, werden ausgeführt."
+
+#. module: bt_followup
+#: view:customer.invoices.followup.handle:0
+msgid "Once pending follow-up are handled, you will not be able\n"
+"						to modify it. All actions, defined in follow-up level\n"
+"						of each overdue invoice of each partner, will be executed."
+msgstr "Bearbeitete Mahnungen können nicht mehr verändert werden.\n"
+"                        Alle Massnahmen, die in einer Mahnstufe definiert sind \n"
+"                        werden für jede überfällige Rechnung eines jeden Kunden ausgeführt."
+
+#. module: bt_followup
+#: view:account.invoice.followup.handle:0
+msgid "Once pending follow-up are handled, you will not be able\n"
+"                        to modify it. All actions, defined in follow-up level \n"
+"                        of each overdue invoice, will be executed."
+msgstr "Bearbeitete Mahnungen können nicht mehr verändert werden.\n"
+"                        Alle Massnahmen, die in einer Mahnstufe definiert sind \n"
+"                        werden für jede überfällige Rechnung eines jeden Kunden ausgeführt."
+
+#. module: bt_followup
+#: code:addons/bt_followup/followup.py:52
+msgid "One invoice can only has a followup per different level."
+msgstr "One invoice can only has a followup per different level."
+
+#. module: bt_followup
+#: sql_constraint:followup:0
+msgid "One invoice can only has a followup per different level."
+msgstr "One invoice can only has a followup per different level."
+
+#. module: bt_followup
+#: code:addons/bt_followup/followup.py:50
+msgid "One invoice can only have one followup per different level."
+msgstr "Eine Rechnung kann nur eine Mahnung für jede Mahnstufe haben"
+
+#. module: bt_followup
+#: sql_constraint:followup:0
+msgid "One invoice can only have one followup per different level."
+msgstr "Eine Rechnung kann nur eine Mahnung für jede Mahnstufe haben"
+
+#. module: bt_followup
+#: help:res.partner,pending_followup:0
+msgid "One or more invoices of customer are pending to handle the follow-up level."
+msgstr "Eine oder mehrere Rechnungen des Kunden sind zur Bearbeitung in Mahnstufen hängig."
+
+#. module: bt_followup
+#: help:res.partner,in_followup_process:0
+msgid "One or more invoices of customer is included in follow-up process."
+msgstr "Eine oder mehrere Rechnungen des Kunden sind in den Mahnprozess einbezogen."
+
+#. module: bt_followup
+#: code:addons/bt_followup/followup_config.py:39
+msgid "Only one follow-up configuration per company is allowed"
+msgstr "Pro Firma ist nur eine Konfiguration für die Mahnung möglich"
+
+#. module: bt_followup
+#: sql_constraint:followup.config:0
+msgid "Only one follow-up configuration per company is allowed"
+msgstr "Pro Firma ist nur eine Konfiguration für die Mahnung möglich"
+
+#. module: bt_followup
+#: view:account.invoice:0
+msgid "Other Info"
+msgstr "Weitere Information"
+
+#. module: bt_followup
+#: report:addons/bt_followup/report/invoice_followup_report.mako:74
+msgid "Our Ref."
+msgstr "Unsere Referenz"
+
+#. module: bt_followup
+#: model:ir.model,name:model_mail_mail
+msgid "Outgoing Mails"
+msgstr "Postausgang"
+
+#. module: bt_followup
+#: field:followup,followup_partner_id:0
+msgid "Partner"
+msgstr "Kunde"
+
+#. module: bt_followup
+#: field:mail.mail,followup_partner_id:0
+msgid "Partner"
+msgstr "Kunde"
+
+#. module: bt_followup
+#: model:ir.model,name:model_res_partner
+msgid "Partner"
+msgstr "Kunde"
+
+#. module: bt_followup
+#: view:followup.level:0
+msgid "Partner's Name"
+msgstr "Kundenname"
+
+#. module: bt_followup
+#: view:res.partner:0
+msgid "Partners In Follow-up Process"
+msgstr "Kunden im Mahnprozess"
+
+#. module: bt_followup
+#: help:res.partner,followup_payment_note:0
+msgid "Payment Note"
+msgstr "Zahlung"
+
+#. module: bt_followup
+#: field:followup,invoice_followup_id:0
+msgid "Penalization Invoice"
+msgstr "Rechnung über Mahngebühr"
+
+#. module: bt_followup
+#: field:res.partner,penalization_invoice_ids:0
+msgid "Penalization Invoices"
+msgstr "Rechnung über Mahngebühr"
+
+#. module: bt_followup
+#: view:account.invoice:0
+msgid "Penalization Invoices"
+msgstr "Rechnung über Mahngebühr"
+
+#. module: bt_followup
+#: view:res.partner:0
+msgid "Penalization Invoices"
+msgstr "Rechnung über Mahngebühr"
+
+#. module: bt_followup
+#: view:account.invoice:0
+msgid "Penalization Invoices Lines"
+msgstr "Rechnungslinien über Mahngebühr"
+
+#. module: bt_followup
+#: code:addons/bt_followup/account_invoice_ext.py:1203
+msgid "Penalization for Unpaid Invoice"
+msgstr "Bestrafung für unbezahlte Rechnung"
+
+#. module: bt_followup
+#: code:addons/bt_followup/account_invoice_ext.py:332
+msgid "Penalization for Unpaid Invoifollowup_level_idce {0}"
+msgstr "Penalization for Unpaid Invoifollowup_level_idce {0}"
+
+#. module: bt_followup
+#: code:addons/bt_followup/followup_level.py:50
+msgid "Penalization"
+msgstr "Mahngebühr"
+
+#. module: bt_followup
+#: field:followup.level,product_id:0
+msgid "Penalization"
+msgstr "Mahngebühr"
+
+#. module: bt_followup
+#: field:res.partner,pending_followup:0
+msgid "Pending Follow-Up"
+msgstr "Fällige Mahnung"
+
+#. module: bt_followup
+#: view:account.invoice:0
+msgid "Pending Follow-up Handle"
+msgstr "Fällige Mahnungmassnahme"
+
+#. module: bt_followup
+#: view:res.partner:0
+msgid "Pending Follow-up Handle"
+msgstr "Fällige Mahnungmassnahme"
+
+#. module: bt_followup
+#: field:res.partner,pending_followup:0
+msgid "Pending Follow-up"
+msgstr "Hängige Mahnung"
+
+#. module: bt_followup
+#: view:followup.level:0
+msgid "Percentage Character"
+msgstr "Prozentzeichen"
+
+#. module: bt_followup
+#: model:ir.model,name:model_stock_picking
+msgid "Picking List"
+msgstr "Lieferschein"
+
+#. module: bt_followup
+#: model:email.template,body_html
+msgid "Presumably, it has escaped your attention that the payment is due. We ask you to transfer the open amount on the postal account {account_number} within {num_days} days, to compensate your customer and to avoid the blocking of the payment \"per invoice\".\n"
+"\n"
+"In this excerpt, all your payments until {new_due_date} are considered.\n"
+"\n"
+"If you have already arranged payment, please consider this letter as invalid."
+msgstr "Vermutlich ist es Ihrer Aufmerksamkeit entgangen, dass die Zahlung fällig ist. Wir bitten Sie, den ausstehenden Gesamtbetrag auf das Postkonto {account_number} innerhalb von {num_days} Tagen zu überweisen, um Ihr Kundenkonto auszugleichen und die Sperrung der Zahlungsart \"per Rechnung\" zu vermeiden.\n"
+"\n"
+"In diesem Auszug sind sämtliche, von Ihnen bis zum {new_due_date} eingegangenen Zahlungen berücksichtigt.\n"
+"\n"
+"Sollten Sie die Zahlung bereits veranlasst haben, so betrachten Sie dieses Schreiben bitte als gegenstandslos."
+
+#. module: bt_followup
+#: model:followup.level,description
+msgid "Presumably, it has escaped your attention that the payment is due. We ask you to transfer the open amount on the postal account {account_number} within {num_days} days, to compensate your customer and to avoid the blocking of the payment \"per invoice\".\n"
+"\n"
+"In this excerpt, all your payments until {new_due_date} are considered.\n"
+"\n"
+"If you have already arranged payment, please consider this letter as invalid."
+msgstr "Vermutlich ist es Ihrer Aufmerksamkeit entgangen, dass die Zahlung fällig ist. Wir bitten Sie, den ausstehenden Gesamtbetrag auf das Postkonto {account_number} innerhalb von {num_days} Tagen zu überweisen, um Ihr Kundenkonto auszugleichen und die Sperrung der Zahlungsart \"per Rechnung\" zu vermeiden.\n"
+"\n"
+"In diesem Auszug sind sämtliche, von Ihnen bis zum {new_due_date} eingegangenen Zahlungen berücksichtigt.\n"
+"\n"
+"Sollten Sie die Zahlung bereits veranlasst haben, so betrachten Sie dieses Schreiben bitte als gegenstandslos."
+
+#. module: bt_followup
+#: field:followup.level,description:0
+msgid "Printed Message"
+msgstr "Gedruckte Nachrichten"
+
+#. module: bt_followup
+#: code:addons/bt_followup/account_invoice_ext.py:354
+msgid "Printed follow-up                                                           report for invoice "
+msgstr "Gedruckter Mahnreport"
+
+#. module: bt_followup
+#: code:addons/bt_followup/account_invoice_ext.py:803
+msgid "Printed follow-up report for invoice "
+msgstr "Gedruckter Mahnungsbericht für Rechnung "
+
+#. module: bt_followup
+#: code:addons/bt_followup/account_invoice_ext.py:348
+msgid "Printed follow-up report"
+msgstr "Gedruckter Mahnreport"
+
+#. module: bt_followup
+#: model:ir.model,name:bt_followup.model_sale_order
+msgid "Sales Order"
+msgstr "Verkaufsauftrag"
+
+#. module: bt_followup
+#: view:followup.config:0
+msgid "Search Follow-up"
+msgstr "Suche Mahnung"
+
+#. module: bt_followup
+#: view:res.partner:0
+msgid "Search Partner"
+msgstr "Suche Partner"
+
+#. module: bt_followup
+#: view:followup.level:0
+msgid "Select Penalization"
+msgstr "Wähle Mahngebühr"
+
+#. module: bt_followup
+#: field:account.invoice,followup_send_email:0
+msgid "Send Follow-Up Email"
+msgstr "Sende Mahnungs-E-Mail"
+
+#. module: bt_followup
+#: field:account.invoice,followup_send_email:0
+msgid "Send Follow-up Email"
+msgstr "Sende Mahnungs-E-Mail"
+
+#. module: bt_followup
+#: field:followup.level,send_letter:0
+msgid "Send a Letter"
+msgstr "Sende einen Brief"
+
+#. module: bt_followup
+#: view:followup.level:0
+msgid "Send a Letter"
+msgstr "Sende einen Brief"
+
+#. module: bt_followup
+#: field:followup.level,send_email:0
+msgid "Send an Email"
+msgstr "Sende eine E-Mail"
+
+#. module: bt_followup
+#: view:followup.level:0
+msgid "Send an Email"
+msgstr "Sende eine E-Mail"
+
+#. module: bt_followup
+#: model:followup.level,name:demo_followup_line1
+#: model:followup.level,name:bt_followup.demo_followup_line1
+msgid "Send first reminder email"
+msgstr "Sende erste Erinnerungs-E-Mail"
+
+#. module: bt_followup
+#: model:followup.level,name:demo_followup_line2
+#: model:followup.level,name:bt_followup.demo_followup_line2
+msgid "Send reminder letter and email"
+msgstr "Sende Erinnerungsschreiben und -E-Mail"
+
+#. module: bt_followup
+#: model:followup.level,description:bt_followup.demo_followup_line2
+msgid "Dear {partner_name},\n"
+"\n"
+"We are disappointed to see that despite sending a reminder, that your account is now seriously overdue.\n"
+"\n"
+"It is essential that immediate payment is made, otherwise we will have to consider placing a stop on your account which means that we will no longer be able to supply your company with (goods/services).\n"
+"Please, take appropriate measures in order to carry out this payment in the next 8 days.\n"
+"\n"
+"If there is a problem with paying invoice that we are not aware of, do not hesitate to contact our accounting department, so that we can resolve the matter quickly.\n"
+"\n"
+"Details of due payments is printed below.\n"
+"\n"
+"Best Regards,\n"
+"\n"
+"%(user_signature)s"
+msgstr "Guten Tag ${object.name},\n"
+"\n"
+"Enttäuscht haben wir festgestellt, dass auch nach vorheriger Mahnung nicht alle ihrer Rechnungen bezahlt sind.\n"
+"\n"
+"Wir weisen Sie darauf hin, dass wir ohne unverzügliche Zahlung jede weitere Lieferung von Waren oder die \n"
+"Erbringung von Dienstleistungen einstellen.\n"
+"Bitte bezahlen Sie die offenen Forderungen innert acht Tagen.\n"
+"\n"
+"Sollte ein Problem mit der Bezahlung der Rechnung vorliegen, kontaktieren Sie uns bitte, so dass wir \n"
+"schnellstmöglich eine Lösung finden können.\n"
+"\n"
+"Details der offenen Forderungen finden Sie untenstehend.\n"
+"\n"
+"Mit freundlichen Grüssen\n"
+"\n"
+"%(user_signature)s"
+
+
+#. module: bt_followup
+#: field:followup.level,sequence:0
+msgid "Sequence"
+msgstr "Reihenfolge"
+
+#. module: bt_followup
+#: field:account.invoice,followup_skip_email_sending:0
+msgid "Skip Follow-Up Email Sending"
+msgstr "Überspringe das Senden der Mahnungs-E-Mail"
+
+#. module: bt_followup
+#: field:account.invoice,followup_skip_email_sending:0
+msgid "Skip Follow-up Email Sending"
+msgstr "Lasse das Senden der Mahnungs-E-Mail aus"
+
+#. module: bt_followup
+#: view:followup.level:0
+msgid "The bank account of the client."
+msgstr "Das Bankkonto des Kunden."
+
+#. module: bt_followup
+#: code:addons/bt_followup/account_invoice_ext.py:353
+msgid "The company does not have a bank account defined."
+msgstr "Beim Unternehmen ist kein Bankkonto definiert."
+
+#. module: bt_followup
+#: help:followup,followup_create_date:0
+msgid "The date in which the follow-up was created"
+msgstr "Datum an dem die Mahnung erstellt wurde"
+
+#. module: bt_followup
+#: help:followup,followup_handled_date:0
+msgid "The date in which the follow-up was handled"
+msgstr "The date in which the follow-up was handled"
+
+#. module: bt_followup
+#: help:account.invoice,followup_level_date:0
+msgid "The date in which the last follow-up handling (i.e., sending email, printing report...) took place."
+msgstr "Letzte Mahnungsmassnahme erfolgte am"
+
+#. module: bt_followup
+#: help:account.invoice,followup_level_date:0
+msgid "The date in which the latest follow-up handling                                (i.e., sending email, printing report...) took place"
+msgstr "Datum an dem die letzte Massnahme (z.B. Senden einer Mail) ausgeführt wurde"
+
+#. module: bt_followup
+#: help:account.invoice,followup_level_date:0
+msgid "The date in which the latest follow-up handling (i.e., sending email, printing report...) took place"
+msgstr "Datum an dem die letzte Massnahme (z.B. Senden einer Mail) ausgeführt wurde"
+
+#. module: bt_followup
+#: view:followup.level:0
+msgid "The due date to pay the follow-up."
+msgstr "Das Fälligkeitsdatum, um die Mahnung zu bezahlen."
+
+#. module: bt_followup
+#: code:addons/bt_followup/account_invoice_ext.py:1470
+msgid "The invoice should have a partner"
+msgstr "Die Rechnung sollte einen Partner haben"
+
+#. module: bt_followup
+#: view:followup.level:0
+msgid "The name of the partner."
+msgstr "Name des Partners"
+
+#. module: bt_followup
+#: help:followup.level,delay:0
+msgid "The number of days after the last action was done in the previous level. A action can be the handling of the followup level or the removing of a dunning block. The number can be negative if you want to send a polite alert beforehand."
+msgstr "Anzahl Tage seit der letzten Aktion. Die Aktion kann entweder das Senden der letzten Mahnstufe sein, oder das Entfernen einer Mahnsperre. Die Zahl kann negativ sein, wenn vor Ablauf der Fälligkeit eine freundliche Erinnerung gesendet werden soll."
+
+#. module: bt_followup
+#: help:followup.level,delay:0
+msgid "The number of days after the original due day after this level of follow-up is applied. The number can be negative if you want to send a polite alert beforehand."
+msgstr "Anzahl Tage, welche die Rechnung fällig sein muss, bevor diese Mahnstufe frühestens erreicht werden kann. Ein negativer Wert kann für eine vorgängige freundliche Erinnerung genutzt werden."
+
+#. module: bt_followup
+#: code:addons/bt_followup/account_invoice_ext.py:1473
+msgid "The partner should contain an email"
+msgstr "Der Partner sollte eine E-Mail enthalten"
+
+#. module: bt_followup
+#: model:email.template,body_html
+msgid "The payment type \"per Invoice\" is currently locked on the webshop.\n"
+"\n"
+"With this first reminder we would like to point out that the amount above is still open. We may ask you to transfer the total outstanding amount within {num_days} days with enclosed payment slip.\n"
+"\n"
+"In this excerpt, all your payments until {new_due_date} are considered.\n"
+"\n"
+"If you have already arranged payment, please consider this letter as invalid."
+msgstr "Die Zahlungsart \"per Rechnung\" ist auf dem Webshop zurzeit gesperrt.\n"
+"\n"
+"Mit dieser ersten Mahnung machen wir Sie darauf aufmerksam, dass der oben aufgeführte Betrag nach wie vor offen ist. Wir bitten Sie, den ausstehenden Gesamtbetrag innerhalb von {num_days} mit beigefügtem Einzahlungsschein zu überweisen.\n"
+"\n"
+"In diesem Auszug sind sämtliche, von Ihnen bis zum {new_due_date} eingegangenen Zahlungen berücksichtigt.\n"
+"\n"
+"Sollten Sie die Zahlung bereits veranlasst haben, so betrachten Sie dieses Schreiben bitte als gegenstandslos."
+
+#. module: bt_followup
+#: model:followup.level,description
+msgid "The payment type \"per Invoice\" is currently locked on the webshop.\n"
+"\n"
+"With this first reminder we would like to point out that the amount above is still open. We may ask you to transfer the total outstanding amount within {num_days} days with enclosed payment slip.\n"
+"\n"
+"In this excerpt, all your payments until {new_due_date} are considered.\n"
+"\n"
+"If you have already arranged payment, please consider this letter as invalid."
+msgstr "Die Zahlungsart \"per Rechnung\" ist auf dem Webshop zurzeit gesperrt.\n"
+"\n"
+"Mit dieser ersten Mahnung machen wir Sie darauf aufmerksam, dass der oben aufgeführte Betrag nach wie vor offen ist. Wir bitten Sie, den ausstehenden Gesamtbetrag innerhalb von {num_days} Tagen mit beigefügtem Einzahlungsschein zu überweisen.\n"
+"\n"
+"In diesem Auszug sind sämtliche, von Ihnen bis zum {new_due_date} eingegangenen Zahlungen berücksichtigt.\n"
+"\n"
+"Sollten Sie die Zahlung bereits veranlasst haben, so betrachten Sie dieses Schreiben bitte als gegenstandslos."
+
+#. module: bt_followup
+#: code:addons/bt_followup/account_invoice_ext.py:142
+msgid "This action can only be executed for customer invoices.                                      Check Invoice "
+msgstr "Die Massnahme kann nur für Ausgangsrechnungen ergriffen werden.                                      Überprüfen Sie die Rechnung "
+
+#. module: bt_followup
+#: code:addons/bt_followup/account_invoice_ext.py:94
+msgid "This action can only be executed for customer invoices. Check Invoice "
+msgstr "Die Massnahme kann nur für Ausgangsrechnungen ergriffen werden. Überprüfen Sie die Rechnung"
+
+#. module: bt_followup
+#: code:addons/bt_followup/account_invoice_ext.py:366
+msgid "This follow-up level requires to send a letter, but no letter's description is written."
+msgstr "Die Mahnstufe erfordert das verschicken eines Briefes, aber es existiert keine Beschreibung für den Brief."
+
+#. module: bt_followup
+#: code:addons/bt_followup/account_invoice_ext.py:337
+msgid "This follow-up level requires to send an email, but its content or its destination is empty."
+msgstr "Die Mahnstufe erfordert das verschicken eines E-Mail, aber der Inhalt oder der Empfänger ist leer."
+
+#. module: bt_followup
+#: code:addons/bt_followup/account_invoice_ext.py:313
+msgid "This follow-up level requires to send an email, but its customer has no email defined."
+msgstr "Die Mahnstufe erfordert das verschicken eines E-Mail, aber beim Kunde ist keine E-Mail Adresse defniert."
+
+#. module: bt_followup
+#: code:addons/bt_followup/account_invoice_ext.py:329
+msgid "This follow-up level requires to send an email, but no email template is defined."
+msgstr "Die Mahnstufe erfordert das verschicken eines E-Mail, aber es ist keine E-Mail-Vorlage defniert."
+
+#. module: bt_followup
+#: code:addons/bt_followup/account_invoice_ext.py:543
+msgid "This invoice is under a follow-up process."
+msgstr "Diese Rechnung ist in einem Mahnprozess."
+
+#. module: bt_followup
+#: code:addons/bt_followup/account_invoice_ext.py:1232
+msgid "This is a follow-up pro-forma invoice which comes from invoice"
+msgstr "Dies ist ein Mahn-Proforma-Rechnung die von der Rechnung kommt"
+
+#. module: bt_followup
+#: help:res.partner,followup_payment_next_action:0
+msgid "This is the next action to be taken.                                     It will automatically be set when the partner gets a                                     follow-up level that requires a manual action. "
+msgstr "Die nächste Massnahme die ergriffen wird. Sie wird automatisch gesetzt, wenn der Kunde eine Mahnstufe erreicht, die eine manuelle Massnahme erfordern."
+
+#. module: bt_followup
+#: help:res.partner,followup_payment_next_action:0
+msgid "This is the next action to be taken. It will automatically be set when the partner gets a follow-up level that requires a manual action."
+msgstr "Dies ist die nächste zu ergreifende Massnahme. Sie wird automatisch gesetzt, wenn der Kunde die Mahnstufe erreicht hat."
+
+#. module: bt_followup
+#: help:res.partner,followup_payment_next_action_date:0
+msgid "This is when the manual follow-up is needed. The date will be set to the current date when the partner gets a follow-up level that requires a manual action. Can be practical to set manually e.g. to see if he keeps his promises."
+msgstr "Wird für eine manuelle Massnahme verwendet. Das Datum wird auf das entsprechende Datum gesetzt, wenn die Mahnstufe eine manuelle Massnahme verlangt. Es kann praktisch sein, dies manuell zu setzen um zu prüfen ob der Kunde Absprachen einhält."
+
+#. module: bt_followup
+#: view:followup.config:0
+msgid "To remind customers of paying their invoices, you can\n"
+"						define different actions depending on how severely\n"
+"						overdue the\n"
+"						customer is. These actions are bundled\n"
+"						into follow-up levels that\n"
+"						are triggered when the due\n"
+"						date of an invoice has passed a certain\n"
+"						number of days. If there are other overdue invoices for the\n"
+"						same\n"
+"						customer, the actions of the most\n"
+"						overdue invoice will be executed."
+msgstr "Um Ihre Kunden an Ihre Zahlungsverpflichtungen zu erinnern,\n"
+"						bzw. anzumahnen, können Sie verschiedene \n"
+"						Aktionen einrichten,\n"
+"						die in Abhängigkeit zur Fälligkeitsdauer Ihres Kunden stehen. \n"
+"						Diese Aktionen werden in Mahnstufen \n"
+"						zusammengefasst, die durch \n"
+"						die Überschreitung von Fälligkeitsdaten \n"
+"						ausgelöst werden.\n"
+"						Wenn mehrere überfällige Rechnungen für einen Kunden vorliegen,\n"
+"						werden zuerst die Aktionen für die Rechnung \n"
+"						mit der höchsten Mahnstufe ausgelöst."
+
+#. module: bt_followup
+#: view:followup.config:0
+msgid "To remind customers of paying their invoices, you can\n"
+"                        define different actions depending on how severely\n"
+"                        overdue the customer is. These actions are bundled\n"
+"                        into follow-up levels that are triggered when the due\n"
+"                        date of an invoice has passed a certain\n"
+"                        number of days. If there are other overdue invoices for the \n"
+"                        same customer, the actions of the most \n"
+"                        overdue invoice will be executed."
+msgstr "Um Kunden an Zahlungen zu erinnern können Sie\n"
+"                        verschiedene Massnahmen abhängig vom Zahlungsverzug\n"
+"                        definieren. Die Massnahmen sind zusammengfasst in\n"
+"                        Mahnstufen die ausgelöst werden, wenn eine Rechnung die\n"
+"                        Fälligkeit um eine bestimmte Anzahl Tage überschreitet."
+
+#. module: bt_followup
+#: code:addons/bt_followup/account_invoice_ext.py:669
+msgid "Total"
+msgstr "Summe"
+
+#. module: bt_followup
+#: code:addons/bt_followup/res_partner_ext.py:154
+msgid "Total"
+msgstr "Summe"
+
+#. module: bt_followup
+#: report:addons/bt_followup/report/invoice_followup_report.mako:119
+msgid "Total"
+msgstr "Summe"
+
+#. module: bt_followup
+#: code:addons/bt_followup/account_invoice_ext.py:666
+msgid "Unpaid"
+msgstr "Unbezahlt"
+
+#. module: bt_followup
+#: code:addons/bt_followup/res_partner_ext.py:151
+msgid "Unpaid"
+msgstr "Unbezahlt"
+
+#. module: bt_followup
+#: report:addons/bt_followup/report/invoice_followup_report.mako:116
+msgid "Unpaid"
+msgstr "Unbezahlt"
+
+#. module: bt_followup
+#: code:addons/bt_followup/account_invoice_ext.py:1509
+msgid "Updating the fields related with the manual action failed."
+msgstr "Die manuelle Massnahme konnte nicht gespeichert werden."
+
+#. module: bt_followup
+#: constraint:account.invoice:0
+msgid "Updating the fields related with the manual action failed."
+msgstr "Die manuelle Massnahme konnte nicht gespeichert werden."
+
+#. module: bt_followup
+#: code:addons/bt_followup/account_invoice_ext.py:93
+msgid "Usage Error"
+msgstr "Nutzungsfehler"
+
+#. module: bt_followup
+#: view:account.invoice:0
+msgid "User"
+msgstr "Benutzer"
+
+#. module: bt_followup
+#: view:res.partner:0
+msgid "User"
+msgstr "Benutzer"
+
+#. module: bt_followup
+#: view:followup.level:0
+msgid "User's Company Name"
+msgstr "Firmennamen des Benutzers"
+
+#. module: bt_followup
+#: view:followup.level:0
+msgid "User's Signature"
+msgstr "Benutzer Unterschrift"
+
+#. module: bt_followup
+#: code:addons/bt_followup/res_partner_ext.py:117
+msgid "Warning"
+msgstr "Warnung"
+
+#. module: bt_followup
+#: code:addons/bt_followup/account_invoice_ext.py:1462
+msgid "We must receive an invoice"
+msgstr "Wir müssen eine Rechnung erhalten"
+
+#. module: bt_followup
+#: help:followup.level,send_email:0
+msgid "When processing,        it will send an email"
+msgstr "Senden einer E-Mail"
+
+#. module: bt_followup
+#: help:followup.level,send_letter:0
+msgid "When processing, it will print a letter"
+msgstr "Drucken eines Briefes"
+
+#. module: bt_followup
+#: help:followup.level,send_email:0
+msgid "When processing, it will send an email"
+msgstr "Sende eine E-Mail"
+
+#. module: bt_followup
+#: help:followup.level,manual_action:0
+msgid "When processing, it will set the manual action to be taken for that customer. "
+msgstr "Manuelle Massnahme"
+
+#. module: bt_followup
+#: view:followup.level:0
+msgid "Write here the introduction in the letter,\n"
+"							according to the level\n"
+"							of the follow-up. You can\n"
+"							use the following keywords in the text.\n"
+"							Don't\n"
+"							forget to translate in all languages you installed\n"
+"							using to\n"
+"							top right icon."
+msgstr "Schreiben Sie hier eine allgemeingültige Einführung,\n"
+"                            in Abhängigkeit von der Mahnstufe. Sie können dabei\n"
+"                            die folgenden Schlüsselwörter verwenden.\n"
+"                            Vergessen Sie allerdings dann nicht alle Sprachen, die Sie "
+"                            verwenden, mit Hilfe des oberen rechten Knopfs zu installierenn."
+
+#. module: bt_followup
+#: view:followup.level:0
+msgid "Write here the introduction in the letter,\n"
+"                            according to the level of the follow-up. You can\n"
+"                            use the following keywords in the text. Don't\n"
+"                            forget to translate in all languages you installed\n"
+"                            using to top right icon."
+msgstr "Schreiben Sie hier die Einleitung des Briefes für die betreffende Mahnstufe.\n"
+"                            Sie können die folgenden Schlüsselwort benutzen.\n"
+"                            Vergessen Sie nicht in alle Sprachen zu übersetzen,\n"
+"                            die Sie installiert haben. Benutzen Sie dazu das\n"
+"                            Icon rechts."
+
+#. module: bt_followup
+#: code:addons/bt_followup/res_partner_ext.py:266
+msgid "You became responsible to do the next action for the invoice follow-up of"
+msgstr "Sie wurden zuständig, die nächste Massnahme für die Mahnung durchzuführen"
+
+#. module: bt_followup
+#: code:addons/bt_followup/followup_level.py:94
+msgid "Your description is invalid, use the right legend or %% if you want to use the percent character."
+msgstr "Ihre Beschreibung ist nicht zulässig. Benutzen Sie die korrekte Legende oder %% für das Prozentzeichen."
+
+#. module: bt_followup
+#: constraint:followup.level:0
+msgid "Your description is invalid, use the right legend or %% if you want to use the percent character."
+msgstr "Ihre Beschreibung ist nicht zulässig. Benutzen Sie die korrekte Legende oder %% für das Prozentzeichen."
+
+#. module: bt_followup
+#: view:followup.level:0
+msgid "days after the last action, do the following actions:"
+msgstr "Tagen, seit der letzten Aktion führe folgende Aktionen aus:"
+
+#. module: bt_followup
+#: view:followup.level:0
+msgid "days of overdue, do the following actions:"
+msgstr "Tage überfällig, bis folgende Massnahme ergriffen wird"
+
+#. module: bt_followup
+#: view:followup.level:0
+msgid "e.g. Call the customer, check if it's paid, ..."
+msgstr "z.B. Rufe den Kunden, prüfe ob Zahlung eingegangen, ..."
+
+#. module: bt_followup
+#: model:ir.model,name:model_followup
+msgid "followup"
+msgstr "Mahnung"
+
+#. module: bt_followup
+#: view:account.invoice.followup.handle:0
+msgid "or"
+msgstr "or"
+
+#. module: bt_followup
+#: view:customer.invoices.followup.handle:0
+msgid "or"
+msgstr "or"
+
+#. module: bt_followup
+#: field:res.partner,followup_mail_ids:0
+msgid "unknown"
+msgstr "unbekannt"
+
+#. module: bt_followup
+#: view:followup.level:0
+msgid "{account_number}"
+msgstr "{account_number}"
+
+#. module: bt_followup
+#: view:followup.level:0
+msgid "{new_due_date}"
+msgstr "{new_due_date}"
+
+#. module: bt_followup
+#: view:followup.level:0
+msgid "{num_days}"
+msgstr "{num_days}"
+
+#. module: bt_followup
+#: view:followup.level:0
+msgid "{partner_name}"
+msgstr "{partner_name}"
+
+#. module: bt_followup
+#: model:followup.level,description:bt_followup.demo_followup_line1
+msgid "Dear {partner_name},\n"
+"\n"
+"Exception made if there was a mistake of ours, it seems that the following amount stays unpaid. Please, take appropriate measures in order to carry out this payment in the next 8 days.\n"
+"\n"
+"Would your payment have been carried out after this mail was sent, please ignore this message. Do not hesitate to contact our accounting department.  \n"
+"\n"
+"Best Regards,\n"
+"\n"
+"%(user_signature)s"
+msgstr "Guten Tag {partner_name},\n"
+"\n"
+"Vorbehältlich eines Fehlers bei uns sind die folgenden Beträge immer noch offen. Bitte bezahlen Sie die offenen Forderungen innert acht Tagen.\n"
+"\n"
+"Wenn Sie vor Versand dieser Mail bereits bezahlt haben, betrachten Sie diese Mail als gegenstandslos.\n"
+"Bitte zögern Sie nicht mit uns Kontakt aufzunehmen, wenn Sie Fragen zu dieser Mahnung haben.\n"
+"\n"
+"Best Regards,\n"
+"\n"
+"%(user_signature)s"
+
+#. module: bt_followup
+#: help:followup.errors,date:0
+msgid "Date in which the error happened."
+msgstr "Date in which the error happened."
+
+#. module: bt_followup
+#: model:email.template,body_html:bt_followup.email_template_warn_user_responsible_of_followups
+msgid "<div style=\"font-family: sans-serif; font-size: 12px;\">\n"
+"            Dear ${object.name | safe},\n"
+"\n"
+"            <p>You are responsible for taking a manual action over the following invoices which are under a follow-up process:</p>\n"
+"\n"
+"            ${object.get_html_list_of_invoices_responsible() | safe}\n"
+"            </div>"
+msgstr "<div style=\"font-family: sans-serif; font-size: 12px;\">\n"
+"            Hallo ${object.name | safe},\n"
+"\n"
+"            <p>Sie sind für die manuelle Massnahme der folgenden Rechnungen, die sich in dem Mahnprozess befinden, verantwortlich:</p>\n"
+"\n"
+"            ${object.get_html_list_of_invoices_responsible() | safe}\n"
+"            </div>"
+
+#. module: bt_followup
+#: model:followup.level,description:bt_followup.demo_followup_line3
+msgid "Dear {partner_name},\n"
+"\n"
+"Despite several reminders, your account is still not settled.\n"
+"\n"
+"Unless full payment is made in next 8 days, then legal action for the recovery of the debt will be taken without further notice.\n"
+"\n"
+"I trust that this action will prove unnecessary and details of due payments is printed below.\n"
+"\n"
+"In case of any queries concerning this matter, do not hesitate to contact our accounting department.\n"
+"\n"
+"Best Regards,\n"
+"\n"
+"%(user_signature)s"
+msgstr "Sehr geehrter {partner_name},\n"
+"\n"
+"Trotz mehrerer Mahnungen ist Ihr Konto immer noch nicht abgerechnet.\n"
+"\n"
+"Wenn die vollständige Zahlung in den nächsten 8 Tagen nicht erfolgt ist, werden ohne weitere Ankündigung rechtliche Schritte zur Beitreibung der Schulden eingeleitet.\n"
+"\n"
+"Ich vertraue darauf, dass sich diese Maßnahme als unnötig erweisen wird, und die Details zu den fälligen Zahlungen sind unten aufgeführt.\n"
+"\n"
+"Falls Sie diesbezüglich Fragen haben, wenden Sie sich bitte an unsere Buchhaltungsabteilung.\n"
+"\n"
+"Freundliche Grüsse,\n"
+"\n"
+"%(user_signature)s"

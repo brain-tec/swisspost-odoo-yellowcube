@@ -18,7 +18,6 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 ##############################################################################
-
 from openerp.osv import osv
 
 
@@ -40,8 +39,18 @@ class res_partner_title_ext(osv.Model):
             # Searches for the IDs corresponding to Mister and Madam,
             # because we are going to keep only those ones.
             ir_model_data_obj = self.pool.get('ir.model.data')
-            mister_object_reference = ir_model_data_obj.get_object_reference(cr, uid, 'base', 'res_partner_title_mister')
-            madam_object_reference = ir_model_data_obj.get_object_reference(cr, uid, 'base', 'res_partner_title_madam')
+
+            # These try-except are to prevent the code to crash if the titles
+            # have been removed from the system.
+            try:
+                mister_object_reference = ir_model_data_obj.get_object_reference(cr, uid, 'base', 'res_partner_title_mister')
+            except ValueError:
+                mister_object_reference = False
+            try:
+                madam_object_reference = ir_model_data_obj.get_object_reference(cr, uid, 'base', 'res_partner_title_madam')
+            except ValueError:
+                madam_object_reference = False
+
             titles_to_keep_ids = []
             if mister_object_reference:
                 titles_to_keep_ids.append(mister_object_reference[1])

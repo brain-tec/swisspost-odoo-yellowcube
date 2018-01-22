@@ -1,0 +1,22 @@
+<openerp>
+    <data>
+
+        <record id="view_delivery_order_inherit_stock_1" model="ir.ui.view">
+            <field name="name">stock.picking.out.form</field>
+            <field name="model">stock.picking.out</field>
+            <field name="inherit_id" ref="delivery.view_delivery_order_inherit_stock"/>
+            <field name="arch" type="xml">
+
+                <!-- Hides the button 'Print Delivery Order'. -->
+                <xpath expr="//button[@string='Print Delivery Order'][1]" position="attributes">
+                     <attribute name="invisible">1</attribute>
+                </xpath>
+                <xpath expr="//button[@string='Print Delivery Order'][2]" position="attributes">
+                     <attribute name="invisible">1</attribute>
+                </xpath>
+
+            </field>
+        </record>
+
+    </data>
+</openerp>

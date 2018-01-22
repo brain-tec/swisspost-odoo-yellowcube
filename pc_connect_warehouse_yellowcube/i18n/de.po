@@ -1,6 +1,6 @@
 # Translation of OpenERP Server.
 # This file contains the translation of the following modules:
-#	* pc_connect_warehouse_yellowcube
+#
 #
 msgid ""
 msgstr ""
@@ -23,82 +23,82 @@ msgstr "%s-%s-return"
 #. module: pc_connect_warehouse_yellowcube
 #: sql_constraint:mapping_bur_transactiontypes:0
 msgid "A given configuration can not have duplicated TransactionTypes."
-msgstr "A given configuration can not have duplicated TransactionTypes."
+msgstr "Doppelte TransactionType sind nicht möglich"
 
 #. module: pc_connect_warehouse_yellowcube
 #: field:delivery.carrier,yc_additional_shipping:0
 msgid "Additional service in accordance with post parcels Postlogistics"
-msgstr "Additional service in accordance with post parcels Postlogistics"
+msgstr "Zusatzservices der PostLogistic gemäss www.post.ch"
 
 #. module: pc_connect_warehouse_yellowcube
 #: model:ir.model.fields,field_description:field_delivery_carrier_yc_additional_shipping
 msgid "Additional service in accordance with post parcels Postlogistics"
-msgstr "Additional service in accordance with post parcels Postlogistics"
+msgstr "Zusatzservices der PostLogistic gemäss www.post.ch"
 
 #. module: pc_connect_warehouse_yellowcube
 #: field:stock.picking,yellowcube_return_automate:0
 msgid "Automate return-claim on confirm"
-msgstr "Automate return-claim on confirm"
+msgstr "Retouren-Prozess mit der Bestätigung automatisieren"
 
 #. module: pc_connect_warehouse_yellowcube
 #: field:stock.picking.in,yellowcube_return_automate:0
 msgid "Automate return-claim on confirm"
-msgstr "Automate return-claim on confirm"
+msgstr "Retouren-Prozess mit der Bestätigung automatisieren"
 
 #. module: pc_connect_warehouse_yellowcube
 #: field:stock.picking.out,yellowcube_return_automate:0
 msgid "Automate return-claim on confirm"
-msgstr "Automate return-claim on confirm"
+msgstr "Retouren-Prozess mit der Bestätigung automatisieren"
 
 #. module: pc_connect_warehouse_yellowcube
 #: model:ir.model.fields,field_description:field_stock_picking_yellowcube_return_automate
 msgid "Automate return-claim on confirm"
-msgstr "Automate return-claim on confirm"
+msgstr "Retouren-Prozess mit der Bestätigung automatisieren"
 
 #. module: pc_connect_warehouse_yellowcube
 #: model:ir.model.fields,field_description:field_stock_picking_yellowcube_return_automate_5315
 msgid "Automate return-claim on confirm"
-msgstr "Automate return-claim on confirm"
+msgstr "Retouren-Prozess mit der Bestätigung automatisieren"
 
 #. module: pc_connect_warehouse_yellowcube
 #: model:ir.model.fields,field_description:field_stock_picking_yellowcube_return_automate_5317
 msgid "Automate return-claim on confirm"
-msgstr "Automate return-claim on confirm"
+msgstr "Retouren-Prozess mit der Bestätigung automatisieren"
 
 #. module: pc_connect_warehouse_yellowcube
 #: field:delivery.carrier,yc_basic_shipping:0
 msgid "Basic products for YellowCube shipping"
-msgstr "Basic products for YellowCube shipping"
+msgstr "Basisprodukt für YellowCube Versand"
 
 #. module: pc_connect_warehouse_yellowcube
 #: model:ir.model.fields,field_description:field_delivery_carrier_yc_basic_shipping
 msgid "Basic products for YellowCube shipping"
-msgstr "Basic products for YellowCube shipping"
+msgstr "Basisprodukt für YellowCube Versand"
 
 #. module: pc_connect_warehouse_yellowcube
 #: code:addons/pc_connect_warehouse_yellowcube/yellowcube_bar_xml_factory.py:189
 msgid "BestBeforeDate defined but unknown lot to use in product {0}"
-msgstr "BestBeforeDate defined but unknown lot to use in product {0}"
+msgstr "Mindesthaltbarheitsdatum definiert, aber unbekannte Charge für Produkt {0}"
 
 #. module: pc_connect_warehouse_yellowcube
 #: selection:stock.picking,yellowcube_return_reason:0
 msgid "Better price found"
-msgstr "Better price found"
+msgstr "Besseren Preis gefunden"
 
 #. module: pc_connect_warehouse_yellowcube
 #: selection:stock.picking.in,yellowcube_return_reason:0
 msgid "Better price found"
-msgstr "Better price found"
+msgstr "Besseren Preis gefunden"
 
 #. module: pc_connect_warehouse_yellowcube
 #: selection:stock.picking.out,yellowcube_return_reason:0
 msgid "Better price found"
-msgstr "Better price found"
+msgstr "Besseren Preis gefunden"
 
 #. module: pc_connect_warehouse_yellowcube
 #: selection:stock.return.picking,yellowcube_return_reason:0
 msgid "Better price found"
-msgstr "Better price found"
+msgstr "Besseren Preis gefunden"
 
 #. module: pc_connect_warehouse_yellowcube
 #: model:ir.model,name:model_delivery_carrier
@@ -106,244 +106,246 @@ msgid "Carrier"
 msgstr "Frachtführer"
 
 #. module: pc_connect_warehouse_yellowcube
+#: field:delivery.carrier,tracking_url_pattern:0
+#: model:ir.model.fields,field_description:pc_connect_warehouse_yellowcube.field_delivery_carrier_tracking_url_pattern
+msgid "Carrier reference URL"
+msgstr "Versandreferenz-URL"
+
+#. module: pc_connect_warehouse_yellowcube
 #: selection:stock.picking,yellowcube_return_reason:0
 msgid "Company shipped more articles than ordered"
-msgstr "Company shipped more articles than ordered"
+msgstr "Es wurden mehr Artikel geliefert als bestellt"
 
 #. module: pc_connect_warehouse_yellowcube
 #: selection:stock.picking.in,yellowcube_return_reason:0
 msgid "Company shipped more articles than ordered"
-msgstr "Company shipped more articles than ordered"
+msgstr "Es wurden mehr Artikel geliefert als bestellt"
 
 #. module: pc_connect_warehouse_yellowcube
 #: selection:stock.picking.out,yellowcube_return_reason:0
 msgid "Company shipped more articles than ordered"
-msgstr "Company shipped more articles than ordered"
+msgstr "Es wurden mehr Artikel geliefert als bestellt"
 
 #. module: pc_connect_warehouse_yellowcube
 #: selection:stock.return.picking,yellowcube_return_reason:0
 msgid "Company shipped more articles than ordered"
-msgstr "Company shipped more articles than ordered"
+msgstr "Es wurden mehr Artikel geliefert als bestellt"
 
 #. module: pc_connect_warehouse_yellowcube
 #: selection:stock.picking,yellowcube_return_reason:0
 msgid "Company shipped wrong product"
-msgstr "Company shipped wrong product"
+msgstr "Es wurden die falschen Produkte geliefert"
 
 #. module: pc_connect_warehouse_yellowcube
 #: selection:stock.picking.in,yellowcube_return_reason:0
 msgid "Company shipped wrong product"
-msgstr "Company shipped wrong product"
+msgstr "Es wurden die falschen Produkte geliefert"
 
 #. module: pc_connect_warehouse_yellowcube
 #: selection:stock.picking.out,yellowcube_return_reason:0
 msgid "Company shipped wrong product"
-msgstr "Company shipped wrong product"
+msgstr "Es wurden die falschen Produkte geliefert"
 
 #. module: pc_connect_warehouse_yellowcube
 #: selection:stock.return.picking,yellowcube_return_reason:0
 msgid "Company shipped wrong product"
-msgstr "Company shipped wrong product"
+msgstr "Es wurden die falschen Produkte geliefert"
 
 #. module: pc_connect_warehouse_yellowcube
 #: help:configuration.data,mapping_bur_transactiontypes_ids:0
 msgid "Configurable mapping from BUR-TransactionTypes to default source and destination locations."
-msgstr "Configurable mapping from BUR-TransactionTypes to default source and destination locations."
+msgstr "Konfigurierbare Zuordnung von BUR-TransactionTypes für die Überteuerung von Quell- und Ziellager bei Lagerbuchungen."
 
 #. module: pc_connect_warehouse_yellowcube
 #: field:mapping_bur_transactiontypes,configuration_id:0
 msgid "Configuration Data"
-msgstr "Configuration Data"
+msgstr "Konfiguration"
 
 #. module: pc_connect_warehouse_yellowcube
 #: model:ir.model.fields,field_description:field_mapping_bur_transactiontypes_configuration_id
 msgid "Configuration Data"
-msgstr "Configuration Data"
+msgstr "Konfiguration"
 
 #. module: pc_connect_warehouse_yellowcube
 #: view:stock.connect:0
 msgid "Configuration flags"
-msgstr "Configuration flags"
+msgstr "Konfigurationsschalter"
 
 #. module: pc_connect_warehouse_yellowcube
 #: code:addons/pc_connect_warehouse_yellowcube/yellowcube_bar_xml_factory.py:137
 msgid "Configuration parameter YC PlantID is not defined for product {0}"
-msgstr "Configuration parameter YC PlantID is not defined for product {0}"
+msgstr "Konfigurationsparameter YC PlantID ist für das Produkt {0} nicht definiert"
 
 #. module: pc_connect_warehouse_yellowcube
 #: code:addons/pc_connect_warehouse_yellowcube/yellowcube_war_xml_factory.py:119
 msgid "Configuration variable YC DepositorNo does not match with that of tag 'DepositorNo'"
-msgstr "Configuration variable YC DepositorNo does not match with that of tag 'DepositorNo'"
+msgstr "Konfigurationsparameter YC DepositorNo stimmt nicht mit dem Feld 'DepositorNo' überein"
 
 #. module: pc_connect_warehouse_yellowcube
 #: code:addons/pc_connect_warehouse_yellowcube/yellowcube_wba_xml_factory.py:129
 msgid "Configuration variable YC SupplierNo does not match with that of tag 'SupplierNo' on the connector."
-msgstr "Configuration variable YC SupplierNo does not match with that of tag 'SupplierNo' on the connector."
+msgstr "Konfigurationsparameter YC SupplierNo oder YC SupplierNo des Lieferanten stimmt nicht mit dem Feld 'SupplierNo' überein"
 
 #. module: pc_connect_warehouse_yellowcube
 #: code:addons/pc_connect_warehouse_yellowcube/yellowcube_wba_xml_factory.py:125
 msgid "Configuration variable YC SupplierNo does not match with that of tag 'SupplierNo' on the supplier."
-msgstr "Configuration variable YC SupplierNo does not match with that of tag 'SupplierNo' on the supplier."
+msgstr "Konfigurationsparameter YC SupplierNo oder YC SupplierNo des Lieferanten stimmt nicht mit dem Feld 'SupplierNo' überein"
 
 #. module: pc_connect_warehouse_yellowcube
 #: code:addons/pc_connect_warehouse_yellowcube/yellowcube_wba_xml_factory.py:128
 msgid "Configuration variable YC SupplierNo is not defined in the system."
-msgstr "Configuration variable YC SupplierNo is not defined in the system."
+msgstr "Konfigurationsparameter YC SupplierNo ist nicht definiert."
 
 #. module: pc_connect_warehouse_yellowcube
 #: field:stock.connect.yellowcube,warehouse_ids:0
 msgid "Configured Warehouses"
-msgstr "Configured Warehouses"
+msgstr "Konfigurierte Lager"
 
 #. module: pc_connect_warehouse_yellowcube
 #: model:ir.model.fields,field_description:field_stock_connect_yellowcube_warehouse_ids
 msgid "Configured Warehouses"
-msgstr "Configured Warehouses"
+msgstr "Konfigurierte Lager"
 
 #. module: pc_connect_warehouse_yellowcube
 #: field:stock.connect.yellowcube,type:0
 msgid "Connection type"
-msgstr "Connection type"
+msgstr "Verbindungstyp"
 
 #. module: pc_connect_warehouse_yellowcube
 #: model:ir.model.fields,field_description:field_stock_connect_yellowcube_type
 msgid "Connection type"
-msgstr "Connection type"
+msgstr "Verbindungstyp"
 
 #. module: pc_connect_warehouse_yellowcube
 #: field:stock.connect.yellowcube,connect_transport_id:0
 msgid "Connection"
-msgstr "Connection"
+msgstr "Verbindung"
 
 #. module: pc_connect_warehouse_yellowcube
 #: model:ir.model.fields,field_description:field_stock_connect_yellowcube_connect_transport_id
 msgid "Connection"
-msgstr "Connection"
+msgstr "Verbindung"
 
 #. module: pc_connect_warehouse_yellowcube
 #: help:configuration.data,yc_customer_order_no_mode:0
-msgid "Content of the CustomerOrderNo field for the WAB/WAR. If 'ID of Stock Picking', then the internal ID of the database is used. If 'Name of Order & Name of Purchase', then it is the concatenation of the name of the sale/purchase order and the name of the delivery"
-msgstr "Content of the CustomerOrderNo field for the WAB/WAR. If 'ID of Stock Picking', then the internal ID of the database is used. If 'Name of Order & Name of Purchase', then it is the concatenation of the name of the sale/purchase order and the name of the delivery"
+msgid "Option to chose how the external delivery reference used as CustomerOrderNo in WAB/WAR and SupplierOrderNo in WBL/WBA is calculated.\nWith 'ID of Stock Picking', the internal ID of the delivery is used.\nWith 'External Reference & Abrev. Delivery', it's the last part of the name of the sale / purchase order split by a -' (which is usually the web-shop or supplier reference), which is only for outgoing deliveries concatenated with the last 5 digits of the name of the delivery.\n\nWith 'Name of Order & Name of Delivery', for outgoing deliveries it is the concatenation of the name of the sale order and the name of the delivery, for incoming deliveries it is just the name of the purchase order.\nWith 'Name of the Order', it is the name of the associated sale/purchase order only (note: only viable if no backorders or delivery splitting is used!)."
+msgstr "Konfiguration wie die externe Referenz für Lieferungen ('CustomerOrderNo' im WAB/WAR, 'SupplierOrderNo' im WBL/WBA) bestimmt wird.\nMit 'ID der Lieferung' wird die Odoo interne ID des Lieferauftrages verwendet.\nMit 'Externe Referenz & abgek. Liefernummer' wird der letzte Teil (getrennt durch '-') der Bestellnummer (in der Regel Webshop- oder Lieferanten-Bestellnummer) verwendet. Bei Auslieferungen werden zudem die letzten 5 Stellen der Liefernummer angehängt.\nMit 'Bestell- & Liefernummer' wird für Auslieferungen die zusammengesetzte Nummer von Bestellung und Lieferung, für Einlieferungen nur die Einkaufs-Bestellnummer verwendet.\nMit 'Bestellnummer' wird nur die Bestellnummer verwendet (Achtung: Nur verwendbar, wenn keine Nachlieferungen (Teillieferungen/Liefer-Splitting) verwendet werden!)."
 
 #. module: pc_connect_warehouse_yellowcube
 #: field:configuration.data,yc_customer_order_no_mode:0
 msgid "CustomerOrderNo Mode"
-msgstr "CustomerOrderNo Mode"
+msgstr "CustomerOrderNo Typ"
 
 #. module: pc_connect_warehouse_yellowcube
 #: model:ir.model.fields,field_description:field_configuration_data_yc_customer_order_no_mode
 msgid "CustomerOrderNo Mode"
-msgstr "CustomerOrderNo Mode"
+msgstr "CustomerOrderNo Typ"
 
 #. module: pc_connect_warehouse_yellowcube
 #: code:addons/pc_connect_warehouse_yellowcube/yellowcube_war_xml_factory.py:178
 msgid "CustomerOrderPosNo={0}: Mismatch with stock picking line number"
-msgstr "CustomerOrderPosNo={0}: Mismatch with stock picking line number"
+msgstr "CustomerOrderPosNo={0}: Stimmt nicht mit der Positionsnummer des Lieferauftrages überein"
 
 #. module: pc_connect_warehouse_yellowcube
 #: field:stock.connect,yc_missing_bar_days_due:0
 msgid "Days a product or lot may be outdated from a BAR file"
-msgstr "Days a product or lot may be outdated from a BAR file"
+msgstr "Fehlende Produkte im BAR deaktivieren nach (Tage)"
 
 #. module: pc_connect_warehouse_yellowcube
 #: field:stock.connect.yellowcube,yc_missing_bar_days_due:0
 msgid "Days a product or lot may be outdated from a BAR file"
-msgstr "Days a product or lot may be outdated from a BAR file"
+msgstr "Fehlende Produkte im BAR deaktivieren nach (Tage)"
 
 #. module: pc_connect_warehouse_yellowcube
 #: model:ir.model.fields,field_description:field_stock_connect_yc_missing_bar_days_due
 msgid "Days a product or lot may be outdated from a BAR file"
-msgstr "Days a product or lot may be outdated from a BAR file"
+msgstr "Fehlende Produkte im BAR deaktivieren nach (Tage)"
 
 #. module: pc_connect_warehouse_yellowcube
 #: model:ir.model.fields,field_description:field_stock_connect_yellowcube_yc_missing_bar_days_due
 msgid "Days a product or lot may be outdated from a BAR file"
-msgstr "Days a product or lot may be outdated from a BAR file"
+msgstr "Fehlende Produkte im BAR deaktivieren nach (Tage)"
 
 #. module: pc_connect_warehouse_yellowcube
 #: view:product.product:0
 msgid "Dealing with YellowCube impose some restrictions to the fields of a product."
-msgstr "Dealing with YellowCube impose some restrictions to the fields of a product."
+msgstr "Die Anbindung von YellowCube impliziert einige Restriktionen auf den Feldern eines Produkts."
 
 #. module: pc_connect_warehouse_yellowcube
 #: view:sale.order:0
 msgid "Dealing with YellowCube impose some restrictions to the fields of a product."
-msgstr "Dealing with YellowCube impose some restrictions to the fields of a product."
+msgstr "Die Anbindung von YellowCube impliziert einige Restriktionen auf den Feldern eines Produkts."
+
+#. module: pc_connect_warehouse_yellowcube
+#: field:configuration.data,tracking_email_template_id:0
+#: model:ir.model.fields,field_description:pc_connect_warehouse_yellowcube.field_configuration_data_tracking_email_template_id
+msgid "Delivery email template"
+msgstr "Versandbestätigung Email-Vorlage"
 
 #. module: pc_connect_warehouse_yellowcube
 #: model:ir.model,name:model_stock_picking_out
 msgid "Delivery Orders"
-msgstr "Auslieferung Aufträge"
+msgstr "Lieferaufträge"
 
 #. module: pc_connect_warehouse_yellowcube
 #: selection:stock.picking,yellowcube_return_reason:0
 msgid "Delivery not in due time"
-msgstr "Delivery not in due time"
+msgstr "Lieferung nicht rechtzeitig"
 
 #. module: pc_connect_warehouse_yellowcube
 #: selection:stock.picking.in,yellowcube_return_reason:0
 msgid "Delivery not in due time"
-msgstr "Delivery not in due time"
+msgstr "Lieferung nicht rechtzeitig"
 
 #. module: pc_connect_warehouse_yellowcube
 #: selection:stock.picking.out,yellowcube_return_reason:0
 msgid "Delivery not in due time"
-msgstr "Delivery not in due time"
+msgstr "Lieferung nicht rechtzeitig"
 
 #. module: pc_connect_warehouse_yellowcube
 #: selection:stock.return.picking,yellowcube_return_reason:0
 msgid "Delivery not in due time"
-msgstr "Delivery not in due time"
+msgstr "Lieferung nicht rechtzeitig"
 
 #. module: pc_connect_warehouse_yellowcube
 #: selection:stock.picking,yellowcube_return_reason:0
 msgid "Delivery packaging and article damaged"
-msgstr "Delivery packaging and article damaged"
+msgstr "Lieferung Verpackung und Artikel beschädigt"
 
 #. module: pc_connect_warehouse_yellowcube
 #: selection:stock.picking.in,yellowcube_return_reason:0
 msgid "Delivery packaging and article damaged"
-msgstr "Delivery packaging and article damaged"
+msgstr "Lieferung Verpackung und Artikel beschädigt"
 
 #. module: pc_connect_warehouse_yellowcube
 #: selection:stock.picking.out,yellowcube_return_reason:0
 msgid "Delivery packaging and article damaged"
-msgstr "Delivery packaging and article damaged"
+msgstr "Lieferung Verpackung und Artikel beschädigt"
 
 #. module: pc_connect_warehouse_yellowcube
 #: selection:stock.return.picking,yellowcube_return_reason:0
 msgid "Delivery packaging and article damaged"
-msgstr "Delivery packaging and article damaged"
+msgstr "Lieferung Verpackung und Artikel beschädigt"
 
 #. module: pc_connect_warehouse_yellowcube
 #: field:mapping_bur_transactiontypes,location_dest_id:0
 msgid "Destination Location"
-msgstr "Destination Location"
+msgstr "Ziellagerort"
 
 #. module: pc_connect_warehouse_yellowcube
 #: model:ir.model.fields,field_description:field_mapping_bur_transactiontypes_location_dest_id
 msgid "Destination Location"
-msgstr "Destination Location"
-
-#. module: pc_connect_warehouse_yellowcube
-#: help:stock.connect,yc_invoice_pcl_printer_destination:0
-msgid "Destination of the file the PCL printer prints to. It must be a file, NOT a folder."
-msgstr "Destination of the file the PCL printer prints to. It must be a file, NOT a folder."
-
-#. module: pc_connect_warehouse_yellowcube
-#: help:stock.connect.yellowcube,yc_invoice_pcl_printer_destination:0
-msgid "Destination of the file the PCL printer prints to. It must be a file, NOT a folder."
-msgstr "Destination of the file the PCL printer prints to. It must be a file, NOT a folder."
+msgstr "Ziellagerort"
 
 #. module: pc_connect_warehouse_yellowcube
 #: selection:stock.connect,yc_operating_mode:0
 msgid "Development"
-msgstr "Development"
+msgstr "Entwicklung"
 
 #. module: pc_connect_warehouse_yellowcube
 #: selection:stock.connect.yellowcube,yc_operating_mode:0
 msgid "Development"
-msgstr "Development"
+msgstr "Entwicklung"
 
 #. module: pc_connect_warehouse_yellowcube
 #: selection:delivery.carrier,yc_basic_shipping:0
@@ -351,433 +353,457 @@ msgid "ECO: PostPac Economy"
 msgstr "ECO: PostPac Economy"
 
 #. module: pc_connect_warehouse_yellowcube
+#: field:configuration.data,tracking_email_active:0
+#: model:ir.model.fields,field_description:pc_connect_warehouse_yellowcube.field_configuration_data_tracking_email_active
+msgid "Email carrier reference to customer?"
+msgstr "Kundenemail mit Sendungsverfolgung?"
+
+#. module: pc_connect_warehouse_yellowcube
 #: field:stock.connect,yc_enable_art_ondemand:0
 msgid "Enable ART creation on demand"
-msgstr "Enable ART creation on demand"
+msgstr "ART nach Bedarf verwenden"
 
 #. module: pc_connect_warehouse_yellowcube
 #: field:stock.connect.yellowcube,yc_enable_art_ondemand:0
 msgid "Enable ART creation on demand"
-msgstr "Enable ART creation on demand"
+msgstr "ART nach Bedarf verwenden"
 
 #. module: pc_connect_warehouse_yellowcube
 #: model:ir.model.fields,field_description:field_stock_connect_yc_enable_art_ondemand
 msgid "Enable ART creation on demand"
-msgstr "Enable ART creation on demand"
+msgstr "ART nach Bedarf verwenden"
 
 #. module: pc_connect_warehouse_yellowcube
 #: model:ir.model.fields,field_description:field_stock_connect_yellowcube_yc_enable_art_ondemand
 msgid "Enable ART creation on demand"
-msgstr "Enable ART creation on demand"
+msgstr "ART nach Bedarf verwenden"
 
 #. module: pc_connect_warehouse_yellowcube
 #: field:stock.connect,yc_enable_art_file:0
 msgid "Enable ART file"
-msgstr "Enable ART file"
+msgstr "ART Meldung verwenden"
 
 #. module: pc_connect_warehouse_yellowcube
 #: field:stock.connect.yellowcube,yc_enable_art_file:0
 msgid "Enable ART file"
-msgstr "Enable ART file"
+msgstr "ART Meldung verwenden"
 
 #. module: pc_connect_warehouse_yellowcube
 #: model:ir.model.fields,field_description:field_stock_connect_yc_enable_art_file
 msgid "Enable ART file"
-msgstr "Enable ART file"
+msgstr "ART Meldung verwenden"
 
 #. module: pc_connect_warehouse_yellowcube
 #: model:ir.model.fields,field_description:field_stock_connect_yellowcube_yc_enable_art_file
 msgid "Enable ART file"
-msgstr "Enable ART file"
+msgstr "ART Meldung verwenden"
 
 #. module: pc_connect_warehouse_yellowcube
 #: field:stock.connect,yc_enable_art_multifile:0
 msgid "Enable ART multifile"
-msgstr "Enable ART multifile"
+msgstr "ART Einzel-Meldung verwenden"
 
 #. module: pc_connect_warehouse_yellowcube
 #: field:stock.connect.yellowcube,yc_enable_art_multifile:0
 msgid "Enable ART multifile"
-msgstr "Enable ART multifile"
+msgstr "ART Einzel-Meldung verwenden"
 
 #. module: pc_connect_warehouse_yellowcube
 #: model:ir.model.fields,field_description:field_stock_connect_yc_enable_art_multifile
 msgid "Enable ART multifile"
-msgstr "Enable ART multifile"
+msgstr "ART Einzel-Meldung verwenden"
 
 #. module: pc_connect_warehouse_yellowcube
 #: model:ir.model.fields,field_description:field_stock_connect_yellowcube_yc_enable_art_multifile
 msgid "Enable ART multifile"
-msgstr "Enable ART multifile"
+msgstr "ART Einzel-Meldung verwenden"
 
 #. module: pc_connect_warehouse_yellowcube
 #: field:stock.connect,yc_enable_bar_file:0
 msgid "Enable BAR file"
-msgstr "Enable BAR file"
+msgstr "BAR Meldung verwenden"
 
 #. module: pc_connect_warehouse_yellowcube
 #: field:stock.connect.yellowcube,yc_enable_bar_file:0
 msgid "Enable BAR file"
-msgstr "Enable BAR file"
+msgstr "BAR Meldung verwenden"
 
 #. module: pc_connect_warehouse_yellowcube
 #: model:ir.model.fields,field_description:field_stock_connect_yc_enable_bar_file
 msgid "Enable BAR file"
-msgstr "Enable BAR file"
+msgstr "BAR Meldung verwenden"
 
 #. module: pc_connect_warehouse_yellowcube
 #: model:ir.model.fields,field_description:field_stock_connect_yellowcube_yc_enable_bar_file
 msgid "Enable BAR file"
-msgstr "Enable BAR file"
+msgstr "BAR Meldung verwenden"
 
 #. module: pc_connect_warehouse_yellowcube
 #: field:stock.connect,yc_enable_bur_file:0
 msgid "Enable BUR file"
-msgstr "Enable BUR file"
+msgstr "BUR Meldung verwenden"
 
 #. module: pc_connect_warehouse_yellowcube
 #: field:stock.connect.yellowcube,yc_enable_bur_file:0
 msgid "Enable BUR file"
-msgstr "Enable BUR file"
+msgstr "BUR Meldung verwenden"
 
 #. module: pc_connect_warehouse_yellowcube
 #: model:ir.model.fields,field_description:field_stock_connect_yc_enable_bur_file
 msgid "Enable BUR file"
-msgstr "Enable BUR file"
+msgstr "BUR Meldung verwenden"
 
 #. module: pc_connect_warehouse_yellowcube
 #: model:ir.model.fields,field_description:field_stock_connect_yellowcube_yc_enable_bur_file
 msgid "Enable BUR file"
-msgstr "Enable BUR file"
+msgstr "BUR Meldung verwenden"
 
 #. module: pc_connect_warehouse_yellowcube
 #: field:stock.connect,yc_enable_product_lifecycle:0
 msgid "Enable Product's Life-cycle?"
-msgstr "Enable Product's Life-cycle?"
+msgstr "Produkt-Life-Cycle verwenden?"
 
 #. module: pc_connect_warehouse_yellowcube
 #: field:stock.connect.yellowcube,yc_enable_product_lifecycle:0
 msgid "Enable Product's Life-cycle?"
-msgstr "Enable Product's Life-cycle?"
+msgstr "Produkt-Life-Cycle verwenden?"
 
 #. module: pc_connect_warehouse_yellowcube
 #: model:ir.model.fields,field_description:field_stock_connect_yc_enable_product_lifecycle
 msgid "Enable Product's Life-cycle?"
-msgstr "Enable Product's Life-cycle?"
+msgstr "Produkt-Life-Cycle verwenden?"
 
 #. module: pc_connect_warehouse_yellowcube
 #: model:ir.model.fields,field_description:field_stock_connect_yellowcube_yc_enable_product_lifecycle
 msgid "Enable Product's Life-cycle?"
-msgstr "Enable Product's Life-cycle?"
+msgstr "Produkt-Life-Cycle verwenden?"
 
 #. module: pc_connect_warehouse_yellowcube
 #: field:stock.connect,yc_enable_wab_file:0
 msgid "Enable WAB file"
-msgstr "Enable WAB file"
+msgstr "WAB Meldung verwenden"
 
 #. module: pc_connect_warehouse_yellowcube
 #: field:stock.connect.yellowcube,yc_enable_wab_file:0
 msgid "Enable WAB file"
-msgstr "Enable WAB file"
+msgstr "WAB Meldung verwenden"
 
 #. module: pc_connect_warehouse_yellowcube
 #: model:ir.model.fields,field_description:field_stock_connect_yc_enable_wab_file
 msgid "Enable WAB file"
-msgstr "Enable WAB file"
+msgstr "WAB Meldung verwenden"
 
 #. module: pc_connect_warehouse_yellowcube
 #: model:ir.model.fields,field_description:field_stock_connect_yellowcube_yc_enable_wab_file
 msgid "Enable WAB file"
-msgstr "Enable WAB file"
+msgstr "WAB Meldung verwenden"
 
 #. module: pc_connect_warehouse_yellowcube
 #: field:stock.connect,yc_enable_war_file:0
 msgid "Enable WAR file"
-msgstr "Enable WAR file"
+msgstr "WAR Meldung verwenden"
 
 #. module: pc_connect_warehouse_yellowcube
 #: field:stock.connect.yellowcube,yc_enable_war_file:0
 msgid "Enable WAR file"
-msgstr "Enable WAR file"
+msgstr "WAR Meldung verwenden"
 
 #. module: pc_connect_warehouse_yellowcube
 #: model:ir.model.fields,field_description:field_stock_connect_yc_enable_war_file
 msgid "Enable WAR file"
-msgstr "Enable WAR file"
+msgstr "WAR Meldung verwenden"
 
 #. module: pc_connect_warehouse_yellowcube
 #: model:ir.model.fields,field_description:field_stock_connect_yellowcube_yc_enable_war_file
 msgid "Enable WAR file"
-msgstr "Enable WAR file"
+msgstr "WAR Meldung verwenden"
 
 #. module: pc_connect_warehouse_yellowcube
 #: field:stock.connect,yc_enable_wba_file:0
 msgid "Enable WBA file"
-msgstr "Enable WBA file"
+msgstr "WBA Meldung verwenden"
 
 #. module: pc_connect_warehouse_yellowcube
 #: field:stock.connect.yellowcube,yc_enable_wba_file:0
 msgid "Enable WBA file"
-msgstr "Enable WBA file"
+msgstr "WBA Meldung verwenden"
 
 #. module: pc_connect_warehouse_yellowcube
 #: model:ir.model.fields,field_description:field_stock_connect_yc_enable_wba_file
 msgid "Enable WBA file"
-msgstr "Enable WBA file"
+msgstr "WBA Meldung verwenden"
 
 #. module: pc_connect_warehouse_yellowcube
 #: model:ir.model.fields,field_description:field_stock_connect_yellowcube_yc_enable_wba_file
 msgid "Enable WBA file"
-msgstr "Enable WBA file"
+msgstr "WBA Meldung verwenden"
 
 #. module: pc_connect_warehouse_yellowcube
 #: field:stock.connect,yc_enable_wbl_file:0
 msgid "Enable WBL file"
-msgstr "Enable WBL file"
+msgstr "WBL Meldung verwenden"
 
 #. module: pc_connect_warehouse_yellowcube
 #: field:stock.connect.yellowcube,yc_enable_wbl_file:0
 msgid "Enable WBL file"
-msgstr "Enable WBL file"
+msgstr "WBL Meldung verwenden"
 
 #. module: pc_connect_warehouse_yellowcube
 #: model:ir.model.fields,field_description:field_stock_connect_yc_enable_wbl_file
 msgid "Enable WBL file"
-msgstr "Enable WBL file"
+msgstr "WBL Meldung verwenden"
 
 #. module: pc_connect_warehouse_yellowcube
 #: model:ir.model.fields,field_description:field_stock_connect_yellowcube_yc_enable_wbl_file
 msgid "Enable WBL file"
-msgstr "Enable WBL file"
+msgstr "WBL Meldung verwenden"
 
 #. module: pc_connect_warehouse_yellowcube
 #: code:addons/pc_connect_warehouse_yellowcube/yellowcube_bur_xml_factory.py:177
 msgid "Error when importing BUR: StorageLocation and/or MoveStorageLocation were not defined or incorrect, AND no correct mapping was defined for TransactionType={0}"
-msgstr "Error when importing BUR: StorageLocation and/or MoveStorageLocation were not defined or incorrect, AND no correct mapping was defined for TransactionType={0}"
+msgstr "Fehler beim Verarbeiten der BUR Meldung: StorageLocation und/oder MoveStorageLocation sind entweder nicht definiert oder falsch - und es besteht kein Mapping für den TransactionType {0}"
 
 #. module: pc_connect_warehouse_yellowcube
 #: code:addons/pc_connect_warehouse_yellowcube/stock_connect_yellowcube.py:136
 msgid "Error while processing ART file"
-msgstr "Error while processing ART file"
+msgstr "Fehler beim Erstellen der ART Meldung"
 
 #. module: pc_connect_warehouse_yellowcube
 #: code:addons/pc_connect_warehouse_yellowcube/stock_connect_yellowcube.py:131
 msgid "Error while processing ART file:\n"
 "{warning}"
-msgstr "Error while processing ART file:\n"
-"{warning}"
+msgstr "Fehler beim Erstellen der ART Meldung:\n{warning}"
 
 #. module: pc_connect_warehouse_yellowcube
 #: code:addons/pc_connect_warehouse_yellowcube/stock_connect_yellowcube.py:196
 msgid "Error while processing BAR file"
-msgstr "Error while processing BAR file"
+msgstr "Fehler beim Verarbeiten der BAR Meldung"
 
 #. module: pc_connect_warehouse_yellowcube
 #: code:addons/pc_connect_warehouse_yellowcube/product_product_ext.py:57
 msgid "Error!"
-msgstr "Error!"
+msgstr "Fehler!"
 
 #. module: pc_connect_warehouse_yellowcube
 #: code:addons/pc_connect_warehouse_yellowcube/ir_module_module_ext.py:52
 msgid "Error"
-msgstr "Error"
+msgstr "Fehler"
 
 #. module: pc_connect_warehouse_yellowcube
 #: code:addons/pc_connect_warehouse_yellowcube/yellowcube_art_xml_factory.py:265
 msgid "Errors appeared while generating the ART file:\n"
 "{0}"
-msgstr "Errors appeared while generating the ART file:\n"
-"{0}"
+msgstr "Fehler beim Erstellen der ART Meldung:\n{0}"
 
 #. module: pc_connect_warehouse_yellowcube
 #: field:stock.connect.yellowcube,stock_event_ids:0
 msgid "Events"
-msgstr "Events"
+msgstr "Ereignisse"
 
 #. module: pc_connect_warehouse_yellowcube
 #: model:ir.model.fields,field_description:field_stock_connect_yellowcube_stock_event_ids
 msgid "Events"
-msgstr "Events"
+msgstr "Ereignisse"
 
 #. module: pc_connect_warehouse_yellowcube
 #: code:addons/pc_connect_warehouse_yellowcube/stock_connect_yellowcube.py:425
 msgid "Exception while processing event on stock.picking with ID {0}: {1}"
-msgstr "Exception while processing event on stock.picking with ID {0}: {1}"
+msgstr "Fehler beim Verarbeiten des Ereignisses für die Lieferung mit ID {0} : {1}"
 
 #. module: pc_connect_warehouse_yellowcube
 #: code:addons/pc_connect_warehouse_yellowcube/stock_connect_yellowcube.py:258
 msgid "Exception: Error while processing file."
-msgstr "Exception: Error while processing file."
+msgstr "Fehler beim Verarbeiten der Datei"
 
 #. module: pc_connect_warehouse_yellowcube
 #: selection:stock.connect.yellowcube,type:0
 msgid "External Email"
-msgstr "External Email"
+msgstr "Externes Lager per Email"
+
+#. module: pc_connect_warehouse_yellowcube
+#: selection:configuration.data,yc_customer_order_no_mode:0
+msgid "External Reference & Abrev. Delivery"
+msgstr "Externe Referenz & abgek. Liefernummer"
 
 #. module: pc_connect_warehouse_yellowcube
 #: selection:stock.picking,yellowcube_return_reason:0
 msgid "Faulty / not working properly"
-msgstr "Faulty / not working properly"
+msgstr "Fehlerhafte / nicht ordnungsgemäß funktionierende"
 
 #. module: pc_connect_warehouse_yellowcube
 #: selection:stock.picking.in,yellowcube_return_reason:0
 msgid "Faulty / not working properly"
-msgstr "Faulty / not working properly"
+msgstr "Fehlerhafte / nicht ordnungsgemäß funktionierende"
 
 #. module: pc_connect_warehouse_yellowcube
 #: selection:stock.picking.out,yellowcube_return_reason:0
 msgid "Faulty / not working properly"
-msgstr "Faulty / not working properly"
+msgstr "Fehlerhafte / nicht ordnungsgemäß funktionierende"
 
 #. module: pc_connect_warehouse_yellowcube
 #: selection:stock.return.picking,yellowcube_return_reason:0
 msgid "Faulty / not working properly"
-msgstr "Faulty / not working properly"
+msgstr "Fehlerhafte / nicht ordnungsgemäß funktionierende"
 
 #. module: pc_connect_warehouse_yellowcube
 #: field:stock.connect,yc_file_date_sufix:0
 msgid "Filename suffix"
-msgstr "Filename suffix"
+msgstr "Dateinamenendung"
 
 #. module: pc_connect_warehouse_yellowcube
 #: field:stock.connect.yellowcube,yc_file_date_sufix:0
 msgid "Filename suffix"
-msgstr "Filename suffix"
+msgstr "Dateinamenendung"
 
 #. module: pc_connect_warehouse_yellowcube
 #: model:ir.model.fields,field_description:field_stock_connect_yc_file_date_sufix
 msgid "Filename suffix"
-msgstr "Filename suffix"
+msgstr "Dateinamenendung"
 
 #. module: pc_connect_warehouse_yellowcube
 #: model:ir.model.fields,field_description:field_stock_connect_yellowcube_yc_file_date_sufix
 msgid "Filename suffix"
-msgstr "Filename suffix"
+msgstr "Dateinamenendung"
 
 #. module: pc_connect_warehouse_yellowcube
 #: field:stock.connect.yellowcube,remote_file_template:0
 msgid "Filename template for files to import"
-msgstr "Filename template for files to import"
+msgstr "Namesformat für Import-Dateien"
 
 #. module: pc_connect_warehouse_yellowcube
 #: model:ir.model.fields,field_description:field_stock_connect_yellowcube_remote_file_template
 msgid "Filename template for files to import"
-msgstr "Filename template for files to import"
+msgstr "Namesformat für Import-Dateien"
 
 #. module: pc_connect_warehouse_yellowcube
 #: field:stock.connect.yellowcube,stock_connect_file_ids:0
 msgid "Files"
-msgstr "Files"
+msgstr "Dateien"
 
 #. module: pc_connect_warehouse_yellowcube
 #: model:ir.model.fields,field_description:field_stock_connect_yellowcube_stock_connect_file_ids
 msgid "Files"
-msgstr "Files"
+msgstr "Dateien"
 
 #. module: pc_connect_warehouse_yellowcube
 #: field:stock.connect.yellowcube,message_follower_ids:0
 msgid "Followers"
-msgstr "Followers"
+msgstr "Abonnenten"
 
 #. module: pc_connect_warehouse_yellowcube
 #: model:ir.model.fields,field_description:field_stock_connect_yellowcube_message_follower_ids
 msgid "Followers"
-msgstr "Followers"
+msgstr "Abonnenten"
 
 #. module: pc_connect_warehouse_yellowcube
 #: field:stock.picking,yellowcube_exported_wab:0
 msgid "Has been exported into a wab file?"
-msgstr "Has been exported into a wab file?"
+msgstr "Wurde in eine WAB-Datei exportiert?"
 
 #. module: pc_connect_warehouse_yellowcube
 #: model:ir.model.fields,field_description:field_stock_picking_yellowcube_exported_wab
 msgid "Has been exported into a wab file?"
-msgstr "Has been exported into a wab file?"
+msgstr "Wurde in eine WAB-Datei exportiert?"
 
 #. module: pc_connect_warehouse_yellowcube
 #: view:product.product:0
 msgid "Help & Support"
-msgstr "Help & Support"
+msgstr "Hilfe & Support"
 
 #. module: pc_connect_warehouse_yellowcube
 #: view:sale.order:0
 msgid "Help & Support"
-msgstr "Help & Support"
+msgstr "Hilfe & Support"
 
 #. module: pc_connect_warehouse_yellowcube
 #: help:stock.connect.yellowcube,message_summary:0
 msgid "Holds the Chatter summary (number of messages, ...). This summary is directly in html format in order to be inserted in kanban views."
-msgstr "Holds the Chatter summary (number of messages, ...). This summary is directly in html format in order to be inserted in kanban views."
+msgstr "Enthält die Zusammenfassung der Nachrichten die beim Objekt angezeigt werden."
 
 #. module: pc_connect_warehouse_yellowcube
 #: field:stock.connect,yc_hours_between_art_files:0
 msgid "Hours to wait before creating a new ART file, if a pending ART exists."
-msgstr "Hours to wait before creating a new ART file, if a pending ART exists."
+msgstr "Wartezeit für das versenden eines neuen ART nach der letzten Übermittlung."
 
 #. module: pc_connect_warehouse_yellowcube
 #: field:stock.connect.yellowcube,yc_hours_between_art_files:0
 msgid "Hours to wait before creating a new ART file, if a pending ART exists."
-msgstr "Hours to wait before creating a new ART file, if a pending ART exists."
+msgstr "Wartezeit für das versenden eines neuen ART nach der letzten Übermittlung."
 
 #. module: pc_connect_warehouse_yellowcube
 #: model:ir.model.fields,field_description:field_stock_connect_yc_hours_between_art_files
 msgid "Hours to wait before creating a new ART file, if a pending ART exists."
-msgstr "Hours to wait before creating a new ART file, if a pending ART exists."
+msgstr "Wartezeit für das versenden eines neuen ART nach der letzten Übermittlung."
 
 #. module: pc_connect_warehouse_yellowcube
 #: model:ir.model.fields,field_description:field_stock_connect_yellowcube_yc_hours_between_art_files
 msgid "Hours to wait before creating a new ART file, if a pending ART exists."
-msgstr "Hours to wait before creating a new ART file, if a pending ART exists."
+msgstr "Wartezeit für das versenden eines neuen ART nach der letzten Übermittlung."
 
 #. module: pc_connect_warehouse_yellowcube
 #: selection:configuration.data,yc_customer_order_no_mode:0
 msgid "ID of Stock Picking"
-msgstr "ID of Stock Picking"
+msgstr "ID der Lieferung"
 
 #. module: pc_connect_warehouse_yellowcube
 #: help:stock.connect.yellowcube,log_about_already_existing_files:0
 msgid "If activated, a line in the log will appear every time it sees a file that it already has."
-msgstr "If activated, a line in the log will appear every time it sees a file that it already has."
+msgstr "Falls aktiviert, wird für jede bereits eingelesene Datei eine Meldung ans Log ausgegeben. Sollte normalerweise deaktiviert sein."
 
 #. module: pc_connect_warehouse_yellowcube
 #: constraint:stock.picking:0
 msgid "If associated to a sale order, it must have a return reason and a sale.order"
-msgstr "If associated to a sale order, it must have a return reason and a sale.order"
+msgstr "Wenn zu einem Verkaufsauftrag zugeordnet, muss eine Rückgabegrund und eine Bestellung zugeordnet sein."
 
 #. module: pc_connect_warehouse_yellowcube
 #: help:stock.connect.yellowcube,message_unread:0
 msgid "If checked new messages require your attention."
-msgstr "If checked new messages require your attention."
+msgstr "Wenn diese Option aktiviert wird, müssen neue Meldungen überprüft werden."
 
 #. module: pc_connect_warehouse_yellowcube
 #: help:stock.connect,yc_enable_product_lifecycle:0
 msgid "If checked, then the module pc_product_lifecycle must be installed."
-msgstr "If checked, then the module pc_product_lifecycle must be installed."
+msgstr "Falls aktiviert muss das Modul pc_product_lifecycle installiert sein."
 
 #. module: pc_connect_warehouse_yellowcube
 #: help:stock.connect.yellowcube,yc_enable_product_lifecycle:0
 msgid "If checked, then the module pc_product_lifecycle must be installed."
-msgstr "If checked, then the module pc_product_lifecycle must be installed."
+msgstr "Falls aktiviert muss das Modul pc_product_lifecycle installiert sein."
+
+#. module: pc_connect_warehouse_yellowcube
+#: help:stock.connect,yc_wba_auto_cancel_backorder:0
+msgid "If this option is set, back orders that did not get any quantities during the configured time are automatically cancelled. A cancelled back order will automatically create the WBA-0 if a forwarding connection for outgoing WBA is configured."
+msgstr "Ist diese option gesetzt, wird eine Nachlieferung, die keine Mengen bestätigt hat nach der konfigurierten Zeit automatisch abgebrochen. Ein WBA-0 wird ausgelöst, falls eine WBA-Weiterleitung eingerichtet ist."
+
+#. module: pc_connect_warehouse_yellowcube
+#: help:stock.connect.yellowcube,yc_wba_auto_cancel_backorder:0
+msgid "If this option is set, back orders that did not get any quantities during the configured time are automatically cancelled. A cancelled back order will automatically create the WBA-0 if a forwarding connection for outgoing WBA is configured."
+msgstr "Ist diese option gesetzt, wird eine Nachlieferung, die keine Mengen bestätigt hat nach der konfigurierten Zeit automatisch abgebrochen. Ein WBA-0 wird ausgelöst, falls eine WBA-Weiterleitung eingerichtet ist."
+
+#. module: pc_connect_warehouse_yellowcube
+#: help:configuration.data,tracking_email_active:0
+msgid "If this option is activated an email to the customer containing the carrier reference is sent as the confirmation of the delivery is received. To activate this function, the email template to be used and the carrier reference template must be configured too!"
+msgstr "Wenn diese Option aktiviert ist, wird ein Email an den Kunden ausgelöst, sobald die Versandbestätigung des Lagers erhalten wurde. Damit dieses Email gesendet werden kann, muss ebenfalls die Email Vorlage und der Versandreferenz-URL korrekt konfiguriert sein."
 
 #. module: pc_connect_warehouse_yellowcube
 #: field:configuration.data,yc_ignore_events_until_process_date:0
 msgid "Ignore Events Until Its Process Date Is Met?"
-msgstr "Ignore Events Until Its Process Date Is Met?"
+msgstr "Sollen Lieferungen warten bis das geplante Verarbeitungsdatum erreicht wurde?"
 
 #. module: pc_connect_warehouse_yellowcube
 #: model:ir.model.fields,field_description:field_configuration_data_yc_ignore_events_until_process_date
 msgid "Ignore Events Until Its Process Date Is Met?"
-msgstr "Ignore Events Until Its Process Date Is Met?"
+msgstr "Sollen Lieferungen warten bis das geplante Verarbeitungsdatum erreicht wurde?"
 
 #. module: pc_connect_warehouse_yellowcube
 #: code:addons/pc_connect_warehouse_yellowcube/yellowcube_war_xml_factory.py:295
 msgid "Imported WAR file BookingVoucherID={0} BookingVoucherYear={1}"
-msgstr "Imported WAR file BookingVoucherID={0} BookingVoucherYear={1}"
+msgstr "Verarbeitete WAR Meldung mit BookingVoucherID={0} BookingVoucherYear={1}"
 
 #. module: pc_connect_warehouse_yellowcube
 #: code:addons/pc_connect_warehouse_yellowcube/yellowcube_bur_xml_factory.py:196
 msgid "Impossible to find a unique lot {0}"
-msgstr "Impossible to find a unique lot {0}"
+msgstr "Unmöglich eine korrekte Charge zu bestimmen {0}"
 
 #. module: pc_connect_warehouse_yellowcube
 #: model:ir.model,name:model_stock_picking_in
@@ -787,267 +813,277 @@ msgstr "Anlieferung"
 #. module: pc_connect_warehouse_yellowcube
 #: view:product.product:0
 msgid "Internal code (ArticleNo), must be 40 or less characters."
-msgstr "Internal code (ArticleNo), must be 40 or less characters."
+msgstr "Produkt Referenz (ArticleNo) darf maximal 40 Zeichen lang sein."
 
 #. module: pc_connect_warehouse_yellowcube
 #: view:sale.order:0
 msgid "Internal code (ArticleNo), must be 40 or less characters."
-msgstr "Internal code (ArticleNo), must be 40 or less characters."
+msgstr "Produkt Referenz (ArticleNo) darf maximal 40 Zeichen lang sein."
 
 #. module: pc_connect_warehouse_yellowcube
 #: code:addons/pc_connect_warehouse_yellowcube/yellowcube_bur_xml_factory.py:96
 msgid "Invalid DepositorNo"
-msgstr "Invalid DepositorNo"
+msgstr "Ungültige DepositorNo"
 
 #. module: pc_connect_warehouse_yellowcube
 #: code:addons/pc_connect_warehouse_yellowcube/yellowcube_bur_xml_factory.py:117
 msgid "Invalid search domain {0}"
-msgstr "Invalid search domain {0}"
+msgstr "Ungültiger Suchfilter {0}"
 
 #. module: pc_connect_warehouse_yellowcube
 #: field:stock.connect.yellowcube,message_is_follower:0
 msgid "Is a Follower"
-msgstr "Is a Follower"
+msgstr "Ist ein Abonnent"
 
 #. module: pc_connect_warehouse_yellowcube
 #: model:ir.model.fields,field_description:field_stock_connect_yellowcube_message_is_follower
 msgid "Is a Follower"
-msgstr "Is a Follower"
+msgstr "Ist ein Abonnent"
 
 #. module: pc_connect_warehouse_yellowcube
 #: selection:delivery.carrier,yc_basic_shipping:0
 msgid "LKW ECO: Fright/bulky goods Economy"
-msgstr "LKW ECO: Fright/bulky goods Economy"
+msgstr "LKW ECO: Fracht / Sperrgut Economy"
 
 #. module: pc_connect_warehouse_yellowcube
 #: selection:delivery.carrier,yc_basic_shipping:0
 msgid "LKW EXPRESS: Fright/small consignments Express"
-msgstr "LKW EXPRESS: Fright/small consignments Express"
+msgstr "LKW EXPRESS: Fracht / Kleinsendungen Express"
 
 #. module: pc_connect_warehouse_yellowcube
 #: selection:delivery.carrier,yc_basic_shipping:0
 msgid "LKW PRIO: Fright/small consignments Priority"
-msgstr "LKW PRIO: Fright/small consignments Priority"
+msgstr "LKW PRIO: Fracht / Kleinsendungen Priority"
 
 #. module: pc_connect_warehouse_yellowcube
 #: field:product.product,yc_last_changeflag_submitted_date:0
 msgid "Last ChangeFlag sent to YellowCube (date)"
-msgstr "Last ChangeFlag sent to YellowCube (date)"
+msgstr "Letztes zu YellowCube gesendetes ChangeFlag (Datum)"
 
 #. module: pc_connect_warehouse_yellowcube
 #: model:ir.model.fields,field_description:field_product_product_yc_last_changeflag_submitted_date
 msgid "Last ChangeFlag sent to YellowCube (date)"
-msgstr "Last ChangeFlag sent to YellowCube (date)"
+msgstr "Letztes zu YellowCube gesendetes ChangeFlag (Datum)"
 
 #. module: pc_connect_warehouse_yellowcube
 #: field:product.product,yc_last_changeflag_submitted:0
 msgid "Last ChangeFlag sent to YellowCube"
-msgstr "Last ChangeFlag sent to YellowCube"
+msgstr "Letztes zu YellowCube gesendetes ChangeFlag"
 
 #. module: pc_connect_warehouse_yellowcube
 #: model:ir.model.fields,field_description:field_product_product_yc_last_changeflag_submitted
 msgid "Last ChangeFlag sent to YellowCube"
-msgstr "Last ChangeFlag sent to YellowCube"
+msgstr "Letztes zu YellowCube gesendetes ChangeFlag"
 
 #. module: pc_connect_warehouse_yellowcube
 #: field:stock.production.lot,yc_last_bar_update:0
 msgid "Last Update from a BAR File"
-msgstr "Last Update from a BAR File"
+msgstr "Letzte Aktualisierung von einer BAR-Meldung"
 
 #. module: pc_connect_warehouse_yellowcube
 #: model:ir.model.fields,field_description:field_stock_production_lot_yc_last_bar_update
 msgid "Last Update from a BAR File"
-msgstr "Last Update from a BAR File"
+msgstr "Letzte Aktualisierung von einer BAR-Meldung"
+
+#. module: pc_connect_warehouse_yellowcube
+#: field:stock.picking,yellowcube_last_confirmation_timestamp:0
+msgid "Last confirmation file from YC"
+msgstr "Letzte Rückmeldung von YC"
+
+#. module: pc_connect_warehouse_yellowcube
+#: model:ir.model.fields,field_description:pc_connect_warehouse_yellowcube.field_stock_picking_yellowcube_last_confirmation_timestamp
+msgid "Last confirmation file from YC"
+msgstr "Letzte Rückmeldung von YC"
+
+#. module: pc_connect_warehouse_yellowcube
+#: help:stock.picking,yellowcube_last_confirmation_timestamp:0
+msgid "Last time a confirmation file (WBA/WAR) was processed for this picking."
+msgstr "Zeitpunkt der letzten Verarbeitung einer Rückmeldung (WBA/WAR) für diese Lieferung."
 
 #. module: pc_connect_warehouse_yellowcube
 #: field:product.product,yc_last_bar_update:0
 msgid "Last time this product appeared in a BAR file"
-msgstr "Last time this product appeared in a BAR file"
+msgstr "Zuletzt erschien dieses Produkt in einer BAR-Meldung am"
 
 #. module: pc_connect_warehouse_yellowcube
 #: model:ir.model.fields,field_description:field_product_product_yc_last_bar_update
 msgid "Last time this product appeared in a BAR file"
-msgstr "Last time this product appeared in a BAR file"
+msgstr "Zuletzt erschien dieses Produkt in einer BAR-Meldung am"
 
 #. module: pc_connect_warehouse_yellowcube
 #: field:stock.connect.yellowcube,local_archive_input_dir:0
 msgid "Local directory where to archive the input files"
-msgstr "Local directory where to archive the input files"
+msgstr "Verzeichnis für das Archivieren der eingehenden Dateien"
 
 #. module: pc_connect_warehouse_yellowcube
 #: model:ir.model.fields,field_description:field_stock_connect_yellowcube_local_archive_input_dir
 msgid "Local directory where to archive the input files"
-msgstr "Local directory where to archive the input files"
+msgstr "Verzeichnis für das Archivieren der eingehenden Dateien"
 
 #. module: pc_connect_warehouse_yellowcube
 #: code:addons/pc_connect_warehouse_yellowcube/yellowcube_bar_xml_factory.py:154
 msgid "Location '{0}' was not found in the system, or was found multiple times."
-msgstr "Location '{0}' was not found in the system, or was found multiple times."
+msgstr "Der Lagerort '{0}' wurde nicht oder mehrmals gefunden."
 
 #. module: pc_connect_warehouse_yellowcube
 #: field:stock.warehouse,lot_blocked_id:0
 msgid "Location Blocked"
-msgstr "Location Blocked"
+msgstr "Lagerort gesperrter Bestand"
 
 #. module: pc_connect_warehouse_yellowcube
 #: model:ir.model.fields,field_description:field_stock_warehouse_lot_blocked_id
 msgid "Location Blocked"
-msgstr "Location Blocked"
+msgstr "Lagerort gesperrter Bestand"
 
 #. module: pc_connect_warehouse_yellowcube
 #: field:stock.warehouse,lot_scrapping_id:0
 msgid "Location Scrapping"
-msgstr "Location Scrapping"
+msgstr "Lagerort Verschrottung"
 
 #. module: pc_connect_warehouse_yellowcube
 #: model:ir.model.fields,field_description:field_stock_warehouse_lot_scrapping_id
 msgid "Location Scrapping"
-msgstr "Location Scrapping"
+msgstr "Lagerort Verschrottung"
 
 #. module: pc_connect_warehouse_yellowcube
 #: field:stock.connect.yellowcube,log_about_already_existing_files:0
 msgid "Log about already existing files?"
-msgstr "Log about already existing files?"
+msgstr "Bei bereits existierenden Dateien benachrichtigen?"
 
 #. module: pc_connect_warehouse_yellowcube
 #: model:ir.model.fields,field_description:field_stock_connect_yellowcube_log_about_already_existing_files
 msgid "Log about already existing files?"
-msgstr "Log about already existing files?"
+msgstr "Bei bereits existierenden Dateien benachrichtigen?"
 
 #. module: pc_connect_warehouse_yellowcube
 #: view:stock.connect:0
 msgid "Lot checking"
-msgstr "Lot checking"
+msgstr "Chargenprüfung"
 
 #. module: pc_connect_warehouse_yellowcube
 #: code:addons/pc_connect_warehouse_yellowcube/yellowcube_war_xml_factory.py:221
 msgid "Lot {0} for product {1} (id={2}) does not exist in the system"
-msgstr "Lot {0} for product {1} (id={2}) does not exist in the system"
+msgstr "Charge {0} für Produkt {1} (id={2}) existiert nicht im System"
 
 #. module: pc_connect_warehouse_yellowcube
 #: help:delivery.carrier,yc_basic_shipping:0
 msgid "Mandatory for YellowCube"
-msgstr "Mandatory for YellowCube"
+msgstr "Obligatorisch für YellowCube"
 
 #. module: pc_connect_warehouse_yellowcube
 #: view:mapping_bur_transactiontypes:0
 msgid "Mapping for BUR-TransactionTypes"
-msgstr "Mapping for BUR-TransactionTypes"
+msgstr "Mapping für BUR-TransactionType"
 
 #. module: pc_connect_warehouse_yellowcube
 #: field:configuration.data,mapping_bur_transactiontypes_ids:0
 msgid "Mapping from BUR-TransactionTypes"
-msgstr "Mapping from BUR-TransactionTypes"
+msgstr "Mapping von BUR-TransactionType"
 
 #. module: pc_connect_warehouse_yellowcube
 #: model:ir.model.fields,field_description:field_configuration_data_mapping_bur_transactiontypes_ids
 msgid "Mapping from BUR-TransactionTypes"
-msgstr "Mapping from BUR-TransactionTypes"
+msgstr "Mapping von BUR-TransactionType"
 
 #. module: pc_connect_warehouse_yellowcube
 #: view:configuration.data:0
 msgid "Mapping from BUR-TransactionTypes"
-msgstr "Mapping from BUR-TransactionTypes"
+msgstr "Mapping von BUR-TransactionType"
 
 #. module: pc_connect_warehouse_yellowcube
 #: field:product.product,yc_under_delete_process:0
 msgid "Mark for deletion on YellowCube"
-msgstr "Mark for deletion on YellowCube"
+msgstr "Zur Löschung an YellowCube melden"
 
 #. module: pc_connect_warehouse_yellowcube
 #: model:ir.model.fields,field_description:field_product_product_yc_under_delete_process
 msgid "Mark for deletion on YellowCube"
-msgstr "Mark for deletion on YellowCube"
+msgstr "Zur Löschung an YellowCube melden"
 
 #. module: pc_connect_warehouse_yellowcube
 #: help:stock.connect.yellowcube,message_ids:0
 msgid "Messages and communication history"
-msgstr "Messages and communication history"
+msgstr "Meldungs- und Kommunikationsprotokoll"
 
 #. module: pc_connect_warehouse_yellowcube
 #: field:stock.connect.yellowcube,message_ids:0
 msgid "Messages"
-msgstr "Messages"
+msgstr "Meldungen"
 
 #. module: pc_connect_warehouse_yellowcube
 #: model:ir.model.fields,field_description:field_stock_connect_yellowcube_message_ids
 msgid "Messages"
-msgstr "Messages"
+msgstr "Meldungen"
 
 #. module: pc_connect_warehouse_yellowcube
 #: code:addons/pc_connect_warehouse_yellowcube/yellowcube_bur_xml_factory.py:247
 msgid "Mismatch with lot best before date"
-msgstr "Mismatch with lot best before date"
+msgstr "Abweichendes Mindesthaltbarkeitsdatum"
 
 #. module: pc_connect_warehouse_yellowcube
 #: code:addons/pc_connect_warehouse_yellowcube/yellowcube_bur_xml_factory.py:260
 msgid "Mismatch with lot fabrication date"
-msgstr "Mismatch with lot fabrication date"
+msgstr "Abweichendes Herstellungsdatum"
 
 #. module: pc_connect_warehouse_yellowcube
 #: code:addons/pc_connect_warehouse_yellowcube/yellowcube_wba_xml_factory.py:166
 msgid "Mismatch with stock picking line number {0}/{1}"
-msgstr "Mismatch with stock picking line number {0}/{1}"
+msgstr "Abweichende Lieferpositionsnummer {0}/{1}"
 
 #. module: pc_connect_warehouse_yellowcube
 #: code:addons/pc_connect_warehouse_yellowcube/yellowcube_bur_xml_factory.py:135
 msgid "Mismatching PlantID"
-msgstr "Mismatching PlantID"
+msgstr "Abweichende PlantID"
 
 #. module: pc_connect_warehouse_yellowcube
 #: code:addons/pc_connect_warehouse_yellowcube/yellowcube_bar_xml_factory.py:132
 msgid "Mismatching product reference {0}"
-msgstr "Mismatching product reference {0}"
+msgstr "Abweichende Produktreferenz {0}"
 
 #. module: pc_connect_warehouse_yellowcube
 #: code:addons/pc_connect_warehouse_yellowcube/yellowcube_wab_xml_factory.py:131
 msgid "Missing Basic shipping in delivery method"
-msgstr "Missing Basic shipping in delivery method"
+msgstr "Fehlende Basisdienstleistung in Versandmethode"
 
 #. module: pc_connect_warehouse_yellowcube
 #: code:addons/pc_connect_warehouse_yellowcube/stock_return_picking_ext.py:235
 msgid "Missing field"
-msgstr "Missing field"
+msgstr "Fehlendes Feld"
 
 #. module: pc_connect_warehouse_yellowcube
 #: code:addons/pc_connect_warehouse_yellowcube/xml_abstract_factory.py:338
 msgid "Missing filename for main object {0} {1}#{2}"
-msgstr "Missing filename for main object {0} {1}#{2}"
+msgstr "Fehlender Dateiname für Hauptobjekt {0} {1}#{2}"
 
 #. module: pc_connect_warehouse_yellowcube
 #: code:addons/pc_connect_warehouse_yellowcube/yellowcube_art_xml_factory.py:299
 msgid "Missing filename for main object {0} {1}#{2}"
-msgstr "Missing filename for main object {0} {1}#{2}"
+msgstr "Fehlende Dateiname für Hauptobjekt  {1}#{2}"
 
 #. module: pc_connect_warehouse_yellowcube
 #: code:addons/pc_connect_warehouse_yellowcube/yellowcube_wab_xml_factory.py:233
 msgid "Missing partner #{0} language code"
-msgstr "Missing partner #{0} language code"
+msgstr "Fehlende Sprache auf Partner #{0}"
 
 #. module: pc_connect_warehouse_yellowcube
 #: model:ir.model,name:model_ir_module_module
 msgid "Module"
-msgstr "Module"
+msgstr "Modul"
 
 #. module: pc_connect_warehouse_yellowcube
 #: code:addons/pc_connect_warehouse_yellowcube/yellowcube_wbl_xml_factory.py:134
 msgid "Move line has been used before, and there is a mismatch"
-msgstr "Move line has been used before, and there is a mismatch"
+msgstr "Lagerbuchungszeile wurde bereits verwendet und ist abweichend"
 
 #. module: pc_connect_warehouse_yellowcube
 #: selection:configuration.data,yc_customer_order_no_mode:0
 msgid "Name of Order & Name of Delivery"
-msgstr "Name of Order & Name of Delivery"
+msgstr "Bestellnummer & Liefernummer"
 
 #. module: pc_connect_warehouse_yellowcube
-#: help:stock.connect,yc_invoice_pcl_printer_name:0
-msgid "Name of the PCL printer."
-msgstr "Name of the PCL printer."
-
-#. module: pc_connect_warehouse_yellowcube
-#: help:stock.connect.yellowcube,yc_invoice_pcl_printer_name:0
-msgid "Name of the PCL printer."
-msgstr "Name of the PCL printer."
+#: selection:configuration.data,yc_customer_order_no_mode:0
+msgid "Name of the Order"
+msgstr "Bestellnummer"
 
 #. module: pc_connect_warehouse_yellowcube
 #: field:stock.connect.yellowcube,name:0
@@ -1062,122 +1098,142 @@ msgstr "Bezeichnung"
 #. module: pc_connect_warehouse_yellowcube
 #: help:stock.connect,yc_missing_bar_days_due:0
 msgid "Negative or zero, ignore check."
-msgstr "Negative or zero, ignore check."
+msgstr "Keine Überprüfung falls 0 oder negativ.."
 
 #. module: pc_connect_warehouse_yellowcube
 #: help:stock.connect.yellowcube,yc_missing_bar_days_due:0
 msgid "Negative or zero, ignore check."
-msgstr "Negative or zero, ignore check."
+msgstr "Keine Überprüfung falls 0 oder negativ.."
+
+#. module: pc_connect_warehouse_yellowcube
+#: field:stock.connect,yc_wba_auto_cancel_backorder:0
+msgid "Allow to cancel back orders?"
+msgstr "Nachlieferungen abbrechen?"
+
+#. module: pc_connect_warehouse_yellowcube
+#: field:stock.connect.yellowcube,yc_wba_auto_cancel_backorder:0
+msgid "Allow to cancel back orders?"
+msgstr "Nachlieferungen abbrechen?"
+
+#. module: pc_connect_warehouse_yellowcube
+#: model:ir.model.fields,field_description:pc_connect_warehouse_yellowcube.field_stock_connect_yc_wba_auto_cancel_backorder
+msgid "Allow to cancel back orders?"
+msgstr "Nachlieferungen abbrechen?"
+
+#. module: pc_connect_warehouse_yellowcube
+#: model:ir.model.fields,field_description:pc_connect_warehouse_yellowcube.field_stock_connect_yellowcube_yc_wba_auto_cancel_backorder
+msgid "Allow to cancel back orders?"
+msgstr "Nachlieferungen abbrechen?"
 
 #. module: pc_connect_warehouse_yellowcube
 #: code:addons/pc_connect_warehouse_yellowcube/yellowcube_bar_xml_factory.py:222
 msgid "No combination of location={0} and lot={1} was found in the system for product {2}."
-msgstr "No combination of location={0} and lot={1} was found in the system for product {2}."
+msgstr "Keine Kombination von Lagerort={0} und Charge={1} vorhanden für Produkt {2}."
 
 #. module: pc_connect_warehouse_yellowcube
 #: selection:stock.picking,yellowcube_return_reason:0
 msgid "No reason"
-msgstr "No reason"
+msgstr "Kein Grund"
 
 #. module: pc_connect_warehouse_yellowcube
 #: selection:stock.picking.in,yellowcube_return_reason:0
 msgid "No reason"
-msgstr "No reason"
+msgstr "Kein Grund"
 
 #. module: pc_connect_warehouse_yellowcube
 #: selection:stock.picking.out,yellowcube_return_reason:0
 msgid "No reason"
-msgstr "No reason"
+msgstr "Kein Grund"
 
 #. module: pc_connect_warehouse_yellowcube
 #: selection:stock.return.picking,yellowcube_return_reason:0
 msgid "No reason"
-msgstr "No reason"
+msgstr "Kein Grund"
 
 #. module: pc_connect_warehouse_yellowcube
 #: code:addons/pc_connect_warehouse_yellowcube/stock_connect_yellowcube.py:598
 msgid "No stock was reported for the lot in a BAR file since the indicated number of days ago."
-msgstr "No stock was reported for the lot in a BAR file since the indicated number of days ago."
+msgstr "Kein Bestand für die Charge in der BAR Meldung seit der angegebenen Anzahl Tage."
 
 #. module: pc_connect_warehouse_yellowcube
 #: field:stock.connect.yellowcube,limit_of_connections:0
 msgid "Number of connections made on sync"
-msgstr "Number of connections made on sync"
+msgstr "Anzahl Verbindungen bei Abfrage"
 
 #. module: pc_connect_warehouse_yellowcube
 #: model:ir.model.fields,field_description:field_stock_connect_yellowcube_limit_of_connections
 msgid "Number of connections made on sync"
-msgstr "Number of connections made on sync"
+msgstr "Anzahl Verbindungen bei Abfrage"
 
 #. module: pc_connect_warehouse_yellowcube
 #: selection:stock.picking,yellowcube_return_reason:0
 msgid "Order posted wrongly"
-msgstr "Order posted wrongly"
+msgstr "Bestellung falsch aufgegeben"
 
 #. module: pc_connect_warehouse_yellowcube
 #: selection:stock.picking.in,yellowcube_return_reason:0
 msgid "Order posted wrongly"
-msgstr "Order posted wrongly"
+msgstr "Bestellung falsch aufgegeben"
 
 #. module: pc_connect_warehouse_yellowcube
 #: selection:stock.picking.out,yellowcube_return_reason:0
 msgid "Order posted wrongly"
-msgstr "Order posted wrongly"
+msgstr "Bestellung falsch aufgegeben"
 
 #. module: pc_connect_warehouse_yellowcube
 #: selection:stock.return.picking,yellowcube_return_reason:0
 msgid "Order posted wrongly"
-msgstr "Order posted wrongly"
+msgstr "Bestellung falsch aufgegeben"
 
 #. module: pc_connect_warehouse_yellowcube
 #: field:stock.picking,yellowcube_return_origin_order:0
 msgid "Original order"
-msgstr "Original order"
+msgstr "Original-Bestellung"
 
 #. module: pc_connect_warehouse_yellowcube
 #: field:stock.picking.in,yellowcube_return_origin_order:0
 msgid "Original order"
-msgstr "Original order"
+msgstr "Original-Bestellung"
 
 #. module: pc_connect_warehouse_yellowcube
 #: field:stock.picking.out,yellowcube_return_origin_order:0
 msgid "Original order"
-msgstr "Original order"
+msgstr "Original-Bestellung"
 
 #. module: pc_connect_warehouse_yellowcube
 #: field:stock.return.picking,yellowcube_return_origin_order:0
 msgid "Original order"
-msgstr "Original order"
+msgstr "Original-Bestellung"
 
 #. module: pc_connect_warehouse_yellowcube
 #: model:ir.model.fields,field_description:field_stock_picking_yellowcube_return_origin_order
 msgid "Original order"
-msgstr "Original order"
+msgstr "Original-Bestellung"
 
 #. module: pc_connect_warehouse_yellowcube
 #: model:ir.model.fields,field_description:field_stock_picking_yellowcube_return_origin_order_5316
 msgid "Original order"
-msgstr "Original order"
+msgstr "Original-Bestellung"
 
 #. module: pc_connect_warehouse_yellowcube
 #: model:ir.model.fields,field_description:field_stock_picking_yellowcube_return_origin_order_5319
 msgid "Original order"
-msgstr "Original order"
+msgstr "Original-Bestellung"
 
 #. module: pc_connect_warehouse_yellowcube
 #: model:ir.model.fields,field_description:field_stock_return_picking_yellowcube_return_origin_order
 msgid "Original order"
-msgstr "Original order"
+msgstr "Original-Bestellung"
 
 #. module: pc_connect_warehouse_yellowcube
 #: view:configuration.data:0
 msgid "Others"
-msgstr "Others"
+msgstr "Andere"
 
 #. module: pc_connect_warehouse_yellowcube
 #: code:addons/pc_connect_warehouse_yellowcube/stock_warehouse_ext.py:50
 msgid "Out-of-sync with BAR file"
-msgstr "Out-of-sync with BAR file"
+msgstr "Nicht synchron mit der BAR Meldung"
 
 #. module: pc_connect_warehouse_yellowcube
 #: code:addons/pc_connect_warehouse_yellowcube/yellowcube_wab_xml_factory.py:219
@@ -1185,54 +1241,9 @@ msgid "P.O. Box"
 msgstr "Postfach"
 
 #. module: pc_connect_warehouse_yellowcube
-#: field:stock.connect,yc_invoice_pcl_printer_destination:0
-msgid "PCL Printer Destination"
-msgstr "PCL Printer Destination"
-
-#. module: pc_connect_warehouse_yellowcube
-#: field:stock.connect.yellowcube,yc_invoice_pcl_printer_destination:0
-msgid "PCL Printer Destination"
-msgstr "PCL Printer Destination"
-
-#. module: pc_connect_warehouse_yellowcube
-#: model:ir.model.fields,field_description:field_stock_connect_yc_invoice_pcl_printer_destination
-msgid "PCL Printer Destination"
-msgstr "PCL Printer Destination"
-
-#. module: pc_connect_warehouse_yellowcube
-#: model:ir.model.fields,field_description:field_stock_connect_yellowcube_yc_invoice_pcl_printer_destination
-msgid "PCL Printer Destination"
-msgstr "PCL Printer Destination"
-
-#. module: pc_connect_warehouse_yellowcube
-#: field:stock.connect,yc_invoice_pcl_printer_name:0
-msgid "PCL Printer Name"
-msgstr "PCL Printer Name"
-
-#. module: pc_connect_warehouse_yellowcube
-#: field:stock.connect.yellowcube,yc_invoice_pcl_printer_name:0
-msgid "PCL Printer Name"
-msgstr "PCL Printer Name"
-
-#. module: pc_connect_warehouse_yellowcube
-#: model:ir.model.fields,field_description:field_stock_connect_yc_invoice_pcl_printer_name
-msgid "PCL Printer Name"
-msgstr "PCL Printer Name"
-
-#. module: pc_connect_warehouse_yellowcube
-#: model:ir.model.fields,field_description:field_stock_connect_yellowcube_yc_invoice_pcl_printer_name
-msgid "PCL Printer Name"
-msgstr "PCL Printer Name"
-
-#. module: pc_connect_warehouse_yellowcube
-#: view:stock.connect:0
-msgid "PCL"
-msgstr "PCL"
-
-#. module: pc_connect_warehouse_yellowcube
 #: selection:delivery.carrier,yc_basic_shipping:0
 msgid "PICKUP: Collection customer/receiver - pick-up"
-msgstr "PICKUP: Collection customer/receiver - pick-up"
+msgstr "PICKUP: Abholung durch Kunde/Empfänger"
 
 #. module: pc_connect_warehouse_yellowcube
 #: selection:delivery.carrier,yc_basic_shipping:0
@@ -1252,12 +1263,12 @@ msgstr "Partner"
 #. module: pc_connect_warehouse_yellowcube
 #: code:addons/pc_connect_warehouse_yellowcube/yellowcube_war_xml_factory.py:150
 msgid "PartnerReference does not match its current value in the stock picking."
-msgstr "PartnerReference does not match its current value in the stock picking."
+msgstr "Das Feld 'PartnerReference' stimmt nicht mit derjenigen der Lieferung überein."
 
 #. module: pc_connect_warehouse_yellowcube
 #: model:ir.model,name:model_payment_method
 msgid "Payment Method"
-msgstr "Zahlweise"
+msgstr "Zahlungsart"
 
 #. module: pc_connect_warehouse_yellowcube
 #: model:ir.model,name:model_stock_picking
@@ -1267,242 +1278,242 @@ msgstr "Lieferschein"
 #. module: pc_connect_warehouse_yellowcube
 #: code:addons/pc_connect_warehouse_yellowcube/yellowcube_bar_xml_factory.py:138
 msgid "Plant does not match with the value of the configuration parameter YC PlantID for product {0}"
-msgstr "Plant does not match with the value of the configuration parameter YC PlantID for product {0}"
+msgstr "Das Lager stimmt nicht mit dem Konfigurationsparameter YC PlantID überein für das Produkt {0}"
 
 #. module: pc_connect_warehouse_yellowcube
 #: code:addons/pc_connect_warehouse_yellowcube/yellowcube_wba_xml_factory.py:257
 msgid "Plant does not match with the value of the configuration parameter YC PlantID."
-msgstr "Plant does not match with the value of the configuration parameter YC PlantID."
+msgstr "Das Lager stimmt nicht mit dem Konfigurationsparameter YC PlantID überein."
 
 #. module: pc_connect_warehouse_yellowcube
 #: code:addons/pc_connect_warehouse_yellowcube/stock_return_picking_ext.py:166
 msgid "Please specify at least one non-zero quantity."
-msgstr "Please specify at least one non-zero quantity."
+msgstr "Bitte geben Sie mindestens eine Anzahl grösser als Null vor."
 
 #. module: pc_connect_warehouse_yellowcube
 #: field:stock.move,yc_posno:0
 msgid "PosNo value on YC files"
-msgstr "PosNo value on YC files"
+msgstr "Positionsnummer in YellowCube Meldungen"
 
 #. module: pc_connect_warehouse_yellowcube
 #: model:ir.model.fields,field_description:field_stock_move_yc_posno
 msgid "PosNo value on YC files"
-msgstr "PosNo value on YC files"
+msgstr "Positionsnummer in YellowCube Meldungen"
 
 #. module: pc_connect_warehouse_yellowcube
 #: code:addons/pc_connect_warehouse_yellowcube/yellowcube_bur_xml_factory.py:128
 msgid "Product EAN13 {0} differs from XML EAN {1}"
-msgstr "Product EAN13 {0} differs from XML EAN {1}"
+msgstr "Die EAN13 {0} des Produktes stimmt nicht mit der EAN {1} im XML überein"
 
 #. module: pc_connect_warehouse_yellowcube
 #: selection:stock.picking,yellowcube_return_reason:0
 msgid "Product did not match description on website"
-msgstr "Product did not match description on website"
+msgstr "Das Produkt stimmt nicht mit der Beschreibung auf der Website überein"
 
 #. module: pc_connect_warehouse_yellowcube
 #: selection:stock.picking.in,yellowcube_return_reason:0
 msgid "Product did not match description on website"
-msgstr "Product did not match description on website"
+msgstr "Das Produkt stimmt nicht mit der Beschreibung auf der Website überein"
 
 #. module: pc_connect_warehouse_yellowcube
 #: selection:stock.picking.out,yellowcube_return_reason:0
 msgid "Product did not match description on website"
-msgstr "Product did not match description on website"
+msgstr "Das Produkt stimmt nicht mit der Beschreibung auf der Website überein"
 
 #. module: pc_connect_warehouse_yellowcube
 #: selection:stock.return.picking,yellowcube_return_reason:0
 msgid "Product did not match description on website"
-msgstr "Product did not match description on website"
+msgstr "Das Produkt stimmt nicht mit der Beschreibung auf der Website überein"
 
 #. module: pc_connect_warehouse_yellowcube
 #: selection:stock.picking,yellowcube_return_reason:0
 msgid "Product did not match description"
-msgstr "Product did not match description"
+msgstr "Das Produkt stimmt nicht mit der Beschreibung überein"
 
 #. module: pc_connect_warehouse_yellowcube
 #: selection:stock.picking.in,yellowcube_return_reason:0
 msgid "Product did not match description"
-msgstr "Product did not match description"
+msgstr "Das Produkt stimmt nicht mit der Beschreibung überein"
 
 #. module: pc_connect_warehouse_yellowcube
 #: selection:stock.picking.out,yellowcube_return_reason:0
 msgid "Product did not match description"
-msgstr "Product did not match description"
+msgstr "Das Produkt stimmt nicht mit der Beschreibung überein"
 
 #. module: pc_connect_warehouse_yellowcube
 #: selection:stock.return.picking,yellowcube_return_reason:0
 msgid "Product did not match description"
-msgstr "Product did not match description"
+msgstr "Das Produkt stimmt nicht mit der Beschreibung überein"
 
 #. module: pc_connect_warehouse_yellowcube
 #: selection:stock.picking,yellowcube_return_reason:0
 msgid "Product did not meet customer's expectations"
-msgstr "Product did not meet customer's expectations"
+msgstr "Produkt erfüllt nicht die Erwartung des Konsumenten"
 
 #. module: pc_connect_warehouse_yellowcube
 #: selection:stock.picking.in,yellowcube_return_reason:0
 msgid "Product did not meet customer's expectations"
-msgstr "Product did not meet customer's expectations"
+msgstr "Produkt erfüllt nicht die Erwartung des Konsumenten"
 
 #. module: pc_connect_warehouse_yellowcube
 #: selection:stock.picking.out,yellowcube_return_reason:0
 msgid "Product did not meet customer's expectations"
-msgstr "Product did not meet customer's expectations"
+msgstr "Produkt erfüllt nicht die Erwartung des Konsumenten"
 
 #. module: pc_connect_warehouse_yellowcube
 #: selection:stock.return.picking,yellowcube_return_reason:0
 msgid "Product did not meet customer's expectations"
-msgstr "Product did not meet customer's expectations"
+msgstr "Produkt erfüllt nicht die Erwartung des Konsumenten"
 
 #. module: pc_connect_warehouse_yellowcube
 #: code:addons/pc_connect_warehouse_yellowcube/yellowcube_bar_xml_factory.py:116
 msgid "Product for domain {0} does not exists, and a zero stock update was received"
-msgstr "Product for domain {0} does not exists, and a zero stock update was received"
+msgstr "Produkt zum Filter {0} existiert nicht und eine Bestandesaktualisierung war Null"
 
 #. module: pc_connect_warehouse_yellowcube
 #: view:product.product:0
 msgid "Product name (ArticleDescription), must be 40 or less characters."
-msgstr "Product name (ArticleDescription), must be 40 or less characters."
+msgstr "Produkt Bezeichnung (ArticleDescription) darf maximal 40 Zeichen lang sein."
 
 #. module: pc_connect_warehouse_yellowcube
 #: view:sale.order:0
 msgid "Product name (ArticleDescription), must be 40 or less characters."
-msgstr "Product name (ArticleDescription), must be 40 or less characters."
+msgstr "Produkt Bezeichnung (ArticleDescription) darf maximal 40 Zeichen lang sein."
 
 #. module: pc_connect_warehouse_yellowcube
 #: code:addons/pc_connect_warehouse_yellowcube/yellowcube_war_xml_factory.py:200
 msgid "Product {0} (id={1}): ArticleNo does not match with default_code."
-msgstr "Product {0} (id={1}): ArticleNo does not match with default_code."
+msgstr "Produkt {0} (id={1}): Feld ArticleNo stimmt nicht mit der Produkt Referenz überein."
 
 #. module: pc_connect_warehouse_yellowcube
 #: code:addons/pc_connect_warehouse_yellowcube/yellowcube_war_xml_factory.py:252
 msgid "Product {0} (id={1}): Attribute QuantityISO does not match that of the stock.move."
-msgstr "Product {0} (id={1}): Attribute QuantityISO does not match that of the stock.move."
+msgstr "Produkt {0} (id={1}): Feld QuantityISO stimmt nicht mit demjenigen der Lieferposition überein."
 
 #. module: pc_connect_warehouse_yellowcube
 #: code:addons/pc_connect_warehouse_yellowcube/yellowcube_war_xml_factory.py:246
 msgid "Product {0} (id={1}): Attribute QuantityISO does not match the ISO code indicated of the original stock.move."
-msgstr "Product {0} (id={1}): Attribute QuantityISO does not match the ISO code indicated of the original stock.move."
+msgstr "Produkt {0} (id={1}): Feld QuantityISO stimmt nicht mit dem ISO Code der Lieferposition überein."
 
 #. module: pc_connect_warehouse_yellowcube
 #: code:addons/pc_connect_warehouse_yellowcube/yellowcube_war_xml_factory.py:207
 msgid "Product {0} (id={1}): EAN does not match with ean13."
-msgstr "Product {0} (id={1}): EAN does not match with ean13."
+msgstr "Produkt {0} (id={1}): Feld EAN stimmt nicht mit der EAN des Produkts überein."
 
 #. module: pc_connect_warehouse_yellowcube
 #: code:addons/pc_connect_warehouse_yellowcube/yellowcube_war_xml_factory.py:223
 msgid "Product {0} (id={1}): Lot does not match the lot indicated of the original stock.move."
-msgstr "Product {0} (id={1}): Lot does not match the lot indicated of the original stock.move."
+msgstr "Produkt {0} (id={1}): Charge stimmt nicht mit der Lieferposition überein."
 
 #. module: pc_connect_warehouse_yellowcube
 #: code:addons/pc_connect_warehouse_yellowcube/yellowcube_war_xml_factory.py:233
 msgid "Product {0} (id={1}): Plant does not match with the value of the configuration parameter YC PlantID."
-msgstr "Product {0} (id={1}): Plant does not match with the value of the configuration parameter YC PlantID."
+msgstr "Produkt {0} (id={1}): Lager stimmt nicht mit dem Wert des Konfigurationsparameter YC PlantID überein."
 
 #. module: pc_connect_warehouse_yellowcube
 #: code:addons/pc_connect_warehouse_yellowcube/yellowcube_war_xml_factory.py:239
 msgid "Product {0} (id={1}): QuantityUOM is greater than that of the stock.move."
-msgstr "Product {0} (id={1}): QuantityUOM is greater than that of the stock.move."
+msgstr "Produkt {0} (id={1}): Feld QuantityUOM ist grösser als dasjenige der Lieferposition."
 
 #. module: pc_connect_warehouse_yellowcube
 #: code:addons/pc_connect_warehouse_yellowcube/yellowcube_war_xml_factory.py:288
 msgid "Product {0} (id={1}): SerialNumbers does not match the serial_number_scanned indicated of the original stock.move."
-msgstr "Product {0} (id={1}): SerialNumbers does not match the serial_number_scanned indicated of the original stock.move."
+msgstr "Produkt {0} (id={1}): Feld SerialNumbers stimmt nicht mit der Seriennummer der Lieferposition überein."
 
 #. module: pc_connect_warehouse_yellowcube
 #: code:addons/pc_connect_warehouse_yellowcube/yellowcube_war_xml_factory.py:271
 msgid "Product {0} (id={1}): StockType had value '{2}', which is not allowed."
-msgstr "Product {0} (id={1}): StockType had value '{2}', which is not allowed."
+msgstr "Produkt {0} (id={1}): Feld StockType hat den Wert '{2}', der unzulssig ist."
 
 #. module: pc_connect_warehouse_yellowcube
 #: code:addons/pc_connect_warehouse_yellowcube/yellowcube_war_xml_factory.py:275
 msgid "Product {0} (id={1}): StorageLocation must be 'YBLK' since StockType is not a free type."
-msgstr "Product {0} (id={1}): StorageLocation must be 'YBLK' since StockType is not a free type."
+msgstr "Produkt {0} (id={1}): Feld StorageLocation muss 'YBLK' sein, da der StockType kein frei verfügbarer Bestand ist."
 
 #. module: pc_connect_warehouse_yellowcube
 #: code:addons/pc_connect_warehouse_yellowcube/yellowcube_war_xml_factory.py:273
 msgid "Product {0} (id={1}): StorageLocation {2} and StockType {3} does not match with the location indicated in the stock.move {4}"
-msgstr "Product {0} (id={1}): StorageLocation {2} and StockType {3} does not match with the location indicated in the stock.move {4}"
+msgstr "Produkt {0} (id={1}): Feld StorageLocation {2} und StockType {3} stimmen nicht mit den Werten auf dre Lieferposition {4} überein"
 
 #. module: pc_connect_warehouse_yellowcube
 #: code:addons/pc_connect_warehouse_yellowcube/yellowcube_war_xml_factory.py:279
 msgid "Product {0} (id={1}): StorageLocation {2} does not match with the location indicated in the stock.move {3}"
-msgstr "Product {0} (id={1}): StorageLocation {2} does not match with the location indicated in the stock.move {3}"
+msgstr "Produkt {0} (id={1}): Feld StorageLocation {2} stimmt nicht mit dem Lagerort auf der Lieferposition {3} überein."
 
 #. module: pc_connect_warehouse_yellowcube
 #: code:addons/pc_connect_warehouse_yellowcube/yellowcube_war_xml_factory.py:281
 msgid "Product {0} (id={1}): The stock move does not have a location_id."
-msgstr "Product {0} (id={1}): The stock move does not have a location_id."
+msgstr "Produkt {0} (id={1}): Die Lieferposition hat keinen Lagerort."
 
 #. module: pc_connect_warehouse_yellowcube
 #: code:addons/pc_connect_warehouse_yellowcube/yellowcube_war_xml_factory.py:192
 msgid "Product {0} (id={1}): YCArticleNo does not match with YCArticleNo."
-msgstr "Product {0} (id={1}): YCArticleNo does not match with YCArticleNo."
+msgstr "Produkt {0} (id={1}): Feld YCArticleNo stimmt nicht mit dem gespeicherten Wert  YCArticleNo überein."
 
 #. module: pc_connect_warehouse_yellowcube
 #: code:addons/pc_connect_warehouse_yellowcube/yellowcube_bar_xml_factory.py:177
 msgid "Product {0} does not have a lot and it is required so."
-msgstr "Product {0} does not have a lot and it is required so."
+msgstr "Produkt {0} hat keine Charge, ist aber als chargenpflichtig markiert."
 
 #. module: pc_connect_warehouse_yellowcube
 #: code:addons/pc_connect_warehouse_yellowcube/yellowcube_bar_xml_factory.py:263
 msgid "Product {0} does not have a unit of measure."
-msgstr "Product {0} does not have a unit of measure."
+msgstr "Produkt {0} hat keine Masseinheit."
 
 #. module: pc_connect_warehouse_yellowcube
 #: code:addons/pc_connect_warehouse_yellowcube/yellowcube_wab_xml_factory.py:250
 msgid "Product {0} is not ready on the lifecycle. State: {1}"
-msgstr "Product {0} is not ready on the lifecycle. State: {1}"
+msgstr "Produkt {0} ist nicht freigegeben (Produktlebenszyklus). Status: {1}"
 
 #. module: pc_connect_warehouse_yellowcube
 #: code:addons/pc_connect_warehouse_yellowcube/yellowcube_wba_xml_factory.py:183
 msgid "Product {0} with ID={1} did not have a YCArticleNo, so it was created with value {2}"
-msgstr "Product {0} with ID={1} did not have a YCArticleNo, so it was created with value {2}"
+msgstr "Produkt {0} mit ID={1} hatte keine YCArticleNo und wurde auf den Wert {2} gesetzt"
 
 #. module: pc_connect_warehouse_yellowcube
 #: code:addons/pc_connect_warehouse_yellowcube/yellowcube_wba_xml_factory.py:194
 msgid "Product {0} with ID={1} did not have a default_code, so it was created with value {2}"
-msgstr "Product {0} with ID={1} did not have a default_code, so it was created with value {2}"
+msgstr "Produkt {0} mit ID={1} hatte keine Referenz und wurde auf den Wert {2} gesetzt."
 
 #. module: pc_connect_warehouse_yellowcube
 #: code:addons/pc_connect_warehouse_yellowcube/yellowcube_wba_xml_factory.py:206
 msgid "Product {0} with ID={1} did not have an ean13 code, so it was created with value {2}"
-msgstr "Product {0} with ID={1} did not have an ean13 code, so it was created with value {2}"
+msgstr "Produkt {0} mit ID={1} hatte keine EAN13 und wurde auf den Wert {2} gesetzt."
 
 #. module: pc_connect_warehouse_yellowcube
 #: code:addons/pc_connect_warehouse_yellowcube/yellowcube_wba_xml_factory.py:276
 msgid "Product {0}: Attribute QuantityISO does not match that of the stock.move."
-msgstr "Product {0}: Attribute QuantityISO does not match that of the stock.move."
+msgstr "Produkt {0}: Die Menge stimmt nicht mit derjenigen auf der Lieferposition überein."
 
 #. module: pc_connect_warehouse_yellowcube
 #: code:addons/pc_connect_warehouse_yellowcube/yellowcube_wba_xml_factory.py:270
 msgid "Product {0}: Attribute QuantityISO does not match the ISO code indicated of the original stock.move."
-msgstr "Product {0}: Attribute QuantityISO does not match the ISO code indicated of the original stock.move."
+msgstr "Produkt : Die Masseinheit stimmt nicht mit derjenigen auf der Lieferposition überein."
 
 #. module: pc_connect_warehouse_yellowcube
 #: code:addons/pc_connect_warehouse_yellowcube/yellowcube_wba_xml_factory.py:263
 msgid "Product {0}: QuantityUOM is greater than that of the stock.move."
-msgstr "Product {0}: QuantityUOM is greater than that of the stock.move."
+msgstr "Produkt {0}: Die Menge ist grösser als auf der Lieferposition angegeben."
 
 #. module: pc_connect_warehouse_yellowcube
 #: code:addons/pc_connect_warehouse_yellowcube/yellowcube_wba_xml_factory.py:290
 msgid "Product {0}: StockType had value '{1}', which is not allowed."
-msgstr "Product {0}: StockType had value '{1}', which is not allowed."
+msgstr "Produkt {0}: Der StockType hat den unzulässigen Wert '{1}'."
 
 #. module: pc_connect_warehouse_yellowcube
 #: code:addons/pc_connect_warehouse_yellowcube/yellowcube_wba_xml_factory.py:300
 msgid "Product {0}: StorageLocation must be 'YBLK' since StockType is not a free type."
-msgstr "Product {0}: StorageLocation must be 'YBLK' since StockType is not a free type."
+msgstr "Produkt {0}: Der Lagerort müsste 'YBLK' sein, denn der StockType ist kein freier Bestand."
 
 #. module: pc_connect_warehouse_yellowcube
 #: code:addons/pc_connect_warehouse_yellowcube/yellowcube_wba_xml_factory.py:295
 msgid "Product {0}: StorageLocation {1} does not match with the location indicated in the stock.move {2}."
-msgstr "Product {0}: StorageLocation {1} does not match with the location indicated in the stock.move {2}."
+msgstr "Produkt {0}: Der Lagerort {1} stimmt nicht mit dem Lagerort auf der Lieferposition {2} überein."
 
 #. module: pc_connect_warehouse_yellowcube
 #: code:addons/pc_connect_warehouse_yellowcube/yellowcube_wba_xml_factory.py:310
 msgid "Product {0}: The stock move does not have a location_id."
-msgstr "Product {0}: The stock move does not have a location_id."
+msgstr "Produkt {0}: Die Lieferposition hat keine Lagerortangabe."
 
 #. module: pc_connect_warehouse_yellowcube
 #: model:ir.model,name:model_product_product
@@ -1512,72 +1523,72 @@ msgstr "Produkt"
 #. module: pc_connect_warehouse_yellowcube
 #: view:stock.connect:0
 msgid "Product's Life-cycle"
-msgstr "Product's Life-cycle"
+msgstr "Produktlebenszyklus"
 
 #. module: pc_connect_warehouse_yellowcube
 #: selection:stock.connect,yc_operating_mode:0
 msgid "Production"
-msgstr "Production"
+msgstr "Produktion"
 
 #. module: pc_connect_warehouse_yellowcube
 #: selection:stock.connect.yellowcube,yc_operating_mode:0
 msgid "Production"
-msgstr "Production"
+msgstr "Produktion"
 
 #. module: pc_connect_warehouse_yellowcube
 #: view:configuration.data:0
 msgid "Products - Batch Management"
-msgstr "Products - Batch Management"
+msgstr "Produkte - Chargenverwaltung"
 
 #. module: pc_connect_warehouse_yellowcube
 #: code:addons/pc_connect_warehouse_yellowcube/yellowcube_bar_xml_factory.py:228
 msgid "QuantityUOM does not match for the combination of location={0} and lot={1}. Scraping will be make."
-msgstr "QuantityUOM does not match for the combination of location={0} and lot={1}. Scraping will be make."
+msgstr "Der Bestand entspricht nicht derjenigen für die Kombination Lagerort={0} und Charge={1}. Differenzbestände werden verschrottet."
 
 #. module: pc_connect_warehouse_yellowcube
 #: code:addons/pc_connect_warehouse_yellowcube/yellowcube_bar_xml_factory.py:235
 msgid "QuantityUOM does not match the quantity indicated by the field 'product_qty' of the original product. Scraping will be make."
-msgstr "QuantityUOM does not match the quantity indicated by the field 'product_qty' of the original product. Scraping will be make."
+msgstr "Der Bestand entspricht nicht der im Feld 'product_qty' angegebenen Menge des Produktes. Differenzbestände werden verschrottet."
 
 #. module: pc_connect_warehouse_yellowcube
 #: selection:delivery.carrier,yc_basic_shipping:0
 msgid "RETOURE: Return shipment"
-msgstr "RETOURE: Return shipment"
+msgstr "RETOURE: Retourenlieferung"
 
 #. module: pc_connect_warehouse_yellowcube
 #: view:product.product:0
 msgid "Reference"
-msgstr "Reference"
+msgstr "Referenz"
 
 #. module: pc_connect_warehouse_yellowcube
 #: field:stock.connect.yellowcube,remote_input_dir:0
 msgid "Remote directory where to GET files"
-msgstr "Remote directory where to GET files"
+msgstr "FDS-Verzeichnis aus dem Dateien gelesen werden"
 
 #. module: pc_connect_warehouse_yellowcube
 #: model:ir.model.fields,field_description:field_stock_connect_yellowcube_remote_input_dir
 msgid "Remote directory where to GET files"
-msgstr "Remote directory where to GET files"
+msgstr "FDS-Verzeichnis aus dem Dateien gelesen werden"
 
 #. module: pc_connect_warehouse_yellowcube
 #: field:stock.connect.yellowcube,remote_output_dir:0
 msgid "Remote directory where to PUT files"
-msgstr "Remote directory where to PUT files"
+msgstr "FDS-Verzeichnis, in dem Dateien abgelegt werden"
 
 #. module: pc_connect_warehouse_yellowcube
 #: model:ir.model.fields,field_description:field_stock_connect_yellowcube_remote_output_dir
 msgid "Remote directory where to PUT files"
-msgstr "Remote directory where to PUT files"
+msgstr "FDS-Verzeichnis, in dem Dateien abgelegt werden"
 
 #. module: pc_connect_warehouse_yellowcube
 #: code:addons/pc_connect_warehouse_yellowcube/xml_abstract_factory.py:106
 msgid "Required variable YC Sender is not defined in the configuration parameters."
-msgstr "Required variable YC Sender is not defined in the configuration parameters."
+msgstr "Das Pflichtfeld YC Sender ist in der Konfiguration nicht gesetzt."
 
 #. module: pc_connect_warehouse_yellowcube
 #: code:addons/pc_connect_warehouse_yellowcube/xml_abstract_factory.py:233
 msgid "Required variable yc_{0} is not defined in the configuration data."
-msgstr "Required variable yc_{0} is not defined in the configuration data."
+msgstr "Das Pflichtfeld yc_{0} ist in der Konfiguration nicht gesetzt."
 
 #. module: pc_connect_warehouse_yellowcube
 #: model:ir.model,name:model_stock_return_picking
@@ -1587,87 +1598,87 @@ msgstr "Rücklieferschein"
 #. module: pc_connect_warehouse_yellowcube
 #: field:stock.return.picking,location_id:0
 msgid "Return location"
-msgstr "Return location"
+msgstr "Rücklieferort"
 
 #. module: pc_connect_warehouse_yellowcube
 #: model:ir.model.fields,field_description:field_stock_return_picking_location_id
 msgid "Return location"
-msgstr "Return location"
+msgstr "Rücklieferort"
 
 #. module: pc_connect_warehouse_yellowcube
 #: field:stock.picking,yellowcube_return_reason:0
 msgid "Return reason (if and only if return)"
-msgstr "Return reason (if and only if return)"
+msgstr "Rückgabegrund (wenn und nur wenn Retoure)"
 
 #. module: pc_connect_warehouse_yellowcube
 #: field:stock.picking.in,yellowcube_return_reason:0
 msgid "Return reason (if and only if return)"
-msgstr "Return reason (if and only if return)"
+msgstr "Rückgabegrund (wenn und nur wenn Retoure)"
 
 #. module: pc_connect_warehouse_yellowcube
 #: field:stock.picking.out,yellowcube_return_reason:0
 msgid "Return reason (if and only if return)"
-msgstr "Return reason (if and only if return)"
+msgstr "Rückgabegrund (wenn und nur wenn Retoure)"
 
 #. module: pc_connect_warehouse_yellowcube
 #: field:stock.return.picking,yellowcube_return_reason:0
 msgid "Return reason (if and only if return)"
-msgstr "Return reason (if and only if return)"
+msgstr "Rückgabegrund (wenn und nur wenn Retoure)"
 
 #. module: pc_connect_warehouse_yellowcube
 #: model:ir.model.fields,field_description:field_stock_picking_yellowcube_return_reason
 msgid "Return reason (if and only if return)"
-msgstr "Return reason (if and only if return)"
+msgstr "Rückgabegrund (wenn und nur wenn Retoure)"
 
 #. module: pc_connect_warehouse_yellowcube
 #: model:ir.model.fields,field_description:field_stock_picking_yellowcube_return_reason_4697
 msgid "Return reason (if and only if return)"
-msgstr "Return reason (if and only if return)"
+msgstr "Rückgabegrund (wenn und nur wenn Retoure)"
 
 #. module: pc_connect_warehouse_yellowcube
 #: model:ir.model.fields,field_description:field_stock_picking_yellowcube_return_reason_5318
 msgid "Return reason (if and only if return)"
-msgstr "Return reason (if and only if return)"
+msgstr "Rückgabegrund (wenn und nur wenn Retoure)"
 
 #. module: pc_connect_warehouse_yellowcube
 #: model:ir.model.fields,field_description:field_stock_return_picking_yellowcube_return_reason
 msgid "Return reason (if and only if return)"
-msgstr "Return reason (if and only if return)"
+msgstr "Rückgabegrund (wenn und nur wenn Retoure)"
 
 #. module: pc_connect_warehouse_yellowcube
 #: help:stock.picking,yellowcube_return_reason:0
 msgid "Return reason in accordance with the Return-Reason Code List"
-msgstr "Return reason in accordance with the Return-Reason Code List"
+msgstr "Rückgabegrund in Übereinstimmung mit der Liste Retouren-Gründe"
 
 #. module: pc_connect_warehouse_yellowcube
 #: help:stock.picking.in,yellowcube_return_reason:0
 msgid "Return reason in accordance with the Return-Reason Code List"
-msgstr "Return reason in accordance with the Return-Reason Code List"
+msgstr "Rückgabegrund in Übereinstimmung mit der Liste Retouren-Gründe"
 
 #. module: pc_connect_warehouse_yellowcube
 #: help:stock.picking.out,yellowcube_return_reason:0
 msgid "Return reason in accordance with the Return-Reason Code List"
-msgstr "Return reason in accordance with the Return-Reason Code List"
+msgstr "Rückgabegrund in Übereinstimmung mit der Liste Retouren-Gründe"
 
 #. module: pc_connect_warehouse_yellowcube
 #: help:stock.return.picking,yellowcube_return_reason:0
 msgid "Return reason in accordance with the Return-Reason Code List"
-msgstr "Return reason in accordance with the Return-Reason Code List"
+msgstr "Rückgabegrund in Übereinstimmung mit der Liste Retouren-Gründe"
 
 #. module: pc_connect_warehouse_yellowcube
 #: code:addons/pc_connect_warehouse_yellowcube/stock_return_picking_ext.py:235
 msgid "Return reason"
-msgstr "Return reason"
+msgstr "Rückgabegrund"
 
 #. module: pc_connect_warehouse_yellowcube
 #: code:addons/pc_connect_warehouse_yellowcube/stock_return_picking_ext.py:193
 msgid "Returned Picking"
-msgstr "Returned Picking"
+msgstr "Retournierte Lieferung"
 
 #. module: pc_connect_warehouse_yellowcube
 #: view:stock.picking.in:0
 msgid "Returns"
-msgstr "Returns"
+msgstr "Retoure"
 
 #. module: pc_connect_warehouse_yellowcube
 #: selection:delivery.carrier,yc_basic_shipping:0
@@ -1677,7 +1688,7 @@ msgstr "SEM: Swiss-Express Mond"
 #. module: pc_connect_warehouse_yellowcube
 #: help:delivery.carrier,yc_additional_shipping:0
 msgid "SI; AS; BLN; SA; AZS, etc. Delimiter « ; » if more than one  element is available."
-msgstr "SI; AS; BLN; SA; AZS, etc. Delimiter « ; » if more than one  element is available."
+msgstr "SI; AS; BLN; SA; AZS, etc. durch Semikolon « ; » getrennt, falls mehr als ein Element."
 
 #. module: pc_connect_warehouse_yellowcube
 #: selection:delivery.carrier,yc_basic_shipping:0
@@ -1687,37 +1698,47 @@ msgstr "SKB: Swiss-Kurier Blitz"
 #. module: pc_connect_warehouse_yellowcube
 #: selection:delivery.carrier,yc_basic_shipping:0
 msgid "SP ECO: Bulky goods PostPac Economy"
-msgstr "SP ECO: Bulky goods PostPac Economy"
+msgstr "SP ECO: Sperrgut PostPac Economy"
 
 #. module: pc_connect_warehouse_yellowcube
 #: selection:delivery.carrier,yc_basic_shipping:0
 msgid "SP PRI: Bulky goods PostPac Priority"
-msgstr "SP PRI: Bulky goods PostPac Priority"
+msgstr "SP PRI: Sperrgut PostPac Priority"
 
 #. module: pc_connect_warehouse_yellowcube
 #: selection:delivery.carrier,yc_basic_shipping:0
 msgid "SP SEM: Bulky goods Swiss-Express Mond"
-msgstr "SP SEM: Bulky goods Swiss-Express Mond"
+msgstr "SP SEM: Sperrgut Swiss-Express Mond"
 
 #. module: pc_connect_warehouse_yellowcube
 #: selection:delivery.carrier,yc_basic_shipping:0
 msgid "SP SKB: Bulky goods Swiss-Kurier Blitz"
-msgstr "SP SKB: Bulky goods Swiss-Kurier Blitz"
+msgstr "SP SKB: Sperrgut Swiss-Kurier Blitz"
+
+#. module: pc_connect_warehouse_yellowcube
+#: help:stock.connect,yc_wba_confirm_time:0
+msgid "Safety time to wait for delayed WBA to confirm an incoming picking after the last end of delivery has been received. Only applies to incomplete pickings without over-fulfilled lines."
+msgstr "Sicherheitszeit um verspätete WBA abzuwarten, bevor eine eingehende Lieferung bestätigt wird. Gilt nur für Unterlieferungen ohne überlieferte Positionen."
+
+#. module: pc_connect_warehouse_yellowcube
+#: help:stock.connect.yellowcube,yc_wba_confirm_time:0
+msgid "Safety time to wait for delayed WBA to confirm an incoming picking after the last end of delivery has been received. Only applies to incomplete pickings without over-fulfilled lines."
+msgstr "Sicherheitszeit um verspätete WBA abzuwarten, bevor eine eingehende Lieferung bestätigt wird. Gilt nur für Unterlieferungen ohne überlieferte Positionen."
 
 #. module: pc_connect_warehouse_yellowcube
 #: code:addons/pc_connect_warehouse_yellowcube/yellowcube_wab_xml_factory.py:86
 msgid "Sale Order #{0}: {1}"
-msgstr "Sale Order #{0}: {1}"
+msgstr "Bestellung #{0}: {1}"
 
 #. module: pc_connect_warehouse_yellowcube
 #: field:product.product,yc_track_outgoing_scan:0
 msgid "Scan Outgoing Lots"
-msgstr "Scan Outgoing Lots"
+msgstr "Seriennummer scannen (Auslieferung)"
 
 #. module: pc_connect_warehouse_yellowcube
 #: model:ir.model.fields,field_description:field_product_product_yc_track_outgoing_scan
 msgid "Scan Outgoing Lots"
-msgstr "Scan Outgoing Lots"
+msgstr "Seriennummer scannen (Auslieferung)"
 
 #. module: pc_connect_warehouse_yellowcube
 #: model:ir.model,name:model_stock_production_lot
@@ -1725,131 +1746,100 @@ msgid "Serial Number"
 msgstr "Seriennummer"
 
 #. module: pc_connect_warehouse_yellowcube
-#: field:stock.connect,yc_invoice_pcl_printer_silent_printing:0
-msgid "Silent PCL Printing?"
-msgstr "Silent PCL Printing?"
-
-#. module: pc_connect_warehouse_yellowcube
-#: field:stock.connect.yellowcube,yc_invoice_pcl_printer_silent_printing:0
-msgid "Silent PCL Printing?"
-msgstr "Silent PCL Printing?"
-
-#. module: pc_connect_warehouse_yellowcube
-#: model:ir.model.fields,field_description:field_stock_connect_yc_invoice_pcl_printer_silent_printing
-msgid "Silent PCL Printing?"
-msgstr "Silent PCL Printing?"
-
-#. module: pc_connect_warehouse_yellowcube
-#: model:ir.model.fields,field_description:field_stock_connect_yellowcube_yc_invoice_pcl_printer_silent_printing
-msgid "Silent PCL Printing?"
-msgstr "Silent PCL Printing?"
-
-#. module: pc_connect_warehouse_yellowcube
-#: help:stock.connect,yc_invoice_pcl_printer_silent_printing:0
-msgid "Silents the messages associated with the printing of PCL files."
-msgstr "Silents the messages associated with the printing of PCL files."
-
-#. module: pc_connect_warehouse_yellowcube
-#: help:stock.connect.yellowcube,yc_invoice_pcl_printer_silent_printing:0
-msgid "Silents the messages associated with the printing of PCL files."
-msgstr "Silents the messages associated with the printing of PCL files."
-
-#. module: pc_connect_warehouse_yellowcube
 #: code:addons/pc_connect_warehouse_yellowcube/yellowcube_bar_xml_factory.py:336
 msgid "Some errors where found when processing BAR file:\n"
 " -{0}"
-msgstr "Some errors where found when processing BAR file:\n"
-" -{0}"
+msgstr "Fehler sind aufgetreten beim Verarbeiten der BAR Meldung:\n -{0}"
 
 #. module: pc_connect_warehouse_yellowcube
 #: field:mapping_bur_transactiontypes,location_id:0
 msgid "Source Location"
-msgstr "Source Location"
+msgstr "Quelllagerort"
 
 #. module: pc_connect_warehouse_yellowcube
 #: model:ir.model.fields,field_description:field_mapping_bur_transactiontypes_location_id
 msgid "Source Location"
-msgstr "Source Location"
+msgstr "Quelllagerort"
 
 #. module: pc_connect_warehouse_yellowcube
 #: model:ir.model,name:model_stock_move
 msgid "Stock Move"
-msgstr "Bestandsbuchung"
+msgstr "Bestandesbuchung"
 
 #. module: pc_connect_warehouse_yellowcube
 #: code:addons/pc_connect_warehouse_yellowcube/yellowcube_wba_xml_factory.py:133
 msgid "Stock picking in with ID={0} does not exist in the system, thus can not be processed in the WBA."
-msgstr "Stock picking in with ID={0} does not exist in the system, thus can not be processed in the WBA."
+msgstr "Die Lieferung mit ID={0} wurde im System nicht gefunden, sie kann somit im WBA nicht verarbeitet werden."
 
 #. module: pc_connect_warehouse_yellowcube
 #: code:addons/pc_connect_warehouse_yellowcube/yellowcube_wba_xml_factory.py:234
 msgid "Stock.production.lot {0} with ID={1} did not existed, and it was created by VoucherID {2}"
-msgstr "Stock.production.lot {0} with ID={1} did not existed, and it was created by VoucherID {2}"
+msgstr "Charge {0} mit ID={1} hatte nicht existiert und wurde erstellt mit der VoucherID {2}"
 
 #. module: pc_connect_warehouse_yellowcube
 #: code:addons/pc_connect_warehouse_yellowcube/yellowcube_wba_xml_factory.py:243
 msgid "Stock.production.lot {0} with ID={1} did not have a yellowcube_lot, so it was set with value {2}"
-msgstr "Stock.production.lot {0} with ID={1} did not have a yellowcube_lot, so it was set with value {2}"
+msgstr "Charge {0} mit ID={1} hatte keine Yellowcube Losnummer; sie wurde auf den Wert {2} gesetzt."
 
 #. module: pc_connect_warehouse_yellowcube
 #: code:addons/pc_connect_warehouse_yellowcube/yellowcube_bar_xml_factory.py:156
 msgid "StockType had value '{0}', which is not allowed for product {1}"
-msgstr "StockType had value '{0}', which is not allowed for product {1}"
+msgstr "StockType '{0}' ist nicht gültig für Produkt {1}"
 
 #. module: pc_connect_warehouse_yellowcube
 #: help:product.product,yc_bar_uom_id:0
 msgid "Stores the last UOM sent with the last BAR"
-msgstr "Stores the last UOM sent with the last BAR"
+msgstr "Masseinheit, die zuletzt in der BAR Meldung übermittelt wurde"
 
 #. module: pc_connect_warehouse_yellowcube
 #: field:stock.connect.yellowcube,message_summary:0
 msgid "Summary"
-msgstr "Summary"
+msgstr "Zusammenfassung"
 
 #. module: pc_connect_warehouse_yellowcube
 #: model:ir.model.fields,field_description:field_stock_connect_yellowcube_message_summary
 msgid "Summary"
-msgstr "Summary"
+msgstr "Zusammenfassung"
 
 #. module: pc_connect_warehouse_yellowcube
 #: help:stock.picking,yellowcube_delivery_date:0
 msgid "Tag <YCDeliveryDate> of the WAR file."
-msgstr "Tag <YCDeliveryDate> of the WAR file."
+msgstr "Feld <YCDeliveryDate> in der WAR Meldung."
 
 #. module: pc_connect_warehouse_yellowcube
 #: help:stock.picking.in,yellowcube_delivery_date:0
 msgid "Tag <YCDeliveryDate> of the WAR file."
-msgstr "Tag <YCDeliveryDate> of the WAR file."
+msgstr "Feld <YCDeliveryDate> in der WAR Meldung."
 
 #. module: pc_connect_warehouse_yellowcube
 #: help:stock.picking.out,yellowcube_delivery_date:0
 msgid "Tag <YCDeliveryDate> of the WAR file."
-msgstr "Tag <YCDeliveryDate> of the WAR file."
+msgstr "Feld <YCDeliveryDate> in der WAR Meldung."
 
 #. module: pc_connect_warehouse_yellowcube
 #: help:stock.picking,yellowcube_delivery_no:0
 msgid "Tag <YCDeliveryNo> of the WAR file."
-msgstr "Tag <YCDeliveryNo> of the WAR file."
+msgstr "Feld <YCDeliveryNo> in der WAR Meldung."
 
 #. module: pc_connect_warehouse_yellowcube
 #: help:stock.picking.in,yellowcube_delivery_no:0
 msgid "Tag <YCDeliveryNo> of the WAR file."
-msgstr "Tag <YCDeliveryNo> of the WAR file."
+msgstr "Feld <YCDeliveryNo> in der WAR Meldung."
 
 #. module: pc_connect_warehouse_yellowcube
 #: help:stock.picking.out,yellowcube_delivery_no:0
 msgid "Tag <YCDeliveryNo> of the WAR file."
-msgstr "Tag <YCDeliveryNo> of the WAR file."
+msgstr "Feld <YCDeliveryNo> in der WAR Meldung."
 
 #. module: pc_connect_warehouse_yellowcube
 #: field:stock.connect.yellowcube,local_archive_input_dir_temporal:0
 msgid "Temporal local directory where to place the input files to archive"
-msgstr "Temporal local directory where to place the input files to archive"
+msgstr "Temporäres Eingangsverzeichnis für Dateien von FDS"
 
 #. module: pc_connect_warehouse_yellowcube
 #: model:ir.model.fields,field_description:field_stock_connect_yellowcube_local_archive_input_dir_temporal
 msgid "Temporal local directory where to place the input files to archive"
-msgstr "Temporal local directory where to place the input files to archive"
+msgstr "Temporäres Eingangsverzeichnis für Dateien von FDS"
 
 #. module: pc_connect_warehouse_yellowcube
 #: selection:stock.connect,yc_operating_mode:0
@@ -1864,102 +1854,157 @@ msgstr "Test"
 #. module: pc_connect_warehouse_yellowcube
 #: code:addons/pc_connect_warehouse_yellowcube/yellowcube_wba_xml_factory.py:198
 msgid "The 'ArticleNo' does not match with the field 'default_code' of the product."
-msgstr "The 'ArticleNo' does not match with the field 'default_code' of the product."
+msgstr "Das Feld 'ArticleNo' entspricht nicht der auf dem Produkt gespeicherten Referenz."
 
 #. module: pc_connect_warehouse_yellowcube
 #: code:addons/pc_connect_warehouse_yellowcube/yellowcube_wba_xml_factory.py:209
 msgid "The 'EAN' does not match with the field 'ean13' of the product."
-msgstr "The 'EAN' does not match with the field 'ean13' of the product."
+msgstr "Das Feld 'EAN' entspricht nicht der auf dem Produkt gespeicherten EAN."
 
 #. module: pc_connect_warehouse_yellowcube
 #: code:addons/pc_connect_warehouse_yellowcube/yellowcube_wba_xml_factory.py:186
 msgid "The 'YCArticleNo' does not match with the field 'YCArticleNo' of the product."
-msgstr "The 'YCArticleNo' does not match with the field 'YCArticleNo' of the product."
+msgstr "Das Feld 'YCArticleNo' entspricht nicht der auf dem Produkt gespeicherten 'YCArticleNo'."
 
 #. module: pc_connect_warehouse_yellowcube
 #: code:addons/pc_connect_warehouse_yellowcube/yellowcube_bar_xml_factory.py:257
 msgid "The UOM of the product {0} is not the same, and they are from different categories."
-msgstr "The UOM of the product {0} is not the same, and they are from different categories."
+msgstr "Die auf dem Produkt {0} hinterlegte Masseinheit weicht ab und ist von einer anderen Kategorie."
 
 #. module: pc_connect_warehouse_yellowcube
 #: code:addons/pc_connect_warehouse_yellowcube/yellowcube_war_xml_factory.py:227
 msgid "The WAR file must contain a lot, otherwise the stock.move can not be updated for product {0}"
-msgstr "The WAR file must contain a lot, otherwise the stock.move can not be updated for product {0}"
+msgstr "Die WAR Meldung muss eine Chargennummer beinhaltem, sonst kann die Lieferposition für das Produkt {0} nicht aktualisiert werden."
 
 #. module: pc_connect_warehouse_yellowcube
 #: code:addons/pc_connect_warehouse_yellowcube/yellowcube_wba_xml_factory.py:251
 msgid "The WBA file must contain a lot, otherwise the stock.move can not be updated for product {0}"
-msgstr "The WBA file must contain a lot, otherwise the stock.move can not be updated for product {0}"
+msgstr "Die WBA Meldung muss eine Chargennummer beinhaltem, sonst kann die Lieferposition für das Produkt  nicht aktualisiert werden."
 
 #. module: pc_connect_warehouse_yellowcube
 #: code:addons/pc_connect_warehouse_yellowcube/ir_module_module_ext.py:52
 msgid "The currently installed module pc_connect_warehouse_yellowcube is incompatible with module pc_connect_warehouse_external_email. Please uninstall this module first."
-msgstr "The currently installed module pc_connect_warehouse_yellowcube is incompatible with module pc_connect_warehouse_external_email. Please uninstall this module first."
+msgstr "Das aktuell installierte Modul pc_connect_warehouse_yellowcube ist nicht kompatibel mit dem Modul pc_connect_warehouse_external_email. Bitte ersteres zuerst deinstallieren."
 
 #. module: pc_connect_warehouse_yellowcube
 #: code:addons/pc_connect_warehouse_yellowcube/yellowcube_bur_xml_factory.py:240
 msgid "The lot may not exists in a two step file"
-msgstr "The lot may not exists in a two step file"
+msgstr "Die Charge existiert gegebenenfalls nicht in einer zweistufigen Datei"
 
 #. module: pc_connect_warehouse_yellowcube
 #: code:addons/pc_connect_warehouse_yellowcube/stock_connect_yellowcube.py:589
 msgid "The product has pending stock, but no BAR file has submitted an status update."
-msgstr "The product has pending stock, but no BAR file has submitted an status update."
+msgstr "Das Produkt hat möglicherweise Bestand, aber es wurde keine BAR Datei übermittelt."
 
 #. module: pc_connect_warehouse_yellowcube
 #: code:addons/pc_connect_warehouse_yellowcube/stock_connect_yellowcube.py:501
 msgid "The validation of partner with ID={0} failed. Error: {1}"
-msgstr "The validation of partner with ID={0} failed. Error: {1}"
+msgstr "Die Validierung des Partners mit ID = {0} ist fehlgeschlagen. Fehler: {1}"
 
 #. module: pc_connect_warehouse_yellowcube
 #: code:addons/pc_connect_warehouse_yellowcube/yellowcube_bar_xml_factory.py:123
 msgid "There is more than one article for domain {0}."
-msgstr "There is more than one article for domain {0}."
+msgstr "Es gibt mehr als einen Artikel für Domain {0}."
 
 #. module: pc_connect_warehouse_yellowcube
 #: code:addons/pc_connect_warehouse_yellowcube/yellowcube_wab_xml_factory.py:89
 msgid "There is no sale.order related to this stock.picking (type={0})"
-msgstr "There is no sale.order related to this stock.picking (type={0})"
+msgstr "Es gibt keine Bestellung für diese Lieferung (type={0})"
 
 #. module: pc_connect_warehouse_yellowcube
 #: code:addons/pc_connect_warehouse_yellowcube/yellowcube_bur_xml_factory.py:228
 msgid "There is not any Unit of Measure with ISO code being {0}."
-msgstr "There is not any Unit of Measure with ISO code being {0}."
+msgstr "Es gibt keine konfigurierte Mengeneinheit für den ISO Code {0}."
 
 #. module: pc_connect_warehouse_yellowcube
 #: code:addons/pc_connect_warehouse_yellowcube/yellowcube_war_xml_factory.py:103
 msgid "There is not any stock.picking with CustomerOrderNo ={0}"
-msgstr "There is not any stock.picking with CustomerOrderNo ={0}"
+msgstr "Es gibt keine Lieferung für die Referenz 'CustomerOrderNo={0}'."
 
 #. module: pc_connect_warehouse_yellowcube
 #: code:addons/pc_connect_warehouse_yellowcube/yellowcube_wba_xml_factory.py:111
 msgid "There is not any stock.picking with SupplierOrderNo (id) ={0}"
-msgstr "There is not any stock.picking with SupplierOrderNo (id) ={0}"
+msgstr "Es gibt keine Lieferung für die Referenz 'SupplierOrderNo={0}'."
 
 #. module: pc_connect_warehouse_yellowcube
 #: code:addons/pc_connect_warehouse_yellowcube/yellowcube_bar_xml_factory.py:119
 msgid "There is not article for domain {0}."
-msgstr "There is not article for domain {0}."
+msgstr "Es gibt keinen Artikel für die Domain {0}."
 
 #. module: pc_connect_warehouse_yellowcube
 #: code:addons/pc_connect_warehouse_yellowcube/yellowcube_bar_xml_factory.py:79
 msgid "This BAR has no products in it."
-msgstr "This BAR has no products in it."
+msgstr "Diese BAR Meldung enthält keine Produkte"
+
+#. module: pc_connect_warehouse_yellowcube
+#: help:configuration.data,tracking_email_template_id:0
+msgid "This is the template used to inform the customer about the sent delivery. It will contain the carrier reference if it is correctly configured."
+msgstr "Die Emailvorlage für das Versandbestätigungsemail an den Kunden. Dieses kann die Versandreferenz als Link beinhalten, wenn es korrekt konfiguriert wurde."
 
 #. module: pc_connect_warehouse_yellowcube
 #: help:product.product,yc_track_outgoing_scan:0
 msgid "This is for the ART file of YellowCube"
-msgstr "This is for the ART file of YellowCube"
+msgstr "Dies ist für die YellowCube ART Meldung"
+
+#. module: pc_connect_warehouse_yellowcube
+#: help:stock.move,yc_qty_done:0
+msgid "This is the increment of the qty received in the YC confirmation files (WBA/WAR)"
+msgstr "Dies ist die aus den YC Bestätigungen (WBA/WAR) aufsummierte Menge."
 
 #. module: pc_connect_warehouse_yellowcube
 #: code:addons/pc_connect_warehouse_yellowcube/stock_connect_yellowcube.py:369
 msgid "This stock.picking cannot be processed, it neither has a purchase or a sale order related"
-msgstr "This stock.picking cannot be processed, it neither has a purchase or a sale order related"
+msgstr "Diese Lieferung kann nicht verarbeitet werden, da sie weder zu einer Bestellung noch ener Lieferantenbestellung zugeordnet ist."
+
+#. module: pc_connect_warehouse_yellowcube
+#: help:delivery.carrier,tracking_url_pattern:0
+msgid "This string must be configured to the URL pattern of the carrier. The carrier reference got from the warehouse will be replacing the placeholder (put placeholder string here)"
+msgstr "Diese Zeichenfolge ist die URL des Versandverfolgungsservice des Versandunternehmens. Die Versandreferenz wird anstelle des Platzhalters {put placeholder sting here} eingefügt."
+
+#. module: pc_connect_warehouse_yellowcube
+#: help:stock.connect,yc_wba_cancel_time:0
+msgid "Time to wait after a back-order is automatically cancelled after it has been created. Only applies to back orders where no quantity done has been added by any WBA."
+msgstr "Wartezeit bis eine Nachlieferung nach ihrer Erstellung ohne weiteren Wareneingang automatisch abgebrochen wird. Gilt nur für Nachlieferungen ohne eingegangene Mengen."
+
+#. module: pc_connect_warehouse_yellowcube
+#: help:stock.connect.yellowcube,yc_wba_cancel_time:0
+msgid "Time to wait after a back-order is automatically cancelled after it has been created. Only applies to back orders where no quantity done has been added by any WBA."
+msgstr "Wartezeit bis eine Nachlieferung nach ihrer Erstellung ohne weiteren Wareneingang automatisch abgebrochen wird. Gilt nur für Nachlieferungen ohne eingegangene Mengen."
+
+#. module: pc_connect_warehouse_yellowcube
+#: field:stock.connect,yc_wba_cancel_time:0
+msgid "Time to wait to cancel back order (in hours)"
+msgstr "Wartezeit Abbruch Nachlieferung (in Stunden)"
+
+#. module: pc_connect_warehouse_yellowcube
+#: field:stock.connect.yellowcube,yc_wba_cancel_time:0
+msgid "Time to wait to cancel back order (in hours)"
+msgstr "Wartezeit Abbruch Nachlieferung (in Stunden)"
+
+#. module: pc_connect_warehouse_yellowcube
+#: field:stock.connect,yc_wba_confirm_time:0
+msgid "Time to wait to confirm picking in (in hours)"
+msgstr "Wartezeit Bestätigung Liefereingang (in Stunden)"
+
+#. module: pc_connect_warehouse_yellowcube
+#: field:stock.connect.yellowcube,yc_wba_confirm_time:0
+msgid "Time to wait to confirm picking in (in hours)"
+msgstr "Wartezeit Bestätigung Liefereingang (in Stunden)"
+
+#. module: pc_connect_warehouse_yellowcube
+#: model:ir.model.fields,field_description:pc_connect_warehouse_yellowcube.field_stock_connect_yc_wba_confirm_time
+msgid "Time to wait to confirm picking in (in hours)"
+msgstr "Wartezeit Bestätigung Liefereingang (in Stunden)"
+
+#. module: pc_connect_warehouse_yellowcube
+#: model:ir.model.fields,field_description:pc_connect_warehouse_yellowcube.field_stock_connect_yellowcube_yc_wba_confirm_time
+msgid "Time to wait to confirm picking in (in hours)"
+msgstr "Wartezeit Bestätigung Liefereingang (in Stunden)"
 
 #. module: pc_connect_warehouse_yellowcube
 #: view:stock.connect:0
 msgid "Timings"
-msgstr "Timings"
+msgstr "Zeitplanung"
 
 #. module: pc_connect_warehouse_yellowcube
 #: view:stock.move:0
@@ -1977,64 +2022,69 @@ msgid "TransactionType"
 msgstr "TransactionType"
 
 #. module: pc_connect_warehouse_yellowcube
+#: help:stock.move,yc_eod_received:0
+msgid "True if the EndOfDelivery flag has been received in any of the processed WBA/WAR files for this picking line."
+msgstr "Wahr falls für diese Position das EndOfDelivery Flag in einer verarbeiteten Rückmeldung (WBA/WAR) erhalten wurde."
+
+#. module: pc_connect_warehouse_yellowcube
 #: code:addons/pc_connect_warehouse_yellowcube/yellowcube_wab_xml_factory.py:260
 msgid "Undefined ISO code for UOM '{0}', in product {1}"
-msgstr "Undefined ISO code for UOM '{0}', in product {1}"
+msgstr "ISO Code für Mengeneinheit '{0}' bei Produkt {1} nicht definiert"
 
 #. module: pc_connect_warehouse_yellowcube
 #: code:addons/pc_connect_warehouse_yellowcube/yellowcube_art_xml_factory.py:201
 msgid "Undefined UOM ISO code: {0}"
-msgstr "Undefined UOM ISO code: {0}"
+msgstr "Nicht defnierter ISO Code für Mengeneinheit: {0}"
 
 #. module: pc_connect_warehouse_yellowcube
 #: field:stock.return.picking,yellowcube_return:0
 msgid "Under YC return"
-msgstr "Under YC return"
+msgstr "Im Retourenprozess"
 
 #. module: pc_connect_warehouse_yellowcube
 #: model:ir.model.fields,field_description:field_stock_return_picking_yellowcube_return
 msgid "Under YC return"
-msgstr "Under YC return"
+msgstr "Im Retourenprozess"
 
 #. module: pc_connect_warehouse_yellowcube
 #: field:product.product,yc_bar_uom_id:0
 msgid "Unit of Measure of last BAR"
-msgstr "Unit of Measure of last BAR"
+msgstr "Mengeneinheit im letzten BAR"
 
 #. module: pc_connect_warehouse_yellowcube
 #: model:ir.model.fields,field_description:field_product_product_yc_bar_uom_id
 msgid "Unit of Measure of last BAR"
-msgstr "Unit of Measure of last BAR"
+msgstr "Mengeneinheit im letzten BAR"
 
 #. module: pc_connect_warehouse_yellowcube
 #: code:addons/pc_connect_warehouse_yellowcube/product_product_ext.py:51
 msgid "Unit of Measure {0} (with ID={1}) does not match with that indicated in the last BAR ({2}, with ID={3})"
-msgstr "Unit of Measure {0} (with ID={1}) does not match with that indicated in the last BAR ({2}, with ID={3})"
+msgstr "Die Mengeneinheit {0} (mit ID={1}) entspricht nicht derjenigen, die im letzten BAR ({2}, with ID={3}) gemeldet wurde."
 
 #. module: pc_connect_warehouse_yellowcube
 #: code:addons/pc_connect_warehouse_yellowcube/yellowcube_bar_xml_factory.py:265
 msgid "Unit of measure '{0}' was not found in the system."
-msgstr "Unit of measure '{0}' was not found in the system."
+msgstr "Die Mengeneinheit '{0}' wurde im System nicht gefunden."
 
 #. module: pc_connect_warehouse_yellowcube
 #: field:stock.connect.yellowcube,message_unread:0
 msgid "Unread Messages"
-msgstr "Unread Messages"
+msgstr "Ungelesene Meldungen"
 
 #. module: pc_connect_warehouse_yellowcube
 #: model:ir.model.fields,field_description:field_stock_connect_yellowcube_message_unread
 msgid "Unread Messages"
-msgstr "Unread Messages"
+msgstr "Ungelesene Meldungen"
 
 #. module: pc_connect_warehouse_yellowcube
 #: code:addons/pc_connect_warehouse_yellowcube/yellowcube_bar_xml_factory.py:192
 msgid "Use date ({1}) of the lot {0} and tag BestBeforeDate ({2}) do not match for product {3}."
-msgstr "Use date ({1}) of the lot {0} and tag BestBeforeDate ({2}) do not match for product {3}."
+msgstr "Für das MHD ({1}) der Charge {0} mit dem BestBeforeDate ({2}) findet sich keine Entsprechung für das Produkt {3}."
 
 #. module: pc_connect_warehouse_yellowcube
 #: code:addons/pc_connect_warehouse_yellowcube/yellowcube_bar_xml_factory.py:205
 msgid "Use date ({1}) of the lot {0} and tag ProductionDate ({2}) do not match for product {3}."
-msgstr "Use date ({1}) of the lot {0} and tag ProductionDate ({2}) do not match for product {3}."
+msgstr "Für das MHD ({1}) der Charge  mit dem BestBeforeDate ({2}) findet sich keine Entsprechung für das Produkt {3}."
 
 #. module: pc_connect_warehouse_yellowcube
 #: selection:delivery.carrier,yc_basic_shipping:0
@@ -2044,22 +2094,22 @@ msgstr "VL: Vinolog"
 #. module: pc_connect_warehouse_yellowcube
 #: code:addons/pc_connect_warehouse_yellowcube/yellowcube_art_xml_factory.py:216
 msgid "Value for system's parameter 'default_expiration_accept_time_uom' is '{0}' while it must be one of {1}."
-msgstr "Value for system's parameter 'default_expiration_accept_time_uom' is '{0}' while it must be one of {1}."
+msgstr "Der Parameter 'Einheit der Standard Restlaufzeit' ist '{0}' anstatt eines aus {1}."
 
 #. module: pc_connect_warehouse_yellowcube
 #: help:stock.connect,yc_operating_mode:0
 msgid "Value of the tag OperatingMode in YellowCube files."
-msgstr "Value of the tag OperatingMode in YellowCube files."
+msgstr "Wert des Parameters OperatingMode in YellowCube Meldungen."
 
 #. module: pc_connect_warehouse_yellowcube
 #: help:stock.connect.yellowcube,yc_operating_mode:0
 msgid "Value of the tag OperatingMode in YellowCube files."
-msgstr "Value of the tag OperatingMode in YellowCube files."
+msgstr "Wert des Parameters OperatingMode in YellowCube Meldungen."
 
 #. module: pc_connect_warehouse_yellowcube
 #: code:addons/pc_connect_warehouse_yellowcube/yellowcube_war_xml_factory.py:118
 msgid "Variable YC DepositorNo is not defined in the configuration data."
-msgstr "Variable YC DepositorNo is not defined in the configuration data."
+msgstr "Parameter DepositorNo ist in der Konfiguration nicht definiert."
 
 #. module: pc_connect_warehouse_yellowcube
 #: model:ir.model,name:model_stock_warehouse
@@ -2069,307 +2119,327 @@ msgstr "Lager"
 #. module: pc_connect_warehouse_yellowcube
 #: code:addons/pc_connect_warehouse_yellowcube/stock_return_picking_ext.py:119
 msgid "Warning !"
-msgstr "Warning !"
+msgstr "Warnung!"
 
 #. module: pc_connect_warehouse_yellowcube
 #: code:addons/pc_connect_warehouse_yellowcube/stock_connect_yellowcube.py:417
 msgid "Warning while processing event on stock.picking with ID {0}: {1}"
-msgstr "Warning while processing event on stock.picking with ID {0}: {1}"
+msgstr "Warnung während Ereignisverarbeitung auf der Lieferung mit ID {0}: {1}"
 
 #. module: pc_connect_warehouse_yellowcube
 #: code:addons/pc_connect_warehouse_yellowcube/stock_return_picking_ext.py:166
 msgid "Warning!"
-msgstr "Warning!"
+msgstr "Warnung!"
 
 #. module: pc_connect_warehouse_yellowcube
 #: code:addons/pc_connect_warehouse_yellowcube/stock_connect_yellowcube.py:251
 msgid "Warning: Error while processing file."
-msgstr "Warning: Error while processing file."
+msgstr "Warnung: Fehler beim Verarbeiten der Datei."
 
 #. module: pc_connect_warehouse_yellowcube
 #: constraint:res.partner:0
 msgid "When possible, the partner reference must be set"
-msgstr "When possible, the partner reference must be set"
+msgstr "Wenn  möglich muss die Partner Referenz gesetzt sein."
 
 #. module: pc_connect_warehouse_yellowcube
 #: selection:stock.picking,yellowcube_return_reason:0
 msgid "Wrong order: style/size/colour"
-msgstr "Wrong order: style/size/colour"
+msgstr "Falsche Lieferung: Stil/Grösse/Farbe"
 
 #. module: pc_connect_warehouse_yellowcube
 #: selection:stock.picking.in,yellowcube_return_reason:0
 msgid "Wrong order: style/size/colour"
-msgstr "Wrong order: style/size/colour"
+msgstr "Falsche Lieferung: Stil/Grösse/Farbe"
 
 #. module: pc_connect_warehouse_yellowcube
 #: selection:stock.picking.out,yellowcube_return_reason:0
 msgid "Wrong order: style/size/colour"
-msgstr "Wrong order: style/size/colour"
+msgstr "Falsche Lieferung: Stil/Grösse/Farbe"
 
 #. module: pc_connect_warehouse_yellowcube
 #: selection:stock.return.picking,yellowcube_return_reason:0
 msgid "Wrong order: style/size/colour"
-msgstr "Wrong order: style/size/colour"
+msgstr "Falsche Lieferung: Stil/Grösse/Farbe"
 
 #. module: pc_connect_warehouse_yellowcube
 #: selection:stock.picking,yellowcube_return_reason:0
 msgid "Wrong size delivered (too big)"
-msgstr "Wrong size delivered (too big)"
+msgstr "Falsche Grösse geliefert (zu gross)"
 
 #. module: pc_connect_warehouse_yellowcube
 #: selection:stock.picking.in,yellowcube_return_reason:0
 msgid "Wrong size delivered (too big)"
-msgstr "Wrong size delivered (too big)"
+msgstr "Falsche Grösse geliefert (zu gross)"
 
 #. module: pc_connect_warehouse_yellowcube
 #: selection:stock.picking.out,yellowcube_return_reason:0
 msgid "Wrong size delivered (too big)"
-msgstr "Wrong size delivered (too big)"
+msgstr "Falsche Grösse geliefert (zu gross)"
 
 #. module: pc_connect_warehouse_yellowcube
 #: selection:stock.return.picking,yellowcube_return_reason:0
 msgid "Wrong size delivered (too big)"
-msgstr "Wrong size delivered (too big)"
+msgstr "Falsche Grösse geliefert (zu gross)"
 
 #. module: pc_connect_warehouse_yellowcube
 #: selection:stock.picking,yellowcube_return_reason:0
 msgid "Wrong size delivered (too small)"
-msgstr "Wrong size delivered (too small)"
+msgstr "Falsche Grösse geliefert (zu klein)"
 
 #. module: pc_connect_warehouse_yellowcube
 #: selection:stock.picking.in,yellowcube_return_reason:0
 msgid "Wrong size delivered (too small)"
-msgstr "Wrong size delivered (too small)"
+msgstr "Falsche Grösse geliefert (zu klein)"
 
 #. module: pc_connect_warehouse_yellowcube
 #: selection:stock.picking.out,yellowcube_return_reason:0
 msgid "Wrong size delivered (too small)"
-msgstr "Wrong size delivered (too small)"
+msgstr "Falsche Grösse geliefert (zu klein)"
 
 #. module: pc_connect_warehouse_yellowcube
 #: selection:stock.return.picking,yellowcube_return_reason:0
 msgid "Wrong size delivered (too small)"
-msgstr "Wrong size delivered (too small)"
+msgstr "Falsche Grösse geliefert (zu klein)"
 
 #. module: pc_connect_warehouse_yellowcube
 #: view:stock.connect:0
 msgid "XML header"
-msgstr "XML header"
+msgstr "XML-Header"
 
 #. module: pc_connect_warehouse_yellowcube
 #: view:stock.picking.in:0
 msgid "YC Customer Order No"
-msgstr "YC Customer Order No"
+msgstr "YellowCube Kundenbestellnummer"
 
 #. module: pc_connect_warehouse_yellowcube
 #: view:stock.picking.out:0
 msgid "YC Customer Order No"
-msgstr "YC Customer Order No"
+msgstr "YellowCube Kundenbestellnummer"
 
 #. module: pc_connect_warehouse_yellowcube
 #: field:stock.picking,yellowcube_customer_order_no:0
 msgid "YC CustomerOrderNo"
-msgstr "YC CustomerOrderNo"
+msgstr "YellowCube Kundenbestellnummer"
 
 #. module: pc_connect_warehouse_yellowcube
 #: field:stock.picking.in,yellowcube_customer_order_no:0
 msgid "YC CustomerOrderNo"
-msgstr "YC CustomerOrderNo"
+msgstr "YellowCube Kundenbestellnummer"
 
 #. module: pc_connect_warehouse_yellowcube
 #: field:stock.picking.out,yellowcube_customer_order_no:0
 msgid "YC CustomerOrderNo"
-msgstr "YC CustomerOrderNo"
+msgstr "YellowCube Kundenbestellnummer"
 
 #. module: pc_connect_warehouse_yellowcube
 #: model:ir.model.fields,field_description:field_stock_picking_yellowcube_customer_order_no
 msgid "YC CustomerOrderNo"
-msgstr "YC CustomerOrderNo"
+msgstr "YellowCube Kundenbestellnummer"
 
 #. module: pc_connect_warehouse_yellowcube
 #: model:ir.model.fields,field_description:field_stock_picking_yellowcube_customer_order_no_4696
 msgid "YC CustomerOrderNo"
-msgstr "YC CustomerOrderNo"
+msgstr "YellowCube Kundenbestellnummer"
 
 #. module: pc_connect_warehouse_yellowcube
 #: model:ir.model.fields,field_description:field_stock_picking_yellowcube_customer_order_no_4700
 msgid "YC CustomerOrderNo"
-msgstr "YC CustomerOrderNo"
+msgstr "YellowCube Kundenbestellnummer"
 
 #. module: pc_connect_warehouse_yellowcube
 #: field:stock.connect,yc_depositor_no:0
 msgid "YC DepositorNo"
-msgstr "YC DepositorNo"
+msgstr "YellowCube Depositor Nummer"
 
 #. module: pc_connect_warehouse_yellowcube
 #: field:stock.connect.yellowcube,yc_depositor_no:0
 msgid "YC DepositorNo"
-msgstr "YC DepositorNo"
+msgstr "YellowCube Depositor Nummer"
 
 #. module: pc_connect_warehouse_yellowcube
 #: model:ir.model.fields,field_description:field_stock_connect_yc_depositor_no
 msgid "YC DepositorNo"
-msgstr "YC DepositorNo"
+msgstr "YellowCube Depositor Nummer"
 
 #. module: pc_connect_warehouse_yellowcube
 #: model:ir.model.fields,field_description:field_stock_connect_yellowcube_yc_depositor_no
 msgid "YC DepositorNo"
-msgstr "YC DepositorNo"
+msgstr "YellowCube Depositor Nummer"
+
+#. module: pc_connect_warehouse_yellowcube
+#: field:stock.move,yc_eod_received:0
+msgid "YC EoD"
+msgstr "YC EoD"
+
+#. module: pc_connect_warehouse_yellowcube
+#: model:ir.model.fields,field_description:pc_connect_warehouse_yellowcube.field_stock_move_yc_eod_received
+msgid "YC EoD"
+msgstr "YC EoD"
 
 #. module: pc_connect_warehouse_yellowcube
 #: field:stock.connect,yc_operating_mode:0
 msgid "YC OperatingMode"
-msgstr "YC OperatingMode"
+msgstr "YellowCube Operations Modus"
 
 #. module: pc_connect_warehouse_yellowcube
 #: field:stock.connect.yellowcube,yc_operating_mode:0
 msgid "YC OperatingMode"
-msgstr "YC OperatingMode"
+msgstr "YellowCube Operations Modus"
 
 #. module: pc_connect_warehouse_yellowcube
 #: model:ir.model.fields,field_description:field_stock_connect_yc_operating_mode
 msgid "YC OperatingMode"
-msgstr "YC OperatingMode"
+msgstr "YellowCube Operations Modus"
 
 #. module: pc_connect_warehouse_yellowcube
 #: model:ir.model.fields,field_description:field_stock_connect_yellowcube_yc_operating_mode
 msgid "YC OperatingMode"
-msgstr "YC OperatingMode"
+msgstr "YellowCube Operations Modus"
 
 #. module: pc_connect_warehouse_yellowcube
 #: field:stock.connect,yc_partner_no:0
 msgid "YC PartnerNo"
-msgstr "YC PartnerNo"
+msgstr "YellowCube Partner Nummer"
 
 #. module: pc_connect_warehouse_yellowcube
 #: field:stock.connect.yellowcube,yc_partner_no:0
 msgid "YC PartnerNo"
-msgstr "YC PartnerNo"
+msgstr "YellowCube Operations Modus"
 
 #. module: pc_connect_warehouse_yellowcube
 #: model:ir.model.fields,field_description:field_stock_connect_yc_partner_no
 msgid "YC PartnerNo"
-msgstr "YC PartnerNo"
+msgstr "YellowCube Partner Nummer"
 
 #. module: pc_connect_warehouse_yellowcube
 #: model:ir.model.fields,field_description:field_stock_connect_yellowcube_yc_partner_no
 msgid "YC PartnerNo"
-msgstr "YC PartnerNo"
+msgstr "YellowCube Partner Nummer"
 
 #. module: pc_connect_warehouse_yellowcube
 #: field:stock.connect,yc_plant_id:0
 msgid "YC PlantID"
-msgstr "YC PlantID"
+msgstr "YellowCube Lager ID"
 
 #. module: pc_connect_warehouse_yellowcube
 #: field:stock.connect.yellowcube,yc_plant_id:0
 msgid "YC PlantID"
-msgstr "YC PlantID"
+msgstr "YellowCube Lager ID"
 
 #. module: pc_connect_warehouse_yellowcube
 #: model:ir.model.fields,field_description:field_stock_connect_yc_plant_id
 msgid "YC PlantID"
-msgstr "YC PlantID"
+msgstr "YellowCube Lager ID"
 
 #. module: pc_connect_warehouse_yellowcube
 #: model:ir.model.fields,field_description:field_stock_connect_yellowcube_yc_plant_id
 msgid "YC PlantID"
-msgstr "YC PlantID"
+msgstr "YellowCube Lager ID"
 
 #. module: pc_connect_warehouse_yellowcube
 #: view:stock.move:0
 msgid "YC PosNo"
-msgstr "YC PosNo"
+msgstr "YellowCube Positionsnummer"
+
+#. module: pc_connect_warehouse_yellowcube
+#: field:stock.move,yc_qty_done:0
+msgid "YC Qty Done"
+msgstr "YC Menge erhalten"
+
+#. module: pc_connect_warehouse_yellowcube
+#: model:ir.model.fields,field_description:pc_connect_warehouse_yellowcube.field_stock_move_yc_qty_done
+msgid "YC Qty Done"
+msgstr "YC Menge erhalten"
 
 #. module: pc_connect_warehouse_yellowcube
 #: field:stock.connect,yc_receiver:0
 msgid "YC Receiver"
-msgstr "YC Receiver"
+msgstr "YellowCube Empfänger"
 
 #. module: pc_connect_warehouse_yellowcube
 #: field:stock.connect.yellowcube,yc_receiver:0
 msgid "YC Receiver"
-msgstr "YC Receiver"
+msgstr "YellowCube Empfänger"
 
 #. module: pc_connect_warehouse_yellowcube
 #: model:ir.model.fields,field_description:field_stock_connect_yc_receiver
 msgid "YC Receiver"
-msgstr "YC Receiver"
+msgstr "YellowCube Empfänger"
 
 #. module: pc_connect_warehouse_yellowcube
 #: model:ir.model.fields,field_description:field_stock_connect_yellowcube_yc_receiver
 msgid "YC Receiver"
-msgstr "YC Receiver"
+msgstr "YellowCube Empfänger"
 
 #. module: pc_connect_warehouse_yellowcube
 #: field:stock.connect,yc_sender:0
 msgid "YC Sender"
-msgstr "YC Sender"
+msgstr "YellowCube Sender"
 
 #. module: pc_connect_warehouse_yellowcube
 #: field:stock.connect.yellowcube,yc_sender:0
 msgid "YC Sender"
-msgstr "YC Sender"
+msgstr "YellowCube Sender"
 
 #. module: pc_connect_warehouse_yellowcube
 #: model:ir.model.fields,field_description:field_stock_connect_yc_sender
 msgid "YC Sender"
-msgstr "YC Sender"
+msgstr "YellowCube Sender"
 
 #. module: pc_connect_warehouse_yellowcube
 #: model:ir.model.fields,field_description:field_stock_connect_yellowcube_yc_sender
 msgid "YC Sender"
-msgstr "YC Sender"
+msgstr "YellowCube Sender"
 
 #. module: pc_connect_warehouse_yellowcube
 #: field:res.partner,yc_supplier_no:0
 msgid "YC SupplierNo"
-msgstr "YC SupplierNo"
+msgstr "YellowCube Lieferantennummer"
 
 #. module: pc_connect_warehouse_yellowcube
 #: field:stock.connect,yc_supplier_no:0
 msgid "YC SupplierNo"
-msgstr "YC SupplierNo"
+msgstr "YellowCube Lieferantennummer"
 
 #. module: pc_connect_warehouse_yellowcube
 #: field:stock.connect.yellowcube,yc_supplier_no:0
 msgid "YC SupplierNo"
-msgstr "YC SupplierNo"
+msgstr "YellowCube Lieferantennummer"
 
 #. module: pc_connect_warehouse_yellowcube
 #: model:ir.model.fields,field_description:field_res_partner_yc_supplier_no
 msgid "YC SupplierNo"
-msgstr "YC SupplierNo"
+msgstr "YellowCube Lieferantennummer"
 
 #. module: pc_connect_warehouse_yellowcube
 #: model:ir.model.fields,field_description:field_stock_connect_yc_supplier_no
 msgid "YC SupplierNo"
-msgstr "YC SupplierNo"
+msgstr "YellowCube Lieferantennummer"
 
 #. module: pc_connect_warehouse_yellowcube
 #: model:ir.model.fields,field_description:field_stock_connect_yellowcube_yc_supplier_no
 msgid "YC SupplierNo"
-msgstr "YC SupplierNo"
+msgstr "YellowCube Lieferantennummer"
 
 #. module: pc_connect_warehouse_yellowcube
 #: field:stock.connect,yc_language:0
 msgid "YC XML Language"
-msgstr "YC XML Language"
+msgstr "YellowCube XML Sprache"
 
 #. module: pc_connect_warehouse_yellowcube
 #: field:stock.connect.yellowcube,yc_language:0
 msgid "YC XML Language"
-msgstr "YC XML Language"
+msgstr "YC XML Sprache"
 
 #. module: pc_connect_warehouse_yellowcube
 #: model:ir.model.fields,field_description:field_stock_connect_yc_language
 msgid "YC XML Language"
-msgstr "YC XML Language"
+msgstr "YellowCube XML Sprache"
 
 #. module: pc_connect_warehouse_yellowcube
 #: model:ir.model.fields,field_description:field_stock_connect_yellowcube_yc_language
 msgid "YC XML Language"
-msgstr "YC XML Language"
+msgstr "YellowCube XML Sprache"
 
 #. module: pc_connect_warehouse_yellowcube
 #: field:product.product,yc_YCArticleNo:0
@@ -2384,92 +2454,92 @@ msgstr "YCArticleNo"
 #. module: pc_connect_warehouse_yellowcube
 #: code:addons/pc_connect_warehouse_yellowcube/yellowcube_war_xml_factory.py:137
 msgid "YCDeliveryDate {0} does not match its current value {1} in the stock picking."
-msgstr "YCDeliveryDate {0} does not match its current value {1} in the stock picking."
+msgstr "Das YellowCube Lieferdatum {0} entspricht nicht dem aktuellen Wert {1} der Lieferung."
 
 #. module: pc_connect_warehouse_yellowcube
 #: field:stock.picking,yellowcube_delivery_date:0
 msgid "YCDeliveryDate"
-msgstr "YCDeliveryDate"
+msgstr "YellowCube Lieferdatum"
 
 #. module: pc_connect_warehouse_yellowcube
 #: field:stock.picking.in,yellowcube_delivery_date:0
 msgid "YCDeliveryDate"
-msgstr "YCDeliveryDate"
+msgstr "YellowCube Lieferdatum"
 
 #. module: pc_connect_warehouse_yellowcube
 #: field:stock.picking.out,yellowcube_delivery_date:0
 msgid "YCDeliveryDate"
-msgstr "YCDeliveryDate"
+msgstr "YellowCube Lieferdatum"
 
 #. module: pc_connect_warehouse_yellowcube
 #: model:ir.model.fields,field_description:field_stock_picking_yellowcube_delivery_date
 msgid "YCDeliveryDate"
-msgstr "YCDeliveryDate"
+msgstr "YellowCube Lieferdatum"
 
 #. module: pc_connect_warehouse_yellowcube
 #: model:ir.model.fields,field_description:field_stock_picking_yellowcube_delivery_date_4695
 msgid "YCDeliveryDate"
-msgstr "YCDeliveryDate"
+msgstr "YellowCube Lieferdatum"
 
 #. module: pc_connect_warehouse_yellowcube
 #: model:ir.model.fields,field_description:field_stock_picking_yellowcube_delivery_date_4699
 msgid "YCDeliveryDate"
-msgstr "YCDeliveryDate"
+msgstr "YellowCube Lieferdatum"
 
 #. module: pc_connect_warehouse_yellowcube
 #: code:addons/pc_connect_warehouse_yellowcube/yellowcube_war_xml_factory.py:125
 msgid "YCDeliveryNo {0} does not match its current value {1} in the stock picking."
-msgstr "YCDeliveryNo {0} does not match its current value {1} in the stock picking."
+msgstr "Das YellowCube Lieferdatum  entspricht nicht dem aktuellen Wert {1} der Lieferung."
 
 #. module: pc_connect_warehouse_yellowcube
 #: field:stock.picking,yellowcube_delivery_no:0
 msgid "YCDeliveryNo"
-msgstr "YCDeliveryNo"
+msgstr "YellowCube Liefernummer"
 
 #. module: pc_connect_warehouse_yellowcube
 #: field:stock.picking.in,yellowcube_delivery_no:0
 msgid "YCDeliveryNo"
-msgstr "YCDeliveryNo"
+msgstr "YellowCube Liefernummer"
 
 #. module: pc_connect_warehouse_yellowcube
 #: field:stock.picking.out,yellowcube_delivery_no:0
 msgid "YCDeliveryNo"
-msgstr "YCDeliveryNo"
+msgstr "YellowCube Liefernummer"
 
 #. module: pc_connect_warehouse_yellowcube
 #: model:ir.model.fields,field_description:field_stock_picking_yellowcube_delivery_no
 msgid "YCDeliveryNo"
-msgstr "YCDeliveryNo"
+msgstr "YellowCube Liefernummer"
 
 #. module: pc_connect_warehouse_yellowcube
 #: model:ir.model.fields,field_description:field_stock_picking_yellowcube_delivery_no_4694
 msgid "YCDeliveryNo"
-msgstr "YCDeliveryNo"
+msgstr "YellowCube Liefernummer"
 
 #. module: pc_connect_warehouse_yellowcube
 #: model:ir.model.fields,field_description:field_stock_picking_yellowcube_delivery_no_4698
 msgid "YCDeliveryNo"
-msgstr "YCDeliveryNo"
+msgstr "YellowCube Liefernummer"
 
 #. module: pc_connect_warehouse_yellowcube
 #: code:addons/pc_connect_warehouse_yellowcube/yellowcube_wba_xml_factory.py:245
 msgid "YCLot in the WBA does not match with the value of the stock.production.lot"
-msgstr "YCLot in the WBA does not match with the value of the stock.production.lot"
+msgstr "Die YellowCube Chargennummer im WBA entspricht nicht dem gespeicherten Wert auf der Charge"
 
 #. module: pc_connect_warehouse_yellowcube
 #: field:stock.production.lot,yellowcube_lot:0
 msgid "YCLot"
-msgstr "YCLot"
+msgstr "YellowCube Chargennummer"
 
 #. module: pc_connect_warehouse_yellowcube
 #: model:ir.model.fields,field_description:field_stock_production_lot_yellowcube_lot
 msgid "YCLot"
-msgstr "YCLot"
+msgstr "YellowCube Chargennummer"
 
 #. module: pc_connect_warehouse_yellowcube
 #: selection:stock.connect.yellowcube,type:0
 msgid "YellowCube over SOAP"
-msgstr "YellowCube over SOAP"
+msgstr "YellowCube via SOAP"
 
 #. module: pc_connect_warehouse_yellowcube
 #: selection:stock.connect.yellowcube,type:0
@@ -2499,50 +2569,46 @@ msgstr "YellowCube"
 #. module: pc_connect_warehouse_yellowcube
 #: field:stock.move,yc_booking_voucher_id:0
 msgid "YellowCube's BookingVoucherID"
-msgstr "YellowCube's BookingVoucherID"
+msgstr "BookingVoucherID von YellowCube"
 
 #. module: pc_connect_warehouse_yellowcube
 #: model:ir.model.fields,field_description:field_stock_move_yc_booking_voucher_id
 msgid "YellowCube's BookingVoucherID"
-msgstr "YellowCube's BookingVoucherID"
+msgstr "BookingVoucherID von YellowCube"
 
 #. module: pc_connect_warehouse_yellowcube
 #: field:stock.move,yc_booking_voucher_year:0
 msgid "YellowCube's BookingVoucherYear"
-msgstr "YellowCube's BookingVoucherYear"
+msgstr "BookingVoucherYear von YellowCube"
 
 #. module: pc_connect_warehouse_yellowcube
 #: model:ir.model.fields,field_description:field_stock_move_yc_booking_voucher_year
 msgid "YellowCube's BookingVoucherYear"
-msgstr "YellowCube's BookingVoucherYear"
+msgstr "BookingVoucherYear von YellowCube"
 
 #. module: pc_connect_warehouse_yellowcube
 #: help:stock.production.lot,yellowcube_lot:0
 msgid "YellowCube's lot."
-msgstr "YellowCube's lot."
+msgstr "Chargennummer von YellowCube."
 
 #. module: pc_connect_warehouse_yellowcube
 #: code:addons/pc_connect_warehouse_yellowcube/stock_return_picking_ext.py:119
 msgid "You have manually created product lines, please delete them to proceed"
-msgstr "You have manually created product lines, please delete them to proceed"
+msgstr "Sie haben manuell Produktlinien erstellt, bitte löschen Sie diese um fortzufahren."
 
 #. module: pc_connect_warehouse_yellowcube
 #: constraint:stock.connect.yellowcube:0
 msgid "\n"
 "In order to use the product's lifecycle, please install the module 'pc_product_lifecycle'.\n"
 ""
-msgstr "\n"
-"In order to use the product's lifecycle, please install the module 'pc_product_lifecycle'.\n"
-""
+msgstr "\nUm die Funktionen des Produktlebenszyklus zu nutzen, Installieren Sie bitte das Modul 'pc_product_lifecycle'.\n"
 
 #. module: pc_connect_warehouse_yellowcube
 #: constraint:stock.connect:0
 msgid "\n"
 "In order to use the product's lifecycle, please install the module 'pc_product_lifecycle'.\n"
 ""
-msgstr "\n"
-"In order to use the product's lifecycle, please install the module 'pc_product_lifecycle'.\n"
-""
+msgstr "\nUm die Funktionen des Produktlebenszyklus zu nutzen, Installieren Sie bitte das Modul 'pc_product_lifecycle'.\n"
 
 #. module: pc_connect_warehouse_yellowcube
 #: constraint:stock.connect.yellowcube:0
@@ -2552,12 +2618,7 @@ msgid "\n"
 "2) Have a selected connection transport\n"
 "3) Fill in 'YC Depositor No', 'YC PlantID', 'YC Sender', 'YC SupplierNo', 'YC PartnerNo', 'YC OperatingMode'\n"
 ""
-msgstr "\n"
-"YellowCube connections must:\n"
-"1) Only run over a unique warehouse.\n"
-"2) Have a selected connection transport\n"
-"3) Fill in 'YC Depositor No', 'YC PlantID', 'YC Sender', 'YC SupplierNo', 'YC PartnerNo', 'YC OperatingMode'\n"
-""
+msgstr "\nYellowCube Konnektoren:\n1) Dürfen nur ein einziges Lager verwenden.\n2) Bedürfen einer konfigurierten Übermittlungsweges\n3) Benötigen korrekte Parameter 'YC Depositor Nummer', 'YC Lager ID', 'YC Sender', 'YC Lieferantennummer', 'YC Partnernummer', 'YC Betriebstyp'\n"
 
 #. module: pc_connect_warehouse_yellowcube
 #: constraint:stock.connect:0
@@ -2567,17 +2628,12 @@ msgid "\n"
 "2) Have a selected connection transport\n"
 "3) Fill in 'YC Depositor No', 'YC PlantID', 'YC Sender', 'YC SupplierNo', 'YC PartnerNo', 'YC OperatingMode'\n"
 ""
-msgstr "\n"
-"YellowCube connections must:\n"
-"1) Only run over a unique warehouse.\n"
-"2) Have a selected connection transport\n"
-"3) Fill in 'YC Depositor No', 'YC PlantID', 'YC Sender', 'YC SupplierNo', 'YC PartnerNo', 'YC OperatingMode'\n"
-""
+msgstr "\nYellowCube Konnektoren:\n1) Dürfen nur ein einziges Lager verwenden.\n2) Bedürfen einer konfigurierten Übermittlungsweges\n3) Benötigen korrekte Parameter 'YC Depositor Nummer', 'YC Lager ID', 'YC Sender', 'YC Lieferantennummer', 'YC Partnernummer', 'YC Betriebstyp'\n"
 
 #. module: pc_connect_warehouse_yellowcube
 #: model:ir.model,name:model_configuration_data
 msgid "configuration.data"
-msgstr "configuration.data"
+msgstr "Konfiguration"
 
 #. module: pc_connect_warehouse_yellowcube
 #: model:ir.model,name:model_mapping_bur_transactiontypes
@@ -2597,10 +2653,10 @@ msgstr "stock.connect.yellowcube"
 #. module: pc_connect_warehouse_yellowcube
 #: field:stock.return.picking,sale_id:0
 msgid "unknown"
-msgstr "unknown"
+msgstr "unbekannt"
 
 #. module: pc_connect_warehouse_yellowcube
 #: model:ir.model.fields,field_description:field_stock_return_picking_sale_id
 msgid "unknown"
-msgstr "unknown"
+msgstr "unbekannt"
 

@@ -1,0 +1,19 @@
+<openerp>
+    <data>
+
+        <record id="view_stock_connect_form_ext" model="ir.ui.view">
+            <field name="name">view_stock_connect_form_ext</field>
+            <field name="model">stock.connect</field>
+            <field name="inherit_id" ref="pc_connect_warehouse.view_stock_connect_form" />
+            <field name="arch" type="xml">
+                <page string="Messages" position="after">
+                    <page string="Emails" colspan="4">
+                        <button name="open_action_mail" type='object' string="Open Searchable List" context="{'res_model': 'mail.mail'}" />
+                        <field name="stock_connect_email_ids" context="{'stock_connect_id': id, 'tree_view_ref': 'pc_connect_warehouse_external_email.view_stock_connect_email_tree'}" />
+                    </page>
+                </page>
+            </field>
+        </record>
+
+    </data>
+</openerp>

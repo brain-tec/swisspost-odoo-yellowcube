@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+
+        <menuitem
+            name="Audits"
+            id="management_audit"
+            parent="pc_connect_master.management"
+            sequence="4" />
+
+        <menuitem
+            name="Rules"
+            action="action_show_audit_trail_rule"
+            id="management_audit_rule"
+            parent="management_audit"
+            sequence="0" />
+
+        <menuitem
+            name="Sale Orders"
+            action="action_show_audit_trail_log_sale_order"
+            id="management_audit_sale_orders"
+            parent="management_audit"
+            sequence="1" />
+
+        <menuitem
+            name="Products"
+            action="action_show_audit_trail_log_product_product"
+            id="management_audit_product_product"
+            parent="management_audit"
+            sequence="2" />
+
+        <menuitem
+            name="Partners"
+            action="action_show_audit_trail_log_res_partner"
+            id="management_audit_partners"
+            parent="management_audit"
+            sequence="3" />
+
+        <menuitem
+            name="Deliveries"
+            action="action_show_audit_trail_log_stock_picking_out"
+            id="management_audit_stock_picking_out"
+            parent="management_audit"
+            sequence="4" />
+
+        <menuitem
+            name="Account Invoice"
+            action="action_show_audit_trail_log_account_invoice"
+            id="management_audit_account_invoice"
+            parent="management_audit"
+            sequence="5" />
+            
+        <menuitem
+            name="Others"
+            action="action_show_audit_trail_log_others"
+            id="management_audit_other"
+            parent="management_audit"
+            sequence="6" />
+
+    </data>
+</openerp>

@@ -1,7 +1,7 @@
 # b-*- encoding: utf-8 -*-
 ##############################################################################
 #
-#    Copyright (c) 2014 brain-tec AG (http://www.brain-tec.ch)
+#    Copyright (c) 2014 brain-tec AG (http://www.braintec-group.com)
 #    All Right Reserved
 #
 #    This program is free software: you can redistribute it and/or modify
@@ -20,22 +20,16 @@
 ##############################################################################
 
 {
-    "name": "SwissPost YellowCube Odoo / Issue tracking",
-
+    "name": "PC/Issue tracking",
     "version": "1.0",
-
     "description": """
-    PC module for issue tracking and management of the PostCommerce customization.
-
-    Depends on the following modules from OCA:
-    - connector (from repository connector: https://github.com/OCA/connector)
-    - sale_exceptions (from repository sale-workflow: https://github.com/OCA/sale-workflow)
+    PC module for issue tracking and management of the PostCommerce customization
+    Git dependencies:
+        * connector: git@github.com:brain-tec/connector.git branch
+   
     """,
-
     "author": "Brain-tec",
-
     "category": "Connector",
-
     'depends': ['base',
                 'project',
                 'sale',
@@ -43,8 +37,8 @@
                 'project_issue',
                 'connector',
                 'sale_exceptions',
+                'pc_log_data',
                 ],
-
     "data": ["views/project_issue_ext.xml",
              "views/project_task_ext.xml",
              "views/project_project_ext.xml",
@@ -58,15 +52,14 @@
              "security/ir.model.access.csv",
 
              ],
-
     "demo": ['demo/test_sale_exception.xml',
              ],
-
+    "test": [#'test/sale_exception.yml',
+             ],
     "installable": True,
-
+    
     # We don't want this module to be automatically installed when all its dependencies are loaded,
     # but we want us to install it under our control.
     "auto_install": False,
 }
-
 # vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:

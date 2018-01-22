@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+
+    <data noupdate="0">
+
+        <record id="intrum_response_code_0" model="intrum.response_code">
+            <field name="intrum_response_code">0</field>
+            <field name="intrum_response_text">0. Pending</field>
+        </record>
+        <record id="intrum_response_code_1" model="intrum.response_code">
+            <field name="intrum_response_code">1</field>
+            <field name="intrum_response_text">1. There are serious negative indicators</field>
+        </record>
+        <record id="intrum_response_code_2" model="intrum.response_code">
+            <field name="intrum_response_code">2</field>
+            <field name="intrum_response_text">2. All payment methods</field>
+        </record>
+        <record id="intrum_response_code_3" model="intrum.response_code">
+            <field name="intrum_response_code">3</field>
+            <field name="intrum_response_text">3. Manual post-processing (currently not yet in use)</field>
+        </record>
+        <record id="intrum_response_code_4" model="intrum.response_code">
+            <field name="intrum_response_code">4</field>
+            <field name="intrum_response_text">4. Postal address is incorrect</field>
+        </record>
+        <record id="intrum_response_code_5" model="intrum.response_code">
+            <field name="intrum_response_code">5</field>
+            <field name="intrum_response_text">5. Enquiry exceeds the credit limit (the credit limit is specified in the cooperation agreement)</field>
+        </record>
+        <record id="intrum_response_code_6" model="intrum.response_code">
+            <field name="intrum_response_code">6</field>
+            <field name="intrum_response_text">6. Customer specifications not met (currently not yet in use)</field>
+        </record>
+        <record id="intrum_response_code_7" model="intrum.response_code">
+            <field name="intrum_response_code">7</field>
+            <field name="intrum_response_text">7. Enquiry exceeds the net credit limit (enquiry amount plus open items exceeds credit limit)</field>
+        </record>
+        <record id="intrum_response_code_8" model="intrum.response_code">
+            <field name="intrum_response_code">8</field>
+            <field name="intrum_response_text">8. Person queried is not of creditworthy age</field>
+        </record>
+        <record id="intrum_response_code_9" model="intrum.response_code">
+            <field name="intrum_response_code">9</field>
+            <field name="intrum_response_text">9. Delivery address does not match invoice address (for payment guarantee only)</field>
+        </record>
+        <record id="intrum_response_code_10" model="intrum.response_code">
+            <field name="intrum_response_code">10</field>
+            <field name="intrum_response_text">10. Household cannot be identified at this address</field>
+        </record>
+        <record id="intrum_response_code_11" model="intrum.response_code">
+            <field name="intrum_response_code">11</field>
+            <field name="intrum_response_text">11. Country is not supported</field>
+        </record>
+        <record id="intrum_response_code_12" model="intrum.response_code">
+            <field name="intrum_response_code">12</field>
+            <field name="intrum_response_text">12. Party queried is not a natural person</field>
+        </record>
+        <record id="intrum_response_code_13" model="intrum.response_code">
+            <field name="intrum_response_code">13</field>
+            <field name="intrum_response_text">13. System is in maintenance mode</field>
+        </record>
+        <record id="intrum_response_code_14" model="intrum.response_code">
+            <field name="intrum_response_code">14</field>
+            <field name="intrum_response_text">14. Address with high fraud risk</field>
+        </record>
+        <record id="intrum_response_code_15" model="intrum.response_code">
+            <field name="intrum_response_code">15</field>
+            <field name="intrum_response_text">15. Allowance is too low</field>
+        </record>
+        <record id="intrum_response_code_16" model="intrum.response_code">
+            <field name="intrum_response_code">16</field>
+            <field name="intrum_response_text">16. Application data incomplete</field>
+        </record>
+        <record id="intrum_response_code_17" model="intrum.response_code">
+            <field name="intrum_response_code">17</field>
+            <field name="intrum_response_text">17. Send contract documents for external credit check</field>
+        </record>
+        <record id="intrum_response_code_18" model="intrum.response_code">
+            <field name="intrum_response_code">18</field>
+            <field name="intrum_response_text">18. External credit check in progress</field>
+        </record>
+        <record id="intrum_response_code_19" model="intrum.response_code">
+            <field name="intrum_response_code">19</field>
+            <field name="intrum_response_text">19. Customer is on client blacklist</field>
+        </record>
+        <record id="intrum_response_code_20" model="intrum.response_code">
+            <field name="intrum_response_code">20</field>
+            <field name="intrum_response_text">20. Customer is on client whitelist</field>
+        </record>
+        <record id="intrum_response_code_21" model="intrum.response_code">
+            <field name="intrum_response_code">21</field>
+            <field name="intrum_response_text">21. Customer is on Intrum blacklist</field>
+        </record>
+        <record id="intrum_response_code_22" model="intrum.response_code">
+            <field name="intrum_response_code">22</field>
+            <field name="intrum_response_text">22. Address is a P.O. box</field>
+        </record>
+        <record id="intrum_response_code_23" model="intrum.response_code">
+            <field name="intrum_response_code">23</field>
+            <field name="intrum_response_text">23. Address not in residential area</field>
+        </record>
+        <record id="intrum_response_code_24" model="intrum.response_code">
+            <field name="intrum_response_code">24</field>
+            <field name="intrum_response_text">24. Ordering person not legitimated to order for company</field>
+        </record>
+        <record id="intrum_response_code_25" model="intrum.response_code">
+            <field name="intrum_response_code">25</field>
+            <field name="intrum_response_text">25. IP Address temporarily blacklisted</field>
+        </record>
+        <record id="intrum_response_code_27" model="intrum.response_code">
+            <field name="intrum_response_code">27</field>
+            <field name="intrum_response_text">27. Accepted with right of withdrawal within 24 hours</field>
+        </record>
+        <record id="intrum_response_code_28" model="intrum.response_code">
+            <field name="intrum_response_code">28</field>
+            <field name="intrum_response_text">28. Credit Decision ok / Risk transferred to client due to exceeded credit limit</field>
+        </record>
+        <record id="intrum_response_code_29" model="intrum.response_code">
+            <field name="intrum_response_code">29</field>
+            <field name="intrum_response_text">29. Maximum client limit exceeded</field>
+        </record>
+        <record id="intrum_response_code_30" model="intrum.response_code">
+            <field name="intrum_response_code">30</field>
+            <field name="intrum_response_text">30. Unpaid overdue invoices exist</field>
+        </record>
+        <record id="intrum_response_code_50" model="intrum.response_code">
+            <field name="intrum_response_code">50</field>
+            <field name="intrum_response_text">50. Blacklist WSNP (NL only)</field>
+        </record>
+        <record id="intrum_response_code_51" model="intrum.response_code">
+            <field name="intrum_response_code">51</field>
+            <field name="intrum_response_text">51. Blacklist Bankruptcy (NL only)</field>
+        </record>
+        <record id="intrum_response_code_52" model="intrum.response_code">
+            <field name="intrum_response_code">52</field>
+            <field name="intrum_response_text">52. Blacklist Fraud (NL only)</field>
+        </record>
+        <record id="intrum_response_code_53" model="intrum.response_code">
+            <field name="intrum_response_code">53</field>
+            <field name="intrum_response_text">53. Front Door Limit exceeded (NL only)</field>
+        </record>
+        <record id="intrum_response_code_54" model="intrum.response_code">
+            <field name="intrum_response_code">54</field>
+            <field name="intrum_response_text">54. Consumer Limit exceeded</field>
+        </record>
+        <record id="intrum_response_code_55" model="intrum.response_code">
+            <field name="intrum_response_code">55</field>
+            <field name="intrum_response_text">55. Below minimal order amount (NL only)</field>
+        </record>
+        <record id="intrum_response_code_56" model="intrum.response_code">
+            <field name="intrum_response_code">56</field>
+            <field name="intrum_response_text">56. Person has open collection cases (NL only)</field>
+        </record>
+        <record id="intrum_response_code_57" model="intrum.response_code">
+            <field name="intrum_response_code">57</field>
+            <field name="intrum_response_text">57. Rejected based on third party information provider</field>
+        </record>
+
+    </data>
+
+</openerp>

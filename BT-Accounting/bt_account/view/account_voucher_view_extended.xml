@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+     <data>
+        <record id="account_voucher_view_vendor_payment_form_ext" model="ir.ui.view">
+            <field name="name">account_voucher.view_vendor_payment_form_ext</field>
+            <field name="model">account.voucher</field>
+            <field name="inherit_id" ref="account_voucher.view_vendor_payment_form" />
+            <field name="arch" type="xml">
+            <data>
+            <xpath expr="/form/sheet/notebook/page/field[@name='line_dr_ids']/tree/field[@name='move_line_id']" position="replace">
+                <field name="move_line_id" context="{'journal_id':parent.journal_id, 'partner_id':parent.partner_id}"
+                                        on_change="onchange_move_line_id(move_line_id,parent.id,context)"
+                                        domain="[('account_id.type','=','payable'), ('reconcile_id','=', False), ('partner_id','=',parent.partner_id)]"
+                                        required="1"/>
+            </xpath>
+            <xpath expr="/form/sheet/notebook/page/field[@name='line_cr_ids']/tree/field[@name='move_line_id']" position="replace">
+                <field name="move_line_id" context="{'journal_id':parent.journal_id, 'partner_id':parent.partner_id}"
+                                        on_change="onchange_move_line_id(move_line_id,parent.id,context)"
+                                        domain="[('account_id.type','=','payable'), ('reconcile_id','=', False), ('partner_id','=',parent.partner_id)]"
+                                        required="1"/>
+            </xpath>
+            <!--xpath expr="/form/sheet/group/group/field[@name='date']" position="replace">
+                <field name="date" select="1"/>
+            </xpath-->
+            <xpath expr="/form/sheet/notebook/page/field[@name='line_dr_ids']" position="attributes">
+                <attribute name="on_change">onchange_line_ids(line_dr_ids, line_cr_ids, amount, currency_id, type, context)</attribute>
+            </xpath>
+            <xpath expr="/form/sheet/notebook/page/field[@name='line_cr_ids']" position="attributes">
+                <attribute name="on_change">onchange_line_ids(line_dr_ids, line_cr_ids, amount, currency_id, type, context)</attribute>
+            </xpath>
+			<xpath expr="/form/sheet/notebook/page/field[@name='line_cr_ids']" position="attributes">
+                <attribute name="attrs">{'invisible': [('journal_id','=',False)]}</attribute>
+            </xpath>
+			<xpath expr="/form/sheet/notebook/page/field[@name='line_dr_ids']" position="attributes">
+                <attribute name="attrs">{'invisible': [('journal_id','=',False)]}</attribute>
+            </xpath>
+            <xpath expr="//button[@name='action_cancel_draft']" position="replace">
+            	<button name="action_cancel_draft" type="object" states="cancel" string="Set to Draft" icon="terp-stock_effects-object-colorize"/>
+            </xpath>
+            </data>
+            </field>
+        </record>
+        
+        <record id="account_voucher_view_vendor_receipt_form_ext" model="ir.ui.view">
+            <field name="name">account_voucher.view_vendor_receipt_form_ext</field>
+            <field name="model">account.voucher</field>
+            <field name="inherit_id" ref="account_voucher.view_vendor_receipt_form" />
+            <field name="arch" type="xml">
+            <data>
+            <xpath expr="/form/sheet/notebook/page/field[@name='line_dr_ids']/tree/field[@name='move_line_id']" position="replace">
+                <field name="move_line_id" context="{'journal_id':parent.journal_id, 'partner_id':parent.partner_id}"
+                                        on_change="onchange_move_line_id(move_line_id,parent.id,context)"
+                                        domain="[('account_id.type','in',('receivable','payable')), ('reconcile_id','=', False), ('partner_id','=',parent.partner_id)]"
+                                        required="1"
+                                        groups="account.group_account_user"/>
+            </xpath>
+            <xpath expr="/form/sheet/notebook/page/field[@name='line_cr_ids']/tree/field[@name='move_line_id']" position="replace">
+                <field name="move_line_id" context="{'journal_id':parent.journal_id, 'partner_id':parent.partner_id}"
+                                        on_change="onchange_move_line_id(move_line_id,parent.id,context)"
+                                        domain="[('account_id.type','in',('receivable','payable')), ('reconcile_id','=', False), ('partner_id','=',parent.partner_id)]"
+                                        required="1"/>
+            </xpath>
+            <!--xpath expr="/form/sheet/group/group/field[@name='date']" position="replace">
+                <field name="date" select="1"/>
+            </xpath-->
+			
+			<xpath expr="/form/sheet/notebook/page/field[@name='line_cr_ids']" position="attributes">
+                <attribute name="attrs">{'invisible': [('journal_id','=',False)]}</attribute>
+            </xpath>
+			<xpath expr="/form/sheet/notebook/page/field[@name='line_dr_ids']" position="attributes">
+                <attribute name="attrs">{'invisible': [('journal_id','=',False)]}</attribute>
+            </xpath>
+			<xpath expr="//button[@name='action_cancel_draft']" position="replace">
+            	<button name="action_cancel_draft" type="object" states="cancel" string="Set to Draft" icon="terp-stock_effects-object-colorize"/>
+            </xpath>
+            </data>
+            </field>
+        </record>
+        
+        <record id="account_voucher_view_low_priority_payment_form_ext" model="ir.ui.view">
+            <field name="name">account_voucher.view_low_priority_payment_form_ext</field>
+            <field name="model">account.voucher</field>
+            <field name="inherit_id" ref="account_voucher.view_low_priority_payment_form" />
+            <field name="arch" type="xml">
+            <data>
+            <xpath expr="/form/notebook/page/field[@name='line_cr_ids']/tree/field[@name='move_line_id']" position="replace">
+                <field name="move_line_id" context="{'journal_id':parent.journal_id, 'partner_id':parent.partner_id}" on_change="onchange_move_line_id(move_line_id,parent.id,context)" domain="[('account_id.type','=','payable'), ('reconcile_id','=', False), ('partner_id','=',parent.partner_id)]"/>
+            </xpath>
+            <xpath expr="/form/notebook/page/field[@name='line_dr_ids']/tree/field[@name='move_line_id']" position="replace">
+                <field name="move_line_id" context="{'journal_id':parent.journal_id, 'partner_id':parent.partner_id}" on_change="onchange_move_line_id(move_line_id,parent.id,context)" domain="[('account_id.type','=','payable'), ('reconcile_id','=', False), ('partner_id','=',parent.partner_id)]"/>
+            </xpath>
+            <!--xpath expr="/form/group/field[@name='date']" position="replace">
+                <field name="date" select="1"/>
+            </xpath-->
+			<xpath expr="/form/notebook/page/field[@name='line_cr_ids']" position="attributes">
+                <attribute name="attrs">{'invisible': [('journal_id','=',False)]}</attribute>
+            </xpath>
+			<xpath expr="/form/notebook/page/field[@name='line_dr_ids']" position="attributes">
+                <attribute name="attrs">{'invisible': [('journal_id','=',False)]}</attribute>
+            </xpath>
+            </data>
+            </field>
+        </record>
+		
+     </data>
+ </openerp>

@@ -1,0 +1,48 @@
+<openerp>
+	<data>
+		<record model="ir.ui.view" id="printer_view">
+			<field name="name">printer_form_view</field>
+			<field name="model">printer</field>
+			<field name="arch" type="xml">
+				<form string="form_string">
+					<separator string="Settings" colspan="4" />
+					<field name="name" select="1" />
+					<group colspan="2" col="2">
+						<field name="primary_tray" />
+						<field name="alternative_tray" />
+						<field name="third_tray" />
+						<field name="fourth_tray" />
+					</group>
+				</form>
+			</field>
+		</record>
+
+		<record id="action_header_printer" model="ir.actions.act_window">
+			<field name="name">Webkit Printers</field>
+			<field name="res_model">printer</field>
+			<field name="view_type">form</field>
+			<field name="view_mode">tree,form</field>
+		</record>
+
+		<menuitem action="action_header_printer" id="menu_custom_printer"
+			parent="base.menu_res_company_global" sequence="15" />
+
+
+
+		<record id="view_users_form_printer" model="ir.ui.view">
+			<field name="name">res.users.form.printer</field>
+			<field name="model">res.users</field>
+			<field name="inherit_id" ref="base.view_users_form" />
+			<field name="arch" type="xml">
+
+					<field name="signature" position="after" >
+					<separator string="Printer Preferences" colspan="4" />
+							<field name="printer_id" />
+					</field>
+			
+			</field>
+		</record>
+
+
+	</data>
+</openerp>

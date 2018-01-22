@@ -1,0 +1,193 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<BAR>
+    <ControlReference>
+        <Type>BAR</Type>
+        <Sender>YELLOWCUBE</Sender>
+        <Receiver>0000090040</Receiver>
+        <Timestamp>20140829230003</Timestamp>
+        <OperatingMode>P</OperatingMode>
+        <Version>1.0</Version>
+    </ControlReference>
+    <ArticleList>
+        <Article>
+            <YCArticleNo>Y004100001</YCArticleNo>
+            <ArticleNo>406003</ArticleNo>
+            <ArticleDescription>TaschentÃ¼cher Minipocket</ArticleDescription>
+            <Plant>Y004</Plant>
+            <StorageLocation>YAFS</StorageLocation>
+            <StockType>0</StockType>
+            <QuantityUOM QuantityISO="PK">33.000</QuantityUOM>
+        </Article>
+        <Article>
+            <YCArticleNo>Y004100002</YCArticleNo>
+            <ArticleNo>224563</ArticleNo>
+            <ArticleDescription>Erste Hilfe Set</ArticleDescription>
+            <Plant>Y004</Plant>
+            <StorageLocation>YAFS</StorageLocation>
+            <StockType>0</StockType>
+            <QuantityUOM QuantityISO="PCE">500.000</QuantityUOM>
+        </Article>
+        <Article>
+            <YCArticleNo>Y004100003</YCArticleNo>
+            <ArticleNo>224566</ArticleNo>
+            <ArticleDescription>Pflaster-Etui</ArticleDescription>
+            <Plant>Y004</Plant>
+            <StorageLocation>YAFS</StorageLocation>
+            <StockType>0</StockType>
+            <QuantityUOM QuantityISO="PK">188.000</QuantityUOM>
+        </Article>
+        <Article>
+            <YCArticleNo>Y004100004</YCArticleNo>
+            <ArticleNo>224568</ArticleNo>
+            <ArticleDescription>Fruchtgummi</ArticleDescription>
+            <Plant>Y004</Plant>
+            <StorageLocation>YAFS</StorageLocation>
+            <StockType>0</StockType>
+            <QuantityUOM QuantityISO="PK">14.000</QuantityUOM>
+        </Article>
+        <Article>
+            <YCArticleNo>Y004100005</YCArticleNo>
+            <ArticleNo>224569</ArticleNo>
+            <ArticleDescription>Kugelschreiber</ArticleDescription>
+            <Plant>Y004</Plant>
+            <StorageLocation>YAFS</StorageLocation>
+            <StockType>0</StockType>
+            <QuantityUOM QuantityISO="PK">9.000</QuantityUOM>
+        </Article>
+        <Article>
+            <YCArticleNo>Y004100006</YCArticleNo>
+            <ArticleNo>224585</ArticleNo>
+            <ArticleDescription>Taschenlampe</ArticleDescription>
+            <Plant>Y004</Plant>
+            <StorageLocation>YAFS</StorageLocation>
+            <StockType>0</StockType>
+            <QuantityUOM QuantityISO="PCE">1168.000</QuantityUOM>
+        </Article>
+        <Article>
+            <YCArticleNo>Y004100009</YCArticleNo>
+            <ArticleNo>224611</ArticleNo>
+            <ArticleDescription>Farbstifte</ArticleDescription>
+            <Plant>Y004</Plant>
+            <StorageLocation>YAFS</StorageLocation>
+            <StockType>0</StockType>
+            <QuantityUOM QuantityISO="PK">49.000</QuantityUOM>
+        </Article>
+        <Article>
+            <YCArticleNo>Y004100010</YCArticleNo>
+            <ArticleNo>224613</ArticleNo>
+            <ArticleDescription>Reise-Spiele</ArticleDescription>
+            <Plant>Y004</Plant>
+            <StorageLocation>YAFS</StorageLocation>
+            <StockType>0</StockType>
+            <QuantityUOM QuantityISO="PCE">254.000</QuantityUOM>
+        </Article>
+        <Article>
+            <YCArticleNo>Y004100011</YCArticleNo>
+            <ArticleNo>224617</ArticleNo>
+            <ArticleDescription>Zeckenentferner</ArticleDescription>
+            <Plant>Y004</Plant>
+            <StorageLocation>YAFS</StorageLocation>
+            <StockType>0</StockType>
+            <QuantityUOM QuantityISO="PK">32.000</QuantityUOM>
+        </Article>
+        <Article>
+            <YCArticleNo>Y004100012</YCArticleNo>
+            <ArticleNo>224618</ArticleNo>
+            <ArticleDescription>Lunchbox</ArticleDescription>
+            <Plant>Y004</Plant>
+            <StorageLocation>YAFS</StorageLocation>
+            <StockType>0</StockType>
+            <QuantityUOM QuantityISO="PK">42.000</QuantityUOM>
+        </Article>
+        <Article>
+            <YCArticleNo>Y004100013</YCArticleNo>
+            <ArticleNo>224619</ArticleNo>
+            <ArticleDescription>Armbanduhr</ArticleDescription>
+            <Plant>Y004</Plant>
+            <StorageLocation>YAFS</StorageLocation>
+            <StockType>0</StockType>
+            <QuantityUOM QuantityISO="PCE">694.000</QuantityUOM>
+        </Article>
+        <Article>
+            <YCArticleNo>Y004100014</YCArticleNo>
+            <ArticleNo>224620</ArticleNo>
+            <ArticleDescription>Sonnenbrille weiss</ArticleDescription>
+            <Plant>Y004</Plant>
+            <StorageLocation>YAFS</StorageLocation>
+            <StockType>0</StockType>
+            <QuantityUOM QuantityISO="PCE">253.000</QuantityUOM>
+        </Article>
+        <Article>
+            <YCArticleNo>Y004100016</YCArticleNo>
+            <ArticleNo>406002</ArticleNo>
+            <ArticleDescription>Reisestecker 3-polig</ArticleDescription>
+            <Plant>Y004</Plant>
+            <StorageLocation>YAFS</StorageLocation>
+            <StockType>0</StockType>
+            <QuantityUOM QuantityISO="PCE">524.000</QuantityUOM>
+        </Article>
+        <Article>
+            <YCArticleNo>Y004100017</YCArticleNo>
+            <ArticleNo>406004</ArticleNo>
+            <ArticleDescription>Army Cap</ArticleDescription>
+            <Plant>Y004</Plant>
+            <StorageLocation>YAFS</StorageLocation>
+            <StockType>0</StockType>
+            <QuantityUOM QuantityISO="PK">30.000</QuantityUOM>
+        </Article>
+        <Article>
+            <YCArticleNo>Y004100018</YCArticleNo>
+            <ArticleNo>406005</ArticleNo>
+            <ArticleDescription>PORTi</ArticleDescription>
+            <Plant>Y004</Plant>
+            <StorageLocation>YAFS</StorageLocation>
+            <StockType>0</StockType>
+            <QuantityUOM QuantityISO="PK">6.000</QuantityUOM>
+        </Article>
+        <Article>
+            <YCArticleNo>Y004100019</YCArticleNo>
+            <ArticleNo>406007</ArticleNo>
+            <ArticleDescription>Lamy Schreibset</ArticleDescription>
+            <Plant>Y004</Plant>
+            <StorageLocation>YAFS</StorageLocation>
+            <StockType>0</StockType>
+            <QuantityUOM QuantityISO="PCE">1669.000</QuantityUOM>
+        </Article>
+        <Article>
+            <YCArticleNo>Y004100020</YCArticleNo>
+            <ArticleNo>406008</ArticleNo>
+            <ArticleDescription>Lamy tri pen</ArticleDescription>
+            <Plant>Y004</Plant>
+            <StorageLocation>YAFS</StorageLocation>
+            <StockType>0</StockType>
+            <QuantityUOM QuantityISO="PCE">1674.000</QuantityUOM>
+        </Article>
+        <Article>
+            <YCArticleNo>Y004100025</YCArticleNo>
+            <ArticleNo>224583</ArticleNo>
+            <ArticleDescription>Daylong Sonnenlotion SPF 25</ArticleDescription>
+            <Plant>Y004</Plant>
+            <StorageLocation>YAFS</StorageLocation>
+            <StockType>0</StockType>
+            <QuantityUOM QuantityISO="PK">33.000</QuantityUOM>
+        </Article>
+        <Article>
+            <YCArticleNo>Y004100030</YCArticleNo>
+            <ArticleNo>406009</ArticleNo>
+            <ArticleDescription>Dry Bag (Seesack)</ArticleDescription>
+            <Plant>Y004</Plant>
+            <StorageLocation>YAFS</StorageLocation>
+            <StockType>0</StockType>
+            <QuantityUOM QuantityISO="PCE">3050.000</QuantityUOM>
+        </Article>
+        <Article>
+            <YCArticleNo>Y004100031</YCArticleNo>
+            <ArticleNo>406010</ArticleNo>
+            <ArticleDescription>Moskitospray Anti Brumm Forte 75ml</ArticleDescription>
+            <Plant>Y004</Plant>
+            <StorageLocation>YAFS</StorageLocation>
+            <StockType>0</StockType>
+            <QuantityUOM QuantityISO="PK">82.000</QuantityUOM>
+        </Article>
+    </ArticleList>
+</BAR>

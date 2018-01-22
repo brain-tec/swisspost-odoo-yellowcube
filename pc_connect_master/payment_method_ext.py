@@ -1,7 +1,7 @@
 # b-*- encoding: utf-8 -*-
 ##############################################################################
 #
-#    Copyright (c) 2015 brain-tec AG (http://www.brain-tec.ch)
+#    Copyright (c) 2015 brain-tec AG (http://www.braintec-group.com)
 #    All Right Reserved
 #
 #    This program is free software: you can redistribute it and/or modify
@@ -20,17 +20,27 @@
 ##############################################################################
 
 from openerp.osv import osv, fields
-from openerp.tools.translate import _
 
 
 class payment_method_ext(osv.Model):
     _inherit = 'payment.method'
 
     _columns = {
-        'epayment': fields.boolean('ePayment?', help='Does this payment method allow ePayment?'),
-        'pre_payment': fields.boolean('Pre-Payment?', help='If checked, the delivery is sent only if the invoice has been already paid.'),
-        'amount_limit': fields.float('Amount Limit', help='The maximum allowed amount that can be paid using this payment method.'),
-        'credit_check': fields.boolean('Credit Check?', help='Does the system have to check the creditworthiness of customers with this payment method?'),
+        'epayment': fields.boolean(
+            'ePayment?',
+            help='Does this payment method allow ePayment?'),
+        'pre_payment': fields.boolean(
+            'Pre-Payment?',
+            help='If checked, the delivery is sent only if the invoice '
+                 'has been already paid.'),
+        'amount_limit': fields.float(
+            'Amount Limit',
+            help='The maximum allowed amount that can be paid using '
+                 'this payment method.'),
+        'credit_check': fields.boolean(
+            'Credit Check?',
+            help='Does the system have to check the creditworthiness '
+                 'of customers with this payment method?'),
     }
 
     _defaults = {

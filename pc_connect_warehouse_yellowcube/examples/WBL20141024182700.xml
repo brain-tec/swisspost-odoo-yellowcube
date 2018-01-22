@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<WBL>
+	<ControlReference>
+		<Type>WBL</Type>
+		<Sender>Easyshop</Sender>
+		<Receiver>YELLOWCUBE</Receiver>
+		<Timestamp>20141024182231</Timestamp>
+		<OperatingMode>T</OperatingMode>
+		<Version>1.0</Version>
+	</ControlReference>
+	<SupplierOrder>
+		<SupplierOrderHeader>
+			<Plant>Y019</Plant>
+			<SupplierNo>0000200015</SupplierNo>
+			<SupplierOrderNo>Odoo_P1_1</SupplierOrderNo>
+		</SupplierOrderHeader>
+		<SupplierOrderPositions>
+			<Position>
+				<PosNo>10</PosNo>
+				<ArticleNo>S0057-08.5</ArticleNo>
+				<Quantity>300</Quantity>
+				<QuantityISO>PCE</QuantityISO>
+				<PosText>Jacket - Size 2XL</PosText>
+			</Position>
+			<Position>
+				<PosNo>20</PosNo>
+				<ArticleNo>S0058-08.5</ArticleNo>
+				<Quantity>100</Quantity>
+				<QuantityISO>PCE</QuantityISO>
+				<PosText>Pro Jacket - Size 3XL</PosText>
+			</Position>
+			<Position>
+				<PosNo>30</PosNo>
+				<ArticleNo>7640104951193</ArticleNo>
+				<Quantity>200</Quantity>
+				<QuantityISO>PCE</QuantityISO>
+				<PosText>Pro Jacket - Size L</PosText>
+			</Position>
+		</SupplierOrderPositions>
+	</SupplierOrder>
+</WBL>

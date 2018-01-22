@@ -1,7 +1,7 @@
 # b-*- encoding: utf-8 -*-
 ##############################################################################
 #
-#    Copyright (c) 2015 brain-tec AG (http://www.brain-tec.ch)
+#    Copyright (c) 2015 brain-tec AG (http://www.braintec-group.com)
 #    All Right Reserved
 #
 #    This program is free software: you can redistribute it and/or modify
@@ -21,10 +21,13 @@
 
 from StringIO import StringIO
 import paramiko
+import stat
 import time
 from openerp.tools.translate import _
 import logging
 logger = logging.getLogger(__name__)
+logger.setLevel(logging.INFO)
+
 
 
 def _log_call(f):
@@ -90,21 +93,27 @@ class connection_sftp(object):
         '''
         if self._connection:
             self._connection.close()
+            self._connection = None
         if self._transport:
             self._transport.close()
+            self._transport = None
 
     @_log_call
     def list(self, directory):
-        ''' Lists the contents of a directory.
+        ''' Lists the files of a directory.
         '''
         if self._connection:
-            return self._connection.listdir(directory)
+            result = []
+            for filelist in self._connection.listdir_attr(directory):
+                if stat.S_IFREG & filelist.st_mode:
+                    result.append(filelist.filename)
+            return result
         else:
             raise Exception(_("A 'directory list' operation was attempted over a non-existing connection."))
 
     @_log_call
     def chdir(self, directory):
-        ''' Lists the contents of a directory.
+        ''' Changes the directory.
         '''
         if self._connection:
             return self._connection.chdir(directory)
@@ -154,6 +163,6 @@ class connection_sftp(object):
                 if p != '.':  # To avoid moving above the top folder.
                     self.chdir('..')
         else:
-            raise Exception(_("A 'get' operation was attempted over a non-existing connection."))
+            raise Exception(_("A 'remove' operation was attempted over a non-existing connection."))
 
 # vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:

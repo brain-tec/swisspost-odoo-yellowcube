@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+    <data>
+        <record id="edit_menu_access_ext" model="ir.ui.view">
+            <field name="name">edit_menu_form_ext</field>
+            <field name="model">ir.ui.menu</field>
+            <field name="inherit_id" ref="base.edit_menu_access"/>
+            <field name="arch" type="xml">
+                <data>
+                    <xpath expr="/form/sheet/group/group/field[@name='sequence']" position="after">
+                        <field name="xml_id"/>
+                    </xpath>
+                </data>
+            </field>
+        </record>
+        
+        <record id="edit_menu_ext" model="ir.ui.view">
+            <field name="model">ir.ui.menu</field>
+            <field name="inherit_id" ref="base.edit_menu"/>
+            <field name="arch" type="xml">
+                <data>
+                    <xpath expr="//field[@name='complete_name']" position="after">
+                        <field name="xml_id"/>
+                    </xpath>
+                </data>
+            </field>
+        </record>
+
+    </data>
+</openerp>

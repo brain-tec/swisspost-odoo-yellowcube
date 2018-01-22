@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+	<data>
+    
+        <record id="bt_followup.view_partner_form_ext" model="ir.ui.view">
+            <field name="groups_id" eval="[(4,ref('account.group_account_invoice')),(4,ref('pc_connect_master.pc_client'))]" />
+        </record>
+
+		<record id="view_partner_form_ext" model="ir.ui.view">
+			<field name="name">"view_partner_form_ext"</field>
+			<field name="inherit_id" ref="bt_followup.view_partner_form_ext" />
+			<field name="model">res.partner</field>
+			<field name="arch" type="xml">
+
+                <page name="followup_tab" position="attributes">
+                    <attribute name="groups">account.group_account_invoice,pc_connect_master.pc_client</attribute>
+                </page>
+
+                <field name="dunning_block_date" position="after">
+                    <field name="under_followup_block" colspan='1'/>
+                </field>
+
+			</field>
+		</record>
+	</data>
+</openerp>

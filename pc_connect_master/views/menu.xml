@@ -195,6 +195,20 @@
             action="product.product_normal_action_sell" />
 
         <menuitem
+            name="Suppliers"
+            id="pc_menu_sales_sales_suppliers"
+            parent="pc_menu_sales_logistics"
+            groups="pc_client"
+            sequence="14"
+            action="base.action_partner_supplier_form" />
+        <menuitem
+            name="Purchase Quotations"
+            id="pc_menu_sales_sales_purchase_quotations"
+            parent="pc_menu_sales_logistics"
+            groups="pc_client"
+            sequence="15"
+            action="purchase.purchase_rfq" />
+        <menuitem
             name="Purchase Orders"
             id="pc_menu_sales_sales_purchase_orders"
             parent="pc_menu_sales_logistics"
@@ -215,6 +229,24 @@
             groups="pc_client"
             sequence="40"
             action="action_stock_move_view" />
+
+
+        <!-- OLD REPORTING SYSTEM. -->
+        <menuitem
+            name="Standard Reports (SQL)"
+            id="pc_menu_standard_reports_sql"
+            parent="pc_menu_sales_sales"
+            groups="base.group_no_one"
+            sequence="50"
+            action="action_standard_report_tree" />
+            
+        <menuitem
+            name="Standard Reports (Tree view)"
+            id="pc_menu_standard_reports_view"
+            parent="pc_menu_sales_sales"
+            groups="base.group_no_one"
+            sequence="60"
+            action="action_standard_view_report" />
 
     </data>
 </openerp>

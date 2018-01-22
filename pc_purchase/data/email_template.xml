@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+	<data noupdate="1">
+
+		<!--Email template -->
+        <record id="pc_connect_master.purchase_to_supplier_email_template" model="email.template">
+            <field name="report_template" ref="pc_report_purchase"/>
+            <field name="report_name">RFQ_${(object.name or '').replace('/','_')}</field>
+        </record>
+
+	</data>
+</openerp>

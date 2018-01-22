@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+    <data noupdate="0">
+
+        <!-- Delivery Order. -->
+        <report id="delivery.report_shipping" string="(PCAP) Delivery Order"
+            model="stock.picking.out" name="pc_stock_picking_report"
+            file="pc_stock/report/stock_picking.mako"
+            report_type="webkit" auto="True" />
+        <record id="delivery.report_shipping" model="ir.actions.report.xml">
+            <field name="webkit_header" ref="pc_generics.ir_report_quotation_order"  />
+        </record>
+
+        <!-- Delivery Slip. -->
+        <report id="stock.report_picking_list_out" string="(PCAP) Delivery Slip"
+            model="stock.picking.out" name="pc_stock_picking_report"
+            file="pc_stock/report/stock_picking.mako"
+            report_type="webkit" auto="True" />
+        <record id="stock.report_picking_list_out" model="ir.actions.report.xml">
+            <field name="webkit_header" ref="pc_generics.ir_report_quotation_order" />
+        </record>
+
+    </data>
+</openerp>

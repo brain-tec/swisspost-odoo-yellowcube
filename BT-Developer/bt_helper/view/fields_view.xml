@@ -1,0 +1,66 @@
+<openerp>
+	<data>
+		<record id="view_bt_helper_fields_form" model="ir.ui.view">
+			<field name="name">bt_helper_fields_form</field>
+			<field name="model">bt_helper.fields</field>
+			<field name="arch" type="xml">
+				<form string="Duplication fields" version="7.0">
+					<sheet>
+						<group string="Field to modify">
+							<field name="model_id" context="{'show_model':1}" colspan="2" />
+							<field name="fields_not_duplicated" context="{'show_field':1}" colspan="2"
+								on_change="onchange_field(fields_not_duplicated)" />
+						</group>
+						<group string="Value to assign">
+							<field name="type" colspan="2" />
+							<field name="name_generator_id"
+								attrs="{'invisible': [('type', '!=', 'regular_expression')],
+											'required': [('type', '=', 'regular_expression')],}"
+								colspan="2" />
+							<field name="default_value"
+								attrs="{'invisible': ['|',('set_null', '=', True),('type', '=', 'regular_expression')], 
+									'required': [('set_null', '=', False),('type', '!=', 'regular_expression')]}"
+								colspan="2" />
+							<field name="set_null" colspan="2" />
+							<field name="overwrite" colspan="2" />
+						</group>
+					</sheet>
+				</form>
+			</field>
+		</record>
+
+		<record id="view_bt_helper_fields_tree" model="ir.ui.view">
+			<field name="name">bt_helper_fields_tree</field>
+			<field name="model">bt_helper.fields</field>
+			<field name="arch" type="xml">
+				<tree string="Duplication fields">
+					<field name="model_id" />
+					<field name="fields_not_duplicated" />
+					<field name="type" />
+					<field name="name_generator_id"
+						attrs="{'invisible': [('type', '!=', 'regular_expression')],
+							'required': [('type', '=', 'regular_expression')],}" />
+					<field name="set_null" />
+					<field name="default_value"
+						attrs="{'invisible': ['|',('set_null', '=', True),('type', '=', 'regular_expression')], 
+								'required': [('set_null', '=', False),('type', '!=', 'regular_expression')]}" />
+					<field name="overwrite" />
+				</tree>
+			</field>
+		</record>
+
+		<record id="view_bt_helper_fields_search" model="ir.ui.view">
+			<field name="name">bt_helper_fields_search</field>
+			<field name="model">bt_helper.fields</field>
+			<field name="arch" type="xml">
+				<search string="Duplication fields">
+					<field name="model_id" />
+					<field name="fields_not_duplicated" />
+					<field name="type" />
+					<field name="set_null" />
+					<field name="default_value" />
+				</search>
+			</field>
+		</record>
+	</data>
+</openerp>

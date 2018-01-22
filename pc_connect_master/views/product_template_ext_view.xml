@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+
+        <record id="product_template_yc_form_view" model="ir.ui.view">
+            <field name="name">product_template_yc_form_view</field>
+            <field name="model">product.template</field>
+            <field name="inherit_id" ref="product.product_template_form_view"/>
+            <field name="arch" type="xml">
+                <notebook position="inside">
+                    <group string="Delivery Methods" name="group_delivery_methods">
+                        <page string="Delivery Methods" name="group_delivery_methods">
+                            <field name="id" invisible="True" />
+                            <field name="yc_allowed_delivery_method_ids"
+                                   context="{'default_product_template_id': id, 'from_product_template': True}" />
+                            <field name="yc_mandatory_additional_option_ids" />
+                        </page>
+                    </group>
+                </notebook>
+            </field>
+        </record>
+
+        <record id="product_product_yc_form_view" model="ir.ui.view">
+            <field name="name">product_product_yc_form_view</field>
+            <field name="model">product.product</field>
+            <field name="inherit_id" ref="product.product_normal_form_view"/>
+            <field name="arch" type="xml">
+                <notebook position="inside">
+                    <page string="Delivery Methods" name="group_delivery_methods">
+                        <group string="Delivery Methods" name="group_delivery_methods">
+                            <field name="id" invisible="True" />
+                            <field name="yc_allowed_delivery_method_ids"
+                                   context="{'default_product_template_id': id, 'from_product_template': True}" />
+                            <field name="yc_mandatory_additional_option_ids" />
+                        </group>
+                    </page>
+                </notebook>
+            </field>
+        </record>
+
+    </data>
+</openerp>

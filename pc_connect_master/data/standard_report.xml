@@ -1,0 +1,52 @@
+<openerp>
+	<data noupdate="1">
+		<!-- filters have a unique name constraint. Forcecreate is a must to avoid errors on server -->
+		<!-- product.product -->
+		<!-- 
+		<record model='report.file' id="standard_report_yc_product" forcecreate="0">
+			<field name="name">Products in YellowCube</field>
+			<field name="model_id" ref="product.model_product_product" />
+			<field name="domain">
+				['&amp;',
+				['YCArticleNo','!=',False],
+				['qty_available','&gt;=',0],
+				]
+			</field>
+			<field name="script">product.product
+			# group-by
+			id
+			# categ_id
+			# name
+			qty_available
+			default_code
+			YCArticleNo
+			ean13
+			# Aggregate data
+			</field>
+		</record>
+		 -->
+		<!-- sale.order -->
+		<record model='report.file' id="standard_report_sale_order_this_month_by_product" forcecreate="False">
+			<field name="name">Sales from this month (by Product)</field>
+			<field name="model_id" ref="sale.model_sale_order" />
+			<field name="domain">
+				['&amp;',
+				['date_order','&gt;=',(context_today()+relativedelta(months=0)).strftime('%Y-%m-01')],
+				['date_order','&lt;',(context_today()+relativedelta(months=1)).strftime('%Y-%m-01')],
+				]
+			</field>
+			<field name="script">sale.order
+			# group-by
+			order_line/product_id
+			date_order
+			payment_method_id
+			partner_id/main_category_id
+			state
+			# Aggregate data
+			name count
+			partner_id count
+			</field>
+		</record>
+		
+	</data>
+</openerp>

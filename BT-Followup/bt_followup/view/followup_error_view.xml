@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+
+
+        <!-- Views. -->
+        <record id="followup_errors_tree_view" model="ir.ui.view">
+            <field name="name">followup_errors_tree_view</field>
+            <field name="model">followup.errors</field>
+            <field name="arch" type="xml">
+                <tree string="Follow-up Errors">
+                    <field name="date" />
+                    <field name="invoice_id" />
+                    <field name="error_message" />
+                </tree>
+            </field>
+        </record>
+        <record id="followup_errors_form_view" model="ir.ui.view">
+            <field name="name">followup_errors_form_view</field>
+            <field name="model">followup.errors</field>
+            <field name="arch" type="xml">
+                <form string="Follow-up Errors">
+                    <field name="date" />
+                    <field name="invoice_id" />
+                    <field name="error_message" />
+                </form>
+            </field>
+        </record>
+
+        <!-- Action for the associated menu-item. -->
+        <record id="action_followup_errors" model="ir.actions.act_window">
+            <field name="name">Follow-up Errors</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">followup.errors</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <!-- Action-to-view links. -->
+        <record id="action_followup_errors_tree_view" model="ir.actions.act_window.view">
+            <field name="sequence" eval="0" />
+            <field name="view_mode">tree</field>
+            <field name="view_id" ref="followup_errors_tree_view" />
+            <field name="act_window_id" ref="action_followup_errors" />
+        </record>
+        <record id="action_followup_errors_form_view" model="ir.actions.act_window.view">
+            <field name="sequence" eval="1" />
+            <field name="view_mode">form</field>
+            <field name="view_id" ref="followup_errors_form_view" />
+            <field name="act_window_id" ref="action_followup_errors" />
+        </record>
+
+    </data>
+</openerp>

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+
+        <record id="product_supplierinfo_tree_view_ext" model="ir.ui.view">
+            <field name="name">product.supplierinfo.tree.view.ext</field>
+            <field name="model">product.supplierinfo</field>
+            <field name="inherit_id" ref="product.product_supplierinfo_tree_view" />
+            <field name="arch" type="xml">
+                <field name="sequence" position="attributes">
+                    <!-- The widget was set to be 'handle', which prints
+                         the field as a dot, to invite to drag the sequence,
+                         but hided the value of the sequence, that we want
+                         to make visible.
+                     -->
+                    <attribute name="invisible">False</attribute>
+                    <attribute name="widget">False</attribute>
+                </field>
+            </field>
+        </record>
+
+    </data>
+</openerp>

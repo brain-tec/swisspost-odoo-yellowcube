@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        
+        <record id="account_report_general_ledger_view_extended" model="ir.ui.view">
+            <field name="name">General Ledger Extended</field>
+            <field name="model">account.report.general.ledger</field>
+            <field name="inherit_id" ref="account.account_report_general_ledger_view" />
+            <field name="arch" type="xml">
+            <data>
+			  <field name="display_account" position="replace"/>
+              <field name="sortby" position="replace"/>
+              <!--field name="landscape" position="replace"/-->
+            </data>
+            </field>
+        </record>
+		
+		<record id="account_report_general_ledger_view2" model="ir.ui.view">
+            <field name="name">General Ledger 2</field>
+            <field name="model">account.report.general.ledger</field>
+            <field name="inherit_id" ref="account.account_common_report_view" />
+            <field eval="17" name="priority" />
+            <field name="arch" type="xml">
+            <data>
+			<!--xpath expr="/form/notebook/page/field[@name='filter']" position="replace">
+				<field invisible="1" name="filter" on_change="onchange_filter(filter, fiscalyear_id)" colspan="4"/>
+			</xpath-->
+			<xpath expr="//field[@name='target_move']" position="replace">
+                <field name="target_move" invisible="1"/>
+            </xpath>
+			<!--xpath expr="/form/notebook/page/separator[@string='Periods']" position="replace"/>
+			<field name="period_from" position="replace"/>
+			<field name="period_to" position="replace"/-->
+			<xpath expr="//field[@name='amount_currency']" position="after">
+				<field name="account_id"/>
+			</xpath>
+			<xpath expr="//field[@name='fiscalyear_id']" position="after">
+                   <field name="display_account"/>
+            </xpath>
+            </data>
+			</field>
+        </record>
+		
+		<menuitem
+            icon="STOCK_PRINT"
+            name="Kontoauszug"
+            parent="bt_account.menu_ch_report"
+            action="account.action_account_general_ledger_menu"
+            groups="account.group_account_manager,account.group_account_user"
+            id="menu_general_bt_ledger"
+           />
+    </data>
+</openerp>

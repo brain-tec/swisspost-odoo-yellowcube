@@ -1,0 +1,9 @@
+-
+  !record {model: ir.ui.menu, id: test_ir_ui_menu_01}:
+    name: 'Original name'
+-
+  !python {model: res.lang}: |
+    # Languages are loaded before the rest of the tests
+    for lang in ['en_US', 'de_DE']:
+      if not self.search(cr, uid, [('code', '=', lang)], context=context):
+        self.load_lang(cr, uid, lang)

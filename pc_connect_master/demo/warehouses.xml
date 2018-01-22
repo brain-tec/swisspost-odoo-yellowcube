@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+	<data>
+
+        <record id="warehouse_shop1" model="stock.warehouse">
+            <field name="name">Warehouse Shop 1</field>
+            <field name="lot_input_id" ref="pc_connect_master.loc_input_shop1" />
+            <field name="lot_stock_id" ref="pc_connect_master.loc_stock_shop1" />
+            <field name="lot_output_id" ref="pc_connect_master.loc_output_shop1" />
+        </record>
+
+        <record id="warehouse_shop2" model="stock.warehouse">
+            <field name="name">Warehouse Shop 2</field>
+            <field name="lot_input_id" ref="pc_connect_master.loc_input_shop2" />
+            <field name="lot_stock_id" ref="pc_connect_master.loc_stock_shop2" />
+            <field name="lot_output_id" ref="pc_connect_master.loc_output_shop2" />
+        </record>
+
+    </data>
+</openerp>

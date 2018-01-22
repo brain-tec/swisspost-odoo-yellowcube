@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<ART>
+	<ControlReference>
+		<Type>ART</Type>
+		<Sender>Easyshop</Sender>
+		<Receiver>YELLOWCUBE</Receiver>
+		<Timestamp>20141024181900</Timestamp>
+		<OperatingMode>T</OperatingMode>
+		<Version>1.0</Version>
+	</ControlReference>
+	<ArticleList>
+		<Article>
+			<ChangeFlag>I</ChangeFlag>
+			<DepositorNo>0000041000</DepositorNo>
+			<PlantID>Y019</PlantID>
+			<ArticleNo>S0057-08.5</ArticleNo>
+			<BaseUOM>PCE</BaseUOM>
+			<NetWeight ISO="KGM">0.5</NetWeight>
+			<BatchMngtReq>0</BatchMngtReq>
+			<UnitsOfMeasure>
+				<AlternateUnitISO>PCE</AlternateUnitISO>
+				<AltNumeratorUOM>1</AltNumeratorUOM>
+				<AltDenominatorUOM>1</AltDenominatorUOM>
+				<GrossWeight ISO="KGM">0.5</GrossWeight>
+				<Length ISO="CMT">5</Length>
+				<Width ISO="CMT">32</Width>
+				<Height ISO="CMT">32</Height>
+				<Volume ISO="CMQ">5120</Volume>
+			</UnitsOfMeasure>
+			<ArticleDescriptions>
+				<ArticleDescription ArticleDescriptionLC="de">Jacket - Size 2XL</ArticleDescription>
+			</ArticleDescriptions>
+		</Article>
+		<Article>
+			<ChangeFlag>I</ChangeFlag>
+			<DepositorNo>0000041000</DepositorNo>
+			<PlantID>Y019</PlantID>
+			<ArticleNo>S0058-08.5</ArticleNo>
+			<BaseUOM>PCE</BaseUOM>
+			<NetWeight ISO="KGM">0.5</NetWeight>
+			<BatchMngtReq>0</BatchMngtReq>
+			<UnitsOfMeasure>
+				<AlternateUnitISO>PCE</AlternateUnitISO>
+				<AltNumeratorUOM>1</AltNumeratorUOM>
+				<AltDenominatorUOM>1</AltDenominatorUOM>
+				<GrossWeight ISO="KGM">0.5</GrossWeight>
+				<Length ISO="CMT">5</Length>
+				<Width ISO="CMT">32</Width>
+				<Height ISO="CMT">32</Height>
+				<Volume ISO="CMQ">5120</Volume>
+			</UnitsOfMeasure>
+			<ArticleDescriptions>
+				<ArticleDescription ArticleDescriptionLC="de">Pro Jacket - Size 3XL</ArticleDescription>
+			</ArticleDescriptions>
+		</Article>
+		<Article>
+			<ChangeFlag>I</ChangeFlag>
+			<DepositorNo>0000041000</DepositorNo>
+			<PlantID>Y019</PlantID>
+			<ArticleNo>7640104951193</ArticleNo>
+			<BaseUOM>PCE</BaseUOM>
+			<NetWeight ISO="KGM">0.5</NetWeight>
+			<BatchMngtReq>1</BatchMngtReq>
+			<UnitsOfMeasure>
+				<EAN EANType="HE">7640104951193</EAN>
+				<AlternateUnitISO>PCE</AlternateUnitISO>
+				<AltNumeratorUOM>1</AltNumeratorUOM>
+				<AltDenominatorUOM>1</AltDenominatorUOM>
+				<GrossWeight ISO="KGM">0.5</GrossWeight>
+				<Length ISO="CMT">5</Length>
+				<Width ISO="CMT">32</Width>
+				<Height ISO="CMT">32</Height>
+				<Volume ISO="CMQ">5120</Volume>
+			</UnitsOfMeasure>
+			<ArticleDescriptions>
+				<ArticleDescription ArticleDescriptionLC="de">Pro Jacket - Size L</ArticleDescription>
+			</ArticleDescriptions>
+		</Article>
+	</ArticleList>
+</ART>

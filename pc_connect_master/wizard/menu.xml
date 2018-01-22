@@ -6,5 +6,33 @@
 			id="wz_menu_action_export_documents" parent="document.menu_document_doc"
 			sequence="5" />
 
+		<menuitem name="Chart of Open Invoices" action="action_wiz_invoice_report"
+			id="wz_menu_report_open_invoice" parent="account.menu_finance_charts"
+			sequence="13" />
+
+        <menuitem
+            name="Chart of Open Invoices"
+            id="pc_wz_menu_report_open_invoice"
+            parent="pc_menu_sales_accounting"
+            groups="pc_client_plus"
+            sequence="20"
+            action="action_wiz_invoice_report" />
+
+        <menuitem
+            name="Inventory Analysis"
+            id="pc_wz_menu_report_inventory_analysis"
+            parent="pc_menu_sales_accounting"
+            groups="pc_client_plus"
+            sequence="21"
+            action="action_wiz_inventory_report" />
+
+        <menuitem
+            name="Inventory Additional Analysis"
+            id="pc_wz_menu_report_inventory_additional_analysis"
+            parent="pc_menu_sales_accounting"
+            groups="pc_client_plus"
+            sequence="21"
+            action="action_wiz_inventory_additional_report" />
+
 	</data>
 </openerp>

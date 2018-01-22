@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data noupdate="1">
+
+        <!-- pc_followup depends on bt_followup. -->
+        <record id="bt_followup.update_invoice_followup_level_cron" model="ir.cron">
+            <field name="punchcard_prefix">followup_processing</field>
+        </record>
+
+        <record id="handle_invoice_followup_action_cron" model="ir.cron">
+            <field name="punchcard_prefix">followup_handling</field>
+        </record>
+
+    </data>
+</openerp>

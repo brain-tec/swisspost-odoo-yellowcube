@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+	<data>
+
+        <!-- A tree view to display the important information of follow-ups in just one place. -->    
+        <record id="view_followup_outlook_invoices_tree" model="ir.ui.view">
+            <field name="name">view_followup_outlook_invoices_tree</field>
+            <field name="model">account.invoice</field>
+            <field name="priority">9999</field>
+            <field name="arch" type="xml">
+                <tree string="Follow-ups">
+                    <field name="state" invisible="True" />
+                    <field name="number"/>
+                    <field name="date_invoice" string="Date" />
+                    <field name="date_due" />
+                    <field name="follow_up_date_due_days" />
+                    <field name="partner_id" />
+                    <field name="followup_level_id" />
+                    <field name="followup_level_handled" string="Handled" />
+                    <field name="followup_level_date" string="Handling Date"/>
+                    <field name="invoice_dunning_block" string="Dunning Block (Invoice)"/>
+                    <field name="dunning_block_ending_date" string="Dunning Block Ending Date (Invoice))" />
+                    <field name="partner_invoice_dunning_block" string="Dunning Block (Partner)"/>
+                    <field name="partner_dunning_block_ending_date" string="Dunning Block Ending Date (Partner)" />
+                    <field name="journal_id" />
+                    <field name="epayment" />
+                    <field name="origin" />
+                    <field name="residual" />
+                    <field name="amount_total" />
+                </tree>
+            </field>
+        </record>
+        <record id="action_followup_outlook_invoices" model="ir.actions.act_window">
+            <field name="name">Follow-ups</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">account.invoice</field>
+			<field name="view_type">form</field>
+			<field name="view_mode">tree,form</field>
+            <field name="domain">[('state', '=', 'open'), ('followup_level_id', '!=', False)]</field>
+        </record>
+        <record id="action_followup_outlook_invoices_tree" model="ir.actions.act_window.view">
+            <field name="sequence" eval="0" />
+			<field name="view_mode">tree</field>
+            <field name="view_id" ref="view_followup_outlook_invoices_tree" />
+            <field name="act_window_id" ref="action_followup_outlook_invoices" />
+        </record>
+        <record id="action_followup_outlook_invoices_form" model="ir.actions.act_window.view">
+            <field name="sequence" eval="1" />
+            <field name="view_mode">form</field>
+            <field name="view_id" ref="account.invoice_form" />
+            <field name="act_window_id" ref="action_followup_outlook_invoices" />
+        </record>
+
+		<record
+			id="pc_view_followup_level_tree"
+			model="ir.ui.view">
+			<field name="name">pc_view_followup_level_tree</field>
+			<field name="model">followup.level</field>
+			<field
+				name="inherit_id"
+				ref="bt_followup.view_followup_level_tree" />
+			<field
+				name="arch"
+				type="xml">
+				<field
+					name="manual_action"
+					position="after">
+					<field name="block_new_invoice" />
+				</field>
+			</field>
+		</record>
+
+		<record
+			id="pc_view_followup_level_form"
+			model="ir.ui.view">
+			<field name="name">followup.level.form</field>
+			<field name="model">followup.level</field>
+			<field
+				name="inherit_id"
+				ref="bt_followup.view_followup_level_form" />
+			<field
+				name="arch"
+				type="xml">
+
+                <xpath expr="//group[@string='Send a Letter']/p/group/table" position="replace">
+                	<table class="oe_grey">
+                        <tr>
+                            <td><b>{partner_firstname}</b></td>
+                            <td>Name of the partner</td>
+                        </tr>
+                        <tr>
+                            <td><b>{partner_lastname}</b></td>
+                            <td>Lastname of the partner</td>
+                        </tr>
+                		<tr>
+                            <td><b>{num_days}</b>:</td>
+                            <td>Number of days to pay the follow-up.</td>
+                        </tr>
+                        <tr>
+                            <td><b>{account_number}</b>:</td>
+                            <td>The bank account of the client.</td>
+                        </tr>
+                		<tr>
+                            <td><b>{new_due_date}</b>:</td>
+                            <td>The due date to pay the follow-up.</td>
+                        </tr>
+                        <tr>
+                            <td><b>{yesterday}</b></td>
+                            <td>The date of yesterday.</td>
+                        </tr>
+                    </table>
+                </xpath>
+
+				<label
+					for="send_letter"
+					position="after">
+					<div>
+						<field
+							name="block_new_invoice"
+							class="oe_inline" />
+						<label for="block_new_invoice" />
+					</div>
+				</label>
+			</field>
+		</record>
+
+	</data>
+</openerp>

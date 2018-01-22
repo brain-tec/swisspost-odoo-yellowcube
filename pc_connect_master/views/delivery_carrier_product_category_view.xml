@@ -1,0 +1,17 @@
+<openerp>
+    <data>
+
+        <record id="delivery_carrier_product_category_tree_view" model="ir.ui.view">
+            <field name="name">delivery_carrier_product_category_tree_view</field>
+            <field name="model">delivery.carrier.product.category</field>
+            <field name="arch" type="xml">
+                <tree string="Allowed Delivery Methods" editable="bottom">
+                    <field name="sequence" />
+                    <field name="product_category_id" />
+                    <field name="delivery_carrier_id" />
+                </tree>
+            </field>
+        </record>
+
+    </data>
+</openerp>

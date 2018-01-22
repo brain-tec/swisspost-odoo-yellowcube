@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+	<data>
+
+
+		<record model="ir.actions.act_window" id="action_wiz_inventory_report">
+			<field name="name">Inventory Analysis</field>
+			<field name="src_model">pc_connect_master.inventory_report</field>
+			<field name="res_model">pc_connect_master.wiz_inventory_report</field>
+			<field name="view_mode">form</field>
+			<field name="target">new</field>
+		</record>
+
+		<record model="ir.ui.view" id="wiz_inventory_report_form">
+			<field name="name">pc_connect_master.wiz_inventory_report</field>
+			<field name="model">pc_connect_master.wiz_inventory_report</field>
+			<field name="priority" eval="16" />
+			<field name="arch" type="xml">
+				<form string="Inventory Analysis" col="4" version="7.0">
+					<header>
+						<button type="special" special="cancel" string="Cancel"
+							icon="gtk-cancel" />
+
+						<button type="object" name="action_open" string="Open Report"
+							icon="gtk-apply" />
+					</header>
+
+					<sheet>
+                        <group>
+                            <field name="date" />
+                            <p>- or -</p><br/>
+                            <field name="period" on_change="onchange_period(period)"/>
+                        </group>
+					</sheet>
+
+				</form>
+			</field>
+		</record>
+
+        <record id="inventory_report_summary" model="ir.ui.view">
+            <field name="name">pc_connect_master.inventory_report_summary</field>
+            <field name="model">pc_connect_master.inventory_report</field>
+            <field name="priority">9999</field>
+            <field name="arch" type="xml">
+                <tree string="Inventory Analysis" create="false">
+                    <field name="location_id"/>
+                    <field name="product_id"/>
+                    <field name="default_code" />
+                    <field name="alternative_code" />
+                    <field name="stock_value" sum="Value of Stock"/>
+                    <field name="qty"/>
+                    <field name="price"/>
+                    <field name="date"/>
+                    <field name="date_expected"/>
+                </tree>
+            </field>
+        </record>
+
+
+    <record id="inventory_reprort_search" model="ir.ui.view">
+        <field name="name">rpc_connect_master.inventory_report_search</field>
+        <field name="model">pc_connect_master.inventory_report</field>
+        <field name="arch" type="xml">
+            <search string="Inventory Analysis">
+                <field name="product_id" default_focus="1"/>
+                <field name="location_id" />
+                <filter icon="terp-go-home" name="internal" string="Internal" domain="[('location_usage','=','internal')]"/>
+                <group expand="1" string="Group By...">
+                    <filter name="group_location" string="Location" icon="terp-gtk-jump-to-rtl" context="{'group_by':'location_id'}"/>
+                    <filter name="group_product" string="Product" icon="terp-accessories-archiver" context="{'group_by':'product_id'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+	</data>
+</openerp>

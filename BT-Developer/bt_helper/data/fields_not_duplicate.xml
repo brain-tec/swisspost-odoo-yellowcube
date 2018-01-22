@@ -1,0 +1,25 @@
+<openerp>
+	<data  noupdate="1">
+
+		<record id="not_duplicate_res_partner_email" model="bt_helper.fields">
+			<field name="model_id" ref="base.model_res_users" />
+			<field name="fields_not_duplicated" ref="base.field_res_partner_email" />
+			<field name="set_null" eval="True" />
+			<field name="type">char</field>
+		</record>
+		<record id="not_duplicate_res_partner_alias" model="bt_helper.fields">
+			<field name="model_id" ref="base.model_res_users" />
+			<field name="fields_not_duplicated" ref="mail.field_mail_alias_alias_user_id" />
+			<field name="set_null" eval="True" />
+			<field name="type">many2one</field>
+		</record>
+		
+		<record id="not_duplicate_message_ids" model="bt_helper.fields">
+			<field name="model_id" ref="base.model_res_users" />
+			<field name="fields_not_duplicated" ref="mail.field_res_partner_message_ids" />
+			<field name="set_null" eval="True" />
+			<field name="type">one2many</field>
+		</record>
+		
+	</data>
+</openerp>

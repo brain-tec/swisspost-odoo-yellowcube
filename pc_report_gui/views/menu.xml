@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+ 
+        <!-- START OF REPORTS WITHIN PC SALES. -->
+        <menuitem
+            name="Reports"
+            id="pc_menu_reports"
+            parent="pc_connect_master.pc_menu_sales"
+            groups="pc_connect_master.pc_client"
+            sequence="1000" />
+
+        <menuitem
+            name="My Dashboard"
+            id="pc_menu_reports_dashboard"
+            parent="pc_menu_reports"
+            groups="pc_connect_master.pc_client"
+            action="board.open_board_my_dash_action"
+            sequence = "0" />
+
+        <menuitem
+            name="Accounting"
+            id="pc_menu_reports_accounting"
+            parent="pc_menu_reports"
+            groups="pc_connect_master.pc_client"
+            sequence = "10" />
+        <menuitem
+            name="Customer Invoices by Invoice Date"
+            id="pc_menu_reports_accounting_customer_invoices_by_invoice_date"
+            parent="pc_menu_reports_accounting"
+            groups="pc_connect_master.pc_client" action="action_customer_invoices_by_invoice_date"
+            sequence = "0" />
+        <menuitem
+            name="Customer Refunds by Invoice Date"
+            id="pc_menu_reports_accounting_customer_refunds_by_invoice_date"
+            parent="pc_menu_reports_accounting"
+            groups="pc_connect_master.pc_client" action="action_customer_refunds_by_invoice_date"
+            sequence = "10" />
+        <menuitem
+            name="Customer Invoices by Payment Date"
+            id="pc_menu_reports_accounting_customer_invoices_by_payment_date"
+            parent="pc_menu_reports_accounting"
+            groups="pc_connect_master.pc_client" action="action_customer_invoices_by_payment_date"
+            sequence = "20" />
+        <menuitem
+            name="Customer Refunds by Payment Date"
+            id="pc_menu_reports_accounting_customer_refunds_by_payment_date"
+            parent="pc_menu_reports_accounting"
+            groups="pc_connect_master.pc_client" action="action_customer_refunds_by_payment_date"
+            sequence = "30" />
+        <menuitem
+            name="Invoice Analysis"
+            id="pc_menu_reports_accounting_invoice_analysis"
+            parent="pc_menu_reports_accounting"
+            groups="pc_connect_master.pc_client" action="account.action_account_invoice_report_all"
+            sequence = "40" />
+        <menuitem
+            name="VAT Report"
+            id="pc_menu_reports_accounting_vat_report"
+            parent="pc_menu_reports_accounting"
+            groups="pc_connect_master.pc_client" action="bt_tax.action_cust_account_vat_declaration"
+            sequence = "50" />
+
+        <menuitem
+            name="Warehouse"
+            id="pc_menu_reports_warehouse"
+            parent="pc_menu_reports"
+            groups="pc_connect_master.pc_client"
+            sequence = "20" />
+        <menuitem
+            name="Inventory Analysis"
+            id="pc_menu_reports_warehouse_inventory_analysis"
+            parent="pc_menu_reports_warehouse"
+            groups="pc_connect_master.pc_client" action="stock.action_stock_inventory_report"
+            sequence = "10" />
+        <menuitem
+            name="Serial Number"
+            id="pc_menu_reports_warehouse_serial_number"
+            parent="pc_menu_reports_warehouse"
+            groups="pc_connect_master.pc_client" action="action_serial_number_reporting"
+            sequence = "20" />
+        <menuitem
+            name="Products"
+            id="pc_menu_reports_warehouse_products"
+            parent="pc_menu_reports_warehouse"
+            groups="pc_connect_master.pc_client" action="action_products_reporting"
+            sequence = "30" />
+
+        <menuitem
+            name="Sales"
+            id="pc_menu_reports_sales"
+            parent="pc_menu_reports"
+            groups="pc_connect_master.pc_client"
+            sequence = "30" />
+        <menuitem
+            name="Customers"
+            id="pc_menu_reports_sales_customers"
+            parent="pc_menu_reports_sales"
+            groups="pc_connect_master.pc_client" action="action_customers_reporting"
+            sequence = "10" />
+
+    </data>
+</openerp>

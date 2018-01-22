@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data noupdate="0">
+
+        <!-- Defines the workflow for the product's lifecycle. -->
+        <record id="wkf_product_lifecycle" model="workflow">
+            <field name="name">wkf_product_lifecycle</field>
+            <field name="osv">product.product</field>
+            <field name="on_create">True</field>
+        </record>
+
+        <!-- Creates the activities for the states of the product's lifecycle -->
+        <record id="act_draft" model="workflow.activity">
+            <field name="wkf_id" ref="wkf_product_lifecycle"/>
+            <field name="flow_start">True</field>
+            <field name="name">draft</field>
+            <field name="kind">function</field>
+            <field name="action">action_draft()</field>
+            <field name="split_mode">XOR</field>
+        </record>
+        <record id="act_validated" model="workflow.activity">
+            <field name="wkf_id" ref="wkf_product_lifecycle"/>
+            <field name="name">validated</field>
+            <field name="kind">function</field>
+            <field name="action">action_validated()</field>
+            <field name="split_mode">XOR</field>
+        </record>
+        <record id="act_in_production" model="workflow.activity">
+            <field name="wkf_id" ref="wkf_product_lifecycle"/>
+            <field name="name">in_production</field>
+            <field name="kind">function</field>
+            <field name="action">action_in_production()</field>
+            <field name="split_mode">XOR</field>
+        </record>
+        <record id="act_end_of_life" model="workflow.activity">
+            <field name="wkf_id" ref="wkf_product_lifecycle"/>
+            <field name="name">end_of_life</field>
+            <field name="kind">function</field>
+            <field name="action">action_end_of_life()</field>
+            <field name="split_mode">XOR</field>
+        </record>
+        <record id="act_deactivated" model="workflow.activity">
+            <field name="wkf_id" ref="wkf_product_lifecycle"/>
+            <field name="name">deactivated</field>
+            <field name="kind">function</field>
+            <field name="action">action_deactivated()</field>
+        </record>
+
+        <!-- Creates the transitions between the states of the product's lifecycle. -->
+        <!-- From 'draft' to 'validated'. -->
+        <record id="trans_draft_to_validated_signal" model="workflow.transition">
+            <field name="act_from" ref="act_draft" />
+            <field name="act_to" ref="act_validated" />
+            <field name="signal">signal_draft_to_validated</field>
+            <field name="condition">
+                test_general_validation()
+            </field>
+        </record>
+        <record id="trans_draft_to_validated" model="workflow.transition">
+            <field name="act_from" ref="act_draft" />
+            <field name="act_to" ref="act_validated" />
+            <field name="signal" />
+            <field name="trigger_model">product.product</field>
+            <field name="trigger_expr_id">product_product_ids_draft()</field>
+            <field name="condition">
+                test_transition_draft_to_validated_can_be_done_automatically() and test_general_validation() 
+            </field>
+        </record>
+        
+        <!-- From 'validated' to 'draft'. -->
+        <record id="trans_validated_to_draft_signal" model="workflow.transition">
+            <field name="act_from" ref="act_validated" />
+            <field name="act_to" ref="act_draft" />
+            <field name="signal">signal_validated_to_draft</field>
+            <field name="condition">
+                True
+            </field>
+        </record>
+
+        <!-- From 'validated' to 'in_production'. -->
+        <record id="trans_validated_to_in_production_signal" model="workflow.transition">
+            <field name="act_from" ref="act_validated" />
+            <field name="act_to" ref="act_in_production" />
+            <field name="signal">signal_validated_to_in_production</field>
+            <field name="condition">
+                test_general_validation()
+            </field>
+        </record>
+        <record id="trans_validated_to_in_production" model="workflow.transition">
+            <field name="act_from" ref="act_validated" />
+            <field name="act_to" ref="act_in_production" />
+            <field name="signal" />
+            <field name="trigger_model">product.product</field>
+            <field name="trigger_expr_id">product_product_ids_validated()</field>
+            <field name="condition">
+                test_product_is_active() and test_general_validation()
+            </field>
+        </record>
+
+        <!-- From 'in_production' to 'end_of_life'. -->
+        <record id="trans_in_production_to_end_of_life_signal" model="workflow.transition">
+            <field name="act_from" ref="act_in_production" />
+            <field name="act_to" ref="act_end_of_life" />
+            <field name="signal">signal_in_production_to_end_of_life</field>
+            <field name="condition">
+                test_requirements_end_of_life_and_deactivated() and test_general_validation()
+            </field>
+        </record>
+        <record id="trans_in_production_to_end_of_life" model="workflow.transition">
+            <field name="act_from" ref="act_in_production" />
+            <field name="act_to" ref="act_end_of_life" />
+            <field name="signal" />
+            <field name="trigger_model">product.product</field>
+            <field name="trigger_expr_id">product_product_ids_in_production()</field>
+            <field name="condition">
+                test_product_is_inactive() and test_requirements_end_of_life_and_deactivated() and test_general_validation()
+            </field>
+        </record>
+
+        <!-- From 'end_of_life' to 'in_production'. -->
+        <record id="trans_end_of_life_to_in_production" model="workflow.transition">
+            <field name="act_from" ref="act_end_of_life" />
+            <field name="act_to" ref="act_in_production" />
+            <field name="signal" />
+            <field name="trigger_model">product.product</field>
+            <field name="trigger_expr_id">product_product_ids_end_of_life()</field>
+            <field name="condition">
+                test_product_is_active() and test_general_validation()
+            </field>
+        </record>
+
+        <!-- From 'end_of_life' to 'deactivated'. -->
+        <record id="trans_end_of_life_to_deactivated_signal" model="workflow.transition">
+            <field name="act_from" ref="act_end_of_life" />
+            <field name="act_to" ref="act_deactivated" />
+            <field name="signal">signal_end_of_life_to_deactivated</field>
+            <field name="condition">
+                test_trans_end_of_life_to_deactivated_signal()
+            </field>
+        </record>
+
+        <!-- From 'deactivated' to 'draft'. -->
+        <record id="trans_deactivated_to_draft" model="workflow.transition">
+            <field name="act_from" ref="act_deactivated" />
+            <field name="act_to" ref="act_draft" />
+            <field name="signal" />
+            <field name="trigger_model">product.product</field>
+            <field name="trigger_expr_id">product_product_ids_deactivated()</field>
+            <field name="condition">
+                test_product_is_active()
+            </field>
+        </record>
+
+    </data>
+</openerp>

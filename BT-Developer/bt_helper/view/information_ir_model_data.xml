@@ -1,0 +1,49 @@
+<openerp>
+	<data>
+		<record id="view_ir_model_data_information_form" model="ir.ui.view">
+			<field name="name">ir_model_data_information_form</field>
+			<field name="model">bt_helper.ir_model_data_information</field>
+			<field name="arch" type="xml">
+				<form string="IU Model Data inforamtion" version="7.0">
+					<header>
+						<button name="action_compute" string="Compute" type="object"
+							icon="gtk-apply" />
+					</header>
+					<sheet>
+						<group string="Data Information">
+
+							<group colspan="4">
+								<field name="name" />
+								<field name="ir_model_data_ids" nolabel="1" colspan="4" />
+							</group>
+
+						</group>
+					</sheet>
+				</form>
+			</field>
+		</record>
+
+		<record id="view_ir_model_data_information_tree" model="ir.ui.view">
+			<field name="name">ir_model_data_information_tree</field>
+			<field name="model">bt_helper.ir_model_data_information</field>
+			<field name="arch" type="xml">
+				<tree string="IU Menu Information" version="7.0">
+					<field name="name" />
+				</tree>
+			</field>
+		</record>
+
+		<record id="action_menu_ir_model_data_information" model="ir.actions.act_window">
+			<field name="name">Model Data information</field>
+			<field name="type">ir.actions.act_window</field>
+			<field name="res_model">bt_helper.ir_model_data_information</field>
+			<field name="view_type">form</field>
+			<field name="view_mode">tree,form</field>
+		</record>
+
+		<menuitem name="Ir Model Data Information" action="action_menu_ir_model_data_information"
+			id="menu_menu_ir_model_data_information" parent="menu_helper"
+			sequence="4" />
+
+	</data>
+</openerp>

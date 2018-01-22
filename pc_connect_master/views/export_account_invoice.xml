@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <record
+            id="view_account_invoice_export"
+            model="ir.ui.view">
+            <field name="name">Invoices Export</field>
+            <field name="model">report.file.exporter</field>
+            <field
+                name="arch"
+                type="xml">
+                <form
+                    string="Export invoices"
+                    version="7.0">
+                    <field name="message" readonly="1"/>
+                    <field
+                        name="file"
+                        filename="file_name"
+                        readonly='1' />
+                    <field name="file_ext" attrs="{'invisible': [('ready', '=', True)]}"/>
+                    <br />
+                    <button
+                        name="export_report"
+                        string="Create report file"
+                        type="object"
+                        class="oe_highlight"
+                        attrs="{'invisible': [('ready', '=', True)]}"
+                        context="{'var_format':'csv', 'var_fields':('id','account_id/id','comment','amount_to_pay','partner_bank_id/id','booking_currency_date','company_id/id','currency_id/id','name','date_due','follow_up_date_due','invoice_dunning_block','fiscal_position/id','followup_level_date','followup_level_handled','followup_penalization_invoice_ids/id','followup_ids/id','message_follower_ids/id','period_id/id','date_invoice','invoice_followup_notes','invoice_line/id','reference','journal_id/id','move_name','dunning_block_date','followup_email_ids/id','message_ids/id','partner_id/id','payment_term/id','reference_type','round_taxes','sale_ids/id','workflow_process_id/id','user_id/id','followup_send_email','followup_skip_email_sending','origin','supplier_invoice_number','tax_line/id','transaction_id','check_total') }" />
+
+                    <button
+                        string="Close"
+                        special="cancel" />
+                    <field
+                        name="file_name"
+                        invisible="1" />
+                    <field
+                        name="ready"
+                        invisible="1" />
+                </form>
+            </field>
+        </record>
+
+        <record
+            id="action_view_account_invoice_export"
+            model="ir.actions.act_window">
+            <field name="name">Export Invoices</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">report.file.exporter</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">form</field>
+            <field name="view_id" ref="view_account_invoice_export" />
+            <field name="target">new</field>
+        </record>
+
+        <record model="ir.values" id="account_invoice_export">
+            <field name="model_id" ref="account.model_account_invoice" />
+            <field name="name">Export Invoices</field>
+            <field name="key2">client_action_multi</field>
+            <field name="value" eval="'ir.actions.act_window,' + str(ref('action_view_account_invoice_export'))" />
+            <field name="key">action</field>
+            <field name="model">account.invoice</field>
+        </record>
+    </data>
+</openerp>

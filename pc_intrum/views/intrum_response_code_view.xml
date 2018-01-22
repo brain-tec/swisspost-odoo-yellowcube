@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+
+        <record id="intrum_response_code_tree_view" model="ir.ui.view">
+            <field name="name">intrum_response_code_tree_view</field>
+            <field name="model">intrum.response_code</field>
+            <field name="arch" type="xml">
+                <tree string="Intrum's Response" editable="bottom">
+                    <field name="intrum_response_code" />
+                    <field name="intrum_response_text" />
+                </tree>
+            </field>
+        </record>
+
+        <record id="intrum_response_code_form_view" model="ir.ui.view">
+            <field name="name">intrum_response_code_form_view</field>
+            <field name="model">intrum.response_code</field>
+            <field name="arch" type="xml">
+                <form string="Intrum's Response">
+                    <field name="intrum_response_code" />
+                    <field name="intrum_response_text" />
+                </form>
+            </field>
+        </record>
+
+    </data>
+</openerp>

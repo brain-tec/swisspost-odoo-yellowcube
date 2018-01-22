@@ -1,0 +1,572 @@
+# Translation of OpenERP Server.
+# This file contains the translation of the following modules:
+#	* stage_discount
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: OpenERP Server 7.0-20140527-231223\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2015-01-07 11:40+0000\n"
+"PO-Revision-Date: 2015-01-07 11:40+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: stage_discount
+#: field:stage_discount.discount_line,account_id:0
+msgid "Financial Account"
+msgstr "Konto"
+
+#. module: stage_discount
+#: field:account.invoice,discount_invoice_line_ids:0
+msgid "Account Invoice Line Discount"
+msgstr "Konto"
+
+#. module: stage_discount
+#: field:account.invoice.line,discount_account_id:0
+msgid "Account"
+msgstr "Konto"
+
+#. module: stage_discount
+#: field:stage_discount.discount,active:0
+msgid "Active"
+msgstr "Activ"
+
+#. module: stage_discount
+#: view:stage_discount.discount_line:0
+msgid "Amount Computation"
+msgstr "Betrechnung des Betrags"
+
+#. module: stage_discount
+#: field:stage_discount.discount_line,discount_value:0
+msgid "Amount To Discount"
+msgstr "Betrag des Rabatts/Aufschlags"
+
+#. module: stage_discount
+#: view:stage_discount.discount_line:0
+msgid "Amount To Discount"
+msgstr "Betrag des Rabatts/Aufschlags"
+
+#. module: stage_discount
+#: field:stage_discount.discount_line,account_analytic_id:0
+msgid "Analytic Account"
+msgstr "Kostenstelle"
+
+#. module: stage_discount
+#: code:addons/stage_discount/account_invoice_ext.py:49
+msgid "Applied Discount"
+msgstr "Angewendeter Rabatt/Aufschlag"
+
+#. module: stage_discount
+#: field:account.invoice,amount_discount:0
+msgid "Applied Discount"
+msgstr "Angewendeter Rabatt/Aufschlag"
+
+#. module: stage_discount
+#: field:sale.order,amount_discount:0
+msgid "Applied Discount"
+msgstr "Angewendeter Rabatt/Aufschlag"
+
+#. module: stage_discount
+#: field:stage_discount.discount_line,discount_type:0
+msgid "Computation"
+msgstr "Berechnung"
+
+#. module: stage_discount
+#: view:account.invoice:0
+msgid "Compute Value"
+msgstr "Berechnen"
+
+#. module: stage_discount
+#: view:stage_discount.discount:0
+msgid "Compute Value"
+msgstr "Berechnen"
+
+#. module: stage_discount
+#: field:res.partner,discount_template_id:0
+msgid "Default discount"
+msgstr "Default discount"
+
+#. module: stage_discount
+#: field:account.invoice.line,discount_description:0
+msgid "Description of discount"
+msgstr "Name des Rabatts/Aufschlags"
+
+#. module: stage_discount
+#: field:sale.order.line,discount_description:0
+msgid "Description of discount"
+msgstr "Name des Rabatts/Aufschlags"
+
+#. module: stage_discount
+#: field:account.invoice,test_note:0
+msgid "Description"
+msgstr "Beschreibung"
+
+#. module: stage_discount
+#: field:sale.order,test_note:0
+msgid "Description"
+msgstr "Beschreibung"
+
+#. module: stage_discount
+#: field:stage_discount.discount,description:0
+msgid "Description"
+msgstr "Beschreibung"
+
+#. module: stage_discount
+#: field:stage_discount.discount_line,description:0
+msgid "Description"
+msgstr "Beschreibung"
+
+#. module: stage_discount
+#: code:addons/stage_discount/discount_line.py:0
+msgid "Description..."
+msgstr "Beschreibung..."
+
+#. module: stage_discount
+#: view:account.invoice.line:0
+msgid "Discount Invoice Lines"
+msgstr "Rabatt/Aufschlag Rechnungszeile"
+
+#. module: stage_discount
+#: view:sale.order.line:0
+msgid "Discount Invoice Lines"
+msgstr "Rabatt/Aufschlag Rechnungszeile"
+
+#. module: stage_discount
+#: model:ir.model,name:stage_discount.model_stage_discount_discount_line
+msgid "Discount Line"
+msgstr "Linie für Rabatt/Aufschlag"
+
+#. module: stage_discount
+#: view:account.invoice:0
+msgid "Discount Lines"
+msgstr "Linie für Rabatt/Aufschlag"
+
+#. module: stage_discount
+#: view:sale.order:0
+msgid "Discount Lines"
+msgstr "Linie für Rabatt/Aufschlag"
+
+#. module: stage_discount
+#: view:account.invoice:0
+msgid "Discount Payments"
+msgstr "Zahlungen für Rabatt/Aufschlag"
+
+#. module: stage_discount
+#: view:sale.order:0
+msgid "Discount Payments"
+msgstr "Zahlungen für Rabatt/Aufschlag"
+
+#. module: stage_discount
+#: view:stage_discount.discount:0
+msgid "Discount Term"
+msgstr "Rabatt/Aufschlag"
+
+#. module: stage_discount
+#: view:stage_discount.discount_line:0
+msgid "Discount Term"
+msgstr "Rabatt/Aufschlag"
+
+#. module: stage_discount
+#: model:ir.actions.act_window,name:stage_discount.action_discount_form
+msgid "Discount Terms"
+msgstr "Rabatt/Aufschlag"
+
+#. module: stage_discount
+#: model:ir.ui.menu,name:stage_discount.menu_action_discount_form
+msgid "Discount Terms"
+msgstr "Rabatt/Aufschlag"
+
+#. module: stage_discount
+#: view:account.invoice.line:0
+msgid "Discount Value"
+msgstr "Rabatt/Aufschlag"
+
+#. module: stage_discount
+#: view:sale.order.line:0
+msgid "Discount Value"
+msgstr "Rabatt/Aufschlag"
+
+#. module: stage_discount
+#: view:account.invoice:0
+msgid "Discount field (only for testing purposes)..."
+msgstr "Nur für tests: Rabattfeld"
+
+#. module: stage_discount
+#: view:stage_discount.discount:0
+msgid "Discount field (only for testing purposes)..."
+msgstr "Nur für tests: Rabattfeld"
+
+#. module: stage_discount
+#: field:stage_discount.discount,discount_line_ids:0
+msgid "Discount lines"
+msgstr "Linie für Rabatt/Aufschlag"
+
+#. module: stage_discount
+#: view:stage_discount.discount:0
+msgid "Discount lines"
+msgstr "Linie für Rabatt/Aufschlag"
+
+#. module: stage_discount
+#: view:stage_discount.discount:0
+msgid "Discount term explanation for the customer..."
+msgstr "Bezeichnung auf dem Ausdruck"
+
+#. module: stage_discount
+#: view:stage_discount.discount_line:0
+msgid "Discount term"
+msgstr "Bezeichnung"
+
+#. module: stage_discount
+#: field:account.invoice.line,discount_amount:0
+msgid "Discount value"
+msgstr "Rabatt/Aufschlag"
+
+#. module: stage_discount
+#: field:sale.order.line,discount_amount:0
+msgid "Discount value"
+msgstr "Rabatt/Aufschlag"
+
+#. module: stage_discount
+#: field:account.invoice,discount_line_ids:0
+msgid "Discount"
+msgstr "Rabatt/Aufschlag"
+
+#. module: stage_discount
+#: field:account.invoice.line,is_discount:0
+msgid "Discount"
+msgstr "Rabatt/Aufschlag"
+
+#. module: stage_discount
+#: field:sale.order,discount_line_ids:0
+msgid "Discount"
+msgstr "Rabatt/Aufschlag"
+
+#. module: stage_discount
+#: field:sale.order.line,is_discount:0
+msgid "Discount"
+msgstr "Rabatt/Aufschlag"
+
+#. module: stage_discount
+#: field:stage_discount.discount,name:0
+msgid "Discount"
+msgstr "Rabatt/Aufschlag"
+
+#. module: stage_discount
+#: field:stage_discount.discount_line,discount_id:0
+msgid "Discount"
+msgstr "Rabatt/Aufschlag"
+
+#. module: stage_discount
+#: model:ir.model,name:stage_discount.model_stage_discount_discount
+msgid "Discount"
+msgstr "Rabatt/Aufschlag"
+
+#. module: stage_discount
+#: model:ir.ui.menu,name:stage_discount.menu_discount
+msgid "Discount"
+msgstr "Rabatt/Aufschlag"
+
+#. module: stage_discount
+#: selection:stage_discount.discount_line,discount_type:0
+msgid "Fixed Amount"
+msgstr "Absoluter Betrag"
+
+#. module: stage_discount
+#: selection:stage_discount.discount_line,discount_type:0
+msgid "Product"
+msgstr "Produkt"
+
+#. module: stage_discount
+#: help:stage_discount.discount_line,discount_value:0
+msgid "For percent enter a ratio between 0-100."
+msgstr "Für prozentualle Werte geben Sie einen Wert zwischen 0 und 100 ein."
+
+#. module: stage_discount
+#: help:stage_discount.discount,active:0
+msgid "If the active field is set to False, it will allow you to hide the discount without removing it."
+msgstr "Bei aktivem Feld, wird das Feld nicht gelöscht, aber nicht mehr angezeigt."
+
+#. module: stage_discount
+#: code:addons/stage_discount/discount.py:0
+msgid "Initial"
+msgstr "Total"
+
+#. module: stage_discount
+#: model:ir.model,name:stage_discount.model_account_invoice_line
+msgid "Invoice Line"
+msgstr "Rechnungszeile"
+
+#. module: stage_discount
+#: field:stage_discount.discount_line,invoice_id:0
+msgid "Invoice"
+msgstr "Rechnung"
+
+#. module: stage_discount
+#: model:ir.model,name:stage_discount.model_account_invoice
+msgid "Invoice"
+msgstr "Rechnung"
+
+#. module: stage_discount
+#: field:account.invoice.line,is_subtotal:0
+msgid "Is  subtotal"
+msgstr "Ist Subtotal"
+
+#. module: stage_discount
+#: field:sale.order.line,is_subtotal:0
+msgid "Is  subtotal"
+msgstr "Ist Subtotal"
+
+#. module: stage_discount
+#: field:account.invoice.line,is_fixed_amount:0
+msgid "Is fixed amount"
+msgstr "Absoluter Betrag"
+
+#. module: stage_discount
+#: field:sale.order.line,is_fixed_amount:0
+msgid "Is fixed amount"
+msgstr "Absoluter Betrag"
+
+#. module: stage_discount
+#: model:ir.model,name:stage_discount.model_res_partner
+msgid "Partner"
+msgstr "Partner"
+
+#. module: stage_discount
+#: selection:stage_discount.discount_line,discount_type:0
+msgid "Percent"
+msgstr "Prozent"
+
+#. module: stage_discount
+#: constraint:stage_discount.discount_line:0
+msgid "Percentages for Discount Term Line must be between -100 and 100, Example: 2.5 for 2.5%."
+msgstr "Die prozentualen Werte müssen zwischen -100 und 100 sein. z.B. 2.5 für 2.5%"
+
+#. module: stage_discount
+#: code:addons/stage_discount/account_invoice_ext.py:221
+msgid "Please create at least one account which type is not view."
+msgstr "Bitte legen Sie mindestens ein Konto an, dessen Typ nicht Ansicht ist."
+
+#. module: stage_discount
+#: code:addons/stage_discount/account_invoice_ext.py:176
+msgid "Please update taxes before continuing."
+msgstr "Bitte aktualisieren Sie die Steuern, bevor Sie die Rechnung genehmigen."
+
+#. module: stage_discount
+#: view:account.invoice:0
+msgid "Roudning"
+msgstr "Rundung"
+
+#. module: stage_discount
+#: view:sale.order:0
+msgid "Roudning"
+msgstr "Rundung"
+
+#. module: stage_discount
+#: field:stage_discount.discount_line,is_rounded:0
+msgid "Round (this line)"
+msgstr "Rundung der Linie"
+
+#. module: stage_discount
+#: field:account.invoice,is_rounded:0
+msgid "Round"
+msgstr "Rundung"
+
+#. module: stage_discount
+#: field:sale.order,is_rounded:0
+msgid "Round"
+msgstr "Rundung"
+
+#. module: stage_discount
+#: field:stage_discount.discount,is_rounded:0
+msgid "Round"
+msgstr "Rundung"
+
+#. module: stage_discount
+#: field:sale.order,discount_order_line_ids:0
+msgid "Sale Order Line Discount"
+msgstr "Sale Order Line Discount"
+
+#. module: stage_discount
+#: field:stage_discount.discount_line,order_id:0
+msgid "Sale order"
+msgstr "Sale order"
+
+#. module: stage_discount
+#: model:ir.model,name:stage_discount.model_sale_order_line
+msgid "Sales Order Line"
+msgstr "Auftragsposition"
+
+#. module: stage_discount
+#: model:ir.model,name:stage_discount.model_sale_order
+msgid "Sales Order"
+msgstr "Verkaufsauftrag"
+
+#. module: stage_discount
+#: help:stage_discount.discount_line,discount_type:0
+msgid "Select here the kind of valuation related to this discount line. "
+msgstr "Wählen Sie hier die Auswertung des Rabatts/Aufschlag"
+
+#. module: stage_discount
+#: field:stage_discount.discount,sequence:0
+msgid "Sequence"
+msgstr "Reihenfolge"
+
+#. module: stage_discount
+#: field:stage_discount.discount_line,sequence:0
+msgid "Sequence"
+msgstr "Reihenfolge"
+
+#. module: stage_discount
+#: selection:stage_discount.discount_line,discount_type:0
+msgid "Subtotal"
+msgstr "Zwischensumme"
+
+#. module: stage_discount
+#: view:stage_discount.discount_line:0
+msgid "Tax:"
+msgstr "MwSt"
+
+#. module: stage_discount
+#: field:stage_discount.discount,test_tax_ids:0
+msgid "Taxes for testing"
+msgstr "MwSt für Test"
+
+#. module: stage_discount
+#: field:stage_discount.discount_line,tax_ids:0
+msgid "Taxes"
+msgstr "MwSt"
+
+#. module: stage_discount
+#: field:account.invoice,discount_template_id:0
+msgid "Template for discounts"
+msgstr "Vorlage für Rabatt/Aufschlag"
+
+#. module: stage_discount
+#: field:sale.order,discount_template_id:0
+msgid "Template for discounts"
+msgstr "Vorlage für Rabatt/Aufschlag"
+
+#. module: stage_discount
+#: field:stage_discount.discount,test_note:0
+msgid "Test note"
+msgstr "Testfeld"
+
+#. module: stage_discount
+#: view:stage_discount.discount:0
+msgid "Test these values"
+msgstr "Teste diese Werte"
+
+#. module: stage_discount
+#: view:account.invoice:0
+msgid "Testing"
+msgstr "Testen"
+
+#. module: stage_discount
+#: view:stage_discount.discount:0
+msgid "Testing:"
+msgstr "Testen"
+
+#. module: stage_discount
+#: help:res.partner,discount_template_id:0
+msgid "To define a default discount in an invoice using this partner."
+msgstr "To define a default discount in an invoice using this partner."
+
+#. module: stage_discount
+#: help:stage_discount.discount_line,is_rounded:0
+msgid "To round the amount calculated with this discount."
+msgstr "Betrag runden?"
+
+#. module: stage_discount
+#: help:account.invoice,is_rounded:0
+msgid "To round the final amount set this flag to True"
+msgstr "Endbetrag runden"
+
+#. module: stage_discount
+#: help:sale.order,is_rounded:0
+msgid "To round the final amount set this flag to True"
+msgstr "Endbetrag runden"
+
+#. module: stage_discount
+#: help:stage_discount.discount,is_rounded:0
+msgid "To round the final amount set this flag to True"
+msgstr "Endbetrag runden"
+
+#. module: stage_discount
+#: help:res.partner,use_parent_discount:0
+msgid "To use parent configuration."
+msgstr "To use parent configuration."
+
+#. module: stage_discount
+#: code:addons/stage_discount/account_invoice_ext.py:220
+msgid "Usage Error"
+msgstr "Benutzerfehler"
+
+#. module: stage_discount
+#: field:res.partner,use_parent_discount:0
+msgid "Use company discount"
+msgstr "Use company discount"
+
+#. module: stage_discount
+#: view:account.invoice:0
+msgid "Use this template"
+msgstr ""
+
+#. module: stage_discount
+#: view:sale.order:0
+msgid "Use this template"
+msgstr "Use this template"
+
+#. module: stage_discount
+#: help:account.invoice,discount_template_id:0
+msgid "Use to filter the discount."
+msgstr "Rabatt/Aufschlag filtern?"
+
+#. module: stage_discount
+#: help:sale.order,discount_template_id:0
+msgid "Use to filter the discount."
+msgstr "Rabatt/Aufschlag filtern?"
+
+#. module: stage_discount
+#: help:stage_discount.discount,test_note:0
+msgid "Value used for testing purposes"
+msgstr "Wert für tests"
+
+#. module: stage_discount
+#: help:stage_discount.discount,test_tax_ids:0
+msgid "Value used for testing purposes"
+msgstr "Wert für tests"
+
+#. module: stage_discount
+#: help:stage_discount.discount,test_value:0
+msgid "Value used for testing purposes"
+msgstr "Wert für tests"
+
+#. module: stage_discount
+#: field:stage_discount.discount,test_value:0
+msgid "Value"
+msgstr "Wert"
+
+#. module: stage_discount
+#: view:sale.order:0
+msgid "[('is_discount', '=', False)]"
+msgstr "[('is_discount', '=', False)]"
+
+#. module: stage_discount
+#: view:account.invoice:0
+msgid "green:is_discount == True"
+msgstr ""
+
+#. module: stage_discount
+#: view:sale.order:0
+msgid "green:is_discount == True"
+msgstr "green:is_discount == True"
+
+#. module: stage_discount
+#: view:account.invoice:0
+msgid "{'custom_search_line_discount':False}"
+msgstr "{'custom_search_line_discount':False}"
+

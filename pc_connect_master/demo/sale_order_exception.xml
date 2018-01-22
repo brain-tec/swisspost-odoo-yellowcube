@@ -1,0 +1,16 @@
+<openerp>
+	<data noupdate='1'>
+
+        <record id="excep_order_delivery_method" model="sale.exception">
+            <field name="name">Sales order does not have a delivery method</field>
+            <field name="description">The sales order does not have a delivery method.</field>
+            <field name="sequence">20</field>
+            <field name="model">sale.order</field>
+            <field name="code">if not order.carrier_id:
+                failed = True
+            </field>
+            <field name="active" eval="True" />
+        </record>
+
+	</data>
+</openerp>

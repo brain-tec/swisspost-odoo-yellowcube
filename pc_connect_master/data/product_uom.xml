@@ -4,6 +4,9 @@
 		<record id="product.product_uom_unit" model="product.uom">
 			<field name="uom_iso">PCE</field>
 		</record>
+		<record id="product.product_uom_dozen" model="product.uom">
+            <field name="uom_iso">DZ</field>
+        </record>
         <record id="product.product_uom_km" model="product.uom">
             <field name="uom_iso">KMT</field>
         </record>
@@ -15,6 +18,23 @@
         </record>
         <record id="product.product_uom_kgm" model="product.uom">
             <field name="uom_iso">KG</field>
+        </record>
+
+        <record id="product.product_uom_gram" model="product.uom">
+            <field name="uom_iso">GR</field>
+            <!-- <field name="name">g</field> -->
+        </record>
+        <record id="product.product_uom_ton" model="product.uom">
+            <field name="uom_iso">MP</field> <!-- Metric ton -->
+            <!-- <field name="name">t</field> -->
+        </record>
+        <record id="product.product_uom_meter" model="product.uom">
+            <field name="uom_iso">MR</field>
+            <!-- <field name="name">m</field> -->
+        </record>
+        <record id="product.product_uom_cm" model="product.uom">
+            <field name="uom_iso">CM</field>
+            <!-- <field name="name">cm</field> -->
         </record>
 
 		<record id="uom_categ_real_time" model="product.uom.categ">

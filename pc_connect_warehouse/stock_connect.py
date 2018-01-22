@@ -1,7 +1,7 @@
 # b-*- encoding: utf-8 -*-
 ##############################################################################
 #
-#    Copyright (c) 2015 brain-tec AG (http://www.brain-tec.ch)
+#    Copyright (c) 2015 brain-tec AG (http://www.braintec-group.com)
 #    All Right Reserved
 #
 #    This program is free software: you can redistribute it and/or modify
@@ -18,31 +18,31 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 ##############################################################################
-
 from openerp.osv import orm, osv, fields
 from openerp.tools.translate import _
-from openerp.addons.pc_connect_master.utilities.misc import format_exception
+from openerp.addons.pc_connect_master.utilities.others import format_exception
 from openerp import SUPERUSER_ID
-from stock_connect_file import FILE_STATE_READY, FILE_STATE_DRAFT, FILE_STATE_DONE
+from stock_connect_file import FILE_STATE_READY, FILE_STATE_DRAFT, FILE_STATE_DONE, FILE_STATE_CANCEL
 import os
 from tempfile import mkstemp
 import re
 from threading import Lock
 import shutil
+from sys import argv
 import logging
 logger = logging.getLogger(__name__)
+logger.setLevel(logging.INFO)
 
 
 mutex = Lock()
 
 _STOCK_CONNECT_TYPE = [
-    ('denner', 'Denner'),
     ('yellowcube', 'YellowCube'),
     ('yellowcubesoap', 'YellowCube over SOAP'),
     ('external_email', 'External Email'),
 ]
 
-_NAME_PREFIX = 'SwissPost YellowCube Connector - WAREHOUSE - {0}'
+_NAME_PREFIX = 'PCAP - WAREHOUSE - {0}'
 
 _ISSUE_NO_CONNECTION = _('There was a problem with the connection')
 
@@ -50,6 +50,14 @@ _ISSUE_NO_CONNECTION = _('There was a problem with the connection')
 class stock_connect(osv.Model):
     _name = 'stock.connect'
     _inherit = 'mail.thread'
+
+    def files_needing_ack(self, cr, uid, ids, context=None):
+        """ Returns a set of file-types needing an acknowledgement (i.e. ACK)
+            from the server. All the models inheriting from stock.connect
+            must check and call super if they extend this method.
+        """
+        # No files need an ACK in the default stock.connect.
+        return set([])
 
     def copy(self, cr, uid, id_, default=None, context=None):
         if default is None:
@@ -165,7 +173,7 @@ class stock_connect(osv.Model):
     def find_schedulers(self, cr, uid, ids, context=None):
         if context is None:
             context = {}
-        if isinstance(ids, list):
+        if type(ids) is list:
             ids = ids[0]
         cron_obj = self.pool.get('ir.cron')
         ret = {}
@@ -182,7 +190,7 @@ class stock_connect(osv.Model):
     def process_file_tree(self, cr, uid, ids, context=None, file_id=None, function=None):
         if context is None:
             context = {}
-        if not isinstance(ids, list):
+        if type(ids) is not list:
             ids = [ids]
 
         file_obj = self.pool.get('stock.connect.file')
@@ -193,6 +201,7 @@ class stock_connect(osv.Model):
             for _id in ids:
                 file_ids = file_obj.search(cr, uid, [('stock_connect_id', '=', _id),
                                                      ('parent_file_id', '=', False),
+                                                     ('state', 'not in', (FILE_STATE_DONE, FILE_STATE_CANCEL)),
                                                      ], context=context)
                 for file_id in file_ids:
                     try:
@@ -213,13 +222,13 @@ class stock_connect(osv.Model):
                 elif file_record.state == FILE_STATE_READY:
                     # If there is no error, and the file is ready, we process if
                     for subfile in file_record.child_file_ids:
-                        if not self.process_file_tree(cr, uid, ids, context, file_id=subfile.id, function=function):
+                        if not self.process_file_tree(cr, uid, ids, context=context, file_id=subfile.id, function=function):
                             # Errors are sent back
                             return False
                     for subatt in file_record.attachments:
-                        if not self.process_file(cr, uid, ids, context, file_id=file_id, att_id=subatt.id, function=function):
+                        if not self.process_file(cr, uid, ids, context=context, file_id=file_id, att_id=subatt.id, function=function):
                             return False
-                    if not self.process_file(cr, uid, ids, context, file_id, function=function):
+                    if not self.process_file(cr, uid, ids, context=context, file_id=file_id, function=function):
                         return False
                 else:
                     return True
@@ -301,7 +310,7 @@ class stock_connect(osv.Model):
             the temporal folder. Then the files are moved into the archiving folder taking into
             account the filename-template set for each client.
         '''
-        if not isinstance(ids, list):
+        if type(ids) is not list:
             ids = [ids]
         if context is None:
             context = {}
@@ -357,7 +366,7 @@ class stock_connect(osv.Model):
                     list_result = con.list(connection.remote_input_dir)
                     for path in list_result:
                         _name = path.split('/')[-1]
-                        if _name:
+                        if _name and (pattern.match(_name) or connection.promiscuous_file_import):
                             # It downloads all the files it to a local temporal-folder which is used
                             # We do this so that we can empty the remote folder in a safe way,
                             # by keeping a copy of the processed files.
@@ -416,7 +425,7 @@ class stock_connect(osv.Model):
         return True
 
     def connection_process_files(self, cr, uid, ids, context=None):
-        if not isinstance(ids, list):
+        if type(ids) is not list:
             ids = [ids]
         if context is None:
             context = {}
@@ -441,7 +450,7 @@ class stock_connect(osv.Model):
         return True
 
     def connection_process_events(self, cr, uid, ids, context=None):
-        if not isinstance(ids, list):
+        if type(ids) is not list:
             ids = [ids]
         if context is None:
             context = {}
@@ -464,7 +473,7 @@ class stock_connect(osv.Model):
         return True
 
     def connection_send_files(self, cr, uid, ids, context=None):
-        if not isinstance(ids, list):
+        if type(ids) is not list:
             ids = [ids]
         if context is None:
             context = {}
@@ -534,8 +543,18 @@ class stock_connect(osv.Model):
         for con in self.browse(cr, uid, ids):
             if con.type:
                 if not self.pool.get('stock.connect.{0}'.format(con.type)):
-                    return False
+                    if '--test-enable' in argv:
+                        logger.error('This check cannot be done on test,'
+                                     ' because of how modules are loaded')
+                        return True
+                    else:
+                        return False
         return True
+
+    def get_event_codes_to_ignore(self, cr, uid, ids, context=None):
+        """ Returns the list of event_code to ignore AND mark as ignored.
+        """
+        return []
 
     _columns = {
         'name': fields.char("Name", length="32", required=True),
@@ -552,6 +571,7 @@ class stock_connect(osv.Model):
         'limit_of_connections': fields.integer('Number of connections made on sync', required=False),
         'log_about_already_existing_files': fields.boolean('Log about already existing files?',
                                                            help='If activated, a line in the log will appear every time it sees a file that it already has.'),
+        'promiscuous_file_import': fields.boolean('Promiscuous File Import (read and remove ALL from remote)'),
     }
 
     _defaults = {
@@ -562,6 +582,7 @@ class stock_connect(osv.Model):
         'remote_file_template': '[a-zA-Z0-9].*',
         'limit_of_connections': 0,
         'log_about_already_existing_files': False,
+        'promiscuous_file_import': True,
     }
 
     _sql_constraints = [

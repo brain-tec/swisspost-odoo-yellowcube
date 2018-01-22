@@ -1,7 +1,7 @@
 # b-*- encoding: utf-8 -*-
 ##############################################################################
 #
-#    Copyright (c) 2015 brain-tec AG (http://www.brain-tec.ch)
+#    Copyright (c) 2015 brain-tec AG (http://www.braintec-group.com)
 #    All Right Reserved
 #
 #    This program is free software: you can redistribute it and/or modify
@@ -21,8 +21,6 @@
 from openerp.osv import osv, fields
 from openerp.tools.translate import _
 from xml_abstract_factory import deprecated
-import logging
-logger = logging.getLogger(__name__)
 
 
 class stock_warehouse_ext(osv.osv):
@@ -42,8 +40,8 @@ class stock_warehouse_ext(osv.osv):
             issue_obj = self.pool.get('project.issue')
             for product_id in missing_ids:
                 issue_ids = issue_obj.find_resource_issues(cr, uid, 'product.product', product_id,
-                                                           tags=['missing-bar', 'lot', 'warehouse-error'],
-                                                           create=True, reopen=True, context=context)
+                                                            tags=['missing-bar', 'lot', 'warehouse-error'],
+                                                            create=True, reopen=True, context=context)
                 for issue in issue_obj.browse(cr, uid, issue_ids, context=context):
                     issue.message_post(_('Out-of-sync with BAR file'))
 

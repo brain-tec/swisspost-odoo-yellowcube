@@ -1,0 +1,406 @@
+<?xml version="1.0"?>
+<document filename="ER.pdf">
+  <template pageSize="(595.0,842.0)" title="ER" author="Martin Simon" allowSplitting="20">
+    <pageTemplate id="first">
+      <frame id="first" x1="42.0" y1="62.0" width="511" height="728"/>
+			<pageGraphics>
+				<!--logo-->
+				<!--<fill color="darkblue"/>-->
+				<!--<stroke color="darkblue"/>-->
+
+				<!--TITLE COMPANY-->
+				<!-- <drawString x="4.6cm" y="28.7cm">[[ company.partner_id.name ]]</drawString> -->
+
+				<setFont name="Helvetica-Bold" size="9"/>
+
+
+				<!--COL 1-->
+				<drawString x="1.0cm" y="28.1cm">[[ company.name ]]</drawString>
+				<drawRightString x="20cm" y="28.1cm">Income statement</drawRightString>
+				
+				
+				<setFont name="Helvetica" size="9"/>
+				<drawString x="1.0cm" y="1cm"> [[ formatLang(time.strftime("%Y-%m-%d %H:%M:%S", time.localtime()),date_time = True) ]]</drawString>
+				<drawString x="19.0cm" y="1cm">Page <pageNumber/></drawString>
+				<!--<drawRightString x="19.8cm" y="28cm">[[ company.rml_header1 ]]</drawRightString>-->
+				
+
+			    <lineMode width="0.7"/>
+				<lines>1cm 27.7cm 20cm 27.7cm</lines>
+				<setFont name="Helvetica" size="8"/>
+			</pageGraphics>
+      
+    </pageTemplate>
+  </template>
+  <stylesheet>
+    <blockTableStyle id="Standard_Outline">
+      <blockAlignment value="LEFT"/>
+      <blockValign value="TOP"/>
+    </blockTableStyle>
+    <blockTableStyle id="Table1">
+      <blockAlignment value="LEFT"/>
+      <blockValign value="TOP"/>
+      <blockBackground colorName="#e6e6e6" start="0,0" stop="0,0"/>
+      <blockBackground colorName="#e6e6e6" start="1,0" stop="1,0"/>
+      <blockBackground colorName="#e6e6e6" start="2,0" stop="2,0"/>
+      <blockBackground colorName="#e6e6e6" start="0,1" stop="0,1"/>
+      <blockBackground colorName="#e6e6e6" start="1,1" stop="1,1"/>
+      <blockBackground colorName="#e6e6e6" start="2,1" stop="2,1"/>
+    </blockTableStyle>
+    <blockTableStyle id="Table3">
+      <blockValign value="TOP"/>
+      <blockAlignment value="RIGHT"/>
+      <!--<lineStyle kind="LINEBELOW" colorName="#000000" start="0,0" stop="-1,0"/>
+	  <lineStyle kind="LINEBELOW" colorName="#e6e6e6" start="0,1" stop="-1,-1"/>-->
+    </blockTableStyle>
+    <blockTableStyle id="Table2">
+      <lineStyle kind="LINEBELOW" colorName="#000000" start="0,0" stop="0,0"/>
+      <lineStyle kind="LINEBELOW" colorName="#000000" start="1,0" stop="1,0"/>
+      <lineStyle kind="LINEBELOW" colorName="#000000" start="2,0" stop="2,0"/>
+      <lineStyle kind="LINEBELOW" colorName="#000000" start="3,0" stop="3,0"/>
+      
+      <lineStyle kind="LINEBELOW" colorName="#e6e6e6" start="0,1" stop="0,-1"/>
+      <lineStyle kind="LINEBELOW" colorName="#e6e6e6" start="1,1" stop="1,-1"/>
+      <lineStyle kind="LINEBELOW" colorName="#e6e6e6" start="2,1" stop="2,-1"/>
+      <lineStyle kind="LINEBELOW" colorName="#e6e6e6" start="3,1" stop="3,-1"/>
+      
+     
+      <blockValign value="TOP"/>
+      <blockAlignment value="RIGHT" start="2,1" stop="-1,-1"/>
+    </blockTableStyle>
+    <blockTableStyle id="Table2New">
+      <lineStyle kind="LINEBELOW" colorName="#000000" start="0,0" stop="0,0"/>
+      <lineStyle kind="LINEBELOW" colorName="#000000" start="1,0" stop="1,0"/>
+      <lineStyle kind="LINEBELOW" colorName="#000000" start="2,0" stop="2,0"/>
+      <lineStyle kind="LINEBELOW" colorName="#000000" start="3,0" stop="3,0"/>
+      <lineStyle kind="LINEBELOW" colorName="#000000" start="4,0" stop="4,0"/>
+      <lineStyle kind="LINEBELOW" colorName="#000000" start="5,0" stop="5,0"/>
+      <lineStyle kind="LINEBELOW" colorName="#000000" start="6,0" stop="6,0"/>      
+      <blockValign value="TOP"/>
+      <blockAlignment value="RIGHT" start="2,1" stop="-1,-1"/>
+    </blockTableStyle>
+    <blockTableStyle id="Tableau1">
+      <blockAlignment value="LEFT"/>
+      <blockValign value="TOP"/>
+    </blockTableStyle>
+    <blockTableStyle id="Tableau2">
+      <blockAlignment value="LEFT"/>
+      <blockValign value="TOP"/>
+    </blockTableStyle>
+    <blockTableStyle id="Table_Print_Current_datetime">
+      <blockAlignment value="LEFT"/>
+      <blockValign value="TOP"/>
+    </blockTableStyle>
+    <blockTableStyle id="TableValues">
+      <blockBackground colorName="#C0C0C0" start="0,7" stop="2,7"/>
+      <blockBackground colorName="#C0C0C0" start="0,13" stop="2,13"/>
+      <blockBackground colorName="#C0C0C0" start="0,24" stop="2,24"/>
+      <blockBackground colorName="#C0C0C0" start="0,29" stop="2,29"/>
+      <blockBackground colorName="#C0C0C0" start="0,32" stop="2,32"/>
+      <blockBackground colorName="#C0C0C0" start="0,35" stop="2,35"/>
+      <blockBackground colorName="#C0C0C0" start="0,40" stop="2,40"/>
+      <blockAlignment value="LEFT"/>
+      <blockValign value="TOP"/>
+    </blockTableStyle>
+    <blockTableStyle id="Table4">
+      <blockAlignment value="LEFT"/>
+      <blockValign value="TOP"/>
+      <lineStyle kind="LINEBEFORE" colorName="#FFFFFF" start="0,0" stop="0,-1"/>
+      <lineStyle kind="LINEABOVE" colorName="#FFFFFF" start="0,0" stop="0,0"/>
+      <lineStyle kind="LINEBELOW" colorName="#FFFFFF" start="0,-1" stop="0,-1"/>
+      <lineStyle kind="LINEBEFORE" colorName="#FFFFFF" start="1,0" stop="1,-1"/>
+      <lineStyle kind="LINEABOVE" colorName="#FFFFFF" start="1,0" stop="1,0"/>
+      <lineStyle kind="LINEBELOW" colorName="#FFFFFF" start="1,-1" stop="1,-1"/>
+      <lineStyle kind="LINEBEFORE" colorName="#FFFFFF" start="2,0" stop="2,-1"/>
+      <lineStyle kind="LINEABOVE" colorName="#FFFFFF" start="2,0" stop="2,0"/>
+      <lineStyle kind="LINEBELOW" colorName="#FFFFFF" start="2,-1" stop="2,-1"/>
+      <lineStyle kind="LINEBEFORE" colorName="#FFFFFF" start="3,0" stop="3,-1"/>
+      <lineStyle kind="LINEAFTER" colorName="#FFFFFF" start="3,0" stop="3,-1"/>
+      <lineStyle kind="LINEABOVE" colorName="#FFFFFF" start="3,0" stop="3,0"/>
+      <lineStyle kind="LINEBELOW" colorName="#FFFFFF" start="3,-1" stop="3,-1"/>
+    </blockTableStyle>
+    <initialize>
+      <paraStyle name="all" alignment="justify"/>
+    </initialize>
+     <paraStyle name="P1" fontName="Helvetica-Bold" alignment="CENTER" fontSize="14.5" leftIndent="-5.0"/>
+    <paraStyle name="P2" fontName="Helvetica" fontSize="10.0" leading="13" alignment="RIGHT" spaceBefore="0.0" spaceAfter="6.0"/>
+    <paraStyle name="P3" fontName="Helvetica" fontSize="8.0" leading="10" spaceBefore="0.0" spaceAfter="6.0"/>
+    <paraStyle name="P4" fontName="Helvetica" fontSize="8.0" leading="10" alignment="LEFT" spaceBefore="0.0" spaceAfter="6.0"/>
+    <paraStyle name="P5" fontName="Helvetica" fontSize="8.0" leading="10" alignment="LEFT" spaceBefore="0.0" spaceAfter="6.0"/>
+    <paraStyle name="P6" fontName="Helvetica" fontSize="8.0" alignment="LEFT" spaceBefore="0.0" spaceAfter="6.0"/>
+    <paraStyle name="P6b" fontName="Helvetica" fontSize="8.0" alignment="RIGHT" spaceBefore="0.0" spaceAfter="6.0"/>
+    <paraStyle name="P7" fontName="Helvetica" fontSize="8.0" leading="14" alignment="RIGHT" spaceBefore="0.0" spaceAfter="6.0"/>
+    <paraStyle name="P8" fontName="Helvetica-Bold" fontSize="8.0" leading="10" alignment="RIGHT" spaceBefore="0.0" spaceAfter="6.0"/>
+    <paraStyle name="P9" fontName="Helvetica" fontSize="8.0" leading="10" alignment="RIGHT" spaceBefore="0.0" spaceAfter="6.0"/>
+    <paraStyle name="P9a" fontName="Helvetica-Bold" fontSize="8.0" leading="10" alignment="LEFT" spaceBefore="0.0" spaceAfter="6.0"/>
+    <paraStyle name="P9c" fontName="Helvetica" fontSize="8.0" leading="10" alignment="LEFT" spaceBefore="0.0" spaceAfter="6.0"/>
+    <paraStyle name="P9b" fontName="Helvetica-Bold" fontSize="8.0" leading="10" alignment="RIGHT" spaceBefore="0.0" spaceAfter="6.0"/>
+    <paraStyle name="P10" fontName="Helvetica" alignment="CENTER"/>
+    <paraStyle name="P11" fontName="Helvetica" fontSize="8.0" leading="14"/>
+    <paraStyle name="P12" fontName="Helvetica" fontSize="7.0" leading="10" alignment="LEFT" spaceBefore="0.6" spaceAfter="6.0"/>
+    <paraStyle name="P12a" fontName="Helvetica" fontSize="7.0" leading="10" alignment="RIGHT" spaceBefore="0.0" spaceAfter="6.0"/>
+    <paraStyle name="P13" fontName="Helvetica" fontSize="8.0" leading="10" spaceBefore="0.0" spaceAfter="6.0"/>
+    <paraStyle name="P14" fontName="Helvetica-Bold" spaceBefore="0.0" spaceAfter="6.0"/>
+    <paraStyle name="P15" rightIndent="17.0" leftIndent="-0.0" fontName="Helvetica" fontSize="8.0" leading="10" spaceBefore="0.0" spaceAfter="6.0"/>
+    <paraStyle name="P16" fontName="Helvetica-Bold" fontSize="8.0" leading="14" alignment="RIGHT" spaceBefore="0.0" spaceAfter="6.0"/>
+    <paraStyle name="Standard" fontName="Helvetica"/>
+    <paraStyle name="Text body" fontName="Helvetica" spaceBefore="0.0" spaceAfter="6.0"/>
+    <paraStyle name="List" fontName="Helvetica" spaceBefore="0.0" spaceAfter="6.0"/>
+    <paraStyle name="Table Contents" fontName="Helvetica" spaceBefore="0.0" spaceAfter="6.0"/>
+    <paraStyle name="Table Heading" fontName="Helvetica" alignment="CENTER" spaceBefore="0.0" spaceAfter="6.0"/>
+    <paraStyle name="Caption" fontName="Helvetica" fontSize="1.0" leading="1" spaceBefore="0" spaceAfter="0"/>
+    <paraStyle name="Index" fontName="Helvetica"/>
+    <paraStyle name="terp_default_9_date" fontName="Helvetica" fontSize="9.0" leading="11" alignment="LEFT" spaceBefore="0.0" spaceAfter="0.0" />
+    <paraStyle name="terp_default_9" fontName="Helvetica" fontSize="9.0" leading="11" alignment="LEFT" spaceBefore="0.0" spaceAfter="0.0" leftIndent="5.0"/>
+    <paraStyle name="terp_default_Bold_9" fontName="Helvetica-Bold" fontSize="9.0" leading="11" alignment="LEFT" spaceBefore="0.0" spaceAfter="0.0"/>
+    <paraStyle name="terp_default_9_r" fontName="Helvetica" fontSize="9.0" leading="11" alignment="RIGHT" spaceBefore="0.0" spaceAfter="0.0"/>
+    <paraStyle name="terp_default_Bold_9_r" fontName="Helvetica-Bold" fontSize="9.0" leading="11" alignment="RIGHT" spaceBefore="0.0" spaceAfter="0.0"/>
+    <paraStyle name="terp_header" fontName="Helvetica-Bold" fontSize="12.0" leading="15" alignment="LEFT" spaceBefore="12.0" spaceAfter="6.0"/>
+    <paraStyle name="terp_default_8" fontName="Helvetica" fontSize="8.0" leading="10" alignment="LEFT" spaceBefore="0.0" spaceAfter="0.0"/>
+    <paraStyle name="P14new" rightIndent="17.0" leftIndent="-0.0" fontName="Helvetica-Bold" fontSize="6.0" leading="10" spaceBefore="0.0" spaceAfter="6.0"/>
+    <paraStyle name="P3new" fontName="Helvetica-Bold" fontSize="6.0" leading="10" alignment="RIGHT" spaceBefore="0.0" spaceAfter="6.0"/>
+    <paraStyle name="P10new" fontName="Helvetica-Bold" fontSize="6.0" leading="14" spaceBefore="0.0" spaceAfter="6.0" alignment="RIGHT"/>
+    <paraStyle name="P12anew" fontName="Helvetica-Bold" fontSize="6.0" leading="14" alignment="LEFT" spaceBefore="0.0" spaceAfter="6.0"/>
+    
+    <blockTableStyle id="TrLevel">
+      <lineStyle kind="LINEBELOW" colorName="#000000" start="0,0" stop="-1,0"/>
+    </blockTableStyle>
+
+	
+	<paraStyle name="Level"
+		fontSize="8.0"
+		fontName="Helvetica-Bold" 
+		/>
+  </stylesheet>
+  <story>
+    <para style="P2"><font color="white"> </font></para>
+    <blockTable colWidths="527.00" style="Table_Print_Current_datetime">
+          <tr>
+			<td>
+				<para style="terp_default_9_date">[[ get_filter(data)=='No Filter' and get_filter(data) or removeParentNode('td') ]] </para>
+			</td>
+			<td>[[ get_filter(data)=='Periods' or removeParentNode('td') ]]
+			  <para style="terp_default_9_date"><i>Period from: [[ get_start_period(data) or removeParentNode('para') ]]</i></para>
+			  <para style="terp_default_9_date"><i>Period to: [[ get_end_period(data) or removeParentNode('para') ]]</i></para>
+            </td>
+			<td>[[ get_filter(data)=='Date' or removeParentNode('td') ]]
+			  <para style="terp_default_9_date"><i>Date from: [[ get_start_date(data) or removeParentNode('para') ]]</i></para>
+			  <para style="terp_default_9_date"><i>Date to: [[ get_end_date(data) or removeParentNode('para') ]]</i></para>
+            </td>
+          </tr>
+    </blockTable>
+	<section>
+		<blockTable colWidths="30,217.0,70.0,70.0,70.0,70.0" style="Table3" rowHeights="0.42cm" repeatRows="1">
+		  <tr noRowsplits="1">
+			<td><para style="P12anew"> </para></td>
+			<td><para style="P12anew"> </para></td>
+			<td><para style="P10new">Reporting year</para></td>
+			<td><para style="P10new">Previous year</para></td>
+			<td><para style="P10new">Change</para></td>
+			<td><para style="P10new">Change %</para></td>
+		  </tr>
+		  <tr>
+			<td><para style="P14new">[[ repeatIn(lines('3', data['form']), 'a') ]]<font>[[ a['level']&gt;3 and setTag('para','para',{'fontName':"Helvetica"}) ]]</font><i>[[ a['code'] or removeParentNode('tr')  ]]</i></para></td>
+			<td><para style="P14new"><font>[[ a['level']&gt;3 and setTag('para','para',{'fontName':"Helvetica"}) ]]</font><font color="white">[[ '..'*(a['level']-1) ]]</font><font>[[ a['name'] ]]</font></para></td>
+			<td><para style="P3new"><font>[[ a['level']&gt;3 and setTag('para','para',{'fontName':"Helvetica"}) ]]</font><font>[[ a['type']=='view' and removeParentNode('font') ]][[ formatLang(a['balance']) ]]</font><font>[[ a['type']&lt;&gt;'view' and removeParentNode('font') ]] [[ formatLang(a['balance'])  ]]</font></para></td>
+			<td><para style="P3new"><font>[[ a['level']&gt;3 and setTag('para','para',{'fontName':"Helvetica"}) ]]</font><font>[[ a['type']=='view' and removeParentNode('font') ]][[ formatLang(a['balance_last_year']) ]]</font><font>[[ a['type']&lt;&gt;'view' and removeParentNode('font') ]] [[ formatLang(a['balance_last_year'])  ]]</font></para></td>
+			<td><para style="P3new"><font>[[ a['level']&gt;3 and setTag('para','para',{'fontName':"Helvetica"}) ]]</font><font>[[ a['type']=='view' and removeParentNode('font') ]][[ formatLang(a['balance']-a['balance_last_year']) ]]</font><font>[[ a['type']&lt;&gt;'view' and removeParentNode('font') ]] [[ formatLang(a['balance']-a['balance_last_year'])  ]]</font></para></td>
+			<td><para style="P3new"><font>[[ a['level']&gt;3 and setTag('para','para',{'fontName':"Helvetica"}) ]]</font><font>[[ a['type']=='view' and removeParentNode('font') ]][[ formatLang(((a['balance']-a['balance_last_year'])/abs(a['balance_last_year']))*100) ]]</font><font>[[ a['type']&lt;&gt;'view' and removeParentNode('font') ]] [[ formatLang(((a['balance']-a['balance_last_year'])/abs(a['balance_last_year']))*100)  ]]</font></para></td>
+		  </tr>
+		  <tr>
+			<td><para style="P14new">[[ repeatIn(lines('4', data['form']), 'a') ]]<font>[[ a['level']&gt;3 and setTag('para','para',{'fontName':"Helvetica"}) ]]</font><i>[[ a['code'] or removeParentNode('tr')  ]]</i></para></td>
+			<td><para style="P14new"><font>[[ a['level']&gt;3 and setTag('para','para',{'fontName':"Helvetica"}) ]]</font><font color="white">[[ '..'*(a['level']-1) ]]</font><font>[[ a['name'] ]]</font></para></td>
+			<td><para style="P3new"><font>[[ a['level']&gt;3 and setTag('para','para',{'fontName':"Helvetica"}) ]]</font><font>[[ a['type']=='view' and removeParentNode('font') ]][[ formatLang(a['balance']) ]]</font><font>[[ a['type']&lt;&gt;'view' and removeParentNode('font') ]] [[ formatLang(a['balance'])  ]]</font></para></td>
+			<td><para style="P3new"><font>[[ a['level']&gt;3 and setTag('para','para',{'fontName':"Helvetica"}) ]]</font><font>[[ a['type']=='view' and removeParentNode('font') ]][[ formatLang(a['balance_last_year']) ]]</font><font>[[ a['type']&lt;&gt;'view' and removeParentNode('font') ]] [[ formatLang(a['balance_last_year'])  ]]</font></para></td>
+			<td><para style="P3new"><font>[[ a['level']&gt;3 and setTag('para','para',{'fontName':"Helvetica"}) ]]</font><font>[[ a['type']=='view' and removeParentNode('font') ]][[ formatLang(a['balance']-a['balance_last_year']) ]]</font><font>[[ a['type']&lt;&gt;'view' and removeParentNode('font') ]] [[ formatLang(a['balance']-a['balance_last_year'])  ]]</font></para></td>
+			<td><para style="P3new"><font>[[ a['level']&gt;3 and setTag('para','para',{'fontName':"Helvetica"}) ]]</font><font>[[ a['type']=='view' and removeParentNode('font') ]][[ formatLang(((a['balance']-a['balance_last_year'])/abs(a['balance_last_year']))*100) ]]</font><font>[[ a['type']&lt;&gt;'view' and removeParentNode('font') ]] [[ formatLang(((a['balance']-a['balance_last_year'])/abs(a['balance_last_year']))*100)  ]]</font></para></td>
+		  </tr>
+		  
+		  <tr>
+			<td><para style="P14new"> </para></td>
+			<td><para style="P14new"> </para></td>
+			<td><para style="P10new"> </para></td>
+			<td><para style="P10new"> </para></td>
+			<td><para style="P10new"> </para></td>
+			<td><para style="P10new"> </para></td>
+		  </tr>
+		  <tr>
+			<td><para style="P14new"> </para></td>
+			<td><para style="P14new">Gross profit 1</para></td>
+			<td><para style="P10new">[[ formatLang(get_solde_new('3,4', data['form'], True)) ]]</para></td>
+			<td><para style="P10new">[[ formatLang(get_solde_new('3,4', data['form'], False)) ]]</para></td>
+			<td><para style="P10new">[[ formatLang(get_solde_new('3,4', data['form'], True)-get_solde_new('3,4', data['form'], False)) ]]</para></td>
+			<td><para style="P10new">[[ formatLang(((get_solde_new('3,4', data['form'], True)-get_solde_new('3,4', data['form'], False))/abs(get_solde_new('3,4', data['form'], False)))*100) ]]</para></td>
+		  </tr>
+		  <tr>
+			<td><para style="P14new"> </para></td>
+			<td><para style="P14new"> </para></td>
+			<td><para style="P10new"> </para></td>
+			<td><para style="P10new"> </para></td>
+			<td><para style="P10new"> </para></td>
+			<td><para style="P10new"> </para></td>
+		  </tr>
+		  
+		  <tr>
+			<td><para style="P14new">[[ repeatIn(lines('5', data['form']), 'a') ]]<font>[[ a['level']&gt;3 and setTag('para','para',{'fontName':"Helvetica"}) ]]</font><i>[[ a['code'] or removeParentNode('tr')  ]]</i></para></td>
+			<td><para style="P14new"><font>[[ a['level']&gt;3 and setTag('para','para',{'fontName':"Helvetica"}) ]]</font><font color="white">[[ '..'*(a['level']-1) ]]</font><font>[[ a['name'] ]]</font></para></td>
+			<td><para style="P3new"><font>[[ a['level']&gt;3 and setTag('para','para',{'fontName':"Helvetica"}) ]]</font><font>[[ a['type']=='view' and removeParentNode('font') ]][[ formatLang(a['balance']) ]]</font><font>[[ a['type']&lt;&gt;'view' and removeParentNode('font') ]] [[ formatLang(a['balance'])  ]]</font></para></td>
+			<td><para style="P3new"><font>[[ a['level']&gt;3 and setTag('para','para',{'fontName':"Helvetica"}) ]]</font><font>[[ a['type']=='view' and removeParentNode('font') ]][[ formatLang(a['balance_last_year']) ]]</font><font>[[ a['type']&lt;&gt;'view' and removeParentNode('font') ]] [[ formatLang(a['balance_last_year'])  ]]</font></para></td>
+			<td><para style="P3new"><font>[[ a['level']&gt;3 and setTag('para','para',{'fontName':"Helvetica"}) ]]</font><font>[[ a['type']=='view' and removeParentNode('font') ]][[ formatLang(a['balance']-a['balance_last_year']) ]]</font><font>[[ a['type']&lt;&gt;'view' and removeParentNode('font') ]] [[ formatLang(a['balance']-a['balance_last_year'])  ]]</font></para></td>
+			<td><para style="P3new"><font>[[ a['level']&gt;3 and setTag('para','para',{'fontName':"Helvetica"}) ]]</font><font>[[ a['type']=='view' and removeParentNode('font') ]][[ formatLang(((a['balance']-a['balance_last_year'])/abs(a['balance_last_year']))*100) ]]</font><font>[[ a['type']&lt;&gt;'view' and removeParentNode('font') ]] [[ formatLang(((a['balance']-a['balance_last_year'])/abs(a['balance_last_year']))*100)  ]]</font></para></td>
+		  </tr>
+		  
+		  <tr>
+			<td><para style="P14new"> </para></td>
+			<td><para style="P14new"> </para></td>
+			<td><para style="P10new"> </para></td>
+			<td><para style="P10new"> </para></td>
+			<td><para style="P10new"> </para></td>
+			<td><para style="P10new"> </para></td>
+		  </tr>
+		  <tr>
+			<td><para style="P14new"> </para></td>
+			<td><para style="P14new">Gross profit 2</para></td>
+			<td><para style="P10new">[[ formatLang(get_solde_new('3,4,5', data['form'], True)) ]]</para></td>
+			<td><para style="P10new">[[ formatLang(get_solde_new('3,4,5', data['form'], False)) ]]</para></td>
+			<td><para style="P10new">[[ formatLang(get_solde_new('3,4,5', data['form'], True)-get_solde_new('3,4,5', data['form'], False)) ]]</para></td>
+			<td><para style="P10new">[[ formatLang(((get_solde_new('3,4,5', data['form'], True)-get_solde_new('3,4,5', data['form'], False))/abs(get_solde_new('3,4,5', data['form'], False)))*100) ]]</para></td>
+		  </tr>
+		  <tr>
+			<td><para style="P14new"> </para></td>
+			<td><para style="P14new"> </para></td>
+			<td><para style="P10new"> </para></td>
+			<td><para style="P10new"> </para></td>
+			<td><para style="P10new"> </para></td>
+			<td><para style="P10new"> </para></td>
+		  </tr>
+		  
+		  <tr>
+			<td><para style="P14new">[[ repeatIn(lines('6', data['form']), 'a') ]]<font>[[ a['level']&gt;3 and setTag('para','para',{'fontName':"Helvetica"}) ]]</font><i>[[ a['code'] or removeParentNode('tr')  ]]</i></para></td>
+			<td><para style="P14new"><font>[[ a['level']&gt;3 and setTag('para','para',{'fontName':"Helvetica"}) ]]</font><font color="white">[[ '..'*(a['level']-1) ]]</font><font>[[ a['name'] ]]</font></para></td>
+			<td><para style="P3new"><font>[[ a['level']&gt;3 and setTag('para','para',{'fontName':"Helvetica"}) ]]</font><font>[[ a['type']=='view' and removeParentNode('font') ]][[ formatLang(a['balance']) ]]</font><font>[[ a['type']&lt;&gt;'view' and removeParentNode('font') ]] [[ formatLang(a['balance'])  ]]</font></para></td>
+			<td><para style="P3new"><font>[[ a['level']&gt;3 and setTag('para','para',{'fontName':"Helvetica"}) ]]</font><font>[[ a['type']=='view' and removeParentNode('font') ]][[ formatLang(a['balance_last_year']) ]]</font><font>[[ a['type']&lt;&gt;'view' and removeParentNode('font') ]] [[ formatLang(a['balance_last_year'])  ]]</font></para></td>
+			<td><para style="P3new"><font>[[ a['level']&gt;3 and setTag('para','para',{'fontName':"Helvetica"}) ]]</font><font>[[ a['type']=='view' and removeParentNode('font') ]][[ formatLang(a['balance']-a['balance_last_year']) ]]</font><font>[[ a['type']&lt;&gt;'view' and removeParentNode('font') ]] [[ formatLang(a['balance']-a['balance_last_year'])  ]]</font></para></td>
+			<td><para style="P3new"><font>[[ a['level']&gt;3 and setTag('para','para',{'fontName':"Helvetica"}) ]]</font><font>[[ a['type']=='view' and removeParentNode('font') ]][[ formatLang(((a['balance']-a['balance_last_year'])/abs(a['balance_last_year']))*100) ]]</font><font>[[ a['type']&lt;&gt;'view' and removeParentNode('font') ]] [[ formatLang(((a['balance']-a['balance_last_year'])/abs(a['balance_last_year']))*100)  ]]</font></para></td>
+		  </tr>
+		  
+		  <tr>
+			<td><para style="P14new"> </para></td>
+			<td><para style="P14new"> </para></td>
+			<td><para style="P10new"> </para></td>
+			<td><para style="P10new"> </para></td>
+			<td><para style="P10new"> </para></td>
+			<td><para style="P10new"> </para></td>
+		  </tr>
+		  <tr>
+			<td><para style="P14new"> </para></td>
+			<td><para style="P14new">Operating profit 1 (before financial result)</para></td>
+			<td><para style="P10new">[[ formatLang(get_solde_new('3,4,5,60,61,62,63,64,65,66,67', data['form'], True)) ]]</para></td>
+			<td><para style="P10new">[[ formatLang(get_solde_new('3,4,5,60,61,62,63,64,65,66,67', data['form'], False)) ]]</para></td>
+			<td><para style="P10new">[[ formatLang(get_solde_new('3,4,5,60,61,62,63,64,65,66,67', data['form'], True)-get_solde_new('3,4,5,60,61,62,63,64,65,66,67', data['form'], False)) ]]</para></td>
+			<td><para style="P10new">[[ formatLang(((get_solde_new('3,4,5,60,61,62,63,64,65,66,67', data['form'], True)-get_solde_new('3,4,5,60,61,62,63,64,65,66,67', data['form'], False))/abs(get_solde_new('3,4,5,60,61,62,63,64,65,66,67', data['form'], False)))*100) ]]</para></td>
+		  </tr>
+		  <tr>
+			<td><para style="P14new"> </para></td>
+			<td><para style="P14new">Operating profit 2 (before depreciation)</para></td>
+			<td><para style="P10new">[[ formatLang(get_solde_new('3,4,5,60,61,62,63,64,65,66,67,68', data['form'], True)) ]]</para></td>
+			<td><para style="P10new">[[ formatLang(get_solde_new('3,4,5,60,61,62,63,64,65,66,67,68', data['form'], False)) ]]</para></td>
+			<td><para style="P10new">[[ formatLang(get_solde_new('3,4,5,60,61,62,63,64,65,66,67,68', data['form'], True)-get_solde_new('3,4,5,60,61,62,63,64,65,66,67,68', data['form'], False)) ]]</para></td>
+			<td><para style="P10new">[[ formatLang(((get_solde_new('3,4,5,60,61,62,63,64,65,66,67,68', data['form'], True)-get_solde_new('3,4,5,60,61,62,63,64,65,66,67,68', data['form'], False))/abs(get_solde_new('3,4,5,60,61,62,63,64,65,66,67,68', data['form'], False)))*100) ]]</para></td>
+		  </tr>
+		  <tr>
+			<td><para style="P14new"> </para></td>
+			<td><para style="P14new">Operating profit 3 (prior to addition to success)</para></td>
+			<td><para style="P10new">[[ formatLang(get_solde_new('3,4,5,6', data['form'], True)) ]]</para></td>
+			<td><para style="P10new">[[ formatLang(get_solde_new('3,4,5,6', data['form'], False)) ]]</para></td>
+			<td><para style="P10new">[[ formatLang(get_solde_new('3,4,5,6', data['form'], True)-get_solde_new('3,4,5,6', data['form'], False)) ]]</para></td>
+			<td><para style="P10new">[[ formatLang(((get_solde_new('3,4,5,6', data['form'], True)-get_solde_new('3,4,5,6', data['form'], False))/abs(get_solde_new('3,4,5,6', data['form'], False)))*100) ]]</para></td>
+		  </tr>
+		  <tr>
+			<td><para style="P14new"> </para></td>
+			<td><para style="P14new"> </para></td>
+			<td><para style="P10new"> </para></td>
+			<td><para style="P10new"> </para></td>
+			<td><para style="P10new"> </para></td>
+			<td><para style="P10new"> </para></td>
+		  </tr>
+		  
+		  <tr>
+			<td><para style="P14new">[[ repeatIn(lines('7', data['form']), 'a') ]]<font>[[ a['level']&gt;3 and setTag('para','para',{'fontName':"Helvetica"}) ]]</font><i>[[ a['code'] or removeParentNode('tr')  ]]</i></para></td>
+			<td><para style="P14new"><font>[[ a['level']&gt;3 and setTag('para','para',{'fontName':"Helvetica"}) ]]</font><font color="white">[[ '..'*(a['level']-1) ]]</font><font>[[ a['name'] ]]</font></para></td>
+			<td><para style="P3new"><font>[[ a['level']&gt;3 and setTag('para','para',{'fontName':"Helvetica"}) ]]</font><font>[[ a['type']=='view' and removeParentNode('font') ]][[ formatLang(a['balance']) ]]</font><font>[[ a['type']&lt;&gt;'view' and removeParentNode('font') ]] [[ formatLang(a['balance'])  ]]</font></para></td>
+			<td><para style="P3new"><font>[[ a['level']&gt;3 and setTag('para','para',{'fontName':"Helvetica"}) ]]</font><font>[[ a['type']=='view' and removeParentNode('font') ]][[ formatLang(a['balance_last_year']) ]]</font><font>[[ a['type']&lt;&gt;'view' and removeParentNode('font') ]] [[ formatLang(a['balance_last_year'])  ]]</font></para></td>
+			<td><para style="P3new"><font>[[ a['level']&gt;3 and setTag('para','para',{'fontName':"Helvetica"}) ]]</font><font>[[ a['type']=='view' and removeParentNode('font') ]][[ formatLang(a['balance']-a['balance_last_year']) ]]</font><font>[[ a['type']&lt;&gt;'view' and removeParentNode('font') ]] [[ formatLang(a['balance']-a['balance_last_year'])  ]]</font></para></td>
+			<td><para style="P3new"><font>[[ a['level']&gt;3 and setTag('para','para',{'fontName':"Helvetica"}) ]]</font><font>[[ a['type']=='view' and removeParentNode('font') ]][[ formatLang(((a['balance']-a['balance_last_year'])/abs(a['balance_last_year']))*100) ]]</font><font>[[ a['type']&lt;&gt;'view' and removeParentNode('font') ]] [[ formatLang(((a['balance']-a['balance_last_year'])/abs(a['balance_last_year']))*100)  ]]</font></para></td>
+		  </tr>
+		  
+		  <!--<tr>
+			<td><para style="P14new"> </para></td>
+			<td><para style="P14new"> </para></td>
+			<td><para style="P10new"> </para></td>
+			<td><para style="P10new"> </para></td>
+			<td><para style="P10new"> </para></td>
+			<td><para style="P10new"> </para></td>
+		  </tr>-->
+		  
+		  <tr>
+			<td><para style="P14new"> </para></td>
+			<td><para style="P14new">Betriebserfolg 4</para></td>
+			<td><para style="P10new">[[ formatLang(get_solde_new('3,4,5,6,7', data['form'], True)) ]]</para></td>
+			<td><para style="P10new">[[ formatLang(get_solde_new('3,4,5,6,7', data['form'], False)) ]]</para></td>
+			<td><para style="P10new">[[ formatLang(get_solde_new('3,4,5,6,7', data['form'], True)-get_solde_new('3,4,5,6,7', data['form'], False)) ]]</para></td>
+			<td><para style="P10new">[[ formatLang(((get_solde_new('3,4,5,6,7', data['form'], True)-get_solde_new('3,4,5,6,7', data['form'], False))/abs(get_solde_new('3,4,5,6,7', data['form'], False)))*100) ]]</para></td>
+		  </tr>
+		  <tr>
+			<td><para style="P14new"> </para></td>
+			<td><para style="P14new"> </para></td>
+			<td><para style="P10new"> </para></td>
+			<td><para style="P10new"> </para></td>
+			<td><para style="P10new"> </para></td>
+			<td><para style="P10new"> </para></td>
+		  </tr>
+		  <tr>
+			<td><para style="P14new">[[ repeatIn(lines('8', data['form']), 'a') ]]<font>[[ a['level']&gt;3 and setTag('para','para',{'fontName':"Helvetica"}) ]]</font><i>[[ a['code'] or removeParentNode('tr')  ]]</i></para></td>
+			<td><para style="P14new"><font>[[ a['level']&gt;3 and setTag('para','para',{'fontName':"Helvetica"}) ]]</font><font color="white">[[ '..'*(a['level']-1) ]]</font><font>[[ a['name'] ]]</font></para></td>
+			<td><para style="P3new"><font>[[ a['level']&gt;3 and setTag('para','para',{'fontName':"Helvetica"}) ]]</font><font>[[ a['type']=='view' and removeParentNode('font') ]][[ formatLang(a['balance']) ]]</font><font>[[ a['type']&lt;&gt;'view' and removeParentNode('font') ]] [[ formatLang(a['balance'])  ]]</font></para></td>
+			<td><para style="P3new"><font>[[ a['level']&gt;3 and setTag('para','para',{'fontName':"Helvetica"}) ]]</font><font>[[ a['type']=='view' and removeParentNode('font') ]][[ formatLang(a['balance_last_year']) ]]</font><font>[[ a['type']&lt;&gt;'view' and removeParentNode('font') ]] [[ formatLang(a['balance_last_year'])  ]]</font></para></td>
+			<td><para style="P3new"><font>[[ a['level']&gt;3 and setTag('para','para',{'fontName':"Helvetica"}) ]]</font><font>[[ a['type']=='view' and removeParentNode('font') ]][[ formatLang(a['balance']-a['balance_last_year']) ]]</font><font>[[ a['type']&lt;&gt;'view' and removeParentNode('font') ]] [[ formatLang(a['balance']-a['balance_last_year'])  ]]</font></para></td>
+			<td><para style="P3new"><font>[[ a['level']&gt;3 and setTag('para','para',{'fontName':"Helvetica"}) ]]</font><font>[[ a['type']=='view' and removeParentNode('font') ]][[ formatLang(((a['balance']-a['balance_last_year'])/abs(a['balance_last_year']))*100) ]]</font><font>[[ a['type']&lt;&gt;'view' and removeParentNode('font') ]] [[ formatLang(((a['balance']-a['balance_last_year'])/abs(a['balance_last_year']))*100)  ]]</font></para></td>
+		  </tr>
+		  
+		  <tr>
+			<td><para style="P14new"> </para></td>
+			<td><para style="P14new"> </para></td>
+			<td><para style="P10new"> </para></td>
+			<td><para style="P10new"> </para></td>
+			<td><para style="P10new"> </para></td>
+			<td><para style="P10new"> </para></td>
+		  </tr>
+		  <tr>
+			<td><para style="P14new"> </para></td>
+			<td><para style="P14new">Corporate profits before taxes</para></td>
+			<td><para style="P10new">[[ formatLang(get_solde_new('3,4,5,6,7,80', data['form'], True)) ]]</para></td>
+			<td><para style="P10new">[[ formatLang(get_solde_new('3,4,5,6,7,80', data['form'], False)) ]]</para></td>
+			<td><para style="P10new">[[ formatLang(get_solde_new('3,4,5,6,7,80', data['form'], True)-get_solde_new('3,4,5,6,7,80', data['form'], False)) ]]</para></td>
+			<td><para style="P10new">[[ formatLang(((get_solde_new('3,4,5,6,7,80', data['form'], True)-get_solde_new('3,4,5,6,7,80', data['form'], False))/abs(get_solde_new('3,4,5,6,7,80', data['form'], False)))*100) ]]</para></td>
+		  </tr>
+		  <tr>
+			<td><para style="P14new"> </para></td>
+			<td><para style="P14new">Corporate profits</para></td>
+			<td><para style="P10new">[[ formatLang(get_solde_new('3,4,5,6,7,8', data['form'], True)) ]]</para></td>
+			<td><para style="P10new">[[ formatLang(get_solde_new('3,4,5,6,7,8', data['form'], False)) ]]</para></td>
+			<td><para style="P10new">[[ formatLang(get_solde_new('3,4,5,6,7,8', data['form'], True)-get_solde_new('3,4,5,6,7,8', data['form'], False)) ]]</para></td>
+			<td><para style="P10new">[[ formatLang(((get_solde_new('3,4,5,6,7,8', data['form'], True)-get_solde_new('3,4,5,6,7,8', data['form'], False))/abs(get_solde_new('3,4,5,6,7,8', data['form'], False)))*100) ]]</para></td>
+		  </tr>
+		  <tr>
+			<td><para style="P14new"> </para></td>
+			<td><para style="P14new"> </para></td>
+			<td><para style="P10new"> </para></td>
+			<td><para style="P10new"> </para></td>
+			<td><para style="P10new"> </para></td>
+			<td><para style="P10new"> </para></td>
+		  </tr>
+		</blockTable>
+	</section>
+  </story>
+</document>

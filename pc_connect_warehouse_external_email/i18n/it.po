@@ -1,0 +1,767 @@
+# Translation of OpenERP Server.
+# This file contains the translation of the following modules:
+#	* pc_connect_warehouse_external_email
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: OpenERP Server 7.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2016-06-15 08:46+0000\n"
+"PO-Revision-Date: 2016-06-15 08:46+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: pc_connect_warehouse_external_email
+#: model:email.template,subject:email_template_external
+msgid "${object.get_creation_datetime()} External Email to Warehouse"
+msgstr "${object.get_creation_datetime()} External Email to Warehouse"
+
+#. module: pc_connect_warehouse_external_email
+#: model:email.template,body_html:email_template_external
+msgid "${object.get_picking_list() | safe}"
+msgstr "${object.get_picking_list() | safe}"
+
+#. module: pc_connect_warehouse_external_email
+#: field:configuration.data,email_connector_time_of_day:0
+msgid "1st Time of Day"
+msgstr "1st Time of Day"
+
+#. module: pc_connect_warehouse_external_email
+#: model:ir.model.fields,field_description:field_configuration_data_email_connector_time_of_day
+msgid "1st Time of Day"
+msgstr "1st Time of Day"
+
+#. module: pc_connect_warehouse_external_email
+#: code:addons/pc_connect_warehouse_external_email/configuration_data_ext.py:58
+msgid "2nd Time of Day must happen after 1st Time of Day."
+msgstr "2nd Time of Day must happen after 1st Time of Day."
+
+#. module: pc_connect_warehouse_external_email
+#: field:configuration.data,email_connector_time_of_day_2:0
+msgid "2nd Time of Day"
+msgstr "2nd Time of Day"
+
+#. module: pc_connect_warehouse_external_email
+#: model:ir.model.fields,field_description:field_configuration_data_email_connector_time_of_day_2
+msgid "2nd Time of Day"
+msgstr "2nd Time of Day"
+
+#. module: pc_connect_warehouse_external_email
+#: code:addons/pc_connect_warehouse_external_email/configuration_data_ext.py:64
+msgid "3rd Time of Day must happen after 2nd Time of Day."
+msgstr "3rd Time of Day must happen after 2nd Time of Day."
+
+#. module: pc_connect_warehouse_external_email
+#: field:configuration.data,email_connector_time_of_day_3:0
+msgid "3rd Time of Day"
+msgstr "3rd Time of Day"
+
+#. module: pc_connect_warehouse_external_email
+#: model:ir.model.fields,field_description:field_configuration_data_email_connector_time_of_day_3
+msgid "3rd Time of Day"
+msgstr "3rd Time of Day"
+
+#. module: pc_connect_warehouse_external_email
+#: help:configuration.data,email_connector_friday:0
+msgid "Are e-mails sent on Fridays?"
+msgstr "Are e-mails sent on Fridays?"
+
+#. module: pc_connect_warehouse_external_email
+#: help:configuration.data,email_connector_monday:0
+msgid "Are e-mails sent on Mondays?"
+msgstr "Are e-mails sent on Mondays?"
+
+#. module: pc_connect_warehouse_external_email
+#: help:configuration.data,email_connector_saturday:0
+msgid "Are e-mails sent on Saturdays?"
+msgstr "Are e-mails sent on Saturdays?"
+
+#. module: pc_connect_warehouse_external_email
+#: help:configuration.data,email_connector_sunday:0
+msgid "Are e-mails sent on Sundays?"
+msgstr "Are e-mails sent on Sundays?"
+
+#. module: pc_connect_warehouse_external_email
+#: help:configuration.data,email_connector_thursday:0
+msgid "Are e-mails sent on Thursdays?"
+msgstr "Are e-mails sent on Thursdays?"
+
+#. module: pc_connect_warehouse_external_email
+#: help:configuration.data,email_connector_tuesday:0
+msgid "Are e-mails sent on Tuesdays?"
+msgstr "Are e-mails sent on Tuesdays?"
+
+#. module: pc_connect_warehouse_external_email
+#: help:configuration.data,email_connector_wednesday:0
+msgid "Are e-mails sent on Wednesdays?"
+msgstr "Are e-mails sent on Wednesdays?"
+
+#. module: pc_connect_warehouse_external_email
+#: code:addons/pc_connect_warehouse_external_email/stock_connect_external_email.py:235
+msgid "Bad Number of Invoices"
+msgstr "Bad Number of Invoices"
+
+#. module: pc_connect_warehouse_external_email
+#: field:stock.connect.external_email,warehouse_ids:0
+msgid "Configured Warehouses"
+msgstr "Configured Warehouses"
+
+#. module: pc_connect_warehouse_external_email
+#: model:ir.model.fields,field_description:field_stock_connect_external_email_warehouse_ids
+msgid "Configured Warehouses"
+msgstr "Configured Warehouses"
+
+#. module: pc_connect_warehouse_external_email
+#: help:mail.mail,stock_connect_id:0
+msgid "Connection related to this email"
+msgstr "Connection related to this email"
+
+#. module: pc_connect_warehouse_external_email
+#: field:stock.connect.external_email,type:0
+msgid "Connection type"
+msgstr "Connection type"
+
+#. module: pc_connect_warehouse_external_email
+#: model:ir.model.fields,field_description:field_stock_connect_external_email_type
+msgid "Connection type"
+msgstr "Connection type"
+
+#. module: pc_connect_warehouse_external_email
+#: field:mail.mail,stock_connect_id:0
+msgid "Connection"
+msgstr "Connection"
+
+#. module: pc_connect_warehouse_external_email
+#: field:stock.connect.external_email,connect_transport_id:0
+msgid "Connection"
+msgstr "Connection"
+
+#. module: pc_connect_warehouse_external_email
+#: model:ir.model.fields,field_description:field_mail_mail_stock_connect_id
+msgid "Connection"
+msgstr "Connection"
+
+#. module: pc_connect_warehouse_external_email
+#: model:ir.model.fields,field_description:field_stock_connect_external_email_connect_transport_id
+msgid "Connection"
+msgstr "Connection"
+
+#. module: pc_connect_warehouse_external_email
+#: report:addons/pc_connect_warehouse_external_email/reports/picking_list.mako:70
+msgid "Creation Date"
+msgstr "Creation Date"
+
+#. module: pc_connect_warehouse_external_email
+#: code:addons/pc_connect_warehouse_external_email/stock_connect_file_ext.py:172
+msgid "Default Code"
+msgstr "Default Code"
+
+#. module: pc_connect_warehouse_external_email
+#: report:addons/pc_connect_warehouse_external_email/reports/picking_list.mako:105
+msgid "Default Code"
+msgstr "Default Code"
+
+#. module: pc_connect_warehouse_external_email
+#: model:ir.model,name:model_stock_picking_out
+msgid "Delivery Orders"
+msgstr "Ordini di Consegna"
+
+#. module: pc_connect_warehouse_external_email
+#: code:addons/pc_connect_warehouse_external_email/stock_connect_file_ext.py:173
+msgid "Description"
+msgstr "Description"
+
+#. module: pc_connect_warehouse_external_email
+#: report:addons/pc_connect_warehouse_external_email/reports/picking_list.mako:106
+msgid "Description"
+msgstr "Description"
+
+#. module: pc_connect_warehouse_external_email
+#: report:addons/pc_connect_warehouse_external_email/reports/picking_list.mako:129
+msgid "END of the Picking List"
+msgstr "END of the Picking List"
+
+#. module: pc_connect_warehouse_external_email
+#: view:configuration.data:0
+msgid "Email Configuration"
+msgstr "Email Configuration"
+
+#. module: pc_connect_warehouse_external_email
+#: field:configuration.data,email_connector_email_template_id:0
+msgid "Email Template to Use"
+msgstr "Email Template to Use"
+
+#. module: pc_connect_warehouse_external_email
+#: model:ir.model.fields,field_description:field_configuration_data_email_connector_email_template_id
+msgid "Email Template to Use"
+msgstr "Email Template to Use"
+
+#. module: pc_connect_warehouse_external_email
+#: model:ir.model,name:model_stock_connect_external_email
+msgid "Email Thread"
+msgstr "Thread Email"
+
+#. module: pc_connect_warehouse_external_email
+#: model:ir.model,name:model_stock_connect_file
+msgid "Email Thread"
+msgstr "Thread Email"
+
+#. module: pc_connect_warehouse_external_email
+#: field:stock.connect,stock_connect_email_ids:0
+msgid "Emails"
+msgstr "Email"
+
+#. module: pc_connect_warehouse_external_email
+#: model:ir.actions.act_window,name:action_stock_connect_email
+msgid "Emails"
+msgstr "Email"
+
+#. module: pc_connect_warehouse_external_email
+#: model:ir.model.fields,field_description:field_stock_connect_stock_connect_email_ids
+msgid "Emails"
+msgstr "Email"
+
+#. module: pc_connect_warehouse_external_email
+#: model:ir.ui.menu,name:menuitem_connector_stock_connect_emails
+msgid "Emails"
+msgstr "Email"
+
+#. module: pc_connect_warehouse_external_email
+#: view:mail.mail:0
+msgid "Emails"
+msgstr "Email"
+
+#. module: pc_connect_warehouse_external_email
+#: view:stock.connect:0
+msgid "Emails"
+msgstr "Email"
+
+#. module: pc_connect_warehouse_external_email
+#: code:addons/pc_connect_warehouse_external_email/configuration_data_ext.py:67
+msgid "Error in Times of Day"
+msgstr "Error in Times of Day"
+
+#. module: pc_connect_warehouse_external_email
+#: code:addons/pc_connect_warehouse_external_email/ir_module_module_ext.py:16
+msgid "Error"
+msgstr "Error"
+
+#. module: pc_connect_warehouse_external_email
+#: field:stock.connect.external_email,stock_event_ids:0
+msgid "Events"
+msgstr "Events"
+
+#. module: pc_connect_warehouse_external_email
+#: model:ir.model.fields,field_description:field_stock_connect_external_email_stock_event_ids
+msgid "Events"
+msgstr "Events"
+
+#. module: pc_connect_warehouse_external_email
+#: code:addons/pc_connect_warehouse_external_email/stock_connect_external_email.py:344
+msgid "Exception while processing event on stock.picking with IDs {0}: {1}"
+msgstr "Exception while processing event on stock.picking with IDs {0}: {1}"
+
+#. module: pc_connect_warehouse_external_email
+#: code:addons/pc_connect_warehouse_external_email/stock_connect_external_email.py:283
+msgid "Exception while processing event with ID={0}: {1}"
+msgstr "Exception while processing event with ID={0}: {1}"
+
+#. module: pc_connect_warehouse_external_email
+#: view:configuration.data:0
+msgid "External Email Connector"
+msgstr "External Email Connector"
+
+#. module: pc_connect_warehouse_external_email
+#: selection:stock.connect.external_email,type:0
+msgid "External Email"
+msgstr "External Email"
+
+#. module: pc_connect_warehouse_external_email
+#: field:stock.connect.external_email,remote_file_template:0
+msgid "Filename template for files to import"
+msgstr "Filename template for files to import"
+
+#. module: pc_connect_warehouse_external_email
+#: model:ir.model.fields,field_description:field_stock_connect_external_email_remote_file_template
+msgid "Filename template for files to import"
+msgstr "Filename template for files to import"
+
+#. module: pc_connect_warehouse_external_email
+#: field:stock.connect.external_email,stock_connect_file_ids:0
+msgid "Files"
+msgstr "Files"
+
+#. module: pc_connect_warehouse_external_email
+#: model:ir.model.fields,field_description:field_stock_connect_external_email_stock_connect_file_ids
+msgid "Files"
+msgstr "Files"
+
+#. module: pc_connect_warehouse_external_email
+#: help:configuration.data,email_connector_time_of_day:0
+msgid "First sending will be sent not earlier than this hour."
+msgstr "First sending will be sent not earlier than this hour."
+
+#. module: pc_connect_warehouse_external_email
+#: field:stock.connect.external_email,message_follower_ids:0
+msgid "Followers"
+msgstr "Followers"
+
+#. module: pc_connect_warehouse_external_email
+#: model:ir.model.fields,field_description:field_stock_connect_external_email_message_follower_ids
+msgid "Followers"
+msgstr "Followers"
+
+#. module: pc_connect_warehouse_external_email
+#: help:stock.connect.external_email,message_summary:0
+msgid "Holds the Chatter summary (number of messages, ...). This summary is directly in html format in order to be inserted in kanban views."
+msgstr "Holds the Chatter summary (number of messages, ...). This summary is directly in html format in order to be inserted in kanban views."
+
+#. module: pc_connect_warehouse_external_email
+#: field:configuration.data,email_connector_times_a_day:0
+msgid "How Many Times a Day?"
+msgstr "How Many Times a Day?"
+
+#. module: pc_connect_warehouse_external_email
+#: model:ir.model.fields,field_description:field_configuration_data_email_connector_times_a_day
+msgid "How Many Times a Day?"
+msgstr "How Many Times a Day?"
+
+#. module: pc_connect_warehouse_external_email
+#: help:stock.connect.external_email,log_about_already_existing_files:0
+msgid "If activated, a line in the log will appear every time it sees a file that it already has."
+msgstr "If activated, a line in the log will appear every time it sees a file that it already has."
+
+#. module: pc_connect_warehouse_external_email
+#: help:stock.connect.external_email,message_unread:0
+msgid "If checked new messages require your attention."
+msgstr "If checked new messages require your attention."
+
+#. module: pc_connect_warehouse_external_email
+#: field:stock.connect.external_email,message_is_follower:0
+msgid "Is a Follower"
+msgstr "Is a Follower"
+
+#. module: pc_connect_warehouse_external_email
+#: model:ir.model.fields,field_description:field_stock_connect_external_email_message_is_follower
+msgid "Is a Follower"
+msgstr "Is a Follower"
+
+#. module: pc_connect_warehouse_external_email
+#: code:addons/pc_connect_warehouse_external_email/stock_connect_file_ext.py:125
+msgid "List of Pickings"
+msgstr "List of Pickings"
+
+#. module: pc_connect_warehouse_external_email
+#: report:addons/pc_connect_warehouse_external_email/reports/picking_list.mako:85
+msgid "List of Pickings"
+msgstr "List of Pickings"
+
+#. module: pc_connect_warehouse_external_email
+#: code:addons/pc_connect_warehouse_external_email/stock_connect_file_ext.py:126
+msgid "List of Products"
+msgstr "List of Products"
+
+#. module: pc_connect_warehouse_external_email
+#: report:addons/pc_connect_warehouse_external_email/reports/picking_list.mako:99
+msgid "List of Products"
+msgstr "List of Products"
+
+#. module: pc_connect_warehouse_external_email
+#: field:stock.connect.external_email,local_archive_input_dir:0
+msgid "Local directory where to archive the input files"
+msgstr "Local directory where to archive the input files"
+
+#. module: pc_connect_warehouse_external_email
+#: model:ir.model.fields,field_description:field_stock_connect_external_email_local_archive_input_dir
+msgid "Local directory where to archive the input files"
+msgstr "Local directory where to archive the input files"
+
+#. module: pc_connect_warehouse_external_email
+#: field:stock.connect.external_email,log_about_already_existing_files:0
+msgid "Log about already existing files?"
+msgstr "Log about already existing files?"
+
+#. module: pc_connect_warehouse_external_email
+#: model:ir.model.fields,field_description:field_stock_connect_external_email_log_about_already_existing_files
+msgid "Log about already existing files?"
+msgstr "Log about already existing files?"
+
+#. module: pc_connect_warehouse_external_email
+#: field:configuration.data,email_connector_report_picking_list_logo:0
+msgid "Logo"
+msgstr "Logo"
+
+#. module: pc_connect_warehouse_external_email
+#: model:ir.model.fields,field_description:field_configuration_data_email_connector_report_picking_list_logo
+msgid "Logo"
+msgstr "Logo"
+
+#. module: pc_connect_warehouse_external_email
+#: help:stock.connect.external_email,message_ids:0
+msgid "Messages and communication history"
+msgstr "Messages and communication history"
+
+#. module: pc_connect_warehouse_external_email
+#: field:stock.connect.external_email,message_ids:0
+msgid "Messages"
+msgstr "Messages"
+
+#. module: pc_connect_warehouse_external_email
+#: model:ir.model.fields,field_description:field_stock_connect_external_email_message_ids
+msgid "Messages"
+msgstr "Messages"
+
+#. module: pc_connect_warehouse_external_email
+#: view:stock.connect:0
+msgid "Messages"
+msgstr "Messages"
+
+#. module: pc_connect_warehouse_external_email
+#: model:ir.model,name:model_ir_module_module
+msgid "Module"
+msgstr "Modulo"
+
+#. module: pc_connect_warehouse_external_email
+#: field:stock.connect.external_email,name:0
+msgid "Name"
+msgstr "Nome"
+
+#. module: pc_connect_warehouse_external_email
+#: model:ir.model.fields,field_description:field_stock_connect_external_email_name
+msgid "Name"
+msgstr "Nome"
+
+#. module: pc_connect_warehouse_external_email
+#: field:configuration.data,email_connector_report_picking_list_num_lines:0
+msgid "Number of Lines per Page"
+msgstr "Number of Lines per Page"
+
+#. module: pc_connect_warehouse_external_email
+#: model:ir.model.fields,field_description:field_configuration_data_email_connector_report_picking_list_num_lines
+msgid "Number of Lines per Page"
+msgstr "Number of Lines per Page"
+
+#. module: pc_connect_warehouse_external_email
+#: field:stock.connect.external_email,limit_of_connections:0
+msgid "Number of connections made on sync"
+msgstr "Number of connections made on sync"
+
+#. module: pc_connect_warehouse_external_email
+#: model:ir.model.fields,field_description:field_stock_connect_external_email_limit_of_connections
+msgid "Number of connections made on sync"
+msgstr "Number of connections made on sync"
+
+#. module: pc_connect_warehouse_external_email
+#: report:addons/pc_connect_warehouse_external_email/reports/picking_list.mako:78
+msgid "Number of delivery orders in this batch"
+msgstr "Number of delivery orders in this batch"
+
+#. module: pc_connect_warehouse_external_email
+#: view:stock.connect:0
+msgid "Open Searchable List"
+msgstr "Open Searchable List"
+
+#. module: pc_connect_warehouse_external_email
+#: model:ir.model,name:model_mail_mail
+msgid "Outgoing Mails"
+msgstr "Email in uscita"
+
+#. module: pc_connect_warehouse_external_email
+#: report:addons/pc_connect_warehouse_external_email/reports/picking_list.mako:44
+msgid "Page"
+msgstr "Page"
+
+#. module: pc_connect_warehouse_external_email
+#: field:configuration.data,email_connector_report_picking_list:0
+msgid "Picking List"
+msgstr "Bolla di prelievo"
+
+#. module: pc_connect_warehouse_external_email
+#: model:ir.actions.report.xml,name:report_picking_list
+msgid "Picking List"
+msgstr "Bolla di prelievo"
+
+#. module: pc_connect_warehouse_external_email
+#: model:ir.model,name:model_stock_picking
+msgid "Picking List"
+msgstr "Bolla di prelievo"
+
+#. module: pc_connect_warehouse_external_email
+#: model:ir.model.fields,field_description:field_configuration_data_email_connector_report_picking_list
+msgid "Picking List"
+msgstr "Bolla di prelievo"
+
+#. module: pc_connect_warehouse_external_email
+#: report:addons/pc_connect_warehouse_external_email/reports/picking_list.mako:64
+msgid "Picking List"
+msgstr "Bolla di prelievo"
+
+#. module: pc_connect_warehouse_external_email
+#: field:configuration.data,email_connector_email_address_primary:0
+msgid "Primary E-mail Address"
+msgstr "Primary E-mail Address"
+
+#. module: pc_connect_warehouse_external_email
+#: model:ir.model.fields,field_description:field_configuration_data_email_connector_email_address_primary
+msgid "Primary E-mail Address"
+msgstr "Primary E-mail Address"
+
+#. module: pc_connect_warehouse_external_email
+#: view:configuration.data:0
+msgid "Punchcard Configuration"
+msgstr "Punchcard Configuration"
+
+#. module: pc_connect_warehouse_external_email
+#: code:addons/pc_connect_warehouse_external_email/stock_connect_file_ext.py:175
+msgid "Quantity"
+msgstr "Quantity"
+
+#. module: pc_connect_warehouse_external_email
+#: report:addons/pc_connect_warehouse_external_email/reports/picking_list.mako:108
+msgid "Quantity"
+msgstr "Quantity"
+
+#. module: pc_connect_warehouse_external_email
+#: field:stock.picking,connect_file_id:0
+msgid "Related stock connect file"
+msgstr "Related stock connect file"
+
+#. module: pc_connect_warehouse_external_email
+#: model:ir.model.fields,field_description:field_stock_picking_connect_file_id
+msgid "Related stock connect file"
+msgstr "Related stock connect file"
+
+#. module: pc_connect_warehouse_external_email
+#: field:stock.connect.file,picking_ids:0
+msgid "Related stock pickings"
+msgstr "Related stock pickings"
+
+#. module: pc_connect_warehouse_external_email
+#: model:ir.model.fields,field_description:field_stock_connect_file_picking_ids
+msgid "Related stock pickings"
+msgstr "Related stock pickings"
+
+#. module: pc_connect_warehouse_external_email
+#: field:stock.connect.external_email,remote_input_dir:0
+msgid "Remote directory where to GET files"
+msgstr "Remote directory where to GET files"
+
+#. module: pc_connect_warehouse_external_email
+#: model:ir.model.fields,field_description:field_stock_connect_external_email_remote_input_dir
+msgid "Remote directory where to GET files"
+msgstr "Remote directory where to GET files"
+
+#. module: pc_connect_warehouse_external_email
+#: field:stock.connect.external_email,remote_output_dir:0
+msgid "Remote directory where to PUT files"
+msgstr "Remote directory where to PUT files"
+
+#. module: pc_connect_warehouse_external_email
+#: model:ir.model.fields,field_description:field_stock_connect_external_email_remote_output_dir
+msgid "Remote directory where to PUT files"
+msgstr "Remote directory where to PUT files"
+
+#. module: pc_connect_warehouse_external_email
+#: view:configuration.data:0
+msgid "Reports"
+msgstr "Reports"
+
+#. module: pc_connect_warehouse_external_email
+#: help:configuration.data,email_connector_time_of_day_2:0
+msgid "Second sending will be sent not earlier than this hour."
+msgstr "Second sending will be sent not earlier than this hour."
+
+#. module: pc_connect_warehouse_external_email
+#: field:configuration.data,email_connector_email_address_secondary:0
+msgid "Secondary E-mail Address"
+msgstr "Secondary E-mail Address"
+
+#. module: pc_connect_warehouse_external_email
+#: model:ir.model.fields,field_description:field_configuration_data_email_connector_email_address_secondary
+msgid "Secondary E-mail Address"
+msgstr "Secondary E-mail Address"
+
+#. module: pc_connect_warehouse_external_email
+#: field:configuration.data,email_connector_friday:0
+msgid "Send on Fridays?"
+msgstr "Send on Fridays?"
+
+#. module: pc_connect_warehouse_external_email
+#: model:ir.model.fields,field_description:field_configuration_data_email_connector_friday
+msgid "Send on Fridays?"
+msgstr "Send on Fridays?"
+
+#. module: pc_connect_warehouse_external_email
+#: field:configuration.data,email_connector_monday:0
+msgid "Send on Mondays?"
+msgstr "Send on Mondays?"
+
+#. module: pc_connect_warehouse_external_email
+#: model:ir.model.fields,field_description:field_configuration_data_email_connector_monday
+msgid "Send on Mondays?"
+msgstr "Send on Mondays?"
+
+#. module: pc_connect_warehouse_external_email
+#: field:configuration.data,email_connector_saturday:0
+msgid "Send on Saturdays?"
+msgstr "Send on Saturdays?"
+
+#. module: pc_connect_warehouse_external_email
+#: model:ir.model.fields,field_description:field_configuration_data_email_connector_saturday
+msgid "Send on Saturdays?"
+msgstr "Send on Saturdays?"
+
+#. module: pc_connect_warehouse_external_email
+#: field:configuration.data,email_connector_sunday:0
+msgid "Send on Sundays?"
+msgstr "Send on Sundays?"
+
+#. module: pc_connect_warehouse_external_email
+#: model:ir.model.fields,field_description:field_configuration_data_email_connector_sunday
+msgid "Send on Sundays?"
+msgstr "Send on Sundays?"
+
+#. module: pc_connect_warehouse_external_email
+#: field:configuration.data,email_connector_thursday:0
+msgid "Send on Thursdays?"
+msgstr "Send on Thursdays?"
+
+#. module: pc_connect_warehouse_external_email
+#: model:ir.model.fields,field_description:field_configuration_data_email_connector_thursday
+msgid "Send on Thursdays?"
+msgstr "Send on Thursdays?"
+
+#. module: pc_connect_warehouse_external_email
+#: field:configuration.data,email_connector_tuesday:0
+msgid "Send on Tuesdays?"
+msgstr "Send on Tuesdays?"
+
+#. module: pc_connect_warehouse_external_email
+#: model:ir.model.fields,field_description:field_configuration_data_email_connector_tuesday
+msgid "Send on Tuesdays?"
+msgstr "Send on Tuesdays?"
+
+#. module: pc_connect_warehouse_external_email
+#: field:configuration.data,email_connector_wednesday:0
+msgid "Send on Wednesdays?"
+msgstr "Send on Wednesdays?"
+
+#. module: pc_connect_warehouse_external_email
+#: model:ir.model.fields,field_description:field_configuration_data_email_connector_wednesday
+msgid "Send on Wednesdays?"
+msgstr "Send on Wednesdays?"
+
+#. module: pc_connect_warehouse_external_email
+#: code:addons/pc_connect_warehouse_external_email/stock_connect_external_email.py:236
+msgid "Stock picking with ID={0} comes from sale order with ID={1} which has {2} invoices, while just one is allowed."
+msgstr "Stock picking with ID={0} comes from sale order with ID={1} which has {2} invoices, while just one is allowed."
+
+#. module: pc_connect_warehouse_external_email
+#: field:stock.connect.external_email,message_summary:0
+msgid "Summary"
+msgstr "Summary"
+
+#. module: pc_connect_warehouse_external_email
+#: model:ir.model.fields,field_description:field_stock_connect_external_email_message_summary
+msgid "Summary"
+msgstr "Summary"
+
+#. module: pc_connect_warehouse_external_email
+#: field:stock.connect.external_email,local_archive_input_dir_temporal:0
+msgid "Temporal local directory where to place the input files to archive"
+msgstr "Temporal local directory where to place the input files to archive"
+
+#. module: pc_connect_warehouse_external_email
+#: model:ir.model.fields,field_description:field_stock_connect_external_email_local_archive_input_dir_temporal
+msgid "Temporal local directory where to place the input files to archive"
+msgstr "Temporal local directory where to place the input files to archive"
+
+#. module: pc_connect_warehouse_external_email
+#: code:addons/pc_connect_warehouse_external_email/ir_module_module_ext.py:16
+msgid "The currently installed module pc_connect_warehouse_external_email is incompatible with module pc_connect_warehouse_yellow_cube. Please uninstall this module first."
+msgstr "The currently installed module pc_connect_warehouse_external_email is incompatible with module pc_connect_warehouse_yellow_cube. Please uninstall this module first."
+
+#. module: pc_connect_warehouse_external_email
+#: help:configuration.data,email_connector_report_picking_list_logo:0
+msgid "The logo which appears at the top of the report."
+msgstr "The logo which appears at the top of the report."
+
+#. module: pc_connect_warehouse_external_email
+#: help:configuration.data,email_connector_report_picking_list_num_lines:0
+msgid "The number of lines per page in the report. Take into account that some lines (those of titles) are bigger than others."
+msgstr "The number of lines per page in the report. Take into account that some lines (those of titles) are bigger than others."
+
+#. module: pc_connect_warehouse_external_email
+#: view:configuration.data:0
+msgid "The prefix for the punchcard is"
+msgstr "The prefix for the punchcard is"
+
+#. module: pc_connect_warehouse_external_email
+#: help:configuration.data,email_connector_time_of_day_3:0
+msgid "Third sending will be sent not earlier than this hour."
+msgstr "Third sending will be sent not earlier than this hour."
+
+#. module: pc_connect_warehouse_external_email
+#: code:addons/pc_connect_warehouse_external_email/stock_connect_file_ext.py:174
+msgid "Unit of Measure"
+msgstr "Unit of Measure"
+
+#. module: pc_connect_warehouse_external_email
+#: report:addons/pc_connect_warehouse_external_email/reports/picking_list.mako:107
+msgid "Unit of Measure"
+msgstr "Unit of Measure"
+
+#. module: pc_connect_warehouse_external_email
+#: field:stock.connect.external_email,message_unread:0
+msgid "Unread Messages"
+msgstr "Unread Messages"
+
+#. module: pc_connect_warehouse_external_email
+#: model:ir.model.fields,field_description:field_stock_connect_external_email_message_unread
+msgid "Unread Messages"
+msgstr "Unread Messages"
+
+#. module: pc_connect_warehouse_external_email
+#: view:configuration.data:0
+msgid "When is the External Email Connector going to be sent?"
+msgstr "When is the External Email Connector going to be sent?"
+
+#. module: pc_connect_warehouse_external_email
+#: selection:stock.connect.external_email,type:0
+msgid "YellowCube over SOAP"
+msgstr "YellowCube over SOAP"
+
+#. module: pc_connect_warehouse_external_email
+#: selection:stock.connect.external_email,type:0
+msgid "YellowCube"
+msgstr "YellowCube"
+
+#. module: pc_connect_warehouse_external_email
+#: model:ir.model,name:model_configuration_data
+msgid "configuration.data"
+msgstr "configuration.data"
+
+#. module: pc_connect_warehouse_external_email
+#: code:addons/pc_connect_warehouse_external_email/stock_connect_external_email.py:49
+msgid "connection_get_files does nothing if stock.connect.type is external_email."
+msgstr "connection_get_files does nothing if stock.connect.type is external_email."
+
+#. module: pc_connect_warehouse_external_email
+#: code:addons/pc_connect_warehouse_external_email/stock_connect_external_email.py:56
+msgid "connection_process_files does nothing if stock.connect.type is external_email."
+msgstr "connection_process_files does nothing if stock.connect.type is external_email."
+
+#. module: pc_connect_warehouse_external_email
+#: view:configuration.data:0
+msgid "email_connector"
+msgstr "email_connector"
+
+#. module: pc_connect_warehouse_external_email
+#: model:ir.model,name:model_stock_connect
+msgid "stock.connect"
+msgstr "stock.connect"
+

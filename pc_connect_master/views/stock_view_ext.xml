@@ -11,6 +11,9 @@
                 <field name="date_done" position="attributes">
                     <attribute name="groups">pc_connect_master.pc_client</attribute>
                 </field>
+                <field name="date_done" position="after">
+                    <field name="yc_mandatory_additional_shipping" />
+                </field>
                 <button name="action_process" position="attributes">
                     <attribute name="groups">base.group_user</attribute>
                 </button>
@@ -32,6 +35,9 @@
                 </field>
                 <field name="date_done" position="after">
                     <field name="do_not_send_to_warehouse" />
+                    <field name="ready_for_export" />
+                    <field name="ready_for_export_manual" groups="pc_connect_master.pc_admin"/>
+                    <field name="yc_mandatory_additional_shipping" />
                 </field>
                 <button name="action_process" position="attributes">
                     <attribute name="groups">base.group_user</attribute>
@@ -99,7 +105,6 @@
 			</field>
 		</record>
 
-
 		<record id="view_order_form_inherit_ext" model="ir.ui.view">
 			<field name="name">sale.order.form.sale.stock.ext</field>
 			<field name="model">sale.order</field>
@@ -108,7 +113,7 @@
 				<button name="action_view_delivery" position="replace">
 					<!-- Makes the button 'View Delivery Order' visible even if it was already delivered. -->
 					<button name="action_view_delivery" string="View Delivery Order" type="object" class="oe_highlight"
-						attrs="{'invisible': ['|',('picking_ids','in',(False,[])),('state', 'not in', ('progress','manual'))]}"
+						attrs="{'invisible': [('picking_ids','in',(False,[]))]}"
 						groups="base.group_user,pc_connect_master.pc_client" />
 				</button>
 			</field>
@@ -116,3 +121,4 @@
 
 	</data>
 </openerp>
+

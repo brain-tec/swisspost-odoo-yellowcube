@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+	<data>
+		<record id="barcode_report_configuration_data_view" model="ir.ui.view">
+			<field name="name">barcode_report_configuration_data_view</field>
+			<field name="model">configuration.data</field>
+			<field name="inherit_id" ref="pc_connect_master.post_ecommerce_config_view" />
+			<field name="arch" type="xml">
+
+                <page string="Reports" position="inside">
+                    <group string="Barcode Label Report" colspan="1">
+                        <field name="barcode_report_logo" />
+                        <field name="barcode_report_barcode_top" />
+                        <field name="barcode_report_barcode_left" />
+                        <field name="barcode_report_logo_top" />
+                        <field name="barcode_report_logo_left" />
+                        <field name="barcode_report_logo_width" />
+                        <field name="barcode_report_partner_id" />
+                        <field name="barcode_report_partner_top" />
+                        <field name="barcode_report_partner_left" />
+                        <field name="barcode_report_partner_width" />
+                        <field name="barcode_report_partner_font_size" />
+                        <field name="barcode_report_information_top_with_partner" />
+                        <field name="barcode_report_information_top" />
+                        <field name="barcode_report_information_left" />
+                        <field name="barcode_report_information_width" />
+                        <field name="barcode_report_information_font_size" />
+                        <field name="barcode_report_package_top" />
+                        <field name="barcode_report_package_left" />
+                        <field name="barcode_report_package_font_size" />
+                        <field name="barcode_report_package_font_weight" />
+                    </group>
+                </page>
+
+            </field>
+        </record>
+    </data>
+</openerp>

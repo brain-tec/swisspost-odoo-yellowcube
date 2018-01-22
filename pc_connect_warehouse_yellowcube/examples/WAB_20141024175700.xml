@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<WAB>
+	<ControlReference>
+		<Type>WAB</Type>
+		<Sender>Easyshop</Sender>
+		<Receiver>YELLOWCUBE</Receiver>
+		<Timestamp>20141024152842</Timestamp>
+		<OperatingMode>T</OperatingMode>
+		<Version>1.0</Version>
+	</ControlReference>
+	<Order>
+		<OrderHeader>
+			<DepositorNo>0000041000</DepositorNo>
+			<CustomerOrderNo>100033</CustomerOrderNo>
+			<CustomerOrderDate>20141024</CustomerOrderDate>
+		</OrderHeader>
+		<PartnerAddress>
+			<Partner>
+				<PartnerType>WE</PartnerType>
+				<PartnerNo>300030</PartnerNo>
+				<PartnerReference>Felix Mustermann</PartnerReference>
+				<Title/>
+				<Name1>Hans Müler</Name1>
+				<Name2/>
+				<Name3/>
+				<Name4/>
+				<Street>Testweg 1A</Street>
+				<CountryCode>CH</CountryCode>
+				<ZIPCode>3000</ZIPCode>
+				<City>Bern</City>
+				<PhoneNo/>
+				<MobileNo/>
+				<SMSAvisMobNo/>
+				<FaxNo/>
+				<LanguageCode>de</LanguageCode>
+			</Partner>
+		</PartnerAddress>
+		<ValueAddedServices>
+			<AdditionalService>
+				<BasicShippingServices>PRI</BasicShippingServices>
+				<AdditionalShippingServices/>
+				<DeliveryInstructions/>
+				<FloorNo/>
+				<NotificationType/>
+				<DeliveryDate/>
+				<DeliveryTimeJIT/>
+				<DeliveryTimeFrom/>
+				<DeliveryLocation/>
+				<FrightShippingFlag>0</FrightShippingFlag>
+			</AdditionalService>
+		</ValueAddedServices>
+		<OrderPositions>
+			<Position>
+				<PosNo>1</PosNo>
+				<ArticleNo>S0057-08.5</ArticleNo>
+				<Plant>Y019</Plant>
+				<Quantity>1</Quantity>
+				<QuantityISO>PCE</QuantityISO>
+				<ShortDescription>Vx - Blade</ShortDescription>
+			</Position>
+			<Position>
+				<PosNo>2</PosNo>
+				<ArticleNo>S0058-08.5</ArticleNo>
+				<Plant>Y019</Plant>
+				<Quantity>1</Quantity>
+				<QuantityISO>PCE</QuantityISO>
+				<ShortDescription>Shorts Black</ShortDescription>
+			</Position>
+			<Position>
+				<PosNo>3</PosNo>
+				<ArticleNo>7640104951193</ArticleNo>
+				<Lot>201506</Lot>
+				<Plant>Y019</Plant>
+				<Quantity>3</Quantity>
+				<QuantityISO>PCE</QuantityISO>
+			  </Position>
+			  <Position>
+				<PosNo>301</PosNo>
+				<ArticleNo>7640104951193</ArticleNo>
+				<Lot>201511</Lot>
+				<Plant>Y019</Plant>
+				<Quantity>5</Quantity>
+				<QuantityISO>PCE</QuantityISO>
+			  </Position>
+		  	</OrderPositions>
+		    <OrderDocuments OrderDocumentsFlag="1">
+			  <OrderDocFilenames>
+				<OrderDocFilename>LS547221_141024.PCL</OrderDocFilename>
+				<OrderDocFilename>IV547221_141024.PCL</OrderDocFilename>
+				<OrderDocFilename>ZS547221_141024.PCL</OrderDocFilename>
+			  </OrderDocFilenames>
+			</OrderDocuments>
+	</Order>
+</WAB>

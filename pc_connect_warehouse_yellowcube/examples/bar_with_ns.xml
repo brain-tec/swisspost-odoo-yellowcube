@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bar:BAR xmlns:bar="https://service.swisspost.ch/apache/yellowcube/YellowCube_BAR_RESPONSE_ArticleList.xsd">
+    <bar:ControlReference>
+        <bar:Type>BAR</bar:Type>
+        <bar:Sender>YELLOWCUBE</bar:Sender>
+        <bar:Receiver>0000090040</bar:Receiver>
+        <bar:Timestamp>20140829230003</bar:Timestamp>
+        <bar:OperatingMode>P</bar:OperatingMode>
+        <bar:Version>1.0</bar:Version>
+    </bar:ControlReference>
+    <bar:ArticleList>
+        <bar:Article>
+            <bar:YCArticleNo>YT00002</bar:YCArticleNo>
+            <bar:ArticleNo>test-lot-prod</bar:ArticleNo>
+            <bar:YCLot>0000001</bar:YCLot>
+            <bar:ArticleDescription>TaschentÃ¼cher Minipocket</bar:ArticleDescription>
+            <bar:Plant>TEST</bar:Plant>
+            <bar:StorageLocation>YAFS</bar:StorageLocation>
+            <bar:StockType>0</bar:StockType>
+            <bar:QuantityUOM QuantityISO="PCE">101</bar:QuantityUOM>
+        </bar:Article>
+    </bar:ArticleList>
+</bar:BAR>

@@ -1,7 +1,7 @@
 # b-*- encoding: utf-8 -*-
 ##############################################################################
 #
-#    Copyright (c) 2015 brain-tec AG (http://www.brain-tec.ch)
+#    Copyright (c) 2015 brain-tec AG (http://www.braintec-group.com)
 #    All Right Reserved
 #
 #    This program is free software: you can redistribute it and/or modify
@@ -25,8 +25,10 @@ from openerp.tools.translate import _
 
 # Here we list the types of connections that we are going to support.
 PC_CONNECTION_TYPES = [
+    ('soap', 'SOAP'),
     ('fds', 'FDS'),
     ('localsftp', 'Local SFTP'),
+    ('magentoxmlrpc', 'Magento XML-RPC'),
 ]
 
 
@@ -55,7 +57,7 @@ class connect_transport(osv.Model):
         if context is None:
             context = {}
 
-        if isinstance(ids, list):
+        if type(ids) is list:
             ids = ids[0]
 
         connection = self.browse(cr, uid, ids, context=context)
@@ -99,5 +101,4 @@ class connect_transport(osv.Model):
         (_type_installed, 'Selected type is not present on the server. Install related module', ['type']),
         (_type_not_implemented, 'Selected type is not implemented yet.', ['type']),
     ]
-
 # vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:

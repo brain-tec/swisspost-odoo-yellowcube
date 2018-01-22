@@ -1,0 +1,134 @@
+-
+  1.A.7. If the number of due days is exactly the delay for a level, the follow-up level is changed
+         to the next one and the number of due days is the delay for that level.
+  1.A.8. If the follow-up level requires a manual action, the field ‘Next Action Date’ must be
+         filled-in in the res.partner with the date in which the level update was done.
+  1.A.12. If the follow-up requires a manual action, the field ‘Follow-Up Responsible’ in
+         the res.partner must be set with the responsible that was indicated in
+         the corresponding follow-up level.
+-
+  !python {model: account.invoice}: |
+    print 'Starting the test 1.A.7.'
+    cr.execute("SAVEPOINT test;")
+
+-
+  1.A.7. Creates an invoice with one line.
+-
+  !record {model: account.invoice, id: account_invoice_1_A_7}:
+    partner_id: base.res_partner_2
+    journal_id: account.sales_journal
+    account_id: account.a_recv
+    date_due: !eval datetime.today().strftime("%Y-%m-%d")
+    invoice_line:
+      - product_id: product.product_product_48
+        name: 'USB Adapter'
+        quantity: 18.0
+        uos_id: product.product_uom_unit
+        price_unit: 5.0
+
+-
+  1.A.7. Gets the delay of the first follow-up level and sets the due date of the invoice to be just that delay.
+         Also sets a manual action to be performed associated to that follow-up level.
+-
+  !python {model: followup.level}: |
+    from openerp import SUPERUSER_ID
+    from datetime import datetime, timedelta
+    # Gets the follow-up levels associated to the company of the admin.
+    superuser_id = self.pool.get('res.users').search(cr, uid, [('id', '=', SUPERUSER_ID)], limit=1, context=context)[0]
+    company_id = self.pool.get('res.company').search(cr, uid, [('id', '=', superuser_id)], limit=1, context=context)[0]
+    followup_config_id = self.pool.get('followup.config').search(cr, uid, [('company_id', '=', company_id)], context=context)[0]
+    followup_level_ids = self.pool.get('followup.level').search(cr, uid, [('followup_config_id', '=', followup_config_id)], context=context)
+
+    # Stores the ID of the first follow-up level.
+    context['first_followup_level'] = followup_level_ids[0]
+
+    # Sets a manual action associated to this follow-up level.
+    context['manual_action_responsible_id'] = self.pool.get('res.users').search(cr, uid, [('name', '=', 'Demo User')], limit=1, context=context)[0]
+    context['manual_action_note'] = 'Call the customer.'
+    followup_level_obj = self.pool.get('followup.level').browse(cr, uid, followup_level_ids[0], context=context)
+    followup_level_obj.write({'manual_action': True,
+                              'manual_action_responsible_id': context['manual_action_responsible_id'],
+                              'manual_action_note': context['manual_action_note']})
+
+    # Gets the delay of the first follow-up level (they are sorted).
+    delay = self.pool.get('followup.level').browse(cr, uid, followup_level_ids[0], context=context).delay
+    context['followup_level_delay'] = delay
+
+    # Gets the invoice
+    invoice_obj = self.pool.get('account.invoice').browse(cr, uid, ref('account_invoice_1_A_7'))
+
+    # Sets the delay of the invoice to be just one day before the day in which the first follow-up level applies.
+    new_due_date = (datetime.now() - timedelta(delay)).strftime("%Y-%m-%d")
+    invoice_obj.write({'date_due': new_due_date, 'payment_term': None})
+
+-
+  1.A.7. Checks if the state of the newly created invoice is in state 'draft'.
+-
+  !assert {model: account.invoice, id: account_invoice_1_A_7, string: '1.A.7. State should be in state draft.'}:
+    - state == 'draft'
+
+-
+  1.A.7. Validates invoice by clicking on the 'Validate' button.
+-
+  !workflow {model: account.invoice, action: invoice_open, ref: account_invoice_1_A_7}
+
+-
+  1.A.7. Checks if the state of the newly created invoice is in state 'open'.
+-
+  !assert {model: account.invoice, id: account_invoice_1_A_7, string: '1.A.7. State should be in state open.'}:
+    - state == 'open'
+
+-
+  1.A.7. Checks if the due days of the opened invoice is exactly the delay of the first follow-up level.
+-
+  !python {model: account.invoice}: |
+    invoice_obj = self.browse(cr, uid, ref('account_invoice_1_A_7'))
+    assert(invoice_obj.follow_up_date_due_days == context['followup_level_delay']), ("1.A.7. 'Due days' should be {0}, but it is {1}".format(context['followup_level_delay'] - 1, invoice_obj.follow_up_date_due_days))
+
+-
+  1.A.7. Checks that 1) there is not follow-up level associated to the invoice,
+                     2) its follow-up level has not been handled,
+                     3) its handling date is empty.
+-
+  !python {model: account.invoice}: |
+    invoice_obj = self.browse(cr, uid, ref('account_invoice_1_A_7'))
+    assert(not invoice_obj.followup_level_id), ("1.A.7. 'Follow-up Level' should be not set, but it is set to {0}.".format(invoice_obj.followup_level_id))
+    assert(not invoice_obj.followup_level_handled), ("1.A.7. 'Follow-up Level Handled' should be not set, but it is set to {0}.".format(invoice_obj.followup_level_handled))
+    assert(not invoice_obj.followup_level_date), ("1.A.7. 'Follow-up Handling Date' should be not set, but it is set to {0}.".format(invoice_obj.followup_level_date))
+
+-
+  1.A.7. Executes the scheduler which updates the follow-up levels.
+-
+  !python {model: account.invoice}: |
+    self.cron_update_invoice_followup_level(cr, uid, context)
+
+    # Stores the date in which the scheduler was called (today).
+    from datetime import datetime
+    context['date_followup_levels_were_updated'] = datetime.now().strftime("%Y-%m-%d")
+
+-
+  1.A.7. The field 'Next Action must be filled-in in the res.partner with the text indicated in the follow-up level.
+         Also, (test 1.A.8), the field ‘Next Action Date’ must be filled-in in the res.partner with the date in which the level update was done.
+         Also, (test 1.A.12), the field ‘Next Action’ in the res.partner must be set with the responsible that was indicated in the corresponding follow-up level.
+-
+  !python {model: res.partner}: |
+    partner_child_1_obj = self.browse(cr, uid, ref('base.res_partner_address_4'))
+    assert(not partner_child_1_obj.followup_payment_next_action_date), ("1.A.7. 'Next Action Date' of res.partner with xml-id=res_partner_address_4 should not be set, but it is set to {0}.".format(partner_child_1_obj.followup_payment_next_action_date))
+    assert(not partner_child_1_obj.followup_payment_next_action), ("1.A.7. 'Next Action' of res.partner with xml-id=res_partner_address_4 should not be set, but it is set to {0}.".format(partner_child_1_obj.followup_payment_next_action))
+    assert(not partner_child_1_obj.followup_responsible_id.id), ("1.A.7. 'Follow-up Responsible' of res.partner with xml-id=res_partner_address_4 should not be set, but it is set to {0}.".format(partner_child_1_obj.followup_responsible_id.id))
+
+    partner_child_2_obj = self.browse(cr, uid, ref('base.res_partner_address_3'))
+    assert(not partner_child_2_obj.followup_payment_next_action_date), ("1.A.7. 'Next Action Date' of res.partner with xml-id=res_partner_address_3 should not be set, but it is set to {0}.".format(partner_child_2_obj.followup_payment_next_action_date))
+    assert(not partner_child_2_obj.followup_payment_next_action), ("1.A.7. 'Next Action' of res.partner with xml-id=res_partner_address_3 should be should not be set, but it is set to {0}.".format(partner_child_2_obj.followup_payment_next_action))
+    assert(not partner_child_2_obj.followup_responsible_id.id), ("1.A.7. 'Follow-up Responsible' of res.partner with xml-id=res_partner_address_3 should not be set, but it is set to {0}.".format(partner_child_2_obj.followup_responsible_id.id))
+
+    partner_parent_obj = self.browse(cr, uid, ref('base.res_partner_2'))
+    assert(partner_parent_obj.followup_payment_next_action_date == context['date_followup_levels_were_updated']), ("1.A.7. 'Next Action Date' of res.partner with xml-id=res_partner_2 should be set to {0}, but it is {1}.".format(context['date_followup_levels_were_updated'], partner_parent_obj.followup_payment_next_action_date))
+    assert(partner_parent_obj.followup_payment_next_action == context['manual_action_note']), ("1.A.7. 'Next Action' of res.partner with xml-id=res_partner_2 should be set to {0}, but it is {1}.".format(context['manual_action_note'], partner_parent_obj.followup_payment_next_action))
+    assert(partner_parent_obj.followup_responsible_id.id == context['manual_action_responsible_id']), ("1.A.7. 'Follow-up Responsible' of res.partner with xml-id=res_partner_2 should be set to {0}, but it is {1}.".format(context['manual_action_responsible_id'], partner_parent_obj.followup_responsible_id.id))
+
+-
+  1.A.7. Rollbacks.
+-
+  !python {model: account.invoice}: |
+    cr.execute("ROLLBACK TO SAVEPOINT test;")

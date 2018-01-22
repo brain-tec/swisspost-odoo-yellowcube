@@ -1,7 +1,7 @@
 # b-*- encoding: utf-8 -*-
 ##############################################################################
 #
-#    Copyright (c) 2015 brain-tec AG (http://www.brain-tec.ch)
+#    Copyright (c) 2015 brain-tec AG (http://www.braintec-group.com)
 #    All Right Reserved
 #
 #    This program is free software: you can redistribute it and/or modify
@@ -24,8 +24,6 @@ from openerp.tools import DEFAULT_SERVER_DATETIME_FORMAT, DEFAULT_SERVER_DATE_FO
 from datetime import datetime
 import pytz
 import os
-import logging
-logger = logging.getLogger(__name__)
 
 
 OFFLINE_WSDL_PATH = mako_path = os.path.abspath(os.path.join(os.path.dirname(__file__), 'wsdl_offline/yellowcube-test.xml'))
@@ -76,13 +74,13 @@ class stock_connect_ext(osv.Model):
         '''
         if context is None:
             context = {}
-        if not isinstance(ids, list):
+        if type(ids) is not list:
             ids = [ids]
 
         stock_connect = self.browse(cr, uid, ids[0], context=context)
         date_field_value = stock_connect[date_field]
-        if not date_field_value:  # If we don't have a field value, we assume its today.
-            return True
+        if not date_field_value:  # If we don't have a field value, we assume never was done.
+            return False
         else:
             current_time_str = current_time.strftime(DEFAULT_SERVER_DATE_FORMAT)
             date_field_str = datetime.strptime(date_field_value, DEFAULT_SERVER_DATETIME_FORMAT).replace(tzinfo=pytz.timezone(current_time_timezone)).strftime(DEFAULT_SERVER_DATE_FORMAT)
@@ -100,6 +98,7 @@ class stock_connect_ext(osv.Model):
         'yc_bar_check_starting_hour': fields.float("BAR's start of downloading window", help="A BAR must be not downloaded before this hour."),
         'yc_bar_check_ending_hour': fields.float("BAR's end of downloading window", help="A BAR must not be downloaded after this hour."),
         'yc_bar_last_check': fields.datetime("Last BAR download", help="Date of the last time we downloaded a BAR file."),
+        'yc_bur_send_elapsed_days': fields.boolean("BUR: Send ElapsedDays"),
         'yc_war_last_check': fields.datetime("Last WAR download", help="Date of the last time we downloaded a WAR file."),
         'yc_wba_last_check': fields.datetime("Last WBA download", help="Date of the last time we downloaded a WBA file."),
     }
@@ -108,6 +107,7 @@ class stock_connect_ext(osv.Model):
         'yc_wsdl_endpoint': OFFLINE_WSDL_PATH,
         'yc_bar_check_starting_hour': 4.0,
         'yc_bar_check_ending_hour': 6.0,
+        'yc_bur_send_elapsed_days': True,
     }
 
     _constraints = [

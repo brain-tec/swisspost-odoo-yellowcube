@@ -116,11 +116,6 @@ msgid "Debug file for soap messages. Empty=Ignore feature"
 msgstr "Debug file for soap messages. Empty=Ignore feature"
 
 #. module: pc_connect_warehouse_yellowcube_soap
-#: help:stock.connect.yellowcubesoap,yc_invoice_pcl_printer_destination:0
-msgid "Destination of the file the PCL printer prints to. It must be a file, NOT a folder."
-msgstr "Destination of the file the PCL printer prints to. It must be a file, NOT a folder."
-
-#. module: pc_connect_warehouse_yellowcube_soap
 #: selection:stock.connect.yellowcubesoap,yc_operating_mode:0
 msgid "Development"
 msgstr "Development"
@@ -428,11 +423,6 @@ msgid "Messages"
 msgstr "Messages"
 
 #. module: pc_connect_warehouse_yellowcube_soap
-#: help:stock.connect.yellowcubesoap,yc_invoice_pcl_printer_name:0
-msgid "Name of the PCL printer."
-msgstr "Name of the PCL printer."
-
-#. module: pc_connect_warehouse_yellowcube_soap
 #: field:stock.connect.yellowcubesoap,name:0
 msgid "Name"
 msgstr "Nom"
@@ -456,26 +446,6 @@ msgstr "Number of connections made on sync"
 #: model:ir.model.fields,field_description:field_stock_connect_yellowcubesoap_limit_of_connections
 msgid "Number of connections made on sync"
 msgstr "Number of connections made on sync"
-
-#. module: pc_connect_warehouse_yellowcube_soap
-#: field:stock.connect.yellowcubesoap,yc_invoice_pcl_printer_destination:0
-msgid "PCL Printer Destination"
-msgstr "PCL Printer Destination"
-
-#. module: pc_connect_warehouse_yellowcube_soap
-#: model:ir.model.fields,field_description:field_stock_connect_yellowcubesoap_yc_invoice_pcl_printer_destination
-msgid "PCL Printer Destination"
-msgstr "PCL Printer Destination"
-
-#. module: pc_connect_warehouse_yellowcube_soap
-#: field:stock.connect.yellowcubesoap,yc_invoice_pcl_printer_name:0
-msgid "PCL Printer Name"
-msgstr "PCL Printer Name"
-
-#. module: pc_connect_warehouse_yellowcube_soap
-#: model:ir.model.fields,field_description:field_stock_connect_yellowcubesoap_yc_invoice_pcl_printer_name
-msgid "PCL Printer Name"
-msgstr "PCL Printer Name"
 
 #. module: pc_connect_warehouse_yellowcube_soap
 #: field:stock.connect,yc_soapsec_cert_path:0
@@ -546,21 +516,6 @@ msgstr "SOAP configuration"
 #: view:stock.connect:0
 msgid "Set for debug file"
 msgstr "Set for debug file"
-
-#. module: pc_connect_warehouse_yellowcube_soap
-#: field:stock.connect.yellowcubesoap,yc_invoice_pcl_printer_silent_printing:0
-msgid "Silent PCL Printing?"
-msgstr "Silent PCL Printing?"
-
-#. module: pc_connect_warehouse_yellowcube_soap
-#: model:ir.model.fields,field_description:field_stock_connect_yellowcubesoap_yc_invoice_pcl_printer_silent_printing
-msgid "Silent PCL Printing?"
-msgstr "Silent PCL Printing?"
-
-#. module: pc_connect_warehouse_yellowcube_soap
-#: help:stock.connect.yellowcubesoap,yc_invoice_pcl_printer_silent_printing:0
-msgid "Silents the messages associated with the printing of PCL files."
-msgstr "Silents the messages associated with the printing of PCL files."
 
 #. module: pc_connect_warehouse_yellowcube_soap
 #: field:stock.connect.yellowcubesoap,message_summary:0

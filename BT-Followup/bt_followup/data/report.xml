@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+
+	<data noupdate="1" >
+        <report id="bt_followup.invoice_followup_report" model="account.invoice" name="invoice_followup_report" string="Invoice Follow-up Report"
+                file="bt_followup/report/invoice_followup_report.mako"
+                auto="True" header="True" menu="False"
+                report_type="webkit" webkit_header="invoice_followup_header_webkit"/>
+    </data>
+
+</openerp>

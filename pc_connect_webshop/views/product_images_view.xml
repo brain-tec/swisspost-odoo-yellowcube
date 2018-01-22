@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+
+        <record model="ir.ui.view" id="product_images_tree">
+            <field name="name">product.images.tree</field>
+            <field name="model">product.images</field>
+            <field name="arch" type="xml">
+                <tree string="Product Images">
+                    <field name="product_id"
+                        invisible="not context.get('product_images_main_view')" />
+                     <field name="name" select="1" />
+                    <field name="comments" select="1" />
+                </tree>
+            </field>
+        </record>
+
+        <record id="product_images_action" model="ir.actions.act_window">
+            <field name="name">Product Images</field>
+            <field name="res_model">product.images</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="context">{'product_images_main_view': True}</field>
+        </record>
+
+        <menuitem id="product_images_menu"
+            parent="base.menu_product"
+            action="product_images_action"
+            sequence="200"/>
+
+    </data>
+</openerp>

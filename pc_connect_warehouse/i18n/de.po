@@ -1,6 +1,6 @@
 # Translation of OpenERP Server.
 # This file contains the translation of the following modules:
-#	* pc_connect_warehouse
+#
 #
 msgid ""
 msgstr ""
@@ -18,232 +18,232 @@ msgstr ""
 #. module: pc_connect_warehouse
 #: view:stock.connect:0
 msgid "1) Get files"
-msgstr "1) Get files"
+msgstr "1) Dateien abrufen"
 
 #. module: pc_connect_warehouse
 #: view:stock.connect:0
 msgid "2) Process files"
-msgstr "2) Process files"
+msgstr "2) Dateien verarbeiten"
 
 #. module: pc_connect_warehouse
 #: view:stock.connect:0
 msgid "3) Process events"
-msgstr "3) Process events"
+msgstr "3) Ereignisse verarbeiten"
 
 #. module: pc_connect_warehouse
 #: view:stock.connect:0
 msgid "4) Send files"
-msgstr "4) Send files"
+msgstr "4) Dateien senden"
 
 #. module: pc_connect_warehouse
 #: view:configuration.data:0
 msgid "Alarming"
-msgstr "Alarming"
+msgstr "Alarmierung"
 
 #. module: pc_connect_warehouse
 #: code:addons/pc_connect_warehouse/stock_connect.py:227
 msgid "An exception ocurred with stock.connect.file with ID={0}: {1}"
-msgstr "An exception ocurred with stock.connect.file with ID={0}: {1}"
+msgstr "Es ist ein Fehler aufgetreten bei der Datei mit ID={0}: {1}"
 
 #. module: pc_connect_warehouse
 #: field:stock.connect.file,attachments:0
 msgid "Binary files"
-msgstr "Binary files"
+msgstr "Binär-Dateien"
 
 #. module: pc_connect_warehouse
 #: model:ir.model.fields,field_description:field_stock_connect_file_attachments
 msgid "Binary files"
-msgstr "Binary files"
+msgstr "Binär-Dateien"
 
 #. module: pc_connect_warehouse
 #: help:stock.connect.file,server_ack:0
 msgid "By default is True, so special cases can set to False when waiting for ACK"
-msgstr "By default is True, so special cases can set to False when waiting for ACK"
+msgstr "In der Standardeinstellung aktiviert, kann aber für spezielle Situationen deaktiviert werden, wenn für die Bestätigung des Servers gewartet werden muss."
 
 #. module: pc_connect_warehouse
 #: selection:stock.event,state:0
 msgid "Cancelled"
-msgstr "Cancelled"
+msgstr "Abgebrochen"
 
 #. module: pc_connect_warehouse
 #: field:stock.connect.file,child_file_ids:0
 msgid "Child files"
-msgstr "Child files"
+msgstr "Nachfolger-Dateien"
 
 #. module: pc_connect_warehouse
 #: model:ir.model.fields,field_description:field_stock_connect_file_child_file_ids
 msgid "Child files"
-msgstr "Child files"
+msgstr "Nachfolger-Dateien"
 
 #. module: pc_connect_warehouse
 #: field:stock.connect,warehouse_ids:0
 msgid "Configured Warehouses"
-msgstr "Configured Warehouses"
+msgstr "Konfigurierte Lager"
 
 #. module: pc_connect_warehouse
 #: model:ir.model.fields,field_description:field_stock_connect_warehouse_ids
 msgid "Configured Warehouses"
-msgstr "Configured Warehouses"
+msgstr "Konfigurierte Lager"
 
 #. module: pc_connect_warehouse
 #: view:stock.connect.file:0
 msgid "Connect File"
-msgstr "Connect File"
+msgstr "Schnittstellendatei"
 
 #. module: pc_connect_warehouse
 #: view:stock.connect:0
 msgid "Connect File"
-msgstr "Connect File"
+msgstr "Schnittstellendatei"
 
 #. module: pc_connect_warehouse
 #: help:stock.connect.file,stock_connect_id:0
 msgid "Connection related to this file"
-msgstr "Connection related to this file"
+msgstr "Schnittstelle assoziiert zu dieser Datei"
 
 #. module: pc_connect_warehouse
 #: field:stock.connect,type:0
 msgid "Connection type"
-msgstr "Connection type"
+msgstr "Schnittstellentyp"
 
 #. module: pc_connect_warehouse
 #: field:stock.warehouse,stock_connect_type:0
 msgid "Connection type"
-msgstr "Connection type"
+msgstr "Schnittstellentyp"
 
 #. module: pc_connect_warehouse
 #: model:ir.model.fields,field_description:field_stock_connect_type
 msgid "Connection type"
-msgstr "Connection type"
+msgstr "Schnittstellentyp"
 
 #. module: pc_connect_warehouse
 #: model:ir.model.fields,field_description:field_stock_warehouse_stock_connect_type
 msgid "Connection type"
-msgstr "Connection type"
+msgstr "Schnittstellentyp"
 
 #. module: pc_connect_warehouse
 #: field:stock.connect,connect_transport_id:0
 msgid "Connection"
-msgstr "Connection"
+msgstr "Schnittstelle"
 
 #. module: pc_connect_warehouse
 #: field:stock.connect.file,stock_connect_id:0
 msgid "Connection"
-msgstr "Connection"
+msgstr "Schnittstelle"
 
 #. module: pc_connect_warehouse
 #: model:ir.model.fields,field_description:field_stock_connect_connect_transport_id
 msgid "Connection"
-msgstr "Connection"
+msgstr "Schnittstelle"
 
 #. module: pc_connect_warehouse
 #: model:ir.model.fields,field_description:field_stock_connect_file_stock_connect_id
 msgid "Connection"
-msgstr "Connection"
+msgstr "Schnittstelle"
 
 #. module: pc_connect_warehouse
 #: view:stock.warehouse:0
 msgid "Connection"
-msgstr "Connection"
+msgstr "Schnittstelle"
 
 #. module: pc_connect_warehouse
 #: model:ir.ui.menu,name:menuitem_connector_stock_connect
 msgid "Connections"
-msgstr "Connections"
+msgstr "Schnittstellen"
 
 #. module: pc_connect_warehouse
 #: model:ir.ui.menu,name:menuitem_warehouse_stock_connect
 msgid "Connections"
-msgstr "Connections"
+msgstr "Schnittstellen"
 
 #. module: pc_connect_warehouse
 #: field:stock.connect.file,content:0
 msgid "Content"
-msgstr "Content"
+msgstr "Inhalt"
 
 #. module: pc_connect_warehouse
 #: model:ir.model.fields,field_description:field_stock_connect_file_content
 msgid "Content"
-msgstr "Content"
+msgstr "Inhalt"
 
 #. module: pc_connect_warehouse
 #: view:stock.connect.file:0
 msgid "Content"
-msgstr "Content"
+msgstr "Inhalt"
 
 #. module: pc_connect_warehouse
 #: field:stock.connect.file,create_date:0
 msgid "Create date"
-msgstr "Create date"
+msgstr "Erstellungsdatum"
 
 #. module: pc_connect_warehouse
 #: field:stock.event,create_date:0
 msgid "Create date"
-msgstr "Create date"
+msgstr "Erstellungsdatum"
 
 #. module: pc_connect_warehouse
 #: model:ir.model.fields,field_description:field_stock_connect_file_create_date
 msgid "Create date"
-msgstr "Create date"
+msgstr "Erstellungsdatum"
 
 #. module: pc_connect_warehouse
 #: model:ir.model.fields,field_description:field_stock_event_create_date
 msgid "Create date"
-msgstr "Create date"
+msgstr "Erstellungsdatum"
 
 #. module: pc_connect_warehouse
 #: selection:configuration.data,stock_picking_in_partly_fullfilment_alarm_wait_uom:0
 msgid "Day(s)"
-msgstr "Day(s)"
+msgstr "Tag(e)"
 
 #. module: pc_connect_warehouse
 #: selection:configuration.data,stock_picking_out_max_open_age_uom:0
 msgid "Day(s)"
-msgstr "Day(s)"
+msgstr "Tag(e)"
 
 #. module: pc_connect_warehouse
 #: model:ir.model,name:model_stock_picking_out
 msgid "Delivery Orders"
-msgstr "Auslieferung Aufträge"
+msgstr "Lieferaufträge"
 
 #. module: pc_connect_warehouse
 #: view:configuration.data:0
 msgid "Delivery Orders"
-msgstr "Auslieferung Aufträge"
+msgstr "Lieferaufträge"
 
 #. module: pc_connect_warehouse
 #: view:stock.connect:0
 msgid "Do all (non-stop on errors)"
-msgstr "Do all (non-stop on errors)"
+msgstr "Gesamtausführung"
 
 #. module: pc_connect_warehouse
 #: model:ir.model,name:model_stock_connect_file
 msgid "Email Thread"
-msgstr "E-Mail Thread"
+msgstr "E-Mail Nachrichten"
 
 #. module: pc_connect_warehouse
 #: code:addons/pc_connect_warehouse/stock_connect.py:316
 msgid "Error"
-msgstr "Error"
+msgstr "Fehler"
 
 #. module: pc_connect_warehouse
 #: field:stock.event,error:0
 msgid "Error"
-msgstr "Error"
+msgstr "Fehler"
 
 #. module: pc_connect_warehouse
 #: model:ir.model.fields,field_description:field_stock_event_error
 msgid "Error"
-msgstr "Error"
+msgstr "Fehler"
 
 #. module: pc_connect_warehouse
 #: field:stock.event,event_code:0
 msgid "Event code"
-msgstr "Event code"
+msgstr "Ereigniscode"
 
 #. module: pc_connect_warehouse
 #: model:ir.model.fields,field_description:field_stock_event_event_code
 msgid "Event code"
-msgstr "Event code"
+msgstr "Ereigniscode"
 
 #. module: pc_connect_warehouse
 #: field:stock.connect,stock_event_ids:0
@@ -278,152 +278,152 @@ msgstr "Ereignisse"
 #. module: pc_connect_warehouse
 #: selection:stock.connect,type:0
 msgid "External Email"
-msgstr "External Email"
+msgstr "Email-zu-Lager-Schnittstelle"
 
 #. module: pc_connect_warehouse
 #: field:stock.warehouse.location,field_id:0
 msgid "Field"
-msgstr "Field"
+msgstr "Feld"
 
 #. module: pc_connect_warehouse
 #: model:ir.model.fields,field_description:field_stock_warehouse_location_field_id
 msgid "Field"
-msgstr "Field"
+msgstr "Feld"
 
 #. module: pc_connect_warehouse
 #: field:stock.connect,remote_file_template:0
 msgid "Filename template for files to import"
-msgstr "Filename template for files to import"
+msgstr "Namesformat für Import-Dateien"
 
 #. module: pc_connect_warehouse
 #: model:ir.model.fields,field_description:field_stock_connect_remote_file_template
 msgid "Filename template for files to import"
-msgstr "Filename template for files to import"
+msgstr "Namesformat für Import-Dateien"
 
 #. module: pc_connect_warehouse
 #: field:stock.connect.file,name:0
 msgid "Filename"
-msgstr "Filename"
+msgstr "Dateiname"
 
 #. module: pc_connect_warehouse
 #: model:ir.model.fields,field_description:field_stock_connect_file_name
 msgid "Filename"
-msgstr "Filename"
+msgstr "Dateiname"
 
 #. module: pc_connect_warehouse
 #: field:stock.connect,stock_connect_file_ids:0
 msgid "Files"
-msgstr "Files"
+msgstr "Dateien"
 
 #. module: pc_connect_warehouse
 #: field:stock.warehouse,stock_connect_file_ids:0
 msgid "Files"
-msgstr "Files"
+msgstr "Dateien"
 
 #. module: pc_connect_warehouse
 #: model:ir.model.fields,field_description:field_stock_connect_stock_connect_file_ids
 msgid "Files"
-msgstr "Files"
+msgstr "Dateien"
 
 #. module: pc_connect_warehouse
 #: model:ir.model.fields,field_description:field_stock_warehouse_stock_connect_file_ids
 msgid "Files"
-msgstr "Files"
+msgstr "Dateien"
 
 #. module: pc_connect_warehouse
 #: model:ir.ui.menu,name:menuitem_connector_stock_connect_file
 msgid "Files"
-msgstr "Files"
+msgstr "Dateien"
 
 #. module: pc_connect_warehouse
 #: view:stock.connect:0
 msgid "Files"
-msgstr "Files"
+msgstr "Dateien"
 
 #. module: pc_connect_warehouse
 #: selection:stock.connect.file,state:0
 msgid "Finished"
-msgstr "Finished"
+msgstr "Fertig"
 
 #. module: pc_connect_warehouse
 #: code:addons/pc_connect_warehouse/stock_connect.py:314
 msgid "Folder {0} does not exist on the local machine, and it is needed to archive the downloaded files."
-msgstr "Folder {0} does not exist on the local machine, and it is needed to archive the downloaded files."
+msgstr "Ordner {0} existiert nicht auf dem Server, wird aber benötigt um erhaltene Dateien zu archivieren."
 
 #. module: pc_connect_warehouse
 #: field:stock.connect,message_follower_ids:0
 msgid "Followers"
-msgstr "Followers"
+msgstr "Abonnenten"
 
 #. module: pc_connect_warehouse
 #: field:stock.connect.file,message_follower_ids:0
 msgid "Followers"
-msgstr "Followers"
+msgstr "Abonnenten"
 
 #. module: pc_connect_warehouse
 #: model:ir.model.fields,field_description:field_stock_connect_file_message_follower_ids
 msgid "Followers"
-msgstr "Followers"
+msgstr "Abonnenten"
 
 #. module: pc_connect_warehouse
 #: model:ir.model.fields,field_description:field_stock_connect_message_follower_ids
 msgid "Followers"
-msgstr "Followers"
+msgstr "Abonnenten"
 
 #. module: pc_connect_warehouse
 #: help:stock.connect,message_summary:0
 msgid "Holds the Chatter summary (number of messages, ...). This summary is directly in html format in order to be inserted in kanban views."
-msgstr "Holds the Chatter summary (number of messages, ...). This summary is directly in html format in order to be inserted in kanban views."
+msgstr "Enthält die Zusammenfassung der Nachrichten die beim Objekt angezeigt werden."
 
 #. module: pc_connect_warehouse
 #: help:stock.connect.file,message_summary:0
 msgid "Holds the Chatter summary (number of messages, ...). This summary is directly in html format in order to be inserted in kanban views."
-msgstr "Holds the Chatter summary (number of messages, ...). This summary is directly in html format in order to be inserted in kanban views."
+msgstr "Enthält die Zusammenfassung der Nachrichten die beim Objekt angezeigt werden."
 
 #. module: pc_connect_warehouse
 #: selection:configuration.data,stock_picking_in_partly_fullfilment_alarm_wait_uom:0
 msgid "Hour(s)"
-msgstr "Hour(s)"
+msgstr "Stunde(n)"
 
 #. module: pc_connect_warehouse
 #: selection:configuration.data,stock_picking_out_max_open_age_uom:0
 msgid "Hour(s)"
-msgstr "Hour(s)"
+msgstr "Stunde(n)"
 
 #. module: pc_connect_warehouse
 #: help:stock.connect,log_about_already_existing_files:0
 msgid "If activated, a line in the log will appear every time it sees a file that it already has."
-msgstr "If activated, a line in the log will appear every time it sees a file that it already has."
+msgstr "Falls aktiviert, wird für jede bereits eingelesene Datei eine Meldung ans Log ausgegeben. Sollte normalerweise deaktiviert sein."
 
 #. module: pc_connect_warehouse
 #: help:stock.connect,message_unread:0
 msgid "If checked new messages require your attention."
-msgstr "If checked new messages require your attention."
+msgstr "Wenn diese Option aktiviert wird, müssen neue Meldungen überprüft werden."
 
 #. module: pc_connect_warehouse
 #: help:stock.connect.file,message_unread:0
 msgid "If checked new messages require your attention."
-msgstr "If checked new messages require your attention."
+msgstr "Wenn diese Option aktiviert wird, müssen neue Meldungen überprüft werden."
 
 #. module: pc_connect_warehouse
 #: view:configuration.data:0
 msgid "If, when the check is made the Incoming Shipment is still waiting for products, it will create an Issue."
-msgstr "If, when the check is made the Incoming Shipment is still waiting for products, it will create an Issue."
+msgstr "Erwartet bei der Überprüfung die eingehende Lieferung immer noch Produkte, so wird eine Alarmierung ausgelöst."
 
 #. module: pc_connect_warehouse
 #: selection:stock.connect.file,state:0
 msgid "Ignored"
-msgstr "Ignored"
+msgstr "ignoriert"
 
 #. module: pc_connect_warehouse
 #: selection:stock.event,state:0
 msgid "Ignored"
-msgstr "Ignored"
+msgstr "ignoriert"
 
 #. module: pc_connect_warehouse
 #: view:stock.connect:0
 msgid "In order to assign this connection to a warehouse, edit the warehouse itself."
-msgstr "In order to assign this connection to a warehouse, edit the warehouse itself."
+msgstr "Um diese Verbindung zu einem Lager zuzuordnen, bearbeiten Sie das Lager selbst."
 
 #. module: pc_connect_warehouse
 #: model:ir.model,name:model_stock_picking_in
@@ -438,17 +438,17 @@ msgstr "Anlieferung"
 #. module: pc_connect_warehouse
 #: help:stock.picking,ready_for_export:0
 msgid "Indicates whether the stock.picking is ready for export to the warehouse."
-msgstr "Indicates whether the stock.picking is ready for export to the warehouse."
+msgstr "Gibt an, ob die Lieferung für den Export an das Lager bereit ist."
 
 #. module: pc_connect_warehouse
 #: field:stock.connect.file,info:0
 msgid "Info message"
-msgstr "Info message"
+msgstr "Info-Nachricht"
 
 #. module: pc_connect_warehouse
 #: model:ir.model.fields,field_description:field_stock_connect_file_info
 msgid "Info message"
-msgstr "Info message"
+msgstr "Info-Nachricht"
 
 #. module: pc_connect_warehouse
 #: field:stock.event,info:0
@@ -478,77 +478,77 @@ msgstr "Information"
 #. module: pc_connect_warehouse
 #: field:stock.connect.file,input:0
 msgid "Input file"
-msgstr "Input file"
+msgstr "Eingangsdatei"
 
 #. module: pc_connect_warehouse
 #: model:ir.model.fields,field_description:field_stock_connect_file_input
 msgid "Input file"
-msgstr "Input file"
+msgstr "Eingangsdatei"
 
 #. module: pc_connect_warehouse
 #: field:stock.connect.file,internal_index:0
 msgid "Internal index of a file processed by items"
-msgstr "Internal index of a file processed by items"
+msgstr "Interner Index einer verarbeiteten Datei"
 
 #. module: pc_connect_warehouse
 #: model:ir.model.fields,field_description:field_stock_connect_file_internal_index
 msgid "Internal index of a file processed by items"
-msgstr "Internal index of a file processed by items"
+msgstr "Interner Index einer verarbeiteten Datei"
 
 #. module: pc_connect_warehouse
 #: field:stock.connect,message_is_follower:0
 msgid "Is a Follower"
-msgstr "Is a Follower"
+msgstr "Ist ein Abonnent"
 
 #. module: pc_connect_warehouse
 #: field:stock.connect.file,message_is_follower:0
 msgid "Is a Follower"
-msgstr "Is a Follower"
+msgstr "Ist ein Abonnent"
 
 #. module: pc_connect_warehouse
 #: model:ir.model.fields,field_description:field_stock_connect_file_message_is_follower
 msgid "Is a Follower"
-msgstr "Is a Follower"
+msgstr "Ist ein Abonnent"
 
 #. module: pc_connect_warehouse
 #: model:ir.model.fields,field_description:field_stock_connect_message_is_follower
 msgid "Is a Follower"
-msgstr "Is a Follower"
+msgstr "Ist ein Abonnent"
 
 #. module: pc_connect_warehouse
 #: field:stock.picking,ready_for_export:0
 msgid "Is it ready for export?"
-msgstr "Is it ready for export?"
+msgstr "Ist es bereit für den Export?"
 
 #. module: pc_connect_warehouse
 #: model:ir.model.fields,field_description:field_stock_picking_ready_for_export_5258
 msgid "Is it ready for export?"
-msgstr "Is it ready for export?"
+msgstr "Ist es bereit für den Export?"
 
 #. module: pc_connect_warehouse
 #: field:stock.connect.file,binary_content:0
 msgid "Is the content binary?"
-msgstr "Is the content binary?"
+msgstr "Ist der Inhalt binär?"
 
 #. module: pc_connect_warehouse
 #: model:ir.model.fields,field_description:field_stock_connect_file_binary_content
 msgid "Is the content binary?"
-msgstr "Is the content binary?"
+msgstr "Ist der Inhalt binär?"
 
 #. module: pc_connect_warehouse
 #: sql_constraint:stock.connect.file:0
 msgid "It is required to define a related Warehouse, or a related Connection"
-msgstr "It is required to define a related Warehouse, or a related Connection"
+msgstr "Es ist nötig ein zugeordnetes Lager oder eine zugeordnete Schnittstelle zu definieren."
 
 #. module: pc_connect_warehouse
 #: field:stock.connect,local_archive_input_dir:0
 msgid "Local directory where to archive the input files"
-msgstr "Local directory where to archive the input files"
+msgstr "Verzeichnis für das Archivieren der eingehenden Dateien"
 
 #. module: pc_connect_warehouse
 #: model:ir.model.fields,field_description:field_stock_connect_local_archive_input_dir
 msgid "Local directory where to archive the input files"
-msgstr "Local directory where to archive the input files"
+msgstr "Verzeichnis für das Archivieren der eingehenden Dateien"
 
 #. module: pc_connect_warehouse
 #: field:stock.warehouse.location,location_id:0
@@ -568,57 +568,57 @@ msgstr "Ort"
 #. module: pc_connect_warehouse
 #: view:stock.warehouse:0
 msgid "Locations"
-msgstr "Locations"
+msgstr "Standorte"
 
 #. module: pc_connect_warehouse
 #: field:stock.connect,log_about_already_existing_files:0
 msgid "Log about already existing files?"
-msgstr "Log about already existing files?"
+msgstr "Bei bereits existierenden Dateien benachrichtigen?"
 
 #. module: pc_connect_warehouse
 #: model:ir.model.fields,field_description:field_stock_connect_log_about_already_existing_files
 msgid "Log about already existing files?"
-msgstr "Log about already existing files?"
+msgstr "Bei bereits existierenden Dateien benachrichtigen?"
 
 #. module: pc_connect_warehouse
 #: view:stock.connect:0
 msgid "Logs"
-msgstr "Logs"
+msgstr "Protokolle"
 
 #. module: pc_connect_warehouse
 #: help:stock.connect,message_ids:0
 msgid "Messages and communication history"
-msgstr "Messages and communication history"
+msgstr "Meldungs- und Kommunikationsprotokoll"
 
 #. module: pc_connect_warehouse
 #: help:stock.connect.file,message_ids:0
 msgid "Messages and communication history"
-msgstr "Messages and communication history"
+msgstr "Meldungs- und Kommunikationsprotokoll"
 
 #. module: pc_connect_warehouse
 #: field:stock.connect,message_ids:0
 msgid "Messages"
-msgstr "Messages"
+msgstr "Meldungen"
 
 #. module: pc_connect_warehouse
 #: field:stock.connect.file,message_ids:0
 msgid "Messages"
-msgstr "Messages"
+msgstr "Meldungen"
 
 #. module: pc_connect_warehouse
 #: model:ir.model.fields,field_description:field_stock_connect_file_message_ids
 msgid "Messages"
-msgstr "Messages"
+msgstr "Meldungen"
 
 #. module: pc_connect_warehouse
 #: model:ir.model.fields,field_description:field_stock_connect_message_ids
 msgid "Messages"
-msgstr "Messages"
+msgstr "Meldungen"
 
 #. module: pc_connect_warehouse
 #: view:stock.connect:0
 msgid "Messages"
-msgstr "Messages"
+msgstr "Meldungen"
 
 #. module: pc_connect_warehouse
 #: field:stock.connect,name:0
@@ -633,82 +633,82 @@ msgstr "Bezeichnung"
 #. module: pc_connect_warehouse
 #: code:addons/pc_connect_warehouse/stock_connect.py:450
 msgid "No connection type was indicated, and one is required in order to process the events."
-msgstr "No connection type was indicated, and one is required in order to process the events."
+msgstr "Es wurde keine Schnittstelle angegeben, was jedoch nötig ist um die Ereignisse zu verarbeiten."
 
 #. module: pc_connect_warehouse
 #: code:addons/pc_connect_warehouse/stock_connect.py:427
 msgid "No connection type was indicated, and one is required in order to process the files."
-msgstr "No connection type was indicated, and one is required in order to process the files."
+msgstr "Es wurde keine Schnittstelle angegeben, was jedoch nötig ist um die Dateien zu verarbeiten."
 
 #. module: pc_connect_warehouse
 #: field:stock.connect,limit_of_connections:0
 msgid "Number of connections made on sync"
-msgstr "Number of connections made on sync"
+msgstr "Anzahl Verbindungen bei Abfrage"
 
 #. module: pc_connect_warehouse
 #: model:ir.model.fields,field_description:field_stock_connect_limit_of_connections
 msgid "Number of connections made on sync"
-msgstr "Number of connections made on sync"
+msgstr "Anzahl Verbindungen bei Abfrage"
 
 #. module: pc_connect_warehouse
 #: field:configuration.data,stock_picking_out_max_open_age_uom:0
 msgid "Open Delivery Order Alarming Age UOM"
-msgstr "Open Delivery Order Alarming Age UOM"
+msgstr "Einheit für die Alarmierungszeit für offene Lieferungen"
 
 #. module: pc_connect_warehouse
 #: model:ir.model.fields,field_description:field_configuration_data_stock_picking_out_max_open_age_uom
 msgid "Open Delivery Order Alarming Age UOM"
-msgstr "Open Delivery Order Alarming Age UOM"
+msgstr "Einheit für die Alarmierungszeit für offene Lieferungen"
 
 #. module: pc_connect_warehouse
 #: field:configuration.data,stock_picking_out_max_open_age:0
 msgid "Open Delivery Order Alarming Age"
-msgstr "Open Delivery Order Alarming Age"
+msgstr "Alarmierungszeit für offene Lieferungen"
 
 #. module: pc_connect_warehouse
 #: model:ir.model.fields,field_description:field_configuration_data_stock_picking_out_max_open_age
 msgid "Open Delivery Order Alarming Age"
-msgstr "Open Delivery Order Alarming Age"
+msgstr "Alarmierungszeit für offene Lieferungen"
 
 #. module: pc_connect_warehouse
 #: field:configuration.data,stock_picking_in_partly_fullfilment_alarm_wait_uom:0
 msgid "Open Incoming Shipment Alarming Age UOM"
-msgstr "Open Incoming Shipment Alarming Age UOM"
+msgstr "Einheit für die Alarmierungszeit für offene Eingangslieferungen"
 
 #. module: pc_connect_warehouse
 #: model:ir.model.fields,field_description:field_configuration_data_stock_picking_in_partly_fullfilment_alarm_wait_uom
 msgid "Open Incoming Shipment Alarming Age UOM"
-msgstr "Open Incoming Shipment Alarming Age UOM"
+msgstr "Einheit für die Alarmierungszeit für offene Eingangslieferungen"
 
 #. module: pc_connect_warehouse
 #: field:configuration.data,stock_picking_in_partly_fullfilment_alarm_wait:0
 msgid "Open Incoming Shipment Alarming Age"
-msgstr "Open Incoming Shipment Alarming Age"
+msgstr "Alarmierungszeit für offene Eingangslieferungen"
 
 #. module: pc_connect_warehouse
 #: model:ir.model.fields,field_description:field_configuration_data_stock_picking_in_partly_fullfilment_alarm_wait
 msgid "Open Incoming Shipment Alarming Age"
-msgstr "Open Incoming Shipment Alarming Age"
+msgstr "Alarmierungszeit für offene Eingangslieferungen"
 
 #. module: pc_connect_warehouse
 #: view:stock.connect:0
 msgid "Open Searchable List"
-msgstr "Open Searchable List"
+msgstr "Öffne die durchsuchbare Liste"
 
 #. module: pc_connect_warehouse
 #: view:stock.event:0
 msgid "Open record"
-msgstr "Open record"
+msgstr "Datensatz öffnen"
 
 #. module: pc_connect_warehouse
 #: field:stock.connect.file,parent_file_id:0
 msgid "Parent file"
-msgstr "Parent file"
+msgstr "Vorgängerdatei"
 
 #. module: pc_connect_warehouse
 #: model:ir.model.fields,field_description:field_stock_connect_file_parent_file_id
 msgid "Parent file"
-msgstr "Parent file"
+msgstr "Vorgängerdatei"
 
 #. module: pc_connect_warehouse
 #: model:ir.model,name:model_stock_picking
@@ -718,226 +718,226 @@ msgstr "Lieferschein"
 #. module: pc_connect_warehouse
 #: field:stock.connect.file,priority:0
 msgid "Priority"
-msgstr "Priority"
+msgstr "Priorität"
 
 #. module: pc_connect_warehouse
 #: model:ir.model.fields,field_description:field_stock_connect_file_priority
 msgid "Priority"
-msgstr "Priority"
+msgstr "Priorität"
 
 #. module: pc_connect_warehouse
 #: field:stock.picking,process_date:0
 msgid "Process Date"
-msgstr "Process Date"
+msgstr "Verarbeitungsdatum"
 
 #. module: pc_connect_warehouse
 #: model:ir.model.fields,field_description:field_stock_picking_process_date
 msgid "Process Date"
-msgstr "Process Date"
+msgstr "Verarbeitungsdatum"
 
 #. module: pc_connect_warehouse
 #: selection:stock.event,state:0
 msgid "Processed"
-msgstr "Processed"
+msgstr "Verarbeitet"
 
 #. module: pc_connect_warehouse
 #: selection:stock.connect.file,state:0
 msgid "Ready"
-msgstr "Ready"
+msgstr "Bereit"
 
 #. module: pc_connect_warehouse
 #: field:stock.connect.file,server_ack:0
 msgid "Received Acknowledge"
-msgstr "Received Acknowledge"
+msgstr "Quittung erhalten"
 
 #. module: pc_connect_warehouse
 #: model:ir.model.fields,field_description:field_stock_connect_file_server_ack
 msgid "Received Acknowledge"
-msgstr "Received Acknowledge"
+msgstr "Quittung erhalten"
 
 #. module: pc_connect_warehouse
 #: view:stock.connect.file:0
 msgid "Related Files"
-msgstr "Related Files"
+msgstr "Verknüpfte Dateien"
 
 #. module: pc_connect_warehouse
 #: field:stock.connect,remote_input_dir:0
 msgid "Remote directory where to GET files"
-msgstr "Remote directory where to GET files"
+msgstr "FDS-Verzeichnis aus dem Dateien gelesen werden"
 
 #. module: pc_connect_warehouse
 #: model:ir.model.fields,field_description:field_stock_connect_remote_input_dir
 msgid "Remote directory where to GET files"
-msgstr "Remote directory where to GET files"
+msgstr "FDS-Verzeichnis aus dem Dateien gelesen werden"
 
 #. module: pc_connect_warehouse
 #: field:stock.connect,remote_output_dir:0
 msgid "Remote directory where to PUT files"
-msgstr "Remote directory where to PUT files"
+msgstr "FDS-Verzeichnis, in dem Dateien abgelegt werden"
 
 #. module: pc_connect_warehouse
 #: model:ir.model.fields,field_description:field_stock_connect_remote_output_dir
 msgid "Remote directory where to PUT files"
-msgstr "Remote directory where to PUT files"
+msgstr "FDS-Verzeichnis, in dem Dateien abgelegt werden"
 
 #. module: pc_connect_warehouse
 #: model:ir.model,name:model_sale_order
 msgid "Sales Order"
-msgstr "Verkaufsauftrag"
+msgstr "Bestellung"
 
 #. module: pc_connect_warehouse
 #: view:configuration.data:0
-msgid "Scheduler 'SPYCC - Check Delivery Order Open Date' will check for every delivery order in state open or pending \n"
+msgid "Scheduler 'PCAP - Check Delivery Order Open Date' will check for every delivery order in state open or pending \n"
 "                                if it was created before the time indicated below. If so, an issue is created and a message is logged informed\n"
 "                                about the problem."
-msgstr "Scheduler 'SPYCC - Check Delivery Order Open Date' will check for every delivery order in state open or pending \n"
-"                                if it was created before the time indicated below. If so, an issue is created and a message is logged informed\n"
-"                                about the problem."
+msgstr "Der geplante Vorgang 'PCAP - Prüfe offene Lieferungen' überprüft alle nicht erledigten Lieferungen \n"
+"                                ob das Erstellungsdatum weiter zurückliegt als angegeben. Falls zutreffend,\n"
+"                                wird eine Alarmierung ausgelöst."
 
 #. module: pc_connect_warehouse
 #: constraint:stock.connect:0
 msgid "Selected type is not present on the server. Install related module"
-msgstr "Selected type is not present on the server. Install related module"
+msgstr "Ausgewählte Typ ist auf dem Server nicht vorhanden. Installieren Sie den entsprechenden Modul"
 
 #. module: pc_connect_warehouse
 #: field:stock.connect.file,error:0
 msgid "Stopped by error"
-msgstr "Stopped by error"
+msgstr "Aufgrund Fehler angehalten"
 
 #. module: pc_connect_warehouse
 #: model:ir.model.fields,field_description:field_stock_connect_file_error
 msgid "Stopped by error"
-msgstr "Stopped by error"
+msgstr "Aufgrund Fehler angehalten"
 
 #. module: pc_connect_warehouse
 #: field:stock.connect,message_summary:0
 msgid "Summary"
-msgstr "Summary"
+msgstr "Zusammenfassung"
 
 #. module: pc_connect_warehouse
 #: field:stock.connect.file,message_summary:0
 msgid "Summary"
-msgstr "Summary"
+msgstr "Zusammenfassung"
 
 #. module: pc_connect_warehouse
 #: model:ir.model.fields,field_description:field_stock_connect_file_message_summary
 msgid "Summary"
-msgstr "Summary"
+msgstr "Zusammenfassung"
 
 #. module: pc_connect_warehouse
 #: model:ir.model.fields,field_description:field_stock_connect_message_summary
 msgid "Summary"
-msgstr "Summary"
+msgstr "Zusammenfassung"
 
 #. module: pc_connect_warehouse
 #: field:stock.connect,local_archive_input_dir_temporal:0
 msgid "Temporal local directory where to place the input files to archive"
-msgstr "Temporal local directory where to place the input files to archive"
+msgstr "Temporäres Eingangsverzeichnis für Dateien von FDS"
 
 #. module: pc_connect_warehouse
 #: model:ir.model.fields,field_description:field_stock_connect_local_archive_input_dir_temporal
 msgid "Temporal local directory where to place the input files to archive"
-msgstr "Temporal local directory where to place the input files to archive"
+msgstr "Temporäres Eingangsverzeichnis für Dateien von FDS"
 
 #. module: pc_connect_warehouse
 #: sql_constraint:stock.connect.file:0
 msgid "The name of the file must be unique per connection."
-msgstr "The name of the file must be unique per connection."
+msgstr "Der Dateiname muss pro Verbindung eindeutig sein."
 
 #. module: pc_connect_warehouse
 #: sql_constraint:stock.connect:0
 msgid "The two folders used to download the files must be different."
-msgstr "The two folders used to download the files must be different."
+msgstr "Die beiden Ordner für die heruntergeladenen Dateien müssen verschieden sein."
 
 #. module: pc_connect_warehouse
 #: code:addons/pc_connect_warehouse/stock_connect.py:43
 msgid "There was a problem with the connection"
-msgstr "There was a problem with the connection"
+msgstr "Es gab ein Problem mit der Verbindung"
 
 #. module: pc_connect_warehouse
 #: field:stock.connect.file,type:0
 msgid "Type"
-msgstr "ArtTyp"
+msgstr "Typ"
 
 #. module: pc_connect_warehouse
 #: model:ir.model.fields,field_description:field_stock_connect_file_type
 msgid "Type"
-msgstr "ArtTyp"
+msgstr "Typ"
 
 #. module: pc_connect_warehouse
 #: field:stock.connect,message_unread:0
 msgid "Unread Messages"
-msgstr "Unread Messages"
+msgstr "Ungelesene Meldungen"
 
 #. module: pc_connect_warehouse
 #: field:stock.connect.file,message_unread:0
 msgid "Unread Messages"
-msgstr "Unread Messages"
+msgstr "Ungelesene Meldungen"
 
 #. module: pc_connect_warehouse
 #: model:ir.model.fields,field_description:field_stock_connect_file_message_unread
 msgid "Unread Messages"
-msgstr "Unread Messages"
+msgstr "Ungelesene Meldungen"
 
 #. module: pc_connect_warehouse
 #: model:ir.model.fields,field_description:field_stock_connect_message_unread
 msgid "Unread Messages"
-msgstr "Unread Messages"
+msgstr "Ungelesene Meldungen"
 
 #. module: pc_connect_warehouse
 #: selection:stock.connect.file,state:0
 msgid "Waiting"
-msgstr "Waiting"
+msgstr "Wartend"
 
 #. module: pc_connect_warehouse
 #: selection:stock.event,state:0
 msgid "Waiting"
-msgstr "Waiting"
+msgstr "Wartend"
 
 #. module: pc_connect_warehouse
 #: model:ir.actions.act_window,name:action_stock_connect_file
 msgid "Warehouse Connection Files"
-msgstr "Warehouse Connection Files"
+msgstr "Lager-Schnittstellendateien"
 
 #. module: pc_connect_warehouse
 #: field:stock.warehouse,stock_connect_id:0
 msgid "Warehouse Connection"
-msgstr "Warehouse Connection"
+msgstr "Lagerschnittstelle"
 
 #. module: pc_connect_warehouse
 #: model:ir.model.fields,field_description:field_stock_warehouse_stock_connect_id
 msgid "Warehouse Connection"
-msgstr "Warehouse Connection"
+msgstr "Lagerschnittstelle"
 
 #. module: pc_connect_warehouse
 #: view:stock.connect:0
 msgid "Warehouse Connection"
-msgstr "Warehouse Connection"
+msgstr "Lagerschnittstelle"
 
 #. module: pc_connect_warehouse
 #: model:ir.actions.act_window,name:action_stock_connect
 msgid "Warehouse Connections"
-msgstr "Warehouse Connections"
+msgstr "Lagerschnittstellen"
 
 #. module: pc_connect_warehouse
 #: view:stock.connect:0
 msgid "Warehouse Event"
-msgstr "Warehouse Event"
+msgstr "Lager-Ereignis"
 
 #. module: pc_connect_warehouse
 #: view:stock.event:0
 msgid "Warehouse Event"
-msgstr "Warehouse Event"
+msgstr "Lager-Ereignis"
 
 #. module: pc_connect_warehouse
 #: model:ir.actions.act_window,name:action_stock_connect_event
 msgid "Warehouse Events"
-msgstr "Warehouse Events"
+msgstr "Lager-Ereignisse"
 
 #. module: pc_connect_warehouse
 #: help:stock.connect.file,warehouse_id:0
 msgid "Warehouse related to this file"
-msgstr "Warehouse related to this file"
+msgstr "Lager assoziiert zu dieser Datei"
 
 #. module: pc_connect_warehouse
 #: field:stock.connect.file,warehouse_id:0
@@ -982,37 +982,37 @@ msgstr "Lager"
 #. module: pc_connect_warehouse
 #: field:stock.location,warehouse_ids:0
 msgid "Warehouses"
-msgstr "Warehouses"
+msgstr "Läger"
 
 #. module: pc_connect_warehouse
 #: model:ir.model.fields,field_description:field_stock_location_warehouse_ids
 msgid "Warehouses"
-msgstr "Warehouses"
+msgstr "Läger"
 
 #. module: pc_connect_warehouse
 #: view:stock.location:0
 msgid "Warehouses"
-msgstr "Warehouses"
+msgstr "Läger"
 
 #. module: pc_connect_warehouse
 #: view:configuration.data:0
 msgid "Whenever an Incoming Shipment is ready to Receive, it will trigger a check in the future, based on the alarming age defined in these parameters."
-msgstr "Whenever an Incoming Shipment is ready to Receive, it will trigger a check in the future, based on the alarming age defined in these parameters."
+msgstr "Sobald eine eingehende Lieferung zum Empfang bereit ist, wird eine zukünftige Überprüfung angelegt, basierend auf der Alarmierungs-Zeit dieser Parameter."
 
 #. module: pc_connect_warehouse
 #: field:stock.event,write_date:0
 msgid "Write date"
-msgstr "Write date"
+msgstr "Aktualisierungsdatum"
 
 #. module: pc_connect_warehouse
 #: model:ir.model.fields,field_description:field_stock_event_write_date
 msgid "Write date"
-msgstr "Write date"
+msgstr "Aktualisierungsdatum"
 
 #. module: pc_connect_warehouse
 #: selection:stock.connect,type:0
 msgid "YellowCube over SOAP"
-msgstr "YellowCube over SOAP"
+msgstr "YellowCube via SOAP"
 
 #. module: pc_connect_warehouse
 #: selection:stock.connect,type:0
@@ -1022,32 +1022,32 @@ msgstr "YellowCube"
 #. module: pc_connect_warehouse
 #: constraint:stock.picking.in:0
 msgid "check of events on this item"
-msgstr "check of events on this item"
+msgstr "Überprüfe die Ereignisse auf diesem Objekt"
 
 #. module: pc_connect_warehouse
 #: constraint:stock.picking.out:0
 msgid "check of events on this item"
-msgstr "check of events on this item"
+msgstr "Überprüfe die Ereignisse auf diesem Objekt"
 
 #. module: pc_connect_warehouse
 #: constraint:stock.warehouse:0
 msgid "check of events on this item"
-msgstr "check of events on this item"
+msgstr "Überprüfe die Ereignisse auf diesem Objekt"
 
 #. module: pc_connect_warehouse
 #: model:ir.model,name:model_configuration_data
 msgid "configuration.data"
-msgstr "configuration.data"
+msgstr "Konfiguration"
 
 #. module: pc_connect_warehouse
 #: field:stock.event,context:0
 msgid "context"
-msgstr "context"
+msgstr "Kontext"
 
 #. module: pc_connect_warehouse
 #: model:ir.model.fields,field_description:field_stock_event_context
 msgid "context"
-msgstr "context"
+msgstr "Kontext"
 
 #. module: pc_connect_warehouse
 #: view:stock.connect.file:0
@@ -1067,12 +1067,12 @@ msgstr "ir.attachment"
 #. module: pc_connect_warehouse
 #: field:stock.connect.file,related_ids:0
 msgid "related IDs"
-msgstr "related IDs"
+msgstr "Verknüpfte IDs"
 
 #. module: pc_connect_warehouse
 #: model:ir.model.fields,field_description:field_stock_connect_file_related_ids
 msgid "related IDs"
-msgstr "related IDs"
+msgstr "Verknüpfte IDs"
 
 #. module: pc_connect_warehouse
 #: field:stock.connect.file,model:0
@@ -1097,42 +1097,42 @@ msgstr "res.model"
 #. module: pc_connect_warehouse
 #: field:stock.connect.file,res_id:0
 msgid "resource ID"
-msgstr "resource ID"
+msgstr "Ressourcen-ID"
 
 #. module: pc_connect_warehouse
 #: field:stock.event,res_id:0
 msgid "resource ID"
-msgstr "resource ID"
+msgstr "Ressourcen-ID"
 
 #. module: pc_connect_warehouse
 #: model:ir.model.fields,field_description:field_stock_connect_file_res_id
 msgid "resource ID"
-msgstr "resource ID"
+msgstr "Ressourcen-ID"
 
 #. module: pc_connect_warehouse
 #: model:ir.model.fields,field_description:field_stock_event_res_id
 msgid "resource ID"
-msgstr "resource ID"
+msgstr "Ressourcen-ID"
 
 #. module: pc_connect_warehouse
 #: field:stock.connect.file,state:0
 msgid "state"
-msgstr "state"
+msgstr "Status"
 
 #. module: pc_connect_warehouse
 #: field:stock.event,state:0
 msgid "state"
-msgstr "state"
+msgstr "Status"
 
 #. module: pc_connect_warehouse
 #: model:ir.model.fields,field_description:field_stock_connect_file_state
 msgid "state"
-msgstr "state"
+msgstr "Status"
 
 #. module: pc_connect_warehouse
 #: model:ir.model.fields,field_description:field_stock_event_state
 msgid "state"
-msgstr "state"
+msgstr "Status"
 
 #. module: pc_connect_warehouse
 #: model:ir.model,name:model_stock_connect
@@ -1147,7 +1147,7 @@ msgstr "stock.event"
 #. module: pc_connect_warehouse
 #: code:addons/pc_connect_warehouse/stock_picking_ext.py:57
 msgid "stock.picking not yet fulfilled"
-msgstr "stock.picking not yet fulfilled"
+msgstr "Lieferung noch nicht erledigt"
 
 #. module: pc_connect_warehouse
 #: model:ir.model,name:model_stock_warehouse_location
@@ -1157,10 +1157,10 @@ msgstr "stock.warehouse.location"
 #. module: pc_connect_warehouse
 #: code:addons/pc_connect_warehouse/stock_picking_ext.py:45
 msgid "{0} Partly Fulfilled Alarm"
-msgstr "{0} Partly Fulfilled Alarm"
+msgstr "{0} Alarm für unvollständige Lieferung"
 
 #. module: pc_connect_warehouse
 #: code:addons/pc_connect_warehouse/stock_picking_alarming_config.py:85
 msgid "{0} with ID={1}, has exceeded the alarming date."
-msgstr "{0} with ID={1}, has exceeded the alarming date."
+msgstr "{0} mit ID={1} ist über dem Alarmierungszeitpunkt."
 

@@ -1,0 +1,28 @@
+<?xml version="1.0" ?>
+<openerp>
+    <data>
+
+        <record id="payment_method_form_view_ext" model="ir.ui.view">
+            <field name="name">payment_method_form_view_ext</field>
+            <field name="model">payment.method</field>
+            <field name="inherit_id" ref="sale_payment_method.payment_method_view_form" />
+            <field name="arch" type="xml">
+                <field name="journal_id" position="before">
+                    <field name="allowed" />
+                </field>
+            </field>
+        </record>
+        
+        <record id="payment_method_tree_view_ext" model="ir.ui.view">
+            <field name="name">payment_method_tree_view_ext</field>
+            <field name="model">payment.method</field>
+            <field name="inherit_id" ref="sale_payment_method.payment_method_view_tree" />
+            <field name="arch" type="xml">
+                <field name="journal_id" position="before">
+                    <field name="allowed" />
+                </field>
+            </field>
+        </record>
+
+    </data>
+</openerp>

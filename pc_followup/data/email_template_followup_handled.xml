@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<openerp>
+    <!-- Mail template is done in a NOUPDATE block so users can freely customize/delete them -->
+    <data noupdate="1">
+    
+        <record id="email_template_followup_handled" model="email.template">
+            <field name="name">List of follow-ups handled</field>
+            <field name="email_from">${user.email or ''}</field>
+            <field name="subject">List of follow-ups handled, and not handled because of an error</field>
+            <field name="email_to">${object.get_email_servicedesk_followups() | safe}</field>
+            <field name="lang">${object.get_lang()}</field>
+            <field name="model_id" ref="account.model_account_invoice"/>
+            <field name="auto_delete" eval="False"/>
+            <field name="body_html"><![CDATA[
+                <p>The following invoices had a follow-up level which has been handled:</p>
+                <p>${object.get_list_of_invoices_with_followup_handled() | safe}</p>
+
+                <p>The following invoices had a follow-up level which could <strong>not</strong> be handled:</p>
+                <p>${object.get_list_of_invoices_with_error_while_handling_followup() | safe}</p>
+            ]]></field>
+        </record>
+
+    </data>
+</openerp>

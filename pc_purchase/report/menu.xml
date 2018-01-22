@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+    <data noupdate="0">
+
+		<!-- Purchase Report -->
+		<report id="pc_report_purchase" string="(PCAP) Purchase Order"
+			model="purchase.order" name="pc_purchase_order_report"
+			file="pc_purchase/report/purchase_order.mako"
+			report_type="webkit" auto="True" />
+		<record id="pc_report_purchase" model="ir.actions.report.xml">
+			<field name="webkit_header" ref="pc_generics.ir_report_quotation_order" />
+		</record>
+
+    </data>
+</openerp>

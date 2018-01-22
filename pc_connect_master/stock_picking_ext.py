@@ -1,7 +1,7 @@
 # b-*- encoding: utf-8 -*-
 ##############################################################################
 #
-#    Copyright (c) 2014 brain-tec AG (http://www.brain-tec.ch)
+#    Copyright (c) 2014 brain-tec AG (http://www.braintec-group.com)
 #    All Right Reserved
 #
 #    This program is free software: you can redistribute it and/or modify
@@ -19,19 +19,68 @@
 #
 ##############################################################################
 
+import string
 from openerp.osv import osv, fields, orm
-from utilities.misc import format_exception
 from openerp.tools.translate import _
 from openerp.tools import DEFAULT_SERVER_DATETIME_FORMAT
-import logging
-logger = logging.getLogger(__name__)
+from datetime import datetime, timedelta
 
 
 class stock_picking_ext(osv.Model):
     _inherit = 'stock.picking'
 
-    def is_the_only_picking(self, cr, uid, ids, context=None):
-        ''' It returns whether this picking is the only one associated to
+    def get_route(self, cr, uid, ids, context=None):
+        """ Return the route associated to a picking. The route is indicated
+            in the stock type associated to a sale order, thus the code
+            goes into the sale order of the picking, then into the carrier
+            defined in the sale order, which inside has the stock route, which
+            has the route defined.
+        """
+        if context is None:
+            context = {}
+        if type(ids) is not list:
+            ids = [ids]
+
+        route = False
+        picking = self.browse(cr, uid, ids[0], context=context)
+        if picking.sale_id and picking.sale_id.stock_type_id:
+            route = picking.sale_id.stock_type_id.route
+        return route
+
+    def is_first_delivery(self, cr, uid, ids, context=None):
+        """ Returns whether this stock.picking.out is the first or
+            only delivery for a given sale order.
+
+            It will be the first if the Delivery Method (field move_type)
+            is one (i.e. All at once), or if it is direct (i.e. Partial) but
+            is not a backorder. That was before the picking split came into
+            scene; so in addition to that, it checks whether the picking
+            is the first one created 'in time'.
+        """
+        if context is None:
+            context = {}
+        if type(ids) is not list:
+            ids = [ids]
+
+        picking = self.browse(cr, uid, ids[0], context=context)
+
+        is_first = picking.move_type == 'one' or \
+            (picking.move_type == 'direct' and not picking.backorder_id)
+
+        if is_first:
+            oldest_picking_id = self.search(
+                cr, uid, [
+                    ('sale_id', '=', picking.sale_id.id),
+                    ('state', '!=', 'cancel'),
+                    ('backorder_id', '=', None),
+                ], order='create_date asc', limit=1, context=context)
+            if oldest_picking_id != [picking.id]:
+                is_first = False
+
+        return is_first
+
+    def is_full_delivery(self, cr, uid, ids, context=None):
+        """ It returns whether this picking is the only one associated to
             its sale order. It doesn't consider those pickings which are
             cancelled.
 
@@ -40,21 +89,22 @@ class stock_picking_ext(osv.Model):
 
             This method MUST receive just an ID, or a list of just
             one ID, since otherwise just the first element will be used.
-        '''
+        """
         if context is None:
             context = {}
-        if not isinstance(ids, list):
+        if type(ids) is not list:
             ids = [ids]
 
         picking = self.browse(cr, uid, ids[0], context=context)
 
-        is_the_only_picking = True
+        is_full_delivery = True
         if picking.sale_id:
-            num_pickings = self.search(cr, uid, [('origin', '=', picking.sale_id.name),
+            picking_ids = [picking.id for picking in picking.sale_id.picking_ids]
+            num_pickings = self.search(cr, uid, [('id', 'in', picking_ids),
                                                  ('state', '!=', 'cancel'),
                                                  ], context=context, count=True)
-            is_the_only_picking = (num_pickings == 1)
-        return is_the_only_picking
+            is_full_delivery = (num_pickings == 1)
+        return is_full_delivery
 
     def is_last_picking(self, cr, uid, ids, context=None):
         ''' Indicates whether a stock picking is the last one.
@@ -71,7 +121,7 @@ class stock_picking_ext(osv.Model):
         '''
         if context is None:
             context = {}
-        if not isinstance(ids, list):
+        if type(ids) is not list:
             ids = [ids]
 
         picking = self.browse(cr, uid, ids[0], context=context)
@@ -79,124 +129,6 @@ class stock_picking_ext(osv.Model):
         picking_has_backorder = bool(self.search(cr, uid, [('backorder_id', '=', picking.id),
                                                            ], context=context, count=True))
         return picking_in_target_state and (not picking_has_backorder)
-
-    def assign_lots(self, cr, uid, ids, context=None):
-        ''' Assigns lots to stock.moves.
-
-            It MUST receive either an ID, or a list of just one ID,
-            because it only takes the first one in this case.
-        '''
-        if context is None:
-            context = {}
-        if not isinstance(ids, list):
-            ids = [ids]
-
-        # Caches the pools.
-        stock_move_obj = self.pool.get('stock.move')
-        product_uom_obj = self.pool.get('product.uom')
-
-        # Gets the picking we are going to assign the lots to.
-        picking = self.browse(cr, uid, ids[0], context=context)
-
-        # Stores the IDs of the stock.moves that are modified/created.
-        stock_moves_ids = []
-
-        # Stores any errors found.
-        errors = []
-
-        for stock_move in picking.move_lines:
-
-            # The product this stock.move is about.
-            product = stock_move.product_id
-
-            # Here we'll store the quantity already moved for the product of this move line,
-            # in the unit of measure which is the base unit of measure. E.g. if the product
-            # measures its quantity in dozens, this variable will count units.
-            quantity_moved = 0
-
-            # A stock move may be split into several ones. We use this variable to know that.
-            # So the first time a stock.move is assigned, we store the ID of that stock.move
-            # in this variable, thus we can keep track when we inspect more than once a stock.move,
-            # which means that we need to split it up into another stock.move.
-            first_move_id = None
-
-            # We get the quantity in the base unit of the product, which may be different
-            # than the quantity indicated in the stock.move (e.g. it may be 1 dozen which means
-            # 12 units of a product). The quantity on the lots is retrieved also on the base UOM of
-            # the product. That is why we do it this way: in order to ease the comparison.
-            base_uom = product.get_base_uom()
-            quantity_to_move = product_uom_obj._compute_qty(cr, uid, stock_move.product_uom.id, stock_move.product_qty, base_uom.id)
-
-            # If we must make use of lots, we use them.
-            if product.track_production:
-                # Gets the lots available for this product, sorted by its use date.
-                # The product may not make use of lots, but if it does then we use them.
-                lots = product.get_lots_available()
-
-                if not lots:
-                    # Error: we need lots BUT we didn't find any.
-                    error_message = _('There were no lots found to fill the stock.picking {0} (ID={1}) '
-                                      'associated to the sale.order {2} (ID={3}) for product {4} (ID={5}) '
-                                      'that MUST make use of lots').format(picking.name, picking.id,
-                                                                           picking.sale_id.name, picking.sale_id.id,
-                                                                           product.name, product.id)
-                    errors.append(error_message)
-
-                # Starts moving the quantity from the lots.
-                lots_iterator = 0
-                while (quantity_moved < quantity_to_move) and (lots_iterator < len(lots)):
-                    lot = lots[lots_iterator]
-
-                    # Since virtual_available can be negative, we add a 'max' comparison so that we do not have to subtract
-                    # a negative quantity from the lot (which could make we deliver abs(number) units if 'number' was negative).
-                    quantity_to_substract_from_lot = min(max(0.0, lot.virtual_available_for_sale), quantity_to_move - quantity_moved)
-
-                    if quantity_to_substract_from_lot > 0:
-
-                        # We transform the UOM from the base one that we have used to do the calculus to the same one
-                        # which was on the original stock move.
-                        new_move_qty = product_uom_obj._compute_qty(cr, uid, base_uom.id, quantity_to_substract_from_lot, stock_move.product_uom.id)
-
-                        # If it's the first move, we reuse the line; if not, we create a new one.
-                        if first_move_id is None:  # It's the first move.
-                            stock_move.write({'prodlot_id': lot.id,
-                                              'product_qty': new_move_qty,
-                                              })
-                            first_move_id = stock_move.id
-                            stock_moves_ids.append(first_move_id)
-
-                        else:  # It's not the first move, thus we create another one.
-                            next_move_id = stock_move_obj.copy(cr, uid, first_move_id, {'prodlot_id': lot.id,
-                                                                                        'product_qty': new_move_qty,
-                                                                                        }, context=context)
-                            stock_moves_ids.append(next_move_id)
-
-                    # Prepares for the next iteration, just in case we did not fill all the amount using one lot.
-                    quantity_moved += quantity_to_substract_from_lot
-                    lots_iterator += 1
-
-                if quantity_moved != quantity_to_move:
-                    # Error: quantity on the lots was not enough to fulfill the stock.move.
-                    error_message = _('There were not enough quantity on lots to fill the stock.picking {0} (ID={1}) '
-                                      'associated to the sale.order {2} (ID={3}) for product {4} (ID={5}) '
-                                      'that MUST make use of lots').format(picking.name, picking.id,
-                                                                           picking.sale_id.name, picking.sale_id.id,
-                                                                           product.name, product.id)
-                    errors.append(error_message)
-
-            else:  # if not product.track_production, then we just make use the quantity on hand without paying attention to lots.
-                move_qty = product_uom_obj._compute_qty(cr, uid, base_uom.id, quantity_to_move, stock_move.product_uom.id)
-                stock_move.write({'product_qty': move_qty,
-                                  })
-                stock_moves_ids.append(stock_move.id)
-
-        if errors:
-            raise orm.except_orm(_('Some errors were found'), '\n'.join(errors))
-        else:
-            # If no errors happened, i.e. if we didn't raise an exception, then we confirm the moves.
-            stock_move_obj.action_confirm(cr, uid, stock_moves_ids, context=context)
-
-        return True
 
     def set_stock_moves_done(self, cr, uid, ids, context=None):
         ''' Marks all the stock.moves as done.
@@ -215,7 +147,7 @@ class stock_picking_ext(osv.Model):
         '''
         if context is None:
             context = {}
-        if not isinstance(ids, list):
+        if type(ids) is not list:
             ids = [ids]
         stock_picking = self.browse(cr, uid, ids[0], context=context)
         file_name = 'delivery_order_{0}_spo{1}.pdf'.format(stock_picking.origin, stock_picking.id)
@@ -226,7 +158,7 @@ class stock_picking_ext(osv.Model):
         '''
         if context is None:
             context = {}
-        if not isinstance(ids, list):
+        if type(ids) is not list:
             ids = [ids]
 
         ir_attachment_obj = self.pool.get('ir.attachment')
@@ -240,6 +172,91 @@ class stock_picking_ext(osv.Model):
                                                               ], context=context, count=True)
         return (attachment_count > 0)
 
+    def get_ready_for_export(self, cr, uid, ids, name, args, context=None):
+        """ A stock.picking is ready for export if its sale.orders have
+            printed both its invoice and delivery slip.
+        """
+        if context is None:
+            context = {}
+
+        project_issue_obj = self.pool.get('project.issue')
+        conf_data = self.pool.get('configuration.data').get(cr, uid, [], context=context)
+
+        # If we received a flag on the context to indicate that we have to check the date in which
+        # we first checked for the value of the field ready_for_export, we keep track of it.
+        check_date_ready_for_export = ('check_date_ready_for_export' in context) and conf_data.ready_for_export_check_num_minutes
+        now = datetime.now()
+
+        res = {}
+        for picking in self.browse(cr, uid, ids, context=context):
+
+            # If we chose to override the ready-for-export using the manual flag, the we don't check for anything more.
+            if picking.ready_for_export_manual:
+                res[picking.id] = True
+
+            else:
+                picking_is_printed = picking.is_printed()
+
+                # if Click & Reserve, then you don't check if the invoice is printed
+                if picking.sale_id.carrier_id and picking.sale_id.carrier_id.stock_type_id \
+                        and picking.sale_id.carrier_id.stock_type_id.route == 'c+r':
+                    res[picking.id] = picking_is_printed
+                else:
+                    if picking.sale_id.invoice_policy == 'delivery':  # If we need an invoice per picking, we query it:
+                        invoice_is_printed = bool(picking.invoice_id and picking.invoice_id.is_printed())
+                    else:  # If we didn't want an invoice per picking, but just one.
+                        if picking.backorder_id:  # In this case, if it's a back-order, we check if the first invoice is printed.
+                            invoice_is_printed = bool(picking.sale_id.first_invoice_id and picking.sale_id.first_invoice_id.is_printed())
+                        else:  # Otherwise, we get the invoice associated to the picking.
+                            invoice_is_printed = bool(picking.invoice_id and picking.invoice_id.is_printed())
+                    res[picking.id] = picking_is_printed and invoice_is_printed
+
+                if (not res[picking.id]) and check_date_ready_for_export:
+                    create_date = datetime.strptime(picking.create_date, DEFAULT_SERVER_DATETIME_FORMAT)
+                    if now > create_date + timedelta(minutes=conf_data.ready_for_export_check_num_minutes):
+                        alarm_message = _("Picking with ID={0} has had the flag 'ready_for_export' set to False many time.").format(picking.id)
+                        project_issue_obj.create_issue(cr, uid, 'stock.picking.out', picking.id, alarm_message, context=context)
+
+        return res
+
+    def _fun_get_invoice(self, cr, uid, ids, field, arg=None, context=None):
+        """ Gets the invoice associated to a picking. The most reliable way,
+            and the way it's going to be used in the code, is that the Sale
+            Order Automation sets the parameter 'picking_id' in an invoice
+            when it's created; but, since the SOA is supposed to be optional,
+            then we must find the way to return an invoice for a picking
+            even if we don't have this field set, and that's why we may
+            resort to the field 'first_invoice_id' of the sale.order
+            associated to the picking.
+        """
+        if context is None:
+            context = {}
+        if type(ids) is not list:
+            ids = [ids]
+
+        account_invoice_obj = self.pool.get('account.invoice')
+        stock_picking_obj = self.pool.get('stock.picking')
+
+        res = {}
+        for picking_id in ids:
+            res[picking_id] = False
+
+            invoice_ids = account_invoice_obj.search(
+                cr, uid, [('picking_id', '=', picking_id)],
+                order='create_date', context=context, limit=1)
+
+            if invoice_ids:
+                # The SOA has set the field 'picking_id', so we use it.
+                res[picking_id] = invoice_ids[0]
+
+            else:
+                # The SOA has not set the field 'picking_id', so we avoid it.
+                picking = stock_picking_obj.browse(cr, uid, picking_id,
+                                                   context=context)
+                if picking.sale_id and picking.sale_id.first_invoice_id:
+                    res[picking_id] = picking.sale_id.first_invoice_id.id
+        return res
+
     _columns = {
         'do_not_send_to_warehouse': fields.boolean('Do Not Send to Warehouse',
                                                    help='If checked, this picking will not be sent to the warehouse.'),
@@ -251,10 +268,36 @@ class stock_picking_ext(osv.Model):
         # even if it's going to be used only on the automation, since bulk freight in particular is used
         # outside the automation, so in the future packages may be needed outside it also.
         'uses_bulkfreight': fields.boolean('Picking Uses Bulk Freight?'),
+
+        'ready_for_export': fields.function(get_ready_for_export,
+                                            type='boolean',
+                                            string='Ready for Export?',
+                                            help='Indicates whether the stock.picking is ready for export to the warehouse.'),
+        'ready_for_export_manual': fields.boolean('Manual Ready for Export?',
+                                                  help="If checked, it overrides the field 'Ready for Export?' and marks the picking as being ready for export."),
+
+        'create_date': fields.datetime('Create Date', help="Redefined just to be able to use it from the model."),
+
+        'invoice_id': fields.function(
+            _fun_get_invoice, string='Invoice', type='many2one',
+            relation='account.invoice', store=False,
+            help='Returns the invoice which was linked to this '
+                 'stock.picking, if any.'),
+
+        'backorder_items_for_pickings_ids': fields.many2many('pc_sale_order_automation.product_pending',
+                                                             rel='backorder_items_for_pickings',
+                                                             id1='picking_id', id2='product_pending_id'),
+
+        'yc_mandatory_additional_shipping': fields.char(
+            'Mandatory additional services',
+            help='These mandatory additional service codes must '
+                 'be added to the WAB when submitting it to YellowCube.'),
     }
 
     _defaults = {
         'uses_bulkfreight': False,
+        'ready_for_export': False,
+        'ready_for_export_manual': False,
     }
 
 # vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+	<data>
+		<record id="followup_reports_config_view" model="ir.ui.view">
+			<field name="name">followup_reports_config_view</field>
+			<field name="model">configuration.data</field>
+			<field name="inherit_id" ref="pc_generics.reports_config_view" />
+			<field name="arch" type="xml">
+
+                <page string="Post Mail" position="inside">
+                    <group string="Follow-ups" colspan="1">
+                        <field name="followup_franking_country_code" />
+                        <field name="followup_franking_zip" />
+                        <field name="followup_franking_town" />
+                        <field name="followup_postmail_rrn" />
+                        <field name="followup_qr" />
+                    </group>
+                </page>
+
+            </field>
+        </record>
+    </data>
+</openerp>

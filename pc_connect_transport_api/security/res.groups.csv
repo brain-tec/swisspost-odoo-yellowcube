@@ -1,0 +1,4 @@
+id,name,category_id:id,implied_ids:id
+group_connect_transport_api_management,Connect Transport API Management,base.module_category_administration,
+group_connect_transport_api,Connect Transport API Public,base.module_category_sales_management,
+group_connect_transport_api_internal,Connect Transport API Internal,base.module_category_sales_management,base.group_sale_manager

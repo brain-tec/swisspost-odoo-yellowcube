@@ -1,0 +1,3 @@
+id,active,group_id/id,name,model_id/id,perm_create,perm_read,perm_write,perm_unlink
+pc_client_sees_stage_discount_line,True,pc_connect_master.pc_client,stage_discount_line_r,stage_discount.model_stage_discount_discount_line,0,1,0,0
+pc_client_sees_stage_discount,True,pc_connect_master.pc_client,stage_discount_r,stage_discount.model_stage_discount_discount,0,1,0,0

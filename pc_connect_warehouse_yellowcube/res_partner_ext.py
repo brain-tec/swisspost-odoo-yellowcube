@@ -1,7 +1,7 @@
 # b-*- encoding: utf-8 -*-
 ##############################################################################
 #
-#    Copyright (c) 2015 brain-tec AG (http://www.brain-tec.ch)
+#    Copyright (c) 2015 brain-tec AG (http://www.braintec-group.com)
 #    All Right Reserved
 #
 #    This program is free software: you can redistribute it and/or modify
@@ -20,8 +20,6 @@
 ##############################################################################
 from openerp.osv import osv, fields
 from openerp.tools.translate import _
-import logging
-logger = logging.getLogger(__name__)
 
 
 class res_partner_ext(osv.Model):
@@ -32,10 +30,6 @@ class res_partner_ext(osv.Model):
             if not partner.ref:
                 partner.write({'ref': 'partner_{0}'.format(partner.id)})
         return True
-
-    _columns = {
-        'yc_supplier_no': fields.char('YC SupplierNo'),
-    }
 
     _constraints = [
         (check_partner_ref_value, 'When possible, the partner reference must be set', ['ref'])

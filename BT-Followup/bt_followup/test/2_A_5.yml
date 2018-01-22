@@ -1,0 +1,234 @@
+-
+  2.A.5. If a penalisation product was associated to that follow-up level, then a 'Penalization Invoice' must be created, of type pro-forma.
+    2.A.5.a. The penalisation invoice must be visible in the one2many field 'Penalization Invoices' of the account.invoice form view.
+    2.A.5.b. The penalisation invoice must be visible in the one2many field 'Penalization Invoices' of the res.partner.
+    2.A.5.c. The penalisation invoice must be visible in the one2many field 'Penalization Invoices' of the ancestors of the res.partner.
+    2.A.5.d. The penalisation invoice must be visible in the list view of the account.invoice.
+-
+  !python {model: account.invoice}: |
+    print 'Starting the test 2.A.5.'
+    cr.execute("SAVEPOINT test;")
+
+-
+  2.A.5. Sets the system parameter with the location of webkit.
+-
+  !python {model: ir.config_parameter}: |
+    from openerp import SUPERUSER_ID
+    self.set_param(cr, SUPERUSER_ID, 'webkit_path', '/home/openerp/wkhtmltopdf-amd64', context)
+
+
+-
+  2.A.5. Defines a bank account for the company (this is needed for follow-ups)
+-
+  !record {model: res.partner.bank, id: res_partner_bank_2_A_5}:
+    state: bank
+    acc_number: 123
+    partner_id: base.main_partner
+    bank: base.res_bank_1
+    bank_name: 'Test Bank'
+    company_id: base.main_company
+
+-
+  2.A.5. Creates an invoice with one line.
+-
+  !record {model: account.invoice, id: account_invoice_2_A_5}:
+    partner_id: base.res_partner_address_4
+    journal_id: account.sales_journal
+    account_id: account.a_recv
+    date_due: !eval datetime.today().strftime("%Y-%m-%d")
+    invoice_line:
+      - product_id: product.product_product_48
+        name: 'USB Adapter'
+        quantity: 18.0
+        uos_id: product.product_uom_unit
+        price_unit: 5.0
+
+-
+  2.A.5. Creates a penalisation category.
+-
+  !record {model: product.category, id: penalisation_caregory_2_A_5}:
+    name: Follow-up Frees
+    type: normal
+    parent_id: product.product_category_all
+
+-
+  2.A.5. Creates a penalisation product.
+-
+  !record {model: product.product, id: penalisation_product_2_A_5}:
+    name: 'Follow-up Fee - 1st level'
+    categ_id: penalisation_caregory_2_A_5
+    sale_ok: True
+    type: service
+    list_price: 10.00
+    procure_method: make_to_stock
+    supply_method: buy
+    standard_price: 0
+    produce_delay: 0
+    warranty: 0
+    sale_delay: 0
+
+-
+  2.A.5. Gets the delay of the first follow-up level and sets the due date of the invoice to be greater (one more) than that delay.
+         Also, sets a penalisation product associated to that follow-up level.
+-
+  !python {model: followup.level}: |
+    from openerp import SUPERUSER_ID
+    from datetime import datetime, timedelta
+    # Gets the follow-up levels associated to the company of the admin.
+    superuser_id = self.pool.get('res.users').search(cr, uid, [('id', '=', SUPERUSER_ID)], limit=1, context=context)[0]
+    company_id = self.pool.get('res.company').search(cr, uid, [('id', '=', superuser_id)], limit=1, context=context)[0]
+    followup_config_id = self.pool.get('followup.config').search(cr, uid, [('company_id', '=', company_id)], context=context)[0]
+    followup_level_ids = self.pool.get('followup.level').search(cr, uid, [('followup_config_id', '=', followup_config_id)], context=context)
+
+    # Stores the ID of the first follow-up level.
+    context['first_followup_level'] = followup_level_ids[0]
+
+    # Gets the delay of the first follow-up level (they are sorted).
+    followup_level = self.pool.get('followup.level').browse(cr, uid, followup_level_ids[0], context=context)
+    delay = followup_level.delay
+    context['followup_level_delay'] = delay
+
+    # Gets the invoice
+    invoice_obj = self.pool.get('account.invoice').browse(cr, uid, ref('account_invoice_2_A_5'))
+
+    # Sets the delay of the invoice to be just one day before the day in which the first follow-up level applies.
+    new_due_date = (datetime.now() - timedelta(delay + 1)).strftime("%Y-%m-%d")
+    invoice_obj.write({'date_due': new_due_date, 'payment_term': None})
+    
+    # Sets the penalisation product for the follow-up level.
+    followup_level.write({'product_id': ref('penalisation_product_2_A_5')})
+
+-
+  2.A.5. Checks if the state of the newly created invoice is in state 'draft'.
+-
+  !assert {model: account.invoice, id: account_invoice_2_A_5, string: 'State should be in state draft.'}:
+    - state == 'draft'
+
+-
+  2.A.5. Validates invoice by clicking on the 'Validate' button.
+-
+  !workflow {model: account.invoice, action: invoice_open, ref: account_invoice_2_A_5}
+
+-
+  2.A.5. Checks if the state of the newly created invoice is in state 'open'.
+-
+  !assert {model: account.invoice, id: account_invoice_2_A_5, string: 'State should be in state open.'}:
+    - state == 'open'
+
+-
+  2.A.5. Checks if the due days of the opened invoice is one plus the delay of the first follow-up level.
+-
+  !python {model: account.invoice}: |
+    invoice_obj = self.browse(cr, uid, ref('account_invoice_2_A_5'))
+    assert(invoice_obj.follow_up_date_due_days == (context['followup_level_delay'] + 1)), ("'Due days' should be {0}, but it is {1}".format(context['followup_level_delay'] - 1, invoice_obj.follow_up_date_due_days))
+
+-
+  2.A.5. Checks that 1) there is not follow-up level associated to the invoice,
+                     2) its follow-up level has not been handled,
+                     3) its handling date is empty.
+-
+  !python {model: account.invoice}: |
+    invoice_obj = self.browse(cr, uid, ref('account_invoice_2_A_5'))
+    assert(not invoice_obj.followup_level_id), ("'Follow-up Level' should be not set, but it is set to {0}.".format(invoice_obj.followup_level_id))
+    assert(not invoice_obj.followup_level_handled), ("'Follow-up Level Handled' should be not set, but it is set to {0}.".format(invoice_obj.followup_level_handled))
+    assert(not invoice_obj.followup_level_date), ("'Follow-up Handling Date' should be not set, but it is set to {0}.".format(invoice_obj.followup_level_date))
+
+-
+  2.A.5. Executes the scheduler which updates the follow-up levels, and handles the invoice.
+-
+  !python {model: account.invoice}: |
+    self.cron_update_invoice_followup_level(cr, uid, context)
+
+    # Stores the date in which the scheduler was called (today).
+    from datetime import datetime
+    context['date_followup_levels_were_updated'] = datetime.now().strftime("%Y-%m-%d")
+    
+    # Handles the invoice ***a day after***.
+    import anybox.testing.datetime
+    from datetime import datetime, timedelta
+    import time
+
+    datetime.set_now(datetime.now() + timedelta(1))
+    invoice_obj = self.pool.get('account.invoice').browse(cr, uid, ref('account_invoice_2_A_5'))
+    invoice_obj.do_handle_followup()
+    context['date_handling_was_done'] = datetime.now().strftime("%Y-%m-%d")
+    datetime.real_now()
+
+-
+  2.A.5. If a penalisation product was associated to that follow-up level, then a 'Penalization Invoice' must be created, of type pro-forma.
+    * The penalisation invoice must be visible in the one2many field 'Penalization Invoices' of the account.invoice form view (test 2.A.5.a)
+    * The penalisation invoice must be visible in the list view of the account.invoice (test 2.A.5.d)
+-
+  !python {model: account.invoice}: |
+    invoice_obj = self.browse(cr, uid, ref('account_invoice_2_A_5'))
+
+    # Stores the penalisation product.
+    penalisation_prod_obj = self.pool.get('product.product').browse(cr, uid, ref('penalisation_product_2_A_5'), context)
+
+    # The penalisation invoice must be visible in the one2many field 'Penalization Invoices' of the account.invoice form view (test 2.A.5.a)
+    # and
+    # the penalisation invoice must be visible in the list view of the account.invoice (test 2.A.5.d)
+    penalisation_ids = self.search(cr, uid, [('origin', '=', invoice_obj.number),
+                                             ('state', '=', 'proforma2'),
+                                             ('followup_parent_id', '=', invoice_obj.id),
+                                             ('amount_total', '=', penalisation_prod_obj.list_price)
+                                             ], context=context)
+    assert(len(penalisation_ids) == 1), ("There should have been generated just one penalisation invoice, but there are {0}.".format(len(penalisation_ids)))
+    penalisation_obj = self.browse(cr, uid, penalisation_ids[0], context=context)
+
+-
+  2.A.5. If a penalisation product was associated to that follow-up level, then a 'Penalization Invoice' must be created, of type pro-forma.
+    * The penalisation invoice must be visible in the one2many field 'Penalization Invoices' of the ancestors of the res.partner (test 2.A.5.c)
+-
+  !python {model: account.invoice}: |
+    invoice_obj = self.browse(cr, uid, ref('account_invoice_2_A_5'))
+
+    # Stores the penalisation product.
+    penalisation_prod_obj = self.pool.get('product.product').browse(cr, uid, ref('penalisation_product_2_A_5'), context)
+
+    # Gets the penalisation invoice.
+    penalisation_ids = self.search(cr, uid, [('origin', '=', invoice_obj.number),
+                                             ('state', '=', 'proforma2'),
+                                             ('followup_parent_id', '=', invoice_obj.id),
+                                             ('amount_total', '=', penalisation_prod_obj.list_price)
+                                             ], context=context)
+    assert(len(penalisation_ids) == 1), ("There should have been generated just one penalisation invoice, but there are {0}.".format(len(penalisation_ids)))
+    penalisation_obj = self.browse(cr, uid, penalisation_ids[0], context=context)
+
+    # The penalisation invoice must be visible in the one2many field 'Penalization Invoices' of the ancestors of the res.partner (test 2.A.5.c)
+    penalisation_on_ancestor_partner_ids = self.pool.get('followup').search(cr, uid, [('invoice_followup_id', '=', penalisation_obj.id),
+                                                                                      ('followup_parent_id', '=', invoice_obj.id),
+                                                                                      ('followup_level_id', '=', context['first_followup_level']),
+                                                                                      ], context=context)
+    assert(len(penalisation_on_ancestor_partner_ids) == 1), ("Partner with xml-id='res_partner_2' should have just the penalisation invoice, but it has not.")
+
+-
+  2.A.5. If a penalisation product was associated to that follow-up level, then a 'Penalization Invoice' must be created, of type pro-forma.
+    * The penalisation invoice must be visible in the one2many field 'Penalization Invoices' of the res.partner (test 2.A.5.b)
+-
+  !python {model: account.invoice}: |
+    invoice_obj = self.browse(cr, uid, ref('account_invoice_2_A_5'))
+
+    # Stores the penalisation product.
+    penalisation_prod_obj = self.pool.get('product.product').browse(cr, uid, ref('penalisation_product_2_A_5'), context)
+
+    # Gets the penalisation invoice.
+    penalisation_ids = self.search(cr, uid, [('origin', '=', invoice_obj.number),
+                                             ('state', '=', 'proforma2'),
+                                             ('followup_parent_id', '=', invoice_obj.id),
+                                             ('amount_total', '=', penalisation_prod_obj.list_price)
+                                             ], context=context)
+    penalisation_obj = self.browse(cr, uid, penalisation_ids[0], context=context)
+
+    # The penalisation invoice must be visible in the one2many field 'Penalization Invoices' of the res.partner (test 2.A.5.b)
+    penalisation_on_partner_ids = self.pool.get('followup').search(cr, uid, [('invoice_followup_id', '=', penalisation_obj.id),
+                                                                             ('followup_parent_id', '=', invoice_obj.id),
+                                                                             ('followup_level_id', '=', context['first_followup_level']),
+                                                                             ], context=context)
+    assert(len(penalisation_on_partner_ids) == 1), ("Parter with xml-id='res_partner_address_4' should have just the penalisation invoice, but it has not.")
+
+-
+  2.A.5. Rollbacks.
+-
+  !python {model: account.invoice}: |
+    cr.execute("ROLLBACK TO SAVEPOINT test;")

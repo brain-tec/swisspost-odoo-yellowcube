@@ -1,7 +1,7 @@
 # b-*- encoding: utf-8 -*-
 ##############################################################################
 #
-#    Copyright (c) 2015 brain-tec AG (http://www.brain-tec.ch)
+#    Copyright (c) 2015 brain-tec AG (http://www.braintec-group.com)
 #    All Right Reserved
 #
 #    This program is free software: you can redistribute it and/or modify
@@ -21,28 +21,42 @@
 from openerp.osv import osv, fields
 from openerp.tools.translate import _
 from openerp.tools import DEFAULT_SERVER_DATETIME_FORMAT, DEFAULT_SERVER_DATE_FORMAT
+from openerp.addons.pc_connect_master.utilities.others import format_exception
 from datetime import timedelta, datetime
 from SOAPpy import SOAPProxy
-from openerp.addons.pc_connect_warehouse_yellowcube.xsd.xml_tools import create_element, create_root, schema_namespaces, xml_to_string, validate_xml, open_xml, nspath
+from openerp.addons.pc_connect_warehouse_yellowcube.xsd.xml_tools import _XmlTools
 from lxml import etree
 import copy
 import pytz
-from openerp import api
-from openerp.addons.pc_connect_master.utilities.misc import format_exception
 import subprocess
 import os
+import HTMLParser
 import logging
 logger = logging.getLogger(__name__)
+logger.setLevel(logging.DEBUG)
 
 
 _ERR_MSG = _('Error sending {0} file:{1}\n{2}')
-
-_NEED_ACK = ['art', 'wab', 'wbl']
 
 
 class stock_connect_yellowcube_soap(osv.Model):
     _name = "stock.connect.yellowcubesoap"
     _inherit = 'stock.connect.yellowcube'
+
+    def files_needing_ack(self, cr, uid, ids, context=None):
+        """ Returns a set of file-types needing an acknowledgement (i.e. ACK)
+            from the server.
+        """
+        stock_connect = self.__this(cr, uid, ids, context=context)
+
+        if stock_connect.type == 'yellowcubesoap':
+            file_types = set(['art', 'wab', 'wbl'])
+
+        else:
+            file_types = \
+                super(stock_connect_yellowcube_soap, self).files_needing_ack(
+                    cr, uid, ids, context=context)
+        return file_types
 
     def __this(self, cr, uid, ids, context=None):
         if context is None:
@@ -64,7 +78,7 @@ class stock_connect_yellowcube_soap(osv.Model):
                                               certfile.strip(),
                                               out_data)
         #return_code = php_script.wait()
-        # if return_code != 0:
+        #if return_code != 0:
         #    raise Exception("Error while signing soap petition: {0}".format(return_code))
         result, _ = php_script.communicate(_input)
         return result
@@ -78,30 +92,33 @@ class stock_connect_yellowcube_soap(osv.Model):
         @return: xml_return_message, error_message
         """
         try:
+            tools = context.get('xml_tools', _XmlTools)
             if schema_name:
-                r = validate_xml(schema_name, xml_node, print_error=bool(server.config.debug))
+                r = tools.validate_xml(schema_name, xml_node, print_error=bool(server.config.debug))
                 if r:
                     return None, r
+            else:
+                r = None
             xml_kargs = {
                 'pretty_print': True,
                 'xml_declaration': False
             }
             this = self.__this(cr, uid, ids, context)
-            root = create_root('{{{soapenv}}}Envelope')
-            ns = schema_namespaces['soapenv']
+            root = tools.create_root('{{{soapenv}}}Envelope')
+            ns = tools.schema_namespaces['soapenv']
             # 0 soapenv:Header
-            xml_header = create_element('Header', ns=ns)
-            body = create_element('Body', ns=ns)
+            xml_header = tools.create_element('Header', ns=ns)
+            body = tools.create_element('Body', ns=ns)
             body.append(xml_node)
             root.append(xml_header)
             root.append(body)
-            out_data = xml_to_string(root, **xml_kargs)
+            out_data = tools.xml_to_string(root, **xml_kargs)
             parser = etree.XMLParser(remove_blank_text=True)
-            out_data = xml_to_string(open_xml(out_data, repair=False, parser=parser), pretty_print=True)
+            out_data = tools.xml_to_string(tools.open_xml(out_data, repair=False, parser=parser), pretty_print=True)
 
             if this.yc_soapsec_key_path:
                 out_data = self._sign_xml(out_data,
-                                          keyfile=this.yc_soapsec_key_path,
+                                          keyfile=this.yc_soapsec_key_path, 
                                           certfile=this.yc_soapsec_cert_path)
 
             with _soap_debug(this, action) as soap_debug:
@@ -116,13 +133,19 @@ class stock_connect_yellowcube_soap(osv.Model):
                                                      timeout=server.timeout)
                 soap_debug.write('RECEIVING', r)
             response = etree.fromstring(r)
-            body = response.xpath('//soapenv:Body', namespaces=schema_namespaces)[0]
-            fault = body.xpath('soapenv:Fault', namespaces=schema_namespaces)
+            body = response.iterchildren('{*}Body').next()
+            fault = body.xpath('soapenv:Fault', namespaces=tools.schema_namespaces)
             if fault:
-                return fault[0], xml_to_string(fault[0]).replace('&', '&amp;').replace('<', '&lt;').replace('>', '&gt;')
+                return fault[0], tools.xml_to_string(fault[0]).replace('&', '&amp;').replace('<', '&lt;').replace('>', '&gt;')
             return body[0], None
         except Exception as e:
-            return None, format_exception(e)
+            error_msg = _('An error happened while connecting to the '
+                          'server proxy {0} with the namespace {1} using the '
+                          'action {2}: {3}').format(server.proxy,
+                                                    server.namespace,
+                                                    action,
+                                                    format_exception(e))
+            return None, error_msg
         return None, 'Unknown error'
 
     def _save_error(self, cr, uid, ids, text, context=None, show_errors=False):
@@ -153,16 +176,17 @@ class stock_connect_yellowcube_soap(osv.Model):
         if isinstance(ids, list):
             ids = ids[0]
         connect = self.pool.get('stock.connect').browse(cr, uid, ids, context)
+        tools = context.get('xml_tools', _XmlTools)
 
         ts = self._get_timestamp()
 
-        ret = create_element('ControlReference', ns=ns)
-        ret.append(create_element('Type', ns=ns, text=type_))
-        ret.append(create_element('Sender', ns=ns, text=connect.yc_sender))
-        ret.append(create_element('Receiver', ns=ns, text=connect.yc_receiver))
-        ret.append(create_element('Timestamp', ns=ns, text=ts))
-        ret.append(create_element('OperatingMode', ns=ns, text=connect.yc_operating_mode))
-        ret.append(create_element('Version', ns=ns, text='1.0'))
+        ret = tools.create_element('ControlReference', ns=ns)
+        ret.append(tools.create_element('Type', ns=ns, text=type_))
+        ret.append(tools.create_element('Sender', ns=ns, text=connect.yc_sender))
+        ret.append(tools.create_element('Receiver', ns=ns, text=connect.yc_receiver))
+        ret.append(tools.create_element('Timestamp', ns=ns, text=ts))
+        ret.append(tools.create_element('OperatingMode', ns=ns, text=connect.yc_operating_mode))
+        ret.append(tools.create_element('Version', ns=ns, text='1.0'))
         return ret
 
     def _save_file(self, cr, uid, ids, name, _input, _type, data, context=None):
@@ -170,9 +194,10 @@ class stock_connect_yellowcube_soap(osv.Model):
             context = {}
         if not isinstance(ids, list):
             ids = [ids]
+        tools = context.get('xml_tools', _XmlTools)
         file_obj = self.pool.get('stock.connect.file')
         if not isinstance(data, str):
-            data = xml_to_string(data)
+            data = tools.xml_to_string(data)
         if _type in ['BUR', 'WAR', 'WBA'] and '<!-- Currently no {0}s available -->'.format(_type) in data:
             logger.debug('Ignoring empty {0} file'.format(_type))
             return
@@ -190,13 +215,15 @@ class stock_connect_yellowcube_soap(osv.Model):
     def _get_soap_file(self, cr, uid, ids, server, action, ns_name, root_name, _type, context=None, root=None):
         if context is None:
             context = {}
+        tools = context.get('xml_tools', _XmlTools)
         if root is None:
             # If the root is missing, we may create it
             if _type == 'BUR':
+                # BUR has changed, so it won't have an specific request for the moment
                 # BUR is very special, so delegate
                 return self._get_bur_soap_file(cr, uid, ids, server, action, ns_name, root_name, _type, context)
-            ns = schema_namespaces[ns_name]
-            root = create_element(root_name, ns=ns)
+            ns = tools.schema_namespaces[ns_name]
+            root = tools.create_element(root_name, ns=ns)
             root.append(self._get_control_reference(cr, uid, ids, ns, _type, context))
         ret, err = self._send_item(cr, uid, ids, server, root, action, context=context)
         if err:
@@ -206,61 +233,75 @@ class stock_connect_yellowcube_soap(osv.Model):
         return ret or True
 
     def _get_bur_soap_file(self, cr, uid, ids, server, action, ns_name, root_name, _type, context=None):
-        ns = schema_namespaces[ns_name]
-        root = create_element(root_name, ns=ns)
+        tools = context.get('xml_tools', _XmlTools)
+        ns = tools.schema_namespaces[ns_name]
+        root = tools.create_element(root_name, ns=ns)
         root.append(self._get_control_reference(cr, uid, ids, ns, _type, context))
         this = self.__this(cr, uid, ids, context)
         _now = datetime.now()
 
-        if this.yc_last_bur_check:
-            _old = datetime.strptime(this.yc_last_bur_check, DEFAULT_SERVER_DATETIME_FORMAT)
-            diff = _now - _old
-            diff = int(diff.days)
-            if diff > 999:
-                diff = 999
-            if diff == 0 and _now.day != _old.day:
-                # The never-feed-after-midnight check
-                diff = 1
-            root.append(create_element('ElapsedDays', text=diff, ns=ns))
-        else:
-            # By default we send 1 day
-            root.append(create_element('ElapsedDays', text=1, ns=ns))
+        if this.yc_bur_send_elapsed_days:
+            if this.yc_last_bur_check:
+                _old = datetime.strptime(this.yc_last_bur_check,
+                                         DEFAULT_SERVER_DATETIME_FORMAT)
+                diff = _now - _old
+                diff = int(diff.days)
+                if diff > 999:
+                    diff = 999
+                if diff == 0 and _now.day != _old.day:
+                    # The never-feed-after-midnight check
+                    diff = 1
+                root.append(tools.create_element(
+                    'ElapsedDays', text=diff, ns=ns))
+            else:
+                # By default we send 1 day
+                root.append(tools.create_element(
+                    'ElapsedDays', text=1, ns=ns))
 
         if self._get_soap_file(cr, uid, ids, server, action, ns_name, root_name, _type, context, root):
             # If everything goes clear, we set the last check
             this.write({'yc_last_bur_check': _now.strftime(DEFAULT_SERVER_DATETIME_FORMAT)})
 
-    def _get_wab_for_soap(self, cr, uid, ids, file_id, context=None):
-        ns = schema_namespaces['wab']
+    def _get_file_for_soap(self, cr, uid, ids, file_id, context=None):
+        tools = context.get('xml_tools', _XmlTools)
         _file = self.pool.get('stock.connect.file').browse(cr, uid, file_id, context)
-        wab_root = open_xml(_file.content, 'wab')
-        order_docs = wab_root.xpath('//wab:OrderDocuments', namespaces=schema_namespaces)[0]
+        return tools.open_xml(_file.content, _file.type)
+
+    def _get_wab_for_soap(self, cr, uid, ids, file_id, context=None):
+        tools = context.get('xml_tools', _XmlTools)
+        ns = tools.schema_namespaces['wab']
+        _file = self.pool.get('stock.connect.file').browse(cr, uid, file_id, context)
+        wab_root = tools.open_xml(_file.content, 'wab')
+        order_docs = wab_root.xpath('//wab:OrderDocuments', namespaces=tools.schema_namespaces)[0]
         names = [x.text for x in order_docs[0]]
         order_docs.remove(order_docs[0])
         for att in _file.attachments:
             if att.name not in names:
                 raise Exception('Unknown file {0}'.format(att.name), 'Expecting one of: {0}'.format(', '.join.names))
             names.remove(att.name)
-            doc = create_element('Docs', ns=ns)
-            doc.append(create_element('DocType', text=att.name.split('_')[1][:2], ns=ns))
-            doc.append(create_element('DocMimeType', text=att.name[-3:], ns=ns))
-            doc.append(create_element('DocStream', text=att.datas, ns=ns))
+            doc = tools.create_element('Docs', ns=ns)
+            doc.append(tools.create_element('DocType', text=att.name.split('_')[1][:2], ns=ns))
+            doc.append(tools.create_element('DocMimeType', text=att.name[-3:], ns=ns))
+            doc.append(tools.create_element('DocStream', text=att.datas, ns=ns))
             order_docs.append(doc)
 
         return wab_root
 
     def _get_art_for_soap(self, cr, uid, ids, file_id, context=None):
+        if context is None:
+            context = {}
+        tools = context.get('xml_tools', _XmlTools)
         _file = self.pool.get('stock.connect.file').browse(cr, uid, file_id, context)
-        art_root = open_xml(_file.content, 'art')
-        ns = schema_namespaces['art']
+        art_root = tools.open_xml(_file.content, 'art')
+        ns = tools.schema_namespaces['art']
         ret = []
-        control_reference = nspath(art_root, '//art:ControlReference')[0]
+        control_reference = tools.nspath(art_root, '//art:ControlReference')[0]
         pos_no = 0
         pending = False
         limit = context['limit_files']
         if _file.internal_index < 0:
             return ret
-        for article in nspath(art_root, '//art:Article'):
+        for article in tools.nspath(art_root, '//art:Article'):
             # Have we read enough?
             if limit[0] and limit[0] <= limit[1]:
                 pending = True
@@ -272,9 +313,9 @@ class stock_connect_yellowcube_soap(osv.Model):
                 limit[1] += 1
             else:
                 continue
-            new_root = create_root('{{{art}}}ART')
+            new_root = tools.create_root('{{{art}}}ART')
             new_root.append(copy.deepcopy(control_reference))
-            art_list = create_element('ArticleList', ns=ns)
+            art_list = tools.create_element('ArticleList', ns=ns)
             art_list.append(article)
             new_root.append(art_list)
             ret.append(new_root)
@@ -285,9 +326,16 @@ class stock_connect_yellowcube_soap(osv.Model):
         return ret
 
     def _get_wbl_for_soap(self, cr, uid, ids, file_id, context=None):
+        if context is None:
+            context = {}
+        tools = context.get('xml_tools', _XmlTools)
         _file = self.pool.get('stock.connect.file').browse(cr, uid, file_id, context)
-        wbl_root = open_xml(_file.content, 'wbl')
+        wbl_root = tools.open_xml(_file.content, 'wbl')
         return wbl_root
+
+    def _send_item_to_soap(self, cr, uid, ids, server, file_id, xml_part, action, schema_name, context=None):
+
+        return self._send_item(cr, uid, ids, server, xml_part, action, schema_name=schema_name, context=context)
 
     def _send_xml_on_soap(self, cr, uid, ids, server, function, action, _type, context=None):
         if context is None:
@@ -301,6 +349,7 @@ class stock_connect_yellowcube_soap(osv.Model):
                                              ('parent_file_id', '=', False),
                                              ('error', '=', False)], context=context)
         file_obj.lock_file(cr, uid, file_ids, context=context)
+        html_parser = HTMLParser.HTMLParser()
         for file_id in file_ids:
             err = False
             limit = context['limit_files']
@@ -317,37 +366,75 @@ class stock_connect_yellowcube_soap(osv.Model):
                     xml_root = [xml_root]
                     filename_index = None
                 for xml_part in xml_root:
-                    ret, err = self._send_item(cr, uid, ids, server, xml_part, action, schema_name=_type, context=context)
+                    ret, err = self._send_item_to_soap(cr, uid, ids, server, file_id, xml_part, action, schema_name=_type, context=context)
                     if err:
+                        # This undoes the encoding made in _send_item()
+                        # I kept the encoding in _send_item() just in case
+                        # it's used by anyone else and wants it that way.
+                        err_decoded = html_parser.unescape(err or '')
+                        _file.write({'error': True,
+                                     'info': err_decoded,
+                                     })
+
+                        project_issue_obj = self.pool.get('project.issue')
+
+                        project_issue_obj.create_issue(cr, uid,
+                                                       'stock.connect.file',
+                                                       file_id, err,
+                                                       context=context)
                         break
-                    rets.append(ret)
+
+                    if ret:
+                        rets.append(ret)
+
+                    if not err and not ret:
+                        break
                 cr.execute("RELEASE SAVEPOINT soap_send_file;")
             except Exception as e:
                 cr.execute("ROLLBACK TO SAVEPOINT soap_send_file;")
                 err = format_exception(e)
             if err:
-                self._save_error(cr, uid, ids, err, context)
-            else:
+                error_context = context.copy()
+                error_context.update({'show_errors': True})
+                self._save_error(cr, uid, ids, err, context=error_context)
+            elif len(rets) > 0:
+                needs_response_from_server = False
                 _file = file_obj.browse(cr, uid, file_id, context=context)
+
                 if _file.internal_index <= 0:
-                    if _type in _NEED_ACK:
+                    if _type in self.files_needing_ack(cr, uid, ids, context=context):
+                        # By default server_ack is set to True, so special
+                        # cases (only those which require an acknowledgement)
+                        # can set it to False. So if it's set to False, is
+                        # becase we expect an ACK to arrive in the future.
+                        needs_response_from_server = True
                         _file.write({'internal_index': 0, 'state': 'done', 'server_ack': False})
                     else:
                         _file.write({'internal_index': 0, 'state': 'done'})
-                pos_no = 0
-                for ret in rets:
-                    pos_no += 1
-                    if filename_index is None:
-                        name = 'RESPONSE_{0}'.format(_file.name)
-                    else:
-                        name = 'RESPONSE_sub{0}_{1}'.format(filename_index + pos_no, _file.name)
-                    self._save_soap_return(cr, uid, ids, file_id, name, ret, action, context)
+
+                if needs_response_from_server:
+                    # If the type of file needs an acknoledgement (i.e. a
+                    # response from the server) we prepare the files for them.
+                    pos_no = 0
+                    for ret in rets:
+                        pos_no += 1
+                        if filename_index is None:
+                            name = 'RESPONSE_{0}'.format(_file.name)
+                        else:
+                            name = 'RESPONSE_sub{0}_{1}'.format(
+                                filename_index + pos_no, _file.name)
+                        self._save_soap_return(cr, uid, ids, file_id, name,
+                                               ret, action, context)
+
         file_obj.unlock_file(cr, uid, file_ids, context=context)
 
     def _save_soap_return(self, cr, uid, ids, file_id, filename, xml_node, action, context=None):
+        if context is None:
+            context = {}
+        tools = context.get('xml_tools', _XmlTools)
         file_obj = self.pool.get('stock.connect.file')
         event_obj = self.pool.get('stock.event')
-        resp = file_obj.create(cr, uid, {'content': xml_to_string(xml_node),
+        resp = file_obj.create(cr, uid, {'content': tools.xml_to_string(xml_node),
                                          'name': filename,
                                          'input': True,
                                          'stock_connect_id': ids,
@@ -364,11 +451,12 @@ class stock_connect_yellowcube_soap(osv.Model):
             context = {}
         if isinstance(ids, list):
             ids = ids[0]
+        tools = context.get('xml_tools', _XmlTools)
         connect = self.pool.get('stock.connect').browse(cr, uid, ids, context)
         config = self.pool.get('configuration.data').get(cr, uid, [], context)
         wsdl = etree.parse(connect.yc_wsdl_endpoint)
         # server = SoapClient(wsdl=connect.yc_wsdl_endpoint)
-        server = SOAPProxy(wsdl.xpath('//soap:address', namespaces=schema_namespaces)[0].attrib['location'])
+        server = SOAPProxy(wsdl.xpath('//soap:address', namespaces=tools.schema_namespaces)[0].attrib['location'])
         server.config.debug = 1 if config.debug else 0
         return server
 
@@ -409,12 +497,19 @@ class stock_connect_yellowcube_soap(osv.Model):
                 continue
             success = self._get_soap_file(cr, uid, ids, server, *action, context=ctx2)
 
-            if success and action[1] == 'bar_req':
-                this.write({'yc_bar_last_check': datetime_now_str})
-            elif success and action[1] == 'war_req':
-                this.write({'yc_war_last_check': datetime_now_str})
-            elif success and action[1] == 'wba_req':
-                this.write({'yc_wba_last_check': datetime_now_str})
+            if success and action[1] in ['bar_req', 'war_req', 'wba_req']:
+                if isinstance(success, etree._Element):
+                    type_ = action[1][:3]
+                    expr = "//*[local-name()='{0}']".format(
+                        type_.upper())
+                    items = success.xpath(expr)
+                    if len(items) > 0:
+                        this.write({
+                            'yc_{0}_last_check'.format(type_): datetime_now_str
+                        })
+                    else:
+                        logger.info('{0} response was empty'.format(action[1]))
+
         return True
 
     def _attempt_to_download_bar(self, cr, uid, ids, context=None):
@@ -426,7 +521,7 @@ class stock_connect_yellowcube_soap(osv.Model):
         '''
         if context is None:
             context = {}
-        if not isinstance(ids, list):
+        if type(ids) is not list:
             ids = [ids]
 
         attempt_to_download_bar = True
@@ -483,8 +578,9 @@ class stock_connect_yellowcube_soap(osv.Model):
     def _process_gen_response(self, cr, uid, ids, context=None):
         if context is None:
             context = {}
-        if not isinstance(ids, list):
+        if type(ids) is not list:
             ids = [ids]
+        tools = context.get('xml_tools', _XmlTools)
 
         stock_connect_file_obj = self.pool.get('stock.connect.file')
 
@@ -508,11 +604,11 @@ class stock_connect_yellowcube_soap(osv.Model):
 
         def __read_file(xml_node):
             return {
-                'type': nspath(xml, 'gen:MessageType')[0].text,
-                'ref': nspath(xml, 'gen:Reference')[0].text,
-                'status_text': nspath(xml, 'gen:StatusText')[0].text,
-                'status_code': int(nspath(xml, 'gen:StatusCode')[0].text),
-                'status_type': nspath(xml, 'gen:StatusType')[0].text,
+                'type': tools.nspath(xml, 'gen:MessageType')[0].text,
+                'ref': tools.nspath(xml, 'gen:Reference')[0].text,
+                'status_text': tools.nspath(xml, 'gen:StatusText')[0].text,
+                'status_code': int(tools.nspath(xml, 'gen:StatusCode')[0].text),
+                'status_type': tools.nspath(xml, 'gen:StatusType')[0].text,
             }
 
         server = self._get_proxy(cr, uid, ids, context=context)
@@ -527,7 +623,7 @@ class stock_connect_yellowcube_soap(osv.Model):
                     logger.warning(msg)
                     gen_file.write({'error': False, 'state': 'cancel', 'info': msg})
                     continue
-                xml = open_xml(gen_file.content, repair=False)
+                xml = tools.open_xml(gen_file.content, repair=False)
                 values = __read_file(xml)
                 if values['status_type'] != 'S' or values['status_code'] > 100:
                     # Don't re-process errors
@@ -538,10 +634,10 @@ class stock_connect_yellowcube_soap(osv.Model):
                     original_file.write({'server_ack': True})
                 else:
                     # Send a request
-                    ns = schema_namespaces['gen_req']
-                    xml_req = create_root('{{{gen_req}}}GEN_STATUS')
+                    ns = tools.schema_namespaces['gen_req']
+                    xml_req = tools.create_root('{{{gen_req}}}GEN_STATUS')
                     xml_req.append(self._get_control_reference(cr, uid, ids, ns, values['type'], context=context))
-                    xml_req.append(create_element('Reference', text=values['ref'], ns=ns))
+                    xml_req.append(tools.create_element('Reference', text=values['ref'], ns=ns))
                     xml_ret, err_ret = self._send_item(cr, uid, ids, server, xml_req, action='GetInsertArticleMasterDataStatus', schema_name='gen_req', context=context)
                     if err_ret:
                         # Write errors on file
@@ -550,13 +646,13 @@ class stock_connect_yellowcube_soap(osv.Model):
                         values_ret = __read_file(xml_ret)
                         if values_ret['status_type'] != 'S' or values_ret['status_code'] > 100:
                             # Strange status codes are errors
-                            gen_file.write({'error': True, 'info': xml_to_string(xml_ret), 'internal_index': values_ret['status_code']})
+                            gen_file.write({'error': True, 'info': tools.xml_to_string(xml_ret), 'internal_index': values_ret['status_code']})
                         elif values_ret['status_code'] < 100:
                             # Modify the file if pending, avoiding excess of inputs
-                            gen_file.write({'content': xml_to_string(xml_ret), 'internal_index': values_ret['status_code']})
+                            gen_file.write({'content': tools.xml_to_string(xml_ret), 'internal_index': values_ret['status_code']})
                         else:
                             # Propagate end
-                            gen_file.write({'state': 'done', 'content': xml_to_string(xml_ret), 'info': values_ret['status_text'], 'internal_index': values_ret['status_code']})
+                            gen_file.write({'state': 'done', 'content': tools.xml_to_string(xml_ret), 'info': values_ret['status_text'], 'internal_index': values_ret['status_code']})
                             original_file.write({'server_ack': True})
             except Exception as e:
                 logger.error(format_exception(e))

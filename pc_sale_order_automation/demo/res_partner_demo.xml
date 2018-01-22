@@ -1,0 +1,17 @@
+<openerp>
+	<data noupdate='0'>
+
+        <record id="test_partner_person" model="res.partner">
+            <field name="name">Test Partner</field>
+            <field name="is_company">0</field>
+            <field name="city">Madrid</field>
+            <field name="zip">28000</field>
+            <field name="country_id" ref="base.es"/>
+            <field name="street">Gran Vía 1</field>
+            <field name="email">info@example.com</field>
+            <field name="phone">+34 000 000 000</field>
+            <field name="website">www.braintec-group.com</field>
+        </record>
+
+    </data>
+</openerp>

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data noupdate="1">
+
+        <record id="email_template_send_invoice_to_docout" model="email.template">
+            <field name="name">Send Invoice to Doc-out</field>
+            <field name="email_from">${user.email}</field>
+            <field name="subject">Doc-out Invoice Sending</field>
+            <field name="email_to">${object.get_docout_invoice_email_address()}</field>
+            <field name="lang">${user.partner_id.lang}</field>
+            <field name="model_id" ref="base.model_ir_attachment" />
+            <field name="auto_delete" eval="False" />
+
+            <field name="body_html"><![CDATA[
+            <div style="font-family: sans-serif; font-size: 12px;">
+                <p>One or more invoices were attached to be printed in the doc-out.</p>   
+            </div>
+            ]]></field>
+        </record>
+
+    </data>
+</openerp>

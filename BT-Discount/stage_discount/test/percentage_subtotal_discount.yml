@@ -1,0 +1,101 @@
+-
+  Test discounts [PERCENTAGE + SUBTOTAL + PERCENTAGE]. 
+  Test two percentages + subtotal.
+  a) I create an account invoice
+-
+  !record {model: account.invoice, id: account_invoice_4}:
+    account_id: account.a_recv
+    company_id: base.main_company
+    currency_id: base.EUR
+    invoice_line:
+      - account_id: account.a_sale
+        name: '[PCSC234] PC Assemble SC234'
+        price_unit: 450.0
+        quantity: 1.0
+        product_id: product.product_product_4
+        uos_id: product.product_uom_unit
+        invoice_line_tax_id: []
+    journal_id: account.bank_journal
+    partner_id: base.res_partner_12
+    reference_type: none
+-
+  b) I check that Initially customer invoice state is "Draft"
+-
+  !assert {model: account.invoice, id: account_invoice_4}:
+    - state == 'draft'
+
+-
+  c) Create a discount invoice lines which value is percentage 10. sequence 1.
+-
+  !record {model: stage_discount.discount_line, id: discount_line_41}:
+    discount_type: 'percentage'
+    discount_value: 10
+    sequence: 1
+    is_rounded: False
+    description: 'Percentage'
+    invoice_id: account_invoice_4
+-
+  d) Create a subtotal.
+-
+  !record {model: stage_discount.discount_line, id: discount_line_42}:
+    discount_type: 'subtotal'
+    sequence: 2
+    description: 'Subtotal'
+    invoice_id: account_invoice_4
+    is_rounded: False
+-
+  e) Create a discount invoice lines which value is percentage 10. sequence 2.
+-
+  !record {model: stage_discount.discount_line, id: discount_line_3}:
+    discount_type: 'percentage'
+    discount_value: 10
+    sequence: 3
+    description: 'Percentage'
+    invoice_id: account_invoice_4
+    is_rounded: False
+-
+  e) Calculate the discount
+-
+  !python {model: account.invoice}: |
+    self.button_reset_taxes(cr, uid, [ref("account_invoice_4")])
+
+-
+  f) Check discount amount of 10% over 450.
+  450 - 10% = 450 - 45 = 405 = subtotal
+  subtotal - 10% = 405 - 40.5 = 364.5
+  Total discount given 45 + 40.5 = 85.5
+-
+
+  !assert {model: account.invoice, id: account_invoice_4}:
+    - amount_discount == -85.5
+    - amount_untaxed == 364.5
+    - amount_tax == 0
+    - amount_total == 364.5
+-
+  I Validate invoice by clicking on Validate button
+-
+  !workflow {model: account.invoice, action: invoice_open, ref: account_invoice_4}
+
+-
+  Check balance
+-
+
+  !assert {model: account.invoice, id: account_invoice_4}:
+    - amount_discount == -85.5
+    - amount_untaxed == 364.5
+    - amount_tax == 0
+    - amount_total == 364.5 
+    - residual  == 364.5
+ 
+-
+  I verify that account move is created, and contains valid values.
+-
+  !python {model: account.invoice}: |
+    inv = self.browse(cr, uid, ref('account_invoice_4'))
+    move = inv.move_id
+    assert(len(move.line_id) == 4), ('Only 4 lines should appear', len(move.line_id))
+    for line in move.line_id:
+         assert(line.credit!=0 or line.debit!=0), ('Both lines cannot be 0')
+         assert(line.debit in [364.5,  0, 40.5, 45.0]), ('Debit can only belong to these values but it is:',line.debit)
+         assert(line.credit in [0,  450.0]), ('Credit can only belong to these values but it is:', line.credit)
+         assert(line.state=='valid'), ('It should be in state valid')

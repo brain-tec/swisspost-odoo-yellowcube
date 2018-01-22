@@ -20,9 +20,7 @@
 ##############################################################################
 
 from utilities import filters
-
 from openerp.osv import fields, osv
-from openerp.tools.translate import _
 
 
 class stock_move_ext(osv.Model):
@@ -38,6 +36,74 @@ class stock_move_ext(osv.Model):
     def read_group(self, cr, uid, domain, fields, groupby, offset=0, limit=None, context=None, orderby=False):
         return filters.read_group(self, cr, uid, domain, fields, groupby, stock_move_ext, offset=offset, limit=limit, context=context, orderby=orderby)
     # END OF THE CODE WHICH DEFINES THE NEW FILTERS TO ADD TO THE OBJECT.
+
+    def create(self, cr, uid, vals, context=None):
+        move_id = super(stock_move_ext, self).create(
+            cr, uid, vals, context=context)
+
+        if 'product_id' in vals:
+            self.set_mandatory_additional_shipping_codes(
+                cr, uid, move_id, context=context)
+
+        return move_id
+
+    def write(self, cr, uid, ids, vals, context=None):
+        ret = super(stock_move_ext, self).write(
+            cr, uid, ids, vals, context=context)
+
+        if 'product_id' in vals:
+            self.set_mandatory_additional_shipping_codes(
+                cr, uid, ids, context=context)
+
+        return ret
+
+    def set_mandatory_additional_shipping_codes(self, cr, uid, ids,
+                                                context=None):
+        """ Modifies the mandatory additional shipping codes on the picking
+            depending on the stock.move. The part which updates the services
+            depending on the carrier of the picking is in the model
+            stock.picking.
+        """
+        if not isinstance(ids, list):
+            ids = [ids]
+        if context is None:
+            context = {}
+
+        picking_obj = self.pool.get('stock.picking')
+        sep = ';'
+
+        for move in self.browse(cr, uid, ids, context=context):
+            picking = move.picking_id
+
+            mandatory_additional_options = set()
+
+            # Stores the already existing mandatory additional services,
+            # just in case the user had modified them manually.
+            if picking.yc_mandatory_additional_shipping:
+                original_mandatory_options = set(
+                    picking.yc_mandatory_additional_shipping.split(sep))
+                mandatory_additional_options.update(original_mandatory_options)
+            else:
+                original_mandatory_options = set()
+
+            # Adds the mandatory additional services by the product's template
+            # and the product's category.
+            prod_templ = move.product_id.product_tmpl_id
+            for addit_op in prod_templ.yc_mandatory_additional_option_ids:
+                mandatory_additional_options.add(addit_op.code)
+            for addit_op in prod_templ.categ_id.yc_mandatory_additional_option_ids:
+                mandatory_additional_options.add(addit_op.code)
+
+            # We update the list of mandatory additional shipping options
+            # but only if it changed.
+            if mandatory_additional_options and \
+                    original_mandatory_options != mandatory_additional_options:
+                picking_obj.write(cr, uid, picking.id, {
+                    'yc_mandatory_additional_shipping': sep.join(
+                        mandatory_additional_options),
+                }, context=context)
+
+        return True
 
     def _get_partner_title(self, cr, uid, ids, field_name, args, context=None):
         if context is None:
@@ -125,5 +191,3 @@ class stock_move_ext(osv.Model):
                                         size=30, relation='stock.move.partner_id',
                                         string="Partner Email"),
     }
-
-# vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:

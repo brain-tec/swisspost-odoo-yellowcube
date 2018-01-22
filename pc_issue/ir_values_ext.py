@@ -1,7 +1,7 @@
 # b-*- encoding: utf-8 -*-
 ##############################################################################
 #
-#    Copyright (c) 2015 brain-tec AG (http://www.brain-tec.ch)
+#    Copyright (c) 2015 brain-tec AG (http://www.braintec-group.com)
 #    All Right Reserved
 #
 #    This program is free software: you can redistribute it and/or modify
@@ -18,11 +18,8 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 ##############################################################################
-
 from openerp.osv import osv, fields
 from openerp.tools.translate import _
-import logging
-logger = logging.getLogger(__name__)
 
 
 class ir_values_ext(osv.Model):
@@ -32,7 +29,6 @@ class ir_values_ext(osv.Model):
         ret = super(ir_values_ext, self).get_actions(cr, uid, action_slot, model, res_id=res_id, context=context)
         any = super(ir_values_ext, self).get_actions(cr, uid, action_slot, '*', res_id=res_id, context=context)
         ret.extend(any)
-        # logger.debug("get_actions({0}, {1}, {2}) = {3}".format(action_slot, model, res_id, ret))
         return ret
 
 # vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:

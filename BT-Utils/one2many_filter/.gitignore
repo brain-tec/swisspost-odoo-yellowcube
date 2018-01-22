@@ -1,0 +1,8 @@
+/.project
+/.pydevproject
+/account_invoice.pyc
+/generic.pyc
+/sale_order_ext.pyc
+/.settings
+/__init__.pyc
+/sale_order_line_ext.pyc

@@ -1,0 +1,732 @@
+# Translation of OpenERP Server.
+# This file contains the translation of the following modules:
+#	* pc_generics
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: OpenERP Server 7.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2016-06-15 06:53+0000\n"
+"PO-Revision-Date: 2016-06-15 06:53+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: pc_generics
+#: field:configuration.data,esr_bvr_background_left:0
+msgid "BVR Background (left)"
+msgstr "BVR Background (left)"
+
+#. module: pc_generics
+#: model:ir.model.fields,field_description:field_configuration_data_esr_bvr_background_left
+msgid "BVR Background (left)"
+msgstr "BVR Background (left)"
+
+#. module: pc_generics
+#: field:configuration.data,esr_bvr_background_top:0
+msgid "BVR Background (top)"
+msgstr "BVR Background (top)"
+
+#. module: pc_generics
+#: model:ir.model.fields,field_description:field_configuration_data_esr_bvr_background_top
+msgid "BVR Background (top)"
+msgstr "BVR Background (top)"
+
+#. module: pc_generics
+#: view:configuration.data:0
+msgid "Background"
+msgstr "Background"
+
+#. module: pc_generics
+#: model:ir.model,name:model_res_partner_bank
+msgid "Bank Accounts"
+msgstr "Comptes bancaires"
+
+#. module: pc_generics
+#: view:configuration.data:0
+msgid "ESR"
+msgstr "ESR"
+
+#. module: pc_generics
+#: model:ir.model,name:model_account_invoice_line
+msgid "Invoice Line"
+msgstr "Ligne de facture"
+
+#. module: pc_generics
+#: field:configuration.data,esr_slip_amount_right:0
+msgid "Left Amount (right)"
+msgstr "Left Amount (right)"
+
+#. module: pc_generics
+#: model:ir.model.fields,field_description:field_configuration_data_esr_slip_amount_right
+msgid "Left Amount (right)"
+msgstr "Left Amount (right)"
+
+#. module: pc_generics
+#: field:configuration.data,esr_slip_amount_size:0
+msgid "Left Amount (size)"
+msgstr "Left Amount (size)"
+
+#. module: pc_generics
+#: model:ir.model.fields,field_description:field_configuration_data_esr_slip_amount_size
+msgid "Left Amount (size)"
+msgstr "Left Amount (size)"
+
+#. module: pc_generics
+#: field:configuration.data,esr_slip_amount_top:0
+msgid "Left Amount (top)"
+msgstr "Left Amount (top)"
+
+#. module: pc_generics
+#: model:ir.model.fields,field_description:field_configuration_data_esr_slip_amount_top
+msgid "Left Amount (top)"
+msgstr "Left Amount (top)"
+
+#. module: pc_generics
+#: field:configuration.data,esr_slip_bank_left:0
+msgid "Left Bank (left)"
+msgstr "Left Bank (left)"
+
+#. module: pc_generics
+#: model:ir.model.fields,field_description:field_configuration_data_esr_slip_bank_left
+msgid "Left Bank (left)"
+msgstr "Left Bank (left)"
+
+#. module: pc_generics
+#: field:configuration.data,esr_slip_bank_size:0
+msgid "Left Bank (size)"
+msgstr "Left Bank (size)"
+
+#. module: pc_generics
+#: model:ir.model.fields,field_description:field_configuration_data_esr_slip_bank_size
+msgid "Left Bank (size)"
+msgstr "Left Bank (size)"
+
+#. module: pc_generics
+#: field:configuration.data,esr_slip_bank_top:0
+msgid "Left Bank (top)"
+msgstr "Left Bank (top)"
+
+#. module: pc_generics
+#: model:ir.model.fields,field_description:field_configuration_data_esr_slip_bank_top
+msgid "Left Bank (top)"
+msgstr "Left Bank (top)"
+
+#. module: pc_generics
+#: field:configuration.data,esr_slip_bank_acc_left:0
+msgid "Left Bank Account Number (left )"
+msgstr "Left Bank Account Number (left )"
+
+#. module: pc_generics
+#: model:ir.model.fields,field_description:field_configuration_data_esr_slip_bank_acc_left
+msgid "Left Bank Account Number (left )"
+msgstr "Left Bank Account Number (left )"
+
+#. module: pc_generics
+#: field:configuration.data,esr_slip_bank_acc_size:0
+msgid "Left Bank Account Number (size)"
+msgstr "Left Bank Account Number (size)"
+
+#. module: pc_generics
+#: model:ir.model.fields,field_description:field_configuration_data_esr_slip_bank_acc_size
+msgid "Left Bank Account Number (size)"
+msgstr "Left Bank Account Number (size)"
+
+#. module: pc_generics
+#: field:configuration.data,esr_slip_bank_acc_top:0
+msgid "Left Bank Account Number (top)"
+msgstr "Left Bank Account Number (top)"
+
+#. module: pc_generics
+#: model:ir.model.fields,field_description:field_configuration_data_esr_slip_bank_acc_top
+msgid "Left Bank Account Number (top)"
+msgstr "Left Bank Account Number (top)"
+
+#. module: pc_generics
+#: field:configuration.data,esr_slip_comp_left:0
+msgid "Left Bank Owner Address (left)"
+msgstr "Left Bank Owner Address (left)"
+
+#. module: pc_generics
+#: model:ir.model.fields,field_description:field_configuration_data_esr_slip_comp_left
+msgid "Left Bank Owner Address (left)"
+msgstr "Left Bank Owner Address (left)"
+
+#. module: pc_generics
+#: field:configuration.data,esr_slip_comp_size:0
+msgid "Left Bank Owner Address (size)"
+msgstr "Left Bank Owner Address (size)"
+
+#. module: pc_generics
+#: model:ir.model.fields,field_description:field_configuration_data_esr_slip_comp_size
+msgid "Left Bank Owner Address (size)"
+msgstr "Left Bank Owner Address (size)"
+
+#. module: pc_generics
+#: field:configuration.data,esr_slip_comp_top:0
+msgid "Left Bank Owner Address (top)"
+msgstr "Left Bank Owner Address (top)"
+
+#. module: pc_generics
+#: model:ir.model.fields,field_description:field_configuration_data_esr_slip_comp_top
+msgid "Left Bank Owner Address (top)"
+msgstr "Left Bank Owner Address (top)"
+
+#. module: pc_generics
+#: field:configuration.data,esr_slip_address_b_left:0
+msgid "Left Customer Address (left)"
+msgstr "Left Customer Address (left)"
+
+#. module: pc_generics
+#: model:ir.model.fields,field_description:field_configuration_data_esr_slip_address_b_left
+msgid "Left Customer Address (left)"
+msgstr "Left Customer Address (left)"
+
+#. module: pc_generics
+#: field:configuration.data,esr_slip_address_b_size:0
+msgid "Left Customer Address (size)"
+msgstr "Left Customer Address (size)"
+
+#. module: pc_generics
+#: model:ir.model.fields,field_description:field_configuration_data_esr_slip_address_b_size
+msgid "Left Customer Address (size)"
+msgstr "Left Customer Address (size)"
+
+#. module: pc_generics
+#: field:configuration.data,esr_slip_address_b_top:0
+msgid "Left Customer Address (top)"
+msgstr "Left Customer Address (top)"
+
+#. module: pc_generics
+#: model:ir.model.fields,field_description:field_configuration_data_esr_slip_address_b_top
+msgid "Left Customer Address (top)"
+msgstr "Left Customer Address (top)"
+
+#. module: pc_generics
+#: view:configuration.data:0
+msgid "Left Part"
+msgstr "Left Part"
+
+#. module: pc_generics
+#: field:configuration.data,esr_slip_ref_right:0
+msgid "Left Reference Number (right)"
+msgstr "Left Reference Number (right)"
+
+#. module: pc_generics
+#: model:ir.model.fields,field_description:field_configuration_data_esr_slip_ref_right
+msgid "Left Reference Number (right)"
+msgstr "Left Reference Number (right)"
+
+#. module: pc_generics
+#: field:configuration.data,esr_slip_ref_size:0
+msgid "Left Reference Number (size)"
+msgstr "Left Reference Number (size)"
+
+#. module: pc_generics
+#: model:ir.model.fields,field_description:field_configuration_data_esr_slip_ref_size
+msgid "Left Reference Number (size)"
+msgstr "Left Reference Number (size)"
+
+#. module: pc_generics
+#: field:configuration.data,esr_slip_ref_top:0
+msgid "Left Reference Number (top)"
+msgstr "Left Reference Number (top)"
+
+#. module: pc_generics
+#: model:ir.model.fields,field_description:field_configuration_data_esr_slip_ref_top
+msgid "Left Reference Number (top)"
+msgstr "Left Reference Number (top)"
+
+#. module: pc_generics
+#: field:configuration.data,esr_ocrbb_left:0
+msgid "OCR Code (left)"
+msgstr "OCR Code (left)"
+
+#. module: pc_generics
+#: model:ir.model.fields,field_description:field_configuration_data_esr_ocrbb_left
+msgid "OCR Code (left)"
+msgstr "OCR Code (left)"
+
+#. module: pc_generics
+#: field:configuration.data,esr_ocrbb_size:0
+msgid "OCR Code (size)"
+msgstr "OCR Code (size)"
+
+#. module: pc_generics
+#: model:ir.model.fields,field_description:field_configuration_data_esr_ocrbb_size
+msgid "OCR Code (size)"
+msgstr "OCR Code (size)"
+
+#. module: pc_generics
+#: field:configuration.data,esr_ocrbb_top:0
+msgid "OCR Code (top)"
+msgstr "OCR Code (top)"
+
+#. module: pc_generics
+#: model:ir.model.fields,field_description:field_configuration_data_esr_ocrbb_top
+msgid "OCR Code (top)"
+msgstr "OCR Code (top)"
+
+#. module: pc_generics
+#: field:configuration.data,esr_ocrbb_digitref_coefficient:0
+msgid "OCR Code Characters (coefficient)"
+msgstr "OCR Code Characters (coefficient)"
+
+#. module: pc_generics
+#: model:ir.model.fields,field_description:field_configuration_data_esr_ocrbb_digitref_coefficient
+msgid "OCR Code Characters (coefficient)"
+msgstr "OCR Code Characters (coefficient)"
+
+#. module: pc_generics
+#: field:configuration.data,esr_ocrbb_digitref_start:0
+msgid "OCR Code Characters (left internal start)"
+msgstr "OCR Code Characters (left internal start)"
+
+#. module: pc_generics
+#: model:ir.model.fields,field_description:field_configuration_data_esr_ocrbb_digitref_start
+msgid "OCR Code Characters (left internal start)"
+msgstr "OCR Code Characters (left internal start)"
+
+#. module: pc_generics
+#: field:configuration.data,esr_ocrbb_width:0
+msgid "OCR Code Characters (width)"
+msgstr "OCR Code Characters (width)"
+
+#. module: pc_generics
+#: model:ir.model.fields,field_description:field_configuration_data_esr_ocrbb_width
+msgid "OCR Code Characters (width)"
+msgstr "OCR Code Characters (width)"
+
+#. module: pc_generics
+#: view:configuration.data:0
+msgid "OCR Code"
+msgstr "OCR Code"
+
+#. module: pc_generics
+#: code:addons/pc_generics/res_partner_ext.py:134
+msgid "P.O. Box"
+msgstr "Case Postale"
+
+#. module: pc_generics
+#: model:ir.model,name:model_res_partner
+msgid "Partner"
+msgstr "Partenaire"
+
+#. module: pc_generics
+#: view:configuration.data:0
+msgid "Post Mail"
+msgstr "Post Mail"
+
+#. module: pc_generics
+#: field:configuration.data,esr_slip2_amount_right:0
+msgid "Right Amount (right)"
+msgstr "Right Amount (right)"
+
+#. module: pc_generics
+#: model:ir.model.fields,field_description:field_configuration_data_esr_slip2_amount_right
+msgid "Right Amount (right)"
+msgstr "Right Amount (right)"
+
+#. module: pc_generics
+#: field:configuration.data,esr_slip2_amount_size:0
+msgid "Right Amount (size)"
+msgstr "Right Amount (size)"
+
+#. module: pc_generics
+#: model:ir.model.fields,field_description:field_configuration_data_esr_slip2_amount_size
+msgid "Right Amount (size)"
+msgstr "Right Amount (size)"
+
+#. module: pc_generics
+#: field:configuration.data,esr_slip2_amount_top:0
+msgid "Right Amount (tope)"
+msgstr "Right Amount (tope)"
+
+#. module: pc_generics
+#: model:ir.model.fields,field_description:field_configuration_data_esr_slip2_amount_top
+msgid "Right Amount (tope)"
+msgstr "Right Amount (tope)"
+
+#. module: pc_generics
+#: field:configuration.data,esr_slip2_bank_left:0
+msgid "Right Bank (left)"
+msgstr "Right Bank (left)"
+
+#. module: pc_generics
+#: model:ir.model.fields,field_description:field_configuration_data_esr_slip2_bank_left
+msgid "Right Bank (left)"
+msgstr "Right Bank (left)"
+
+#. module: pc_generics
+#: field:configuration.data,esr_slip2_bank_size:0
+msgid "Right Bank (size)"
+msgstr "Right Bank (size)"
+
+#. module: pc_generics
+#: model:ir.model.fields,field_description:field_configuration_data_esr_slip2_bank_size
+msgid "Right Bank (size)"
+msgstr "Right Bank (size)"
+
+#. module: pc_generics
+#: field:configuration.data,esr_slip2_bank_top:0
+msgid "Right Bank (top)"
+msgstr "Right Bank (top)"
+
+#. module: pc_generics
+#: model:ir.model.fields,field_description:field_configuration_data_esr_slip2_bank_top
+msgid "Right Bank (top)"
+msgstr "Right Bank (top)"
+
+#. module: pc_generics
+#: field:configuration.data,esr_slip2_bank_acc_left:0
+msgid "Right Bank Account Number (left)"
+msgstr "Right Bank Account Number (left)"
+
+#. module: pc_generics
+#: model:ir.model.fields,field_description:field_configuration_data_esr_slip2_bank_acc_left
+msgid "Right Bank Account Number (left)"
+msgstr "Right Bank Account Number (left)"
+
+#. module: pc_generics
+#: field:configuration.data,esr_slip2_bank_acc_size:0
+msgid "Right Bank Account Number (size)"
+msgstr "Right Bank Account Number (size)"
+
+#. module: pc_generics
+#: model:ir.model.fields,field_description:field_configuration_data_esr_slip2_bank_acc_size
+msgid "Right Bank Account Number (size)"
+msgstr "Right Bank Account Number (size)"
+
+#. module: pc_generics
+#: field:configuration.data,esr_slip2_bank_acc_top:0
+msgid "Right Bank Account Number (top)"
+msgstr "Right Bank Account Number (top)"
+
+#. module: pc_generics
+#: model:ir.model.fields,field_description:field_configuration_data_esr_slip2_bank_acc_top
+msgid "Right Bank Account Number (top)"
+msgstr "Right Bank Account Number (top)"
+
+#. module: pc_generics
+#: field:configuration.data,esr_slip2_comp_left:0
+msgid "Right Bank Owner Address (left)"
+msgstr "Right Bank Owner Address (left)"
+
+#. module: pc_generics
+#: model:ir.model.fields,field_description:field_configuration_data_esr_slip2_comp_left
+msgid "Right Bank Owner Address (left)"
+msgstr "Right Bank Owner Address (left)"
+
+#. module: pc_generics
+#: field:configuration.data,esr_slip2_comp_size:0
+msgid "Right Bank Owner Address (size)"
+msgstr "Right Bank Owner Address (size)"
+
+#. module: pc_generics
+#: model:ir.model.fields,field_description:field_configuration_data_esr_slip2_comp_size
+msgid "Right Bank Owner Address (size)"
+msgstr "Right Bank Owner Address (size)"
+
+#. module: pc_generics
+#: field:configuration.data,esr_slip2_comp_top:0
+msgid "Right Bank Owner Address (top)"
+msgstr "Right Bank Owner Address (top)"
+
+#. module: pc_generics
+#: model:ir.model.fields,field_description:field_configuration_data_esr_slip2_comp_top
+msgid "Right Bank Owner Address (top)"
+msgstr "Right Bank Owner Address (top)"
+
+#. module: pc_generics
+#: field:configuration.data,esr_slip2_address_b_left:0
+msgid "Right Customer Address (left)"
+msgstr "Right Customer Address (left)"
+
+#. module: pc_generics
+#: model:ir.model.fields,field_description:field_configuration_data_esr_slip2_address_b_left
+msgid "Right Customer Address (left)"
+msgstr "Right Customer Address (left)"
+
+#. module: pc_generics
+#: field:configuration.data,esr_slip2_address_b_size:0
+msgid "Right Customer Address (size)"
+msgstr "Right Customer Address (size)"
+
+#. module: pc_generics
+#: model:ir.model.fields,field_description:field_configuration_data_esr_slip2_address_b_size
+msgid "Right Customer Address (size)"
+msgstr "Right Customer Address (size)"
+
+#. module: pc_generics
+#: field:configuration.data,esr_slip2_address_b_top:0
+msgid "Right Customer Address (top)"
+msgstr "Right Customer Address (top)"
+
+#. module: pc_generics
+#: model:ir.model.fields,field_description:field_configuration_data_esr_slip2_address_b_top
+msgid "Right Customer Address (top)"
+msgstr "Right Customer Address (top)"
+
+#. module: pc_generics
+#: view:configuration.data:0
+msgid "Right Part"
+msgstr "Right Part"
+
+#. module: pc_generics
+#: field:configuration.data,esr_slip2_ref_right:0
+msgid "Right Reference Number (right)"
+msgstr "Right Reference Number (right)"
+
+#. module: pc_generics
+#: model:ir.model.fields,field_description:field_configuration_data_esr_slip2_ref_right
+msgid "Right Reference Number (right)"
+msgstr "Right Reference Number (right)"
+
+#. module: pc_generics
+#: field:configuration.data,esr_slip2_ref_size:0
+msgid "Right Reference Number (size)"
+msgstr "Right Reference Number (size)"
+
+#. module: pc_generics
+#: model:ir.model.fields,field_description:field_configuration_data_esr_slip2_ref_size
+msgid "Right Reference Number (size)"
+msgstr "Right Reference Number (size)"
+
+#. module: pc_generics
+#: field:configuration.data,esr_slip2_ref_top:0
+msgid "Right Reference Number (top)"
+msgstr "Right Reference Number (top)"
+
+#. module: pc_generics
+#: model:ir.model.fields,field_description:field_configuration_data_esr_slip2_ref_top
+msgid "Right Reference Number (top)"
+msgstr "Right Reference Number (top)"
+
+#. module: pc_generics
+#: help:configuration.data,esr_bvr_background_left:0
+msgid "bvr_background (distance from the left of the page, in mm.)"
+msgstr "bvr_background (distance from the left of the page, in mm.)"
+
+#. module: pc_generics
+#: help:configuration.data,esr_bvr_background_top:0
+msgid "bvr_background (distance from the top of the page, in mm.)"
+msgstr "bvr_background (distance from the top of the page, in mm.)"
+
+#. module: pc_generics
+#: model:ir.model,name:model_configuration_data
+msgid "configuration.data"
+msgstr "configuration.data"
+
+#. module: pc_generics
+#: help:configuration.data,esr_ocrbb_digitref_start:0
+msgid "digitref (extra left space to start showing the digits, in mm.)"
+msgstr "digitref (extra left space to start showing the digits, in mm.)"
+
+#. module: pc_generics
+#: help:configuration.data,esr_ocrbb_digitref_coefficient:0
+msgid "digitref (extra separation between the start of one digit and the next one, in mm."
+msgstr "digitref (extra separation between the start of one digit and the next one, in mm."
+
+#. module: pc_generics
+#: help:configuration.data,esr_ocrbb_left:0
+msgid "ocrbb (distance from the left of the page, in mm.)"
+msgstr "ocrbb (distance from the left of the page, in mm.)"
+
+#. module: pc_generics
+#: help:configuration.data,esr_ocrbb_top:0
+msgid "ocrbb (distance from the top of the page, in mm.)"
+msgstr "ocrbb (distance from the top of the page, in mm.)"
+
+#. module: pc_generics
+#: help:configuration.data,esr_ocrbb_size:0
+msgid "ocrbb (size of the font, in pt.)"
+msgstr "ocrbb (size of the font, in pt.)"
+
+#. module: pc_generics
+#: help:configuration.data,esr_ocrbb_width:0
+msgid "ocrbb (width of characters, in mm.)"
+msgstr "ocrbb (width of characters, in mm.)"
+
+#. module: pc_generics
+#: help:configuration.data,esr_slip2_address_b_left:0
+msgid "slip2_address_b (distance from the left of the page, in mm.)"
+msgstr "slip2_address_b (distance from the left of the page, in mm.)"
+
+#. module: pc_generics
+#: help:configuration.data,esr_slip2_address_b_top:0
+msgid "slip2_address_b (distance from the top of the page, in mm.)"
+msgstr "slip2_address_b (distance from the top of the page, in mm.)"
+
+#. module: pc_generics
+#: help:configuration.data,esr_slip2_address_b_size:0
+msgid "slip2_address_b (size of the font, in pt.)"
+msgstr "slip2_address_b (size of the font, in pt.)"
+
+#. module: pc_generics
+#: help:configuration.data,esr_slip2_amount_right:0
+msgid "slip2_amount (distance from the right of the page, in mm.)"
+msgstr "slip2_amount (distance from the right of the page, in mm.)"
+
+#. module: pc_generics
+#: help:configuration.data,esr_slip2_amount_top:0
+msgid "slip2_amount (distance from the top of the page, in mm.)"
+msgstr "slip2_amount (distance from the top of the page, in mm.)"
+
+#. module: pc_generics
+#: help:configuration.data,esr_slip2_amount_size:0
+msgid "slip2_amount (size of the font, in pt.)"
+msgstr "slip2_amount (size of the font, in pt.)"
+
+#. module: pc_generics
+#: help:configuration.data,esr_slip2_bank_left:0
+msgid "slip2_bank (distance from the left of the page, in mm.)"
+msgstr "slip2_bank (distance from the left of the page, in mm.)"
+
+#. module: pc_generics
+#: help:configuration.data,esr_slip2_bank_top:0
+msgid "slip2_bank (distance from the top of the page, in mm.)"
+msgstr "slip2_bank (distance from the top of the page, in mm.)"
+
+#. module: pc_generics
+#: help:configuration.data,esr_slip2_bank_size:0
+msgid "slip2_bank (size of the font, in pt.)"
+msgstr "slip2_bank (size of the font, in pt.)"
+
+#. module: pc_generics
+#: help:configuration.data,esr_slip2_bank_acc_left:0
+msgid "slip2_bank_acc (distance from the left of the page, in mm.)"
+msgstr "slip2_bank_acc (distance from the left of the page, in mm.)"
+
+#. module: pc_generics
+#: help:configuration.data,esr_slip2_bank_acc_top:0
+msgid "slip2_bank_acc (distance from the top of the page, in mm.)"
+msgstr "slip2_bank_acc (distance from the top of the page, in mm.)"
+
+#. module: pc_generics
+#: help:configuration.data,esr_slip2_bank_acc_size:0
+msgid "slip2_bank_acc (size of the font, in pt.)"
+msgstr "slip2_bank_acc (size of the font, in pt.)"
+
+#. module: pc_generics
+#: help:configuration.data,esr_slip2_comp_left:0
+msgid "slip2_comp (distance from the left of the page, in mm.)"
+msgstr "slip2_comp (distance from the left of the page, in mm.)"
+
+#. module: pc_generics
+#: help:configuration.data,esr_slip2_comp_top:0
+msgid "slip2_comp (distance from the top of the page, in mm.)"
+msgstr "slip2_comp (distance from the top of the page, in mm.)"
+
+#. module: pc_generics
+#: help:configuration.data,esr_slip2_comp_size:0
+msgid "slip2_comp (size of the font, in pt.)"
+msgstr "slip2_comp (size of the font, in pt.)"
+
+#. module: pc_generics
+#: help:configuration.data,esr_slip2_ref_right:0
+msgid "slip2_ref (distance from the right of the page, in mm.)"
+msgstr "slip2_ref (distance from the right of the page, in mm.)"
+
+#. module: pc_generics
+#: help:configuration.data,esr_slip2_ref_top:0
+msgid "slip2_ref (distance from the top of the page, in mm.)"
+msgstr "slip2_ref (distance from the top of the page, in mm.)"
+
+#. module: pc_generics
+#: help:configuration.data,esr_slip2_ref_size:0
+msgid "slip2_ref (size of the font, in pt.)"
+msgstr "slip2_ref (size of the font, in pt.)"
+
+#. module: pc_generics
+#: help:configuration.data,esr_slip_address_b_left:0
+msgid "slip_address_b (distance from the left of the page, in mm.)"
+msgstr "slip_address_b (distance from the left of the page, in mm.)"
+
+#. module: pc_generics
+#: help:configuration.data,esr_slip_address_b_top:0
+msgid "slip_address_b (distance from the top of the page, in mm.)"
+msgstr "slip_address_b (distance from the top of the page, in mm.)"
+
+#. module: pc_generics
+#: help:configuration.data,esr_slip_address_b_size:0
+msgid "slip_address_b (size of the font, in pt.)"
+msgstr "slip_address_b (size of the font, in pt.)"
+
+#. module: pc_generics
+#: help:configuration.data,esr_slip_amount_right:0
+msgid "slip_amount (distance from the right of the page, in mm.)"
+msgstr "slip_amount (distance from the right of the page, in mm.)"
+
+#. module: pc_generics
+#: help:configuration.data,esr_slip_amount_top:0
+msgid "slip_amount (distance from the top of the page, in mm.)"
+msgstr "slip_amount (distance from the top of the page, in mm.)"
+
+#. module: pc_generics
+#: help:configuration.data,esr_slip_amount_size:0
+msgid "slip_amount (size of the font, in pt.)"
+msgstr "slip_amount (size of the font, in pt.)"
+
+#. module: pc_generics
+#: help:configuration.data,esr_slip_bank_left:0
+msgid "slip_bank (distance from the left of the page, in mm.)"
+msgstr "slip_bank (distance from the left of the page, in mm.)"
+
+#. module: pc_generics
+#: help:configuration.data,esr_slip_bank_top:0
+msgid "slip_bank (distance from the top of the page, in mm.)"
+msgstr "slip_bank (distance from the top of the page, in mm.)"
+
+#. module: pc_generics
+#: help:configuration.data,esr_slip_bank_size:0
+msgid "slip_bank (size of the font, in pt.)"
+msgstr "slip_bank (size of the font, in pt.)"
+
+#. module: pc_generics
+#: help:configuration.data,esr_slip_bank_acc_left:0
+msgid "slip_bank_acc (distance from the left of the page, in mm.)"
+msgstr "slip_bank_acc (distance from the left of the page, in mm.)"
+
+#. module: pc_generics
+#: help:configuration.data,esr_slip_bank_acc_top:0
+msgid "slip_bank_acc (distance from the top of the page, in mm.)"
+msgstr "slip_bank_acc (distance from the top of the page, in mm.)"
+
+#. module: pc_generics
+#: help:configuration.data,esr_slip_bank_acc_size:0
+msgid "slip_bank_acc (size of the font, in pt.)"
+msgstr "slip_bank_acc (size of the font, in pt.)"
+
+#. module: pc_generics
+#: help:configuration.data,esr_slip_comp_left:0
+msgid "slip_comp (distance from the left of the page, in mm.)"
+msgstr "slip_comp (distance from the left of the page, in mm.)"
+
+#. module: pc_generics
+#: help:configuration.data,esr_slip_comp_top:0
+msgid "slip_comp (distance from the top of the page, in mm.)"
+msgstr "slip_comp (distance from the top of the page, in mm.)"
+
+#. module: pc_generics
+#: help:configuration.data,esr_slip_comp_size:0
+msgid "slip_comp (size of the font, in pt.)"
+msgstr "slip_comp (size of the font, in pt.)"
+
+#. module: pc_generics
+#: help:configuration.data,esr_slip_ref_right:0
+msgid "slip_ref (distance from the right of the page, in mm.)"
+msgstr "slip_ref (distance from the right of the page, in mm.)"
+
+#. module: pc_generics
+#: help:configuration.data,esr_slip_ref_top:0
+msgid "slip_ref (distance from the top of the page, in mm.)"
+msgstr "slip_ref (distance from the top of the page, in mm.)"
+
+#. module: pc_generics
+#: help:configuration.data,esr_slip_ref_size:0
+msgid "slip_ref (size of the font, in pt.)"
+msgstr "slip_ref (size of the font, in pt.)"
+

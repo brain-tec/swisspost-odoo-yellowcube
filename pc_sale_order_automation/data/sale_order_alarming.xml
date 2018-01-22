@@ -1,0 +1,10 @@
+<openerp>
+    <data noupdate="1">
+
+        <record id="pc_config.default_configuration_data" model="configuration.data">
+            <field name="sale_order_min_age_in_draft_value">12</field>
+            <field name="sale_order_min_age_in_draft_uom">hours</field>
+        </record>
+
+    </data>
+</openerp>

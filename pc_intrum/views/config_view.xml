@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+	<data>
+		<record id="intrum_config_view" model="ir.ui.view">
+			<field name="name">intrum_config_view</field>
+			<field name="model">configuration.data</field>
+			<field name="inherit_id" ref="pc_config.configuration_data_form" />
+			<field name="arch" type="xml">
+				<notebook position="inside">
+					<page string="Intrum">
+						<group cols="2">
+							<group string="Intrum Credentials">
+							    <field name="intrum_url" />
+								<field name="intrum_client_id" />
+								<field name="intrum_user_id" />
+								<field name="intrum_password" />
+							</group>
+                            <group string="Intrum Server To Send Invoices Files/Payment Transactions">
+                                <field name="intrum_connect_transport_id" />
+                                <field name="intrum_remote_folder" />
+                            </group>
+                            <group string="Intrum Internal Configuration">
+                                <field name="intrum_contract_type" />
+                                <field name="intrum_max_days_since_last_check" />
+                                <field name="intrum_positive_response_codes_ids" string="Accepted Intrum's Responses" colspan="2" cols="2" />
+                            </group>
+						</group>
+					</page>
+				</notebook>
+			</field>
+		</record>
+	</data>
+</openerp> 

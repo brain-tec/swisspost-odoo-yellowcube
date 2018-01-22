@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+	<data>
+
+		<record id="post_ecommerce_config_view_ext" model="ir.ui.view">
+			<field name="name">post_ecommerce_config_view_ext</field>
+			<field name="model">configuration.data</field>
+			<field name="inherit_id" ref="pc_connect_master.post_ecommerce_config_view" />
+			<field name="arch" type="xml">
+
+                <notebook position="inside">
+                    <page string="Account.Invoice Automation" name="page_aia">
+                        <group string="Reports" name="group_aia_reports" colspan="2">
+                            <field name="aia_report_account_invoice" colspan="1" />
+                        </group>
+                        <group string="Routing Email" name="group_aia_routing_email" colspan="2">
+                            <field name="aia_route_email_template_id" colspan="1" />
+                        </group>
+                        <group string="Doc-out" name="group_aia_routing_docout" colspan="2">
+                            <p>The configuration for the Doc-out is set in the
+                            tab <em>Doc-out</em>.</p>
+                        </group>
+                    </page>
+                </notebook>
+
+			</field>
+		</record>
+
+	</data>
+</openerp>

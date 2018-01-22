@@ -1,0 +1,63 @@
+<openerp>
+	<data>
+		<record id="standard_report_view_form" model="ir.ui.view">
+			<field name="name">report.file.view_form</field>
+			<field name="model">report.file</field>
+			<field name="arch" type="xml">
+				<form string="Standard report" version="7.0">
+					<header>
+						<button name="export_file" type="object" string="Export report (User language)" />
+						<button name="fill_fields" type="object" string="Fill report fields" />
+						<button name="export_file" type="object" string="Export report (French)" context="{'lang': 'fr_CH'}" groups="base.group_no_one"/>
+						<button name="export_file" type="object" string="Export report (German)" context="{'lang': 'de_CH'}" groups="base.group_no_one"/>
+						<button name="export_file" type="object" string="Export report (Italian)" context="{'lang': 'it_IT'}" groups="base.group_no_one"/>
+
+					</header>
+					<sheet>
+						<group col="2">
+							<field name="name" />
+							<field name="filter_id" on_change="onchange_filter(filter_id, fields, name)" />
+							<field name="model_id" invisible="False" />
+							<field name="domain" />
+							<field name="file_type" />
+							<field name="fields" attrs="{'invisible': [('model_id','=',False)]}" context="{'active_id': id}">
+								<tree string="Fields" editable="bottom">
+									<field name="order_priority" />
+									<field name="field_id" domain="[('model_id', '=', parent.model_id)]" on_change="functionals(0, field_id)" />
+									<field name="field_id2" attrs="{'invisible': [('model_id','=',False)]}" domain="[('model_id', '=', model_id)]" />
+									<field name="groupby" attrs="{'invisible': [('sql_search', '=', False)]}"/>
+									<field name="sql_search" />
+									<field name="ttype" />
+									<field name="model_id" />
+									<!-- <field name="sql_name" /> <field name="sql_join" /> -->
+								</tree>
+							</field>
+							<field name="sql" readonly="True" groups="base.group_no_one"/>
+							<field name="script" readonly="False" groups="base.group_no_one"/>
+						</group>
+					</sheet>
+				</form>
+			</field>
+		</record>
+
+		<record id="standard_report_view_tree" model="ir.ui.view">
+			<field name="name">report.file.view_tree</field>
+			<field name="model">report.file</field>
+			<field name="arch" type="xml">
+				<tree string="Standard report">
+					<field name="name" />
+					<field name="model_id" />
+					<field name="file_type" />
+					<field name="filter_id" />
+				</tree>
+			</field>
+		</record>
+
+		<record id="action_standard_report_tree" model="ir.actions.act_window">
+			<field name="name">Standard Reports</field>
+			<field name="res_model">report.file</field>
+			<field name="view_type">form</field>
+			<field name="view_mode">tree,form</field>
+		</record>
+	</data>
+</openerp>

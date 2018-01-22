@@ -1,0 +1,644 @@
+# Translation of OpenERP Server.
+# This file contains the translation of the following modules:
+#
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: OpenERP Server 7.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2016-06-15 08:41+0000\n"
+"PO-Revision-Date: 2016-06-15 08:41+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: pc_intrum
+#: sql_constraint:intrum.response_code_config_line:0
+msgid "A given configuration can not have duplicated response codes."
+msgstr "A given configuration can not have duplicated response codes."
+
+#. module: pc_intrum
+#: code:addons/pc_intrum/intrum_request.py:391
+msgid "A request may be closed only if it has a sale.order which is closed, or opened and with its payment method set."
+msgstr "A request may be closed only if it has a sale.order which is closed, or opened and with its payment method set."
+
+#. module: pc_intrum
+#: constraint:intrum.request:0
+msgid "A request may be closed only if it has a sale.order which is closed, or opened and with its payment method set."
+msgstr "A request may be closed only if it has a sale.order which is closed, or opened and with its payment method set."
+
+#. module: pc_intrum
+#: view:configuration.data:0
+msgid "Accepted Intrum's Responses"
+msgstr "Accepted Intrum's Responses"
+
+#. module: pc_intrum
+#: view:intrum.request:0
+msgid "Asked by user"
+msgstr "Von Benutzer verlangt"
+
+#. module: pc_intrum
+#: selection:intrum.request,payment_method:0
+msgid "CASH-ON-DELIVERY"
+msgstr "CASH-ON-DELIVERY"
+
+#. module: pc_intrum
+#: selection:intrum.request,payment_method:0
+msgid "CREDIT-CARD"
+msgstr "CREDIT-CARD"
+
+#. module: pc_intrum
+#: help:configuration.data,intrum_client_id:0
+msgid "Client ID for the Intrum checker service."
+msgstr "Client ID for the Intrum checker service."
+
+#. module: pc_intrum
+#: field:configuration.data,intrum_client_id:0
+msgid "Client ID"
+msgstr "Client ID"
+
+#. module: pc_intrum
+#: model:ir.model.fields,field_description:field_configuration_data_intrum_client_id
+msgid "Client ID"
+msgstr "Client ID"
+
+#. module: pc_intrum
+#: field:intrum.response_code,intrum_response_code:0
+msgid "Code of Intrum's Response"
+msgstr "Code of Intrum's Response"
+
+#. module: pc_intrum
+#: model:ir.model.fields,field_description:field_intrum_response_code_intrum_response_code
+msgid "Code of Intrum's Response"
+msgstr "Code of Intrum's Response"
+
+#. module: pc_intrum
+#: field:intrum.response_code_config_line,configuration_id:0
+msgid "Configuration Data"
+msgstr "Configuration Data"
+
+#. module: pc_intrum
+#: model:ir.model.fields,field_description:field_intrum_response_code_config_line_configuration_id
+msgid "Configuration Data"
+msgstr "Configuration Data"
+
+#. module: pc_intrum
+#: help:configuration.data,intrum_connect_transport_id:0
+msgid "Connection required to send invoices files and payment transactions to Intrum. The connection Type is 'Local SFTP'."
+msgstr "Connection required to send invoices files and payment transactions to Intrum. The connection Type is 'Local SFTP'."
+
+#. module: pc_intrum
+#: constraint:configuration.data:0
+msgid "Connection used to send invoices to Intrum must be SFTP."
+msgstr "Connection used to send invoices to Intrum must be SFTP."
+
+#. module: pc_intrum
+#: field:configuration.data,intrum_contract_type:0
+#: model:ir.model.fields,field_description:pc_intrum.field_configuration_data_intrum_contract_type
+msgid "Contract type"
+msgstr "Vertragstyp"
+
+#. module: pc_intrum
+#: field:intrum.request,order_amount:0
+msgid "Cost of the sale order"
+msgstr "Cost of the sale order"
+
+#. module: pc_intrum
+#: model:ir.model.fields,field_description:field_intrum_request_order_amount
+msgid "Cost of the sale order"
+msgstr "Cost of the sale order"
+
+#. module: pc_intrum
+#: view:intrum.request:0
+msgid "Cost"
+msgstr "Kosten"
+
+#. module: pc_intrum
+#: field:intrum.request,order_currency:0
+msgid "Currency code"
+msgstr "Currency code"
+
+#. module: pc_intrum
+#: model:ir.model.fields,field_description:field_intrum_request_order_currency
+msgid "Currency code"
+msgstr "Currency code"
+
+#. module: pc_intrum
+#: field:intrum.request,name:0
+msgid "Customer reference"
+msgstr "Customer reference"
+
+#. module: pc_intrum
+#: model:ir.model.fields,field_description:field_intrum_request_name
+msgid "Customer reference"
+msgstr "Customer reference"
+
+#. module: pc_intrum
+#: field:intrum.request,partner_id:0
+msgid "Customer"
+msgstr "Kunde"
+
+#. module: pc_intrum
+#: model:ir.model.fields,field_description:field_intrum_request_partner_id
+msgid "Customer"
+msgstr "Kunde"
+
+#. module: pc_intrum
+#: view:intrum.request:0
+msgid "Customer"
+msgstr "Kunde"
+
+#. module: pc_intrum
+#: selection:intrum.request,payment_method:0
+msgid "DIRECT-DEBIT"
+msgstr "DIRECT-DEBIT"
+
+#. module: pc_intrum
+#: help:res.partner,last_check_date:0
+msgid "Date of the last Intrum check, modify it in order to force a re-querying of the Intrum service (see Post configuration tab for more information)."
+msgstr "Date of the last Intrum check, modify it in order to force a re-querying of the Intrum service (see Post configuration tab for more information)."
+
+#. module: pc_intrum
+#: field:intrum.request,description:0
+msgid "Description"
+msgstr "Description"
+
+#. module: pc_intrum
+#: model:ir.model.fields,field_description:field_intrum_request_description
+msgid "Description"
+msgstr "Description"
+
+#. module: pc_intrum
+#: selection:intrum.request,payment_method:0
+msgid "E-PAYMENT"
+msgstr "E-PAYMENT"
+
+#. module: pc_intrum
+#: code:addons/pc_intrum/intrum_request.py:168
+msgid "For using the Intrum module, you need to define the intrum credentials, else uninstall this module."
+msgstr "For using the Intrum module, you need to define the intrum credentials, else uninstall this module."
+
+#. module: pc_intrum
+#: view:intrum.request:0
+msgid "From direct ask"
+msgstr "Von direkter Anfrage"
+
+#. module: pc_intrum
+#: view:intrum.request:0
+msgid "From sale order"
+msgstr "Von der Bestellung"
+
+#. module: pc_intrum
+#: field:intrum.request,positive_feedback:0
+msgid "Has positive feedback?"
+msgstr "Has positive feedback?"
+
+#. module: pc_intrum
+#: model:ir.model.fields,field_description:field_intrum_request_positive_feedback
+msgid "Has positive feedback?"
+msgstr "Has positive feedback?"
+
+#. module: pc_intrum
+#: help:account.voucher.line,sent_to_intrum:0
+msgid "Have the receipt of payment been sent to Intrum?"
+msgstr "Have the receipt of payment been sent to Intrum?"
+
+#. module: pc_intrum
+#: field:intrum.request,response_id:0
+msgid "ID of the response"
+msgstr "ID of the response"
+
+#. module: pc_intrum
+#: model:ir.model.fields,field_description:field_intrum_request_response_id
+msgid "ID of the response"
+msgstr "ID of the response"
+
+#. module: pc_intrum
+#: selection:intrum.request,payment_method:0
+msgid "INSTALLMENT"
+msgstr "INSTALLMENT"
+
+#. module: pc_intrum
+#: selection:intrum.request,payment_method:0
+msgid "INVOICE"
+msgstr "INVOICE"
+
+#. module: pc_intrum
+#: help:configuration.data,intrum_contract_type:0
+msgid "If B2C is selected only the person request is sent to Intrum. If B2B is selected, the person or the company XML is sent, depending if the partner has the company field set or not. To be able to send the company XML the respective channel must be activated at Intrum first."
+msgstr "Falls B2C selektiert ist, wird in jedem fall das Person-XML gesendet, falls B2B selektiert ist, wird das Firma-XML gesendet, falls das Firma-Feld auf dem Partner ausgefüllt ist und sonst das Person-XML. Für die zweite Variante muss der entsprechende Kanal bei Intrum aktiviert sein."
+
+
+#. module: pc_intrum
+#: field:configuration.data,intrum_connect_transport_id:0
+msgid "Intrum Connection"
+msgstr "Intrum Connection"
+
+#. module: pc_intrum
+#: model:ir.model.fields,field_description:field_configuration_data_intrum_connect_transport_id
+msgid "Intrum Connection"
+msgstr "Intrum Connection"
+
+#. module: pc_intrum
+#: view:configuration.data:0
+msgid "Intrum Credentials"
+msgstr "Intrum Credentials"
+
+#. module: pc_intrum
+#: view:configuration.data:0
+msgid "Intrum Internal Configuration"
+msgstr "Intrum Internal Configuration"
+
+#. module: pc_intrum
+#: view:configuration.data:0
+msgid "Intrum Server To Send Invoices Files/Payment Transactions"
+msgstr "Intrum Server To Send Invoices Files/Payment Transactions"
+
+#. module: pc_intrum
+#: code:addons/pc_intrum/intrum_request.py:167
+msgid "Intrum is not configured"
+msgstr "Intrum is not configured"
+
+#. module: pc_intrum
+#: model:account.analytic.account,name:intrum_project_account_analytic_account
+msgid "Intrum"
+msgstr "Intrum"
+
+#. module: pc_intrum
+#: model:ir.ui.menu,name:intrum_request_menuitem_pc_sales
+msgid "Intrum"
+msgstr "Intrum"
+
+#. module: pc_intrum
+#: view:account.invoice:0
+msgid "Intrum"
+msgstr "Intrum"
+
+#. module: pc_intrum
+#: view:configuration.data:0
+msgid "Intrum"
+msgstr "Intrum"
+
+#. module: pc_intrum
+#: field:intrum.response_code_config_line,intrum_response_code_id:0
+msgid "Intrum's Response Code"
+msgstr "Intrum's Response Code"
+
+#. module: pc_intrum
+#: model:ir.model.fields,field_description:field_intrum_response_code_config_line_intrum_response_code_id
+msgid "Intrum's Response Code"
+msgstr "Intrum's Response Code"
+
+#. module: pc_intrum
+#: view:intrum.response_code:0
+msgid "Intrum's Response"
+msgstr "Intrum's Response"
+
+#. module: pc_intrum
+#: view:intrum.response_code_config_line:0
+msgid "Intrum's Response"
+msgstr "Intrum's Response"
+
+#. module: pc_intrum
+#: model:ir.model,name:model_account_invoice
+msgid "Invoice"
+msgstr "Rechnung"
+
+#. module: pc_intrum
+#: field:account.invoice,reported_to_intrum:0
+msgid "Is the invoice reported to Intrum?"
+msgstr "Is the invoice reported to Intrum?"
+
+#. module: pc_intrum
+#: model:ir.model.fields,field_description:field_account_invoice_reported_to_intrum
+msgid "Is the invoice reported to Intrum?"
+msgstr "Is the invoice reported to Intrum?"
+
+#. module: pc_intrum
+#: field:intrum.request,order_closed:0
+msgid "Is the order closed?"
+msgstr "Is the order closed?"
+
+#. module: pc_intrum
+#: model:ir.model.fields,field_description:field_intrum_request_order_closed
+msgid "Is the order closed?"
+msgstr "Is the order closed?"
+
+#. module: pc_intrum
+#: field:intrum.request,transaction_reported:0
+msgid "Is the transaction reported to Intrum?"
+msgstr "Is the transaction reported to Intrum?"
+
+#. module: pc_intrum
+#: model:ir.model.fields,field_description:field_intrum_request_transaction_reported
+msgid "Is the transaction reported to Intrum?"
+msgstr "Is the transaction reported to Intrum?"
+
+#. module: pc_intrum
+#: field:sale.order,last_intrum_response:0
+msgid "Last credit check"
+msgstr "Last credit check"
+
+#. module: pc_intrum
+#: model:ir.model.fields,field_description:field_sale_order_last_intrum_response
+msgid "Last credit check"
+msgstr "Last credit check"
+
+#. module: pc_intrum
+#: field:res.partner,last_check_date:0
+msgid "Last request of this partner to Intrum"
+msgstr "Last request of this partner to Intrum"
+
+#. module: pc_intrum
+#: model:ir.model.fields,field_description:field_res_partner_last_check_date
+msgid "Last request of this partner to Intrum"
+msgstr "Last request of this partner to Intrum"
+
+#. module: pc_intrum
+#: field:configuration.data,intrum_max_days_since_last_check:0
+msgid "Maximum Number Of Days Since Last Check"
+msgstr "Maximum Number Of Days Since Last Check"
+
+#. module: pc_intrum
+#: model:ir.model.fields,field_description:field_configuration_data_intrum_max_days_since_last_check
+msgid "Maximum Number Of Days Since Last Check"
+msgstr "Maximum Number Of Days Since Last Check"
+
+#. module: pc_intrum
+#: view:intrum.request:0
+msgid "Negative feedback"
+msgstr "Negative Rückmeldung"
+
+#. module: pc_intrum
+#: selection:intrum.request,payment_method:0
+msgid "PENDING"
+msgstr "PENDING"
+
+#. module: pc_intrum
+#: selection:intrum.request,payment_method:0
+msgid "PER-PAY"
+msgstr "PER-PAY"
+
+#. module: pc_intrum
+#: model:ir.model,name:model_res_partner
+msgid "Partner"
+msgstr "Partner"
+
+#. module: pc_intrum
+#: help:configuration.data,intrum_password:0
+msgid "Password for the Intrum checker service."
+msgstr "Password for the Intrum checker service."
+
+#. module: pc_intrum
+#: field:configuration.data,intrum_password:0
+msgid "Password"
+msgstr "Password"
+
+#. module: pc_intrum
+#: model:ir.model.fields,field_description:field_configuration_data_intrum_password
+msgid "Password"
+msgstr "Password"
+
+#. module: pc_intrum
+#: field:intrum.request,payment_method:0
+msgid "Payment method"
+msgstr "Payment method"
+
+#. module: pc_intrum
+#: model:ir.model.fields,field_description:field_intrum_request_payment_method
+msgid "Payment method"
+msgstr "Payment method"
+
+#. module: pc_intrum
+#: view:intrum.request:0
+msgid "Pending request"
+msgstr "Anfrage hängig"
+
+#. module: pc_intrum
+#: field:configuration.data,intrum_positive_response_codes_ids:0
+msgid "Positive Response Codes"
+msgstr "Positive Response Codes"
+
+#. module: pc_intrum
+#: model:ir.model.fields,field_description:field_configuration_data_intrum_positive_response_codes_ids
+msgid "Positive Response Codes"
+msgstr "Positive Response Codes"
+
+#. module: pc_intrum
+#: view:intrum.request:0
+msgid "Positive feedback"
+msgstr "Positive Rückmeldung"
+
+#. module: pc_intrum
+#: help:configuration.data,intrum_max_days_since_last_check:0
+msgid "Range of days in which data are considered correct since last check."
+msgstr "Range of days in which data are considered correct since last check."
+
+#. module: pc_intrum
+#: field:configuration.data,intrum_remote_folder:0
+msgid "Remote Folder"
+msgstr "Remote Folder"
+
+#. module: pc_intrum
+#: model:ir.model.fields,field_description:field_configuration_data_intrum_remote_folder
+msgid "Remote Folder"
+msgstr "Remote Folder"
+
+#. module: pc_intrum
+#: help:configuration.data,intrum_remote_folder:0
+msgid "Remote folder where to put the files in the FTP of Intrum."
+msgstr "Remote folder where to put the files in the FTP of Intrum."
+
+#. module: pc_intrum
+#: field:intrum.request,create_uid:0
+msgid "Requested by"
+msgstr "Requested by"
+
+#. module: pc_intrum
+#: model:ir.model.fields,field_description:field_intrum_request_create_uid
+msgid "Requested by"
+msgstr "Requested by"
+
+#. module: pc_intrum
+#: view:intrum.request:0
+msgid "Requested by:"
+msgstr "Verlangt von:"
+
+#. module: pc_intrum
+#: model:ir.ui.menu,name:intrum_request_pc_sales
+msgid "Requests"
+msgstr "Anfragen"
+
+#. module: pc_intrum
+#: field:intrum.request,response_code:0
+msgid "Response code"
+msgstr "Response code"
+
+#. module: pc_intrum
+#: field:intrum.request,response_text:0
+msgid "Response code"
+msgstr "Response code"
+
+#. module: pc_intrum
+#: model:ir.model.fields,field_description:field_intrum_request_response_code
+msgid "Response code"
+msgstr "Response code"
+
+#. module: pc_intrum
+#: model:ir.model.fields,field_description:field_intrum_request_response_text
+msgid "Response code"
+msgstr "Response code"
+
+#. module: pc_intrum
+#: help:configuration.data,intrum_positive_response_codes_ids:0
+msgid "Response codes to be considered correct, i.e., these responses make credit check true."
+msgstr "Response codes to be considered correct, i.e., these responses make credit check true."
+
+#. module: pc_intrum
+#: field:intrum.request,order_id:0
+msgid "Sale order"
+msgstr "Bestellung"
+
+#. module: pc_intrum
+#: model:ir.model.fields,field_description:field_intrum_request_order_id
+msgid "Sale order"
+msgstr "Bestellung"
+
+#. module: pc_intrum
+#: view:intrum.request:0
+msgid "Sale order"
+msgstr "Bestellung"
+
+#. module: pc_intrum
+#: model:ir.model,name:model_sale_order
+msgid "Sales Order"
+msgstr "Verkaufsauftrag"
+
+#. module: pc_intrum
+#: view:intrum.request:0
+msgid "Search Intrum Request"
+msgstr "Suche Intrum Anfrage"
+
+#. module: pc_intrum
+#: field:account.voucher.line,sent_to_intrum:0
+msgid "Sent to Intrum?"
+msgstr "Sent to Intrum?"
+
+#. module: pc_intrum
+#: model:ir.model.fields,field_description:field_account_voucher_line_sent_to_intrum
+msgid "Sent to Intrum?"
+msgstr "Sent to Intrum?"
+
+#. module: pc_intrum
+#: field:intrum.response_code,intrum_response_text:0
+msgid "Text of Intrum's Response"
+msgstr "Text of Intrum's Response"
+
+#. module: pc_intrum
+#: model:ir.model.fields,field_description:field_intrum_response_code_intrum_response_text
+msgid "Text of Intrum's Response"
+msgstr "Text of Intrum's Response"
+
+#. module: pc_intrum
+#: field:configuration.data,intrum_url:0
+msgid "URL To Send Intrum Requests"
+msgstr "URL To Send Intrum Requests"
+
+#. module: pc_intrum
+#: model:ir.model.fields,field_description:field_configuration_data_intrum_url
+msgid "URL To Send Intrum Requests"
+msgstr "URL To Send Intrum Requests"
+
+#. module: pc_intrum
+#: help:configuration.data,intrum_user_id:0
+msgid "User for the Intrum checker service."
+msgstr "User for the Intrum checker service."
+
+#. module: pc_intrum
+#: field:configuration.data,intrum_user_id:0
+msgid "User"
+msgstr "User"
+
+#. module: pc_intrum
+#: model:ir.model.fields,field_description:field_configuration_data_intrum_user_id
+msgid "User"
+msgstr "User"
+
+#. module: pc_intrum
+#: model:ir.model,name:model_account_voucher_line
+msgid "Voucher Lines"
+msgstr "Zahlungspositionen"
+
+#. module: pc_intrum
+#: field:intrum.request,write_date:0
+msgid "Write date"
+msgstr "Write date"
+
+#. module: pc_intrum
+#: model:ir.model.fields,field_description:field_intrum_request_write_date
+msgid "Write date"
+msgstr "Write date"
+
+#. module: pc_intrum
+#: model:ir.model,name:model_configuration_data
+msgid "configuration.data"
+msgstr "configuration.data"
+
+#. module: pc_intrum
+#: view:intrum.request:0
+msgid "intrum Request"
+msgstr "Intrum Anfrage"
+
+#. module: pc_intrum
+#: field:res.partner,intrum_requests:0
+msgid "intrum Requests"
+msgstr "Intrum Anfragen"
+
+#. module: pc_intrum
+#: model:ir.actions.act_window,name:action_show_intrum_requests
+msgid "intrum Requests"
+msgstr "Intrum Anfragen"
+
+#. module: pc_intrum
+#: model:ir.model.fields,field_description:field_res_partner_intrum_requests
+msgid "intrum Requests"
+msgstr "Intrum Anfragen"
+
+#. module: pc_intrum
+#: view:res.partner:0
+msgid "intrum Requests"
+msgstr "Intrum Anfragen"
+
+#. module: pc_intrum
+#: model:project.category,name:intrum_category
+msgid "intrum"
+msgstr "intrum"
+
+#. module: pc_intrum
+#: model:ir.model,name:model_intrum_request
+msgid "intrum.request"
+msgstr "intrum.request"
+
+#. module: pc_intrum
+#: model:ir.model,name:model_intrum_response_code
+msgid "intrum.response_code"
+msgstr "intrum.response_code"
+
+#. module: pc_intrum
+#: model:ir.model,name:model_intrum_response_code_config_line
+msgid "intrum.response_code_config_line"
+msgstr "intrum.response_code_config_line"
+
+#. module: pc_intrum
+#: field:sale.order,last_intrum_check:0
+msgid "unknown"
+msgstr "unknown"
+
+#. module: pc_intrum
+#: model:ir.model.fields,field_description:field_sale_order_last_intrum_check
+msgid "unknown"
+msgstr "unknown"
+

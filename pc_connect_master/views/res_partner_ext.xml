@@ -140,6 +140,7 @@
 			<field name="inherit_id" ref="base.view_partner_tree" />
 			<field name="arch" type="xml">
 				<field name='name' position='after'>
+					<field name='company' />
 					<field name='main_category_id' />
 				</field>
 			</field>
@@ -151,11 +152,20 @@
 			<field name="inherit_id" ref="base.view_res_partner_filter" />
 			<field name="arch" type="xml">
 				<field name='name' position='after'>
+					<field name='company' />
 					<field name='main_category_id' />
 				</field>
 				<group position='inside'>
+					<filter string='Company Name' context="{'group_by': 'company'}" />
 					<filter string='Main Tag' context="{'group_by': 'main_category_id'}" />
 				</group>
+
+				<filter name="type_company" position="attributes">
+					<attribute name="string">Accounts</attribute>
+				</filter>
+				<filter string="Company" position="attributes">
+					<attribute name="string">Accounts</attribute>
+				</filter>
 			</field>
 		</record>
 
@@ -168,6 +178,10 @@
 					<field name='main_category_id' />
 				</field>
 				<div class="oe_kanban_partner_categories" position='before'>
+					<div>
+						Company:
+						<field name='company' />
+					</div>
 					<div>
 						Main Tag:
 						<field name='main_category_id' />

@@ -12,6 +12,8 @@
                     <field name="pc_delivery_instructions" colspan="2" nolabel="0" />
                     <field name="pc_freight_shipping" colspan="2" nolabel="0" />
                     <field name="pc_shipping_interface" colspan="2" nolabel="0" />
+
+                    <field name="tracking_url_pattern" colspan="2" nolabel="0" />
 				</field>
 			</field>
 		</record>

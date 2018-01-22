@@ -1,0 +1,51 @@
+<openerp>
+	<data>
+		<record id="view_ir_ui_menu_information_form" model="ir.ui.view">
+			<field name="name">ir_ui_menu_information_form</field>
+			<field name="model">bt_helper.ir_ui_menu_information</field>
+			<field name="arch" type="xml">
+				<form string="IU Menu inforamtion" version="7.0">
+					<sheet>
+						<group string="Initial Field">
+							<field name="menu_id" />
+
+						</group>
+						<group string="Related Menus">
+							<field name="related_menu_ids" nolabel="1">
+								<tree string="Related menus" version="7.0">
+									<field name="id" />
+									<field name="name" />
+									<field name="xml_id" />
+									<button name="action_delete" string="Delete" type="object"
+										icon="gtk-undelete" />
+								</tree>
+							</field>
+						</group>
+					</sheet>
+				</form>
+			</field>
+		</record>
+
+		<record id="view_ir_ui_menu_information_tree" model="ir.ui.view">
+			<field name="name">ir_ui_menu_information_tree</field>
+			<field name="model">bt_helper.ir_ui_menu_information</field>
+			<field name="arch" type="xml">
+				<tree string="IU Menu Information" version="7.0">
+					<field name="menu_id" />
+				</tree>
+			</field>
+		</record>
+
+		<record id="action_menu_information_ir_ui_menu" model="ir.actions.act_window">
+			<field name="name">Menu information</field>
+			<field name="type">ir.actions.act_window</field>
+			<field name="res_model">bt_helper.ir_ui_menu_information</field>
+			<field name="view_type">form</field>
+			<field name="view_mode">tree,form</field>
+		</record>
+
+		<menuitem name="Menu Information" action="action_menu_information_ir_ui_menu"
+			id="menu_menu_information_ir_ui_menu" parent="menu_helper" sequence="3" />
+
+	</data>
+</openerp>

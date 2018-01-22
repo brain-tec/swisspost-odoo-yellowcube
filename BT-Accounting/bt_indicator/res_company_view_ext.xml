@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+
+        <record id="company_form_balance" model="ir.ui.view">
+            <field name="name">res.company.form.balance.inherit</field>
+            <field name="model">res.company</field>
+            <field name="inherit_id" ref="base.view_company_form"/>
+            <field name="arch" type="xml">
+                <field name="currency_id" position="after">
+                    <field name="property_balance_start_account" />
+                    <field name="property_balance_actives_account" />
+                    <field name="property_balance_passives_account" />
+                </field>
+            </field>
+        </record>
+
+    </data>
+</openerp>

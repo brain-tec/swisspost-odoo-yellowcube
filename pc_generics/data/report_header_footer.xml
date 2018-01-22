@@ -1,0 +1,693 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+<data>
+    <record id="ir_report_quotation_order" model="ir.header_webkit">
+    
+    <field name="name">Reports</field>
+    <field name="orientation">Portrait</field>
+    <field name="format">A4</field>
+    
+    <field eval="0.01" name="margin_top" />
+    <field eval="0.01" name="margin_bottom" />
+    <field eval="0.01" name="margin_left" />
+    <field eval="0.01" name="margin_right" />
+    
+    <field name="css">
+    <![CDATA[
+      /* BEGINNING OF BVR RELATED CSS-STYLES */
+           @font-face {
+               font-family: "bvrocrb";
+               font-style: normal;
+               font-weight: normal;
+               src: url('/home/openerp/current/git_repositories/PCAP1/pc_generics/fonts/ocrbb.ttf') format("truetype");
+           }
+
+           .ocrbb{
+              position:absolute;
+              left: 96mm;
+              font-size:10pt;
+              text-align:left;
+           }
+
+           .digitref {
+             font-family: "bvrocrb";
+             position:absolute;
+             top:7px;
+             text-align:center;
+             float:left;
+             width: 3mm; /*9px;*/
+             /*font-size:10pt;*/ /*8pt*/ /* Inherited from .ocrbb */
+           }
+
+           .digit_amount {
+             position:absolute;
+             text-align:center;
+             float:right;
+             width:4mm;
+             /* font-size:11pt; */ /* It is inherited from .slip_amount */
+           }
+
+           .slip_address_b {
+            position: absolute;
+            left: 5mm;
+           }
+
+           .dest_address_bvr {
+              position:absolute;
+              top:${str(company.bvr_add_vert or '0.0').replace(',','.')}mm;
+              left:${str(company.bvr_add_horz or '0.0').replace(',','.')}mm;
+              font-size:12;
+           }
+
+         .slip_bank_acc {
+           font-size:8pt;
+           border-width:0px;
+           padding-left:0mm;
+           padding-top:0mm;
+           position:absolute;
+           left: 27mm;
+          }
+
+         .slip_bank_add_acc {
+           font-size:8pt;
+           border-width:0px;
+           padding-left:0mm;
+           padding-top:0mm;
+           position:absolute;
+           top: 190mm;
+           left: 5mm;
+          }
+
+          .slip_bank {
+              border-width:0px;
+              padding-left:2mm;
+              padding-top:0mm;
+              position:absolute;
+              width: 5cm;
+           }
+
+          .slip_comp {
+              font-size:8pt;
+              border-width:0px;
+              padding-left:2mm;
+              padding-top:0mm;
+              position:absolute;
+              left: 3mm;
+           }
+
+           .slip_add {
+             border-width:0px;
+             padding-left:0mm;
+             padding-top:0mm
+           }
+
+           .slip_amount {
+             width:5.5cm;
+             text-align:right;
+             font-size:11pt;
+             position:absolute;
+             right: 154mm;
+           }
+
+           /*
+            Slip 2 element
+           */
+
+           .slip2_address_b {
+             position:absolute;
+             left: 125mm;
+           }
+
+         .slip2_bank_acc {
+           font-size:8pt;
+           border-width:0px;
+           padding-left:0mm;
+           padding-top:0mm;
+           position:absolute;
+           left: 88mm;
+          }
+
+         .slip2_bank_add_acc {
+           font-size:8pt;
+           border-width:0px;
+           padding-left:0mm;
+           padding-top:0mm;
+           position:absolute;
+           top: 190mm;
+           left: 65mm;
+          }
+
+         .slip_ref {
+              text-align:right;
+              font-size:8pt;
+              position:absolute;
+          }
+
+         .slip2_ref {
+              text-align:right;
+              font-size:8pt;
+              position:absolute;
+              /*left: 125mm;*/
+          }
+
+          .slip2_bank {
+             border-width:0px;
+             padding-left:0mm;
+             padding-top:0mm;
+             position:absolute;
+             width: 5cm;
+          }
+
+          .slip2_comp {
+             font-size:8pt;
+             border-width:0px;
+             padding-left:0mm;
+             padding-top:0mm;
+             position:absolute;
+             left: 64mm;
+          }
+
+          .bvr_background {
+             width:210mm;
+             height:106mm;
+             border:0;
+             margin:0;
+             position:absolute;
+             z-index:-10;
+             left: 0mm;
+          }
+
+          .slip2_amount {
+             width:5.5cm;
+             text-align:right;
+             font-size:11pt;
+             position:absolute;
+             right: 92.5mm;
+          }
+
+        .footer_bvr {
+            height: 106mm;
+            margin: 0;
+            /*background-color: cyan;*/
+        }
+/* ENDING OF BVR RELATED CSS-STYLES */
+
+
+
+.container_defining_margins {
+    margin-left: 18mm;
+    margin-right: 12mm;
+    margin-top: 0mm;
+    margin-bottom: 0mm;
+}
+
+body {
+    font-size: 8pt;
+    width: 210mm;
+    margin: 0.01mm;
+    font-family: Arial;
+}
+
+table {
+    border-collapse: collapse;
+    font-size: 8pt;
+    width: 100%;
+    align-left: auto;
+    align-right: auto;
+}
+
+.invoice_lines {
+    height: 80mm;
+}
+
+tr { line-height: 4mm; }
+.shadowed {color: #000; background-color: #ccc; }
+.low_height { line-height: 2mm; }
+.border_top_cell { border-top: 1px solid #000000; }
+.double_border_top_cell { border-top: 1px solid #000000; border-top-style: double; }
+.line_invoice_line { text-align: left; width: 11mm; padding-left: 2mm; }
+.line_invoice_line_no_padding_left { text-align: left; width: 11mm; padding-left: 0; }
+.line_product_no { text-align: left; width: 23mm; }
+.line_product_name { text-align: left; width: 30mm; }
+.line_product_description { text-align: left; width: 53mm; }
+.line_product_name_picking { text-align: left; width: 109mm; }
+line_product_name_picking_no_lots { text-align: left; width: 129mm; }
+.line_lot_no { text-align: left; width: 20mm; }
+.line_quantity { text-align: right; width: 17mm; }
+.line_item_price { text-align: right; width: 20mm; }
+.line_discount { text-align: right; width: 17mm; }
+.line_total_price { text-align: right; width: 20mm; padding-right: 2mm; }
+.line_tax_code { text-align: right; width: 12mm; padding-right: 2mm; }
+
+.followup_line_invoice_line { text-align: left; width: 10mm; padding-left: 2mm; }
+.followup_line_document_number { text-align: left; width: 17mm; }
+.followup_line_date { text-align: left; width: 20mm; }
+.followup_line_due_date { text-align: left; width: 20mm; }
+.followup_line_invoice_text { text-align: left; width: 52mm; }
+.followup_line_overdue_fines { text-align: left; width: 35mm; }
+.followup_line_total_amount { text-align: right; width: 16mm; padding-right: 2mm; }
+
+.net_price_total_label {text-align: left; font-weight: bold; }
+.net_price_total_value {text-align: right; font-weight: bold; }
+.payment_period_text {text-align: left; font-weight: bold; }
+.tax_description_summary {text-align: left; }
+.tax_code_summary {text-align: center; }
+.tax_quantity_summary {text-align: right; }
+
+.inline_delivery_address {
+    /*background-color: green;*/
+    height: 11mm;
+}
+
+.mako_document_title {
+    /* padding-top: 6mm; */
+    /* padding-top: 10mm; */
+    font-weight: bold;
+    font-size: 10pt;
+    height: 9mm;
+    /*background-color: blue;*/
+}
+
+.mako_document_title span:first-child {
+   text-align: left;
+   float: none;
+}
+
+.mako_document_title span:last-child {
+   float: right;
+   position: absolute;
+   left: 119mm;
+}
+
+.mako_document_content {
+    height: 70mm;
+    /*background-color: green;*/
+}
+.mako_document_content_delivery_slip {
+    height: 175.5mm;
+    /*background-color: green;*/
+}
+.mako_document_content_purchase_order {
+    height: 186.5mm;
+    /*background-color: green;*/
+}
+
+.mako_document_content_not_first_page {
+    height: 133.80mm;
+    /*background-color: pink;*/
+}
+.mako_document_content_not_first_page_delivery_slip {
+    height: 239.40mm;
+    /*background-color: pink;*/
+}
+.mako_document_content_not_first_page_purchase_order {
+    height: 239.45mm;
+    /*background-color: pink;*/
+}
+
+.linebreak {
+    display: block
+}
+
+.horizontal_line_black {
+    height: 1mm;
+    width: 100%
+    /* background-color: yellow; */
+    /* Adds a border INSIDE the box. */
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    border-top: 0.5mm solid black;
+}
+
+.report_pseudo_header {
+    width: 100%;
+    height: 35mm;
+    position: relative;
+    /*background-color: yellow;*/
+}
+
+.report_header_logo {
+    width: 97mm;
+    position: absolute;
+    bottom: 5mm;
+    left: 0mm;
+    /*background-color: green;*/
+}
+
+.report_header_address {
+    position: absolute;
+    bottom: 5mm;
+    left: 97mm;
+    /*background-color: blue;*/
+}
+
+.report_header_logo img {
+    /*height: 20mm;*/
+    /*width: 20mm;*/
+    max-height: 75px;
+    /*max-width: 20mm;*/
+    /*position: absolute;*/
+    top: 0px;
+    /*right: 0px;*/
+}
+.report_header_pagenumber {
+    position: absolute;
+    right: 0mm;
+    top: 10mm;
+    /*background-color: orange;*/
+}
+
+.intro_info {
+    height: 66mm;
+    width: 100%;
+    /*background-color: red;*/
+}
+
+.intro_info_not_first_page {
+    /* height: 0mm; */
+    height: 13mm;
+    width: 100%;
+    /*background-color: red;*/
+}
+
+.intro_info_info {
+    margin-top: 8mm;
+    margin-left: 0;
+    float: left;
+}
+
+.intro_info_info_optional {
+    margin-left: 0;
+    width: 100%;
+}
+
+.airy_element {
+    height: 4mm;
+}
+
+.intro_info_info_optional span:first-child {
+   text-align: left;
+   width: 35mm;
+   float: left;
+   /*background-color: yellow;*/
+}
+
+.intro_info_info_optional span:last-child {
+   width: 100%;
+}
+
+.intro_info_info span:first-child {
+   text-align: left;
+   width: 35mm;
+   float: left;
+   /*background-color: yellow;*/
+}
+
+.intro_info_info span:last-child {
+   width: 55mm;
+}
+
+.intro_info_delivery_code {
+    margin-top: 7mm;
+    height: 8.5mm;
+}
+
+.intro_info_delivery_code_left {
+    float: left;
+    border: 1px solid black;
+    padding-left: 2mm;
+    padding-right: 8mm;
+}
+
+.intro_info_delivery_code_right {
+    float: left;
+    margin-left: 10mm;
+    text-align: right;
+}
+
+.invoice_address {}
+.invoice_address_title { font-weight: bold; }
+.invoice_address_address {}
+
+.page-break {
+    display: block;
+    page-break-before: always;
+}
+
+/* STYLES FOR THE ADDRESS WINDOW - START */
+
+            .address_window {
+                position: fixed;
+                left: 107mm;
+                top: 40mm;
+                width: 100mm;
+                height: 45mm;
+                /* Adds a border INSIDE the box. */
+                /*
+                box-sizing: border-box;
+                -moz-box-sizing: border-box;
+                -webkit-box-sizing: border-box;
+                border: 0.5mm solid black;
+                border-radius: 5mm;
+                */
+            }
+
+            .addr_head {
+                /*background-color: red;*/
+                width: 100mm;
+                height: 8mm;
+                padding-top: 1mm;
+            }
+            .addr_head_left {
+                /*background-color: purple;*/
+                width: 41mm;
+                height: 8mm;
+                margin-left: 8mm;
+                padding-left: 1mm;
+                float: left;
+                /* Adds a border INSIDE the box. */
+                box-sizing: border-box;
+                -moz-box-sizing: border-box;
+                -webkit-box-sizing: border-box;
+                border: 0.5mm solid black;
+            }
+            .addr_head_left_frankingmark {
+                float: left;
+                font-size: 18pt;
+                font-weight: bold;
+            }
+            .addr_head_left_postcode {
+                float: left;
+                font-size: 8pt;
+                line-height: 110%;
+                display: inline-block;
+                padding-left: 3mm;
+                padding-top: 1mm;
+                white-space: nowrap;
+            }
+            .addr_head_right {
+                /*background-color: pink;*/
+                width: 41mm;
+                height: 8mm;
+                margin-left: 1mm;
+                float: left;
+                position: relative;
+            }
+            .addr_head_right_processing {
+                font-weight: bold;
+                float: left;
+                font-size: 8pt;
+                position: absolute;
+                bottom: 0mm;
+            }
+            .addr_head_right_logo_and_invoice_number {
+                float: right;
+                font-size: 8pt;
+                text-align: right;
+                position: absolute;
+                bottom: 0mm;
+                right: 0mm;
+                /*margin-top: 1mm;*/
+            }
+
+            .addr_separator {
+                width: 83mm;
+                height: 1mm;
+                margin-left: 8mm;
+                margin-right: 8mm;
+                /*background-color: green;*/
+                /* Adds a border INSIDE the box. */
+                box-sizing: border-box;
+                -moz-box-sizing: border-box;
+                -webkit-box-sizing: border-box;
+                border-bottom: 0.5mm solid black;
+            }
+
+            .addr_body {
+                /*background-color: yellow;*/
+                width: 100mm;
+                height: 25mm;
+                padding-top: 4mm; /* It should be 5mm. Tune this along with line-height of .addr_body_address */
+                padding-bottom: 5mm;
+            }
+            .addr_body_address {
+                /*background-color: orange;*/
+                height: 25mm;
+                width: 65.8mm;
+                margin-left: 8mm;
+                float: left;
+                line-height: 110%;
+                font-size: 10pt;
+                line-height: 1.5;
+            }
+            .addr_body_qr {
+                /*background-color: blue;*/
+                height: 25mm;
+                width: 12.6mm;
+                margin-right: 10mm;
+                margin-left: 2mm;
+                margin-top: 6mm;
+                float: left;
+                position: relative;
+            }
+            .addr_body_qr img {
+                max-height: 10mm;
+                max-width: 10mm;
+                position: absolute;
+                top: 0px;
+                right: 0px;
+            }
+
+
+/* STYLES FOR THE ADDRESS WINDOW - FINISH. */
+
+/* STYLES FOR THE PICKING LIST - START. */
+
+.picking_list_title {
+    font-size: 16pt;
+    font-weight: bold;
+    text-align: left;
+    padding-top: 10mm;
+    padding-bottom: 5mm;
+}
+
+.picking_list_content {
+    height: 261.5mm;
+    /* background-color: cyan; */
+}
+
+.picking_list_products_default_code {
+    width: 15%
+}
+.picking_list_products_description{
+    width: 60%
+}
+.picking_list_products_uom {
+    width: 15%
+}
+.picking_list_products_qty {
+    width: 10%;
+    text-align: right;
+}
+
+/* STYLES FOR THE PICKING LIST - END. */
+
+
+/* STYLES FOR THE BARCODE REPORT - START. */
+
+.barcode_report_container {
+    margin-left: 0mm;
+    margin-right: 0mm;
+    margin-top: 0mm;
+    margin-bottom: 0mm;
+    height: 297mm;
+    width: 100%
+}
+
+.barcode_report_container_barcode {
+    border-width: 0px;
+    padding-left: 0mm;
+    padding-top: 0mm;
+    position: absolute;
+    /* background-color: red; */
+    /* border: 2mm solid black; */
+}
+
+.barcode_report_container_barcode img {
+    /* max-height: 90mm; */
+    max-width: 120mm;
+    top: 0px;
+    right: 0px;
+}
+
+.barcode_report_container_logo {
+    border-width: 0px;
+    padding-left: 0mm;
+    padding-top: 0mm;
+    position: absolute;
+    /* background-color: green; */
+}
+
+.barcode_report_container_logo img {
+    width: inherit;
+}
+
+.barcode_report_container_partner {
+    border-width: 0px;
+    padding-left: 0mm;
+    padding-top: 0mm;
+    position: absolute;
+    /* background-color: blue; */
+}
+.barcode_report_container_partner_item span:first-child {
+    text-align: left;
+}
+.barcode_report_container_partner_item span:last-child {
+    text-align: right;
+    float: right;
+}
+
+.barcode_report_container_info {
+    border-width: 0px;
+    padding-left: 0mm;
+    padding-top: 0mm;
+    position: absolute;
+    /* background-color: blue; */
+}
+
+.barcode_report_left_align {
+    text-align: left;
+}
+
+.barcode_report_right_align {
+    text-align: right;
+}
+
+.barcode_report_container_package{
+    text-align: left;
+    font-weight: bold;
+    position: absolute;
+    font-size: 11pt;
+    white-space: nowrap;
+}
+
+/* STYLES FOR THE BARCODE REPORT - END. */
+
+]]>
+</field>
+
+<field name="html">        
+<![CDATA[      
+<html>
+    <head>
+        <meta content="text/html; charset=UTF-8" http-equiv="content-type"/>
+        <style type="text/css">${css}</style>
+    </head>
+</html>
+]]>        
+</field>
+
+</record>
+</data>
+</openerp>

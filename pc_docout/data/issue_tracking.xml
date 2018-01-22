@@ -1,0 +1,18 @@
+<openerp>
+	<data noupdate='0'>
+
+        <!-- We create the tag for the doc-out project. -->
+		<record id="docout_category" model="project.category">
+			<field name="name">doc-out</field>
+		</record>
+
+        <!-- We create the project for the doc-out. -->
+        <record id="docout_project" model="project.project">
+            <field name="name">Doc-out</field>
+            <field name="type_ids" eval="[(6, 0, [ref('pc_issue.issue_new'), ref('pc_issue.issue_open'), ref('pc_issue.issue_done'), ref('pc_issue.issue_closed')])]" />
+            <field name="categ_ids" eval="[(6, 0, [ref('docout_category')] )]"/>
+            <field name="color">3</field>
+        </record>
+
+	</data>
+</openerp>

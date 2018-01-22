@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+     <data>
+        <record id="account_move_form_ext" model="ir.ui.view">
+            <field name="name">account.account_move_form_ext</field>
+            <field name="model">account.move</field>
+            <field name="inherit_id" ref="account.view_move_form" />
+            <field name="arch" type="xml">
+            <data>
+	            <xpath expr="//field[@name='period_id']" position="replace">
+	                <field name="period_id" on_change="onchange_period(period_id)"/>
+	            </xpath>
+	            <xpath expr="//field[@name='date']" position="replace">
+	                <field name="date" on_change="onchange_date(date)"/>
+	            </xpath>
+            </data>
+            </field>
+        </record>
+        
+        <!--record id="view_invoice_supplier_remove" model="ir.ui.view">
+            <field name="name">account.invoice.supplier.pay.remove</field>
+            <field name="model">account.invoice</field>
+            <field name="priority">21</field>
+            <field name="inherit_id" ref="account.invoice_supplier_form"/>
+            <field name="arch" type="xml">
+            <data>
+                <button name="invoice_pay_customer" position="replace"/>
+            </data>
+            </field>
+        </record>
+
+        <record id="view_invoice_customer_remove" model="ir.ui.view">
+            <field name="name">account.invoice.customer.pay.remove</field>
+            <field name="model">account.invoice</field>
+            <field name="priority">17</field>
+            <field name="inherit_id" ref="account.invoice_form"/>
+            <field name="arch" type="xml">
+            <data>
+                <button name="invoice_pay_customer" position="replace"/>
+            </data>
+            </field>
+        </record-->
+		
+		<menuitem
+            id="menu_ch_report"
+            name="Offizielle Berichte CH"
+            groups="account.group_account_user,account.group_account_manager"
+            parent="account.menu_finance_reports" sequence="3"/>
+			
+		<!--record id="view_move_line_tree_balance" model="ir.ui.view">
+            <field name="name">account.move.line.tree.balance</field>
+            <field name="model">account.move.line</field>
+            <field name="inherit_id" ref="account_payment.view_move_line_tree_wiz"/>
+            <field name="arch" type="xml">
+                <field name="credit" position="after">
+                    <field name="balance" sum="Saldo" invisible="1"/>
+                </field>
+            </field>
+        </record>
+		
+		
+		<record id="view_move_form_extended" model="ir.ui.view">
+            <field name="name">account.move.form.extended</field>
+            <field name="model">account.move</field>
+			<field name="inherit_id" ref="account.view_move_form" />
+            <field name="priority" eval="18"/>
+            <field name="arch" type="xml">
+		    <data>
+            <xpath expr="/form/notebook/page/field/form/notebook/page/group/field[@name='account_id']" position="replace">
+				<field name="account_id" select="1" domain="[('type','&lt;&gt;','view'),('type','&lt;&gt;','consolidation')]" on_change="onchange_account_id_new(account_id, parent.journal_id, parent.period_id, parent.date)"/>
+            </xpath>			
+	    <xpath expr="/form/notebook/page/field/tree/field[@name='account_id']" position="replace">
+				<field name="account_id" select="1" domain="[('type','&lt;&gt;','view'),('type','&lt;&gt;','consolidation')]" on_change="onchange_account_id_new(account_id, parent.journal_id, parent.period_id, parent.date)"/>
+                <field name="account_tax_id" domain="[('parent_id','=',False)]" invisible="1"/>
+				<field name="journal_id" invisible="1"/>
+				<field name="period_id" invisible="1"/>
+				<field name="date" invisible="1"/>
+            </xpath>
+            </data>
+            </field>
+        </record>
+        
+        <record id="view_account_chart_extended" model="ir.ui.view">
+            <field name="name">account.chart.form.extended</field>
+            <field name="model">account.chart</field>
+            <field name="inherit_id" ref="account.view_account_chart" />
+            <field name="arch" type="xml">
+            <data>
+            <xpath expr="/form/group/field[@name='fiscalyear']" position="replace">
+                <field name="fiscalyear" on_change="onchange_fiscalyear(fiscalyear)" required="1"/>
+            </xpath>
+            <xpath expr="/form/group/field[@name='period_from']" position="replace">
+                <field name="period_from" required="1"/>
+            </xpath>
+            <xpath expr="/form/group/field[@name='period_to']" position="replace">
+                <field name="period_to" required="1"/>
+            </xpath>
+            </data>
+            </field>
+        </record-->
+        
+        <record id="view_move_line_tree_reconcile_ext" model="ir.ui.view">
+            <field name="model">account.move.line</field>
+            <field name="inherit_id" ref="account.view_move_line_tree_reconcile" />
+            <field eval="25" name="priority"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='credit']" position="after">
+                    <field name="amount_currency"/>
+                    <field name="currency_id"/>
+                </xpath>
+                <xpath expr="//field[@name='reconcile_partial_id']" position="before">
+                    <field name="reconcile_id"/>
+                </xpath>            
+            </field>
+        </record>
+        
+        <record id="invoice_form_ext" model="ir.ui.view">
+            <field name="name">account.invoice.form.ext</field>
+            <field name="model">account.invoice</field>
+            <field name="inherit_id" ref="account.invoice_form"/>
+            <field name="arch" type="xml">
+            <data>
+                <xpath expr="/form/sheet/group/group/field[@name='account_id']" position="after">
+                    <label for="round_inv_to_05" groups="bt_account.group_round_to_0_05"/>
+                	<div groups="bt_account.group_round_to_0_05">
+                		<field name="round_inv_to_05" nolabel="1" readonly="True" class="oe_inline" groups="bt_account.group_round_to_0_05" options="{'send_to_server': True}"/>
+                        <button name="change_rounding" 
+                            string="Change rounding" class="oe_link oe_edit_only"
+                            type="object" help="Change rounding" attrs="{'invisible': [('state','!=','draft')]}"/>
+                    </div>
+                </xpath>
+                <xpath expr="//field[@name='invoice_line']/tree[1]" position="inside">
+                    <field name="price_total"/>
+                    <field name="price_total_less_disc" invisible="0" />
+                </xpath>
+            </data>
+            </field>
+        </record>
+        
+        <record id="invoice_supplier_form_ext" model="ir.ui.view">
+            <field name="name">account.invoice.supplier.form.ext</field>
+            <field name="model">account.invoice</field>
+            <field name="inherit_id" ref="account.invoice_supplier_form"/>
+            <field name="arch" type="xml">
+            <data>
+                <xpath expr="/form/sheet/group/group/field[@name='currency_id']" position="after">
+                    <label for="round_inv_to_05" groups="bt_account.group_round_to_0_05"/>
+                	<div groups="bt_account.group_round_to_0_05">
+                		<field name="round_inv_to_05" nolabel="1" readonly="True" class="oe_inline" groups="bt_account.group_round_to_0_05" options="{'send_to_server': True}"/>
+                        <button name="change_rounding" 
+                            string="Change rounding" class="oe_link oe_edit_only"
+                            type="object" help="Change rounding" attrs="{'invisible': [('state','!=','draft')]}"/>
+                    </div>
+                </xpath>
+                <field name="account_analytic_id" position="attributes">
+                    <attribute name="domain">[('type','!=','view'), ('company_id', '=', parent.company_id), ('state','!=','close')]</attribute>
+                </field>
+            </data>
+            </field>
+        </record>
+        
+        <record id="account_invoice_groupby_currency" model="ir.ui.view">
+            <field name="name">account.invoice.groupby.currency</field>
+            <field name="model">account.invoice</field>
+            <field name="inherit_id" ref="account.view_account_invoice_filter"/>
+            <field name="arch" type="xml">
+                <xpath expr="//group/filter[@string='Due Date']" position="after">
+                    <filter string="Currency" domain="[]" context="{'group_by':'currency_id'}"/>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</openerp>

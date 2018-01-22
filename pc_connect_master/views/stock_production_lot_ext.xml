@@ -31,7 +31,7 @@
 						<field name='production_date'/>
 					</field>
 					<field name='stock_available' position='after'>
-						<field name='virtual_available'/>
+						<!-- <field name='virtual_available'/> -->
                         <field name='virtual_available_for_sale'/>
 					</field>
 				</data>

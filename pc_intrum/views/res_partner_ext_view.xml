@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+	<data>
+
+		<record id="res_partner_form_ext_view" model="ir.ui.view">
+			<field name="name">res_partner_form_ext_view</field>
+			<field name="model">res.partner</field>
+			<field name="inherit_id" ref="base.view_partner_form" />
+			<field name="arch" type="xml">
+				<data>
+					<xpath expr="//notebook" position="inside">
+						<page name="intrum_request" string="intrum Requests">
+							<group>
+								<field name="last_check_date" />
+								<field name="intrum_requests" colspan="4" nolabel="1" />
+							</group>
+						</page>
+					</xpath>
+				</data>
+			</field>
+		</record>
+	</data>
+</openerp>

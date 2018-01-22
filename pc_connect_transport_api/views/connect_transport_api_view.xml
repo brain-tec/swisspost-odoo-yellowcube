@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <record model="ir.ui.view" id="view_api_form">
+            <field name="name">Connect Transport Profile</field>
+            <field name="model">connect.transport.api</field>
+            <field name="arch" type="xml">
+                <form string="Profile">
+                    <field name="name" />
+                    <newline />
+                    <field name="warehouse_id" />
+                    <field name="stock_connect_id" />
+                    <newline />
+                    <field name="initial_state" />
+                    <field name="priority" />
+                    <newline />
+                    <field name="type" />
+                    <field name="input" />
+                    <newline />
+                    <newline />
+                    <field name="enable_logs" />
+                    <field name="logs_all_on_success" attrs="{'invisible': [('enable_logs', '=', False)]}" />
+                    <newline />
+                    <newline />
+                    <field name="external_user_id" />
+                    <field name="internal_user_id" />
+                    <group colspan="4">
+                        <notebook>
+                            <page string="Files">
+                                <field name="stock_connect_file_ids" nolabel="1" />
+                            </page>
+                        </notebook>
+                    </group>
+                </form>
+            </field>
+        </record> 
+        <record model="ir.actions.act_window" id="action_shop">
+            <field name="name">Connect Transport Profiles</field>
+            <field name="res_model">connect.transport.api</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+        <menuitem
+            id="menu_root"
+            name="Connect Transport API"
+            parent="connector.menu_connector_root"
+            sequence="500"
+        />
+        <menuitem
+            id="menu_config_shop"
+            name="Profiles"
+            parent="menu_root"
+            sequence="10"
+            action="action_shop"
+        />
+    </data>
+</openerp>
+

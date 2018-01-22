@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<WBL
+	xsi:noNamespaceSchemaLocation="YellowCube_WBL_SupplierOrders.xsd"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+
+	<ControlReference>
+
+		<Type>WBL</Type>
+
+		<Sender>Tradeshop</Sender>
+
+		<Receiver>YELLOWCUBE</Receiver>
+
+		<Timestamp>20140217121723</Timestamp>
+
+		<OperatingMode>T</OperatingMode>
+
+		<Version>1.0</Version>
+
+	</ControlReference>
+
+	<SupplierOrder>
+
+		<SupplierOrderHeader>
+
+			<Plant>Y001</Plant>
+
+			<SupplierNo>0000200015</SupplierNo> <!--Lieferanten-Nr. wird vom YC-CustomerService vergeben! -->
+
+			<SupplierOrderNo>2014-98017</SupplierOrderNo>
+
+		</SupplierOrderHeader>
+
+		<SupplierOrderPositions>
+
+			<Position>
+
+				<PosNo>1</PosNo>
+
+				<ArticleNo>224563</ArticleNo>
+
+				<Quantity>1500</Quantity>
+
+				<QuantityISO>PCE</QuantityISO>
+
+				<PosText>Erste Hilfe Set YellowCube</PosText>
+
+			</Position>
+
+			<Position>
+
+				<PosNo>2</PosNo>
+
+				<ArticleNo>224565</ArticleNo>
+
+				<Quantity>820</Quantity>
+
+				<QuantityISO>PCE</QuantityISO>
+
+				<PosText>Taschenschirm YellowCube</PosText>
+
+			</Position>
+
+			<Position>
+
+				<PosNo>3</PosNo>
+
+				<ArticleNo>224568</ArticleNo>
+
+				<Quantity>1200</Quantity>
+
+				<QuantityISO>PCE</QuantityISO>
+
+				<PosText>Fruchtgummi YellowCube</PosText>
+
+			</Position>
+
+			<Position>
+
+				<PosNo>5</PosNo>
+
+				<ArticleNo>224569</ArticleNo>
+
+				<Quantity>2500</Quantity>
+
+				<QuantityISO>PCE</QuantityISO>
+
+				<PosText>Kugelschreiber YellowCube</PosText>
+
+			</Position>
+
+		</SupplierOrderPositions>
+
+	</SupplierOrder>
+
+</WBL>

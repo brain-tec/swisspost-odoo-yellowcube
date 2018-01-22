@@ -1,0 +1,6 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_public_connect_transport_api,Connect Transport API/Public,model_connect_transport_api,group_connect_transport_api,1,0,0,0
+access_internal_connect_transport_api,Connect Transport API/Internal,model_connect_transport_api,group_connect_transport_api_internal,1,0,0,0
+access_internal_connect_transport_api_log,Connect Transport API Log,model_connect_transport_api_log,group_connect_transport_api_internal,1,1,1,0
+access_internal_connect_transport_api_stock_connect_file,Stock connect file CR,model_stock_connect_file,group_connect_transport_api_internal,1,0,1,0
+

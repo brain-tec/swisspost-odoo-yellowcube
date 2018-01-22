@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<openerp>
+    <data noupdate="0">
+
+        <record id="email_template_external" model="email.template">
+            <field name="name">External email to Warehouse</field>
+            <field name="email_from">${object.get_company_email_address() | safe}</field>
+            <field name="subject">${object.get_creation_datetime()} External Email to Warehouse</field>
+            <field name="email_to">${object.get_email_address_primary() | safe}</field>
+            <field name="email_cc">${object.get_email_address_secondary() | safe}</field>
+            <field name="lang">${object.get_company_lang() | safe}</field>
+            <field name="model_id" ref="pc_connect_warehouse.model_stock_connect_file" />
+            <field name="auto_delete" eval="False"/>
+            <field name="body_html"><![CDATA[
+                ${object.get_picking_list() | safe}
+            ]]></field>
+        </record>
+
+    </data>
+</openerp>

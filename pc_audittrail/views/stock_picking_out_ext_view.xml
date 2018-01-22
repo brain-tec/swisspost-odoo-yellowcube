@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+
+        <record id="stock_picking_out_ext_view" model="ir.ui.view">
+            <field name="name">stock_picking_out_ext_view</field>
+            <field name="model">stock.picking.out</field>
+            <field name="inherit_id" ref="stock.view_picking_form" />
+            <field name="arch" type="xml">
+                <data>
+                    <notebook position="inside">
+                        <page name="audit_logs" string="Change Logs">
+                            <field name="audit_log_ids" colspan="4" nolabel="1" />
+                        </page>
+                    </notebook>
+                </data>
+            </field>
+        </record>
+
+    </data>
+</openerp>

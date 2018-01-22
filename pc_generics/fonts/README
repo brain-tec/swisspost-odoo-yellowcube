@@ -1,0 +1,8 @@
+
+- The fonts must be copied into the folder
+  '/home/openerp/current/git_repositories/PCAP1/pc_generics/fonts/ocrbb.ttf'
+  in order to generate the makos with the appropriate fonts.
+  Make the path readable.
+
+- Font ocrbb.ttf was copied from module l10n_ch_payment_slip in v7:
+  https://github.com/OCA/l10n-switzerland/tree/7.0/l10n_ch_payment_slip/report

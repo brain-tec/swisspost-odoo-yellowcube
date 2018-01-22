@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+	<data>
+		<record id="seq_stage_discount_category_type" model="ir.sequence.type">
+            <field name="name">Stage Discount</field>
+            <field name="code">stage.discount</field>
+        </record>
+        <record id="seq_stage_discount_category" model="ir.sequence">
+            <field name="name">Stage Discount</field>
+            <field name="code">stage.discount</field>
+             <field name="padding">1</field>
+        </record>
+	</data>
+</openerp>

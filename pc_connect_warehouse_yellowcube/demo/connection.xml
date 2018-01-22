@@ -18,6 +18,15 @@
 			<field name="yc_partner_no">0000300020</field>
 			<field name="yc_supplier_no">0000200015</field>
 			<field name="connect_transport_id" ref="fds_dummy_connection" />
+			<field name="yc_enable_art_multifile" eval="0" />
+			<field name="yc_enable_art_ondemand" eval="0" />
+            <field name="yc_enable_art_file" eval="0"/>
+            <field name="yc_enable_bar_file" eval="0"/>
+            <field name="yc_enable_bur_file" eval="0"/>
+            <field name="yc_enable_wab_file" eval="0"/>
+            <field name="yc_enable_war_file" eval="0"/>
+            <field name="yc_enable_wba_file" eval="0"/>
+            <field name="yc_enable_wbl_file" eval="0"/>
 		</record>
 	</data>
 </openerp>

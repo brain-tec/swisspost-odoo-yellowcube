@@ -1,0 +1,39 @@
+<openerp>
+	<data>
+
+		<record id="product_image_massive_setting_wizard_view" model="ir.ui.view">
+			<field name="name">product_image_massive_setting_wizard_view</field>
+			<field name="model">product.image_massive_setting_wizard</field>
+			<field name="arch" type="xml">
+				<form string="Product import" version="7.0">
+                    <group colspan="4">
+                        <field name="message" nolabel="1" widget="html" />
+                    </group>
+                    <group colspan="4">
+                        <button class="oe_left oe_highlight" name="do_massive_image_setting" string="Do Massive Image Setting" type="object" state="draft" />
+                        <button class="oe_right" string="Close" special="cancel" />
+                    </group>
+				</form>
+			</field>
+		</record>
+
+		<record id="action_product_image_massive_setting_wizard" model="ir.actions.act_window">
+			<field name="name">Massive Setting for Product's Images</field>
+			<field name="type">ir.actions.act_window</field>
+			<field name="res_model">product.image_massive_setting_wizard</field>
+			<field name="view_type">form</field>
+			<field name="view_mode">form</field>
+			<field name="view_id" ref="product_image_massive_setting_wizard_view" />
+			<field name="target">new</field>
+		</record>
+
+		<record model="ir.values" id="product_image_massive_setting_wizard">
+			<field name="name">Massive Setting for Product's Images</field>
+			<field name="key2">client_action_multi</field>
+			<field name="value" eval="'ir.actions.act_window,' + str(ref('action_product_image_massive_setting_wizard'))" />
+			<field name="key">action</field>
+			<field name="model">product.product</field>
+		</record>
+	</data>
+
+</openerp>

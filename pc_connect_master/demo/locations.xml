@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+	<data>
+
+        <!-- Locations for Shop #1. -->
+        <record id="loc_input_shop1" model="stock.location">
+            <field name="name">[SHOP 1] Location Input</field>
+            <field name="usage">internal</field>
+            <field name="active" eval="True" />
+            <field name="chained_location_type">none</field>
+            <field name="chained_auto_packing">manual</field>
+        </record>
+
+        <record id="loc_output_shop1" model="stock.location">
+            <field name="name">[SHOP 1] Location Output</field>
+            <field name="usage">internal</field>
+            <field name="active" eval="True" />
+            <field name="chained_location_type">none</field>
+            <field name="chained_auto_packing">manual</field>
+        </record>
+
+        <record id="loc_stock_shop1" model="stock.location">
+            <field name="name">[SHOP 1] Location Stock</field>
+            <field name="usage">internal</field>
+            <field name="active" eval="True" />
+            <field name="chained_location_type">none</field>
+            <field name="chained_auto_packing">manual</field>
+        </record>
+
+        <!-- Locations for Shop #2. -->
+        <record id="loc_input_shop2" model="stock.location">
+            <field name="name">[SHOP 2] Location Input</field>
+            <field name="usage">internal</field>
+            <field name="active" eval="True" />
+            <field name="chained_location_type">none</field>
+            <field name="chained_auto_packing">manual</field>
+        </record>
+
+        <record id="loc_output_shop2" model="stock.location">
+            <field name="name">[SHOP 2] Location Output</field>
+            <field name="usage">internal</field>
+            <field name="active" eval="True" />
+            <field name="chained_location_type">none</field>
+            <field name="chained_auto_packing">manual</field>
+        </record>
+
+        <record id="loc_stock_shop2" model="stock.location">
+            <field name="name">[SHOP 2] Location Stock</field>
+            <field name="usage">internal</field>
+            <field name="active" eval="True" />
+            <field name="chained_location_type">none</field>
+            <field name="chained_auto_packing">manual</field>
+        </record>
+    </data>
+</openerp>

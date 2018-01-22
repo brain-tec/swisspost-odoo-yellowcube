@@ -1,7 +1,7 @@
 # b-*- encoding: utf-8 -*-
 ##############################################################################
 #
-#    Copyright (c) 2015 brain-tec AG (http://www.brain-tec.ch)
+#    Copyright (c) 2015 brain-tec AG (http://www.braintec-group.com)
 #    All Right Reserved
 #
 #    This program is free software: you can redistribute it and/or modify
@@ -20,7 +20,7 @@
 ##############################################################################
 
 from openerp.osv import osv, fields
-import datetime
+from datetime import datetime, timedelta
 from openerp.tools import DEFAULT_SERVER_DATETIME_FORMAT
 from openerp.addons.pc_connect_master.utilities.date_utilities import get_number_of_natural_days
 
@@ -37,20 +37,24 @@ class stock_production_lot_ext(osv.Model):
             context = {}
 
         ret = []
-        now = datetime.datetime.now()
+        now = datetime.now()
         connect_pool = self.pool.get('stock.connect')
 
         # Gets all those stock.connect which have been set to check for the products which has not appeared in BAR for a certain amount of days.
-        connect_ids = connect_pool.search(cr, uid, [('yc_missing_bar_days_due', '>', '0')], context=context, order='yc_missing_bar_days_due DESC')
-        if connect_ids:
+        # If we have received a stock.connect in the context, we use it.
+        connect_ids = context.get('connect_ids')
+        if not connect_ids:
+            connect_ids = connect_pool.search(cr, uid, [('yc_missing_bar_days_due', '>', '0')], context=context, order='yc_missing_bar_days_due DESC')
+
+        for connect_id in connect_ids:
 
             # Gets the number of days to check against.
-            limit = connect_pool.read(cr, uid, connect_ids, ['yc_missing_bar_days_due'], context=context)[0]['yc_missing_bar_days_due']
+            limit = connect_pool.read(cr, uid, connect_id, ['yc_missing_bar_days_due'], context=context)['yc_missing_bar_days_due'] or 0
 
             # Searches for those lots which were absent in a BAR for the given amount of days.
             config_data = self.pool.get('configuration.data').get(cr, uid, [], context=context)
             actual_weekdays = config_data.get_open_days_support(context=context)
-            date_limit = now - datetime.timedelta(days=get_number_of_natural_days(now, limit, 'backward', actual_weekdays))
+            date_limit = now - timedelta(days=get_number_of_natural_days(now, limit, 'backward', actual_weekdays))
             domain = [('yc_last_bar_update', '<', date_limit.strftime(DEFAULT_SERVER_DATETIME_FORMAT)),
                       ('virtual_available_for_sale', '>', 0)]
             if ids:
@@ -63,7 +67,8 @@ class stock_production_lot_ext(osv.Model):
 
     _columns = {
         'yellowcube_lot': fields.char('YCLot', size=10, help="YellowCube's lot."),
-        'yc_last_bar_update': fields.datetime('Last Update from a BAR File'),
+        'yc_last_bar_update': fields.datetime('Last Update from a BAR File',
+                                              help='The date stored is the Timestamp of the BAR file.'),
     }
 
 # vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:

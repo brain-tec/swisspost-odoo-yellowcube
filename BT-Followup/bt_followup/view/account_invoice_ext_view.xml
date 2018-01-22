@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<openerp>
+    <data>
+        <record id="account_invoice_ext_form_view" model="ir.ui.view">
+            <field name="name">account_invoice_ext_form_view</field>
+            <field name="model">account.invoice</field>
+            <field name="inherit_id" ref="account.invoice_form" />
+            <field name="arch" type="xml">
+
+                <page string="Other Info" position="after">
+                    <page string="Follow-up">
+                        <group colspan="4" col="4">
+                            <field name="followup_parent_id" colspan="4"
+                                attrs="{'invisible': [('followup_parent_id', '=', False)]}"
+                                context="{'form_view_ref': 'account.invoice_form',}" />
+
+                            <!-- Add this to all the following fields: attrs="{'invisible': [('followup_level_id', 
+                                '=', False)]}" -->
+                            <field name="followup_level_id" />
+                            <field name="followup_responsible_id" />
+                            <field name="followup_level_date" />
+                            <field name="followup_level_handled" />
+                            <field name="followup_send_email" invisible="1" />
+                            <field name="followup_skip_email_sending"
+                                attrs="{'invisible': [('followup_send_email', '=', False)], 'readonly': [('followup_level_handled', '=', True)]}" />
+                            <field name="follow_up_date_due_days" />
+                            <field name="partner_dunning_block" />
+                            <field name="invoice_dunning_block" />
+                            <field name="dunning_block_ending_date"
+                                attrs="{'invisible': [('invoice_dunning_block', '=', False)]}" />
+                            <field name="dunning_block" />
+                        </group>
+                        <group colspan="4" col="4">
+                            <button name="do_handle_followup" type="object" string="Handle Follow-up"
+                                groups="account.group_account_user" help="Handle Follow-up"
+                                attrs="{'invisible': ['|', ('followup_level_id', '=', False), ('followup_level_handled', '=', True)]}" />
+                        </group>
+                        <div class="oe_clear" />
+                        <label for="invoice_followup_notes" />
+                        <group colspan="4" col="4">
+                            <field name="invoice_followup_notes" nolabel="1" />
+                        </group>
+                        <div class="oe_clear" />
+                        <separator string="Follow-ups"
+                            attrs="{'invisible': [('followup_level_id', '=', False)]}" />
+                        <field name="followup_ids" nolabel="1" colspan="4"
+                            attrs="{'invisible': [('followup_level_id', '=', False)]}" />
+
+
+                        <div class="oe_clear" />
+                        <separator string="Penalization Invoices"
+                            attrs="{'invisible': [('followup_level_id', '=', False)]}" />
+                        <field name="followup_penalization_invoice_ids" nolabel="1"
+                            colspan="4" attrs="{'invisible': [('followup_level_id', '=', False)]}"
+                            context="{'form_view_ref': 'account.invoice_form',}">
+                            <tree string="Follow-up Penalization Invoices">
+                                <field name="date_invoice" />
+                                <field name="name" />
+                                <field name="amount_total" />
+                                <field name="currency_id" />
+                                <field name="state" />
+                            </tree>
+                        </field>
+
+                        <div class="oe_clear" />
+                        <separator string="Penalization Invoices Lines"
+                            attrs="{'invisible': [('followup_level_id', '=', False)]}" />
+                        <field name="followup_penalization_line_ids">
+                            <tree>
+                                <field name="invoice_id"/>
+                                <field name="product_id"/>
+                                <field name="name"/>
+                                <field name="quantity"/>
+                                <field name="price_unit"/>
+                                <field name="invoice_line_tax_id" widget="many2many_tags" />
+                                <field name="price_subtotal"/>
+                            </tree>
+                        </field>
+
+                        <div class="oe_clear" />
+                        <separator string="Follow-up Mails"
+                            attrs="{'invisible': [('followup_level_id', '=', False)]}" />
+                        <field name="followup_email_ids" colspan="4"
+                            attrs="{'invisible': [('followup_level_id', '=', False)]}">
+                            <tree string="Follow-up Mails">
+                                <field name="date" />
+                                <field name="subject" />
+                                <field name="author_id" string="User" />
+                                <field name="email_to" string="Recipient" />
+                            </tree>
+                        </field>
+                    </page>
+                </page>
+            </field>
+        </record>
+
+        <record id="account_invoice_ext_tree_view" model="ir.ui.view">
+            <field name="name">account_invoice_ext_tree_view</field>
+            <field name="model">account.invoice</field>
+            <field name="inherit_id" ref="account.invoice_tree" />
+            <field name="arch" type="xml">
+                <field name="date_due" position="after">
+                    <field name="followup_responsible_id" invisible="context.get('type') != 'out_invoice'" />
+                    <field name="followup_level_id" invisible="context.get('type') != 'out_invoice'" />
+                    <field name="followup_level_handled" invisible="context.get('type') != 'out_invoice'" />
+                    <field name="follow_up_date_due_days" invisible="context.get('type') != 'out_invoice'" />
+                </field>
+            </field>
+        </record>
+
+        <record id="account_invoice_ext_search_view" model="ir.ui.view">
+            <field name="name">account_invoice_ext_search_view</field>
+            <field name="model">account.invoice</field>
+            <field name="inherit_id" ref="account.view_account_invoice_filter" />
+            <field name="arch" type="xml">
+                <field name="number" position="before">
+                    <filter string="In Follow-up Process" icon="terp-emblem-important"
+                        domain="[('followup_level_id', '!=', False),('state', '=', 'open')]" />
+                    <filter string="Pending Follow-up Handle" icon="terp-emblem-important"
+                        domain="[('followup_level_id', '!=', False),('state', '=', 'open'),('dunning_block','=',False),('followup_level_handled','=',False)]" />
+                    <filter string="Penalization Invoices" icon="terp-emblem-important"
+                        domain="[('followup_parent_id', '!=', False)]" />
+                    <!-- Add filter for Followup Responsible Id (belongs to res.partner) -->
+                    <filter string="Follow-up Responsible" icon="terp-personal"
+                        domain="[]" context="{'group_by':'followup_responsible_id'}" />
+                </field>
+
+                <field name="user_id" position="after">
+                    <field name="followup_level_id" />
+                </field>
+
+                <filter string="Due Date" position="after">
+                    <filter string="Follow-up Level" icon="terp-go-month"
+                        domain="[]" context="{'group_by':'followup_level_id'}" />
+                </filter>
+
+
+            </field>
+        </record>
+
+
+    </data>
+</openerp>

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+
+        <record id="invoice_form_ext" model="ir.ui.view">
+            <field name="name">invoice_form_ext</field>
+            <field name="model">account.invoice</field>
+            <field name="inherit_id" ref="pc_connect_master.invoice_form_ext" />
+            <field name="arch" type="xml">
+                <page string="Help &amp; Support" position="inside">
+					<group string="Follow-Up Process" colspan='4'>
+						<div>
+							For more information, see the
+							<a target="_blank"
+								href="https://docs.google.com/a/braintec-group.com/document/d/1puoPPxa3I31Hn14PdIUdvI6i20vcZ6OZy-KhJbdWTBQ/view#heading=h.80mpeu10ljxn">follow-up user manual</a>.
+						</div>
+					</group>
+                </page>
+            </field>
+        </record>
+
+    </data>
+</openerp>

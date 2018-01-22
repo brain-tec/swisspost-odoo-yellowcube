@@ -1,7 +1,7 @@
 # b-*- encoding: utf-8 -*-
 ##############################################################################
 #
-#    Copyright (c) 2015 brain-tec AG (http://www.brain-tec.ch)
+#    Copyright (c) 2015 brain-tec AG (http://www.braintec-group.com)
 #    All Right Reserved
 #
 #    This program is free software: you can redistribute it and/or modify
@@ -31,10 +31,11 @@ import account_invoice_ext
 import configuration_data_ext
 import delivery_carrier_ext
 import mapping_bur_transactiontypes
-import payment_method_ext
 import product_product_ext
 import product_product_ext_lot
+import purchase_order_line_ext
 import res_partner_ext
+import sale_order_ext
 import stock_connect_ext
 import stock_connect_yellowcube
 import stock_picking_ext
@@ -51,6 +52,7 @@ import yellowcube_war_xml_factory
 import yellowcube_wba_xml_factory
 import yellowcube_wbl_xml_factory
 import ir_module_module_ext
+import wizard
 
 if version_info[0] <= 7:
     import stock_picking_inout_ext

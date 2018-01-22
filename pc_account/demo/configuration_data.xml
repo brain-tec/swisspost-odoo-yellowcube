@@ -1,0 +1,7 @@
+<openerp>
+	<data>
+		<record id="pc_config.default_configuration_data" model="configuration.data">
+			<field name="report_account_invoice" ref="report_invoice" />
+		</record>
+	</data>
+</openerp>

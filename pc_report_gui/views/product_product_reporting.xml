@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+
+        <!-- Extended views. -->
+        <record id="product_orderpoints_tree_view_ext" model="ir.ui.view">
+            <field name="name">product_orderpoints_tree_view_ext</field>
+            <field name="model">product.product</field>
+            <field name="inherit_id" ref="product.product_product_tree_view" />
+            <field name="arch" type="xml">
+                <field name="name" position="after">
+                    <field name="orderpoints_qty_min" string="Orderpoint Qty. Min." readonly="True" />
+                    <field name="orderpoints_qty_max" string="Orderpoint Qty. Max." readonly="True" />
+                    <field name="orderpoints_qty_multiple" string="Orderpoint Qty. Mult." readonly="True" />
+                </field>
+            </field>
+        </record>
+
+        <!-- Defines the actions. -->
+		<record id="action_products_reporting" model="ir.actions.act_window">
+			<field name="name">Products</field>
+            <field name="type">ir.actions.act_window</field>
+			<field name="res_model">product.product</field>
+            <field name="view_type">form</field>
+			<field name="view_mode">tree,form</field>
+		</record>
+
+        <!-- Defines the views associated to the actions. -->
+        <record id="action_products_reporting_tree" model="ir.actions.act_window.view">
+            <field name="sequence" eval="0" />
+            <field name="view_mode">tree</field>
+            <field name="view_id" ref="product_orderpoints_tree_view_ext" />
+            <field name="act_window_id" ref="action_products_reporting" />
+        </record>
+        <record id="action_products_reporting_form" model="ir.actions.act_window.view">
+            <field name="sequence" eval="1" />
+            <field name="view_mode">form</field>
+            <field name="view_id" ref="product.product_normal_form_view" />
+            <field name="act_window_id" ref="action_products_reporting" />
+        </record>
+
+    </data>
+</openerp>

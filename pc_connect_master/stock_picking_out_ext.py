@@ -1,7 +1,7 @@
 # b-*- encoding: utf-8 -*-
 ##############################################################################
 #
-#    Copyright (c) 2014 brain-tec AG (http://www.brain-tec.ch)
+#    Copyright (c) 2014 brain-tec AG (http://www.braintec-group.com)
 #    All Right Reserved
 #
 #    This program is free software: you can redistribute it and/or modify
@@ -50,24 +50,27 @@ class stock_picking_out_ext(osv.Model):
         return filters.read_group(self, cr, uid, domain, fields, groupby, stock_picking_out_ext, offset=offset, limit=limit, context=context, orderby=orderby)
     # END OF THE CODE WHICH DEFINES THE NEW FILTERS TO ADD TO THE OBJECT.
 
+    def set_mandatory_additional_shipping_codes(self, cr, uid, ids,
+                                                context=None):
+        return self.pool.get('stock.picking').\
+            set_mandatory_additional_shipping_codes(
+            cr, uid, ids, context=context)
+
+    def get_route(self, cr, uid, ids, context=None):
+        return self.pool.get('stock.picking').get_route(cr, uid, ids, context)
+
     def is_last_picking(self, cr, uid, ids, context=None):
         return self.pool.get('stock.picking').is_last_picking(cr, uid, ids, context)
 
     def is_first_delivery(self, cr, uid, ids, context=None):
-        ''' Returns whether this stock.picking.out is the first or only delivery for a given sale order.
-        '''
-        if isinstance(ids, list):
-            ids = ids[0]
-        stock_picking_out = self.browse(cr, uid, ids, context)
-        res = (stock_picking_out.move_type == 'one') or ((stock_picking_out.move_type == 'direct') and (not stock_picking_out.backorder_id))
-        return bool(res)
+        return self.pool.get('stock.picking').is_first_delivery(cr, uid, ids, context)
 
     def payment_method_has_epayment(self, cr, uid, ids, context=None):
         ''' Returns whether the payment method has epayment.
         '''
         has_epayment = False
 
-        if isinstance(ids, list):
+        if type(ids) is list:
             ids = ids[0]
         stock_picking_out = self.browse(cr, uid, ids, context)
 
@@ -82,7 +85,7 @@ class stock_picking_out_ext(osv.Model):
         '''
         equal_addresses = True
 
-        if isinstance(ids, list):
+        if type(ids) is list:
             ids = ids[0]
         stock_picking_out = self.browse(cr, uid, ids, context)
 
@@ -91,11 +94,6 @@ class stock_picking_out_ext(osv.Model):
             equal_addresses = (sale_order.partner_invoice_id.id == sale_order.partner_shipping_id.id)
 
         return bool(equal_addresses)
-
-    def assign_lots(self, cr, uid, ids, context=None):
-        ''' Assigns lots to stock.moves.
-        '''
-        return self.pool.get('stock.picking').assign_lots(cr, uid, ids, context=context)
 
     def set_stock_moves_done(self, cr, uid, ids, context=None):
         ''' Marks all the stock.moves as done.
@@ -106,6 +104,45 @@ class stock_picking_out_ext(osv.Model):
         ''' Returns the file name for this stock.picking.out.
         '''
         return self.pool.get('stock.picking').get_file_name(cr, uid, ids, context=context)
+
+    def get_ready_for_export(self, cr, uid, ids, name, args, context=None):
+        return self.pool.get('stock.picking').get_ready_for_export(cr, uid, ids, name, args, context)
+
+    def map_partials_to_picking_in(self, cr, uid, ids, picking_in_id, partials,
+                                      context=None):
+        """ Given a partials structure (the data that the method do_partial()
+            expects to receive) from a picking.out, it does the mapping
+            between those partials and the ones for the given picking.in.
+        """
+        if context is None:
+            context = {}
+
+        move_obj = self.pool.get('stock.move')
+
+        mapped_partials = {}
+        for partial_key, partial_values in partials.iteritems():
+            picking_out_move_id = int(partial_key.split('move')[-1])
+
+            # We search a stock.move that has as the move_dest_id the one
+            # for the picking.out. This way we know the move from the
+            # picking.in was originated by the move by the picking.out
+            picking_in_move_ids = move_obj.search(
+                cr, uid, [('move_dest_id', '=', picking_out_move_id)],
+                limit=1, context=context)
+
+            if picking_in_move_ids:
+                # We found at least one move that matches, so we pick one and
+                # do the mapping, just copying the original values but with a
+                # new key to point to the new stock move from the picking.in.
+                mapped_partials['move{0}'.format(picking_in_move_ids[0])] = \
+                    partial_values.copy()
+
+            else:
+                # If we didn't find a match, that means that the move
+                # has not a match yet.
+                pass
+
+        return mapped_partials
 
     _columns = {
         'do_not_send_to_warehouse': fields.boolean('Do Not Send to Warehouse',
@@ -118,10 +155,30 @@ class stock_picking_out_ext(osv.Model):
         # even if it's going to be used only on the automation, since bulk freight in particular is used
         # outside the automation, so in the future packages may be needed outside it also.
         'uses_bulkfreight': fields.boolean('Picking Uses Bulk Freight?'),
+
+        'ready_for_export': fields.function(get_ready_for_export,
+                                            type='boolean',
+                                            string='Ready for Export?',
+                                            help='Indicates whether the stock.picking is ready for export to the warehouse.'),
+        'ready_for_export_manual': fields.boolean('Manual Ready for Export?',
+                                                  help="If checked, it overrides the field 'Ready for Export?' and marks the picking as being ready for export."),
+
+        'create_date': fields.datetime('Create Date', help="Redefined just to be able to use it from the model."),
+
+        'backorder_items_for_pickings_ids': fields.many2many('pc_sale_order_automation.product_pending',
+                                                             rel='backorder_items_for_pickings',
+                                                             id1='picking_id', id2='product_pending_id'),
+
+        'yc_mandatory_additional_shipping': fields.char(
+            'Mandatory additional services',
+            help='These mandatory additional service codes must '
+                 'be added to the WAB when submitting it to YellowCube.'),
     }
 
     _defaults = {
         'uses_bulkfreight': False,
+        'ready_for_export': False,
+        'ready_for_export_manual': False,
     }
 
 # vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:

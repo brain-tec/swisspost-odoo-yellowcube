@@ -1,0 +1,181 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<ART
+	xsi:noNamespaceSchemaLocation="YellowCube_ART_Artikelstamm.xsd"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+
+	<ControlReference>
+
+		<Type>ART</Type>
+
+		<Sender>Tradeshop</Sender>
+
+		<Receiver>YELLOWCUBE</Receiver>
+
+		<Timestamp>20140214091451</Timestamp>
+
+		<OperatingMode>T</OperatingMode>
+
+		<Version>1.0</Version>
+
+	</ControlReference>
+
+	<ArticleList>
+
+		<Article>
+
+			<ChangeFlag>I</ChangeFlag>
+
+			<DepositorNo>0000099999</DepositorNo>
+
+			<PlantID>Y004</PlantID>
+
+			<ArticleNo>660001</ArticleNo>
+
+			<BaseUOM>PCE</BaseUOM>
+
+			<NetWeight ISO="KGM">0.101</NetWeight>
+
+			<BatchMngtReq>0</BatchMngtReq> <!-- optional -->
+
+			<MinRemLife>6</MinRemLife> <!--optional -->
+
+			<PeriodExpDateType>2</PeriodExpDateType> <!--optional -->
+
+			<SerialNoFlag>0</SerialNoFlag> <!--optional -->
+
+			<UnitsOfMeasure>
+
+				<EAN EANType="HE">7610006600017</EAN> <!--optional -->
+
+				<AlternateUnitISO>PCE</AlternateUnitISO>
+
+				<GrossWeight ISO="KGM">0.111</GrossWeight>
+
+				<Length ISO="MTR">0.210</Length>
+
+				<Width ISO="MTR">0.045</Width>
+
+				<Height ISO="MTR">0.060</Height>
+
+				<Volume ISO="MTQ">0.001</Volume>
+
+			</UnitsOfMeasure>
+
+			<ArticleDescriptions>
+
+				<ArticleDescription ArticleDescriptionLC="de">01Taschenlampe</ArticleDescription>
+
+				<ArticleDescription ArticleDescriptionLC="fr">01lampe de poche</ArticleDescription>
+
+				<ArticleDescription ArticleDescriptionLC="it">01torcia elettrica</ArticleDescription>
+
+				<ArticleDescription ArticleDescriptionLC="en">01torch light</ArticleDescription>
+
+			</ArticleDescriptions>
+
+		</Article>
+
+		<Article>
+
+			<ChangeFlag>I</ChangeFlag>
+
+			<DepositorNo>0000010518</DepositorNo>
+
+			<PlantID>Y004</PlantID>
+
+			<ArticleNo>660002</ArticleNo>
+
+			<BaseUOM>PCE</BaseUOM>
+
+			<NetWeight ISO="KGM">0.102</NetWeight>
+
+			<BatchMngtReq>0</BatchMngtReq>
+
+			<MinRemLife>6</MinRemLife>
+
+			<PeriodExpDateType>2</PeriodExpDateType>
+
+			<SerialNoFlag>0</SerialNoFlag>
+
+			<UnitsOfMeasure>
+
+				<EAN EANType="HE">7610006600024</EAN>
+
+				<AlternateUnitISO>PCE</AlternateUnitISO>
+
+				<GrossWeight ISO="KGM">0.112</GrossWeight>
+
+				<Length ISO="MTR">0.210</Length>
+
+				<Width ISO="MTR">0.045</Width>
+
+				<Height ISO="MTR">0.060</Height>
+
+				<Volume ISO="MTQ">0.001</Volume>
+
+			</UnitsOfMeasure>
+
+			<ArticleDescriptions>
+
+				<ArticleDescription ArticleDescriptionLC="de">02Taschenlampe</ArticleDescription>
+
+				<ArticleDescription ArticleDescriptionLC="fr">02lampe de poche</ArticleDescription>
+
+				<ArticleDescription ArticleDescriptionLC="it">02torcia elettrica</ArticleDescription>
+
+			</ArticleDescriptions>
+
+		</Article>
+
+		<Article>
+
+			<ChangeFlag>I</ChangeFlag>
+
+			<DepositorNo>0000010518</DepositorNo>
+
+			<PlantID>Y004</PlantID>
+
+			<ArticleNo>660003</ArticleNo>
+
+			<BaseUOM>PCE</BaseUOM>
+
+			<NetWeight ISO="KGM">0.103</NetWeight>
+
+			<BatchMngtReq>0</BatchMngtReq>
+
+			<MinRemLife>6</MinRemLife>
+
+			<PeriodExpDateType>2</PeriodExpDateType>
+
+			<SerialNoFlag>0</SerialNoFlag>
+
+			<UnitsOfMeasure>
+
+				<EAN EANType="HE">7610006600031</EAN>
+
+				<AlternateUnitISO>PCE</AlternateUnitISO>
+
+				<GrossWeight ISO="KGM">0.113</GrossWeight>
+
+				<Length ISO="MTR">0.210</Length>
+
+				<Width ISO="MTR">0.045</Width>
+
+				<Height ISO="MTR">0.060</Height>
+
+				<Volume ISO="MTQ">0.001</Volume>
+
+			</UnitsOfMeasure>
+
+			<ArticleDescriptions>
+
+				<ArticleDescription ArticleDescriptionLC="de">03Taschenlampe</ArticleDescription>
+
+			</ArticleDescriptions>
+
+		</Article>
+
+	</ArticleList>
+
+</ART>

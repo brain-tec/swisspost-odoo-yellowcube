@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <record id="product_manual_form" model="ir.ui.view">
+            <field name="name">Product's Manuals Form View</field>
+            <field name="model">product.manual</field>
+            <field name="arch" type="xml">
+                <form string="Product's Manuals" version="7.0">
+                    <group>
+                        <field name="description"/>
+                    </group>
+                    <group name="Attachment" string="Attachment">
+                        <field name="language_id"/>
+                        <field name="attachment_id"/>
+                    </group>
+                </form>
+            </field>
+        </record>
+
+        <record id="product_manual_tree" model="ir.ui.view">
+            <field name="name">Product's Manuals Tree View</field>
+            <field name="model">product.manual</field>
+            <field name="arch" type="xml">
+                <tree string="Product's Manuals" version="7.0">
+                        <field name="description" colspan="2"/>
+                        <field name="language_id" colspan="1"/>
+                        <field name="attachment_id" colspan="1"/>
+                </tree>
+            </field>
+        </record>
+
+    </data>
+</openerp>

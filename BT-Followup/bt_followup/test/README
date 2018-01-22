@@ -1,0 +1,13 @@
+
+IMPORTANT:
+- These tests require that the webkit executable is located at, and reachable from, path "/home/openerp/wkhtmltopdf-amd64".
+- These tests require that anybox is installed.
+	To install it, 1) go to https://pypi.python.org/pypi/anybox.testing.datetime,
+	               2) download the tar.gz,
+	               3) uncompress it somewhere (it does not matter),
+	               4) make: sudo python setup.py install.
+
+WARNING:
+- Each time a test says that something must be *visible* in the user interface, what is actually tested is that
+  the instance is created in the model which is made visible (because we can not tests user interface-related stuff with YMLs,
+  this is all we can do on the matter).

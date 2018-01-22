@@ -1,0 +1,34 @@
+<WBA>
+    <ControlReference>
+        <Type>WBA</Type>
+        <Sender>YELLOWCUBE</Sender>
+        <Receiver>0000040730</Receiver>
+        <Timestamp>20141023173818</Timestamp>
+        <OperatingMode>T</OperatingMode>
+        <Version>1.0</Version>
+    </ControlReference>
+    <GoodsReceipt>
+        <GoodsReceiptHeader>
+            <BookingVoucherID>5000051621</BookingVoucherID>
+            <BookingVoucherYear>2014</BookingVoucherYear>
+            <SupplierNo>0000200015</SupplierNo>
+            <SupplierOrderNo>Odoo_P1_1</SupplierOrderNo>
+        </GoodsReceiptHeader>
+        <GoodsReceiptList>
+            <GoodsReceiptDetail>
+                <BVPosNo>0001</BVPosNo>
+                <SupplierOrderPosNo>00030</SupplierOrderPosNo>
+                <YCArticleNo>Y019100003</YCArticleNo>
+                <ArticleNo>7640104951193</ArticleNo>
+                <YCLot>0000000105</YCLot>
+                <Lot>L-17211</Lot>
+                <Plant>Y019</Plant>
+                <StorageLocation>YROD</StorageLocation>
+                <TransactionType>101</TransactionType>
+                <StockType>F</StockType>
+                <QuantityUOM QuantityISO="PCE">75.000</QuantityUOM>
+                <EndOfDeliveryFlag>1</EndOfDeliveryFlag>
+            </GoodsReceiptDetail>
+        </GoodsReceiptList>
+    </GoodsReceipt>
+</WBA>

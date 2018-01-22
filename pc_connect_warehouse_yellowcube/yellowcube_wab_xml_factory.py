@@ -1,7 +1,7 @@
 # b-*- encoding: utf-8 -*-
 ##############################################################################
 #
-#    Copyright (c) 2014 brain-tec AG (http://www.brain-tec.ch)
+#    Copyright (c) 2014 brain-tec AG (http://www.braintec-group.com)
 #    All Right Reserved
 #
 #    This program is free software: you can redistribute it and/or modify
@@ -21,18 +21,16 @@
 from openerp.osv import osv, fields
 from openerp.tools.translate import _
 from xml_abstract_factory import xml_factory_decorator, xml_abstract_factory, get_customer_order_number
-from openerp.addons.pc_connect_master.utilities.misc import format_exception
-from xsd.xml_tools import validate_xml, export_filename
-from xsd.xml_tools import create_element as old_create_element
+from openerp.addons.pc_log_data.log_data import write_log
+from openerp.addons.pc_connect_master.utilities.others import format_exception
+from openerp.addons.pc_connect_master.utilities.others import \
+    compact_csv_string
 from datetime import datetime
 from lxml.etree import Comment
 from openerp.release import version_info
 import logging
 logger = logging.getLogger(__name__)
-
-
-def create_element(entity, text=None, attrib=None, ns='https://service.swisspost.ch/apache/yellowcube/YellowCube_WAB_REQUEST_Warenausgangsbestellung.xsd'):
-    return old_create_element(entity, text, attrib, ns)
+logger.setLevel(logging.DEBUG)
 
 
 @xml_factory_decorator("wab")
@@ -41,6 +39,12 @@ class yellowcube_wab_xml_factory(xml_abstract_factory):
 
     def __init__(self, *args, **kargs):
         logger.debug("WAB factory created")
+
+    def create_element(
+            self, entity, text=None, attrib=None,
+            ns='https://service.swisspost.ch/apache/yellowcube'
+               '/YellowCube_WAB_REQUEST_Warenausgangsbestellung.xsd'):
+        return self.xml_tools.create_element(entity, text, attrib, ns)
 
     def import_file(self, file_text):
         logger.debug("Unrequired functionality")
@@ -63,7 +67,7 @@ class yellowcube_wab_xml_factory(xml_abstract_factory):
             return False
 
         # 0) Precondition: The invoice has to be sent to the WAB according to the configuration.
-        attach_invoice = (self.get_param('wab_invoice_send_mode') in ['pcl_wab', 'pdf_wab'])
+        attach_invoice = self.get_param('wab_invoice_send_mode') == 'pdf_wab'
 
         # 1) It is the first or only delivery for a given sale order.
         attach_invoice &= stock_picking.is_first_delivery()
@@ -86,7 +90,8 @@ class yellowcube_wab_xml_factory(xml_abstract_factory):
         result = {}
         min_number_attachements = self.context['yc_min_number_attachments']
         sale_order = stock_picking.sale_id
-        self.context['yc_customer_order_no'] = stock_picking.id
+        self.context['yc_customer_order_no'] =\
+            stock_picking.yellowcube_customer_order_no
 
         yc_sender = self.get_param('sender', required=True)
         if not yc_sender:
@@ -99,9 +104,8 @@ class yellowcube_wab_xml_factory(xml_abstract_factory):
         # We do not always attach the invoice, but only under certain circumstances.
         attach_invoice = self.check_attach_invoice_in_wab(stock_picking)
         if attach_invoice:
-            invoice_file_extension = 'pcl' if (self.get_param('wab_invoice_send_mode') == 'pcl_wab') else 'pdf'
             for invoice in sale_order.invoice_ids:
-                result.update(invoice.get_attachment_wab(invoice_file_extension))
+                result.update(invoice.get_attachment_wab())
         else:
             min_number_attachements -= 1
 
@@ -113,14 +117,27 @@ class yellowcube_wab_xml_factory(xml_abstract_factory):
             raise Warning("Not enough attachments found. Set context 'yc_min_number_attachments' accordingly or check picking.", str(result))
         return result
 
-    def generate_root_element(self, stock_picking):
+    def _set_language_for_picking_related_file(self, stock_picking):
+        """ Sets the language in the context depending on the configuration
+            and the picking received.
+        """
+        if self.get_param('language_setting') == 'shipment':
+            lang = stock_picking.partner_id.lang
+        else:  # if self.get_param('language_setting') == 'fixed'
+            lang = self.get_param('language_default')
+        self.context['lang'] = lang
+        return lang
+
+    def generate_root_element(self, stock_picking, validate_xml=True):
         # xml = '<?xml version="1.0" encoding="UTF-8"?>\n'
         # xml = '{0}<WAB xsi:noNamespaceSchemaLocation="YellowCube_WAB_Warenausgangsbestellung.xsd" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">\n'.format(xml)
         DELIVERYINSTRUCTIONS_TAG_MAX_LENGTH = 15
 
-        xml_root = create_element('WAB')
+        xml_root = self.create_element('WAB')
 
         self.context['yc_customer_order_no'] = stock_picking.yellowcube_customer_order_no
+
+        self._set_language_for_picking_related_file(stock_picking)
 
         picking_mode = stock_picking.type
         sale_order = stock_picking.sale_id
@@ -133,89 +150,104 @@ class yellowcube_wab_xml_factory(xml_abstract_factory):
 
         # WAB > ControlReference
         now = datetime.now()
-        xml_control_reference = create_element('ControlReference')
-        xml_control_reference.append(create_element('Type', text='WAB'))
-        xml_control_reference.append(create_element('Sender', text=self.get_param('sender', required=True)))
-        xml_control_reference.append(create_element('Receiver', text=self.get_param('receiver', required=True)))
-        xml_control_reference.append(create_element(
+        xml_control_reference = self.create_element('ControlReference')
+        xml_control_reference.append(self.create_element('Type', text='WAB'))
+        xml_control_reference.append(self.create_element('Sender', text=self.get_param('sender', required=True)))
+        xml_control_reference.append(self.create_element('Receiver', text=self.get_param('receiver', required=True)))
+        xml_control_reference.append(self.create_element(
             'Timestamp',
             text='{0:04d}{1:02d}{2:02d}{3:02d}{4:02d}{5:02d}'.format(now.year, now.month, now.day, now.hour, now.hour, now.minute)
         ))
-        xml_control_reference.append(create_element('OperatingMode', text=self.get_param('operating_mode', required=True)))
-        xml_control_reference.append(create_element('Version', text='1.0'))
+        xml_control_reference.append(self.create_element('OperatingMode', text=self.get_param('operating_mode', required=True)))
+        xml_control_reference.append(self.create_element('Version', text='1.0'))
         xml_root.append(xml_control_reference)
 
         # WAB -> Order
-        xml_order = create_element('Order')
+        xml_order = self.create_element('Order')
         xml_root.append(xml_order)
         # WAB -> OrderHeader
-        xml_order_header = create_element('OrderHeader')
-        xml_order_header.append(create_element('DepositorNo', self.get_param('depositor_no', required=True)))
-        xml_order_header.append(create_element('CustomerOrderNo', text=stock_picking.get_customer_order_no()[stock_picking.id]))
+        xml_order_header = self.create_element('OrderHeader')
+        xml_order_header.append(self.create_element('DepositorNo', self.get_param('depositor_no', required=True)))
+        xml_order_header.append(self.create_element('CustomerOrderNo', text=stock_picking.get_customer_order_no()[stock_picking.id]))
         dateorder = sale_order.date_order.split(' ')[0]
-        xml_order_header.append(create_element('CustomerOrderDate', text=dateorder.replace('-', '')))
+        xml_order_header.append(self.create_element('CustomerOrderDate', text=dateorder.replace('-', '')))
         xml_order.append(xml_order_header)
 
         # WAB -> PartnerAddress
-        xml_partner_address = create_element('PartnerAddress')
-        xml_partner_address.append(self._generate_partner_address_element(sale_order.partner_shipping_id, self.get_param('wab_partner_type_for_shipping_address')))
+        xml_partner_address = self.create_element('PartnerAddress')
+        xml_partner_address.append(self._generate_partner_address_element(sale_order, sale_order.partner_shipping_id, self.get_param('wab_partner_type_for_shipping_address')))
         if self.get_param('wab_add_invoicing_address'):
-            xml_partner_address.append(self._generate_partner_address_element(sale_order.partner_invoice_id, self.get_param('wab_partner_type_for_invoicing_address')))
+            xml_partner_address.append(self._generate_partner_address_element(sale_order, sale_order.partner_invoice_id, self.get_param('wab_partner_type_for_invoicing_address')))
         xml_order.append(xml_partner_address)
 
         # WAB -> ValueAddedServices
-        xml_value_added_services = create_element('ValueAddedServices')
-        xml_additional_service = create_element('AdditionalService')
+        xml_value_added_services = self.create_element('ValueAddedServices')
+        xml_additional_service = self.create_element('AdditionalService')
+
+        carrier = stock_picking.carrier_id
 
         if picking_mode in ['out', 'outgoing']:
             # <BasicShippingServices> under ValueAddedServices/AdditionalService
-            if stock_picking.carrier_id and stock_picking.carrier_id.yc_basic_shipping:
-                xml_additional_service.append(create_element('BasicShippingServices', text=stock_picking.carrier_id.yc_basic_shipping))
+            if carrier and carrier.yc_basic_shipping:
+                xml_additional_service.append(self.create_element('BasicShippingServices', text=carrier.yc_basic_shipping))
             else:
                 raise Warning(_('Missing Basic shipping in delivery method'), sale_order.name)
         else:
-            xml_additional_service.append(create_element('BasicShippingServices', text="RETOURE"))
+            xml_additional_service.append(self.create_element('BasicShippingServices', text="RETOURE"))
 
         # <AdditionalShippingServices> under ValueAddedServices/AdditionalService
-        if stock_picking.carrier_id and stock_picking.carrier_id.yc_additional_shipping:
-            xml_additional_service.append(create_element('AdditionalShippingServices', text=stock_picking.carrier_id.yc_additional_shipping))
+        additional_shipping = stock_picking.yc_mandatory_additional_shipping
+        if additional_shipping:
+            # We clean the data to remove white-spaces between codes.
+            additional_shipping = compact_csv_string(
+                additional_shipping, sep=';')
+            xml_additional_service.append(self.create_element(
+                'AdditionalShippingServices', text=additional_shipping))
 
         # <DeliveryInstructions> under ValueAddedServices/AdditionalService
-        if stock_picking.carrier_id and stock_picking.carrier_id.pc_delivery_instructions:
-            xml_additional_service.append(create_element('DeliveryInstructions', text=stock_picking.carrier_id.pc_delivery_instructions[:DELIVERYINSTRUCTIONS_TAG_MAX_LENGTH]))
+        if carrier and carrier.pc_delivery_instructions:
+            xml_additional_service.append(self.create_element('DeliveryInstructions', text=carrier.pc_delivery_instructions[:DELIVERYINSTRUCTIONS_TAG_MAX_LENGTH]))
 
         # <FrightShippingFlag> under ValueAddedServices/AdditionalService
-        xml_additional_service.append(create_element('FrightShippingFlag', text=('1' if stock_picking.carrier_id.pc_freight_shipping else '0')))
+        xml_additional_service.append(self.create_element('FrightShippingFlag', text=('1' if carrier.pc_freight_shipping else '0')))
 
         # <ShippingInterface> under ValueAddedServices/AdditionalService
-        if stock_picking.carrier_id and stock_picking.carrier_id.pc_shipping_interface:
-            xml_additional_service.append(create_element('ShippingInterface', text=stock_picking.carrier_id.pc_shipping_interface))
+        if carrier and carrier.pc_shipping_interface:
+            xml_additional_service.append(self.create_element('ShippingInterface', text=carrier.pc_shipping_interface))
 
         xml_value_added_services.append(xml_additional_service)
         xml_order.append(xml_value_added_services)
 
         # WAB -> OrderPositions
-        xml_order_positions = create_element('OrderPositions')
-        for position in self._generate_order_position_element(stock_picking):
+        xml_order_positions = self.create_element('OrderPositions')
+        for position in self._generate_order_position_element(
+                stock_picking, validate_xml=validate_xml):
             xml_order_positions.append(position)
         xml_order.append(xml_order_positions)
 
         # WAB -> OrderDocuments
-        xml_order_documents = create_element('OrderDocuments', attrib={'OrderDocumentsFlag': '1'})
-        xml_order_doc_filenames = create_element('OrderDocFilenames')
+        xml_order_documents = self.create_element('OrderDocuments', attrib={'OrderDocumentsFlag': '1'})
+        xml_order_doc_filenames = self.create_element('OrderDocFilenames')
         for filename in self.get_export_files(stock_picking):
-            xml_order_doc_filenames.append(create_element('OrderDocFilename', text=filename))
+            xml_order_doc_filenames.append(self.create_element('OrderDocFilename', text=filename))
         xml_order_documents.append(xml_order_doc_filenames)
         xml_order.append(xml_order_documents)
 
-        xsd_error = validate_xml("wab", xml_root, print_error=self.print_errors)
-        if xsd_error:
-            raise Warning(xsd_error)
+        if validate_xml:
+            xsd_error = self.xml_tools.validate_xml(
+                "wab", xml_root, print_error=self.print_errors)
+            if xsd_error:
+                write_log(self, self.cr, self.uid, 'sale.order',
+                          sale_order.name, sale_order.id,
+                          'XSD validation error', correct=False,
+                          extra_information=xsd_error)
+                raise Warning(xsd_error)
         if 'yc_customer_order_no' in self.context:
             del self.context['yc_customer_order_no']
         return xml_root
 
-    def _generate_partner_address_element(self, partner, partner_type):
+    def _generate_partner_address_element(self, sale_order, partner,
+                                          partner_type):
         ''' Creates and returns a <Partner> tag for the WAB.
         '''
 
@@ -224,27 +256,27 @@ class yellowcube_wab_xml_factory(xml_abstract_factory):
         if partner.lang:
             context['lang'] = partner.lang
 
-        xml = create_element("Partner")
+        xml = self.create_element("Partner")
 
-        xml.append(create_element('PartnerType', text=partner_type))
+        xml.append(self.create_element('PartnerType', text=partner_type))
 
         partner_no = self.get_param('partner_no', required=True)
-        xml.append(create_element('PartnerNo', text=partner_no))
+        xml.append(self.create_element('PartnerNo', text=partner_no))
         if partner.is_company:
             partner_ref = partner.ref
         else:
             partner_ref = partner.parent_id.ref
-        xml.append(create_element('PartnerReference', text=partner_ref))
+        xml.append(self.create_element('PartnerReference', text=partner_ref))
 
         if partner.title:
-            xml.append(create_element('Title', partner.title.name))
+            xml.append(self.create_element('Title', partner.title.name))
 
         names = self.__generate_partner_name(partner)
         for idx in xrange(len(names)):
             if idx >= 4:
                 break
             # This will generate elements Name1 ... Name4
-            xml.append(create_element('Name{0}'.format(idx + 1), text=names[idx]))
+            xml.append(self.create_element('Name{0}'.format(idx + 1), text=names[idx]))
 
         street = False
         if partner.street:
@@ -252,50 +284,64 @@ class yellowcube_wab_xml_factory(xml_abstract_factory):
         elif partner.po_box:
             street = ' '.join([_('P.O. Box'), partner.po_box])
         if street:
-            xml.append(create_element('Street', text=street))
+            xml.append(self.create_element('Street', text=street))
 
-        xml.append(create_element('CountryCode', text=partner.country_id.code))
-        xml.append(create_element('ZIPCode', text=partner.zip))
-        xml.append(create_element('City', text=partner.city))
+        xml.append(self.create_element('CountryCode', text=partner.country_id.code))
+        xml.append(self.create_element('ZIPCode', text=partner.zip))
+        xml.append(self.create_element('City', text=partner.city))
         if partner.phone:
-            xml.append(create_element('PhoneNo', text=partner.phone))
+            xml.append(self.create_element('PhoneNo', text=partner.phone))
         if partner.mobile:
-            xml.append(create_element('MobileNo', text=partner.mobile))
+            xml.append(self.create_element('MobileNo', text=partner.mobile))
+        if partner.mobile and sale_order.delivery_notification_type == 'SMS':
+            xml.append(self.create_element('SMSAvisMobNo',
+                                           text=partner.mobile))
         if partner.email:
-            xml.append(create_element('Email', text=partner.email))
+            xml.append(self.create_element('Email', text=partner.email))
         if not partner.lang:
             raise Warning(_("Missing partner #{0} language code").format(partner.id))
             # Language code is required
-        xml.append(create_element('LanguageCode', text=partner.lang[:2]))
-        xsd_error = validate_xml("wab", xml, print_error=self.print_errors)
+        xml.append(self.create_element('LanguageCode', text=partner.lang[:2]))
+        xsd_error = self.xml_tools.validate_xml("wab", xml, print_error=self.print_errors)
         if xsd_error:
-            logger.error(xsd_error)
+            write_log(self, self.cr, self.uid, 'res.partner', partner.name, partner.id, 'XSD validation error', correct=False, extra_information=xsd_error)
         return xml
 
-    def _generate_order_position_element(self, stock_picking):
-        PICKINGMESSAGE_TAG_MAX_LENGTH = 132
+    def _generate_order_position_element(self, stock_picking, validate_xml=True):
+        PICKINGMESSAGE_TAG_MAX_LEN = 132
         SHORTDESCRIPTION_TAG_MAX_LENGTH = 40
+
+        move_obj = self.pool.get('stock.move')
 
         ret = []
         i = 1
         id_table = {}
         for ordered_id in sorted([x.id for x in stock_picking.move_lines]):
             id_table[str(ordered_id)] = i
+            move_obj.write(self.cr, self.uid, ordered_id, {'yc_posno': i},
+                           context=self.context)
             i += 1
+
         for move in stock_picking.move_lines:
             if self.get_param('enable_product_lifecycle') and (move.product_id.product_state not in ['in_production']):
                 raise Warning(_('Product {0} is not ready on the lifecycle. State: {1}').format(move.product_id.default_code, move.product_id.product_state))
-            xml = create_element('Position')
-            xml.append(create_element('PosNo', text=id_table[str(move.id)]))
-            xml.append(create_element('ArticleNo', text=move.product_id.default_code))
+            xml = self.create_element('Position')
+            xml.append(self.create_element('PosNo', text=id_table[str(move.id)]))
+            xml.append(self.create_element('ArticleNo', text=move.product_id.default_code))
+
+            if move.product_id.ean13 and not self.get_param('ignore_ean'):
+                # We optionally send the EAN if the product has one and
+                # we haven't explicitly said to ignore it.
+                xml.append(self.create_element('EAN', move.product_id.ean13))
+
             value = getattr(move, 'restrict_lot_id' if version_info[0] > 7 else 'prodlot_id', None)
             if value:
-                xml.append(create_element('Lot', text=value.name))
-            xml.append(create_element('Plant', text=self.get_param('plant_id', required=True)))
-            xml.append(create_element('Quantity', text=move.product_qty))
+                xml.append(self.create_element('Lot', text=value.name))
+            xml.append(self.create_element('Plant', text=self.get_param('plant_id', required=True)))
+            xml.append(self.create_element('Quantity', text=move.product_qty))
             if not move.product_uom.uom_iso:
                 raise Warning(_("Undefined ISO code for UOM '{0}', in product {1}").format(move.product_uom.name, move.product_id.default_code))
-            xml.append(create_element('QuantityISO', text=move.product_uom.uom_iso))
+            xml.append(self.create_element('QuantityISO', text=move.product_uom.uom_iso))
 
             # Conditionally fills the tag <ShortDescription>, depending on if it's used as it has to be used
             # (encoding the product's name),  or if it's used to encode another information...
@@ -304,23 +350,35 @@ class yellowcube_wab_xml_factory(xml_abstract_factory):
                 short_description_value = move.product_id.name[:SHORTDESCRIPTION_TAG_MAX_LENGTH]
             else:  # if short_description_usage == 'price':
                 short_description_value = "%0.2f" % move.product_id.list_price
-            xml.append(create_element('ShortDescription', text=short_description_value))
+            xml.append(self.create_element('ShortDescription', text=short_description_value))
 
-            # Conditionally fills the tag <PickingMessage>, depending on if it's not used or if it's used
-            # to encode  the reference of the carrier of the picking... This is supposed to be a temporary
+            # Conditionally fills the tag <PickingMessage>, depending on if
+            # it's not used or if it's used for what is indicated in the
+            # dropdown of the field. This is supposed to be a temporary
             # solution until the new XSD is crafted.
-            picking_message_usage = self.get_param('wab_pickingmessage_mapping')
-            if picking_message_usage == 'carrier_tracking_ref':
+            picking_message_content = False
+            picking_message_use = self.get_param('wab_pickingmessage_mapping')
+            if picking_message_use == 'carrier_tracking_ref':
                 carrier_tracking_ref = stock_picking.carrier_tracking_ref
                 if carrier_tracking_ref:
-                    xml.append(create_element('PickingMessage', text=carrier_tracking_ref[:PICKINGMESSAGE_TAG_MAX_LENGTH]))
+                    picking_message_content = \
+                        carrier_tracking_ref[:PICKINGMESSAGE_TAG_MAX_LEN]
+            else:
+                # Other options result in no value for PickingMessage, thus
+                # that tag won't be created (and won't be filled because the
+                # value for picking_message_content is not set).
+                pass
+            if picking_message_content:
+                xml.append(self.create_element(
+                    'PickingMessage', text=picking_message_content))
 
             if stock_picking.yellowcube_return_reason:
-                xml.append(create_element('ReturnReason', text=stock_picking.yellowcube_return_reason))
+                xml.append(self.create_element('ReturnReason', text=stock_picking.yellowcube_return_reason))
             ret.append(xml)
-            xsd_error = validate_xml("wab", xml, print_error=self.print_errors)
-            if xsd_error:
-                logger.error(xsd_error)
+            if validate_xml:
+                xsd_error = self.xml_tools.validate_xml("wab", xml, print_error=self.print_errors)
+                if xsd_error:
+                    write_log(self, self.cr, self.uid, 'stock.picking', stock_picking.name, stock_picking.id, 'XSD validation error', correct=False, extra_information=xsd_error)
         return ret
 
     def __generate_partner_name(self, partner):
@@ -392,7 +450,25 @@ class yellowcube_wab_xml_factory(xml_abstract_factory):
         return ret
 
     def mark_as_exported(self, _id):
-        self.pool.get('stock.picking').write(self.cr, self.uid, _id, {'yellowcube_exported_wab': True}, context=self.context)
+        """ Saves on the picking that the WAB was exported.
+            In the sale.order it saves the amount of minutes passed since
+            the creation of the sale.order and the exporting of the WAB.
+        """
+        picking_obj = self.pool.get('stock.picking')
+        order_obj = self.pool.get('sale.order')
+
+        picking_obj.write(self.cr, self.uid, _id,
+                          {'yellowcube_exported_wab': True},
+                          context=self.context)
+
+        # Stores the date & time in which the first WAB was created for
+        # this sale.order (to get statistics about performance).
+        picking = picking_obj.browse(self.cr, self.uid, _id,
+                                     context=self.context)
+        if picking.sale_id and not picking.sale_id.creation_wab_datetime:
+            order_obj.write(self.cr, self.uid, picking.sale_id.id,
+                            {'creation_wab_datetime': fields.datetime.now()},
+                            context=self.context)
 
     def get_base_priority(self):
         return 10

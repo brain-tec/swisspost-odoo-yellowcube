@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+    <data>
+
+		<!-- Follow-up Report for PF. -->
+		<report id="report_followup_pf" string="(PCAP) Followup PF"
+			model="account.invoice" name="invoice_followup_report_pf"
+			file="pc_followup_pf/report/invoice_followup_report.mako"
+			report_type="webkit" auto="False" />
+		<record id="report_followup_pf" model="ir.actions.report.xml">
+			<field name="webkit_header" ref="pc_generics.pc_account_header_footer_pf" />
+		</record>
+
+    </data>
+</openerp>

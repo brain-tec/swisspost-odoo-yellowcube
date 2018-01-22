@@ -1,7 +1,7 @@
 # b-*- encoding: utf-8 -*-
 ##############################################################################
 #
-#    Copyright (c) 2015 brain-tec AG (http://www.brain-tec.ch)
+#    Copyright (c) 2015 brain-tec AG (http://www.braintec-group.com)
 #    All Right Reserved
 #
 #    This program is free software: you can redistribute it and/or modify
@@ -25,23 +25,22 @@ import urllib
 from types import *
 import re
 import base64
-import socket
-import httplib
+import socket, httplib
 from httplib import HTTPConnection, HTTP
 import Cookie
 
 # SOAPpy modules
-from SOAPpy.Errors import *
-from SOAPpy.Config import Config
-from SOAPpy.Parser import parseSOAPRPC
+from SOAPpy.Errors      import *
+from SOAPpy.Config      import Config
+from SOAPpy.Parser      import parseSOAPRPC
 from SOAPpy.SOAPBuilder import buildSOAP
-from SOAPpy.Utilities import *
-from SOAPpy.Types import faultType, simplify
+from SOAPpy.Utilities   import *
+from SOAPpy.Types       import faultType, simplify
 from SOAPpy.version import __version__
 
 
-def __patched_HTTPTransport_call(self, addr, data, namespace, soapaction=None, encoding=None,
-                                 http_proxy=None, config=Config, timeout=None):
+def __patched_HTTPTransport_call(self, addr, data, namespace, soapaction = None, encoding = None,
+    http_proxy = None, config = Config, timeout=None):
 
     def __addcookies(self, r):
         '''Add cookies from self.cookies to request r
@@ -73,7 +72,7 @@ def __patched_HTTPTransport_call(self, addr, data, namespace, soapaction=None, e
 
     if addr.proto == 'httpg':
         from pyGlobus.io import GSIHTTP
-        r = GSIHTTP(real_addr, tcpAttr=config.tcpAttr)
+        r = GSIHTTP(real_addr, tcpAttr = config.tcpAttr)
     elif addr.proto == 'https':
         r = httplib.HTTPS(real_addr, key_file=config.SSL.key_file, cert_file=config.SSL.cert_file)
     else:
@@ -83,21 +82,21 @@ def __patched_HTTPTransport_call(self, addr, data, namespace, soapaction=None, e
 
     r.putheader("Host", addr.host)
     r.putheader("User-agent", SOAPUserAgent())
-    t = 'text/xml'
-    if encoding is not None:
+    t = 'text/xml';
+    if encoding != None:
         t += '; charset=%s' % encoding
     r.putheader("Content-type", t)
     r.putheader("Content-length", str(len(data)))
-    __addcookies(self, r)
-
+    __addcookies(self, r);
+    
     # if user is not a user:passwd format
     #    we'll receive a failure from the server. . .I guess (??)
-    if addr.user is not None:
+    if addr.user != None:
         val = base64.encodestring(urllib.unquote_plus(addr.user))
-        r.putheader('Authorization', 'Basic ' + val.replace('\012', ''))
+        r.putheader('Authorization','Basic ' + val.replace('\012',''))
 
     # This fixes sending either "" or "None"
-    if soapaction is None or len(soapaction) == 0:
+    if soapaction == None or len(soapaction) == 0:
         r.putheader("SOAPAction", "")
     else:
         r.putheader("SOAPAction", '"%s"' % soapaction)
@@ -130,22 +129,22 @@ def __patched_HTTPTransport_call(self, addr, data, namespace, soapaction=None, e
     # read response line
     code, msg, headers = r.getreply()
 
-    self.cookies = Cookie.SimpleCookie()
+    self.cookies = Cookie.SimpleCookie();
     if headers:
-        content_type = headers.get("content-type", "text/xml")
+        content_type = headers.get("content-type","text/xml")
         content_length = headers.get("Content-length")
 
         for cookie in headers.getallmatchingheaders("Set-Cookie"):
-            self.cookies.load(cookie)
+            self.cookies.load(cookie);
 
     else:
-        content_type = None
-        content_length = None
+        content_type=None
+        content_length=None
 
     # work around OC4J bug which does '<len>, <len>' for some reaason
     if content_length:
-        comma = content_length.find(',')
-        if comma > 0:
+        comma=content_length.find(',')
+        if comma>0:
             content_length = content_length[:comma]
 
     # attempt to extract integer message size
@@ -167,7 +166,7 @@ def __patched_HTTPTransport_call(self, addr, data, namespace, soapaction=None, e
         data = f.read(message_len)
 
     if(config.debug):
-        print "code=", code
+        print "code=",code
         print "msg=", msg
         print "headers=", headers
         print "content-type=", content_type
@@ -178,7 +177,7 @@ def __patched_HTTPTransport_call(self, addr, data, namespace, soapaction=None, e
         debugHeader(s)
         if headers.headers:
             print "HTTP/1.? %d %s" % (code, msg)
-            print "\n".join(map(lambda x: x.strip(), headers.headers))
+            print "\n".join(map (lambda x: x.strip(), headers.headers))
         else:
             print "HTTP/0.9 %d %s" % (code, msg)
         debugFooter(s)
@@ -187,19 +186,20 @@ def __patched_HTTPTransport_call(self, addr, data, namespace, soapaction=None, e
         return string[0:len(val)] == val
 
     if code == 500 and not \
-            ((startswith(content_type, "text/xml") or startswith(content_type, "text/plain")) and message_len > 0):
+           ( (startswith(content_type, "text/xml") or startswith(content_type, "text/plain")) and message_len > 0 ):
         raise HTTPError(code, msg)
 
     if config.dumpSOAPIn:
         s = 'Incoming SOAP'
         debugHeader(s)
         print data,
-        if (len(data) > 0) and (data[-1] != '\n'):
+        if (len(data)>0) and (data[-1] != '\n'):
             print
         debugFooter(s)
 
     if code not in (200, 500):
         raise HTTPError(code, msg)
+
 
     # get the new namespace
     if namespace is None:

@@ -787,10 +787,10 @@ msgstr "Commande de ventes"
 
 #. module: pc_connect_warehouse
 #: view:configuration.data:0
-msgid "Scheduler 'SPYCC - Check Delivery Order Open Date' will check for every delivery order in state open or pending \n"
+msgid "Scheduler 'PCAP - Check Delivery Order Open Date' will check for every delivery order in state open or pending \n"
 "                                if it was created before the time indicated below. If so, an issue is created and a message is logged informed\n"
 "                                about the problem."
-msgstr "Scheduler 'SPYCC - Check Delivery Order Open Date' will check for every delivery order in state open or pending \n"
+msgstr "Scheduler 'PCAP - Check Delivery Order Open Date' will check for every delivery order in state open or pending \n"
 "                                if it was created before the time indicated below. If so, an issue is created and a message is logged informed\n"
 "                                about the problem."
 

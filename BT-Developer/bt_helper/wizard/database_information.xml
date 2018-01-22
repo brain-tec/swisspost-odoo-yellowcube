@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+	<data>
+
+		<record id="view_database_information" model="ir.ui.view">
+			<field name="name">view_database_information</field>
+			<field name="model">bt_helper.database_information</field>
+			<field name="arch" type="xml">
+				<form string="Database Information">
+					<field name="state" invisible="1" />
+					<group states="done">
+						<field name="partial_calculation_ids" nolabel="1" />
+					</group>
+					<button name="get_classes_columns" string="Go" type="object"
+						states="init" icon="gtk-ok" colspan="3" />
+					<button special="cancel" string="Cancel" icon="gtk-cancel"
+						colspan="1" />
+
+				</form>
+			</field>
+		</record>
+
+
+		<record id="view_database_partial_tree_information" model="ir.ui.view">
+			<field name="name">view_database_partial_tree_information</field>
+			<field name="model">bt_helper.partial_calculation</field>
+			<field name="arch" type="xml">
+				<tree string="Database Information"
+					colors="blue:size_number&lt;100;orange:size_number&lt;500;red:size_number&gt;500">
+					<field name="table" />
+					<field name="column" />
+					<field name="size_number" />
+				</tree>
+			</field>
+		</record>
+
+		<record id="view_database_partial_form_information" model="ir.ui.view">
+			<field name="name">view_database_partial_form_information</field>
+			<field name="model">bt_helper.partial_calculation</field>
+			<field name="arch" type="xml">
+				<form string="Database Information">
+					<field name="wizard_id" />
+					<field name="table" />
+					<field name="column" />
+					<field name="size_number" />
+				</form>
+			</field>
+		</record>
+		<record id="view_database_partial_search_information" model="ir.ui.view">
+			<field name="name">view_database_partial_search_information</field>
+			<field name="model">bt_helper.partial_calculation</field>
+			<field name="arch" type="xml">
+				<search string="Database Information">
+					<field name="table" />
+					<field name="column" />
+					<field name="size_number" />
+					<field name="wizard_id" widget="selection" />
+					<group expand="0" string="Group By...">
+						<filter string="Table" context="{'group_by': 'table'}"
+							icon="terp-folder-orange" />
+					</group>
+				</search>
+			</field>
+		</record>
+
+
+
+
+
+		<record id="action_database_partial_information" model="ir.actions.act_window">
+			<field name="name">Database Information</field>
+			<field name="type">ir.actions.act_window</field>
+			<field name="res_model">bt_helper.partial_calculation</field>
+			<field name="view_type">form</field>
+			<field name="view_mode">tree,form</field>
+		</record>
+
+		<record id="action_database_information" model="ir.actions.act_window">
+			<field name="name">Database Information</field>
+			<field name="type">ir.actions.act_window</field>
+			<field name="res_model">bt_helper.database_information</field>
+			<field name="view_type">form</field>
+			<field name="view_mode">form</field>
+			<field name="target">new</field>
+		</record>
+
+		<menuitem name="Database Information" action="action_database_information"
+			id="menu_database_information" groups="base.group_no_one" parent="menu_helper"
+			sequence="4" />
+		<menuitem name="Database Partial Information" action="action_database_partial_information"
+			id="menu_database_partial_information" groups="base.group_no_one"
+			parent="menu_helper" sequence="4" />
+
+	</data>
+</openerp>
+

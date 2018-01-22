@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+
+        <record id="configuration_data_form_ext" model="ir.ui.view">
+            <field name="name">configuration_data_form_ext</field>
+            <field name="model">configuration.data</field>
+            <field name="inherit_id" ref="pc_config.configuration_data_form" />
+            <field name="arch" type="xml">
+
+                <notebook position="inside">
+                    <page name="doc_out" string="Doc-out" />
+                </notebook>
+
+            </field>
+        </record>
+
+    </data>
+</openerp>

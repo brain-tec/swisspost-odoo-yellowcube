@@ -1,0 +1,92 @@
+# Translation of OpenERP Server.
+# This file contains the translation of the following modules:
+#	* pc_followup_pf
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: OpenERP Server 7.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2017-12-11 14:32+0000\n"
+"PO-Revision-Date: 2017-12-11 14:32+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: pc_followup_pf
+#: report:addons/pc_followup_pf/report/invoice_followup_report.mako:145
+msgid "Pending amount"
+msgstr "offener Betrag"
+
+#. module: pc_followup_pf
+#: report:addons/pc_followup_pf/report/invoice_followup_report.mako:142
+#: report:addons/pc_followup_pf/report/invoice_followup_report.mako:146
+msgid "in"
+msgstr "in"
+
+#. module: pc_followup_pf
+#: report:addons/pc_followup_pf/report/invoice_followup_report.mako:139
+msgid "Description"
+msgstr "Bezeichnung"
+
+#. module: pc_followup_pf
+#: report:addons/pc_followup_pf/report/invoice_followup_report.mako:153
+msgid "Invoice from "
+msgstr "Rechnung vom "
+
+#. module: pc_followup_pf
+#: report:addons/pc_followup_pf/report/invoice_followup_report.mako:41
+msgid "Phone"
+msgstr "Telefon"
+
+#. module: pc_followup_pf
+#: report:addons/pc_followup_pf/report/invoice_followup_report.mako:54
+msgid "Policy No."
+msgstr "Policen Nr."
+
+#. module: pc_followup_pf
+#: report:addons/pc_followup_pf/report/invoice_followup_report.mako:141
+msgid "Total amount"
+msgstr "Rechnungsbetrag"
+
+#. module: pc_followup_pf
+#: report:addons/pc_followup_pf/report/invoice_followup_report.mako:56
+msgid "Invoice date"
+msgstr "Rechnungsdatum"
+
+#. module: pc_followup_pf
+#: report:addons/pc_followup_pf/report/invoice_followup_report.mako:153
+msgid " with due date "
+msgstr " mit Fälligkeit vom "
+
+#. module: pc_followup_pf
+#: report:addons/pc_followup_pf/report/invoice_followup_report.mako:59
+msgid "Invoice number"
+msgstr "Rechnungsnummer"
+
+#. module: pc_followup_pf
+#: report:addons/pc_followup_pf/report/invoice_followup_report.mako:62
+msgid "Dunning date"
+msgstr "Mahndatum"
+
+#. module: pc_followup_pf
+#: report:addons/pc_followup_pf/report/invoice_followup_report.mako:184
+msgid "Total in our favour"
+msgstr "Total zu unseren Gunsten"
+
+#. module: pc_followup_pf
+#: report:addons/pc_followup_pf/report/invoice_followup_report.mako:68
+msgid "This invoice has already been paid"
+msgstr "Diese Rechnung wurde bereits bezahlt."
+
+#. module: pc_followup_pf
+#: report:addons/pc_followup_pf/report/invoice_followup_report.mako:65
+msgid "To be paid until"
+msgstr "Bezahlbar bis"
+
+#. module: pc_followup_pf
+#: report:addons/pc_followup_pf/report/invoice_followup_report.mako:168
+msgid "Overdue fines"
+msgstr "Mahngebühren"

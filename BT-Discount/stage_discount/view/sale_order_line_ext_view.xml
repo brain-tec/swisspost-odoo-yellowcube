@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+	<data>
+	<!--  Specific views for discount lines with price_unit having a different label -->
+	
+		<record id="view_order_line_form_1" model="ir.ui.view">
+			<field name="name">sale.order.line.form</field>
+			<field name="model">sale.order.line</field>
+			<field name="type">form</field>
+			<field name="priority" eval="100"/>
+			<field name="arch" type="xml">
+				<form string="Discount Invoice Lines">
+					<field name="sequence" widget="handle" />
+					<field name="is_discount" invisible="1" />
+					<field name="is_subtotal" invisible="1" />
+					<field name="name" />
+					
+					<field name="company_id" invisible="1" />
+					<field name="tax_id" widget="many2many_tags"
+						context="{'type':parent.type}" />			
+					<field name="price_unit" string="Discount Value" />
+				</form>
+			</field>
+		</record>
+
+		<record id="view_order_line_tree_1" model="ir.ui.view">
+			<field name="name">sale.order.line.tree</field>
+			<field name="model">sale.order.line</field>
+			<field name="type">tree</field>
+			<field name="priority" eval="100"/>
+			<field name="arch" type="xml">
+				<tree string="Discount Invoice Lines"
+                colors="red:discount_type in ['subtotal'];
+                black:discount_type in ['product'];
+                green:discount_type not in ['subtotal','product'];">
+                    <field name="discount_type" invisible="1" />
+					<field name="sequence" widget="handle" />
+					<field name="is_discount" invisible="1" />
+					<field name="is_subtotal" invisible="1" />
+					<field name="name" />
+					<field name="state" invisible="1"/>
+					<field name="company_id" invisible="1" />					
+					<field name="tax_id" widget="many2many_tags"
+						context="{'type':parent.type}" />			
+					<field name="price_unit" string="Discount Value" />						
+				</tree>
+			</field>
+		</record>
+	</data>
+</openerp>

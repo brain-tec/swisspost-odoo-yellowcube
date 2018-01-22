@@ -12,6 +12,7 @@
 			<xs:sequence>
 				<xs:element ref="bur_r:ControlReference"/>
 				<xs:element ref="bur_r:CustomerOrderNo" minOccurs="0"/>
+				<xs:element ref="bur_r:ElapsedDays" minOccurs="0"/>
 			</xs:sequence>
 		</xs:complexType>
 	</xs:element>

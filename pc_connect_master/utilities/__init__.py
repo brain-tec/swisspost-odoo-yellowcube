@@ -1,7 +1,7 @@
 # b-*- encoding: utf-8 -*-
 ##############################################################################
 #
-#    Copyright (c) 2015 brain-tec AG (http://www.brain-tec.ch)
+#    Copyright (c) 2015 brain-tec AG (http://www.braintec-group.com)
 #    All Right Reserved
 #
 #    This program is free software: you can redistribute it and/or modify
@@ -20,8 +20,12 @@
 ##############################################################################
 
 import date_utilities
+import files
 import filters
-import misc
+import memory
+import others
 import pdf
+import reports
+import db
 
 # vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:

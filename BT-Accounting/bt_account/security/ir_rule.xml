@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data noupdate="0">
+    
+        <record id="group_round_to_0_05" model="res.groups">
+            <field name="name">Allows rounding to 0.05 for invoice</field>
+            <field name="category_id" ref="base.module_category_hidden"/>
+        </record>
+    </data>
+</openerp>

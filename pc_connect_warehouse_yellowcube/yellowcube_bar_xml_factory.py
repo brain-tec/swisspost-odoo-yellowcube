@@ -1,7 +1,7 @@
 # b-*- encoding: utf-8 -*-
 ##############################################################################
 #
-#    Copyright (c) 2014 brain-tec AG (http://www.brain-tec.ch)
+#    Copyright (c) 2014 brain-tec AG (http://www.braintec-group.com)
 #    All Right Reserved
 #
 #    This program is free software: you can redistribute it and/or modify
@@ -18,18 +18,15 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 ##############################################################################
-# from osv import osv, fields
-# from tools.translate import _
 import sys
 from xml_abstract_factory import xml_factory_decorator, xml_abstract_factory
-from openerp.addons.pc_connect_master.utilities.misc import format_exception
-from lxml import etree
+from openerp.addons.pc_connect_master.utilities.ean import check_ean
 from openerp.tools.translate import _
-import datetime
-from xsd.xml_tools import nspath, validate_xml, open_xml
+from datetime import datetime
 from openerp.release import version_info
 import logging
 logger = logging.getLogger(__name__)
+logger.setLevel(logging.DEBUG)
 
 
 @xml_factory_decorator("bar")
@@ -60,10 +57,11 @@ class yellowcube_bar_xml_factory(xml_abstract_factory):
 
         product_obj = self.pool.get("product.product")
         lot_obj = self.pool.get('stock.production.lot')
-        lot_model = 'stock.quant' if version_info[0] > 7 else 'stock.report.prodlots'
+        lot_model = 'stock.quant' if version_info[0] >7 else 'stock.report.prodlots'
         stock_report_prodlots_obj = self.pool[lot_model]
 
-        xml = open_xml(file_text, _type='bar', print_error=self.print_errors)
+        xml = self.xml_tools.open_xml(
+            file_text, _type='bar', print_error=self.print_errors)
 
         imports = []
         imported_lots = []
@@ -75,7 +73,10 @@ class yellowcube_bar_xml_factory(xml_abstract_factory):
         loc_stock = location.lot_stock_id.id
         loc_blocked = location.lot_blocked_id.id
 
-        article_list = nspath(xml, "//bar:ArticleList/bar:Article")
+        timestamp = self.xml_tools.nspath(xml, "//bar:Timestamp")[0].text
+        timestamp_datetime = datetime.strptime(timestamp, '%Y%m%d%H%M%S')
+        article_list = self.xml_tools.nspath(
+            xml, "//bar:ArticleList/bar:Article")
         self._check(None, article_list, _('This BAR has no products in it.'))
         if not article_list:
             logger.debug("This is an empty BAR file")
@@ -83,15 +84,20 @@ class yellowcube_bar_xml_factory(xml_abstract_factory):
 
         for article in article_list:
             partial_success = True
-            element = {'location_id': loc_stock}
-            quantity_uom = float(nspath(article, "bar:QuantityUOM")[0].text)
+            element = {'location_id': loc_stock,
+                       'yc_last_bar_update': timestamp_datetime,
+                       }
+            quantity_uom = float(
+                self.xml_tools.nspath(article, "bar:QuantityUOM")[0].text)
 
-            element['yc_YCArticleNo'] = nspath(article, "bar:YCArticleNo")[0].text
-            article_no = nspath(article, "bar:ArticleNo")
-            ean = nspath(article, "bar:EAN")
+            element['yc_YCArticleNo'] = self.xml_tools.nspath(
+                article, "bar:YCArticleNo")[0].text
+            article_no = self.xml_tools.nspath(article, "bar:ArticleNo")
+            ean = self.xml_tools.nspath(article, "bar:EAN")
 
             # We attempt to identify the product.
-            # Priority: YCArticleNo, ArticleNo(default_code), EAN(ean13).
+            # Priority: YCArticleNo, ArticleNo(default_code),
+            # and optionally EAN(ean13).
             search_domain = []
             search_domain.append([("yc_YCArticleNo", "=", element['yc_YCArticleNo'])])
 
@@ -101,11 +107,18 @@ class yellowcube_bar_xml_factory(xml_abstract_factory):
             else:
                 element['default_code'] = None
 
-            if ean:
-                element['ean13'] = ean[0].text
-                search_domain.append([("ean13", "=", element['ean13'])])
-            else:
-                element['ean13'] = None
+            if not self.get_param('ignore_ean'):
+                # We can optionally choose not to take into account the EAN
+                # code to identify the product.
+                if ean:
+                    element['ean13'] = ean[0].text
+                    search_domain.append([("ean13", "=", element['ean13'])])
+                else:
+                    element['ean13'] = None
+
+                partial_success &= self._check(
+                    False, check_ean(element['ean13']) is True,
+                    _('{0} is not a valid EAN.').format(element['ean13']))
 
             # Attempts to identify the product.
             for domain in search_domain:
@@ -126,13 +139,17 @@ class yellowcube_bar_xml_factory(xml_abstract_factory):
 
             product_id = product_id[0]
             product = product_obj.browse(self.cr, self.uid, product_id, self.context)
+
             element['id'] = product_id
-            for k in ('ean13', 'default_code', 'yc_YCArticleNo'):
+            fields_to_match_for_product = ['default_code', 'yc_YCArticleNo']
+            if not self.get_param('ignore_ean'):
+                fields_to_match_for_product.append('ean13')
+            for k in fields_to_match_for_product:
                 if product[k] and element[k]:
                     self._check(product, element[k] == product[k], _('Mismatching product reference {0}').format(k))
 
             # Checks/Saves Plant
-            plant = nspath(article, "bar:Plant")[0].text
+            plant = self.xml_tools.nspath(article, "bar:Plant")[0].text
             current_plant = self.get_param('plant_id', required=True)
             self._check(product, current_plant, _("Configuration parameter YC PlantID is not defined for product {0}").format(product.name))
             self._check(product, current_plant and current_plant == plant, _('Plant does not match with the value of the configuration parameter YC PlantID for product {0}').format(product.name))
@@ -140,8 +157,9 @@ class yellowcube_bar_xml_factory(xml_abstract_factory):
             # Checks <StorageLocation> and <StockType>
             # Notes: Check together with StorageLocation against location_id on stock.move - alarm if wrong.
             #        If free type (' ', '0', 'F', 'U') use the StorageLocation, otherwise location YBLK.
-            storage_location = nspath(article, "bar:StorageLocation")[0].text
-            stock_type = nspath(article, "bar:StockType")[0].text
+            storage_location = self.xml_tools.nspath(
+                article, "bar:StorageLocation")[0].text
+            stock_type = self.xml_tools.nspath(article, "bar:StockType")[0].text
 
             # If there exists the tag <StockType>, then we follow the rules.
             location_to_use_ids = False
@@ -159,11 +177,11 @@ class yellowcube_bar_xml_factory(xml_abstract_factory):
             lot_id = None
             lot_search_domain = None
             lot_to_use = False
-            yc_lot = nspath(article, "bar:YCLot")
+            yc_lot = self.xml_tools.nspath(article, "bar:YCLot")
             if yc_lot:
                 lot_to_use = yc_lot[0].text
                 lot_search_domain = [('name', '=', lot_to_use), ('product_id', '=', product_id)]
-            lot = nspath(article, "bar:Lot")
+            lot = self.xml_tools.nspath(article, "bar:Lot")
             if lot:
                 lot_to_use = lot[0].text
                 lot_search_domain = [('name', '=', lot_to_use), ('product_id', '=', product_id)]
@@ -183,7 +201,7 @@ class yellowcube_bar_xml_factory(xml_abstract_factory):
                 imported_lots.append(lot_id)
 
             # Dates: BestBeforeDate.
-            best_before_date = nspath(article, "bar:BestBeforeDate")
+            best_before_date = self.xml_tools.nspath(article, "bar:BestBeforeDate")
             if best_before_date:
                 best_before_date = best_before_date[0].text
                 if self._check(product, lot_search_domain, _('BestBeforeDate defined but unknown lot to use in product {0}').format(product.name)):
@@ -197,7 +215,7 @@ class yellowcube_bar_xml_factory(xml_abstract_factory):
                     lot_obj.write(self.cr, self.uid, lot_id, {'use_date': self.str_date_to_postgres(best_before_date)}, self.context)
 
             # Dates: ProductionDate.
-            production_date = nspath(article, "bar:ProductionDate")
+            production_date = self.xml_tools.nspath(article, "bar:ProductionDate")
             if production_date:
                 production_date = production_date[0].text
                 self._check(product,
@@ -241,7 +259,8 @@ class yellowcube_bar_xml_factory(xml_abstract_factory):
             element['qty_available'] = quantity_uom
 
             # Checks that the QuantityUOM matches with the product.
-            quantity_iso = nspath(article, "bar:QuantityUOM")[0].attrib['QuantityISO']
+            quantity_iso = self.xml_tools.nspath(
+                article, "bar:QuantityUOM")[0].attrib['QuantityISO']
             uom_iso_list = self.pool.get('product.uom').search(self.cr, self.uid, [('uom_iso', '=', quantity_iso)], context=self.context)
             if uom_iso_list:
                 element['yc_bar_uom_id'] = uom_iso_list[0]  # Stores the last UOM sent with the BAR.
@@ -293,13 +312,14 @@ class yellowcube_bar_xml_factory(xml_abstract_factory):
                     _update = stock_obj.create(self.cr, self.uid, values, context=self.context)
                     self.context['active_id'] = _id
                     stock_obj.browse(self.cr, self.uid, _update, context=self.context).change_product_qty()
-                    self.mark_record(_id, 'product.product')
                     for same in [x for x in new_imports if x['yc_YCArticleNo'] == article['yc_YCArticleNo']]:
                         same['id'] = _id
                 logger.error("This code is not part of YellowCube's and its use is only intended for developers: FINISH OF THE CODE.")
 
             # We return by context, the lots that were updated.
             self.context['imported_lots'] = imported_lots
+            for lot_id in imported_lots:
+                lot_obj.write(self.cr, self.uid, lot_id, {'yc_last_bar_update': timestamp_datetime}, context=self.context)
 
             # We return by context, the products that where updated
             self.context['imported_products'] = imported_products = []
@@ -319,7 +339,6 @@ class yellowcube_bar_xml_factory(xml_abstract_factory):
                 del article['location_id']
                 values = {'product_id': _id, 'location_id': location_id, 'new_quantity': article['qty_available']}
                 if 'lot' in article:
-                    self.mark_record(article['lot'], 'stock.production.lot')
                     values['lot_id' if version_info[0] > 7 else 'prodlot_id'] = article['lot']
                     del article['lot']
                 product_obj.write(self.cr, self.uid, _id, article, context=self.context)
@@ -327,7 +346,6 @@ class yellowcube_bar_xml_factory(xml_abstract_factory):
                 _update = stock_obj.create(self.cr, self.uid, values, context=self.context)
                 self.context['active_id'] = _id
                 stock_obj.browse(self.cr, self.uid, _update, context=self.context).change_product_qty()
-                self.mark_record(_id, 'product.product')
 
             if 'active_ids' in self.context:
                 del self.context['active_ids']

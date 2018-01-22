@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+    <data noupdate="0">
+
+		<!-- Picking List Report -->
+		<report id="report_picking_list" string="Picking List"
+			model="stock.picking.out" name="picking_list_report"
+			file="pc_connect_warehouse_external_email/reports/picking_list.mako"
+			report_type="webkit" auto="False" />
+		<record id="report_picking_list" model="ir.actions.report.xml">
+			<field name="webkit_header" ref="pc_generics.ir_report_quotation_order" />
+            <field name="one_document" eval="True" />
+		</record>
+
+    </data>
+</openerp>

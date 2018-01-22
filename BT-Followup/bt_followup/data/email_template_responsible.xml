@@ -1,0 +1,25 @@
+<?xml version="1.0"?>
+<openerp>
+    <data noupdate="1">
+
+        <record id="email_template_warn_user_responsible_of_followups" model="email.template">
+            <field name="name">List of Invoices You Are Responsible Of</field>
+            <field name="email_from">${object.partner_id.email}</field>
+            <field name="subject">You are responsible of several invoices which are under a follow-up process</field>
+            <field name="email_to">${object.partner_id.email}</field>
+            <field name="lang">${object.partner_id.lang}</field>
+            <field name="model_id" ref="base.model_res_users"/>
+            <field name="auto_delete" eval="False"/>
+            <field name="body_html"><![CDATA[
+            <div style="font-family: sans-serif; font-size: 12px;">
+            Dear ${object.name | safe},
+
+            <p>You are responsible for taking a manual action over the following invoices which are under a follow-up process:</p>
+
+            ${object.get_html_list_of_invoices_responsible() | safe}
+            </div>
+            ]]></field>
+        </record>
+
+    </data>
+</openerp>

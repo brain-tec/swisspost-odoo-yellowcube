@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+
+    <!-- We define here the data which must not be modified by the user. -->
+	<data noupdate="0">
+		<record id="cron_update_taxes_in_products" model="ir.cron">
+			<field name="name">PCAP - Update taxes on products for the New Year 2018</field>
+			<field name="model">product.product</field>
+			<field name="function">cron_update_taxes_in_products</field>
+            <field name="interval_type">months</field>
+			<field name="interval_number" eval="1" />
+            <!-- Must be executed at 2018-01-01 00:01:00. -->
+            <field name="nextcall">2017-12-31 23:01:00</field>
+            <field name="args" eval="()" />
+		</record>
+	</data>
+
+    <!-- We define here the data which may be modified by the user. -->
+	<data noupdate="1">
+		<record id="cron_update_taxes_in_products" model="ir.cron">
+			<field name="numbercall" eval="-1" />
+			<field name="doall" eval="True" />
+			<field name="priority" eval="0" />
+			<field name="active" eval="False" />
+		</record>
+	</data>
+
+</openerp>

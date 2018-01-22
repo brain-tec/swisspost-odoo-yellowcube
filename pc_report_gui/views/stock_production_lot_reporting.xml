@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+
+        <!-- Extended views. -->
+        <record id="view_stock_production_lot_reporting_ext_view" model="ir.ui.view">
+            <field name="name">view_stock_production_lot_reporting_ext_view</field>
+            <field name="model">stock.production.lot</field>
+            <field name="inherit_id" ref="stock.view_production_lot_tree" />
+            <field name="arch" type="xml">
+                <field name="date" position="after">
+                    <field name="life_date" />
+                    <field name="use_date" />
+                </field>
+            </field>
+        </record>
+
+        <!-- Defines the filters. -->
+        <record id="filter_serial_number_reporting" model="ir.ui.view">
+            <field name="name">filter_serial_number_reporting</field>
+            <field name="model">stock.production.lot</field>
+            <field name="inherit_id" ref="stock.search_product_lot_filter" />
+            <field name="arch" type="xml">
+                <filter string="Product" position="after">
+                    <filter string="End of Life Date" icon="terp-accessories-archiver" domain="[]" context="{'group_by':'life_date'}"/>
+                    <filter string="Best Before Date" icon="terp-accessories-archiver" domain="[]" context="{'group_by':'use_date'}"/>
+                </filter>
+            </field>
+        </record>
+
+        <!-- Defines the actions. -->
+        <record id="action_serial_number_reporting" model="ir.actions.act_window">
+            <field name="name">Products</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">stock.production.lot</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="search_view_id" ref="filter_serial_number_reporting" />
+        </record>
+
+        <!-- Defines the views associated to the actions. -->
+        <record id="action_serial_number_reporting_tree" model="ir.actions.act_window.view">
+            <field name="sequence" eval="0" />
+            <field name="view_mode">tree</field>
+            <field name="view_id" ref="view_stock_production_lot_reporting_ext_view" />
+            <field name="act_window_id" ref="action_serial_number_reporting" />
+        </record>
+        <record id="action_serial_number_reporting_form" model="ir.actions.act_window.view">
+            <field name="sequence" eval="1" />
+            <field name="view_mode">form</field>
+            <field name="view_id" ref="stock.view_production_lot_tree" />
+            <field name="act_window_id" ref="action_serial_number_reporting" />
+        </record>
+
+    </data>
+</openerp>

@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+	<data>
+		<record id="sale_order_line_form_ext_view" model="ir.ui.view">
+			<field name="name">sale.order.line.form.ext</field>
+			<field name="model">sale.order</field>
+			<field name="inherit_id" ref="sale_stock.view_order_form_inherit" />
+			<field name="arch" type="xml">
+				<xpath expr="//button[@name='print_quotation'][1]" position="attributes">
+					<attribute name="context">{'custom_search_line_editor':False,
+						'custom_search_category_editor': False,
+						'custom_search_line_discount':False}
+					</attribute>
+				</xpath>
+				<xpath expr="//button[@name='print_quotation'][2]" position="attributes">
+					<attribute name="context">{'custom_search_line_editor':False,
+						'custom_search_category_editor': False,
+						'custom_search_line_discount':False}
+					</attribute>
+				</xpath>
+				<xpath expr="//button[@name='action_view_invoice']" position="attributes">
+					<attribute name="context">{'custom_search_line_editor':False,
+						'custom_search_category_editor': False,
+						'custom_search_line_discount':False}
+					</attribute>
+				</xpath>
+				<xpath expr="//button[@name='ship_recreate']" position="attributes">
+					<attribute name="context">{'custom_search_line_editor':False,
+						'custom_search_category_editor': False,
+						'custom_search_line_discount':False}
+					</attribute>
+				</xpath>
+				<xpath expr="//button[@name='action_cancel']" position="attributes">
+					<attribute name="context">{'custom_search_line_editor':False,
+						'custom_search_category_editor': False,
+						'custom_search_line_discount':False}
+					</attribute>
+				</xpath>
+				<xpath expr="//button[@name='cancel']" position="attributes">
+					<attribute name="context">{'custom_search_line_editor':False,
+						'custom_search_category_editor': False,
+						'custom_search_line_discount':False}
+					</attribute>
+				</xpath>
+
+				<xpath expr="//button[@name='ship_cancel']" position="attributes">
+					<attribute name="context">{'custom_search_line_editor':False,
+						'custom_search_category_editor': False,
+						'custom_search_line_discount':False}
+					</attribute>
+				</xpath>
+				<xpath expr="//button[@name='invoice_recreate']" position="attributes">
+					<attribute name="context">{'custom_search_line_editor':False,
+						'custom_search_category_editor': False,
+						'custom_search_line_discount':False}
+					</attribute>
+				</xpath>
+				<xpath expr="//button[@name='invoice_corrected']" position="attributes">
+					<attribute name="context">{'custom_search_line_editor':False,
+						'custom_search_category_editor': False,
+						'custom_search_line_discount':False}
+					</attribute>
+				</xpath>
+				<xpath expr="//button[@name='invoice_cancel']" position="attributes">
+					<attribute name="context">{'custom_search_line_editor':False,
+						'custom_search_category_editor': False,
+						'custom_search_line_discount':False}
+					</attribute>
+				</xpath>
+
+				<xpath expr="//button[@name='action_quotation_send'][1]" position="attributes">
+					<attribute name="context">{'custom_search_line_editor':False,
+						'custom_search_category_editor': False,
+						'custom_search_line_discount':False}
+					</attribute>
+				</xpath>
+				<xpath expr="//button[@name='action_quotation_send'][2]" position="attributes">
+					<attribute name="context">{'custom_search_line_editor':False,
+						'custom_search_category_editor': False,
+						'custom_search_line_discount':False}
+					</attribute>
+				</xpath>
+				<xpath expr="//button[@name='action_button_confirm'][1]" position="attributes">
+					<attribute name="context">{'custom_search_line_editor':False,
+						'custom_search_category_editor': False,
+						'custom_search_line_discount':False}
+					</attribute>
+				</xpath>
+				<xpath expr="//button[@name='action_button_confirm'][2]" position="attributes">
+					<attribute name="context">{'custom_search_line_editor':False,
+						'custom_search_category_editor': False,
+						'custom_search_line_discount':False}
+					</attribute>
+				</xpath>
+				<xpath expr="//button[@name='copy_quotation']" position="attributes">
+					<attribute name="context">{'custom_search_line_editor':False,
+						'custom_search_category_editor': False,
+						'custom_search_line_discount':False}
+					</attribute>
+				</xpath>
+
+
+			</field>
+		</record>
+	</data>
+</openerp>

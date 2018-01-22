@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+	<data>
+
+
+		<record
+			id="view_users_form_simple_modif_ext_unlink_failsafe"
+			model="ir.ui.view">
+			<field name="name">res.users.preferences.form.ext.unlink_failsafe</field>
+			<field name="model">res.users</field>
+			<field
+				name="inherit_id"
+				ref="base.view_users_form_simple_modif" />
+			<field
+				eval="18"
+				name="priority" />
+			<field
+				name="arch"
+				type="xml">
+				<field
+					name="lang"
+					position="after">
+					<field
+						name="unlink_failsafe"
+						readonly="0" />
+				</field>
+
+			</field>
+		</record>
+
+	</data>
+</openerp>

@@ -1,0 +1,34 @@
+<burr:BUR_List
+    xmlns:burr="https://service.swisspost.ch/apache/yellowcube/YellowCube_BUR_RESPONSE_GoodsMovements.xsd">
+    <burr:BUR>
+        <burr:ControlReference>
+            <burr:Type>BUR</burr:Type>
+            <burr:Sender>YELLOWCUBE</burr:Sender>
+            <burr:Receiver>0000040730</burr:Receiver>
+            <burr:Timestamp>20141023173818</burr:Timestamp>
+            <burr:OperatingMode>T</burr:OperatingMode>
+            <burr:Version>1.0</burr:Version>
+        </burr:ControlReference>
+        <burr:GoodsMovements>
+            <burr:GoodsMovementsHeader>
+                <burr:BookingVoucherID>000</burr:BookingVoucherID>
+                <burr:BookingVoucherYear>2016</burr:BookingVoucherYear>
+                <burr:DepositorNo>12345678</burr:DepositorNo>
+            </burr:GoodsMovementsHeader>
+            <burr:BookingList>
+                <burr:BookingDetail>
+                    <burr:BVPosNo>0001</burr:BVPosNo>
+                    <burr:YCArticleNo>YT00002</burr:YCArticleNo>
+                    <burr:ArticleNo>test-lot-prod</burr:ArticleNo>
+                    <burr:Plant>TEST</burr:Plant>
+                    <burr:StorageLocation>YAFS</burr:StorageLocation>
+                    <burr:YCLot>0000001</burr:YCLot>
+                    <burr:Lot>0000001</burr:Lot>
+                    <burr:TransactionType>601</burr:TransactionType>
+                    <burr:StockType>F</burr:StockType>
+                    <burr:QuantityUOM QuantityISO="PCE">10</burr:QuantityUOM>
+                </burr:BookingDetail>
+            </burr:BookingList>
+        </burr:GoodsMovements>
+    </burr:BUR>
+</burr:BUR_List>

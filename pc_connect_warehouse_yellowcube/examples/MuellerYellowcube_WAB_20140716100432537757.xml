@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<WAB xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="YellowCube_WAB_Warenausgangsbestellung_New-20140424.xsd">
+
+  <ControlReference>
+    <Type>WAB</Type>
+    <Sender>Mustersender</Sender>
+    <Receiver>YELLOWCUBE</Receiver>
+    <Timestamp>20140716100432</Timestamp>
+    <OperatingMode>P</OperatingMode>
+    <Version>1.0</Version>
+  </ControlReference>
+
+  <Order>
+    <OrderHeader>
+      <DepositorNo>0000040451</DepositorNo>
+      <CustomerOrderNo>537757</CustomerOrderNo>
+      <CustomerOrderDate>20140716</CustomerOrderDate>
+    </OrderHeader>
+    <PartnerAddress>
+      <Partner>
+        <PartnerType>WE</PartnerType>
+        <PartnerNo>0000300011</PartnerNo>
+        <Name1>Anja Artkämper</Name1>
+        <Name2>c/o Fujifilm (Schweiz) AG</Name2>
+        <Street>Niederhaslistrasse 12</Street>
+        <CountryCode>CH</CountryCode>
+        <ZIPCode>8157</ZIPCode>
+        <City>Dielsdorf</City>
+        <LanguageCode>de</LanguageCode>
+      </Partner>
+    </PartnerAddress>
+    <ValueAddedServices>
+      <AdditionalService>
+        <BasicShippingServices>ECO</BasicShippingServices>
+      </AdditionalService>
+    </ValueAddedServices>
+    <OrderPositions>
+      <Position>
+        <PosNo>1</PosNo>
+        <ArticleNo>7611471000906</ArticleNo>
+        <Lot>4135</Lot>
+        <Plant>Y009</Plant>
+        <Quantity>1</Quantity>
+        <QuantityISO>PCE</QuantityISO>
+      </Position>
+    </OrderPositions>
+    <OrderDocuments OrderDocumentsFlag="1">
+      <OrderDocFilenames>
+        <OrderDocFilename>BM_LS537757_140715.PCL</OrderDocFilename>
+        <OrderDocFilename>BM_IV537757_140715.PCL</OrderDocFilename>
+        <OrderDocFilename>BM_ZS537757_140715.PCL</OrderDocFilename>
+      </OrderDocFilenames>
+    </OrderDocuments>
+  </Order>
+
+</WAB>

@@ -1,0 +1,19 @@
+<openerp>
+	<data noupdate='0'>
+
+        <record id="test_payment_term_28d"
+                model="account.payment.term">
+            <field name="name">28 Days</field>
+            <field name="note">28 Days</field>
+        </record>
+
+        <record id="test_payment_term_line_28d"
+                model="account.payment.term.line">
+            <field name="value">balance</field>
+            <field name="days" eval="28" />
+            <field name="days2" eval="0" />
+            <field name="payment_id" eval="test_payment_term_28d" />
+        </record>
+
+    </data>
+</openerp>

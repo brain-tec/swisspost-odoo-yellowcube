@@ -1,7 +1,7 @@
 # b-*- encoding: utf-8 -*-
 ##############################################################################
 #
-#    Copyright (c) 2015 brain-tec AG (http://www.brain-tec.ch)
+#    Copyright (c) 2015 brain-tec AG (http://www.braintec-group.com)
 #    All Right Reserved
 #
 #    This program is free software: you can redistribute it and/or modify
@@ -20,20 +20,10 @@
 ##############################################################################
 
 {
-    "name": "SwissPost YellowCube Odoo / Connect Warehouse",
-    "name": "SwissPost YellowCube Odoo / Connect Warehouse",
-
+    "name": "PostCommerce AP1/Connect Warehouse",
     "version": "1.0",
-
-    "description": """Provides an interface to create and manage connections to electronic warehouses
-
-    Depends on the following modules from OCA:
-    - connector (from repository connector: https://github.com/OCA/connector)
-    - product_links (from repository e-commerce: https://github.com/OCA/e-commerce)
-    """,
-
+    "description": "Provides an interface to create and manage connections to electronic warehouses",
     "author": "Brain-tec",
-
     "category": "",
 
     'depends': ['stock',
@@ -67,7 +57,7 @@
              ],
 
     "test": [
-    ],
+             ],
 
     "installable": True,
 

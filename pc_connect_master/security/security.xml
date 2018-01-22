@@ -3,7 +3,7 @@
 	<data>
         <!-- Categories. -->
         <record id="pc_category" model="ir.module.category">
-            <field name="name">SwissPost Connector</field>
+            <field name="name">Post commerce</field>
             <field name="sequence">20</field>
         </record>
 
@@ -17,20 +17,20 @@
 		</record>
         
         <record id="pc_client" model="res.groups">
-            <field name="name">SwissPost User</field>
+            <field name="name">PCAP Client</field>
             <field name="category_id" ref="pc_category" />
         </record>
         <record id="pc_client_plus" model="res.groups">
-            <field name="name">SwissPost User Plus</field>
+            <field name="name">PCAP Client Plus</field>
             <field name="category_id" ref="pc_category" />
-            <field name="implied_ids" eval="[(4, ref('pc_client'))]"/>
+            <field name="implied_ids" eval="[(4, ref('pc_client')), (4, ref('account.group_account_invoice'))]"/>
         </record>
         <record id="pc_client_care" model="res.groups">
-            <field name="name">SwissPost Support</field>
+            <field name="name">PCAP Customer Care</field>
             <field name="category_id" ref="pc_category" />
         </record>
         <record id="pc_admin" model="res.groups">
-            <field name="name">SwissPost Manager</field>
+            <field name="name">PCAP Admin</field>
             <field name="category_id" ref="pc_category" />
             <field name="implied_ids" eval="[(4, ref('pc_client_care')),(4, ref('pc_client_plus'))]"/>
         </record>

@@ -14,8 +14,10 @@
 <!-- 			<field name="section_id" ref="sales_team.section_sales_department" /> -->
 			<field name="carrier_id" ref="delivery.delivery_carrier" />
 			<field name="payment_method_id" ref="yc_payment" />
-			<field name="payment_term_id" ref="account.account_payment_term_15days" />
+			<field name="payment_term" ref="account.account_payment_term_15days" />
+<!-- TODO: find where this info is available
 			<field name="warehouse_id" ref="warehouse_YC" />
+-->
 		</record>
 
 		<record id="yc_sale_order_line_8" model="sale.order.line">

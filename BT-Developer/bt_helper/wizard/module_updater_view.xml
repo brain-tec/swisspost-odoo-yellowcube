@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+
+        <record id="view_module_updater" model="ir.ui.view">
+            <field name="name">view_module_updater</field>
+            <field name="model">module.updater</field>
+            <field name="arch" type="xml">
+                <form string="Updater Modules/Languages">
+                    <group colspan="4" col="4">
+                        <field name="state" invisible="1"/>
+                        <group colspan="4">
+                            <group states="init" colspan="4">
+	                            <separator string="Modules to update" colspan="4"/>
+                                <field name="update_module_ids" colspan="4" nolabel="1">
+                                    <tree>
+                                        <field name="name"/>
+                                    </tree>
+                                </field>
+                            </group>
+                        </group>
+                        
+                        <group states="init" colspan="4" col="4">
+                            <button name="load_lang_modules" string="" type="object" icon="gtk-go-down" colspan="1"/>
+                            <newline/>
+                            <separator string="Modules for language import" colspan="2"/>
+                            <separator string="Languages" colspan="2"/>
+                            <field name="lang_module_ids" colspan="2" nolabel="1">
+                                <tree>
+                                    <field name="name"/>
+                                </tree>
+                            </field>
+                            <field name="lang_ids" colspan="2" nolabel="1">
+                                <tree>
+                                    <field name="name"/>
+                                </tree>
+                            </field>
+                            <field name="lang_overwrite" colspan="2"/>
+                        </group>
+                        <group colspan="4">
+                            <group states="done" colspan="4">
+                                <label string="The update was completed successfully." colspan="4"/>
+                                <label string="You must restart the OpenERP server to see the new translations." colspan="4"/>
+                            </group>
+                        </group>
+                    </group>
+                    <group colspan="4" col="4" states="init">
+                        <separator string="" colspan="4"/>
+                        <label string="" colspan="4" width="220"/>
+                        <button special="cancel" string="Cancel" icon="gtk-cancel" colspan="1"/>
+                        <button name="update_modules" string="Go" type="object" icon="gtk-ok" colspan="3"/>
+                    </group>
+                    <group colspan="4" col="4" states="done">
+                        <separator string="" colspan="4"/>
+                        <label string="" colspan="4" width="220"/>
+                        <button special="cancel" string="Close" icon="gtk-close"/>
+                    </group>
+                </form>
+           </field>
+        </record>
+
+        <record id="action_view_module_updater" model="ir.actions.act_window">
+            <field name="name">Update Modules/Languages</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">module.updater</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">form</field>
+            <field name="target">new</field>
+        </record>
+
+        <menuitem
+        name="Update Modules/Languages"
+        action="action_view_module_updater"
+        id="menu_view_module_updater"
+        parent="menu_helper" sequence="2"/>
+    </data>
+</openerp>
+

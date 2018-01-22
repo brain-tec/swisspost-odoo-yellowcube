@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+	<data>
+
+		<record model="ir.actions.act_window" id="action_checkpoint_management">
+			<field name="name">Checkpoint Management</field>
+			<field name="res_model">checkpoint.management</field>
+			<field name="view_mode">tree</field>
+		</record>
+
+		<record model="ir.ui.view" id="checkpoint_management_tree_view">
+			<field name="name">checkpoint.management.tree</field>
+			<field name="model">checkpoint.management</field>
+			<field name="arch" type="xml">
+				<tree string="Checkpoint Management" editable="top">
+					<field name="ir_model_id" />
+					<field name="automatic_process" />
+				</tree>
+			</field>
+		</record>
+	</data>
+</openerp>

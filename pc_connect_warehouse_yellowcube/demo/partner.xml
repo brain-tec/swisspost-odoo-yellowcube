@@ -5,6 +5,7 @@
 			<field name="company">Agrolait</field>
 			<field name="function">A company</field>
 			<field name="po_box">55555</field>
+            <field name="ref">LCHSUP-000300139</field>
 		</record>
 	</data>
 </openerp>

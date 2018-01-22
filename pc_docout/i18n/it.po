@@ -1,0 +1,272 @@
+# Translation of OpenERP Server.
+# This file contains the translation of the following modules:
+#	* pc_docout
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: OpenERP Server 7.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2016-06-15 06:53+0000\n"
+"PO-Revision-Date: 2016-06-15 06:53+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: pc_docout
+#: code:addons/pc_docout/ir_attachment_ext.py:364
+msgid "An error happened while sending the doc-out email regarding attachment with IDs={0}: {1}"
+msgstr "An error happened while sending the doc-out email regarding attachment with IDs={0}: {1}"
+
+#. module: pc_docout
+#: code:addons/pc_docout/ir_attachment_ext.py:144
+msgid "Bad Value for the Sending Option"
+msgstr "Bad Value for the Sending Option"
+
+#. module: pc_docout
+#: field:ir.attachment,docout_sending_date_email:0
+msgid "Date of Sending Doc-out Email"
+msgstr "Date of Sending Doc-out Email"
+
+#. module: pc_docout
+#: model:ir.model.fields,field_description:field_ir_attachment_docout_sending_date_email
+msgid "Date of Sending Doc-out Email"
+msgstr "Date of Sending Doc-out Email"
+
+#. module: pc_docout
+#: field:ir.attachment,docout_sending_date_remote_folder:0
+msgid "Date of Sending Doc-out Remote Folder"
+msgstr "Date of Sending Doc-out Remote Folder"
+
+#. module: pc_docout
+#: model:ir.model.fields,field_description:field_ir_attachment_docout_sending_date_remote_folder
+msgid "Date of Sending Doc-out Remote Folder"
+msgstr "Date of Sending Doc-out Remote Folder"
+
+#. module: pc_docout
+#: field:ir.attachment,docout_sending_date:0
+msgid "Date of Sending"
+msgstr "Date of Sending"
+
+#. module: pc_docout
+#: model:ir.model.fields,field_description:field_ir_attachment_docout_sending_date
+msgid "Date of Sending"
+msgstr "Date of Sending"
+
+#. module: pc_docout
+#: field:ir.attachment,docout_state_email:0
+msgid "Doc-out Email Status"
+msgstr "Doc-out Email Status"
+
+#. module: pc_docout
+#: model:ir.model.fields,field_description:field_ir_attachment_docout_state_email
+msgid "Doc-out Email Status"
+msgstr "Doc-out Email Status"
+
+#. module: pc_docout
+#: field:ir.attachment,docout_state_remote_folder:0
+msgid "Doc-out Remote Folder Status"
+msgstr "Doc-out Remote Folder Status"
+
+#. module: pc_docout
+#: model:ir.model.fields,field_description:field_ir_attachment_docout_state_remote_folder
+msgid "Doc-out Remote Folder Status"
+msgstr "Doc-out Remote Folder Status"
+
+#. module: pc_docout
+#: field:ir.attachment,docout_state:0
+msgid "Doc-out"
+msgstr "Doc-out"
+
+#. module: pc_docout
+#: model:account.analytic.account,name:docout_project_account_analytic_account
+msgid "Doc-out"
+msgstr "Doc-out"
+
+#. module: pc_docout
+#: model:ir.model.fields,field_description:field_ir_attachment_docout_state
+msgid "Doc-out"
+msgstr "Doc-out"
+
+#. module: pc_docout
+#: view:configuration.data:0
+msgid "Doc-out"
+msgstr "Doc-out"
+
+#. module: pc_docout
+#: view:ir.attachment:0
+msgid "Doc-out"
+msgstr "Doc-out"
+
+#. module: pc_docout
+#: code:addons/pc_docout/ir_attachment_ext.py:214
+msgid "Error while sending attachment with ID={0} to the doc-out folder: {1}"
+msgstr "Error while sending attachment with ID={0} to the doc-out folder: {1}"
+
+#. module: pc_docout
+#: field:ir.attachment,docout_exported_file_name:0
+msgid "Exported File Name"
+msgstr "Exported File Name"
+
+#. module: pc_docout
+#: model:ir.model.fields,field_description:field_ir_attachment_docout_exported_file_name
+msgid "Exported File Name"
+msgstr "Exported File Name"
+
+#. module: pc_docout
+#: field:ir.attachment,docout_file_type:0
+msgid "File Type"
+msgstr "File Type"
+
+#. module: pc_docout
+#: model:ir.model.fields,field_description:field_ir_attachment_docout_file_type
+msgid "File Type"
+msgstr "File Type"
+
+#. module: pc_docout
+#: code:addons/pc_docout/ir_attachment_ext.py:331
+msgid "File {0} corresponding to attachment with ID={1} could not be found, so that was not concatenated on the collection to be sent by email."
+msgstr "File {0} corresponding to attachment with ID={1} could not be found, so that was not concatenated on the collection to be sent by email."
+
+#. module: pc_docout
+#: code:addons/pc_docout/ir_attachment_ext.py:231
+msgid "File {0} corresponding to attachment with ID={1} could not be found, so that was not concatenated on the collection to be sent to the doc-out folder"
+msgstr "File {0} corresponding to attachment with ID={1} could not be found, so that was not concatenated on the collection to be sent to the doc-out folder"
+
+#. module: pc_docout
+#: help:ir.attachment,docout_state:0
+msgid "Indicates if the doc-out is applicable for this attachment,                                                and if so, in which state of the doc-out it is."
+msgstr "Indicates if the doc-out is applicable for this attachment,                                                and if so, in which state of the doc-out it is."
+
+#. module: pc_docout
+#: help:ir.attachment,docout_state_email:0
+msgid "Indicates if the doc-out is applicable for this attachment, and if so, in which state of the doc-out it is for the doc-out email."
+msgstr "Indicates if the doc-out is applicable for this attachment, and if so, in which state of the doc-out it is for the doc-out email."
+
+#. module: pc_docout
+#: help:ir.attachment,docout_state_remote_folder:0
+msgid "Indicates if the doc-out is applicable for this attachment, and if so, in which state of the doc-out it is for the doc-out email."
+msgstr "Indicates if the doc-out is applicable for this attachment, and if so, in which state of the doc-out it is for the doc-out email."
+
+#. module: pc_docout
+#: help:ir.attachment,docout_file_type:0
+msgid "Indicates the type of the document to send."
+msgstr "Indicates the type of the document to send."
+
+#. module: pc_docout
+#: code:addons/pc_docout/sale_order_ext.py:92
+msgid "More than one attachment was found for invoice with ID={0}, while just one was expected."
+msgstr "More than one attachment was found for invoice with ID={0}, while just one was expected."
+
+#. module: pc_docout
+#: code:addons/pc_docout/sale_order_ext.py:90
+msgid "No attachments were found for invoice with ID={0}, while one was expected."
+msgstr "No attachments were found for invoice with ID={0}, while one was expected."
+
+#. module: pc_docout
+#: selection:ir.attachment,docout_state:0
+msgid "Not Applicable"
+msgstr "Not Applicable"
+
+#. module: pc_docout
+#: selection:ir.attachment,docout_state_email:0
+msgid "Not Applicable"
+msgstr "Not Applicable"
+
+#. module: pc_docout
+#: selection:ir.attachment,docout_state_remote_folder:0
+msgid "Not Applicable"
+msgstr "Not Applicable"
+
+#. module: pc_docout
+#: model:ir.model,name:model_sale_order
+msgid "Sales Order"
+msgstr "Ordine di vendita"
+
+#. module: pc_docout
+#: selection:ir.attachment,docout_state:0
+msgid "Sent"
+msgstr "Sent"
+
+#. module: pc_docout
+#: selection:ir.attachment,docout_state_email:0
+msgid "Sent"
+msgstr "Sent"
+
+#. module: pc_docout
+#: selection:ir.attachment,docout_state_remote_folder:0
+msgid "Sent"
+msgstr "Sent"
+
+#. module: pc_docout
+#: selection:ir.attachment,docout_state_email:0
+msgid "Skipped"
+msgstr "Skipped"
+
+#. module: pc_docout
+#: selection:ir.attachment,docout_state_remote_folder:0
+msgid "Skipped"
+msgstr "Skipped"
+
+#. module: pc_docout
+#: help:ir.attachment,docout_sending_date_email:0
+msgid "The date and time the file was sent to the doc-out email."
+msgstr "The date and time the file was sent to the doc-out email."
+
+#. module: pc_docout
+#: help:ir.attachment,docout_sending_date_remote_folder:0
+msgid "The date and time the file was sent to the doc-out remote folder."
+msgstr "The date and time the file was sent to the doc-out remote folder."
+
+#. module: pc_docout
+#: help:ir.attachment,docout_sending_date:0
+msgid "The date and time the file was sent to the doc-out."
+msgstr "The date and time the file was sent to the doc-out."
+
+#. module: pc_docout
+#: help:ir.attachment,docout_exported_file_name:0
+msgid "The name it was given to the file when it was exported."
+msgstr "The name it was given to the file when it was exported."
+
+#. module: pc_docout
+#: code:addons/pc_docout/ir_attachment_ext.py:145
+msgid "The sending option was set to be {0}, but only values 'multi_sending' and 'single_sending' are allowed."
+msgstr "The sending option was set to be {0}, but only values 'multi_sending' and 'single_sending' are allowed."
+
+#. module: pc_docout
+#: selection:ir.attachment,docout_state:0
+msgid "To Send"
+msgstr "To Send"
+
+#. module: pc_docout
+#: selection:ir.attachment,docout_state_email:0
+msgid "To Send"
+msgstr "To Send"
+
+#. module: pc_docout
+#: selection:ir.attachment,docout_state_remote_folder:0
+msgid "To Send"
+msgstr "To Send"
+
+#. module: pc_docout
+#: code:addons/pc_docout/sale_order_ext.py:92
+msgid "Warning! More than one attachment found"
+msgstr "Warning! More than one attachment found"
+
+#. module: pc_docout
+#: code:addons/pc_docout/sale_order_ext.py:90
+msgid "Warning! No attachments found"
+msgstr "Warning! No attachments found"
+
+#. module: pc_docout
+#: model:project.category,name:docout_category
+msgid "doc-out"
+msgstr "doc-out"
+
+#. module: pc_docout
+#: model:ir.model,name:model_ir_attachment
+msgid "ir.attachment"
+msgstr "ir.attachment"
+

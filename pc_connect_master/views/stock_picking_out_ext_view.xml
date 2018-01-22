@@ -2,6 +2,29 @@
 <openerp>
 	<data>
 
+        <record id="view_picking_out_tree_ext" model="ir.ui.view">
+            <field name="name">view_picking_out_tree_ext</field>
+            <field name="model">stock.picking.out</field>
+            <field name="inherit_id" ref="stock.view_picking_out_tree" />
+            <field name="arch" type="xml">
+                <field name="state" position="before">
+                    <field name="carrier_id" />
+                </field>
+            </field>
+        </record>
+
+        <record id="view_picking_out_search_ext" model="ir.ui.view">
+            <field name="name">stock.picking.out.search.inherit</field>
+            <field name="model">stock.picking.out</field>
+            <field name="inherit_id" ref="stock.view_picking_out_search"/>
+            <field name="arch" type="xml">
+                <xpath expr="//group[descendant-or-self::filter[@string='Journal']]" position="inside">
+                    <filter string="Carrier" name="group_by_carrier_id"
+                            context="{'group_by':'carrier_id'}"/>
+                </xpath>
+            </field>
+        </record>
+
         <record
             id="stock_picking_out_search_ext_view"
             model="ir.ui.view">

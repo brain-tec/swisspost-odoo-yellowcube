@@ -1,7 +1,7 @@
 # b-*- encoding: utf-8 -*-
 ##############################################################################
 #
-#    Copyright (c) 2015 brain-tec AG (http://www.brain-tec.ch)
+#    Copyright (c) 2015 brain-tec AG (http://www.braintec-group.com)
 #    All Right Reserved
 #
 #    This program is free software: you can redistribute it and/or modify
@@ -20,18 +20,13 @@
 ##############################################################################
 
 {
-    "name": "SwissPost YellowCube Odoo / Connect Warehouse YellowCube over SOAP",
-
+    "name": "PostCommerce AP1/Connect Warehouse YellowCube over SOAP",
     "version": "1.0",
-
     "description": "Provides an interface to create and manage connections to YellowCube",
-
     "author": "Brain-tec",
-
     "category": "",
 
-    'depends': ['pc_connect_master',
-                'pc_connect_warehouse_yellowcube',
+    'depends': ['pc_connect_warehouse_yellowcube',
                 'pc_config',
                 ],
 

@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+	<data>
+
+        <record id="post_ecommerce_config_view_ext" model="ir.ui.view">
+            <field name="name">post_ecommerce_config_view_ext</field>
+            <field name="model">configuration.data</field>
+            <field name="inherit_id" ref="pc_connect_master.post_ecommerce_config_view" />
+            <field name="arch" type="xml">
+                <page string="Reports" position="inside">
+                    <group string="Invoices">
+                        <field name="invoice_logo" />
+                        <field name="invoice_ending_text_with_epayment" />
+                        <field name="invoice_ending_text_without_epayment" />
+                        <field name="invoice_ending_text_for_refunds" />
+                        <field name="invoice_report_discount_column_text" />
+                        <field name="invoice_report_discount_column_type" />
+                        <field name="invoice_report_num_lines_per_page_first" />
+                        <field name="invoice_report_num_lines_per_page_not_first" />
+                        <field name="invoice_report_text_for_partial_deliveries" />
+                        <field name="invoice_report_print_delivery_address" />
+
+                        <field name="invoice_include_backorder_items" />
+                        <field name="invoice_backorder_line_text" />
+                    </group>
+                </page>
+            </field>
+        </record>
+
+		<record id="account_invoice_reports_config_view" model="ir.ui.view">
+			<field name="name">account_invoice_reports_config_view</field>
+			<field name="model">configuration.data</field>
+			<field name="inherit_id" ref="pc_generics.reports_config_view" />
+			<field name="arch" type="xml">
+                <page string="Post Mail" position="inside">
+                    <group string="Invoices" colspan="1">
+                        <field name="invoice_franking_country_code" />
+                        <field name="invoice_franking_zip" />
+                        <field name="invoice_franking_town" />
+                        <field name="invoice_postmail_rrn" />
+                        <field name="invoice_qr" />
+                    </group>
+                </page>
+            </field>
+        </record>
+
+    </data>
+</openerp>

@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ZMP_BEST>
+    <IDOC BEGIN="1">
+        <EDI_DC40 SEGMENT="1">
+            <TABNAM>EDI_DC40</TABNAM>
+            <MANDT>072</MANDT>
+            <DOCNUM>0000000003158695</DOCNUM>
+            <DOCREL>731</DOCREL>
+            <STATUS>30</STATUS>
+            <DIRECT>1</DIRECT>
+            <OUTMOD>2</OUTMOD>
+            <IDOCTYP>ZMP_BEST</IDOCTYP>
+            <MESTYP>ZMP_BEST</MESTYP>
+            <MESCOD>BAR</MESCOD>
+            <SNDPOR>SAPP72</SNDPOR>
+            <SNDPRT>LS</SNDPRT>
+            <SNDPRN>LP72072</SNDPRN>
+            <RCVPOR>TRADEXPRYC</RCVPOR>
+            <RCVPRT>KU</RCVPRT>
+            <RCVPRN>0000040089</RCVPRN>
+            <CREDAT>20141002</CREDAT>
+            <CRETIM>230502</CRETIM>
+            <SERIAL>20141002230502</SERIAL>
+        </EDI_DC40>
+        <ZMP_BEST_000 SEGMENT="1">
+            <KUNNR>0000040089</KUNNR>
+            <WERKS>Y005</WERKS>
+            <ZMP_BEST_010 SEGMENT="1">
+                <MATNR>Y005100000</MATNR>
+                <CUS_MAT_NO>00-home-control</CUS_MAT_NO>
+                <MATDES>home-control-care</MATDES>
+                <PLANT>Y005</PLANT>
+                <LGORT>YAFS</LGORT>
+                <QUANTITY> 470.000</QUANTITY>
+                <QUANTITY_UOM_ISO>PCE</QUANTITY_UOM_ISO>
+            </ZMP_BEST_010>
+            <ZMP_BEST_010 SEGMENT="1">
+                <MATNR>Y005100002</MATNR>
+                <CUS_MAT_NO>12-rc8221</CUS_MAT_NO>
+                <MATDES>hd-ip-kamera-tag-nacht-mit-bewegungsse</MATDES>
+                <PLANT>Y005</PLANT>
+                <LGORT>YAFS</LGORT>
+                <QUANTITY> 490.000</QUANTITY>
+                <QUANTITY_UOM_ISO>PCE</QUANTITY_UOM_ISO>
+            </ZMP_BEST_010>
+            <ZMP_BEST_010 SEGMENT="1">
+                <MATNR>Y005100003</MATNR>
+                <CUS_MAT_NO>11-psm-29zb</CUS_MAT_NO>
+                <MATDES>intelligenter-anschluss</MATDES>
+                <PLANT>Y005</PLANT>
+                <LGORT>YAFS</LGORT>
+                <QUANTITY> 750.000</QUANTITY>
+                <QUANTITY_UOM_ISO>PCE</QUANTITY_UOM_ISO>
+            </ZMP_BEST_010>
+            <ZMP_BEST_010 SEGMENT="1">
+                <MATNR>Y005100004</MATNR>
+                <CUS_MAT_NO>10-wtrca-8</CUS_MAT_NO>
+                <MATDES>anhanger</MATDES>
+                <PLANT>Y005</PLANT>
+                <LGORT>YAFS</LGORT>
+                <QUANTITY> 250.000</QUANTITY>
+                <QUANTITY_UOM_ISO>PCE</QUANTITY_UOM_ISO>
+            </ZMP_BEST_010>
+            <ZMP_BEST_010 SEGMENT="1">
+                <MATNR>Y005100005</MATNR>
+                <CUS_MAT_NO>09-rc-15</CUS_MAT_NO>
+                <MATDES>schlusselanhanger</MATDES>
+                <PLANT>Y005</PLANT>
+                <LGORT>YAFS</LGORT>
+                <QUANTITY> 250.000</QUANTITY>
+                <QUANTITY_UOM_ISO>PCE</QUANTITY_UOM_ISO>
+            </ZMP_BEST_010>
+            <ZMP_BEST_010 SEGMENT="1">
+                <MATNR>Y005100006</MATNR>
+                <CUS_MAT_NO>05-dc-15</CUS_MAT_NO>
+                <MATDES>turkontakt</MATDES>
+                <PLANT>Y005</PLANT>
+                <LGORT>YAFS</LGORT>
+                <QUANTITY> 276.000</QUANTITY>
+                <QUANTITY_UOM_ISO>PCE</QUANTITY_UOM_ISO>
+            </ZMP_BEST_010>
+            <ZMP_BEST_010 SEGMENT="1">
+                <MATNR>Y005100007</MATNR>
+                <CUS_MAT_NO>08-irp-9</CUS_MAT_NO>
+                <MATDES>bewegungssensor</MATDES>
+                <PLANT>Y005</PLANT>
+                <LGORT>YAFS</LGORT>
+                <QUANTITY> 248.000</QUANTITY>
+                <QUANTITY_UOM_ISO>PCE</QUANTITY_UOM_ISO>
+            </ZMP_BEST_010>
+            <ZMP_BEST_010 SEGMENT="1">
+                <MATNR>Y005100008</MATNR>
+                <CUS_MAT_NO>07-sd-8</CUS_MAT_NO>
+                <MATDES>rauchsensor</MATDES>
+                <PLANT>Y005</PLANT>
+                <LGORT>YAFS</LGORT>
+                <QUANTITY> 51.000</QUANTITY>
+                <QUANTITY_UOM_ISO>PCE</QUANTITY_UOM_ISO>
+            </ZMP_BEST_010>
+            <ZMP_BEST_010 SEGMENT="1">
+                <MATNR>Y005100008</MATNR>
+                <CUS_MAT_NO>07-sd-8</CUS_MAT_NO>
+                <MATDES>rauchsensor</MATDES>
+                <PLANT>Y005</PLANT>
+                <LGORT>YROD</LGORT>
+                <QUANTITY> 248.000</QUANTITY>
+                <QUANTITY_UOM_ISO>PCE</QUANTITY_UOM_ISO>
+            </ZMP_BEST_010>
+            <ZMP_BEST_010 SEGMENT="1">
+                <MATNR>Y005100009</MATNR>
+                <CUS_MAT_NO>04-kp-15</CUS_MAT_NO>
+                <MATDES>fernbedienungstastatur</MATDES>
+                <PLANT>Y005</PLANT>
+                <LGORT>YAFS</LGORT>
+                <QUANTITY> 55.000</QUANTITY>
+                <QUANTITY_UOM_ISO>PCE</QUANTITY_UOM_ISO>
+            </ZMP_BEST_010>
+            <ZMP_BEST_010 SEGMENT="1">
+                <MATNR>Y005100010</MATNR>
+                <CUS_MAT_NO>06-ws-8</CUS_MAT_NO>
+                <MATDES>uberschwemmungssensor</MATDES>
+                <PLANT>Y005</PLANT>
+                <LGORT>YAFS</LGORT>
+                <QUANTITY> 102.000</QUANTITY>
+                <QUANTITY_UOM_ISO>PCE</QUANTITY_UOM_ISO>
+            </ZMP_BEST_010>
+            <ZMP_BEST_010 SEGMENT="1">
+                <MATNR>Y005100011</MATNR>
+                <CUS_MAT_NO>03-852-pircam</CUS_MAT_NO>
+                <MATDES>bewegungsmelder-mit-kamera</MATDES>
+                <PLANT>Y005</PLANT>
+                <LGORT>YAFS</LGORT>
+                <QUANTITY> 50.000</QUANTITY>
+                <QUANTITY_UOM_ISO>PCE</QUANTITY_UOM_ISO>
+            </ZMP_BEST_010>
+            <ZMP_BEST_010 SEGMENT="1">
+                <MATNR>Y005100020</MATNR>
+                <CUS_MAT_NO>14-myv-1</CUS_MAT_NO>
+                <MATDES>sleeve-pack-view</MATDES>
+                <PLANT>Y005</PLANT>
+                <LGORT>YAFS</LGORT>
+                <QUANTITY> 476.000</QUANTITY>
+                <QUANTITY_UOM_ISO>PCE</QUANTITY_UOM_ISO>
+            </ZMP_BEST_010>
+            <ZMP_BEST_010 SEGMENT="1">
+                <MATNR>Y005100021</MATNR>
+                <CUS_MAT_NO>13-mycc-1</CUS_MAT_NO>
+                <MATDES>sleeve-pack-control-care</MATDES>
+                <PLANT>Y005</PLANT>
+                <LGORT>YAFS</LGORT>
+                <QUANTITY> 572.000</QUANTITY>
+                <QUANTITY_UOM_ISO>PCE</QUANTITY_UOM_ISO>
+            </ZMP_BEST_010>
+        </ZMP_BEST_000>
+    </IDOC>
+</ZMP_BEST>

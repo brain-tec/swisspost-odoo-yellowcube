@@ -1,0 +1,86 @@
+-
+  Test discounts [PERCENTAGE + TAX EX].
+-
+  !record {model: account.invoice, id: account_invoice_7ex}:
+    account_id: account.a_recv
+    company_id: base.main_company
+    currency_id: base.EUR
+    invoice_line:
+      - account_id: account.a_sale
+        name: '[PCSC234] PC Assemble SC234'
+        price_unit: 450.0
+        quantity: 1.0
+        product_id: product.product_product_3
+        uos_id: product.product_uom_unit
+        invoice_line_tax_id:
+                  - __export__.account_tax_14
+      - account_id: account.a_sale
+        name: 'Brain-tec test-service'
+        price_unit: 2500.0
+        quantity: 1.0
+        product_id: product.product_product_43
+        uos_id: product.product_uom_unit
+        invoice_line_tax_id:
+                  - __export__.account_tax_14
+    journal_id: account.bank_journal
+    partner_id: base.res_partner_12
+    reference_type: none
+-
+  I check that Initially customer invoice state is "Draft"
+-
+  !assert {model: account.invoice, id: account_invoice_7ex}:
+    - state == 'draft'
+
+-
+  I create a discount invoice line which value is percentage and 20.
+-
+  !record {model: stage_discount.discount_line, id: discount_line_71ex}:
+    discount_type: 'percentage'
+    discount_value: 20
+    description: 'Percentage'
+    invoice_id: account_invoice_7ex
+
+-
+  Calculate the discount
+-
+  !python {model: account.invoice}: |
+    self.button_reset_taxes(cr, uid, [ref("account_invoice_7ex")])
+
+-
+  Check discount amount of 20% over 450.
+-
+
+  !assert {model: account.invoice, id: account_invoice_7ex}:
+    - amount_discount == -590.0
+    - amount_untaxed == 2360.0
+    - amount_tax == 188.8
+    - amount_total == 2548.8
+-
+  I Validate invoice by clicking on Validate button
+-
+  !workflow {model: account.invoice, action: invoice_open, ref: account_invoice_7ex}
+
+-
+  Check balance
+-
+
+  !assert {model: account.invoice, id: account_invoice_7ex}:
+    - amount_discount == -590.0
+    - amount_untaxed == 2360.0
+    - amount_tax == 188.8
+    - amount_total == 2548.8  
+    - residual  == 2548.8
+ 
+-
+  I verify that account move is created, and contains valid values.
+-
+  !python {model: account.invoice}: |
+    inv = self.browse(cr, uid, ref('account_invoice_7ex'))
+    move = inv.move_id
+    assert(len(move.line_id) == 5), ('Only 5 lines should appear, but',len(move.line_id))
+    for line in move.line_id:
+         assert(line.credit!=0 or line.debit!=0), ('Both lines cannot be 0')
+         assert(line.debit in [2548.8, 0,188.8,590.0]), ('Debit can only belong to these values but it is',line.debit)
+         assert(line.credit in [0,188.8,2500.0,450.0]), ('Credit can only belong to these values but it is', line.credit)
+         assert(line.state=='valid'), ('It should be in state valid')
+

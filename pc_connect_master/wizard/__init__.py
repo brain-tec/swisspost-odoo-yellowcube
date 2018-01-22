@@ -1,7 +1,7 @@
 # b-*- encoding: utf-8 -*-
 ##############################################################################
 #
-#    Copyright (c) 2014 brain-tec AG (http://www.brain-tec.ch)
+#    Copyright (c) 2014 brain-tec AG (http://www.braintec-group.com)
 #    All Right Reserved
 #
 #    This program is free software: you can redistribute it and/or modify
@@ -19,9 +19,13 @@
 #
 ##############################################################################
 
+import wizard_account_invoice_refund_ext
 import wizard_knowledge_export
 import wizard_popup
 import wizard_sale_order_check_credit
 import wizard_res_partner_check_credit
+import wizard_invoice_report
+import wizard_inventory_report
+import wizard_inventory_additional_report
 
 # vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:

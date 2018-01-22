@@ -1,7 +1,7 @@
 # b-*- encoding: utf-8 -*-
 ##############################################################################
 #
-#    Copyright (c) 2014 brain-tec AG (http://www.brain-tec.ch)
+#    Copyright (c) 2014 brain-tec AG (http://www.braintec-group.com)
 #    All Right Reserved
 #
 #    This program is free software: you can redistribute it and/or modify
@@ -18,7 +18,6 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 ##############################################################################
-
 from openerp.osv import osv, fields
 
 
@@ -32,7 +31,9 @@ class product_uom_ext(osv.Model):
     _inherit = 'product.uom'
 
     _columns = {
-        'uom_iso': fields.char("ISO code"),
+        'uom_iso': fields.char("ISO code",
+                               help='ISO code of the unit of measure',
+                               size=8, required=True),
     }
 
 # vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:=======

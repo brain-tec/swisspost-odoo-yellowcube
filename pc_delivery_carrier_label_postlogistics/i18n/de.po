@@ -1,0 +1,352 @@
+# Translation of OpenERP Server.
+# This file contains the translation of the following modules:
+#
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: OpenERP Server 7.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2016-06-15 13:14+0000\n"
+"PO-Revision-Date: 2016-06-15 13:14+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: pc_delivery_carrier_label_postlogistics
+#: view:configuration.data:0
+msgid "Barcode Label Report"
+msgstr "Barcode-Label Beleg"
+
+#. module: pc_delivery_carrier_label_postlogistics
+#: model:ir.actions.report.xml,name:report_barcode_label
+msgid "Barcode Label"
+msgstr "Barcode Label"
+
+#. module: pc_delivery_carrier_label_postlogistics
+#: field:configuration.data,barcode_report_barcode_left:0
+msgid "Barcode Position (left)"
+msgstr "Barcode Position (von links)"
+
+#. module: pc_delivery_carrier_label_postlogistics
+#: model:ir.model.fields,field_description:field_configuration_data_barcode_report_barcode_left
+msgid "Barcode Position (left)"
+msgstr "Barcode Position (von links)"
+
+#. module: pc_delivery_carrier_label_postlogistics
+#: field:configuration.data,barcode_report_barcode_top:0
+msgid "Barcode Position (top)"
+msgstr "Barcode Position (von oben)"
+
+#. module: pc_delivery_carrier_label_postlogistics
+#: model:ir.model.fields,field_description:field_configuration_data_barcode_report_barcode_top
+msgid "Barcode Position (top)"
+msgstr "Barcode Position (von oben)"
+
+#. module: pc_delivery_carrier_label_postlogistics
+#: code:addons/pc_delivery_carrier_label_postlogistics/sale_order_ext.py:98
+msgid "Carrier of picking with ID={0} does not have a type set, thus the barcode report can not be generated."
+msgstr "Die Ausliefermethode mit ID={0} hat keinen Frankaturtyp konfiguriert, somit wird kein Barcode-Beleg generiert."
+
+#. module: pc_delivery_carrier_label_postlogistics
+#: report:addons/pc_delivery_carrier_label_postlogistics/reports/barcode_label.mako:78
+msgid "Customer Number"
+msgstr "Kundennummer"
+
+#. module: pc_delivery_carrier_label_postlogistics
+#: report:addons/pc_delivery_carrier_label_postlogistics/reports/barcode_label.mako:55
+msgid "Customer service"
+msgstr "Kundendienst"
+
+#. module: pc_delivery_carrier_label_postlogistics
+#: model:ir.model,name:model_stock_picking_out
+msgid "Delivery Orders"
+msgstr "Lieferaufträge"
+
+#. module: pc_delivery_carrier_label_postlogistics
+#: report:addons/pc_delivery_carrier_label_postlogistics/reports/barcode_label.mako:90
+msgid "Document Date"
+msgstr "Datum"
+
+#. module: pc_delivery_carrier_label_postlogistics
+#: report:addons/pc_delivery_carrier_label_postlogistics/reports/barcode_label.mako:86
+msgid "Document Number"
+msgstr "Lieferschein"
+
+#. module: pc_delivery_carrier_label_postlogistics
+#: report:addons/pc_delivery_carrier_label_postlogistics/reports/barcode_label.mako:58
+msgid "Email"
+msgstr "Email"
+
+#. module: pc_delivery_carrier_label_postlogistics
+#: field:configuration.data,barcode_report_information_left:0
+msgid "Information Position (left)"
+msgstr "Dokumentenblock Position (von links)"
+
+#. module: pc_delivery_carrier_label_postlogistics
+#: model:ir.model.fields,field_description:field_configuration_data_barcode_report_information_left
+msgid "Information Position (left)"
+msgstr "Dokumentenblock Position (von links)"
+
+#. module: pc_delivery_carrier_label_postlogistics
+#: field:configuration.data,barcode_report_information_top_with_partner:0
+msgid "Information Position (top, with sending partner set)"
+msgstr "Dokumentenblock (von oben, mit Absenderangaben)"
+
+#. module: pc_delivery_carrier_label_postlogistics
+#: model:ir.model.fields,field_description:field_configuration_data_barcode_report_information_top_with_partner
+msgid "Information Position (top, with sending partner set)"
+msgstr "Dokumentenblock (von oben, mit Absenderangaben)"
+
+#. module: pc_delivery_carrier_label_postlogistics
+#: field:configuration.data,barcode_report_information_top:0
+msgid "Information Position (top, without sending partner set)"
+msgstr "Dokumentenblock (von oben, ohne Absenderangaben)"
+
+#. module: pc_delivery_carrier_label_postlogistics
+#: model:ir.model.fields,field_description:field_configuration_data_barcode_report_information_top
+msgid "Information Position (top, without sending partner set)"
+msgstr "Dokumentenblock (von oben, ohne Absenderangaben)"
+
+#. module: pc_delivery_carrier_label_postlogistics
+#: field:configuration.data,barcode_report_information_width:0
+msgid "Information Position (width)"
+msgstr "Dokumentenblock Position (Breite)"
+
+#. module: pc_delivery_carrier_label_postlogistics
+#: model:ir.model.fields,field_description:field_configuration_data_barcode_report_information_width
+msgid "Information Position (width)"
+msgstr "Dokumentenblock Position (Breite)"
+
+#. module: pc_delivery_carrier_label_postlogistics
+#: field:configuration.data,barcode_report_logo:0
+msgid "Logo Image"
+msgstr "Logo Bild"
+
+#. module: pc_delivery_carrier_label_postlogistics
+#: model:ir.model.fields,field_description:field_configuration_data_barcode_report_logo
+msgid "Logo Image"
+msgstr "Logo Bild"
+
+#. module: pc_delivery_carrier_label_postlogistics
+#: field:configuration.data,barcode_report_logo_left:0
+msgid "Logo Position (left)"
+msgstr "Logo Position (von links)"
+
+#. module: pc_delivery_carrier_label_postlogistics
+#: model:ir.model.fields,field_description:field_configuration_data_barcode_report_logo_left
+msgid "Logo Position (left)"
+msgstr "Logo Position (von links)"
+
+#. module: pc_delivery_carrier_label_postlogistics
+#: field:configuration.data,barcode_report_logo_top:0
+msgid "Logo Position (top)"
+msgstr "Logo Position (von oben)"
+
+#. module: pc_delivery_carrier_label_postlogistics
+#: model:ir.model.fields,field_description:field_configuration_data_barcode_report_logo_top
+msgid "Logo Position (top)"
+msgstr "Logo Position (von oben)"
+
+#. module: pc_delivery_carrier_label_postlogistics
+#: field:configuration.data,barcode_report_logo_width:0
+msgid "Logo Width"
+msgstr "Logo Breite (Max)"
+
+#. module: pc_delivery_carrier_label_postlogistics
+#: model:ir.model.fields,field_description:field_configuration_data_barcode_report_logo_width
+msgid "Logo Width"
+msgstr "Logo Breite (Max)"
+
+#. module: pc_delivery_carrier_label_postlogistics
+#: help:configuration.data,barcode_report_logo_width:0
+msgid "Maximum width for the logo of the report, measured in millimetres."
+msgstr "Die maximale Breite für das Logo, in Millimetern gemessen."
+
+#. module: pc_delivery_carrier_label_postlogistics
+#: field:configuration.data,barcode_report_package_left:0
+msgid "Package Iterator (left)"
+msgstr "Paketnummer / Anzahl (von links)"
+
+#. module: pc_delivery_carrier_label_postlogistics
+#: model:ir.model.fields,field_description:field_configuration_data_barcode_report_package_left
+msgid "Package Iterator (left)"
+msgstr "Paketnummer / Anzahl (von links)"
+
+#. module: pc_delivery_carrier_label_postlogistics
+#: field:configuration.data,barcode_report_package_top:0
+msgid "Package Iterator (top)"
+msgstr "Paketnummer / Anzahl (von oben)"
+
+#. module: pc_delivery_carrier_label_postlogistics
+#: model:ir.model.fields,field_description:field_configuration_data_barcode_report_package_top
+msgid "Package Iterator (top)"
+msgstr "Paketnummer / Anzahl (von oben)"
+
+#. module: pc_delivery_carrier_label_postlogistics
+#: report:addons/pc_delivery_carrier_label_postlogistics/reports/barcode_label.mako:113
+msgid "Package"
+msgstr "Pakete"
+
+#. module: pc_delivery_carrier_label_postlogistics
+#: help:configuration.data,barcode_report_partner_id:0
+msgid "Partner who makes the sending (optional)"
+msgstr "Partner für den Druck der Absenderangaben (optional)"
+
+#. module: pc_delivery_carrier_label_postlogistics
+#: model:ir.model,name:model_stock_picking
+msgid "Picking List"
+msgstr "Kommissionierliste"
+
+#. module: pc_delivery_carrier_label_postlogistics
+#: help:configuration.data,barcode_report_partner_left:0
+msgid "Position for the area of the report dedicated to the sending partner, measured in millimetres from the left of the page."
+msgstr "Position für den Block Absenderangaben, gemessen in Millimetern vom linken Seitenrand."
+
+#. module: pc_delivery_carrier_label_postlogistics
+#: help:configuration.data,barcode_report_partner_top:0
+msgid "Position for the area of the report dedicated to the sending partner, measured in millimetres from the top of the page."
+msgstr "Position für den Block Absenderangaben, gemessen in Millimetern vom oberen Seitenrand."
+
+#. module: pc_delivery_carrier_label_postlogistics
+#: help:configuration.data,barcode_report_barcode_left:0
+msgid "Position for the barcode of the report, measured in millimetres from the left of the page."
+msgstr "Position für den Barcode-Label, gemessen in Millimetern vom linken Seitenrand."
+
+#. module: pc_delivery_carrier_label_postlogistics
+#: help:configuration.data,barcode_report_barcode_top:0
+msgid "Position for the barcode of the report, measured in millimetres from the top of the page."
+msgstr "Position für den Barcode-Label, gemessen in Millimetern vom oberen Seitenrand."
+
+#. module: pc_delivery_carrier_label_postlogistics
+#: help:configuration.data,barcode_report_information_left:0
+msgid "Position for the information area of the report, measured in millimetres from the left of the page."
+msgstr "Position für den Dokumentenblock, gemessen in Millimetern vom linken Seitenrand."
+
+#. module: pc_delivery_carrier_label_postlogistics
+#: help:configuration.data,barcode_report_information_top_with_partner:0
+msgid "Position for the information area of the report, measured in millimetres from the top of the page, when a sending partner has been selected."
+msgstr "Position für den Dokumentenblock, gemessen in Millimetern vom oberen Seitenrand (falls ein Absender definiert wurde)."
+
+#. module: pc_delivery_carrier_label_postlogistics
+#: help:configuration.data,barcode_report_information_top:0
+msgid "Position for the information area of the report, measured in millimetres from the top of the page, when no sending partner has been selected."
+msgstr "Position für den Dokumentenblock, gemessen in Millimetern vom oberen Seitenrand (falls kein Absender definiert wurde)."
+
+#. module: pc_delivery_carrier_label_postlogistics
+#: help:configuration.data,barcode_report_package_left:0
+msgid "Position for the iterator over the packages, measure in millimetres from the left of the page."
+msgstr "Position für den Text über die Paketnummer und -anzahl, gemessen in Millimetern vom linken Seitenrand."
+
+#. module: pc_delivery_carrier_label_postlogistics
+#: help:configuration.data,barcode_report_package_top:0
+msgid "Position for the iterator over the packages, measure in millimetres from the top of the page."
+msgstr "Position für den Text über die Paketnummer und -anzahl, gemessen in Millimetern vom oberen Seitenrand."
+
+#. module: pc_delivery_carrier_label_postlogistics
+#: help:configuration.data,barcode_report_logo_left:0
+msgid "Position for the logo of the report, measured in millimetres from the left of the page."
+msgstr "Position für das Logo, gemessen in Millimetern vom linken Seitenrand."
+
+#. module: pc_delivery_carrier_label_postlogistics
+#: help:configuration.data,barcode_report_logo_top:0
+msgid "Position for the logo of the report, measured in millimetres from the top of the page."
+msgstr "Position für das Logo, gemessen in Millimetern vom oberen Seitenrand."
+
+#. module: pc_delivery_carrier_label_postlogistics
+#: view:configuration.data:0
+msgid "Reports"
+msgstr "Belege"
+
+#. module: pc_delivery_carrier_label_postlogistics
+#: report:addons/pc_delivery_carrier_label_postlogistics/reports/barcode_label.mako:82
+msgid "Sale order"
+msgstr "Auftragsnummer"
+
+#. module: pc_delivery_carrier_label_postlogistics
+#: model:ir.model,name:model_sale_order
+msgid "Sales Order"
+msgstr "Verkaufsauftrag"
+
+#. module: pc_delivery_carrier_label_postlogistics
+#: field:configuration.data,barcode_report_partner_left:0
+msgid "Sending Partner Position (left)"
+msgstr "Absender Position (von links)"
+
+#. module: pc_delivery_carrier_label_postlogistics
+#: model:ir.model.fields,field_description:field_configuration_data_barcode_report_partner_left
+msgid "Sending Partner Position (left)"
+msgstr "Absender Position (von links)"
+
+#. module: pc_delivery_carrier_label_postlogistics
+#: field:configuration.data,barcode_report_partner_top:0
+msgid "Sending Partner Position (top)"
+msgstr "Absender Position (von oben)"
+
+#. module: pc_delivery_carrier_label_postlogistics
+#: model:ir.model.fields,field_description:field_configuration_data_barcode_report_partner_top
+msgid "Sending Partner Position (top)"
+msgstr "Absender Position (von oben)"
+
+#. module: pc_delivery_carrier_label_postlogistics
+#: field:configuration.data,barcode_report_partner_width:0
+msgid "Sending Partner Position (width)"
+msgstr "Absender Position (Breite)"
+
+#. module: pc_delivery_carrier_label_postlogistics
+#: model:ir.model.fields,field_description:field_configuration_data_barcode_report_partner_width
+msgid "Sending Partner Position (width)"
+msgstr "Absender Position (Breite)"
+
+#. module: pc_delivery_carrier_label_postlogistics
+#: field:configuration.data,barcode_report_partner_id:0
+msgid "Sending Partner"
+msgstr "Absender"
+
+#. module: pc_delivery_carrier_label_postlogistics
+#: model:ir.model.fields,field_description:field_configuration_data_barcode_report_partner_id
+msgid "Sending Partner"
+msgstr "Absender"
+
+#. module: pc_delivery_carrier_label_postlogistics
+#: report:addons/pc_delivery_carrier_label_postlogistics/reports/barcode_label.mako:95
+msgid "Shipping date"
+msgstr "Lieferdatum"
+
+#. module: pc_delivery_carrier_label_postlogistics
+#: report:addons/pc_delivery_carrier_label_postlogistics/reports/barcode_label.mako:61
+msgid "Shop"
+msgstr "Shop"
+
+#. module: pc_delivery_carrier_label_postlogistics
+#: report:addons/pc_delivery_carrier_label_postlogistics/reports/barcode_label.mako:100
+msgid "Tax number"
+msgstr "MwSt.-Nr."
+
+#. module: pc_delivery_carrier_label_postlogistics
+#: help:configuration.data,barcode_report_logo:0
+msgid "The logo of the company which appears in the report."
+msgstr "Das Logo, das auf dem Beleg angezeigt werden soll."
+
+#. module: pc_delivery_carrier_label_postlogistics
+#: help:configuration.data,barcode_report_partner_width:0
+msgid "The width for the area of the report dedicated to the sending partner, measured in millimetres."
+msgstr "Die maximale Breite für die Absenderangaben, in Millimetern gemessen."
+
+#. module: pc_delivery_carrier_label_postlogistics
+#: help:configuration.data,barcode_report_information_width:0
+msgid "The width of the information box, in millimetres."
+msgstr "Breite des Dokumentenblocks, in Milimetern."
+
+#. module: pc_delivery_carrier_label_postlogistics
+#: model:ir.model,name:model_configuration_data
+msgid "configuration.data"
+msgstr "configuration.data"
+
+#. module: pc_delivery_carrier_label_postlogistics
+#: report:addons/pc_delivery_carrier_label_postlogistics/reports/barcode_label.mako:113
+msgid "of"
+msgstr "von"
+

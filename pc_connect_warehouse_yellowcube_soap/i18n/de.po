@@ -1,13 +1,13 @@
 # Translation of OpenERP Server.
 # This file contains the translation of the following modules:
-#	* pc_connect_warehouse_yellowcube_soap
+#
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: OpenERP Server 7.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-06-15 08:41+0000\n"
-"PO-Revision-Date: 2016-06-15 08:41+0000\n"
+"POT-Creation-Date: 2016-06-15 13:14+0000\n"
+"PO-Revision-Date: 2016-06-15 13:14+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -18,324 +18,319 @@ msgstr ""
 #. module: pc_connect_warehouse_yellowcube_soap
 #: help:stock.connect,yc_bar_check_starting_hour:0
 msgid "A BAR must be not downloaded before this hour."
-msgstr "A BAR must be not downloaded before this hour."
+msgstr "BAR-Meldungen werden nur vor diesem Zeitpunkt verarbeitet."
 
 #. module: pc_connect_warehouse_yellowcube_soap
 #: help:stock.connect,yc_bar_check_ending_hour:0
 msgid "A BAR must not be downloaded after this hour."
-msgstr "A BAR must not be downloaded after this hour."
+msgstr "BAR Meldungen werden nur nach diesem Zeitpunkt verarbeitet."
 
 #. module: pc_connect_warehouse_yellowcube_soap
 #: help:stock.connect,yc_soap_debugfile:0
 msgid "Available parameters: date, time, dbname, action. Eg.: '/tmp/soap_{dbname}_{date}_{time}_{action}.log'"
-msgstr "Available parameters: date, time, dbname, action. Eg.: '/tmp/soap_{dbname}_{date}_{time}_{action}.log'"
+msgstr "Verfügbare Parameter: date, time, dbname, action. z.B.: '/tmp/soap_{dbname}_{date}_{time}_{action}.log'"
 
 #. module: pc_connect_warehouse_yellowcube_soap
 #: field:stock.connect,yc_bar_check_ending_hour:0
 msgid "BAR's end of downloading window"
-msgstr "BAR's end of downloading window"
+msgstr "BAR-Zeitfenster Ende"
 
 #. module: pc_connect_warehouse_yellowcube_soap
 #: model:ir.model.fields,field_description:field_stock_connect_yc_bar_check_ending_hour
 msgid "BAR's end of downloading window"
-msgstr "BAR's end of downloading window"
+msgstr "BAR-Zeitfenster Ende"
 
 #. module: pc_connect_warehouse_yellowcube_soap
 #: field:stock.connect,yc_bar_check_starting_hour:0
 msgid "BAR's start of downloading window"
-msgstr "BAR's start of downloading window"
+msgstr "BAR-Zeitfenster Anfang"
 
 #. module: pc_connect_warehouse_yellowcube_soap
 #: model:ir.model.fields,field_description:field_stock_connect_yc_bar_check_starting_hour
 msgid "BAR's start of downloading window"
-msgstr "BAR's start of downloading window"
+msgstr "BAR-Zeitfenster Anfang"
 
 #. module: pc_connect_warehouse_yellowcube_soap
 #: field:stock.connect.yellowcubesoap,warehouse_ids:0
 msgid "Configured Warehouses"
-msgstr "Configured Warehouses"
+msgstr "Konfigurierte Lager"
 
 #. module: pc_connect_warehouse_yellowcube_soap
 #: model:ir.model.fields,field_description:field_stock_connect_yellowcubesoap_warehouse_ids
 msgid "Configured Warehouses"
-msgstr "Configured Warehouses"
+msgstr "Konfigurierte Lager"
 
 #. module: pc_connect_warehouse_yellowcube_soap
 #: field:stock.connect.yellowcubesoap,type:0
 msgid "Connection type"
-msgstr "Connection type"
+msgstr "Verbindungstyp"
 
 #. module: pc_connect_warehouse_yellowcube_soap
 #: model:ir.model.fields,field_description:field_stock_connect_yellowcubesoap_type
 msgid "Connection type"
-msgstr "Connection type"
+msgstr "Verbindungstyp"
 
 #. module: pc_connect_warehouse_yellowcube_soap
 #: field:stock.connect.yellowcubesoap,connect_transport_id:0
 msgid "Connection"
-msgstr "Connection"
+msgstr "Verbindung"
 
 #. module: pc_connect_warehouse_yellowcube_soap
 #: model:ir.model.fields,field_description:field_stock_connect_yellowcubesoap_connect_transport_id
 msgid "Connection"
-msgstr "Connection"
+msgstr "Verbindung"
 
 #. module: pc_connect_warehouse_yellowcube_soap
 #: help:stock.connect,yc_bar_last_check:0
 msgid "Date of the last time we downloaded a BAR file."
-msgstr "Date of the last time we downloaded a BAR file."
+msgstr "Zeitpunkt letzter BAR Eingang."
 
 #. module: pc_connect_warehouse_yellowcube_soap
 #: help:stock.connect,yc_war_last_check:0
 msgid "Date of the last time we downloaded a WAR file."
-msgstr "Date of the last time we downloaded a WAR file."
+msgstr "Letzter WAR Eingang"
 
 #. module: pc_connect_warehouse_yellowcube_soap
 #: help:stock.connect,yc_wba_last_check:0
 msgid "Date of the last time we downloaded a WBA file."
-msgstr "Date of the last time we downloaded a WBA file."
+msgstr "Zeitpunkt letzter WBA Eingang"
 
 #. module: pc_connect_warehouse_yellowcube_soap
 #: field:stock.connect.yellowcubesoap,yc_missing_bar_days_due:0
 msgid "Days a product or lot may be outdated from a BAR file"
-msgstr "Days a product or lot may be outdated from a BAR file"
+msgstr "Fehlende Produkte im BAR deaktivieren nach (Tage)"
 
 #. module: pc_connect_warehouse_yellowcube_soap
 #: model:ir.model.fields,field_description:field_stock_connect_yellowcubesoap_yc_missing_bar_days_due
 msgid "Days a product or lot may be outdated from a BAR file"
-msgstr "Days a product or lot may be outdated from a BAR file"
+msgstr "Fehlende Produkte im BAR deaktivieren nach (Tage)"
 
 #. module: pc_connect_warehouse_yellowcube_soap
 #: field:stock.connect,yc_soap_debugfile:0
 msgid "Debug file for soap messages. Empty=Ignore feature"
-msgstr "Debug file for soap messages. Empty=Ignore feature"
+msgstr "Debug-Datei für SOAP-Nachrichten. Leer = deaktiviert"
 
 #. module: pc_connect_warehouse_yellowcube_soap
 #: model:ir.model.fields,field_description:field_stock_connect_yc_soap_debugfile
 msgid "Debug file for soap messages. Empty=Ignore feature"
-msgstr "Debug file for soap messages. Empty=Ignore feature"
-
-#. module: pc_connect_warehouse_yellowcube_soap
-#: help:stock.connect.yellowcubesoap,yc_invoice_pcl_printer_destination:0
-msgid "Destination of the file the PCL printer prints to. It must be a file, NOT a folder."
-msgstr "Destination of the file the PCL printer prints to. It must be a file, NOT a folder."
+msgstr "Debug-Datei für SOAP-Nachrichten. Leer = deaktiviert"
 
 #. module: pc_connect_warehouse_yellowcube_soap
 #: selection:stock.connect.yellowcubesoap,yc_operating_mode:0
 msgid "Development"
-msgstr "Development"
+msgstr "Entwicklung"
 
 #. module: pc_connect_warehouse_yellowcube_soap
 #: model:ir.model,name:model_stock_connect_yellowcubesoap
 msgid "Email Thread"
-msgstr "E-Mail Thread"
+msgstr "E-Mail Nachrichten"
 
 #. module: pc_connect_warehouse_yellowcube_soap
 #: field:stock.connect.yellowcubesoap,yc_enable_art_ondemand:0
 msgid "Enable ART creation on demand"
-msgstr "Enable ART creation on demand"
+msgstr "ART nach Bedarf verwenden"
 
 #. module: pc_connect_warehouse_yellowcube_soap
 #: model:ir.model.fields,field_description:field_stock_connect_yellowcubesoap_yc_enable_art_ondemand
 msgid "Enable ART creation on demand"
-msgstr "Enable ART creation on demand"
+msgstr "ART nach Bedarf verwenden"
 
 #. module: pc_connect_warehouse_yellowcube_soap
 #: field:stock.connect.yellowcubesoap,yc_enable_art_file:0
 msgid "Enable ART file"
-msgstr "Enable ART file"
+msgstr "ART Meldung verwenden"
 
 #. module: pc_connect_warehouse_yellowcube_soap
 #: model:ir.model.fields,field_description:field_stock_connect_yellowcubesoap_yc_enable_art_file
 msgid "Enable ART file"
-msgstr "Enable ART file"
+msgstr "ART Meldung verwenden"
 
 #. module: pc_connect_warehouse_yellowcube_soap
 #: field:stock.connect.yellowcubesoap,yc_enable_art_multifile:0
 msgid "Enable ART multifile"
-msgstr "Enable ART multifile"
+msgstr "ART Einzel-Meldung verwenden"
 
 #. module: pc_connect_warehouse_yellowcube_soap
 #: model:ir.model.fields,field_description:field_stock_connect_yellowcubesoap_yc_enable_art_multifile
 msgid "Enable ART multifile"
-msgstr "Enable ART multifile"
+msgstr "ART Einzel-Meldung verwenden"
 
 #. module: pc_connect_warehouse_yellowcube_soap
 #: field:stock.connect.yellowcubesoap,yc_enable_bar_file:0
 msgid "Enable BAR file"
-msgstr "Enable BAR file"
+msgstr "BAR Meldung verwenden"
 
 #. module: pc_connect_warehouse_yellowcube_soap
 #: model:ir.model.fields,field_description:field_stock_connect_yellowcubesoap_yc_enable_bar_file
 msgid "Enable BAR file"
-msgstr "Enable BAR file"
+msgstr "BAR Meldung verwenden"
 
 #. module: pc_connect_warehouse_yellowcube_soap
 #: field:stock.connect.yellowcubesoap,yc_enable_bur_file:0
 msgid "Enable BUR file"
-msgstr "Enable BUR file"
+msgstr "BUR Meldung verwenden"
 
 #. module: pc_connect_warehouse_yellowcube_soap
 #: model:ir.model.fields,field_description:field_stock_connect_yellowcubesoap_yc_enable_bur_file
 msgid "Enable BUR file"
-msgstr "Enable BUR file"
+msgstr "BUR Meldung verwenden"
 
 #. module: pc_connect_warehouse_yellowcube_soap
 #: field:stock.connect.yellowcubesoap,yc_enable_product_lifecycle:0
 msgid "Enable Product's Life-cycle?"
-msgstr "Enable Product's Life-cycle?"
+msgstr "Produkt-Life-Cycle verwenden?"
 
 #. module: pc_connect_warehouse_yellowcube_soap
 #: model:ir.model.fields,field_description:field_stock_connect_yellowcubesoap_yc_enable_product_lifecycle
 msgid "Enable Product's Life-cycle?"
-msgstr "Enable Product's Life-cycle?"
+msgstr "Produkt-Life-Cycle verwenden?"
 
 #. module: pc_connect_warehouse_yellowcube_soap
 #: field:stock.connect.yellowcubesoap,yc_enable_wab_file:0
 msgid "Enable WAB file"
-msgstr "Enable WAB file"
+msgstr "WAB Meldung verwenden"
 
 #. module: pc_connect_warehouse_yellowcube_soap
 #: model:ir.model.fields,field_description:field_stock_connect_yellowcubesoap_yc_enable_wab_file
 msgid "Enable WAB file"
-msgstr "Enable WAB file"
+msgstr "WAB Meldung verwenden"
 
 #. module: pc_connect_warehouse_yellowcube_soap
 #: field:stock.connect.yellowcubesoap,yc_enable_war_file:0
 msgid "Enable WAR file"
-msgstr "Enable WAR file"
+msgstr "WAR Meldung verwenden"
 
 #. module: pc_connect_warehouse_yellowcube_soap
 #: model:ir.model.fields,field_description:field_stock_connect_yellowcubesoap_yc_enable_war_file
 msgid "Enable WAR file"
-msgstr "Enable WAR file"
+msgstr "WAR Meldung verwenden"
 
 #. module: pc_connect_warehouse_yellowcube_soap
 #: field:stock.connect.yellowcubesoap,yc_enable_wba_file:0
 msgid "Enable WBA file"
-msgstr "Enable WBA file"
+msgstr "WBA Meldung verwenden"
 
 #. module: pc_connect_warehouse_yellowcube_soap
 #: model:ir.model.fields,field_description:field_stock_connect_yellowcubesoap_yc_enable_wba_file
 msgid "Enable WBA file"
-msgstr "Enable WBA file"
+msgstr "WBA Meldung verwenden"
 
 #. module: pc_connect_warehouse_yellowcube_soap
 #: field:stock.connect.yellowcubesoap,yc_enable_wbl_file:0
 msgid "Enable WBL file"
-msgstr "Enable WBL file"
+msgstr "WBL Meldung verwenden"
 
 #. module: pc_connect_warehouse_yellowcube_soap
 #: model:ir.model.fields,field_description:field_stock_connect_yellowcubesoap_yc_enable_wbl_file
 msgid "Enable WBL file"
-msgstr "Enable WBL file"
+msgstr "WBL Meldung verwenden"
 
 #. module: pc_connect_warehouse_yellowcube_soap
 #: code:addons/pc_connect_warehouse_yellowcube_soap/stock_connect_yellowcube_soap.py:533
 msgid "Error on Status response"
-msgstr "Error on Status response"
+msgstr "Fehler bei der Statusantwort"
 
 #. module: pc_connect_warehouse_yellowcube_soap
 #: code:addons/pc_connect_warehouse_yellowcube_soap/stock_connect_yellowcube_soap.py:37
 msgid "Error sending {0} file:{1}\n"
 "{2}"
-msgstr "Error sending {0} file:{1}\n"
+msgstr "Fehler beim Senden {0} Datei:{1}\n"
 "{2}"
 
 #. module: pc_connect_warehouse_yellowcube_soap
 #: field:stock.connect.yellowcubesoap,stock_event_ids:0
 msgid "Events"
-msgstr "Events"
+msgstr "Ereignisse"
 
 #. module: pc_connect_warehouse_yellowcube_soap
 #: model:ir.model.fields,field_description:field_stock_connect_yellowcubesoap_stock_event_ids
 msgid "Events"
-msgstr "Events"
+msgstr "Ereignisse"
 
 #. module: pc_connect_warehouse_yellowcube_soap
 #: selection:stock.connect.yellowcubesoap,type:0
 msgid "External Email"
-msgstr "External Email"
+msgstr "Externes Lager per Email"
 
 #. module: pc_connect_warehouse_yellowcube_soap
 #: field:stock.connect.yellowcubesoap,yc_file_date_sufix:0
 msgid "Filename suffix"
-msgstr "Filename suffix"
+msgstr "Dateinamenendung"
 
 #. module: pc_connect_warehouse_yellowcube_soap
 #: model:ir.model.fields,field_description:field_stock_connect_yellowcubesoap_yc_file_date_sufix
 msgid "Filename suffix"
-msgstr "Filename suffix"
+msgstr "Dateinamenendung"
 
 #. module: pc_connect_warehouse_yellowcube_soap
 #: field:stock.connect.yellowcubesoap,remote_file_template:0
 msgid "Filename template for files to import"
-msgstr "Filename template for files to import"
+msgstr "Namesformat für Import-Dateien"
 
 #. module: pc_connect_warehouse_yellowcube_soap
 #: model:ir.model.fields,field_description:field_stock_connect_yellowcubesoap_remote_file_template
 msgid "Filename template for files to import"
-msgstr "Filename template for files to import"
+msgstr "Namesformat für Import-Dateien"
 
 #. module: pc_connect_warehouse_yellowcube_soap
 #: view:stock.connect:0
 msgid "Files on the module:"
-msgstr "Files on the module:"
+msgstr "Dateien im Modul:"
 
 #. module: pc_connect_warehouse_yellowcube_soap
 #: field:stock.connect.yellowcubesoap,stock_connect_file_ids:0
 msgid "Files"
-msgstr "Files"
+msgstr "Dateien"
 
 #. module: pc_connect_warehouse_yellowcube_soap
 #: model:ir.model.fields,field_description:field_stock_connect_yellowcubesoap_stock_connect_file_ids
 msgid "Files"
-msgstr "Files"
+msgstr "Dateien"
 
 #. module: pc_connect_warehouse_yellowcube_soap
 #: field:stock.connect.yellowcubesoap,message_follower_ids:0
 msgid "Followers"
-msgstr "Followers"
+msgstr "Abonnenten"
 
 #. module: pc_connect_warehouse_yellowcube_soap
 #: model:ir.model.fields,field_description:field_stock_connect_yellowcubesoap_message_follower_ids
 msgid "Followers"
-msgstr "Followers"
+msgstr "Abonnenten"
 
 #. module: pc_connect_warehouse_yellowcube_soap
 #: help:stock.connect.yellowcubesoap,message_summary:0
 msgid "Holds the Chatter summary (number of messages, ...). This summary is directly in html format in order to be inserted in kanban views."
-msgstr "Holds the Chatter summary (number of messages, ...). This summary is directly in html format in order to be inserted in kanban views."
+msgstr "Enthält die Zusammenfassung der Nachrichten die beim Objekt angezeigt werden."
 
 #. module: pc_connect_warehouse_yellowcube_soap
 #: field:stock.connect.yellowcubesoap,yc_hours_between_art_files:0
 msgid "Hours to wait before creating a new ART file, if a pending ART exists."
-msgstr "Hours to wait before creating a new ART file, if a pending ART exists."
+msgstr "Wartezeit für das versenden eines neuen ART nach der letzten Übermittlung."
 
 #. module: pc_connect_warehouse_yellowcube_soap
 #: model:ir.model.fields,field_description:field_stock_connect_yellowcubesoap_yc_hours_between_art_files
 msgid "Hours to wait before creating a new ART file, if a pending ART exists."
-msgstr "Hours to wait before creating a new ART file, if a pending ART exists."
+msgstr "Wartezeit für das versenden eines neuen ART nach der letzten Übermittlung."
 
 #. module: pc_connect_warehouse_yellowcube_soap
 #: help:stock.connect.yellowcubesoap,log_about_already_existing_files:0
 msgid "If activated, a line in the log will appear every time it sees a file that it already has."
-msgstr "If activated, a line in the log will appear every time it sees a file that it already has."
+msgstr "Falls aktiviert, wird für jede bereits eingelesene Datei eine Meldung ans Log ausgegeben. Sollte normalerweise deaktiviert sein."
 
 #. module: pc_connect_warehouse_yellowcube_soap
 #: help:stock.connect.yellowcubesoap,message_unread:0
 msgid "If checked new messages require your attention."
-msgstr "If checked new messages require your attention."
+msgstr "Falls aktiviert müssen neue Meldungen bearbeitet werden."
 
 #. module: pc_connect_warehouse_yellowcube_soap
 #: help:stock.connect.yellowcubesoap,yc_enable_product_lifecycle:0
 msgid "If checked, then the module pc_product_lifecycle must be installed."
-msgstr "If checked, then the module pc_product_lifecycle must be installed."
+msgstr "Falls aktiviert muss das Modul pc_product_lifecycle installiert sein."
 
 #. module: pc_connect_warehouse_yellowcube_soap
 #: code:addons/pc_connect_warehouse_yellowcube_soap/stock_connect_yellowcube_soap.py:525
 msgid "Ignoring Response on behalf old ACK on file"
-msgstr "Ignoring Response on behalf old ACK on file"
+msgstr "Ignoriere Antworten auf veraltete ACK Dateien"
 
 #. module: pc_connect_warehouse_yellowcube_soap
 #: view:stock.connect:0
@@ -345,42 +340,42 @@ msgstr "Integration:"
 #. module: pc_connect_warehouse_yellowcube_soap
 #: field:stock.connect.yellowcubesoap,message_is_follower:0
 msgid "Is a Follower"
-msgstr "Is a Follower"
+msgstr "Ist ein Abonnent"
 
 #. module: pc_connect_warehouse_yellowcube_soap
 #: model:ir.model.fields,field_description:field_stock_connect_yellowcubesoap_message_is_follower
 msgid "Is a Follower"
-msgstr "Is a Follower"
+msgstr "Ist ein Abonnent"
 
 #. module: pc_connect_warehouse_yellowcube_soap
 #: field:stock.connect,yc_bar_last_check:0
 msgid "Last BAR download"
-msgstr "Last BAR download"
+msgstr "Letzter BAR Eingang"
 
 #. module: pc_connect_warehouse_yellowcube_soap
 #: model:ir.model.fields,field_description:field_stock_connect_yc_bar_last_check
 msgid "Last BAR download"
-msgstr "Last BAR download"
+msgstr "Letzter BAR Eingang"
 
 #. module: pc_connect_warehouse_yellowcube_soap
 #: field:stock.connect,yc_last_bur_check:0
 msgid "Last BUR check"
-msgstr "Last BUR check"
+msgstr "Letzte BUR Abfrage"
 
 #. module: pc_connect_warehouse_yellowcube_soap
 #: model:ir.model.fields,field_description:field_stock_connect_yc_last_bur_check
 msgid "Last BUR check"
-msgstr "Last BUR check"
+msgstr "Letzte BUR Abfrage"
 
 #. module: pc_connect_warehouse_yellowcube_soap
 #: field:stock.connect,yc_war_last_check:0
 msgid "Last WAR download"
-msgstr "Last WAR download"
+msgstr "Letzter WAR Eingang"
 
 #. module: pc_connect_warehouse_yellowcube_soap
 #: model:ir.model.fields,field_description:field_stock_connect_yc_war_last_check
 msgid "Last WAR download"
-msgstr "Last WAR download"
+msgstr "Letzter WAR Eingang"
 
 #. module: pc_connect_warehouse_yellowcube_soap
 #: field:stock.connect,yc_wba_last_check:0
@@ -395,42 +390,37 @@ msgstr "Last WBA download"
 #. module: pc_connect_warehouse_yellowcube_soap
 #: field:stock.connect.yellowcubesoap,local_archive_input_dir:0
 msgid "Local directory where to archive the input files"
-msgstr "Local directory where to archive the input files"
+msgstr "Verzeichnis für das Archivieren der eingehenden Dateien"
 
 #. module: pc_connect_warehouse_yellowcube_soap
 #: model:ir.model.fields,field_description:field_stock_connect_yellowcubesoap_local_archive_input_dir
 msgid "Local directory where to archive the input files"
-msgstr "Local directory where to archive the input files"
+msgstr "Verzeichnis für das Archivieren der eingehenden Dateien"
 
 #. module: pc_connect_warehouse_yellowcube_soap
 #: field:stock.connect.yellowcubesoap,log_about_already_existing_files:0
 msgid "Log about already existing files?"
-msgstr "Log about already existing files?"
+msgstr "Bei bereits existierenden Dateien benachrichtigen?"
 
 #. module: pc_connect_warehouse_yellowcube_soap
 #: model:ir.model.fields,field_description:field_stock_connect_yellowcubesoap_log_about_already_existing_files
 msgid "Log about already existing files?"
-msgstr "Log about already existing files?"
+msgstr "Bei bereits existierenden Dateien benachrichtigen?"
 
 #. module: pc_connect_warehouse_yellowcube_soap
 #: help:stock.connect.yellowcubesoap,message_ids:0
 msgid "Messages and communication history"
-msgstr "Messages and communication history"
+msgstr "Meldungs- und Kommunikationsprotokoll"
 
 #. module: pc_connect_warehouse_yellowcube_soap
 #: field:stock.connect.yellowcubesoap,message_ids:0
 msgid "Messages"
-msgstr "Messages"
+msgstr "Meldungen"
 
 #. module: pc_connect_warehouse_yellowcube_soap
 #: model:ir.model.fields,field_description:field_stock_connect_yellowcubesoap_message_ids
 msgid "Messages"
-msgstr "Messages"
-
-#. module: pc_connect_warehouse_yellowcube_soap
-#: help:stock.connect.yellowcubesoap,yc_invoice_pcl_printer_name:0
-msgid "Name of the PCL printer."
-msgstr "Name of the PCL printer."
+msgstr "Meldungen"
 
 #. module: pc_connect_warehouse_yellowcube_soap
 #: field:stock.connect.yellowcubesoap,name:0
@@ -445,142 +435,107 @@ msgstr "Bezeichnung"
 #. module: pc_connect_warehouse_yellowcube_soap
 #: help:stock.connect.yellowcubesoap,yc_missing_bar_days_due:0
 msgid "Negative or zero, ignore check."
-msgstr "Negative or zero, ignore check."
+msgstr "Keine Überprüfung falls 0 oder negativ.."
 
 #. module: pc_connect_warehouse_yellowcube_soap
 #: field:stock.connect.yellowcubesoap,limit_of_connections:0
 msgid "Number of connections made on sync"
-msgstr "Number of connections made on sync"
+msgstr "Anzahl Verbindungen bei Abfrage"
 
 #. module: pc_connect_warehouse_yellowcube_soap
 #: model:ir.model.fields,field_description:field_stock_connect_yellowcubesoap_limit_of_connections
 msgid "Number of connections made on sync"
-msgstr "Number of connections made on sync"
-
-#. module: pc_connect_warehouse_yellowcube_soap
-#: field:stock.connect.yellowcubesoap,yc_invoice_pcl_printer_destination:0
-msgid "PCL Printer Destination"
-msgstr "PCL Printer Destination"
-
-#. module: pc_connect_warehouse_yellowcube_soap
-#: model:ir.model.fields,field_description:field_stock_connect_yellowcubesoap_yc_invoice_pcl_printer_destination
-msgid "PCL Printer Destination"
-msgstr "PCL Printer Destination"
-
-#. module: pc_connect_warehouse_yellowcube_soap
-#: field:stock.connect.yellowcubesoap,yc_invoice_pcl_printer_name:0
-msgid "PCL Printer Name"
-msgstr "PCL Printer Name"
-
-#. module: pc_connect_warehouse_yellowcube_soap
-#: model:ir.model.fields,field_description:field_stock_connect_yellowcubesoap_yc_invoice_pcl_printer_name
-msgid "PCL Printer Name"
-msgstr "PCL Printer Name"
+msgstr "Anzahl Verbindungen bei Abfrage"
 
 #. module: pc_connect_warehouse_yellowcube_soap
 #: field:stock.connect,yc_soapsec_cert_path:0
 msgid "Private cert for signature"
-msgstr "Private cert for signature"
+msgstr "Privates Zertifikat"
 
 #. module: pc_connect_warehouse_yellowcube_soap
 #: model:ir.model.fields,field_description:field_stock_connect_yc_soapsec_cert_path
 msgid "Private cert for signature"
-msgstr "Private cert for signature"
+msgstr "Privates Zertifikat"
 
 #. module: pc_connect_warehouse_yellowcube_soap
 #: field:stock.connect,yc_soapsec_key_path:0
 msgid "Private key for signature"
-msgstr "Private key for signature"
+msgstr "Privater Schlüssel"
 
 #. module: pc_connect_warehouse_yellowcube_soap
 #: model:ir.model.fields,field_description:field_stock_connect_yc_soapsec_key_path
 msgid "Private key for signature"
-msgstr "Private key for signature"
+msgstr "Privater Schlüssel"
 
 #. module: pc_connect_warehouse_yellowcube_soap
 #: selection:stock.connect.yellowcubesoap,yc_operating_mode:0
 msgid "Production"
-msgstr "Production"
+msgstr "Produktion"
 
 #. module: pc_connect_warehouse_yellowcube_soap
 #: view:stock.connect:0
 msgid "Productive:"
-msgstr "Productive:"
+msgstr "Produktion:"
 
 #. module: pc_connect_warehouse_yellowcube_soap
 #: field:stock.connect.yellowcubesoap,remote_input_dir:0
 msgid "Remote directory where to GET files"
-msgstr "Remote directory where to GET files"
+msgstr "FDS-Verzeichnis aus dem Dateien gelesen werden"
 
 #. module: pc_connect_warehouse_yellowcube_soap
 #: model:ir.model.fields,field_description:field_stock_connect_yellowcubesoap_remote_input_dir
 msgid "Remote directory where to GET files"
-msgstr "Remote directory where to GET files"
+msgstr "FDS-Verzeichnis aus dem Dateien gelesen werden"
 
 #. module: pc_connect_warehouse_yellowcube_soap
 #: field:stock.connect.yellowcubesoap,remote_output_dir:0
 msgid "Remote directory where to PUT files"
-msgstr "Remote directory where to PUT files"
+msgstr "FDS-Verzeichnis, in dem Dateien abgelegt werden"
 
 #. module: pc_connect_warehouse_yellowcube_soap
 #: model:ir.model.fields,field_description:field_stock_connect_yellowcubesoap_remote_output_dir
 msgid "Remote directory where to PUT files"
-msgstr "Remote directory where to PUT files"
+msgstr "FDS-Verzeichnis, in dem Dateien abgelegt werden"
 
 #. module: pc_connect_warehouse_yellowcube_soap
 #: help:stock.connect,yc_last_bur_check:0
 msgid "Repetead when elapsed at least one day"
-msgstr "Repetead when elapsed at least one day"
+msgstr "Wiederholung nach mindestens einem Tag."
 
 #. module: pc_connect_warehouse_yellowcube_soap
 #: view:stock.connect:0
 msgid "Required for SOAP"
-msgstr "Required for SOAP"
+msgstr "Benötigt für SOAP"
 
 #. module: pc_connect_warehouse_yellowcube_soap
 #: view:stock.connect:0
 msgid "SOAP configuration"
-msgstr "SOAP configuration"
+msgstr "SOAP Konfiguration"
 
 #. module: pc_connect_warehouse_yellowcube_soap
 #: view:stock.connect:0
 msgid "Set for debug file"
-msgstr "Set for debug file"
-
-#. module: pc_connect_warehouse_yellowcube_soap
-#: field:stock.connect.yellowcubesoap,yc_invoice_pcl_printer_silent_printing:0
-msgid "Silent PCL Printing?"
-msgstr "Silent PCL Printing?"
-
-#. module: pc_connect_warehouse_yellowcube_soap
-#: model:ir.model.fields,field_description:field_stock_connect_yellowcubesoap_yc_invoice_pcl_printer_silent_printing
-msgid "Silent PCL Printing?"
-msgstr "Silent PCL Printing?"
-
-#. module: pc_connect_warehouse_yellowcube_soap
-#: help:stock.connect.yellowcubesoap,yc_invoice_pcl_printer_silent_printing:0
-msgid "Silents the messages associated with the printing of PCL files."
-msgstr "Silents the messages associated with the printing of PCL files."
+msgstr "Ausfüllen für das Debug-Log"
 
 #. module: pc_connect_warehouse_yellowcube_soap
 #: field:stock.connect.yellowcubesoap,message_summary:0
 msgid "Summary"
-msgstr "Summary"
+msgstr "Zusammenfassung"
 
 #. module: pc_connect_warehouse_yellowcube_soap
 #: model:ir.model.fields,field_description:field_stock_connect_yellowcubesoap_message_summary
 msgid "Summary"
-msgstr "Summary"
+msgstr "Zusammenfassung"
 
 #. module: pc_connect_warehouse_yellowcube_soap
 #: field:stock.connect.yellowcubesoap,local_archive_input_dir_temporal:0
 msgid "Temporal local directory where to place the input files to archive"
-msgstr "Temporal local directory where to place the input files to archive"
+msgstr "Temporäres Eingangsverzeichnis für Dateien von FDS"
 
 #. module: pc_connect_warehouse_yellowcube_soap
 #: model:ir.model.fields,field_description:field_stock_connect_yellowcubesoap_local_archive_input_dir_temporal
 msgid "Temporal local directory where to place the input files to archive"
-msgstr "Temporal local directory where to place the input files to archive"
+msgstr "Temporäres Eingangsverzeichnis für Dateien von FDS"
 
 #. module: pc_connect_warehouse_yellowcube_soap
 #: selection:stock.connect.yellowcubesoap,yc_operating_mode:0
@@ -595,27 +550,27 @@ msgstr "Test:"
 #. module: pc_connect_warehouse_yellowcube_soap
 #: field:stock.connect,yc_wsdl_endpoint:0
 msgid "URL into WSDL endpoint for SOAP transport"
-msgstr "URL into WSDL endpoint for SOAP transport"
+msgstr "URL des WSDL-Endpunkt für SOAP-Verbindung"
 
 #. module: pc_connect_warehouse_yellowcube_soap
 #: model:ir.model.fields,field_description:field_stock_connect_yc_wsdl_endpoint
 msgid "URL into WSDL endpoint for SOAP transport"
-msgstr "URL into WSDL endpoint for SOAP transport"
+msgstr "URL des WSDL-Endpunkt für SOAP-Verbindung"
 
 #. module: pc_connect_warehouse_yellowcube_soap
 #: field:stock.connect.yellowcubesoap,message_unread:0
 msgid "Unread Messages"
-msgstr "Unread Messages"
+msgstr "Ungelesene Meldungen"
 
 #. module: pc_connect_warehouse_yellowcube_soap
 #: model:ir.model.fields,field_description:field_stock_connect_yellowcubesoap_message_unread
 msgid "Unread Messages"
-msgstr "Unread Messages"
+msgstr "Ungelesene Meldungen"
 
 #. module: pc_connect_warehouse_yellowcube_soap
 #: help:stock.connect.yellowcubesoap,yc_operating_mode:0
 msgid "Value of the tag OperatingMode in YellowCube files."
-msgstr "Value of the tag OperatingMode in YellowCube files."
+msgstr "Wert des Parameters OperatingMode in YellowCube Meldungen."
 
 #. module: pc_connect_warehouse_yellowcube_soap
 #: field:stock.connect.yellowcubesoap,yc_depositor_no:0
@@ -690,17 +645,17 @@ msgstr "YC SupplierNo"
 #. module: pc_connect_warehouse_yellowcube_soap
 #: field:stock.connect.yellowcubesoap,yc_language:0
 msgid "YC XML Language"
-msgstr "YC XML Language"
+msgstr "YC XML Sprache"
 
 #. module: pc_connect_warehouse_yellowcube_soap
 #: model:ir.model.fields,field_description:field_stock_connect_yellowcubesoap_yc_language
 msgid "YC XML Language"
-msgstr "YC XML Language"
+msgstr "YC XML Sprache"
 
 #. module: pc_connect_warehouse_yellowcube_soap
 #: selection:stock.connect.yellowcubesoap,type:0
 msgid "YellowCube over SOAP"
-msgstr "YellowCube over SOAP"
+msgstr "YellowCube via SOAP"
 
 #. module: pc_connect_warehouse_yellowcube_soap
 #: selection:stock.connect.yellowcubesoap,type:0
@@ -724,15 +679,13 @@ msgid "\n"
 "6) Set the ART multifile to True\n"
 "7) Set all security parameters, or empty Cert and Key paths\n"
 ""
-msgstr "\n"
-"YellowCube connections must:\n"
-"1) Only run over a unique warehouse.\n"
-"2) Have no selected connection transport\n"
-"3) Define the URL into the SOAP endpoint\n"
-"4) Have a positive value for the ART periodicy\n"
-"5) Fill in 'YC Depositor No', 'YC PlantID', 'YC Sender', 'YC SupplierNo', 'YC PartnerNo', 'YC OperatingMode'\n"
-"6) Set the ART multifile to True\n"
-"7) Set all security parameters, or empty Cert and Key paths\n"
+msgstr "\nYellowCube Verbindungen:\n"
+"1) Dürfen nur ein einziges Lager verwenden.\n"
+"2) Dürfen keine zusätzliche Verbindungsart verwenden\n"
+"3) Benötigen eine korrekt definierte Endpoint-URL\n"
+"4) Haben einen positiven Wert bei beim ART-Alter\n"
+"5) Benötigen 'YC Depositor No', 'YC PlantID', 'YC Sender', 'YC SupplierNo', 'YC PartnerNo', 'YC OperatingMode'\n"
+"6) Müssen die Option ART Multidatei gesetzt haben\n7) Benötigen korrekt ausgefüllte Sicherheitsmerkmale (Zertifikat & Schlüssel) - oder leer für Test\n"
 ""
 
 #. module: pc_connect_warehouse_yellowcube_soap

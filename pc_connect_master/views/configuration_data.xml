@@ -42,6 +42,8 @@
                         <group string="Reports to Use" colspan="2">
                             <field name="report_account_invoice" colspan="1" />
                             <field name="report_stock_picking" colspan="1" />
+                            <field name="report_purchase_order" colspan="1" />
+                            <field name="invoice_report_show_bvr_when_zero_amount_total" colspan="1"/>
                         </group>
                     </page>
 
@@ -49,11 +51,17 @@
 						<group colspan="2">
 							<field name="force_payment_term" colspan="1" />
 							<field name="default_credit_limit" colspan="1" />
+							<field name="default_credit_limit_companies" colspan="1" />
 						</group>
                         <group string="Partial Deliveries" colspan="2">
                             <field name="default_picking_policy" colspan="1"/>
                             <field name="open_backorder_alarming_age_days" colspan="1"/>
                             <field name="execute_only_after_time_for_backorders" widget="float_time" colspan="1" />
+                        </group>
+                        <group string="Partial Deliveries" position="before">
+                            <group string="Invoicing" colspan="2">
+                                <field name="invoice_policy" colspan="1"/>
+                            </group>
                         </group>
                         <group string="Opening Hours of Support" colspan="2">
                             <div colspan="2">
@@ -82,6 +90,21 @@
 						</group>
                     </page>
 
+                    <page string="Purchase Order">
+                        <group string="Email Templates" colspan="2">
+                            <field name="purchase_to_supplier_email_template_id" colspan="1" />
+                        </group>
+                        <group string="Alarming" colspan="2">
+                            <field name="purchase_alarming_days" colspan="1" />
+                        </group>
+                        <group string="Others" colspan="2">
+                            <field name="purchase_schedule_date_consider_only_weekdays" colspan="1" />
+                        </group>
+                        <group string="Prefix for Supplier " colspan="2">
+                            <field name="supplier_prefix_ref" colspan="1" />
+                        </group>
+                    </page>
+
                     <page string="Others">
 						<group string="Contact Titles" colspan="2">
 							<field name="keep_only_mister_and_madam_titles" />
@@ -95,9 +118,18 @@
                         <group string="Requeue Criteria" colspan="2">
                             <field name="concurrent_access_requeue_num_minutes" />
                         </group>
+                        <group string="Pickings" colspan="2">
+                            <field name="ready_for_export_check_num_minutes" />
+                        </group>
                     </page>
 
                     <page string="Alarming" />
+
+                    <page string="Gift-cards" name="gift_cards">
+                        <group name="group_gift_cards">
+                            <field name="gift_card_journal_id" />
+                        </group>
+                    </page>
 
 				</notebook>
 			</field>

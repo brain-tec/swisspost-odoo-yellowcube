@@ -1,0 +1,248 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+
+        <!-- Extended views. -->
+        <record id="invoice_payment_date_tree_view_ext" model="ir.ui.view">
+            <field name="name">invoice_payment_date_tree_view_ext</field>
+            <field name="model">account.invoice</field>
+            <field name="inherit_id" ref="account.invoice_tree" />
+            <field name="arch" type="xml">
+                <field name="date_invoice" position="after">
+                    <field name="payment_date" readonly="True" />
+                </field>
+                <field name="amount_total" position="after">
+                    <field name="discount" readonly="True" />
+                </field>
+            </field>
+        </record>
+
+        <!-- Extended search-views common to all the invoice's views. -->
+        <record id="view_account_invoice_extra_group_bys" model="ir.ui.view">
+            <field name="name">view_account_invoice_extra_group_bys</field>
+            <field name="model">account.invoice</field>
+            <field name="inherit_id" ref="account.view_account_invoice_filter" />
+            <field name="arch" type="xml">
+
+
+                <filter string="Due Date" position="after">
+                    <filter string="Payment Date" icon="terp-accessories-archiver"
+                        domain="[]" context="{'group_by':'payment_date'}" />
+                    <filter string="Partner's Main Category" icon="terp-accessories-archiver"
+                        domain="[]" context="{'group_by':'partner_main_category_id'}"/>
+                </filter>
+
+                <field name="number" position="after">
+                    <field name="date_invoice_from" filter_domain="[('date_invoice', '&gt;=', self)]" />
+                    <field name="date_invoice_to" filter_domain="[('date_invoice', '&lt;=', self)]" />
+                    <field name="payment_date_from" filter_domain="[('payment_date', '&gt;=', self)]" />
+                    <field name="payment_date_to" filter_domain="[('payment_date', '&lt;=', self)]" />
+                </field>
+
+            </field>
+        </record>
+
+        <!-- Defines the filters. -->
+        <record id="view_account_invoice_filter_by_invoice_date" model="ir.ui.view">
+            <field name="name">view_account_invoice_filter_by_invoice_date</field>
+            <field name="model">account.invoice</field>
+            <field name="inherit_id" ref="account.view_account_invoice_filter" />
+            <field name="arch" type="xml">
+                <field name="period_id" position="after">
+                    <filter
+                        string="Today"
+                        domain="[
+                                ('date_invoice','=',context_today().strftime('%%Y-%%m-%%d')),
+                                ]"
+                        help="Today"
+                        icon="terp-personal"
+                        name="today_by_invoice_date"
+                        invisible="not context.get('in_customer_invoices_by_invoice_date', False)" />
+
+                    <filter 
+                        string="This Week"
+                        domain="['&amp;',
+                                ('date_invoice','&gt;=','this_mon'),
+                                ('date_invoice','&lt;=','this_sun')
+                                ]"
+                        help="This week"
+                        icon="terp-go-week"
+                        name="this_week_by_invoice_date"
+                        context="{'this_week': True}"
+                        invisible="not context.get('in_customer_invoices_by_invoice_date', False)" />
+
+                    <filter
+                        string="This Month"
+                        domain="['&amp;',
+                                ('date_invoice','&gt;=',(context_today()+relativedelta(months=0)).strftime('%%Y-%%m-01')),
+                                ('date_invoice','&lt;',(context_today()+relativedelta(months=1)).strftime('%%Y-%%m-01')),
+                                ]"
+                        help="This month"
+                        icon="terp-personal"
+                        name="this_month_by_invoice_date"
+                        invisible="not context.get('in_customer_invoices_by_invoice_date', False)" />
+
+                    <filter
+                        string="This Year"
+                        domain="['&amp;',
+                                ('date_invoice','&gt;=',(context_today()+relativedelta(year=0)).strftime('%%Y-01-01')),
+                                ('date_invoice','&lt;=',(context_today()+relativedelta(year=0)).strftime('%%Y-12-31')),
+                                ]"
+                        help="This year"
+                        icon="terp-personal"
+                        name="this_year_by_invoice_date"
+                        invisible="not context.get('in_customer_invoices_by_invoice_date', False)" />
+                </field>
+            </field>
+        </record>
+
+        <record id="view_account_invoice_filter_by_payment_date" model="ir.ui.view">
+            <field name="name">view_account_invoice_filter_by_payment_date</field>
+            <field name="model">account.invoice</field>
+            <field name="inherit_id" ref="account.view_account_invoice_filter" />
+            <field name="arch" type="xml">
+                <field name="period_id" position="after">
+                    <filter
+                        string="Today"
+                        domain="[
+                                ('payment_date','=',context_today().strftime('%%Y-%%m-%%d')),
+                                ]"
+                        help="Today"
+                        icon="terp-personal"
+                        name="today_by_payment_date"
+                        invisible="not context.get('in_customer_invoices_by_payment_date', False)" />
+
+                    <filter 
+                        string="This Week"
+                        domain="['&amp;',
+                                ('payment_date','&gt;=','this_mon'),
+                                ('payment_date','&lt;=','this_sun')
+                                ]"
+                        help="This week"
+                        icon="terp-go-week"
+                        name="this_week_by_payment_date"
+                        context="{'this_week': True}"
+                        invisible="not context.get('in_customer_invoices_by_payment_date', False)" />
+
+                    <filter
+                        string="This Month"
+                        domain="['&amp;',
+                                ('payment_date','&gt;=',(context_today()+relativedelta(months=0)).strftime('%%Y-%%m-01')),
+                                ('payment_date','&lt;',(context_today()+relativedelta(months=1)).strftime('%%Y-%%m-01')),
+                                ]"
+                        help="This month"
+                        icon="terp-personal"
+                        name="this_month_by_payment_date"
+                        invisible="not context.get('in_customer_invoices_by_payment_date', False)" />
+
+                    <filter
+                        string="This Year"
+                        domain="['&amp;',
+                                ('payment_date','&gt;=',(context_today()+relativedelta(year=0)).strftime('%%Y-01-01')),
+                                ('payment_date','&lt;=',(context_today()+relativedelta(year=0)).strftime('%%Y-12-31')),
+                                ]"
+                        help="This year"
+                        icon="terp-personal"
+                        name="this_year_by_payment_date"
+                        invisible="not context.get('in_customer_invoices_by_payment_date', False)" />
+                </field>
+            </field>
+        </record>
+
+        <!-- Defines the actions. -->
+		<record id="action_customer_invoices_by_invoice_date" model="ir.actions.act_window">
+			<field name="name">Customer Invoices by Invoice Date</field>
+            <field name="type">ir.actions.act_window</field>
+			<field name="res_model">account.invoice</field>
+            <field name="view_type">form</field>
+			<field name="view_mode">tree,form</field>
+            <field name="domain">[('type','=','out_invoice')]</field>
+            <field name="search_view_id" ref="view_account_invoice_filter_by_invoice_date" />
+            <field name="context">{'in_customer_invoices_by_invoice_date': True}</field>
+		</record>
+        <record id="action_customer_refunds_by_invoice_date" model="ir.actions.act_window">
+            <field name="name">Customer Refunds by Invoice Date</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">account.invoice</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="domain">[('type','=','out_refund')]</field>
+            <field name="search_view_id" ref="view_account_invoice_filter_by_invoice_date" />
+            <field name="context">{'in_customer_invoices_by_invoice_date': True}</field>
+        </record>
+        <record id="action_customer_invoices_by_payment_date" model="ir.actions.act_window">
+            <field name="name">Customer Invoices by Payment Date</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">account.invoice</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="domain">[('type','=','out_invoice')]</field>
+            <field name="search_view_id" ref="view_account_invoice_filter_by_payment_date" />
+            <field name="context">{'in_customer_invoices_by_payment_date': True}</field>
+        </record>
+        <record id="action_customer_refunds_by_payment_date" model="ir.actions.act_window">
+            <field name="name">Customer Refunds by Payment Date</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">account.invoice</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="domain">[('type','=','out_refund')]</field>
+            <field name="search_view_id" ref="view_account_invoice_filter_by_payment_date" />
+            <field name="context">{'in_customer_invoices_by_payment_date': True}</field>
+        </record>
+
+        <!-- Defines the views associated to the actions. -->
+        <record id="action_customer_invoices_by_invoice_date_tree" model="ir.actions.act_window.view">
+            <field name="sequence" eval="0" />
+            <field name="view_mode">tree</field>
+            <field name="view_id" ref="account.invoice_tree" />
+            <field name="act_window_id" ref="action_customer_invoices_by_invoice_date" />
+        </record>
+        <record id="action_customer_invoices_by_invoice_date_form" model="ir.actions.act_window.view">
+            <field name="sequence" eval="1" />
+            <field name="view_mode">form</field>
+            <field name="view_id" ref="account.invoice_form" />
+            <field name="act_window_id" ref="action_customer_invoices_by_invoice_date" />
+        </record>
+
+        <record id="action_customer_refunds_by_invoice_date_tree" model="ir.actions.act_window.view">
+            <field name="sequence" eval="0" />
+            <field name="view_mode">tree</field>
+            <field name="view_id" ref="account.invoice_tree" />
+            <field name="act_window_id" ref="action_customer_refunds_by_invoice_date" />
+        </record>
+        <record id="action_customer_refunds_by_invoice_date_form" model="ir.actions.act_window.view">
+            <field name="sequence" eval="1" />
+            <field name="view_mode">form</field>
+            <field name="view_id" ref="account.invoice_form" />
+            <field name="act_window_id" ref="action_customer_refunds_by_invoice_date" />
+        </record>
+
+        <record id="action_customer_invoices_by_payment_date_tree" model="ir.actions.act_window.view">
+            <field name="sequence" eval="0" />
+            <field name="view_mode">tree</field>
+            <field name="view_id" ref="invoice_payment_date_tree_view_ext" />
+            <field name="act_window_id" ref="action_customer_invoices_by_payment_date" />
+        </record>
+        <record id="action_customer_invoices_by_payment_date_form" model="ir.actions.act_window.view">
+            <field name="sequence" eval="1" />
+            <field name="view_mode">form</field>
+            <field name="view_id" ref="account.invoice_form" />
+            <field name="act_window_id" ref="action_customer_invoices_by_payment_date" />
+        </record>
+
+        <record id="action_customer_refunds_by_payment_date_tree" model="ir.actions.act_window.view">
+            <field name="sequence" eval="0" />
+            <field name="view_mode">tree</field>
+            <field name="view_id" ref="invoice_payment_date_tree_view_ext" />
+            <field name="act_window_id" ref="action_customer_refunds_by_payment_date" />
+        </record>
+        <record id="action_customer_refunds_by_payment_date_form" model="ir.actions.act_window.view">
+            <field name="sequence" eval="1" />
+            <field name="view_mode">form</field>
+            <field name="view_id" ref="account.invoice_form" />
+            <field name="act_window_id" ref="action_customer_refunds_by_payment_date" />
+        </record>
+        
+    </data>
+</openerp>

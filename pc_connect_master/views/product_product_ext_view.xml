@@ -30,6 +30,9 @@
                 <group string="Stock and Expected Variations" position="attributes">
                     <attribute name="groups">base.group_user,pc_connect_master.pc_client</attribute>
                 </group>
+                <field name="virtual_available" position="after">
+                    <field name="qty_on_assigned_moves" />
+                </field>
             </field>
         </record>
 
@@ -96,6 +99,13 @@
                         <!-- To be filled in with remarks related to help & support. -->
                     </page>
                 </page>
+
+                <group name="procurement" position="after">
+                    <group name="cost_price_historical_data" colspan="2">
+                        <separator string="Cost Price Historical" />
+                        <field name="standard_price_historical_ids" nolabel="1" readonly="1" colspan="2" />
+                    </group>
+                </group>
 
             </field>
         </record>
@@ -167,6 +177,24 @@
 				</tree>
 			</field>
 		</record>
+
+        <record id="view_product_standard_price_form_ext_view" model="ir.ui.view">
+            <field name="name">view_product_standard_price_form_ext_view</field>
+            <field name="model">product.product</field>
+            <field name="inherit_id" ref="stock.view_product_standard_price_form"/>
+            <field name="arch" type="xml">
+
+                <!-- We extend the readonly to consider also average_invoice. -->
+                <field name="standard_price" position="attributes">
+                    <attribute name="attrs">{'readonly': ['|', ('cost_method','=','average'), ('cost_method', '=', 'average_invoice')]}</attribute>
+                </field>
+                <!-- We extend the invisible of the button which updates the price manually to also consider average_invoice. -->
+                <button name="%(stock.action_view_change_standard_price)d" position="attributes">
+                    <attribute name="attrs">{'invisible': [('cost_method','&lt;&gt;','average'), ('cost_method','&lt;&gt;','average_invoice')]}</attribute>
+                </button>
+
+            </field>
+        </record>
 
 	</data>
 </openerp>

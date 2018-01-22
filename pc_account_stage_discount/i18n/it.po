@@ -1,0 +1,217 @@
+# Translation of OpenERP Server.
+# This file contains the translation of the following modules:
+#	* pc_account_stage_discount
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: OpenERP Server 7.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2016-06-15 06:53+0000\n"
+"PO-Revision-Date: 2016-06-15 06:53+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: pc_account_stage_discount
+#: model:ir.actions.report.xml,name:report_invoice_stage_discount
+msgid "(PCAP) Invoice Stage Discount"
+msgstr "(PCAP) Invoice Stage Discount"
+
+#. module: pc_account_stage_discount
+#: report:addons/pc_account_stage_discount/report/account_invoice.mako:258
+msgid "Comment"
+msgstr "Commento"
+
+#. module: pc_account_stage_discount
+#: report:addons/pc_account_stage_discount/report/account_invoice.mako:59
+msgid "Customer number"
+msgstr "Numero cliente"
+
+#. module: pc_account_stage_discount
+#: report:addons/pc_account_stage_discount/report/account_invoice.mako:128
+msgid "Delivery Address"
+msgstr "Indirizzo di consegna"
+
+#. module: pc_account_stage_discount
+#: report:addons/pc_account_stage_discount/report/account_invoice.mako:167
+msgid "Description"
+msgstr "Descrizione"
+
+#. module: pc_account_stage_discount
+#: report:addons/pc_account_stage_discount/report/account_invoice.mako:171
+msgid "Discount"
+msgstr "Sconto"
+
+#. module: pc_account_stage_discount
+#: report:addons/pc_account_stage_discount/report/account_invoice.mako:54
+msgid "E-Mail"
+msgstr "E-mail"
+
+#. module: pc_account_stage_discount
+#: report:addons/pc_account_stage_discount/report/account_invoice.mako:65
+msgid "Invoice date"
+msgstr "Data fattura"
+
+#. module: pc_account_stage_discount
+#: report:addons/pc_account_stage_discount/report/account_invoice.mako:70
+msgid "Invoice due date"
+msgstr "Pagabile entro"
+
+#. module: pc_account_stage_discount
+#: report:addons/pc_account_stage_discount/report/account_invoice.mako:66
+msgid "Invoice number"
+msgstr "Numero fattura"
+
+#. module: pc_account_stage_discount
+#: report:addons/pc_account_stage_discount/report/account_invoice.mako:170
+msgid "Item price"
+msgstr "Prezzo singolo incl. IVA"
+
+#. module: pc_account_stage_discount
+#: report:addons/pc_account_stage_discount/report/account_invoice.mako:168
+msgid "Lot No."
+msgstr "Lot No."
+
+#. module: pc_account_stage_discount
+#: report:addons/pc_account_stage_discount/report/account_invoice.mako:60
+msgid "No sale order associated"
+msgstr "No sale order associated"
+
+#. module: pc_account_stage_discount
+#: field:configuration.data,invoice_report_discounted_num_lines_per_page_first:0
+msgid "Num. Elements per Page (first)"
+msgstr "Num. Elements per Page (first)"
+
+#. module: pc_account_stage_discount
+#: model:ir.model.fields,field_description:field_configuration_data_invoice_report_discounted_num_lines_per_page_first
+msgid "Num. Elements per Page (first)"
+msgstr "Num. Elements per Page (first)"
+
+#. module: pc_account_stage_discount
+#: field:configuration.data,invoice_report_discounted_num_lines_per_page_not_first:0
+msgid "Num. Elements per Page (not first)"
+msgstr "Num. Elements per Page (not first)"
+
+#. module: pc_account_stage_discount
+#: model:ir.model.fields,field_description:field_configuration_data_invoice_report_discounted_num_lines_per_page_not_first
+msgid "Num. Elements per Page (not first)"
+msgstr "Num. Elements per Page (not first)"
+
+#. module: pc_account_stage_discount
+#: help:configuration.data,invoice_report_discounted_num_lines_per_page_first:0
+msgid "Number of lines to display on the first page."
+msgstr "Number of lines to display on the first page."
+
+#. module: pc_account_stage_discount
+#: help:configuration.data,invoice_report_discounted_num_lines_per_page_not_first:0
+msgid "Number of lines to display per page in the report for pages different than the first one."
+msgstr "Number of lines to display per page in the report for pages different than the first one."
+
+#. module: pc_account_stage_discount
+#: report:addons/pc_account_stage_discount/report/account_invoice.mako:41
+msgid "Page"
+msgstr "Pagina"
+
+#. module: pc_account_stage_discount
+#: report:addons/pc_account_stage_discount/report/account_invoice.mako:146
+msgid "Partial Delivery"
+msgstr "Fornitura parziale"
+
+#. module: pc_account_stage_discount
+#: report:addons/pc_account_stage_discount/report/account_invoice.mako:53
+msgid "Phone"
+msgstr "Nº tel"
+
+#. module: pc_account_stage_discount
+#: report:addons/pc_account_stage_discount/report/account_invoice.mako:165
+msgid "Pos."
+msgstr "Pos."
+
+#. module: pc_account_stage_discount
+#: report:addons/pc_account_stage_discount/report/account_invoice.mako:166
+msgid "Product No."
+msgstr "n°. articolo"
+
+#. module: pc_account_stage_discount
+#: report:addons/pc_account_stage_discount/report/account_invoice.mako:169
+msgid "Quantity"
+msgstr "Quantità"
+
+#. module: pc_account_stage_discount
+#: report:addons/pc_account_stage_discount/report/account_invoice.mako:64
+msgid "Sale order date"
+msgstr "Data ordine"
+
+#. module: pc_account_stage_discount
+#: report:addons/pc_account_stage_discount/report/account_invoice.mako:60
+msgid "Sale order number"
+msgstr "Numero d’ordinazione"
+
+#. module: pc_account_stage_discount
+#: model:ir.model,name:model_sale_order
+msgid "Sales Order"
+msgstr "Ordine di vendita"
+
+#. module: pc_account_stage_discount
+#: report:addons/pc_account_stage_discount/report/account_invoice.mako:225
+msgid "Subtotal"
+msgstr "Subtotale"
+
+#. module: pc_account_stage_discount
+#: report:addons/pc_account_stage_discount/report/account_invoice.mako:211
+msgid "Tax Amount"
+msgstr "Importo IVA"
+
+#. module: pc_account_stage_discount
+#: report:addons/pc_account_stage_discount/report/account_invoice.mako:178
+msgid "Tax code"
+msgstr "Aliquota IVA"
+
+#. module: pc_account_stage_discount
+#: report:addons/pc_account_stage_discount/report/account_invoice.mako:56
+msgid "Tax number"
+msgstr "Il nostro IDI"
+
+#. module: pc_account_stage_discount
+#: report:addons/pc_account_stage_discount/report/account_invoice.mako:73
+msgid "This invoice has already been paid"
+msgstr "Fattura già pagata"
+
+#. module: pc_account_stage_discount
+#: report:addons/pc_account_stage_discount/report/account_invoice.mako:173
+msgid "Total"
+msgstr "Prezzo complessivo incl. IVA"
+
+#. module: pc_account_stage_discount
+#: report:addons/pc_account_stage_discount/report/account_invoice.mako:240
+msgid "Total:"
+msgstr "Totale"
+
+#. module: pc_account_stage_discount
+#: view:configuration.data:0
+msgid "True"
+msgstr "True"
+
+#. module: pc_account_stage_discount
+#: report:addons/pc_account_stage_discount/report/account_invoice.mako:55
+msgid "Web"
+msgstr "Web"
+
+#. module: pc_account_stage_discount
+#: report:addons/pc_account_stage_discount/report/account_invoice.mako:62
+msgid "Your reference"
+msgstr "Riferimento cliente"
+
+#. module: pc_account_stage_discount
+#: model:ir.model,name:model_configuration_data
+msgid "configuration.data"
+msgstr "configuration.data"
+
+#. module: pc_account_stage_discount
+#: report:addons/pc_account_stage_discount/report/account_invoice.mako:212
+msgid "of"
+msgstr "di"
+

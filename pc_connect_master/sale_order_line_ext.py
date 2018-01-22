@@ -1,7 +1,7 @@
 # b-*- encoding: utf-8 -*-
 ##############################################################################
 #
-#    Copyright (c) 2014 brain-tec AG (http://www.brain-tec.ch)
+#    Copyright (c) 2014 brain-tec AG (http://www.braintec-group.com)
 #    All Right Reserved
 #
 #    This program is free software: you can redistribute it and/or modify
@@ -20,10 +20,16 @@
 ##############################################################################
 
 from openerp.osv import osv, fields
+from utilities.db import create_db_index
 
 
 class sale_order_line_ext(osv.Model):
     _inherit = 'sale.order.line'
+
+    def init(self, cr):
+        """ Creates some indices that can not be created directly using the ORM
+        """
+        create_db_index(cr, 'sale_order_line_company_id_state_product_id_index', 'sale_order_line', 'company_id, state, product_id')
 
     def _get_line_from_so(self, cr, uid, ids, context=None):
         return self.pool['sale.order.line'].search(cr, uid, [('order_id', 'in', ids)], context=context)
@@ -45,6 +51,11 @@ class sale_order_line_ext(osv.Model):
                                                    'sale.order.line': (lambda s, cr, u, i, ct=None: i, ['price_subtotal', 'price_unit', 'discount', 'tax_id'], 10),
                                                    }
                                             ),
+        'alt_carrier_id': fields.many2one(
+            'delivery.carrier', 'Alternative Carrier',
+            help='The alternative delivery carrier needed to dispatch this '
+                 'item, that may be different than the one defined '
+                 'on the sale.order this line belongs to.'),
     }
 
 # vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:

@@ -1,7 +1,7 @@
 # b-*- encoding: utf-8 -*-
 ##############################################################################
 #
-#    Copyright (c) 2015 brain-tec AG (http://www.brain-tec.ch)
+#    Copyright (c) 2015 brain-tec AG (http://www.braintec-group.com)
 #    All Right Reserved
 #
 #    This program is free software: you can redistribute it and/or modify
@@ -23,22 +23,37 @@ import sys
 import base
 sys.modules['addons.base'] = base
 
+import account_account_ext
 import account_invoice_ext
+import account_invoice_line_ext
+import account_move_line_ext
 import company_support_config
 import config_setting_ext
 import configuration_data_ext
+import delivery_carrier_replacement
+import delivery_carrier_yc_option
+import delivery_carrier_product_category
+import delivery_carrier_product_template
 import delivery_carrier_ext
+import gift_card
 import gift_text_type
 import ir_attachment_ext
+import ir_attachment_tag
 import ir_cron_ext
 import ir_cron_punchcard
 import ir_filters_ext
+import mail_mail_ext
+import mail_message_ext
 import mail_thread_ext
 import payment_method_ext
+import product_category_ext
+import product_pending
 import product_product_ext
+import product_standard_price_history
 import product_template_ext
 import product_uom_ext
 import purchase_order_ext
+import purchase_order_line_ext
 import queue_job_ext
 import queue_worker_ext
 import report_file_exporter
@@ -48,11 +63,15 @@ import res_partner_ext
 import res_partner_title_ext
 import sale_order_ext
 import sale_order_line_ext
+import sale_shop_ext
+import standard_report
+import standard_view_report
 import stock_move_ext
 import stock_picking_ext
 import stock_picking_in_ext
 import stock_picking_out_ext
 import stock_production_lot_ext
+import stock_type
 import stock_warehouse_ext
 import utilities
 import wizard

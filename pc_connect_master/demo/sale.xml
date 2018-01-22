@@ -1,0 +1,17 @@
+<openerp>
+    <data>
+
+        <record id="payment_method_epaid" model="payment.method">
+			<field name="name">Payment Method With Epayment</field>
+			<field name="payment_term_id" ref="account.account_payment_term_15days" />
+            <field name="epayment" eval="True"/>
+		</record>
+
+        <record id="payment_method_not_epaid" model="payment.method">
+			<field name="name">Payment Method Witout Epayment</field>
+			<field name="payment_term_id" ref="account.account_payment_term_15days" />
+            <field name="epayment" eval="False"/>
+		</record>
+
+    </data>
+</openerp>

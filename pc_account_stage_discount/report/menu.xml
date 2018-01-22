@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+    <data>
+
+		<!-- Invoice Report with discounts provided by stage_discount. -->
+		<report id="report_invoice_stage_discount" string="(PCAP) Invoice Stage Discount"
+			model="account.invoice" name="invoice.stage_discount.report"
+			file="pc_account/report/account_invoice.mako"
+			report_type="webkit" auto="False" />
+		<record id="report_invoice_stage_discount" model="ir.actions.report.xml">
+			<field name="webkit_header" ref="pc_generics.ir_report_quotation_order" />
+		</record>
+
+    </data>
+</openerp>

@@ -21,8 +21,6 @@
 
 from osv import osv, fields
 from openerp.tools.translate import _
-import logging
-logger = logging.getLogger(__name__)
 
 
 class res_partner_check_credit(osv.TransientModel):
@@ -38,24 +36,11 @@ class res_partner_check_credit(osv.TransientModel):
         if context is None:
             context = {}
 
-        wizard = self.browse(cr, uid, ids[0], context=context)
+        result = self._do_credit_check_get_result(
+            cr, uid, context.get('active_ids', []), context=context)
 
+        self.write(cr, uid, ids, {'result': result}, context=context)
         ctx = context.copy()
-        ctx['currency_name'] = wizard.order_currency.name
-
-        result = ''
-        for res_partner in self.pool.get(ctx['active_model']).browse(cr, uid, ctx.get('active_ids', []), context=ctx):
-            check_credit_result = res_partner.check_credit(wizard.order_amount, context=ctx)
-            if check_credit_result['decision'] is False:
-                result_description = 'REJECT\n({0})'.format(check_credit_result['description'])
-            else:
-                result_description = 'ACCEPT\n({0})'.format(check_credit_result['description'])
-            result = '{original}Partner {partner_name} with ID={id}: {result}\n\n'.format(original=result,
-                                                                                          partner_name=res_partner.name,
-                                                                                          id=res_partner.id,
-                                                                                          result=result_description)
-
-        self.write(cr, uid, ids, {'result': result}, context=ctx)
         ctx['credit_check_done'] = True
         return {'type': 'ir.actions.act_window',
                 'res_model': self._name,
@@ -64,5 +49,30 @@ class res_partner_check_credit(osv.TransientModel):
                 'target': 'new',
                 'context': ctx,
                 }
+
+    def _do_credit_check_get_result(self, cr, uid, ids, context=None):
+        """ Gets the result of the credit check, to be returned to the wizard.
+        """
+
+        wizard = self.browse(cr, uid, ids[0], context=context)
+        ctx = context.copy()
+        ctx['currency_name'] = wizard.order_currency.name
+        result = ''
+        for res_partner in self.pool.get(ctx['active_model']).browse(
+                cr, uid, ids, context=ctx):
+            check_credit_result = res_partner.check_credit(
+                wizard.order_amount, context=ctx)
+            if check_credit_result['decision'] is False:
+                result_description = 'REJECT\n({0})'.format(
+                    check_credit_result['description'])
+            else:
+                result_description = 'ACCEPT\n({0})'.format(
+                    check_credit_result['description'])
+            result = _('{original}Partner {partner_name} with ID={id}: '
+                       '{result}\n\n').format(original=result,
+                                              partner_name=res_partner.name,
+                                              id=res_partner.id,
+                                              result=result_description)
+        return result
 
 # vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:

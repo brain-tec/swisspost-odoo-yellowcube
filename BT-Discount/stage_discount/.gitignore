@@ -1,0 +1,15 @@
+/.settings
+/.project
+/.pydevproject
+/__init__.pyc
+/discount_payment_term_line.pyc
+/discount_payment_term.pyc
+/discount_term_line.pyc
+/discount_term.pyc
+/account_invoice_line_ext.pyc
+/account_invoice_ext.pyc
+/discount_line.pyc
+/discount.pyc
+/generic.pyc
+/account
+/res_partner_ext.pyc

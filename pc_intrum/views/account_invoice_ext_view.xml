@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <record id="intrum_invoice_form_ext" model="ir.ui.view">
+            <field name="name">intrum_account_invoice_view</field>
+            <field name="model">account.invoice</field>
+            <field name="inherit_id" ref="account.invoice_form" />
+            <field name="arch" type="xml">
+                <notebook position="inside">
+                    <page string="Intrum">
+                        <group cols="2">
+                            <group>
+                                <field name="reported_to_intrum" />
+                            </group>
+                        </group>
+                    </page>
+                </notebook>
+            </field>
+        </record>
+    </data>
+</openerp>

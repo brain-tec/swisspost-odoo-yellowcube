@@ -1,0 +1,443 @@
+# Translation of OpenERP Server.
+# This file contains the translation of the following modules:
+# 	* pc_account
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: OpenERP Server 7.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2016-06-15 13:14+0000\n"
+"PO-Revision-Date: 2016-06-16 14:35+0100\n"
+"Last-Translator: Matt Fasola <matt.fasola@braintec-group.com>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: \n"
+"X-Generator: Poedit 1.5.4\n"
+
+#. module: pc_account
+#: model:ir.actions.report.xml,name:report_invoice
+msgid "(PCAP) Invoice"
+msgstr "(PCAP) Rechnung"
+
+#. module: pc_account
+#: field:configuration.data,invoice_report_text_for_partial_deliveries:0
+msgid "Additional Text for Partial Deliveries"
+msgstr "Zusatztext bei Teillieferung"
+
+#. module: pc_account
+#: model:ir.model.fields,field_description:field_configuration_data_invoice_report_text_for_partial_deliveries
+msgid "Additional Text for Partial Deliveries"
+msgstr "Zusatztext bei Teillieferung"
+
+#. module: pc_account
+#: field:configuration.data,invoice_backorder_line_text:0
+msgid "Back order line text"
+msgstr "Bezeichnung Lieferrückstand"
+
+#. module: pc_account
+#: code:addons/pc_account/report/account_invoice_report_ext.py:72
+msgid "CANCELLED Invoice"
+msgstr "Stornierte Rechnung"
+
+#. module: pc_account
+#: report:addons/pc_account/report/account_invoice.mako:259
+msgid "Comment"
+msgstr "Kommentar"
+
+#. module: pc_account
+#: field:configuration.data,invoice_franking_country_code:0
+msgid "Country Code"
+msgstr "Ländercode"
+
+#. module: pc_account
+#: model:ir.model.fields,field_description:field_configuration_data_invoice_franking_country_code
+msgid "Country Code"
+msgstr "Ländercode"
+
+#. module: pc_account
+#: code:addons/pc_account/report/account_invoice_report_ext.py:74
+msgid "Credit Note"
+msgstr "Gutschrift"
+
+#. module: pc_account
+#: report:addons/pc_account/report/account_invoice.mako:58
+msgid "Customer number"
+msgstr "Kundennummer"
+
+#. module: pc_account
+#: code:addons/pc_account/report/account_invoice_report_ext.py:70
+msgid "DRAFT Invoice"
+msgstr "Rechnungsentwurf"
+
+#. module: pc_account
+#: report:addons/pc_account/report/account_invoice.mako:127
+msgid "Delivery Address"
+msgstr "Lieferadresse"
+
+#. module: pc_account
+#: report:addons/pc_account/report/account_invoice.mako:163
+msgid "Description"
+msgstr "Bezeichnung"
+
+#. module: pc_account
+#: report:addons/pc_account/report/account_invoice.mako:167
+msgid "Discount"
+msgstr "Rabatt"
+
+#. module: pc_account
+#: report:addons/pc_account/report/account_invoice.mako:53
+msgid "E-Mail"
+msgstr "E-Mail"
+
+#. module: pc_account
+#: field:configuration.data,invoice_ending_text_without_epayment:0
+msgid "Ending Text (ePayment not set)"
+msgstr "Text der am Ende der Rechnung angedruckt wird (keine Zahlung per Kreditkarte im Shop)."
+
+#. module: pc_account
+#: model:ir.model.fields,field_description:field_configuration_data_invoice_ending_text_without_epayment
+msgid "Ending Text (ePayment not set)"
+msgstr "Text der am Ende der Rechnung angedruckt wird (keine Zahlung per Kreditkarte im Shop)."
+
+#. module: pc_account
+#: field:configuration.data,invoice_ending_text_with_epayment:0
+msgid "Ending Text (ePayment set)"
+msgstr "Abschlusstext (Online-Zahlung)"
+
+#. module: pc_account
+#: model:ir.model.fields,field_description:field_configuration_data_invoice_ending_text_with_epayment
+msgid "Ending Text (ePayment set)"
+msgstr "Abschlusstext (Online-Zahlung)"
+
+#. module: pc_account
+#: field:configuration.data,invoice_ending_text_for_refunds:0
+msgid "Ending Text For Refunds"
+msgstr "Abschlusstext für Gutschriften"
+
+#. module: pc_account
+#: model:ir.model.fields,field_description:field_configuration_data_invoice_ending_text_for_refunds
+msgid "Ending Text For Refunds"
+msgstr "Abschlusstext für Gutschriften"
+
+#. module: pc_account
+#: report:addons/pc_account/report/account_invoice.mako:302
+msgid "Gift-card {gift_card_name}"
+msgstr "Geschenkkarte {gift_card_name}"
+
+#. module: pc_account
+#: selection:configuration.data,invoice_report_discount_column_type:0
+msgid "Hide"
+msgstr "Verbergen"
+
+#. module: pc_account
+#: help:configuration.data,invoice_report_text_for_partial_deliveries:0
+msgid "In the case of the picking being part of a partial delivery this text will be printed at the first (and only one) invoice."
+msgstr "Zusatztext der auf der Rechnung angedruckt wird, falls die Lieferung auf mehrere Teillieferungen aufgeteilt wird. Die Rechnung wird immer mit der ersten Teillieferung versendet."
+
+#. module: pc_account
+#: field:configuration.data,invoice_include_backorder_items:0
+msgid "Include back order items"
+msgstr "Inklusive Lieferrückstände"
+
+#. module: pc_account
+#: report:addons/pc_account/report/account_invoice.mako:64
+msgid "Invoice date"
+msgstr "Rechnungsdatum"
+
+#. module: pc_account
+#: report:addons/pc_account/report/account_invoice.mako:69
+msgid "Invoice due date"
+msgstr "Bezahlbar bis"
+
+#. module: pc_account
+#: report:addons/pc_account/report/account_invoice.mako:65
+msgid "Invoice number"
+msgstr "Rechnungsnummer"
+
+#. module: pc_account
+#: code:addons/pc_account/report/account_invoice_report_ext.py:66
+msgid "Invoice"
+msgstr "Rechnung"
+
+#. module: pc_account
+#: model:ir.model,name:model_account_invoice
+msgid "Invoice"
+msgstr "Rechnung"
+
+#. module: pc_account
+#: view:configuration.data:0
+msgid "Invoices"
+msgstr "Rechnungen"
+
+#. module: pc_account
+#: report:addons/pc_account/report/account_invoice.mako:166
+msgid "Item price"
+msgstr "Einzelpreis"
+
+#. module: pc_account
+#: field:configuration.data,invoice_logo:0
+msgid "Logo"
+msgstr "Logo"
+
+#. module: pc_account
+#: model:ir.model.fields,field_description:field_configuration_data_invoice_logo
+msgid "Logo"
+msgstr "Logo"
+
+#. module: pc_account
+#: report:addons/pc_account/report/account_invoice.mako:164
+msgid "Lot No."
+msgstr "Losnummer"
+
+#. module: pc_account
+#: report:addons/pc_account/report/account_invoice.mako:59
+msgid "No sale order associated"
+msgstr "Keine zugeordnete Auftragsnummer"
+
+#. module: pc_account
+#: field:configuration.data,invoice_report_num_lines_per_page_first:0
+msgid "Num. Elements per Page (first)"
+msgstr "Anzahl Elemente pro Seite (erste)"
+
+#. module: pc_account
+#: model:ir.model.fields,field_description:field_configuration_data_invoice_report_num_lines_per_page_first
+msgid "Num. Elements per Page (first)"
+msgstr "Anzahl Elemente pro Seite (erste)"
+
+#. module: pc_account
+#: field:configuration.data,invoice_report_num_lines_per_page_not_first:0
+msgid "Num. Elements per Page (not first)"
+msgstr "Anzahl Elemente pro Seite (nachfolgende)"
+
+#. module: pc_account
+#: model:ir.model.fields,field_description:field_configuration_data_invoice_report_num_lines_per_page_not_first
+msgid "Num. Elements per Page (not first)"
+msgstr "Anzahl Elemente pro Seite (nachfolgende)"
+
+#. module: pc_account
+#: help:configuration.data,invoice_report_num_lines_per_page_first:0
+msgid "Number of lines to display on the first page."
+msgstr "Anzahl Zeilen, die auf der ersten Seite angedruckt werden."
+
+#. module: pc_account
+#: help:configuration.data,invoice_report_num_lines_per_page_not_first:0
+msgid "Number of lines to display per page in the report for pages different than the first one."
+msgstr "Anzahl Zeilen, die auf der zweiten und den nachfolgenden Seiten angedruckt werden sollen."
+
+#. module: pc_account
+#: code:addons/pc_account/report/account_invoice_report_ext.py:68
+msgid "PRO-FORMA Invoice"
+msgstr "Proforma-Rechnung"
+
+#. module: pc_account
+#: report:addons/pc_account/report/account_invoice.mako:40
+msgid "Page"
+msgstr "Seite"
+
+#. module: pc_account
+#: report:addons/pc_account/report/account_invoice.mako:147
+msgid "Partial Delivery"
+msgstr "Teillieferung"
+
+#. module: pc_account
+#: report:addons/pc_account/report/account_invoice.mako:52
+msgid "Phone"
+msgstr "Telefon"
+
+#. module: pc_account
+#: report:addons/pc_account/report/account_invoice.mako:161
+msgid "Pos."
+msgstr "Pos."
+
+#. module: pc_account
+#: view:configuration.data:0
+msgid "Post Mail"
+msgstr "Post Mail"
+
+#. module: pc_account
+#: field:configuration.data,invoice_report_show_bvr_when_zero_amount_total:0
+msgid "Print BVR if Amount Total is Zero?"
+msgstr "ESR-Andruck auch bei Betrag null?"
+
+#. module: pc_account
+#: field:configuration.data,invoice_report_print_delivery_address:0
+msgid "Print Delivery Address?"
+msgstr "Andruck der Lieferadresse auf der Rechnung"
+
+#. module: pc_account
+#: model:ir.model.fields,field_description:field_configuration_data_invoice_report_print_delivery_address
+msgid "Print Delivery Address?"
+msgstr "Andruck der Lieferadresse auf der Rechnung"
+
+#. module: pc_account
+#: report:addons/pc_account/report/account_invoice.mako:162
+msgid "Product No."
+msgstr "Artikel-Nr."
+
+#. module: pc_account
+#: field:configuration.data,invoice_qr:0
+msgid "QR"
+msgstr "QR"
+
+#. module: pc_account
+#: model:ir.model.fields,field_description:field_configuration_data_invoice_qr
+msgid "QR"
+msgstr "QR"
+
+#. module: pc_account
+#: report:addons/pc_account/report/account_invoice.mako:165
+msgid "Quantity"
+msgstr "Menge"
+
+#. module: pc_account
+#: field:configuration.data,invoice_postmail_rrn:0
+msgid "RRN"
+msgstr "RRN"
+
+#. module: pc_account
+#: model:ir.model.fields,field_description:field_configuration_data_invoice_postmail_rrn
+msgid "RRN"
+msgstr "RRN"
+
+#. module: pc_account
+#: help:configuration.data,invoice_postmail_rrn:0
+msgid "RRN, to be used in the franking part of the address window."
+msgstr "RRN für Frankatur im Adressblock"
+
+#. module: pc_account
+#: view:configuration.data:0
+msgid "Reports"
+msgstr "Belege"
+
+#. module: pc_account
+#: report:addons/pc_account/report/account_invoice.mako:63
+msgid "Sale order date"
+msgstr "Bestelldatum"
+
+#. module: pc_account
+#: report:addons/pc_account/report/account_invoice.mako:59
+msgid "Sale order number"
+msgstr "Bestellnummer"
+
+#. module: pc_account
+#: model:ir.model,name:model_sale_order
+msgid "Sales Order"
+msgstr "Verkaufsauftrag"
+
+#. module: pc_account
+#: report:addons/pc_account/report/account_invoice.mako:222
+msgid "Tax Amount"
+msgstr "MwSt Betrag"
+
+#. module: pc_account
+#: report:addons/pc_account/report/account_invoice.mako:174
+msgid "Tax code"
+msgstr "MwSt."
+
+#. module: pc_account
+#: report:addons/pc_account/report/account_invoice.mako:55
+msgid "Tax number"
+msgstr "MwSt.-Nr."
+
+#. module: pc_account
+#: help:configuration.data,invoice_ending_text_without_epayment:0
+msgid "Text which is placed at the end of the invoice if ePayment was not set."
+msgstr "Text der am Ende der Rechnung angedruckt wird, falls die Zahlung per Kreditkarte im Shop erfolgte."
+
+#. module: pc_account
+#: help:configuration.data,invoice_ending_text_with_epayment:0
+msgid "Text which is placed at the end of the invoice if ePayment was set."
+msgstr "Text der am Ende der Rechnung angedruckt wird, falls die Zahlung per Kreditkarte im Shop erfolgte."
+
+#. module: pc_account
+#: help:configuration.data,invoice_ending_text_for_refunds:0
+msgid "Text which is placed at the end of the invoice if it is a refund."
+msgstr "Text, der am Ende einer Gutschrift angedruckt wird"
+
+#. module: pc_account
+#: help:configuration.data,invoice_qr:0
+msgid "The QR code which appears within the address window."
+msgstr "Der QR-Code, der im Adressfenster erscheint."
+
+#. module: pc_account
+#: help:configuration.data,invoice_logo:0
+msgid "The logo which appears at the top of the report."
+msgstr "Das Logo, das im Belegskopf angedruckt wird."
+
+#. module: pc_account
+#: report:addons/pc_account/report/account_invoice.mako:72
+msgid "This invoice has already been paid"
+msgstr "Diese Rechnung wurde bereits bezahlt."
+
+#. module: pc_account
+#: report:addons/pc_account/report/account_invoice.mako:169
+msgid "Total"
+msgstr "Total"
+
+#. module: pc_account
+#: report:addons/pc_account/report/account_invoice.mako:232
+msgid "Total:"
+msgstr "Total"
+
+#. module: pc_account
+#: help:configuration.data,invoice_franking_town:0
+msgid "Town within the country, to be used in the franking part of the address window."
+msgstr "Ort für Frankatur im Adressblock"
+
+#. module: pc_account
+#: field:configuration.data,invoice_franking_town:0
+msgid "Town"
+msgstr "Ort"
+
+#. module: pc_account
+#: model:ir.model.fields,field_description:field_configuration_data_invoice_franking_town
+msgid "Town"
+msgstr "Ort"
+
+#. module: pc_account
+#: help:configuration.data,invoice_franking_country_code:0
+msgid "Two-letters country code, to be used in the franking part of the address window."
+msgstr "ISO Ländercode (2 Stellen) für Frankatur im Adressblock"
+
+#. module: pc_account
+#: report:addons/pc_account/report/account_invoice.mako:54
+msgid "Web"
+msgstr "Web"
+
+#. module: pc_account
+#: report:addons/pc_account/report/account_invoice.mako:61
+msgid "Your reference"
+msgstr "Ihre Referenz"
+
+#. module: pc_account
+#: help:configuration.data,invoice_franking_zip:0
+msgid "ZIP within the country, to be used in the franking part of the address window."
+msgstr "PLZ, die in der Frankatur des Adressblocks angedruckt wird."
+
+#. module: pc_account
+#: field:configuration.data,invoice_franking_zip:0
+msgid "ZIP"
+msgstr "PLZ"
+
+#. module: pc_account
+#: model:ir.model.fields,field_description:field_configuration_data_invoice_franking_zip
+msgid "ZIP"
+msgstr "PLZ"
+
+#. module: pc_account
+#: report:addons/pc_account/report/account_invoice.mako:222
+msgid "brutto"
+msgstr "brutto"
+
+#. module: pc_account
+#: model:ir.model,name:model_configuration_data
+msgid "configuration.data"
+msgstr "configuration.data"
+
+#. module: pc_account
+#: report:addons/pc_account/report/account_invoice.mako:223
+msgid "of"
+msgstr "von"
+

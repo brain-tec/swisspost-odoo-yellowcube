@@ -1,0 +1,174 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Mit XMLSpy v2008 rel. 2 (http://www.altova.com) von . (Intrum Justitia) bearbeitet -->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" attributeFormDefault="unqualified">
+	<xs:complexType name="ExtraInfoTypeType">
+		<xs:sequence>
+			<xs:element name="Name">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:minLength value="1"/>
+						<xs:maxLength value="30"/>
+						<xs:enumeration value="KLKKDN.EINKOMMEN_TOTAL"/>
+						<xs:enumeration value="KLKKDN.AUSGABEN_TOTAL"/>
+						<xs:enumeration value="KLKKDN.GRUND"/>
+						<xs:enumeration value="KLKKDN.ZUS1_A"/>
+						<xs:enumeration value="KLKKDN.KIND1"/>
+						<xs:enumeration value="KLKKDN.KIND2"/>
+						<xs:enumeration value="KLKKDN.KIND3"/>
+						<xs:enumeration value="KLKKDN.KK_A"/>
+						<xs:enumeration value="KLKKDN.STEUERN"/>
+						<xs:enumeration value="KLKKDN.IKO"/>
+						<xs:enumeration value="KLKKDN.UEBERSCHUSS"/>
+						<xs:enumeration value="KLKKDN.PQUOTE"/>
+						<xs:enumeration value="KLKKDN.FREIBETRAG"/>
+						<xs:enumeration value="CREDIT_DECISION"/>
+						<xs:enumeration value="RISK_INDICATOR"/>
+						<xs:enumeration value="CUSTOMER_AV"/>
+						<xs:enumeration value="RC16_RESIDENCE_CONFIRMATION"/>
+						<xs:enumeration value="RC16_ACCOUNT_CHECKING"/>
+						<xs:enumeration value="RC16_NATIONALITY_CH"/>
+						<xs:enumeration value="RC16_RESIDENCE_PERMIT"/>
+						<xs:enumeration value="RC16_DURATION_OF_STAY"/>
+						<xs:enumeration value="RC16_ARREAR_PAID"/>
+						<xs:enumeration value="RC16_PAYMENT_AGREEMENT"/>
+						<xs:enumeration value="RC16_NAME_SIGNATORY"/>
+						<xs:enumeration value="RC16_FUNCTION_SIGNATORY"/>
+						<xs:enumeration value="RC16_APPLICATION_FORM"/>
+						<xs:enumeration value="RC16_SIGNATURE_INVALID"/>
+						<xs:enumeration value="RC16_SIGNATURE_INSUFFICIENT"/>
+						<xs:enumeration value="RC16_STAMP_MISSING"/>
+						<xs:enumeration value="RC16_SIGNATURE_MISSING"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="Value">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:minLength value="1"/>
+						<xs:maxLength value="500"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="Response">
+		<xs:annotation>
+			<xs:documentation xml:lang="en">response from Intrum Justitia to the client</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="ProcessingInfo" type="ProcessingInfoType" minOccurs="0" maxOccurs="unbounded">
+					<xs:annotation>
+						<xs:documentation xml:lang="en">status message (info, warning, error)</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="Customer" maxOccurs="unbounded">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="CreditRating" type="xs:string" minOccurs="0"/>
+							<xs:element name="CreditRatingLevel" type="xs:string" minOccurs="0"/>
+							<xs:element name="RemainingLimit" type="xs:decimal" minOccurs="0"/>
+							<xs:element name="RequestStatus" type="xs:integer"/>
+							<xs:element name="LastStatusChange" type="xs:dateTime"/>
+							<xs:element name="DecisionProcessNumber" type="xs:long" minOccurs="0"/>
+							<xs:element name="ExtraInfo" type="ExtraInfoTypeType" minOccurs="0" maxOccurs="unbounded"/>
+							<xs:element name="ProcessingInfo" type="ProcessingInfoType" minOccurs="0" maxOccurs="unbounded">
+								<xs:annotation>
+									<xs:documentation xml:lang="en">status message (info, warning, error)</xs:documentation>
+								</xs:annotation>
+							</xs:element>
+							<xs:element name="OrderHistory" type="OrderHistoryType" minOccurs="0" maxOccurs="unbounded"/>
+						</xs:sequence>
+						<xs:attribute name="Reference" use="required">
+							<xs:annotation>
+								<xs:documentation>unique identification of customer</xs:documentation>
+							</xs:annotation>
+							<xs:simpleType>
+								<xs:restriction base="xs:string">
+									<xs:minLength value="1"/>
+									<xs:maxLength value="32"/>
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:attribute>
+						<xs:attribute name="IJReference" type="xs:long" use="optional"/>
+					</xs:complexType>
+				</xs:element>
+			</xs:sequence>
+			<xs:attribute name="ClientId" type="xs:long" use="required">
+				<xs:annotation>
+					<xs:documentation xml:lang="en">your client identification no. at Intrum Justitia</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="Version" type="xs:decimal" use="required">
+				<xs:annotation>
+					<xs:documentation xml:lang="en">interface version</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="RequestId" type="xs:string" use="optional">
+				<xs:annotation>
+					<xs:documentation xml:lang="en">unique identification of a request.</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="ResponseId" type="xs:string" use="optional"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:complexType name="ProcessingInfoType">
+		<xs:sequence>
+			<xs:element name="Code">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:minLength value="1"/>
+						<xs:maxLength value="9"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="Classification">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:minLength value="0"/>
+						<xs:maxLength value="3"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="Description">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:minLength value="0"/>
+						<xs:maxLength value="200"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="OrderHistoryType">
+		<xs:sequence>
+			<xs:element name="CustomerReference">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:minLength value="1"/>
+						<xs:maxLength value="32"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="OrderId" minOccurs="0">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:minLength value="1"/>
+						<xs:maxLength value="32"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="LastOrderDate" type="xs:date" minOccurs="0"/>
+			<xs:element name="MatchLevel">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:enumeration value="Person"/>
+						<xs:enumeration value="Household"/>
+						<xs:enumeration value="Address"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="UnpaidOrderAmount" type="xs:decimal" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+</xs:schema>
