@@ -16,11 +16,10 @@ def register_sale_order_change(session, model_name, record_id, vals):
     if 'state' not in vals:
         return True
     sale = session.env['sale.order'].browse(record_id)
-    pickings = session.env['stock.picking'].search([
-        '|',
-        ('sale_id', '=', record_id),
-        ('group_id', '=', sale.procurement_group_id.id),
-    ])
+    dom = [('sale_id', '=', record_id)]
+    if sale.procurement_group_id:
+        dom = ['|', ('group_id', '=', sale.procurement_group_id.id)] + dom
+    pickings = session.env['stock.picking'].search(dom)
     for picking in pickings:
         # This triggers an event update on every picking
         register_picking_change(session, 'stock.picking', picking.id)
